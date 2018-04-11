@@ -2,7 +2,7 @@
 # Python script for adapting a original tags file into vimcdoc 0.7.0+
 # compatible.
 # Usage: run inside 'tools' directory directly and will generate a
-# tags-cn file
+# tags-tw file
 
 import os
 import sys
@@ -38,25 +38,25 @@ class Vimcdoc:
             yield i
 
 
-def txt2cnx(fn):
-    """Transfer a *.txt filename to a *.cnx filename"""
-    return os.path.splitext(fn)[0] + '.cnx'
+def txt2twx(fn):
+    """Transfer a *.txt filename to a *.twx filename"""
+    return os.path.splitext(fn)[0] + '.twx'
 
-def generate_tagscn_file():
-    """ Generate a tags-cn file which can be used for release. The
+def generate_tagstw_file():
+    """ Generate a tags-tw file which can be used for release. The
     output file will be written to the current directory."""
 
     docs = Vimcdoc()
     try:
         fp = open( tags_file, 'r' )
-        fp_out = open ('tags-cn', 'w')
+        fp_out = open ('tags-tw', 'w')
         for i in fp:
             i = i.strip()
             taginfo = parse_tag_line( i )
             if taginfo["file"] in docs:
                 fp_out.write( '%s\t%s\t%s\n' % \
                               ( taginfo["name"],\
-                               txt2cnx(taginfo["file"]), \
+                               txt2twx(taginfo["file"]), \
                                '/'+taginfo["jump"] ) )
             else:
                 print 'Deleted: %s' % i
@@ -71,4 +71,4 @@ def generate_tagscn_file():
 
 if __name__ == '__main__':
     logging.getLogger().setLevel( logging.DEBUG )
-    generate_tagscn_file()
+    generate_tagstw_file()

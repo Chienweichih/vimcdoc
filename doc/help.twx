@@ -1,165 +1,165 @@
 *help.txt*	For Vim version 8.0.  最近更新: 2017年7月
 
-			VIM - 主帮助文件
+			VIM - 主幫助文件
                                                                          k
-             移动:  使用光标键，或者用 "h" 向左，                      h   l
+             移動:  使用光標鍵，或者用 "h" 向左，                      h   l
                     "j" 向下，"k" 向上，"l" 向右。                       j
-       关闭本窗口:  使用 ":q<Enter>"。
-         离开 Vim:  使用 ":qa!<Enter>" (当心，所有的改动都会丢失！)。
+       關閉本窗口:  使用 ":q<Enter>"。
+         離開 Vim:  使用 ":qa!<Enter>" (當心，所有的改動都會丟失！)。
 
-   跳转到一个主题:  将光标置于标签 (例如 |bars|) 上然后输入 CTRL-]。
-         使用鼠标:  ":set mouse=a" 启动对鼠标的支持 (用于 xterm 或 GUI)。
-		    在标签 (例如 |bars|) 上双击。
-             跳回:  键入 CTRL-T 或 CTRL-O。重复则继续向后。
+   跳轉到一個主題:  將光標置於標籤 (例如 |bars|) 上然後輸入 CTRL-]。
+         使用鼠標:  ":set mouse=a" 啟動對鼠標的支持 (用於 xterm 或 GUI)。
+		    在標籤 (例如 |bars|) 上雙擊。
+             跳回:  鍵入 CTRL-T 或 CTRL-O。重複則繼續向後。
 
-     获取特定帮助:  在 |:help| 命令后给出参数可以直接跳转到任何的帮助主题。
-		    还可以通过前缀进一步指定上下文:            *help-context*
+     獲取特定幫助:  在 |:help| 命令後給出參數可以直接跳轉到任何的幫助主題。
+		    還可以通過前綴進一步指定上下文:            *help-context*
 
-		          类别			前缀	   例子	~
+		          類別			前綴	   例子	~
 		      普通模式命令			   :help x
-		      可视模式命令		  v_	   :help v_u
+		      可視模式命令		  v_	   :help v_u
 		      插入模式命令		  i_	   :help i_<Esc>
 		      命令行模式命令		  :	   :help :quit
-		      命令行编辑		  c_	   :help c_<Del>
-		      Vim 命令参数		  -	   :help -r
-		      选项			  '	   :help 'textwidth'
-		      正规表达式		  /	   :help /[
-		    更多上下文及说明参见 |help-summary|。
+		      命令行編輯		  c_	   :help c_<Del>
+		      Vim 命令參數		  -	   :help -r
+		      選項			  '	   :help 'textwidth'
+		      正規表達式		  /	   :help /[
+		    更多上下文及說明參見 |help-summary|。
 
-	 查找帮助:  键入 ":help word"，接着键入 CTRL-D 可以看到匹配 "word" 的
-	 	    帮助主题。
+	 查找幫助:  鍵入 ":help word"，接著鍵入 CTRL-D 可以看到匹配 "word" 的
+	 	    幫助主題。
 		    也可用 ":helpgrep word"。|:helpgrep|
 
-Vim 代表 Vi IMproved。Vim 主要由 Bram Moolenaar 编写，但没有许多其他人的帮助是
-不可能的。请见 |credits|。
+Vim 代表 Vi IMproved。Vim 主要由 Bram Moolenaar 編寫，但沒有許多其他人的幫助是
+不可能的。請見 |credits|。
 ------------------------------------------------------------------------------
 						*doc-file-list* *Q_ct*
-基础:
-|quickref|	总览最常用的命令
-|tutor|		面向初学者的 30 分钟教程
-|copying|	版权信息
-|iccf|		资助乌干达贫困儿童
-|sponsor|	赞助 Vim 的开发，成为一名注册用户
-|www|		互联网上的 Vim
-|bugs|		如何提交漏洞报告
+基礎:
+|quickref|	總覽最常用的命令
+|tutor|		面向初學者的 30 分鐘教程
+|copying|	版權信息
+|iccf|		資助烏干達貧困兒童
+|sponsor|	贊助 Vim 的開發，成為一名註冊用戶
+|www|		互聯網上的 Vim
+|bugs|		如何提交漏洞報告
 
-用户手册: 这些文件解释如何完成一项编辑任务。
+用戶手冊: 這些文件解釋如何完成一項編輯任務。
 
-|usr_toc.txt|	目录
+|usr_toc.txt|	目錄
 
-初步知识 ~
-|usr_01.txt|  关于本手册
+初步知識 ~
+|usr_01.txt|  關於本手冊
 |usr_02.txt|  Vim 初步
-|usr_03.txt|  移动
-|usr_04.txt|  做小改动
-|usr_05.txt|  选项设置
-|usr_06.txt|  使用语法高亮
-|usr_07.txt|  编辑多个文件
+|usr_03.txt|  移動
+|usr_04.txt|  做小改動
+|usr_05.txt|  選項設置
+|usr_06.txt|  使用語法高亮
+|usr_07.txt|  編輯多個文件
 |usr_08.txt|  分割窗口
 |usr_09.txt|  使用 GUI 版本
 |usr_10.txt|  做大修改
-|usr_11.txt|  从崩溃中恢复
-|usr_12.txt|  小窍门
+|usr_11.txt|  從崩潰中恢復
+|usr_12.txt|  小竅門
 
-高效地编辑 ~
-|usr_20.txt|  快速键入命令行
-|usr_21.txt|  离开和回来
-|usr_22.txt|  寻找要编辑的文件
-|usr_23.txt|  编辑特殊文件
+高效地編輯 ~
+|usr_20.txt|  快速鍵入命令行
+|usr_21.txt|  離開和回來
+|usr_22.txt|  尋找要編輯的文件
+|usr_23.txt|  編輯特殊文件
 |usr_24.txt|  快速插入
-|usr_25.txt|  编辑带格式的文本
-|usr_26.txt|  重复
+|usr_25.txt|  編輯帶格式的文本
+|usr_26.txt|  重複
 |usr_27.txt|  查找命令及模式
-|usr_28.txt|  折叠
-|usr_29.txt|  在代码间移动
-|usr_30.txt|  编辑程序
+|usr_28.txt|  折疊
+|usr_29.txt|  在代碼間移動
+|usr_30.txt|  編輯程序
 |usr_31.txt|  利用 GUI
-|usr_32.txt|  撤销树
+|usr_32.txt|  撤銷樹
 
-调节 Vim ~
-|usr_40.txt|  创建新的命令
-|usr_41.txt|  编写 Vim 脚本
-|usr_42.txt|  添加新的菜单
-|usr_43.txt|  使用文件类型
-|usr_44.txt|  自定义语法高亮
-|usr_45.txt|  选择你的语言
+調節 Vim ~
+|usr_40.txt|  創建新的命令
+|usr_41.txt|  編寫 Vim 腳本
+|usr_42.txt|  添加新的菜單
+|usr_43.txt|  使用文件類型
+|usr_44.txt|  自定義語法高亮
+|usr_45.txt|  選擇你的語言
 
-让 Vim 工作~
-|usr_90.txt|  安装 Vim
+讓 Vim 工作~
+|usr_90.txt|  安裝 Vim
 
 
-参考手册: 这些文件详细地解释 Vim 的每个细节。			*reference_toc*
+參考手冊: 這些文件詳細地解釋 Vim 的每個細節。			*reference_toc*
 
-一般主题 ~
-|intro.txt|	对 Vim 的一般介绍；帮助文件中所使用的符号
-|help.txt|	总览及快速参考 (本文件)
-|helphelp.txt|	关于如何使用帮助文件
-|index.txt|	以字母顺序排列的命令索引
-|help-tags|	可跳转的所有标签 (标签索引)
-|howto.txt|	如何完成最常见的编辑任务
-|tips.txt|	Vim 的各种窍门
-|message.txt|	(错误) 信息及解释
-|quotes.txt|	Vim 的用户评价
-|todo.txt|	已知的问题以及扩展计划
-|develop.txt|	Vim 的开发
-|debug.txt|	调试 Vim 自身
-|uganda.txt|	Vim 发布条件和怎么花你的 money
+一般主題 ~
+|intro.txt|	對 Vim 的一般介紹；幫助文件中所使用的符號
+|help.txt|	總覽及快速參考 (本文件)
+|helphelp.txt|	關於如何使用幫助文件
+|index.txt|	以字母順序排列的命令索引
+|help-tags|	可跳轉的所有標籤 (標籤索引)
+|howto.txt|	如何完成最常見的編輯任務
+|tips.txt|	Vim 的各種竅門
+|message.txt|	(錯誤) 信息及解釋
+|quotes.txt|	Vim 的用戶評價
+|todo.txt|	已知的問題以及擴展計劃
+|develop.txt|	Vim 的開發
+|debug.txt|	調試 Vim 自身
+|uganda.txt|	Vim 發佈條件和怎麼花你的 money
 
-基本编辑 ~
-|starting.txt|	启动 Vim，Vim 命令参数，初始化
-|editing.txt|	编辑和写入文件
-|motion.txt|	有关移动的命令
-|scroll.txt|	在窗口中滚动文本
-|insert.txt|	插入模式和替换模式
-|change.txt|	删除和替换文本
-|indent.txt|	C 及其它语言的自动缩进
-|undo.txt|	撤销和重做
-|repeat.txt|	重复命令，Vim 脚本及调试
-|visual.txt|	使用可视模式 (选择一个文本区域)
-|various.txt|	各种其它命令
-|recover.txt|	从崩溃中恢复
+基本編輯 ~
+|starting.txt|	啟動 Vim，Vim 命令參數，初始化
+|editing.txt|	編輯和寫入文件
+|motion.txt|	有關移動的命令
+|scroll.txt|	在窗口中滾動文本
+|insert.txt|	插入模式和替換模式
+|change.txt|	刪除和替換文本
+|indent.txt|	C 及其它語言的自動縮進
+|undo.txt|	撤銷和重做
+|repeat.txt|	重複命令，Vim 腳本及調試
+|visual.txt|	使用可視模式 (選擇一個文本區域)
+|various.txt|	各種其它命令
+|recover.txt|	從崩潰中恢復
 
-高级编辑 ~
-|cmdline.txt|	命令行编辑
-|options.txt|	所有选项的描述
-|pattern.txt|	正则表达式及查找命令
-|map.txt|	键盘映射及缩写
-|tagsrch.txt|	标签及特殊查找
-|quickfix.txt|	支持快速 编辑-编译-修正 循环的命令
-|windows.txt|	使用多窗口多缓冲区的命令
-|tabpage.txt|	使用多个标签页的命令
-|syntax.txt|	语法高亮
-|spell.txt|	拼写检查
-|diff.txt|	编辑同一文本的两到四个版本
-|autocmd.txt|	当事件发生时自动执行命令
-|filetype.txt|	对某一类型文件的专有设定
-|eval.txt|	表达式求值，条件执行命令
-|channel.txt|	作业、通道、进程间通信
-|fold.txt|	隐藏 (折叠) 一定范围内的文本
+高級編輯 ~
+|cmdline.txt|	命令行編輯
+|options.txt|	所有選項的描述
+|pattern.txt|	正則表達式及查找命令
+|map.txt|	鍵盤映射及縮寫
+|tagsrch.txt|	標籤及特殊查找
+|quickfix.txt|	支持快速 編輯-編譯-修正 循環的命令
+|windows.txt|	使用多窗口多緩衝區的命令
+|tabpage.txt|	使用多個標籤頁的命令
+|syntax.txt|	語法高亮
+|spell.txt|	拼寫檢查
+|diff.txt|	編輯同一文本的兩到四個版本
+|autocmd.txt|	當事件發生時自動執行命令
+|filetype.txt|	對某一類型文件的專有設定
+|eval.txt|	表達式求值，條件執行命令
+|channel.txt|	作業、通道、進程間通信
+|fold.txt|	隱藏 (折疊) 一定範圍內的文本
 
-特殊问题 ~
+特殊問題 ~
 |print.txt|	打印
-|remote.txt|	将 Vim 用作服务器/客户端
-|term.txt|	使用不同终端和鼠标
-|digraph.txt|	可用的二合字母清单
-|mbyte.txt|	多字节文本支持
-|mlang.txt|	非英语语言支持
-|arabic.txt|	阿拉伯语支持及编辑
-|farsi.txt|	Farsi (波斯语) 编辑
-|hebrew.txt|	希伯来语支持及编辑
-|russian.txt|	俄罗斯语支持及编辑
-|ft_ada.txt|	Ada (编程语言) 支持
-|ft_sql.txt|	SQL 文件类型插件相关
-|hangulin.txt|	Hangul (韩语) 输入模式
-|rileft.txt|	从右向左的编辑模式
+|remote.txt|	將 Vim 用作服務器/客戶端
+|term.txt|	使用不同終端和鼠標
+|digraph.txt|	可用的二合字母清單
+|mbyte.txt|	多字節文本支持
+|mlang.txt|	非英語語言支持
+|arabic.txt|	阿拉伯語支持及編輯
+|farsi.txt|	Farsi (波斯語) 編輯
+|hebrew.txt|	希伯來語支持及編輯
+|russian.txt|	俄羅斯語支持及編輯
+|ft_ada.txt|	Ada (編程語言) 支持
+|ft_sql.txt|	SQL 文件類型插件相關
+|hangulin.txt|	Hangul (韓語) 輸入模式
+|rileft.txt|	從右向左的編輯模式
 
 GUI ~
-|gui.txt|	图形用户界面 (GUI)
+|gui.txt|	圖形用戶界面 (GUI)
 |gui_w32.txt|	Win32 GUI
 |gui_x11.txt|	X11 GUI
 
-各种接口 ~
-|if_cscop.txt|	联用 cscope 与 Vim
+各種接口 ~
+|if_cscop.txt|	聯用 cscope 與 Vim
 |if_lua.txt|	Lua 接口
 |if_mzsch.txt|	MzScheme 接口
 |if_perl.txt|	Perl 接口
@@ -167,27 +167,27 @@ GUI ~
 |if_tcl.txt|	Tcl 接口
 |if_ole.txt|	Win32 下的 OLE 接口
 |if_ruby.txt|	Ruby 接口
-|debugger.txt|	与调试程序的接口
+|debugger.txt|	與調試程序的接口
 |workshop.txt|	Sun Visual Workshop 接口
-|netbeans.txt|	NetBeans 外部编辑器接口
-|sign.txt|	调试标号
+|netbeans.txt|	NetBeans 外部編輯器接口
+|sign.txt|	調試標號
 
 版本 ~
-|vi_diff.txt|	Vim 和 Vi 之间的主要区别
-|version4.txt|	Vim 3.0 和 4.x 版本的区别
-|version5.txt|	Vim 4.6 和 5.x 版本的区别
-|version6.txt|	Vim 5.7 和 6.x 版本的区别
-|version7.txt|	Vim 6.4 和 7.x 版本的区别
-|version8.txt|	Vim 7.4 和 8.x 版本的区别
+|vi_diff.txt|	Vim 和 Vi 之間的主要區別
+|version4.txt|	Vim 3.0 和 4.x 版本的區別
+|version5.txt|	Vim 4.6 和 5.x 版本的區別
+|version6.txt|	Vim 5.7 和 6.x 版本的區別
+|version7.txt|	Vim 6.4 和 7.x 版本的區別
+|version8.txt|	Vim 7.4 和 8.x 版本的區別
 						*sys-file-list*
-特定系统相关 ~
+特定系統相關 ~
 |os_390.txt|	OS/390 Unix
 |os_amiga.txt|	Amiga
 |os_beos.txt|	BeOS 和 BeBox
-|os_dos.txt|	MS-DOS 和 MS-Windows NT/95 通用的条目
+|os_dos.txt|	MS-DOS 和 MS-Windows NT/95 通用的條目
 |os_mac.txt|	Macintosh
 |os_mint.txt|	Atari MiNT
-|os_msdos.txt|	MS-DOS (纯 DOS 及 Windows 内的 DOS 窗口)
+|os_msdos.txt|	MS-DOS (純 DOS 及 Windows 內的 DOS 窗口)
 |os_os2.txt|	OS/2
 |os_qnx.txt|	QNX
 |os_risc.txt|	RISC-OS
@@ -195,31 +195,31 @@ GUI ~
 |os_vms.txt|	VMS
 |os_win32.txt|	MS-Windows 95/98/NT
 					*standard-plugin-list*
-标准插件 ~
-|pi_getscript.txt| 下载 Vim 脚本的最新版本
-|pi_gzip.txt|	   读写压缩过的文件
-|pi_logipat.txt|   模式的逻辑操作符
-|pi_netrw.txt|	   通过网络读写文件
-|pi_paren.txt|	   高亮匹配括号
+標準插件 ~
+|pi_getscript.txt| 下載 Vim 腳本的最新版本
+|pi_gzip.txt|	   讀寫壓縮過的文件
+|pi_logipat.txt|   模式的邏輯操作符
+|pi_netrw.txt|	   通過網絡讀寫文件
+|pi_paren.txt|	   高亮匹配括號
 |pi_tar.txt|	   Tar 文件探索器
-|pi_vimball.txt|   创建自安装的 Vim 脚本
-|pi_zip.txt|	   Zip 归档探索器
+|pi_vimball.txt|   創建自安裝的 Vim 腳本
+|pi_zip.txt|	   Zip 歸檔探索器
 
-本地附加文档
-|local-additions|	请查阅英文文档
+本地附加文檔
+|local-additions|	請查閱英文文檔
 
 
 ------------------------------------------------------------------------------
-*bars*		Bars 举例
+*bars*		Bars 舉例
 
-现在你已经通过 CTRL-] 或双击鼠标跳转到这里了，CTRL-T、CTRL-O、g<RightMouse>、
-或 <C-RightMouse> 可以用来跳回到你原来的地方。
+現在你已經通過 CTRL-] 或雙擊鼠標跳轉到這裡了，CTRL-T、CTRL-O、g<RightMouse>、
+或 <C-RightMouse> 可以用來跳回到你原來的地方。
 
-注意 标签包含在两个 | 字符之间，但打开高亮时这些字符被隐藏，这样更易于命令的阅
-读。
+注意 標籤包含在兩個 | 字符之間，但打開高亮時這些字符被隱藏，這樣更易於命令的閱
+讀。
 
-不过，你可以在任何单词上按 CTRL-]，即使该单词不出现在 | 之间也无妨。Vim 会试图
-寻找该单词的相关帮助，尤其是单引号之间的选项名，如 'compatible'。
+不過，你可以在任何單詞上按 CTRL-]，即使該單詞不出現在 | 之間也無妨。Vim 會試圖
+尋找該單詞的相關幫助，尤其是單引號之間的選項名，如 'compatible'。
 
 ------------------------------------------------------------------------------
  vim:tw=78:fo=tcq2:isk=!-~,^*,^\|,^\":ts=8:ft=help:norl:

@@ -1,33 +1,33 @@
 *os_mint.txt*	For Vim version 8.0.  最近更新: 2005年3月
 
 
-		  VIM 参考手册    by Jens M.Felderhoff
-	    译者: iCrazy<icrazy@ustc.edu>  http://vimcdoc.sf.net
+		  VIM 參考手冊    by Jens M.Felderhoff
+	    譯者: iCrazy<icrazy@ustc.edu>  http://vimcdoc.sf.net
 
 						        *MiNT* *Atari*
 本文包含了 Atari MiNT 的 Vim 版本的特性。
 
-如果您要为运行 MiNT 的 Atari 机器编译 Vim，您需要首先看一下 src 目录下的
-"INSTALL" 和 "Makefile" 目录。
+如果您要為運行 MiNT 的 Atari 機器編譯 Vim，您需要首先看一下 src 目錄下的
+"INSTALL" 和 "Makefile" 目錄。
 
-Vim MiNT 版本的行为和它的 Unix 版本几乎是一样的。
-如果没有明确声明，文档描述的 Unix 上 Vim 的行为也适用于 MiNT 上的 Vim 版本。
+Vim MiNT 版本的行為和它的 Unix 版本幾乎是一樣的。
+如果沒有明確聲明，文檔描述的 Unix 上 Vim 的行為也適用於 MiNT 上的 Vim 版本。
 
-为了通配符 <~> (主目录) 的扩展，你需要一个支持波浪符扩展的外壳。原始的 Bourne
-Shell 不能识别，而 "csh" 和 "ksh" 都没问题。
+為了通配符 <~> (主目錄) 的擴展，你需要一個支持波浪符擴展的外殼。原始的 Bourne
+Shell 不能識別，而 "csh" 和 "ksh" 都沒問題。
 
-Vim 的 MINT 版本需要支持你的终端的终端能力的 termcap 文件 /etc/termcap。内建的
-termcap 支持 vt52 终端。而支持 TOSWIN 窗口管理器和虚拟控制台终端的 termcap 入
-口项已经被附加到该 termcap 文件中，并随着 Vim 一起发布。
+Vim 的 MINT 版本需要支持你的終端的終端能力的 termcap 文件 /etc/termcap。內建的
+termcap 支持 vt52 終端。而支持 TOSWIN 窗口管理器和虛擬控制台終端的 termcap 入
+口項已經被附加到該 termcap 文件中，並隨著 Vim 一起發佈。
 
-万一您遇到了 <BS> 和 <Del> 键被互换的问题，请看 |:fixdel|。
+萬一您遇到了 <BS> 和 <Del> 鍵被互換的問題，請看 |:fixdel|。
 
-MiNT 上的终端刷新常常比较慢 (比如串行终端)，所以默认情况下的 'showcmd' 选项和
-'ruler' 选项都是关闭的。如果你所使用的终端比较快的话，可以把它们打开。甚至可以
-试试 'ttyfast' 选项。
+MiNT 上的終端刷新常常比較慢 (比如串行終端)，所以默認情況下的 'showcmd' 選項和
+'ruler' 選項都是關閉的。如果你所使用的終端比較快的話，可以把它們打開。甚至可以
+試試 'ttyfast' 選項。
 
-如果您发现了错误，请发送报告至
+如果您發現了錯誤，請發送報告至
 
-	Jens M. Felderhoff，电邮: <jmf@infko.uni-koblenz.de>
+	Jens M. Felderhoff，電郵: <jmf@infko.uni-koblenz.de>
 
 vim:tw=78:ts=8:ft=help:norl:

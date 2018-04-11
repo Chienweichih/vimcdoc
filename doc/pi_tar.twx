@@ -3,7 +3,7 @@
        	       	       +====================+
        	       	       |    Tar 文件接口    |
        	       	       +====================+
-				译者: Willis
+				譯者: Willis
 				http://vimcdoc.sf.net
 
 Author:  Charles E. Campbell  <NdrOchip@ScampbellPfamily.AbizM>
@@ -20,79 +20,79 @@ Copyright 2005-2012:					*tar-copyright*
 	damages resulting from the use of this software. Use at your own risk!
 
 ==============================================================================
-1. 内容						*tar* *tar-contents*
-   1. 内容......................................................|tar-contents|
+1. 內容						*tar* *tar-contents*
+   1. 內容......................................................|tar-contents|
    2. 用法......................................................|tar-usage|
-   3. 选项......................................................|tar-options|
-   4. 历史......................................................|tar-history|
+   3. 選項......................................................|tar-options|
+   4. 歷史......................................................|tar-history|
 
 ==============================================================================
 2. 用法						*tar-usage* *tar-manual*
 
-   编辑 *.tar 文件时，此插件进行处理，显示内容页面。移动光标到文件上，然后按
-   <return> 键，就可以选择该文件进行编辑。编辑后，可以写回该文件。目前，不能用
-   该插件建立新的 tar 归档文件。
+   編輯 *.tar 文件時，此插件進行處理，顯示內容頁面。移動光標到文件上，然後按
+   <return> 鍵，就可以選擇該文件進行編輯。編輯後，可以寫回該文件。目前，不能用
+   該插件建立新的 tar 歸檔文件。
 
 						*:Vimuntar*
    VIMUNTAR~
 
    :Vimuntar [vimhome]
 
-	本命令，如有需要，把 tar 包文件复制到以下目录中的 .vim 或 vimfiles 目
-	录: 若 [vimhome] 未指定， 'runtimepath' 的第一个可写目录。不然，
-	[vimhome] 参数允许用户自定义该目录。
+	本命令，如有需要，把 tar 包文件複製到以下目錄中的 .vim 或 vimfiles 目
+	錄: 若 [vimhome] 未指定， 'runtimepath' 的第一個可寫目錄。不然，
+	[vimhome] 參數允許用戶自定義該目錄。
 
-	复制动作使用 *g:tar_copycmd*  定义的命令，即 >
-		cp   用于 cygwin、unix、macunix
-		copy 用于 windows (32、95、64、16)
-<	提取动作使用 *g:tar_extractcmd* 定义的命令，缺省是 >
+	複製動作使用 *g:tar_copycmd*  定義的命令，即 >
+		cp   用於 cygwin、unix、macunix
+		copy 用於 windows (32、95、64、16)
+<	提取動作使用 *g:tar_extractcmd* 定義的命令，缺省是 >
 		"tar -xf"
 <
 						*:TarDiff*
-   支 持 比 较
+   支 持 比 較
 
    :TarDiff [filename]
 
-	本命令会试图比较文件的 tar 包版本和系统上相对应的文件。为了找到系统上
-	的对应文件，脚本会用到 tar 包中的文件相关联的路径。如果当前目录下没有
-	该路径，:TarDiff 就无法找到相关的文件。
+	本命令會試圖比較文件的 tar 包版本和系統上相對應的文件。為了找到系統上
+	的對應文件，腳本會用到 tar 包中的文件相關聯的路徑。如果當前目錄下沒有
+	該路徑，:TarDiff 就無法找到相關的文件。
 
-	如果给出 [filename]，该文件名 (和其路径) 会被用来指定相关文件。
+	如果給出 [filename]，該文件名 (和其路徑) 會被用來指定相關文件。
 
 
-   禁 止 载 入~
+   禁 止 載 入~
 
-   如果由于某种原因你不想 vim 检查 tar 文件，在 <.vimrc> 中定义两个变量就可以
-   不载入 tar 插件: >
+   如果由於某種原因你不想 vim 檢查 tar 文件，在 <.vimrc> 中定義兩個變量就可以
+   不載入 tar 插件: >
 
 	let g:loaded_tarPlugin= 1
 	let g:loaded_tar      = 1
 <
 
 ==============================================================================
-3. 选项							*tar-options*
+3. 選項							*tar-options*
 
-   以下是用户可以改变的变量，通常在 <.vimrc> 文件里设置。
-    变量                  缺省值  解释 ~
-   *g:tar_browseoptions*  "Ptf"   用于得到内容列表
-   *g:tar_readoptions*    "OPxf"  用于从 tar 包里提取文件
+   以下是用戶可以改變的變量，通常在 <.vimrc> 文件裡設置。
+    變量                  缺省值  解釋 ~
+   *g:tar_browseoptions*  "Ptf"   用於得到內容列表
+   *g:tar_readoptions*    "OPxf"  用於從 tar 包裡提取文件
    *g:tar_cmd*            "tar"   tar 程序名
-   *g:tar_nomax*            0     如果为真，不最大化文件窗口
-   *g:tar_secure*         未定义  如果存在:
-					使用 "--" 来避免 tar 命令行上不想要的
-					选项扩展。
-					请确定你用的 tar 命令接受 "--"；Posix
+   *g:tar_nomax*            0     如果為真，不最大化文件窗口
+   *g:tar_secure*         未定義  如果存在:
+					使用 "--" 來避免 tar 命令行上不想要的
+					選項擴展。
+					請確定你用的 tar 命令接受 "--"；Posix
 					兼容的 tar 工具都接受。
 				  如果不存在:
-					tar 插件拒绝接受任何 "-" 开头的 tar 文
-					件或成员文件。
-				  不是所有的 tar 都支持 "--"，所以这不是缺省行
-				  为。
-   *g:tar_writeoptions*	  "uf"    用于更新/替换文件
+					tar 插件拒絕接受任何 "-" 開頭的 tar 文
+					件或成員文件。
+				  不是所有的 tar 都支持 "--"，所以這不是缺省行
+				  為。
+   *g:tar_writeoptions*	  "uf"    用於更新/替換文件
 
 
 ==============================================================================
-4. 历史 (英文)						*tar-history*
+4. 歷史 (英文)						*tar-history*
 
    v28 Jun 23, 2011 * a few more decompression options (tbz tb2 txz)
    v27 May 31, 2011 * moved cygwin detection before g:tar_copycmd handling

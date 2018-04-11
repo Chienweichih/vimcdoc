@@ -8,7 +8,7 @@ all:
 	:print Use 'aap release' to generate pdf mauals to release.
 
 help.html:
-	:sys $TOOLS_DIR/vim2html.pl $DOC_DIR/tags-cn $DOC_FILES
+	:sys $TOOLS_DIR/vim2html.pl $DOC_DIR/tags-tw $DOC_FILES
 	:copy $TOOLS_DIR/vim-stylesheet.css .
 	:sys ./uncss.sh
 

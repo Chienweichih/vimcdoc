@@ -26,7 +26,7 @@ fi
 
 VIMCDOC_PATH_LINK=`echo $VIM_PATH|sed 's:vim.*$:doc/vimcdoc:'`
 VIMCDOC_PATH=$VIMCDOC_PATH_LINK-`cat VERSION`
-CNTAGS=tags-cn
+TWTAGS=tags-tw
 DIST_FILES="README.md
 guides.txt
 LICENSE
@@ -58,7 +58,7 @@ case $1 in
 		ln -sf $VIMCDOC_PATH $VIMCDOC_PATH_LINK
 	fi
 	cd doc
-	for i in *.cnx; do
+	for i in *.twx; do
 		if [ ! -d $VIM_PATH/doc ]; then
 			rm -f $VIM_PATH/doc
 			mkdir -p $VIM_PATH/doc
@@ -66,15 +66,15 @@ case $1 in
 		echo "install -m 644 $i $VIM_PATH/doc/$i"
 		install -m 644 $i $VIM_PATH/doc/$i
 	done
-	echo "install -m 644 $CNTAGS $VIM_PATH/doc/$CNTAGS"
-	install -m 644 $CNTAGS $VIM_PATH/doc/$CNTAGS
+	echo "install -m 644 $TWTAGS $VIM_PATH/doc/$TWTAGS"
+	install -m 644 $TWTAGS $VIM_PATH/doc/$TWTAGS
     cd ..
     if [ ! -d $VIM_PATH/syntax ]; then
 		rm -f $VIM_PATH/syntax
 		mkdir -p $VIM_PATH/syntax
     fi
-    echo "install -m 644 syntax/help_cn.vim $VIM_PATH/syntax/help_cn.vim"
-    install -m 644 syntax/help_cn.vim $VIM_PATH/syntax/help_cn.vim
+    echo "install -m 644 syntax/help_tw.vim $VIM_PATH/syntax/help_tw.vim"
+    install -m 644 syntax/help_tw.vim $VIM_PATH/syntax/help_tw.vim
     if [ $1 = "-i" ]; then
         if [ ! -d $VIM_PATH/plugin ]; then
             rm -f $VIM_PATH/plugin
@@ -92,9 +92,9 @@ case $1 in
 	fi
 	if [ -d $VIM_PATH/doc ]; then
 		cd $VIM_PATH/doc
-		rm -f *.cnx $CNTAGS
+		rm -f *.twx $TWTAGS
 	fi
-	rm -f $VIM_PATH/syntax/help_cn.vim
+	rm -f $VIM_PATH/syntax/help_tw.vim
 	rm -f $VIM_PATH/plugin/vimcdoc.vim
 	echo 'Done.'
 	;;

@@ -11,147 +11,147 @@ Note: This is meant to be used with Vim!
 +----------------------------------------------------+
 |    ENGLISH                             中文        |
 +----------------------------------------------------+
- + Block                                 大块 (as in aB)
+ + Block                                 大塊 (as in aB)
  + Ex                                    Ex
  + GUI                                   GUI
  + Plugin                                插件
- + TABSTOP                               制表位
+ + TABSTOP                               製表位
  + WORD                                  字串
  + Win32                                 Win32
  + Windows                               Windows
- + abandon                               放弃
- + abbreviations                         缩写
- + active                                活动的
- + alternate file                        轮换文件
+ + abandon                               放棄
+ + abbreviations                         縮寫
+ + active                                活動的
+ + alternate file                        輪換文件
  + append                                添加
- + arg                                   参数
- + argument                              参数
+ + arg                                   參數
+ + argument                              參數
  + atom                                  匹配原子
- + autocommand                           自动命令
- + backslash                             反斜杠
+ + autocommand                           自動命令
+ + backslash                             反斜槓
  + binary search                         二分法查找
- + block                                 块
- + boolean                               布尔
- + brace                                 括号
- + bracket                               方括号
- + break                                 打断 (of undo sequence)
- + buffer                                缓冲区
+ + block                                 塊
+ + boolean                               布爾
+ + brace                                 括號
+ + bracket                               方括號
+ + break                                 打斷 (of undo sequence)
+ + buffer                                緩衝區
  + channel                               通道
  + character set                         字符集
  + character-wise                        面向字符
- + closure                               闭包
+ + closure                               閉包
  + cluster                               簇
  + column                                列
- + combining character                   组合用字符
- + comment                               注释
- + completion, complete                  补全
+ + combining character                   組合用字符
+ + comment                               註釋
+ + completion, complete                  補全
  + composing character                   合成用字符 (as in arabic and others)
  + console                               控制台
- + copy                                  复制
- + count                                 计数 (prefix of normal commands)
- + cursor                                光标
+ + copy                                  複製
+ + count                                 計數 (prefix of normal commands)
+ + cursor                                光標
  + cut                                   剪切
- + debugger                              调试器
- + diff                                  比较
+ + debugger                              調試器
+ + diff                                  比較
  + digraph                               二合字母
- + double-width (character)              双宽 (字符)
- + dump                                  转储
- + emoji                                 表情符号
- + encoding                              编码
+ + double-width (character)              雙寬 (字符)
+ + dump                                  轉儲
+ + emoji                                 表情符號
+ + encoding                              編碼
  + encryption                            加密
  + event                                 事件
- + exclusive                             开的 (as of motions)
- + expression                            表达式
- + farsi                                 波斯语
+ + exclusive                             開的 (as of motions)
+ + expression                            表達式
+ + farsi                                 波斯語
  + feature                               特性
- + filter                                过滤
- + flag                                  标志位
- + folding                               折叠
- + fontset                               字体集
+ + filter                                過濾
+ + flag                                  標誌位
+ + folding                               折疊
+ + fontset                               字體集
  + format                                格式化 (as in printf) 排版 (as in gq)
- + global identifier                     全局标识符
- + hebrew                                希伯来语
- + home directory                        (用户) 主目录
- + identifier                            标识符
- + included file                         头文件 (C/C++) 包含文件 (others)
- + inclusive                             闭的 (as of motions)
- + indent                                缩进
- + inner                                 内
- + job                                   作业
- + join                                  连接
- + key mapping                           键盘映射
- + keymap                                键盘映射表
- + keyword                               关键字
- + lambda                                匿名函数
- + layout                                布局
+ + global identifier                     全局標識符
+ + hebrew                                希伯來語
+ + home directory                        (用戶) 主目錄
+ + identifier                            標識符
+ + included file                         頭文件 (C/C++) 包含文件 (others)
+ + inclusive                             閉的 (as of motions)
+ + indent                                縮進
+ + inner                                 內
+ + job                                   作業
+ + join                                  連接
+ + key mapping                           鍵盤映射
+ + keymap                                鍵盤映射表
+ + keyword                               關鍵字
+ + lambda                                匿名函數
+ + layout                                佈局
  + like                                  如
- + line break                            换行
+ + line break                            換行
  + linewise                              面向行
- + literally                             按本义出现的，按字面意思的
- + local identifier                      局部标识符
+ + literally                             按本義出現的，按字面意思的
+ + local identifier                      局部標識符
  + locale                                locale
  + man page                              man page
- + mark                                  位置标记
- + marker                                标志 (折叠)
+ + mark                                  位置標記
+ + marker                                標誌 (折疊)
  + matching                              匹配
- + modeless selection                    无模式的选择
+ + modeless selection                    無模式的選擇
  + modeline                              模式行
  + normal mode                           普通模式
- + notation                              记法，标记法
+ + notation                              記法，標記法
  + offset                                偏移
  + operator                              操作符 
  + operator-pending mode                 操作符等待模式
- + package                               软件包
+ + package                               軟件包
  + paragraph                             段落
- + partial                               偏函数、偏函
- + paste                                 粘贴
+ + partial                               偏函數、偏函
+ + paste                                 粘貼
  + pattern                               模式
- + popup menu                            弹出菜单
+ + popup menu                            彈出菜單
  + portable                              可移植的
  + put                                   放置
  + quickfix                              quickfix
  + redo                                  重做 (opposite of undo)
- + regexp                                正规表达式
+ + regexp                                正規表達式
  + register                              寄存器
- + repeat                                重复
- + replace mode                          替换模式
- + reset                                 复位
- + right-to-left                         从右到左
- + ruler                                 标尺
- + sandbox                               沙盘
+ + repeat                                重複
+ + replace mode                          替換模式
+ + reset                                 復位
+ + right-to-left                         從右到左
+ + ruler                                 標尺
+ + sandbox                               沙盤
  + scope                                 作用域
- + scroll                                滚屏
- + section                               节
+ + scroll                                滾屏
+ + section                               節
  + sentence                              句子
- + session                               会话
- + set                                   置位 ("enable" boolean options) 设置 (otherwise)
+ + session                               會話
+ + set                                   置位 ("enable" boolean options) 設置 (otherwise)
  + shaping                               (字型) 重整
- + shell                                 外壳
- + shell script                          外壳脚本
+ + shell                                 外殼
+ + shell script                          外殼腳本
  + shiftwidth                            shiftwidth
  + socket                                套接字
- + source (script)                       执行或载入 (it depends)
+ + source (script)                       執行或載入 (it depends)
  + substitute                            替代
- + suspend                               挂起
- + swap file                             交换文件
- + syntax highlight                      语法高亮
- + tabstop                               制表位
- + tag                                   标签
- + text object                           文本对象
- + thesaurus                             同义词字典
- + timer                                 定时器
- + timestamp                             时间戳
- + toolbar                               工具条
+ + suspend                               掛起
+ + swap file                             交換文件
+ + syntax highlight                      語法高亮
+ + tabstop                               製表位
+ + tag                                   標籤
+ + text object                           文本對像
+ + thesaurus                             同義詞字典
+ + timer                                 定時器
+ + timestamp                             時間戳
+ + toolbar                               工具條
  + tooltip                               提示
- + undo                                  撤销
- + verbose                               详细
- + view                                  视图
- + virtual replace mode                  虚拟替换模式
- + visual mode                           可视模式
- + widget                                窗口组件
- + word                                  单词
- + word processor                        字处理器
- + wrap                                  回绕
+ + undo                                  撤銷
+ + verbose                               詳細
+ + view                                  視圖
+ + virtual replace mode                  虛擬替換模式
+ + visual mode                           可視模式
+ + widget                                窗口組件
+ + word                                  單詞
+ + word processor                        字處理器
+ + wrap                                  迴繞
  + yank                                  抽出
 
 

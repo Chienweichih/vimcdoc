@@ -8,7 +8,7 @@
 " Base Idea:	  Muraoka Taro <koron@tka.att.ne.jp>
 " Copyright:	  Public Domain
 " Modified:	  Edward G.J. Lee <edt1023@speedymail.org> 2002.02.11
-" ×ÔĞĞ¸ü¸ÄÎª cp936 ÒÔÊÊºÏ¼òÌåÖĞÎÄ
+" è‡ªè¡Œæ›´æ”¹ç‚º cp936 ä»¥é©åˆç°¡é«”ä¸­æ–‡
 
 scriptencoding cp936
 
@@ -91,7 +91,7 @@ endif
 " This option is space-separated list of characters, that are forbidden to
 " be at beginning of line. Add two spaces for ASCII characters. See also
 " TabooRuleMatch()
-let g:format_no_begin = "!  ,  .  ?  )  ]  }  -  _  ~  :  ;  £¡  £¬  ¡£  £¿  £©  £º  £»  "
+let g:format_no_begin = "!  ,  .  ?  )  ]  }  -  _  ~  :  ;  ï¼  ï¼Œ  ã€‚  ï¼Ÿ  ï¼‰  ï¼š  ï¼›  "
 
 "
 " "g:format_no_end"

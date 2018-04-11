@@ -121,10 +121,10 @@ SectionEnd
 
 Section - DoStuff
   SetOutPath $INSTDIR\..\vimfiles\doc
-  File /r "doc\*.cnx"
-  File "doc\tags-cn"
+  File /r "doc\*.twx"
+  File "doc\tags-tw"
   SetOutPath $INSTDIR\..\vimfiles\syntax
-  File "syntax\help_cn.vim"
+  File "syntax\help_tw.vim"
   StrCmp $R2 'yes' 0 +3
     SetOutPath $INSTDIR\..\vimfiles\plugin
     File "plugin\vimcdoc.vim"
@@ -136,9 +136,9 @@ Section - DoStuff
 SectionEnd
 
 Section "Uninstall"
-  Delete $INSTDIR\*.cnx
-  Delete $INSTDIR\tags-cn
-  Delete $INSTDIR\..\syntax\help_cn.vim
+  Delete $INSTDIR\*.twx
+  Delete $INSTDIR\tags-tw
+  Delete $INSTDIR\..\syntax\help_tw.vim
   Delete $INSTDIR\..\plugin\vimcdoc.vim
   Delete $INSTDIR\vimcdoc-uninst.exe
   Rmdir /r $PROGRAMFILES\vimcdoc
@@ -151,7 +151,7 @@ SectionEnd
 #Function BackupOrig
   #IfFileExists $INSTDIR\doc\backup\*.* BackedUp
   #CreateDirectory $INSTDIR\doc\backup
-  #CopyFiles "$INSTDIR\doc\*.cnx" "$INSTDIR\doc\backup" 4000
+  #CopyFiles "$INSTDIR\doc\*.twx" "$INSTDIR\doc\backup" 4000
   #BackedUp: ; backup already. skip
 #FunctionEnd
 
@@ -160,7 +160,7 @@ SectionEnd
 Function .onInstSuccess
   WriteUninstaller $INSTDIR\..\vimfiles\doc\vimcdoc-uninst.exe
   StrCmp $R1 'yes' 0 +2 
-    Exec "$INSTDIR\gvim.exe +help@cn" ; view help file in Vim
+    Exec "$INSTDIR\gvim.exe +help@tw" ; view help file in Vim
 FunctionEnd
 
 Function .onInit

@@ -1,13 +1,13 @@
 *quotes.txt*    For Vim version 8.0.  最近更新: 2017年8月
 
 
-		  VIM 参考手册    by Bram Moolenaar
-				译者: Willis
+		  VIM 參考手冊    by Bram Moolenaar
+				譯者: Willis
 				http://vimcdoc.sf.net
 
 
 							*quotes*
-以下是一些我从新闻组和邮件收集的关于 Vim 的一些很好的评价 (英语)。
+以下是一些我從新聞組和郵件收集的關於 Vim 的一些很好的評價 (英語)。
 
 
 vim (vim) noun - Ebullient vitality and energy.  [Latin, accusative of vis,
@@ -20,7 +20,7 @@ Coming with a very GUI mindset from Windows, I always thought of people using
 Vi as some kind of outer space alien in human clothes.  Once I tried I really
 got addicted by its power and now I found myself typing Vim keypresses in the
 oddest places! That's why I would like to see Vim embedded in every
-application which deals with text editing. (José Fonseca)
+application which deals with text editing. (Jose Fonseca)
 
 I was a 12-year emacs user who switched to Vim about a year ago after finally
 giving up on the multiple incompatible versions, flaky contributed packages,
@@ -273,6 +273,6 @@ Eccettuato, Italy)
 	     ___) || | | |_| |	_| |  _| |_|_| `
 	    |____/ |_|	\___/|_|   |_|	 (_|_)	    (Tony Nugent, Australia) `
 
-翻译: Vim 真是个好东西！
+翻譯: Vim 真是個好東西！
 
  vim:tw=78:ts=8:ft=help:norl:

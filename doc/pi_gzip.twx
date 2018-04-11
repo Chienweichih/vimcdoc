@@ -1,27 +1,27 @@
 *pi_gzip.txt*	For Vim version 8.0.  最近更新: 2017年8月
 
 
-		  VIM 参考手册    by Bram Moolenaar
-	   译者: iCrazy <icrazy@ustc.edu>  http://vimcdoc.sf.net
+		  VIM 參考手冊    by Bram Moolenaar
+	   譯者: iCrazy <icrazy@ustc.edu>  http://vimcdoc.sf.net
 
 
-用 Vim 编辑压缩的文件				*gzip* *bzip2* *compress*
+用 Vim 編輯壓縮的文件				*gzip* *bzip2* *compress*
 
-1. 自动命令			|gzip-autocmd|
+1. 自動命令			|gzip-autocmd|
 
-这里涉及到的功能是一个 |standard-plugin|。
-这个插件仅在 'compatible' 选项没有被置位的情况下有效。
-您可以通过设置变量 "loaded_gzip" 来避免装载这个插件:
+這裡涉及到的功能是一個 |standard-plugin|。
+這個插件僅在 'compatible' 選項沒有被置位的情況下有效。
+您可以通過設置變量 "loaded_gzip" 來避免裝載這個插件:
 	:let loaded_gzip = 1
 
-{Vi 没有以上的功能}
+{Vi 沒有以上的功能}
 
 ==============================================================================
-1. 自动命令						*gzip-autocmd*
+1. 自動命令						*gzip-autocmd*
 
-这个插件建立自动命令来截获对具有以下扩展名的文件的读写:
+這個插件建立自動命令來截獲對具有以下擴展名的文件的讀寫:
 
-	扩展名		压缩格式 ~
+	擴展名		壓縮格式 ~
 	*.Z		compress (Lempel-Ziv)
 	*.gz		gzip
 	*.bz2		bzip2
@@ -30,13 +30,13 @@
 	*.lz		lzip
 	*.zst		zstd
 
-您仅仅知道这些就已经足够了，此插件没有选项。
+您僅僅知道這些就已經足夠了，此插件沒有選項。
 
-在解压缩一个文件之后，会自动重新检测文件格式。这样可能会使一个类似 "foo.c.gz"
+在解壓縮一個文件之後，會自動重新檢測文件格式。這樣可能會使一個類似 "foo.c.gz"
 的文件具有 "c" 的文件格式。
 
-如果您设置了 'patchmode'，在进行压缩后该值会被自动加到文件的扩展名后面。因而编
-辑 patchmode 文件不会产生自动解压缩的效果。如果您希望这样，您需要改变文件名。
+如果您設置了 'patchmode'，在進行壓縮後該值會被自動加到文件的擴展名後面。因而編
+輯 patchmode 文件不會產生自動解壓縮的效果。如果您希望這樣，您需要改變文件名。
 
 ==============================================================================
  vim:tw=78:ts=8:ft=help:norl:

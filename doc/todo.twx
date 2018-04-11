@@ -1,40 +1,40 @@
 *todo.txt*      For Vim version 8.0.  最近更新: 2017年8月
 
 
-		  VIM 参考手册	  by Bram Moolenaar
-				译者: Willis
+		  VIM 參考手冊	  by Bram Moolenaar
+				譯者: Willis
 				http://vimcdoc.sf.net
 
 
-			      Vim 待完成任务列表	*todo*
+			      Vim 待完成任務列表	*todo*
 
 
-这是一个很长。。。的已知漏洞，目前工作和未来希望的改进的列表 (英文)。为了使其
-能稍微好找一点，项目由主题编组。每行的第一列是标明准备时候去做的分类，以便按
-部就班，依次解决。
+這是一個很長。。。的已知漏洞，目前工作和未來希望的改進的列表 (英文)。為了使其
+能稍微好找一點，項目由主題編組。每行的第一列是標明準備時候去做的分類，以便按
+部就班，依次解決。
 
-优先级分类:
-9   下一个小发行
-8   下一个主要发行
-7   尽快
+優先級分類:
+9   下一個小發行
+8   下一個主要發行
+7   盡快
 6   很快
-5   应该会加入
+5   應該會加入
 4   能有更好
-3   考虑更好
-2   也许不太会
-1   可能不会
--   未分类
+3   考慮更好
+2   也許不太會
+1   可能不會
+-   未分類
 
 						    *votes-for-changes*
-关于开发的计划，参见 |develop.txt|。如果你赞助 Vim 开发，你可以投票决定哪个项
-目值得开发。请见 |sponsor|。
+關於開發的計劃，參見 |develop.txt|。如果你贊助 Vim 開發，你可以投票決定哪個項
+目值得開發。請見 |sponsor|。
 
-可以在线提供新问题: https://github.com/vim/vim/issues
-只用于漏洞报告，不是提问题！那应该去邮件组。其中更新的部分会被转发到 |vim_dev|
-邮件列表。该处已经提供的问题就不在下面重复了，除非有额外的信息。
+可以在線提供新問題: https://github.com/vim/vim/issues
+只用於漏洞報告，不是提問題！那應該去郵件組。其中更新的部分會被轉發到 |vim_dev|
+郵件列表。該處已經提供的問題就不在下面重複了，除非有額外的信息。
 
 							*known-bugs*
------------------------ 已知漏洞和当前工作 --------------------------
+----------------------- 已知漏洞和當前工作 --------------------------
 
 +channel:
 - When redrawing for the channel buffer, command line completion is cleared.
@@ -63,7 +63,7 @@
     With xterm could use -S{pty}.
     Although user could use "xterm -e 'cmd arg'".
 
-正规表达式问题:
+正規表達式問題:
 - Since 7.4.704 the old regex engine fails to match [[:print:]] in 0xf6.
   (Manuel Ortega, 2016 Apr 24)
   Test fails on Mac.  Avoid using isalpha(), isalnum(), etc?  Depends on
@@ -280,7 +280,7 @@ Patch for restoring wide characters in the console buffer.
 Patch to fix escaping of job arguments. (Yasuhiro Matsumoto, 2016 Oct 5)
 Update Oct 14: https://gist.github.com/mattn/d47e7d3bfe5ade4be86062b565a4bfca
 
-Characters deleted on completion. (Adrià Farrés, 2017 Apr 20, #1645)
+Characters deleted on completion. (Adria Farres, 2017 Apr 20, #1645)
 Remarks from Christian Brabandt (Apr 21)
 
 The TermResponse event is not triggered when a plugin has set 'eventignore' to
@@ -296,7 +296,7 @@ Once .exe with updated installer is available: Add remark to download page
 about /S and /D options (Ken Takata, 2016 Apr 13)
 Or point to nightly builds: https://github.com/vim/vim-win32-installer/releases
 
-Problem passing non-UTF-8 strings to Python 3. (Björn Linse, 2016 Sep 11,
+Problem passing non-UTF-8 strings to Python 3. (Bjorn Linse, 2016 Sep 11,
 #1053)  With patch, does it work?
 
 Using --remote to open a file in which a # appears does not work on
@@ -361,7 +361,7 @@ Should :vmap in matchit.vim be :xmap?  (Tony Mechelynck)
 
 Problem with whitespace in errorformat. (Gerd Wachsmuth, 2016 May 15, #807)
 
-Undo problem: "g-" doesn't go back, gets stuck. (Björn Linse, 2016 Jul 18)
+Undo problem: "g-" doesn't go back, gets stuck. (Bjorn Linse, 2016 Jul 18)
 
 Add "unicode true" to NSIS installer.  Doesn't work with Windows 95, which we
 no longer support.
@@ -970,7 +970,7 @@ Patch to skip sort if no line matches the expression.
 VMS: Select() doesn't work properly, typing ESC may hang Vim.  Use sys$qiow
 instead. (Samuel Ferencik, 2013 Sep 28)
 
-Patch for XDG base directory support. (Jean François Bignolles, 2014 Mar 4)
+Patch for XDG base directory support. (Jean Francois Bignolles, 2014 Mar 4)
 Remark on the docs.  Should not be a compile time feature.  But then what?
 
 Completion of ":e" is ":earlier", should be ":edit".  Complete to the matching
@@ -1425,7 +1425,7 @@ crash? (Raiwil, 2010 Nov 17)
 Patch to add FoldedLineNr highlighting: different highlighting for the line
 number of a closed fold. (eXerigumo Clanjor, 2013 Jul 15)
 
-正规表达式性能:
+正規表達式性能:
 - Profiling:
 	./vim -u NONE -s ~/vim/test/ruby.vim
 	./vim -u NONE -s ~/vim/test/loop.vim
@@ -1881,7 +1881,7 @@ Kondakoff, 2009 May 13)
 
 Win32: Using "gvim --remote-tab-silent elŝuti.txt" doesn't work, the
 multi-byte character isn't passed and edits elsuti.txt.
-(Raúl Núñez de Arenas Coronado, 2015 Dec 18)
+(Raul Nunez de Arenas Coronado, 2015 Dec 18)
 
 Problem with 'langmap' being used on the rhs of a mapping. (Nikolai Weibull,
 2008 May 14)
@@ -2429,7 +2429,7 @@ Add an option for a minimal text length before inserting a line break for
 (Kartik Agaram)
 
 
-更好的插件支持 (不是插件管理器，去别处找吧):
+更好的插件支持 (不是插件管理器，去別處找吧):
 - Avoid use of feedkeys, add eval functions where needed:
   - manipulating the Visual selection?
 - Add createmark(): add a mark like mM, but return a unique ID.  Need some way
@@ -2442,7 +2442,7 @@ Add an option for a minimal text length before inserting a line break for
 - Add something to enable debugging when a remote message is received.
 
 
-更多补丁:
+更多補丁:
 -   Another patch for Javascript indenting. (Hari Kumar, 2010 Jul 11)
     Needs a few tests.
 -   Add 'cscopeignorecase' option. (Liang Wenzhi, 2006 Sept 3)
@@ -2477,7 +2477,7 @@ Add an option for a minimal text length before inserting a line break for
     No maintenance in two years...
 -   Patch to open dropped files in new tabs. (Michael Trim, 2010 Aug 3)
 
-等待补丁信息的更新:
+等待補丁信息的更新:
 9   Mac unicode patch (Da Woon Jung, Eckehard Berns):
     8   Add patch from Muraoka Taro (Mar 16) to support input method on Mac?
 	New patch 2004 Jun 16
@@ -2913,7 +2913,7 @@ Macintosh:
 9   In mac_expandpath() check that handling of backslashes is done properly.
 
 
-"小" 问题:
+"小" 問題:
 -   Can't disable terminal flow control, to enable the use of CTRL-S and
     CTRL-Q.  Add an option for it?
 -   When using e_secure in do_one_cmd() mention the command being executed,
@@ -3162,13 +3162,13 @@ Macintosh:
     <SNR>123_Test()". (Krishna)  Disallow this.
 
 
-我无法重现这些 (如果你可以，请告知！):
+我無法重現這些 (如果你可以，請告知！):
 9   NT 4.0 on NTFS file system: Editing ".bashrc" (drag and drop), file
     disappears.  Editing ".xyz" is OK.  Also, drag&drop only works for three
     files. (McCollister)
 
 
-(可能) 不会解决的问题:
+(可能) 不會解決的問題:
 -   GTK: when using the popup menu with spelling suggestions and releasing the
     right mouse button before the menu appears selecting an item with the
     right mouse button has no effect.  GTK does not produce an event for this.
@@ -3265,10 +3265,10 @@ Macintosh:
 -   On Windows NT 4.0 the number of files passed to Vim with drag&drop and
     "Edit with Vim" is limited.  The maximum command line length is 255 chars.
 
---------------------------  扩展及改进 ---------------------------
+--------------------------  擴展及改進 ---------------------------
 						    *extensions-improvements*
 
-修正所有漏洞之后要新增的最有意思的功能:
+修正所有漏洞之後要新增的最有意思的功能:
 -   Using ":exe edit fname" has escaping problems.  Use ":edit ++(fname)".
     Thus use "++=" to give arguments as expressions, comma separated as if
     calling a function.
@@ -3311,7 +3311,7 @@ Macintosh:
     This can be done with XReparentWindow().  But how exactly?
 
 
-文档:
+文檔:
 8   List of Vim runtime directories.  dotvim.txt from Charles Campbell, 2007
     Feb 20.
 8   The GUI help should explain the Find and Find/Replace dialogs.  Add a link
@@ -3338,7 +3338,7 @@ Macintosh:
 -   Check text editor compendium for vi and Vim remarks.
 
 
-帮助:
+幫助:
 -   First try using the ":help" argument literally, before using it as a
     pattern.  And then match it as part of a tag.
 -   When a help item has multiple matches make it possible to use ":tn" to go
@@ -3355,7 +3355,7 @@ Macintosh:
 -   Learn mode: show short help while typing commands.
 
 
-对用户更友好:
+對用戶更友好:
 8   Windows install with install.exe: Use .exe instead of .bat files for
     links, so that command line arguments are passed on unmodified? (Walter
     Briscoe)
@@ -3382,7 +3382,7 @@ Macintosh:
     global_event_filter() for GTK.
 
 
-标签页:
+標籤頁:
 9   GUI implementation for the tab pages line for other systems.
 7   GUI: Control over the appearance of the text in the labels (bold, color,
     font, etc.)
@@ -3398,7 +3398,7 @@ Macintosh:
     window-local directories?
 
 
-拼写检查:
+拼寫檢查:
 -   Support more regions? Caolan McNamara argues it's needed for es_XX.
     https://bugzilla.redhat.com/bugzilla/show_bug.cgi?id=219777
 -   Unicode defines another quote character: 0x2019.  Use it as an equivalent
@@ -3497,7 +3497,7 @@ Diff 模式:
 8   Also show difference with the file when editing started?  Should show what
     can be undone. (Tom Popovich)
 
-折叠:
+折疊:
     (commands still available: zI zJ zK zp zP zq zQ zV zy zY;
     secondary: zB zS zT zZ, z=)
 8   Vertical folds: looks like vertically split windows, but the cursor moves
@@ -3534,7 +3534,7 @@ Diff 模式:
     match.
 -   Apply a new foldlevel to a range of lines. (Steve Litt)
 
-多字节字符处理:
+多字節字符處理:
 -   When editing a file with both utf-8 and latin1 text Vim always falls back
     to latin1.  Add a command to convert the latin1 characters to utf-8?
 	:unmix utf-8,latin1 filename
@@ -3634,7 +3634,7 @@ Diff 模式:
     color.
 
 
-语法高亮:
+語法高亮:
 8   Make ":syn off" use 'runtimepath' instead of $VIMRUNTIME. (Gary Johnson)
     Should do the same for ":syn on" and ":syn manual".
 8   Support "containedin" argument for ":syn include", so that the defined
@@ -3787,7 +3787,7 @@ Diff 模式:
     unprintable char another color.  Would be useful for ^M at end of line.
 
 
-Vim 脚本语言:
+Vim 腳本語言:
 8   Make the filename and line number available to script functions, so that
     they can give useful debugging info.  The whole call stack would be ideal.
     At least use this for error messages.
@@ -3907,7 +3907,7 @@ Vim 脚本语言:
 7   Add function to generate unique number (date in milliseconds).
 
 
-健壮性:
+健壯性:
 6   Add file locking.  Lock a file when starting to edit it with flock() or
     fcntl().  This patch has advisory file locking while reading/writing
     the file for Vim 5.4: ~/vim/patches/kahn_file_locking .
@@ -4011,7 +4011,7 @@ Vim 脚本语言:
     CTRL-C (it's slow).
 
 
-代码大小:
+代碼大小:
 8   GUI: When NO_CONSOLE is defined, more code can be excluded.
 -   Put getline() and cookie in a struct, so only one argument has to be
     passed to do_cmdline() and other functions.
@@ -4078,7 +4078,7 @@ Vim 脚本语言:
     an event handler where ":normal" can't be used.  Also useful when
     'lazyredraw' is set in a mapping.
 
-滚动:
+滾動:
 8   Add "zy" command: scroll horizontally to put the cursor in the middle.
 6   Add option to set the overlap for CTRL-F and CTRL-B. (Garhi)
 -   extend 'scrollbind' option: 'scrollopt' words "search", "relative", etc..
@@ -4118,7 +4118,7 @@ Perl 接口:
 6   Tcl/Tk has the "load" command: load a shared library (.so or .dll).
 
 
-共享库:
+共享庫:
 6   Add support for loading shared libraries, and calling functions in it.
 	:libload internal-name libname
 	:libunload internal-name
@@ -4129,7 +4129,7 @@ Perl 接口:
 6   Have a look on how Perl handles loading dynamic libraries.
 
 
-标签:
+標籤:
 9   With ":set tags=./tags,../tags" and a tag appears in both tags files it is
     added twice.  Requires figuring out the actual file name for each found
     match.  Remove tag_fname from the match and combine it with the fname in
@@ -4292,7 +4292,7 @@ GUI:
 7   Support "-visual <type>" command line argument.
 
 
-自动命令:
+自動命令:
 9   Rework the code from FEAT_OSFILETYPE for autocmd-osfiletypes to use
     'filetype'.  Only for when the current buffer is known.
 -   Put autocommand event names in a hashtable for faster lookup?
@@ -4379,7 +4379,7 @@ GUI:
     them save the file itself besides the swapfile.
 
 
-全能 (omni) 补全:
+全能 (omni) 補全:
 -   Add a flag to 'complete' to be able to do omni completion with CTRL-N (and
     mix it with other kinds of completion).
 -   Ideas from the Vim 7 BOF at SANE:
@@ -4409,7 +4409,7 @@ GUI:
 -   Pre-expand abbreviations, show which abbrevs would match?
 
 
-插入模式自动补全/扩展:
+插入模式自動補全/擴展:
 -   GUI implementation of the popup menu.
 7   When searching in other files the name flash by, too fast to read.  Only
     display a name every second or so, like with ":vimgrep".
@@ -4465,7 +4465,7 @@ GUI:
 -   Allow listing all matches in some way (and picking one from the list).
 
 
-命令行编辑:
+命令行編輯:
 7   Add commands (keys) to delete from the cursor to the end of the command
     line.
 8   Custom completion of user commands can't use the standard completion
@@ -4506,7 +4506,7 @@ GUI:
 	Mode.
 
 
-命令行自动补全:
+命令行自動補全:
 8   Change expand_interactively into a flag that is passed as an argument.
 8   With command line completion after '%' and '#', expand current/alternate
     file name, so it can be edited.  Also with modifiers, such as "%:h".
@@ -4536,7 +4536,7 @@ GUI:
     Also: when there are several matches, show them line a CTRL-D.
 
 
-命令行历史:
+命令行歷史:
 -   Add "KeyWasTyped" flag: It's reset before each command and set when a
     character from the keyboard is consumed. Value is used to decide to put a
     command line in history or not. Put line in history if it didn't
@@ -4686,12 +4686,12 @@ Java:
     when there is a "/*" before it?  Or include this in 'cindent'?
 
 
-虚拟编辑:
+虛擬編輯:
 8   Make the horizontal scrollbar work to move the text further left.
 7   Allow specifying it separately for Tabs and beyond end-of-line?
 
 
-文本对象:
+文本對像:
 8   Add text object for fold, so that it can be yanked when it's open.
 8   Add test script for text object commands "aw", "iW", etc.
 8   Add text object for part of a CamelHumpedWord and under_scored_word.
@@ -4717,7 +4717,7 @@ Java:
     cursor is on.
 
 
-选择模式:
+選擇模式:
 8   In blockwise mode, typed characters are inserted in front of the block,
     backspace deletes a column before the block. (Steve Hall)
 7   Alt-leftmouse starts block mode selection in MS Word.
@@ -4731,7 +4731,7 @@ Java:
     - Typing text replaces the selection.
 
 
-可视模式:
+可視模式:
 8   Support using "." in Visual mode. Use the operator applied to the Visual
     selection, if possible.
 -   When dragging the Visual selection with the mouse and 'scrolloff' is zero,
@@ -4784,7 +4784,7 @@ Java:
 6   Add commands to move selected text, without deselecting.
 
 
-更多高级的重复命令:
+更多高級的重複命令:
 -   Add "." command for visual mode: redo last visual command (e.g. ":fmt").
 -   Add command to repeat last movement.  Including count.
 -   Add "." command after operator: repeat last command of same operator.  E.g.
@@ -4796,7 +4796,7 @@ Java:
 -   History stack for . command?  Use "g." command.
 
 
-映射和缩写:
+映射和縮寫:
 8   When "0" is mapped (it is a movement command) this mapping should not be
     used after typing another number, e.g. "20l". (Charles Campbell)
     Is this possible without disabling the mapping of the following command?
@@ -4994,7 +4994,7 @@ Java:
     Also ":dselect".
 
 
-撤销:
+撤銷:
 9   ":gundo" command: global undo.  Undoes changes spread over multiple files
     in the order they were made.  Also ":gredo".  Both with a count.  Useful
     when tests fail after making changes and you forgot in which files.
@@ -5035,7 +5035,7 @@ Java:
     undo info becomes very big.  Put undo info in swap file??
 
 
-缓冲区列表:
+緩衝區列表:
 7   Command to execute a command in another buffer: ":inbuf {bufname} {cmd}".
     Also for other windows: ":inwin {winnr} {cmd}".  How to make sure that
     this works properly for all commands, and still be able to return to the
@@ -5065,7 +5065,7 @@ Java:
     CASE_INSENSITIVE_FILENAME that are useful on Unix.
 
 
-交换 (.swp) 文件:
+交換 (.swp) 文件:
 8   If writing to the swap file fails, should try to open one in another
     directory from 'dir'.  Useful in case the file system is full and when
     there are short file name problems.
@@ -5143,7 +5143,7 @@ Viminfo:
     or not.  Same for .exrc in local dir.
 
 
-会话:
+會話:
 8   DOS/Windows: ":mksession" generates a "cd" command where "aa\#bb" means
     directory "#bb" in "aa", but it's used as "aa#bb". (Ronald Hoellwarth)
 7   When there is a "help.txt" window in a session file, restoring that
@@ -5158,7 +5158,7 @@ Viminfo:
 7   Persistent variables: "p:var"; stored in viminfo file and sessions files.
 
 
-选项:
+選項:
 7   ":with option=value | command": temporarily set an option value and
     restore it after the command has executed.
 8   Make "old" number options that really give a number of effects into string
@@ -5210,7 +5210,7 @@ Viminfo:
     to Vim, so that the link between the viewed and edited text can be made.
 
 
-位置标记:
+位置標記:
 8   Add ten marks for last changed files: ':0, ':1, etc.  One mark per file.
 8   When cursor is first moved because of scrolling, set a mark at this
     position.  (Rimon Barr)  Use '-.
@@ -5252,7 +5252,7 @@ Viminfo:
     least Latin1/Unicode, Latin-2, MS-DOS (esp. for Win32).
 
 
-文件写入:
+文件寫入:
 -   In vim_rename(), should lock "from" file when deleting "to" file for
     systems other than Amiga.  Avoids problems with unexpected longname to
     shortname conversion.
@@ -5282,7 +5282,7 @@ Viminfo:
     Automatic and/or with a command.
 
 
-替换:
+替換:
 8   Substitute with hex/unicode number "\%xff" and "\%uabcd".  Just like
     "\%uabcd" in search pattern.
 8   Make it easier to replace in all files in the argument list.  E.g.:
@@ -5305,7 +5305,7 @@ Viminfo:
     (Stanislav Sitar)
 
 
-鼠标支持:
+鼠標支持:
 8   Add 'o' flag to 'mouse'?
 7   Be able to set a 'mouseshape' for the popup menu.
 8   Add 'mouse' flag, which sets a behavior like Visual mode, but automatic
@@ -5318,7 +5318,7 @@ Viminfo:
 -   When mouse click after 'r' command, get character that was pointed to.
 
 
-参数列表:
+參數列表:
 6   Add command to put all filenames from the tag files in the argument list.
     When given an argument, only use the files where that argument matches
     (like `grep -l ident`) and jump to the first match.
@@ -5345,14 +5345,14 @@ Viminfo:
     How to take care of the flags (offset, magic)?
 
 
-调试模式:
+調試模式:
 8   Add breakpoints for setting an option
 8   Add breakpoints for assigning to a variable.
 7   Store the history from debug mode in viminfo.
 7   Make the debug mode history available with histget() et al.
 
 
-其他改进:
+其他改進:
 7   Add plugins for formatting?  Should be able to make a choice depending on
     the language of a file (English/Korean/Japanese/etc.).
     Setting the 'langformat' option to "chinese" would load the
@@ -5711,7 +5711,7 @@ Viminfo:
     (Servatius Brandt)
 
 
-从 Elvis 那里:
+從 Elvis 那裡:
 -   Use "instman.sh" to install manpages?
 -   Add ":alias" command.
 -   Search patterns:
@@ -5730,18 +5730,18 @@ Viminfo:
     program to use with ":cc".  Use ":compile" instead of ":cc"?
 
 
-从 xvi 那里:
+從 xvi 那裡:
 -   CTRL-_ : swap 8th bit of character.
 -   Add egrep-like regex type, like xvi (Ned Konz) or Perl (Emmanuel Mogenet)
 
 
-从 vile 那里:
+從 vile 那裡:
 -   When horizontal scrolling, use '>' for lines continuing right of a window.
 -   Support putting .swp files in /tmp: Command in rc.local to move .swp files
     from /tmp to some directory before deleting files.
 
 
-遥远的将来和 "重大" 的扩展:
+遙遠的將來和 "重大" 的擴展:
 -   Instead of using a Makefile and autoconf, use a simple shell script to
     find the C compiler and do everything with C code.  Translate something
     like an Aap recipe and configure.ac to C.  Avoids depending on Python,
