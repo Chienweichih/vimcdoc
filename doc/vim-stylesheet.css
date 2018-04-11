@@ -2,8 +2,8 @@
 body{font-size: 32px}
 }
 
-pre { font-family: 'Noto Sans Mono CJK SC', NSimsun, monospace; }
-code { font-family: 'Noto Sans Mono CJK SC', NSimsun, monospace; }
+pre { font-family: 'Noto Sans Mono CJK TC', Monaco, monospace; }
+code { font-family: 'Noto Sans Mono CJK TC', Monaco, monospace; }
 #outer { margin: auto; width: 40em;}
 #banner { margin: auto; display: table; position: fixed; z-index: 1; width: 5em; }
 :link { color: rgb(0,137,139); text-decoration: none; }

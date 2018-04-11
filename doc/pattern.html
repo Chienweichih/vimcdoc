@@ -1,17 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>VIM: pattern</title>
 <link rel="stylesheet" href="vim-stylesheet.css" type="text/css">
 </head>
 <body>
 <div id=banner>
-<a href="help.html">帮助总览</a> &middot;
-<a href="quickref.html">快速参考</a> &middot;
+<a href="help.html">幫助總覽</a> &middot;
+<a href="quickref.html">快速參考</a> &middot;
 <a href="index.html">命令索引</a> &middot;
-<a href="usr_toc.html">用户手册</a> &middot;
-<a href="help.html#reference_toc">参考手册</a>
+<a href="usr_toc.html">用戶手冊</a> &middot;
+<a href="help.html#reference_toc">參考手冊</a>
 </div>
 
 <div id=outer>
@@ -20,268 +20,268 @@
 <b class="vimtag"> <a name="pattern.txt">pattern.txt</a> </b>   For Vim version 8.0.  最近更新: 2017年8月
 
 
-                  <code class="vim">VIM 参考手册    by Bram Moolenaar</code>
-                    <code class="vim">译者</code>: lang2 http://vimcdoc.sf.net
+                  <code class="vim">VIM 參考手冊    by Bram Moolenaar</code>
+                    <code class="vim">譯者</code>: lang2 http://vimcdoc.sf.net
 
 
 模式及查找命令                                  <b class="vimtag"> <a name="pattern-searches">pattern-searches</a> </b>
 
-最基本的东西可以在用户手册的  <a href="usr_03.html#03.9">03.9</a>  节中找到。在  <a href="usr_27.html#usr_27.txt">usr_27.txt</a>  也有一些解释。
+最基本的東西可以在用戶手冊的  <a href="usr_03.html#03.9">03.9</a>  節中找到。在  <a href="usr_27.html#usr_27.txt">usr_27.txt</a>  也有一些解釋。
 
 1. 查找命令                      <a href="pattern.html#search-commands">search-commands</a> 
-2. 匹配模式的定义                <a href="pattern.html#search-pattern">search-pattern</a> 
-3. 魔术                          <a href="pattern.html#%2Fmagic">/magic</a> 
-4. 模式项总览                    <a href="pattern.html#pattern-overview">pattern-overview</a> 
-5. 倍数项                        <a href="pattern.html#pattern-multi-items">pattern-multi-items</a> 
+2. 匹配模式的定義                <a href="pattern.html#search-pattern">search-pattern</a> 
+3. 魔術                          <a href="pattern.html#%2Fmagic">/magic</a> 
+4. 模式項總覽                    <a href="pattern.html#pattern-overview">pattern-overview</a> 
+5. 倍數項                        <a href="pattern.html#pattern-multi-items">pattern-multi-items</a> 
 6. 普通匹配原                    <a href="pattern.html#pattern-atoms">pattern-atoms</a> 
-7. 忽略大小写                    <a href="pattern.html#%2Fignorecase">/ignorecase</a> 
+7. 忽略大小寫                    <a href="pattern.html#%2Fignorecase">/ignorecase</a> 
 8. 合成用字符                    <a href="pattern.html#patterns-composing">patterns-composing</a> 
-9. 与 Perl 匹配模式的比较        <a href="pattern.html#perl-patterns">perl-patterns</a> 
-10. 高亮显示匹配                 <a href="pattern.html#match-highlight">match-highlight</a> 
+9. 與 Perl 匹配模式的比較        <a href="pattern.html#perl-patterns">perl-patterns</a> 
+10. 高亮顯示匹配                 <a href="pattern.html#match-highlight">match-highlight</a> 
 
 </pre><hr class="doubleline" /><pre>
 <h4>1. 查找命令                                     <b class="vimtag"> <a name="search-commands">search-commands</a> </b></h4>
                                                         <b class="vimtag"> <a name="%2F">/</a> </b>
-/<code class="special">{pattern}</code>[/]<code class="special">&lt;CR&gt;</code>       正向查找第 <code class="special">[count]</code> 次出现 <code class="special">{pattern}</code> 的地方
-                        ( <a href="motion.html#exclusive">exclusive</a>  开动作)。
+/<code class="special">{pattern}</code>[/]<code class="special">&lt;CR&gt;</code>       正向查找第 <code class="special">[count]</code> 次出現 <code class="special">{pattern}</code> 的地方
+                        ( <a href="motion.html#exclusive">exclusive</a>  開動作)。
 
-/<code class="special">{pattern}</code>/<code class="special">{offset}</code><code class="special">&lt;CR&gt;</code> 正向查找第 <code class="special">[count]</code> 次出现 <code class="special">{pattern}</code> 的地方并向上或下移
-                        动  <a href="pattern.html#{offset}">{offset}</a>  行。 <a href="motion.html#linewise">linewise</a>  行动作。
+/<code class="special">{pattern}</code>/<code class="special">{offset}</code><code class="special">&lt;CR&gt;</code> 正向查找第 <code class="special">[count]</code> 次出現 <code class="special">{pattern}</code> 的地方並向上或下移
+                        動  <a href="pattern.html#{offset}">{offset}</a>  行。 <a href="motion.html#linewise">linewise</a>  行動作。
 
                                                         <b class="vimtag"> <a name="%2F%3CCR%3E">/&lt;CR&gt;</a> </b>
-/<code class="special">&lt;CR&gt;</code>                   正向查找第 <code class="special">[count]</code> 次出现处，使用上次的模式
+/<code class="special">&lt;CR&gt;</code>                   正向查找第 <code class="special">[count]</code> 次出現處，使用上次的模式
                          <a href="pattern.html#last-pattern">last-pattern</a>  以及上次的  <a href="pattern.html#{offset}">{offset}</a> 。
 
-//<code class="special">{offset}</code><code class="special">&lt;CR&gt;</code>          正向查找第 <code class="special">[count]</code> 次出现处，使用上次的模式
-                         <a href="pattern.html#last-pattern">last-pattern</a>  以及新偏移  <a href="pattern.html#{offset}">{offset}</a> 。若 <code class="special">{offset}</code> 为
+//<code class="special">{offset}</code><code class="special">&lt;CR&gt;</code>          正向查找第 <code class="special">[count]</code> 次出現處，使用上次的模式
+                         <a href="pattern.html#last-pattern">last-pattern</a>  以及新偏移  <a href="pattern.html#{offset}">{offset}</a> 。若 <code class="special">{offset}</code> 為
                         空，不使用任何偏移。
 
                                                         <b class="vimtag"> <a name="?">?</a> </b>
-?<code class="special">{pattern}</code>[?]<code class="special">&lt;CR&gt;</code>       反向查找第 <code class="special">[count]</code> 次出现 <code class="special">{pattern}</code> 的地方
-                        ( <a href="motion.html#exclusive">exclusive</a>  开动作)
+?<code class="special">{pattern}</code>[?]<code class="special">&lt;CR&gt;</code>       反向查找第 <code class="special">[count]</code> 次出現 <code class="special">{pattern}</code> 的地方
+                        ( <a href="motion.html#exclusive">exclusive</a>  開動作)
 
-?<code class="special">{pattern}</code>?<code class="special">{offset}</code><code class="special">&lt;CR&gt;</code> 反向查找第 <code class="special">[count]</code> 次出现 <code class="special">{pattern}</code> 的地方
-                        并向上或下移动  <a href="pattern.html#{offset}">{offset}</a>  行  <a href="motion.html#linewise">linewise</a>  行动作。
+?<code class="special">{pattern}</code>?<code class="special">{offset}</code><code class="special">&lt;CR&gt;</code> 反向查找第 <code class="special">[count]</code> 次出現 <code class="special">{pattern}</code> 的地方
+                        並向上或下移動  <a href="pattern.html#{offset}">{offset}</a>  行  <a href="motion.html#linewise">linewise</a>  行動作。
 
                                                         <b class="vimtag"> <a name="?%3CCR%3E">?&lt;CR&gt;</a> </b>
-?<code class="special">&lt;CR&gt;</code>                   反向查找第 <code class="special">[count]</code> 次出现处，使用上次的模式
+?<code class="special">&lt;CR&gt;</code>                   反向查找第 <code class="special">[count]</code> 次出現處，使用上次的模式
                          <a href="pattern.html#last-pattern">last-pattern</a>  以及上次的  <a href="pattern.html#{offset}">{offset}</a> 。
 
-??<code class="special">{offset}</code><code class="special">&lt;CR&gt;</code>          反向查找第 <code class="special">[count]</code> 次出现处，使用上次的模式
-                         <a href="pattern.html#last-pattern">last-pattern</a>  以及新偏移  <a href="pattern.html#{offset}">{offset}</a> 。若 <code class="special">{offset}</code> 为
+??<code class="special">{offset}</code><code class="special">&lt;CR&gt;</code>          反向查找第 <code class="special">[count]</code> 次出現處，使用上次的模式
+                         <a href="pattern.html#last-pattern">last-pattern</a>  以及新偏移  <a href="pattern.html#{offset}">{offset}</a> 。若 <code class="special">{offset}</code> 為
                         空，不使用任何偏移。
 
                                                         <b class="vimtag"> <a name="n">n</a> </b>
-n                       将上次的 "/" 或 "?" 重复 <code class="special">[count]</code> 次。
-                        如果光标不移动，搜索重复 count + 1 次。
-                         <a href="pattern.html#last-pattern">last-pattern</a>  <code class="notvi">{Vi: 无计数}</code>
+n                       將上次的 "/" 或 "?" 重複 <code class="special">[count]</code> 次。
+                        如果光標不移動，搜索重複 count + 1 次。
+                         <a href="pattern.html#last-pattern">last-pattern</a>  <code class="notvi">{Vi: 無計數}</code>
 
                                                         <b class="vimtag"> <a name="N">N</a> </b>
-N                       将上次的 "/" 或 "?" 在相反方向上重复 <code class="special">[count]</code> 次。
-                         <a href="pattern.html#last-pattern">last-pattern</a>  <code class="notvi">{Vi: 无计数}</code>
+N                       將上次的 "/" 或 "?" 在相反方向上重複 <code class="special">[count]</code> 次。
+                         <a href="pattern.html#last-pattern">last-pattern</a>  <code class="notvi">{Vi: 無計數}</code>
 
                                                         <b class="vimtag"> <a name="star">star</a> </b> <b class="vimtag"> <a name="E348">E348</a> </b> <b class="vimtag"> <a name="E349">E349</a> </b>
-*                       正向查找第 <code class="special">[count]</code> 次出现距离当前光标最近的单词的地
-                        方。用于查找的单词是以下最先符合条件的:
-                                1. 光标所在的关键字  <a href="options.html#'iskeyword'">'iskeyword'</a> 
-                                2. 当前行内的光标后的第一个关键字。
-                                3. 光标所在的非空白单词
-                                4. 当前行内的光标后的第一个非空白单词
-                        只查找整字，就像使用了命令 "/\&lt;keyword\&gt;" 一样。
-                        ( <a href="motion.html#exclusive">exclusive</a>  开动作) <code class="notvi">{Vi 无此功能}</code>
+*                       正向查找第 <code class="special">[count]</code> 次出現距離當前光標最近的單詞的地
+                        方。用於查找的單詞是以下最先符合條件的:
+                                1. 光標所在的關鍵字  <a href="options.html#'iskeyword'">'iskeyword'</a> 
+                                2. 當前行內的光標後的第一個關鍵字。
+                                3. 光標所在的非空白單詞
+                                4. 當前行內的光標後的第一個非空白單詞
+                        只查找整字，就像使用了命令 "/\&lt;keyword\&gt;" 一樣。
+                        ( <a href="motion.html#exclusive">exclusive</a>  開動作) <code class="notvi">{Vi 無此功能}</code>
                         使用 <a href="options.html#'ignorecase'">'ignorecase'</a>，不使用 <a href="options.html#'smartcase'">'smartcase'</a>。
 
                                                         <b class="vimtag"> <a name="%23">#</a> </b>
-#                       同 "*"，但反向查找。也可以用磅符号 (字符 163)。如果
-                        "#" 的功能和退格键一样，试着在启动 Vim 前使用
-                        "stty erase <code class="special">&lt;BS&gt;</code>" (<code class="special">&lt;BS&gt;</code> 是 <code class="keystroke">CTRL-H</code> 或真的退格键)。
-                        <code class="notvi">{Vi 无此功能}</code>
+#                       同 "*"，但反向查找。也可以用磅符號 (字符 163)。如果
+                        "#" 的功能和退格鍵一樣，試著在啟動 Vim 前使用
+                        "stty erase <code class="special">&lt;BS&gt;</code>" (<code class="special">&lt;BS&gt;</code> 是 <code class="keystroke">CTRL-H</code> 或真的退格鍵)。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="gstar">gstar</a> </b>
-g*                      同 "*"，但不使用 "\&lt;" 和 "\&gt;"。这样查找就会匹配非整字
-                        的地方。<code class="notvi">{Vi 无此功能}</code>
+g*                      同 "*"，但不使用 "\&lt;" 和 "\&gt;"。這樣查找就會匹配非整字
+                        的地方。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="g%23">g#</a> </b>
-g#                      同 "#"，但不使用 "\&lt;" 和 "\&gt;"。这样查找就会匹配非整字
-                        的地方。<code class="notvi">{Vi 无此功能}</code>
+g#                      同 "#"，但不使用 "\&lt;" 和 "\&gt;"。這樣查找就會匹配非整字
+                        的地方。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="gd">gd</a> </b>
-gd                      跳转 (goto) 至局部声明 (declaration)。当光标下是一个局
-                        部变量时，此命令会跳转到该变量被声明的地方。
-                        首先，Vim 会查找当前函数的起始处，就像使用 "[[" 一样。
-                        如果找不到会停止在第一行。如果找到， Vim 会反向搜索直
-                        到找到一个空行，然后从这里开始正向查找光标所在的关键
-                        字，就像使用了 "*" 一样，但看起来像注释的行会被忽略。
-                        (见 <a href="options.html#'comments'">'comments'</a> 选项)。
-                        <code class="note">注意</code> 这并非总有效。Vim 不会做语法分析。它仅仅查找关键
-                        字的匹配。如果头文件也需要搜索的话，可以使用
+gd                      跳轉 (goto) 至局部聲明 (declaration)。當光標下是一個局
+                        部變量時，此命令會跳轉到該變量被聲明的地方。
+                        首先，Vim 會查找當前函數的起始處，就像使用 "[[" 一樣。
+                        如果找不到會停止在第一行。如果找到， Vim 會反向搜索直
+                        到找到一個空行，然後從這裡開始正向查找光標所在的關鍵
+                        字，就像使用了 "*" 一樣，但看起來像註釋的行會被忽略。
+                        (見 <a href="options.html#'comments'">'comments'</a> 選項)。
+                        <code class="note">注意</code> 這並非總有效。Vim 不會做語法分析。它僅僅查找關鍵
+                        字的匹配。如果頭文件也需要搜索的話，可以使用
                          <a href="tagsrch.html#include-search">include-search</a>  列出的命令。
-                        这个命令之后，可以使用  <a href="pattern.html#n">n</a>  正向查找下一个匹配 (不能反
+                        這個命令之後，可以使用  <a href="pattern.html#n">n</a>  正向查找下一個匹配 (不能反
                         向)。
-                        <code class="notvi">{Vi 无此功能}</code>
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="gD">gD</a> </b>
-gD                      跳转 (goto) 至全局声明 (Declaration)。当光标下是一个全
-                        局变量时，此命令会跳转到该变量被声明的地方。此命令和
-                        "gd" 命令一样，不过查找总是从第一行开始。<code class="notvi">{Vi 无此功能}</code>
+gD                      跳轉 (goto) 至全局聲明 (Declaration)。當光標下是一個全
+                        局變量時，此命令會跳轉到該變量被聲明的地方。此命令和
+                        "gd" 命令一樣，不過查找總是從第一行開始。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="1gd">1gd</a> </b>
-1gd                     同 "gd"，但忽略光标位置前结束的 <code class="special">{}</code> 块里的匹配。
-                        <code class="notvi">{Vi 无此功能}</code>
+1gd                     同 "gd"，但忽略光標位置前結束的 <code class="special">{}</code> 塊裡的匹配。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="1gD">1gD</a> </b>
-1gD                     同 "gD"，但忽略光标位置前结束的 <code class="special">{}</code> 块里的匹配。
-                        <code class="notvi">{Vi 无此功能}</code>
+1gD                     同 "gD"，但忽略光標位置前結束的 <code class="special">{}</code> 塊裡的匹配。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="CTRL-C">CTRL-C</a> </b>
-<code class="keystroke">CTRL-C</code>                  中止当前的 (搜索) 命令。在 MS-DOS 上用 <code class="keystroke">CTRL-Break</code>
+<code class="keystroke">CTRL-C</code>                  中止當前的 (搜索) 命令。在 MS-DOS 上用 <code class="keystroke">CTRL-Break</code>
                          <a href="os_dos.html#dos-CTRL-Break">dos-CTRL-Break</a> 。
-                        在普通模式下，任何等待的命令将被终止。
+                        在普通模式下，任何等待的命令將被終止。
 
                                                         <b class="vimtag"> <a name=":noh">:noh</a> </b> <b class="vimtag"> <a name=":nohlsearch">:nohlsearch</a> </b>
-:noh[lsearch]           停止 <a href="options.html#'hlsearch'">'hlsearch'</a> 选项的高亮显示。如果再执行查找命令或者
-                        设定 <a href="options.html#'hlsearch'">'hlsearch'</a> 选项，高亮会自动打开。此命令无法在自动
-                        命令里使用，因为高亮的状态会在自动命令执行期间自动保存
-                        和恢复  <a href="autocmd.html#autocmd-searchpat">autocmd-searchpat</a> 。
-                        执行用户函数时也是如此。
+:noh[lsearch]           停止 <a href="options.html#'hlsearch'">'hlsearch'</a> 選項的高亮顯示。如果再執行查找命令或者
+                        設定 <a href="options.html#'hlsearch'">'hlsearch'</a> 選項，高亮會自動打開。此命令無法在自動
+                        命令裡使用，因為高亮的狀態會在自動命令執行期間自動保存
+                        和恢復  <a href="autocmd.html#autocmd-searchpat">autocmd-searchpat</a> 。
+                        執行用戶函數時也是如此。
 
-如果打开 <a href="options.html#'incsearch'">'incsearch'</a> 选项，键入查找模式时，即时显示当前的匹配。不过，你还得用
-<code class="special">&lt;CR&gt;</code> 来结束查找命令并将光标定位到显示的匹配。也可以用 <code class="special">&lt;ESC&gt;</code> 来放弃查找。
+如果打開 <a href="options.html#'incsearch'">'incsearch'</a> 選項，鍵入查找模式時，即時顯示當前的匹配。不過，你還得用
+<code class="special">&lt;CR&gt;</code> 來結束查找命令並將光標定位到顯示的匹配。也可以用 <code class="special">&lt;ESC&gt;</code> 來放棄查找。
 
-如果打开 <a href="options.html#'hlsearch'">'hlsearch'</a>，最后一次查找命令的所有匹配点都会被高亮。用  <a href="pattern.html#:nohlsearch">:nohlsearch</a> 
-命令来暂停。
+如果打開 <a href="options.html#'hlsearch'">'hlsearch'</a>，最後一次查找命令的所有匹配點都會被高亮。用  <a href="pattern.html#:nohlsearch">:nohlsearch</a> 
+命令來暫停。
 
-如果没找到匹配，会报错: <b class="vimtag"> <a name="E486">E486</a> </b> Pattern not found
-<code class="note">注意</code> 为 Vi 兼容起见， <a href="repeat.html#:global">:global</a>  命令会把此错误当作一个普通的消息。 <a href="change.html#:s">:s</a>  命令的
-"e" 标志位可用来避免此错误  <a href="change.html#:s_flags">:s_flags</a> 。
+如果沒找到匹配，會報錯: <b class="vimtag"> <a name="E486">E486</a> </b> Pattern not found
+<code class="note">注意</code> 為 Vi 兼容起見， <a href="repeat.html#:global">:global</a>  命令會把此錯誤當作一個普通的消息。 <a href="change.html#:s">:s</a>  命令的
+"e" 標誌位可用來避免此錯誤  <a href="change.html#:s_flags">:s_flags</a> 。
 
                                         <b class="vimtag"> <a name="search-offset">search-offset</a> </b> <b class="vimtag"> <a name="{offset}">{offset}</a> </b>
-这些命令查找一个指定的模式。而 "/" 和 "?" 命令还可以指定一个额外的偏移量。有两
-种偏移: 行偏移和字符偏移。<code class="notvi">{Vi 没有字符偏移}</code>
+這些命令查找一個指定的模式。而 "/" 和 "?" 命令還可以指定一個額外的偏移量。有兩
+種偏移: 行偏移和字符偏移。<code class="notvi">{Vi 沒有字符偏移}</code>
 
-偏移用来指定光标相对于找到的匹配的位置:
+偏移用來指定光標相對於找到的匹配的位置:
     <code class="special">[num]</code>       <code class="special">[num]</code> 行向下，第一列
     +<code class="special">[num]</code>      <code class="special">[num]</code> 行向下，第一列
     -<code class="special">[num]</code>      <code class="special">[num]</code> 行向上，第一列
-    e<code class="special">[+num]</code>     <code class="special">[num]</code> 字符向右 (从匹配结束 (end) 处算起)
-    e<code class="special">[-num]</code>     <code class="special">[num]</code> 字符向左 (从匹配结束 (end) 处算起)
-    s<code class="special">[+num]</code>     <code class="special">[num]</code> 字符向右 (从匹配开始 (start) 处算起)
-    s<code class="special">[-num]</code>     <code class="special">[num]</code> 字符向左 (从匹配开始 (start) 处算起)
-    b<code class="special">[+num]</code>     <code class="special">[num]</code> 等价于 s<code class="special">[+num]</code> (从匹配开始 (begin) 处算起)
-    b<code class="special">[-num]</code>     <code class="special">[num]</code> 等价于 s<code class="special">[-num]</code> (从匹配开始 (begin) 处算起)
-    ;<code class="special">{pattern}</code>  开始另一项搜索，见  <a href="pattern.html#%2F%2F;">//;</a> 
+    e<code class="special">[+num]</code>     <code class="special">[num]</code> 字符向右 (從匹配結束 (end) 處算起)
+    e<code class="special">[-num]</code>     <code class="special">[num]</code> 字符向左 (從匹配結束 (end) 處算起)
+    s<code class="special">[+num]</code>     <code class="special">[num]</code> 字符向右 (從匹配開始 (start) 處算起)
+    s<code class="special">[-num]</code>     <code class="special">[num]</code> 字符向左 (從匹配開始 (start) 處算起)
+    b<code class="special">[+num]</code>     <code class="special">[num]</code> 等價於 s<code class="special">[+num]</code> (從匹配開始 (begin) 處算起)
+    b<code class="special">[-num]</code>     <code class="special">[num]</code> 等價於 s<code class="special">[-num]</code> (從匹配開始 (begin) 處算起)
+    ;<code class="special">{pattern}</code>  開始另一項搜索，見  <a href="pattern.html#%2F%2F;">//;</a> 
 
-如果给出了 '-' 或 '+' 但是省略了 <code class="special">[num]</code>，会使用缺省的 1。
-如果使用了 'e' 偏移，查找会成为  <a href="motion.html#inclusive">inclusive</a>  闭动作 (光标要到达的字符本身会包含
-在操作里)。
+如果給出了 '-' 或 '+' 但是省略了 <code class="special">[num]</code>，會使用缺省的 1。
+如果使用了 'e' 偏移，查找會成為  <a href="motion.html#inclusive">inclusive</a>  閉動作 (光標要到達的字符本身會包含
+在操作裡)。
 
 示例:
 
-<code class="section">模式                    光标位置        </code>
+<code class="section">模式                    光標位置        </code>
 /test/+1                "test" 下一行，第一列
-/test/e                 "test" 的后一个 't'
+/test/e                 "test" 的後一個 't'
 /test/s+2               "test" 中的 's'
-/test/b-3               "test" 前的第三个字符
+/test/b-3               "test" 前的第三個字符
 
-如果把这些命令之一和一个操作符连用，影响的是查找之前和之后光标位置之间的字符。
-然而，如果使用了行偏移，影响的是两光标位置之间的所有整行。
+如果把這些命令之一和一個操作符連用，影響的是查找之前和之後光標位置之間的字符。
+然而，如果使用了行偏移，影響的是兩光標位置之間的所有整行。
 
-一个演示如何查找一个模式并用另一个单词来更改匹配的例子: 
+一個演示如何查找一個模式並用另一個單詞來更改匹配的例子: 
 <code class="example">        /foo&lt;CR&gt;        查找 "foo"</code>
-<code class="example">        c//e&lt;CR&gt;        修改从当前位置到匹配结尾的部分</code>
-<code class="example">        bar&lt;Esc&gt;        输入替换文本</code>
-<code class="example">        //&lt;CR&gt;          跳转到下一个相同匹配的开始</code>
-<code class="example">        c//e&lt;CR&gt;        修改从当前位置到匹配结尾的部分</code>
-<code class="example">        beep&lt;Esc&gt;       输入替换文本</code>
+<code class="example">        c//e&lt;CR&gt;        修改從當前位置到匹配結尾的部分</code>
+<code class="example">        bar&lt;Esc&gt;        輸入替換文本</code>
+<code class="example">        //&lt;CR&gt;          跳轉到下一個相同匹配的開始</code>
+<code class="example">        c//e&lt;CR&gt;        修改從當前位置到匹配結尾的部分</code>
+<code class="example">        beep&lt;Esc&gt;       輸入替換文本</code>
 <code class="example">                        等等。</code>
 
                                                         <b class="vimtag"> <a name="%2F%2F;">//;</a> </b> <b class="vimtag"> <a name="E386">E386</a> </b>
-一个很特别的偏移是 ';' 后面接另一个查找命令。例如: 
+一個很特別的偏移是 ';' 後面接另一個查找命令。例如: 
 <code class="example"></code>
 <code class="example">   /test 1/;/test</code>
 <code class="example">   /test.*/+1;?ing?</code>
 <code class="example"></code>
-其中第一例会先找到下一个出现 "test 1" 的地方，然后寻找在它之后 "test" 的第一次
-出现之处。
+其中第一例會先找到下一個出現 "test 1" 的地方，然後尋找在它之後 "test" 的第一次
+出現之處。
 
-这就好像接连执行两次查找命令，不同之处在于:
-- 它可以被当作操作符之后的单个移动命令。
-- 以后的 "n" 或 "N" 命令基于第一个查找操作。
-- 当有错误时光标原地不动。
+這就好像接連執行兩次查找命令，不同之處在於:
+- 它可以被當作操作符之後的單個移動命令。
+- 以後的 "n" 或 "N" 命令基於第一個查找操作。
+- 當有錯誤時光標原地不動。
 
                                                         <b class="vimtag"> <a name="last-pattern">last-pattern</a> </b>
-最近使用的模式和偏移会被记住。它们可以用来重复查找，而且查找的方向和计数都可以
-修改。<code class="note">注意</code> Vim 会记住两个模式: 一个是普通模式下查找命令用的，另一个是替代命令
-":s" 用的。每次给出一个空白的模式时，都将用到前次使用模式。不过，如果没有前次
+最近使用的模式和偏移會被記住。它們可以用來重複查找，而且查找的方向和計數都可以
+修改。<code class="note">注意</code> Vim 會記住兩個模式: 一個是普通模式下查找命令用的，另一個是替代命令
+":s" 用的。每次給出一個空白的模式時，都將用到前次使用模式。不過，如果沒有前次
 搜索模式，如果可以，使用前次替代模式。
 
-<a href="options.html#'magic'">'magic'</a> 选项的值是和最近使用模式本身绑定的。如果你改变了 <a href="options.html#'magic'">'magic'</a>，最近使用模式
-的解释方法不会改变。<a href="options.html#'ignorecase'">'ignorecase'</a> 选项就不同。当 <a href="options.html#'ignorecase'">'ignorecase'</a> 的值改变时，该模
-式会匹配另外的文本。
+<a href="options.html#'magic'">'magic'</a> 選項的值是和最近使用模式本身綁定的。如果你改變了 <a href="options.html#'magic'">'magic'</a>，最近使用模式
+的解釋方法不會改變。<a href="options.html#'ignorecase'">'ignorecase'</a> 選項就不同。當 <a href="options.html#'ignorecase'">'ignorecase'</a> 的值改變時，該模
+式會匹配另外的文本。
 
-如果你设定了 <a href="options.html#'hlsearch'">'hlsearch'</a> 选项，所有最近使用的查找模式的匹配点都会高亮。
+如果你設定了 <a href="options.html#'hlsearch'">'hlsearch'</a> 選項，所有最近使用的查找模式的匹配點都會高亮。
 
 要清除最近使用的查找模式: 
 <code class="example">        :let @/ = ""</code>
-这不会把该模式设置为空串，因为那样会匹配所有的东西。该模式是真的清除了，就像
-Vim 刚刚启动一样。
+這不會把該模式設置為空串，因為那樣會匹配所有的東西。該模式是真的清除了，就像
+Vim 剛剛啟動一樣。
 
-查找通常会跳过那些不移动光标位置的匹配。下一次匹配是开始于下一个字符还是在跳过
-那些匹配之后取决于 <a href="options.html#'cpoptions'">'cpoptions'</a> 选项中的 'c' 标志位。见  <a href="options.html#cpo-c">cpo-c</a> 。
-             带 'c' 标志位:   "/..." 前进 1 至 3 个字符
-           不带 'c' 标志位:   "/..." 前进 1 个字符
-带 'c' 标志位对应结果难以完全确定，因为查找可以从第一列开始，忽略任何匹配，直
-到找到超过光标位置的匹配为止。
+查找通常會跳過那些不移動光標位置的匹配。下一次匹配是開始於下一個字符還是在跳過
+那些匹配之後取決於 <a href="options.html#'cpoptions'">'cpoptions'</a> 選項中的 'c' 標誌位。見  <a href="options.html#cpo-c">cpo-c</a> 。
+             帶 'c' 標誌位:   "/..." 前進 1 至 3 個字符
+           不帶 'c' 標誌位:   "/..." 前進 1 個字符
+帶 'c' 標誌位對應結果難以完全確定，因為查找可以從第一列開始，忽略任何匹配，直
+到找到超過光標位置的匹配為止。
 
-如果反向寻找，要是如上所述 <a href="options.html#'cpoptions'">'cpoptions'</a> 里包含了 'c' 标志位的话，从行首开始搜
-索，使用光标位置之前的最后一个匹配。
+如果反向尋找，要是如上所述 <a href="options.html#'cpoptions'">'cpoptions'</a> 裡包含了 'c' 標誌位的話，從行首開始搜
+索，使用光標位置之前的最後一個匹配。
 
-在 Vi 里 ":tag" 命令会将最近查找模式设定为要搜索的标签。除非 <a href="options.html#'cpoptions'">'cpoptions'</a> 选项
-中包括 't' 标志位，Vim 不会这样做，前次查找模式仍然被记住。查找模式总被存入查
-找历史记录。
+在 Vi 裡 ":tag" 命令會將最近查找模式設定為要搜索的標籤。除非 <a href="options.html#'cpoptions'">'cpoptions'</a> 選項
+中包括 't' 標誌位，Vim 不會這樣做，前次查找模式仍然被記住。查找模式總被存入查
+找歷史記錄。
 
-如果 <a href="options.html#'wrapscan'">'wrapscan'</a> 选项的值为真 (缺省) 的话，查找会在缓冲区的结尾折返到首部。如果
-不为真，反向查找会在开始处停止；正向查找会在结尾处停止。如果该选项为真但找不到
-该模式，会给出一个错误信息: "pattern not found"，光标原地不动。如果不为真，取
-决于查找的方向是正向还是反向，给出的信息是: "search hit BOTTOM without match"
-或者 "search hit TOP without match"。如果该选项为真，当查找折返时会分别显示:
+如果 <a href="options.html#'wrapscan'">'wrapscan'</a> 選項的值為真 (缺省) 的話，查找會在緩衝區的結尾折返到首部。如果
+不為真，反向查找會在開始處停止；正向查找會在結尾處停止。如果該選項為真但找不到
+該模式，會給出一個錯誤信息: "pattern not found"，光標原地不動。如果不為真，取
+決於查找的方向是正向還是反向，給出的信息是: "search hit BOTTOM without match"
+或者 "search hit TOP without match"。如果該選項為真，當查找折返時會分別顯示:
 "search hit TOP, continuing at BOTTOM" 或 "search hit BOTTOM, continuing at
-TOP"。此时，消息可以用设定 <a href="options.html#'shortmess'">'shortmess'</a> 选项里的 's' 标志位来关闭。该信息的显示
-会使用 'w' 的高亮方法 (缺省: 突出)。
+TOP"。此時，消息可以用設定 <a href="options.html#'shortmess'">'shortmess'</a> 選項裡的 's' 標誌位來關閉。該信息的顯示
+會使用 'w' 的高亮方法 (缺省: 突出)。
 
                                                         <b class="vimtag"> <a name="search-range">search-range</a> </b>
-用 \%&gt;l 项目，你可以限定 "/" 命令查找的范围。例如，要在行 199 之下行 300 之上
-搜索单词 "limit": 
+用 \%&gt;l 項目，你可以限定 "/" 命令查找的範圍。例如，要在行 199 之下行 300 之上
+搜索單詞 "limit": 
 <code class="example">        /\%&gt;199l\%&lt;300llimit</code>
-另见  <a href="pattern.html#%2F\%%3El">/\%&gt;l</a> 。
+另見  <a href="pattern.html#%2F\%%3El">/\%&gt;l</a> 。
 
-另一个方法是使用 ":substitute" 命令并与 'c' 联用。例: 
+另一個方法是使用 ":substitute" 命令並與 'c' 聯用。例: 
 <code class="example">   :.,300s/Pattern//gc</code>
-这个命令会从光标所在处开始查找 "Pattern"，直到第 300 行。在匹配处，你会被提示
-键入一个字符。键入 'q' 终止；键入 'n' 找下一个匹配。
+這個命令會從光標所在處開始查找 "Pattern"，直到第 300 行。在匹配處，你會被提示
+鍵入一個字符。鍵入 'q' 終止；鍵入 'n' 找下一個匹配。
 
-"*"，"#"，"g*" 和 "g#" 命令依照以下的次序查找在光标附近的一个单词，使用以下最
-先找到的那个:
-- 光标所在的关键字。
-- 同行的光标右侧的第一个关键字。
-- 光标下的第一个字串 (WORD)。
-- 同行的光标右侧的第一个字串 (WORD)。
-关键字只能包括字母和 <a href="options.html#'iskeyword'">'iskeyword'</a> 中的字符。字串 (WORD) 可以包括任何非空白
+"*"，"#"，"g*" 和 "g#" 命令依照以下的次序查找在光標附近的一個單詞，使用以下最
+先找到的那個:
+- 光標所在的關鍵字。
+- 同行的光標右側的第一個關鍵字。
+- 光標下的第一個字串 (WORD)。
+- 同行的光標右側的第一個字串 (WORD)。
+關鍵字只能包括字母和 <a href="options.html#'iskeyword'">'iskeyword'</a> 中的字符。字串 (WORD) 可以包括任何非空白
 (<code class="special">&lt;Tab&gt;</code> 和／或 <code class="special">&lt;Space&gt;</code>)。
-<code class="note">备注</code> 如果你用十个指头打字的话，这些字符是很容易记住的:
+<code class="note">備註</code> 如果你用十個指頭打字的話，這些字符是很容易記住的:
 "#" 在你的左手中指上 (向左上查找)；"*" 在你的右手中指上 (向右下查找)。
-(不过，这取决于你的键盘布局)。
+(不過，這取決於你的鍵盤佈局)。
 
 </pre><hr class="doubleline" /><pre>
-<h4>2. 模式的定义                           <b class="vimtag"> <a name="search-pattern">search-pattern</a> </b> <b class="vimtag"> <a name="pattern">pattern</a> </b> <b class="vimtag"> <a name="[pattern]">[pattern]</a> </b></h4>                                        <b class="vimtag"> <a name="regular-expression">regular-expression</a> </b> <b class="vimtag"> <a name="regexp">regexp</a> </b> <b class="vimtag"> <a name="Pattern">Pattern</a> </b>
+<h4>2. 模式的定義                           <b class="vimtag"> <a name="search-pattern">search-pattern</a> </b> <b class="vimtag"> <a name="pattern">pattern</a> </b> <b class="vimtag"> <a name="[pattern]">[pattern]</a> </b></h4>                                        <b class="vimtag"> <a name="regular-expression">regular-expression</a> </b> <b class="vimtag"> <a name="regexp">regexp</a> </b> <b class="vimtag"> <a name="Pattern">Pattern</a> </b>
                                         <b class="vimtag"> <a name="E76">E76</a> </b> <b class="vimtag"> <a name="E383">E383</a> </b> <b class="vimtag"> <a name="E476">E476</a> </b>
 
-头一道菜已经在用户手册的第 27 章  <a href="usr_27.html#usr_27.txt">usr_27.txt</a>  上过了。
+頭一道菜已經在用戶手冊的第 27 章  <a href="usr_27.html#usr_27.txt">usr_27.txt</a>  上過了。
 
                                                 <b class="vimtag"> <a name="%2Fbar">/bar</a> </b> <b class="vimtag"> <a name="%2F\bar">/\bar</a> </b> <b class="vimtag"> <a name="%2Fpattern">/pattern</a> </b>
-1. 一个模式 (pattern) 是由 "\|" 分隔开的一个或多个分支 (branch)。它可以匹配其
-   中的任何一个分支匹配的文本。例如: "foo\|beep" 可以匹配 "foo" 或 "beep"。如
-   果超过一个分支可以匹配，选用其中的第一个。
+1. 一個模式 (pattern) 是由 "\|" 分隔開的一個或多個分支 (branch)。它可以匹配其
+   中的任何一個分支匹配的文本。例如: "foo\|beep" 可以匹配 "foo" 或 "beep"。如
+   果超過一個分支可以匹配，選用其中的第一個。
 
    pattern ::=      branch
                 或  branch \| branch
@@ -289,10 +289,10 @@ TOP"。此时，消息可以用设定 <a href="options.html#'shortmess'">'shortm
                 等。
 
                                                 <b class="vimtag"> <a name="%2Fbranch">/branch</a> </b> <b class="vimtag"> <a name="%2F\&">/\&amp;</a> </b>
-2. 一个分支是一个或多个被 "\&amp;" 分隔的邻接。它匹配最后一个邻接，但仅仅当前面所
-   的邻接也在同样位置匹配。例:
+2. 一個分支是一個或多個被 "\&amp;" 分隔的鄰接。它匹配最後一個鄰接，但僅僅當前面所
+   的鄰接也在同樣位置匹配。例:
         "foobeep\&amp;..." 匹配 "foobeep" 中的 "foo"。
-        ".*Peter\&amp;.*Bob" 匹配同时包括 "Peter" 和 "Bob" 的一行
+        ".*Peter\&amp;.*Bob" 匹配同時包括 "Peter" 和 "Bob" 的一行
 
    branch ::=       concat
                 或  concat \&amp; concat
@@ -300,8 +300,8 @@ TOP"。此时，消息可以用设定 <a href="options.html#'shortmess'">'shortm
                 等。
 
                                                 <b class="vimtag"> <a name="%2Fconcat">/concat</a> </b>
-3. 一个邻接 (concat) 是一或多个相邻的组件 (piece)。它匹配第一个组件，后接第二
-   个组件的匹配，等等。例如: "f[0-9]b"，先匹配 "f"，然后是一个数位，接着 "b"。
+3. 一個鄰接 (concat) 是一或多個相鄰的組件 (piece)。它匹配第一個組件，後接第二
+   個組件的匹配，等等。例如: "f[0-9]b"，先匹配 "f"，然後是一個數位，接著 "b"。
 
    concat  ::=      piece
                 或  piece piece
@@ -309,17 +309,17 @@ TOP"。此时，消息可以用设定 <a href="options.html#'shortmess'">'shortm
                 等。
 
                                                 <b class="vimtag"> <a name="%2Fpiece">/piece</a> </b>
-4. 一个组件是一个匹配原 (atom)，后面可能带一个倍数 (multi)，用来表示该匹配原匹
-   配的次数。例如: "a*" 匹配任意个 "a" 组成的序列: ""，"a"，"aa" 等。参见
+4. 一個組件是一個匹配原 (atom)，後面可能帶一個倍數 (multi)，用來表示該匹配原匹
+   配的次數。例如: "a*" 匹配任意個 "a" 組成的序列: ""，"a"，"aa" 等。參見
     <a href="pattern.html#%2Fmulti">/multi</a> 。
 
    piece   ::=      atom
                 或  atom  multi
 
                                                 <b class="vimtag"> <a name="%2Fatom">/atom</a> </b>
-5. 一个匹配原可以是一个很长的条目列表中的一个。许多匹配原用来匹配文本中的一个
-   字符，通常是一个普通的字符或字符类。也可以用圆括号来将一个模式变成一个匹配
-   原。下面的 "\z(\)" 构造仅用在语法高亮中。
+5. 一個匹配原可以是一個很長的條目列表中的一個。許多匹配原用來匹配文本中的一個
+   字符，通常是一個普通的字符或字符類。也可以用圓括號來將一個模式變成一個匹配
+   原。下面的 "\z(\)" 構造僅用在語法高亮中。
 
    atom    ::=      ordinary-atom                <a href="pattern.html#%2Fordinary-atom">/ordinary-atom</a> 
                 或  \( pattern \)                <a href="pattern.html#%2F\(">/\(</a> 
@@ -328,153 +328,153 @@ TOP"。此时，消息可以用设定 <a href="options.html#'shortmess'">'shortm
 
 
                                 <b class="vimtag"> <a name="%2F\%%23%20">/\%#=</a> </b> <b class="vimtag"> <a name="two-engines">two-engines</a> </b> <b class="vimtag"> <a name="NFA">NFA</a> </b>
-Vim 包含两个正规表达式引擎:
-1. 老式的基于回溯的引擎，支持所有功能。
-2. 新式的 NFA 引擎，对某些模式会快很多，对某些模式可能会变慢。
+Vim 包含兩個正規表達式引擎:
+1. 老式的基於回溯的引擎，支持所有功能。
+2. 新式的 NFA 引擎，對某些模式會快很多，對某些模式可能會變慢。
 
-Vim 会自动为你选择合适的引擎。不过，如果你遇过问题或者想特别指定某一个引擎，可
-以在模式开头处加入:
+Vim 會自動為你選擇合適的引擎。不過，如果你遇過問題或者想特別指定某一個引擎，可
+以在模式開頭處加入:
 
-        \%#=0   强制自动选择。仅在 <a href="options.html#'regexpengine'">'regexpengine'</a> 设为非零时才有效果。
-        \%#=1   强制使用旧引擎。
-        \%#=2   强制使用 NFA 引擎。
+        \%#=0   強制自動選擇。僅在 <a href="options.html#'regexpengine'">'regexpengine'</a> 設為非零時才有效果。
+        \%#=1   強制使用舊引擎。
+        \%#=2   強制使用 NFA 引擎。
 
-也可用 <a href="options.html#'regexpengine'">'regexpengine'</a> 选项改变缺省机制。
+也可用 <a href="options.html#'regexpengine'">'regexpengine'</a> 選項改變缺省機制。
 
                          <b class="vimtag"> <a name="E864">E864</a> </b> <b class="vimtag"> <a name="E868">E868</a> </b> <b class="vimtag"> <a name="E874">E874</a> </b> <b class="vimtag"> <a name="E875">E875</a> </b> <b class="vimtag"> <a name="E876">E876</a> </b> <b class="vimtag"> <a name="E877">E877</a> </b> <b class="vimtag"> <a name="E878">E878</a> </b>
-选择 NFA 引擎时如果遇到未实现的模式部分时，整个模式会不匹配。只用于调试 Vim。
+選擇 NFA 引擎時如果遇到未實現的模式部分時，整個模式會不匹配。只用於調試 Vim。
 
 </pre><hr class="doubleline" /><pre>
-<h4>3. 魔术                                                         <b class="vimtag"> <a name="%2Fmagic">/magic</a> </b></h4>
-某些字符在模式中是按本义出现的。它们匹配自身。然而，当前面有一个反斜杠时，这些
-字符具有特殊的含义。
+<h4>3. 魔術                                                         <b class="vimtag"> <a name="%2Fmagic">/magic</a> </b></h4>
+某些字符在模式中是按本義出現的。它們匹配自身。然而，當前面有一個反斜槓時，這些
+字符具有特殊的含義。
 
-另外一些字符即使没有反斜杠也代表特殊的意思。它们反而需要一个反斜杠来匹配按本义
-出现的自身。
+另外一些字符即使沒有反斜槓也代表特殊的意思。它們反而需要一個反斜槓來匹配按本義
+出現的自身。
 
-一个字符是否按本义出现取决于 <a href="options.html#'magic'">'magic'</a> 选项以及下面将解释的条目。
+一個字符是否按本義出現取決於 <a href="options.html#'magic'">'magic'</a> 選項以及下面將解釋的條目。
                                                         <b class="vimtag"> <a name="%2F\m">/\m</a> </b> <b class="vimtag"> <a name="%2F\M">/\M</a> </b>
-使用 "\m" 会使得其后的模式的解释方式就如同设定了 <a href="options.html#'magic'">'magic'</a> 选项一样。而且将忽略
-<a href="options.html#'magic'">'magic'</a> 选项的实际值。
-使用 "\M" 会使得其后的模式的解释方式就如同设定了 <a href="options.html#'nomagic'">'nomagic'</a> 选项一样。
+使用 "\m" 會使得其後的模式的解釋方式就如同設定了 <a href="options.html#'magic'">'magic'</a> 選項一樣。而且將忽略
+<a href="options.html#'magic'">'magic'</a> 選項的實際值。
+使用 "\M" 會使得其後的模式的解釋方式就如同設定了 <a href="options.html#'nomagic'">'nomagic'</a> 選項一樣。
                                                         <b class="vimtag"> <a name="%2F\v">/\v</a> </b> <b class="vimtag"> <a name="%2F\V">/\V</a> </b>
-使用 "\v" 会使得其后的模式中所有 '0'-'9'，'a'-'z'，'A'-'Z' 和 '_' 之外的字符都
-当作特殊字符解释。"very magic"
+使用 "\v" 會使得其後的模式中所有 '0'-'9'，'a'-'z'，'A'-'Z' 和 '_' 之外的字符都
+當作特殊字符解釋。"very magic"
 
-使用 "\V" 会使得其后的模式中只有反斜杠和终止字符 (/ 或 ?) 有特殊的意义。"very
+使用 "\V" 會使得其後的模式中只有反斜槓和終止字符 (/ 或 ?) 有特殊的意義。"very
 nomagic"
 
 示例:
-<code class="section">在这之后: \v       \m       \M       \V         匹配 </code>
+<code class="section">在這之後: \v       \m       \M       \V         匹配 </code>
                 <a href="options.html#'magic'">'magic'</a> <a href="options.html#'nomagic'">'nomagic'</a>
           $        $        $        \$         匹配行尾
           .        .        \.       \.         匹配任何字符
-          *        *        \*       \*         前面匹配原的任意次重复
+          *        *        \*       \*         前面匹配原的任意次重複
           ~        ~        \~       \~         最近替代字符串
-          ()       \(\)     \(\)     \(\)       组成为单个匹配原
-          |        \|       \|       \|         分隔可选分支
+          ()       \(\)     \(\)     \(\)       組成為單個匹配原
+          |        \|       \|       \|         分隔可選分支
           \a       \a       \a       \a         字母字符
-          \\       \\       \\       \\         反斜杠 (按本义)
-          \.       \.       .        .          英文句号 (按本义)
-          \{       {        {        {          '{'  (按本义)
-          a        a        a        a          'a'  (按本义)
+          \\       \\       \\       \\         反斜槓 (按本義)
+          \.       \.       .        .          英文句號 (按本義)
+          \{       {        {        {          '{'  (按本義)
+          a        a        a        a          'a'  (按本義)
 
-<code class="notvi">{仅 Vim 支持 \m，\M，\v 和 \V}</code>
+<code class="notvi">{僅 Vim 支持 \m，\M，\v 和 \V}</code>
 
-建议始终将 <a href="options.html#'magic'">'magic'</a> 选项保持在缺省值 －  <a href="options.html#'magic'">'magic'</a>。这可以避免移植性的麻烦。要使
-模式不受该选项值的影响，在模式前面加上 "\m" 或 "\M"。
+建議始終將 <a href="options.html#'magic'">'magic'</a> 選項保持在缺省值 －  <a href="options.html#'magic'">'magic'</a>。這可以避免移植性的麻煩。要使
+模式不受該選項值的影響，在模式前面加上 "\m" 或 "\M"。
 
 </pre><hr class="doubleline" /><pre>
-<h4>4. 模式项总览                                           <b class="vimtag"> <a name="pattern-overview">pattern-overview</a> </b></h4>                                                <b class="vimtag"> <a name="E865">E865</a> </b> <b class="vimtag"> <a name="E866">E866</a> </b> <b class="vimtag"> <a name="E867">E867</a> </b> <b class="vimtag"> <a name="E869">E869</a> </b>
+<h4>4. 模式項總覽                                           <b class="vimtag"> <a name="pattern-overview">pattern-overview</a> </b></h4>                                                <b class="vimtag"> <a name="E865">E865</a> </b> <b class="vimtag"> <a name="E866">E866</a> </b> <b class="vimtag"> <a name="E867">E867</a> </b> <b class="vimtag"> <a name="E869">E869</a> </b>
 
-倍数总览。                                              <b class="vimtag"> <a name="%2Fmulti">/multi</a> </b> <b class="vimtag"> <a name="E61">E61</a> </b> <b class="vimtag"> <a name="E62">E62</a> </b>
-更多解释和示例见下，点击链接即可。                              <b class="vimtag"> <a name="E64">E64</a> </b> <b class="vimtag"> <a name="E871">E871</a> </b>
+倍數總覽。                                              <b class="vimtag"> <a name="%2Fmulti">/multi</a> </b> <b class="vimtag"> <a name="E61">E61</a> </b> <b class="vimtag"> <a name="E62">E62</a> </b>
+更多解釋和示例見下，點擊鏈接即可。                              <b class="vimtag"> <a name="E64">E64</a> </b> <b class="vimtag"> <a name="E871">E871</a> </b>
 
-<code class="section">          倍数 </code>
+<code class="section">          倍數 </code>
 <code class="section">     <a href="options.html#'magic'">'magic'</a> <a href="options.html#'nomagic'">'nomagic'</a>  匹配前面的匹配原 </code>
- <a href="pattern.html#%2Fstar">/star</a>  *       \*      0 或更多        尽可能多
- <a href="pattern.html#%2F\+">/\+</a>    \+      \+      1 或更多        尽可能多 (*)
- <a href="pattern.html#%2F\%20">/\=</a>    \=      \=      0 或 1          尽可能多 (*)
- <a href="pattern.html#%2F\?">/\?</a>    \?      \?      0 或 1          尽可能多 (*)
+ <a href="pattern.html#%2Fstar">/star</a>  *       \*      0 或更多        盡可能多
+ <a href="pattern.html#%2F\+">/\+</a>    \+      \+      1 或更多        盡可能多 (*)
+ <a href="pattern.html#%2F\%20">/\=</a>    \=      \=      0 或 1          盡可能多 (*)
+ <a href="pattern.html#%2F\?">/\?</a>    \?      \?      0 或 1          盡可能多 (*)
 
- <a href="pattern.html#%2F\{">/\{</a>    \<code class="special">{n,m}</code>  \<code class="special">{n,m}</code>  n 到 m          尽可能多 (*)
-        \<code class="special">{n}</code>    \<code class="special">{n}</code>    n               准确 (*)
-        \<code class="special">{n,}</code>   \<code class="special">{n,}</code>   最少 n          尽可能多 (*)
-        \<code class="special">{,m}</code>   \<code class="special">{,m}</code>   0 到 m          尽可能多 (*)
-        \<code class="special">{}</code>     \<code class="special">{}</code>     0 或更多        尽可能多 (和 * 相同) (*)
+ <a href="pattern.html#%2F\{">/\{</a>    \<code class="special">{n,m}</code>  \<code class="special">{n,m}</code>  n 到 m          盡可能多 (*)
+        \<code class="special">{n}</code>    \<code class="special">{n}</code>    n               準確 (*)
+        \<code class="special">{n,}</code>   \<code class="special">{n,}</code>   最少 n          盡可能多 (*)
+        \<code class="special">{,m}</code>   \<code class="special">{,m}</code>   0 到 m          盡可能多 (*)
+        \<code class="special">{}</code>     \<code class="special">{}</code>     0 或更多        盡可能多 (和 * 相同) (*)
 
- <a href="pattern.html#%2F\{-">/\{-</a>   \<code class="special">{-n,m}</code> \<code class="special">{-n,m}</code> n 到 m          尽可能少 (*)
-        \<code class="special">{-n}</code>   \<code class="special">{-n}</code>   n               准确 (*)
-        \<code class="special">{-n,}</code>  \<code class="special">{-n,}</code>  最少 n          尽可能少 (*)
-        \<code class="special">{-,m}</code>  \<code class="special">{-,m}</code>  0 到 m          尽可能少 (*)
-        \<code class="special">{-}</code>    \<code class="special">{-}</code>    0 或更多        尽可能少 (*)
+ <a href="pattern.html#%2F\{-">/\{-</a>   \<code class="special">{-n,m}</code> \<code class="special">{-n,m}</code> n 到 m          盡可能少 (*)
+        \<code class="special">{-n}</code>   \<code class="special">{-n}</code>   n               準確 (*)
+        \<code class="special">{-n,}</code>  \<code class="special">{-n,}</code>  最少 n          盡可能少 (*)
+        \<code class="special">{-,m}</code>  \<code class="special">{-,m}</code>  0 到 m          盡可能少 (*)
+        \<code class="special">{-}</code>    \<code class="special">{-}</code>    0 或更多        盡可能少 (*)
 
                                                         <b class="vimtag"> <a name="E59">E59</a> </b>
  <a href="pattern.html#%2F\@%3E">/\@&gt;</a>   \@&gt;     \@&gt;     1，要求完整的模式匹配 (不能回溯) (*)
- <a href="pattern.html#%2F\@%20">/\@=</a>   \@=     \@=     无，但要求匹配  <a href="pattern.html#%2Fzero-width">/zero-width</a>  (*)
- <a href="pattern.html#%2F\@!">/\@!</a>   \@!     \@!     无，但要求 <code class="emphasis">不</code> 匹配  <a href="pattern.html#%2Fzero-width">/zero-width</a>  (*)
- <a href="pattern.html#%2F\@%3C%20">/\@&lt;=</a>  \@&lt;=    \@&lt;=    无，但要求反向匹配  <a href="pattern.html#%2Fzero-width">/zero-width</a>  (*)
- <a href="pattern.html#%2F\@%3C!">/\@&lt;!</a>  \@&lt;!    \@&lt;!    无，但要其反向 <code class="emphasis">不</code> 匹配  <a href="pattern.html#%2Fzero-width">/zero-width</a>  (*)
+ <a href="pattern.html#%2F\@%20">/\@=</a>   \@=     \@=     無，但要求匹配  <a href="pattern.html#%2Fzero-width">/zero-width</a>  (*)
+ <a href="pattern.html#%2F\@!">/\@!</a>   \@!     \@!     無，但要求 <code class="emphasis">不</code> 匹配  <a href="pattern.html#%2Fzero-width">/zero-width</a>  (*)
+ <a href="pattern.html#%2F\@%3C%20">/\@&lt;=</a>  \@&lt;=    \@&lt;=    無，但要求反向匹配  <a href="pattern.html#%2Fzero-width">/zero-width</a>  (*)
+ <a href="pattern.html#%2F\@%3C!">/\@&lt;!</a>  \@&lt;!    \@&lt;!    無，但要其反向 <code class="emphasis">不</code> 匹配  <a href="pattern.html#%2Fzero-width">/zero-width</a>  (*)
 
-(*) <code class="notvi">{Vi 无此功能}</code>
+(*) <code class="notvi">{Vi 無此功能}</code>
 
 
-普通匹配原总览。                                        <b class="vimtag"> <a name="%2Fordinary-atom">/ordinary-atom</a> </b>
-更多解释和示例见下，点击链接即可。
+普通匹配原總覽。                                        <b class="vimtag"> <a name="%2Fordinary-atom">/ordinary-atom</a> </b>
+更多解釋和示例見下，點擊鏈接即可。
 
 <code class="section">          普通匹配原 </code>
 <code class="section">      magic   nomagic   匹配 </code>
  <a href="pattern.html#%2F^">/^</a>     ^       ^       行首 (在模式起始)  <a href="pattern.html#%2Fzero-width">/zero-width</a> 
- <a href="pattern.html#%2F\^">/\^</a>    \^      \^      按本义出现的 '^'
- <a href="pattern.html#%2F\_^">/\_^</a>   \_^     \_^     行首 (用于任何地方)  <a href="pattern.html#%2Fzero-width">/zero-width</a> 
- <a href="pattern.html#%2F$">/$</a>     $       $       行尾 (在模式结尾)  <a href="pattern.html#%2Fzero-width">/zero-width</a> 
- <a href="pattern.html#%2F\$">/\$</a>    \$      \$      按本义出现的 '$'
- <a href="pattern.html#%2F\_$">/\_$</a>   \_$     \_$     行尾 (用于任何地方)  <a href="pattern.html#%2Fzero-width">/zero-width</a> 
- <a href="pattern.html#%2F.">/.</a>     .       \.      任何单个字符 (不包括换行)
- <a href="pattern.html#%2F\_.">/\_.</a>   \_.     \_.     任何单个字符，包括换行
- <a href="pattern.html#%2F\%3C">/\&lt;</a>    \&lt;      \&lt;      单词的起始  <a href="pattern.html#%2Fzero-width">/zero-width</a> 
- <a href="pattern.html#%2F\%3E">/\&gt;</a>    \&gt;      \&gt;      单词的结尾  <a href="pattern.html#%2Fzero-width">/zero-width</a> 
- <a href="pattern.html#%2F\zs">/\zs</a>   \zs     \zs     任何字符，设定匹配部分起始
- <a href="pattern.html#%2F\ze">/\ze</a>   \ze     \ze     任何字符，设定匹配部分结束
+ <a href="pattern.html#%2F\^">/\^</a>    \^      \^      按本義出現的 '^'
+ <a href="pattern.html#%2F\_^">/\_^</a>   \_^     \_^     行首 (用於任何地方)  <a href="pattern.html#%2Fzero-width">/zero-width</a> 
+ <a href="pattern.html#%2F$">/$</a>     $       $       行尾 (在模式結尾)  <a href="pattern.html#%2Fzero-width">/zero-width</a> 
+ <a href="pattern.html#%2F\$">/\$</a>    \$      \$      按本義出現的 '$'
+ <a href="pattern.html#%2F\_$">/\_$</a>   \_$     \_$     行尾 (用於任何地方)  <a href="pattern.html#%2Fzero-width">/zero-width</a> 
+ <a href="pattern.html#%2F.">/.</a>     .       \.      任何單個字符 (不包括換行)
+ <a href="pattern.html#%2F\_.">/\_.</a>   \_.     \_.     任何單個字符，包括換行
+ <a href="pattern.html#%2F\%3C">/\&lt;</a>    \&lt;      \&lt;      單詞的起始  <a href="pattern.html#%2Fzero-width">/zero-width</a> 
+ <a href="pattern.html#%2F\%3E">/\&gt;</a>    \&gt;      \&gt;      單詞的結尾  <a href="pattern.html#%2Fzero-width">/zero-width</a> 
+ <a href="pattern.html#%2F\zs">/\zs</a>   \zs     \zs     任何字符，設定匹配部分起始
+ <a href="pattern.html#%2F\ze">/\ze</a>   \ze     \ze     任何字符，設定匹配部分結束
  <a href="pattern.html#%2F\%^">/\%^</a>   \%^     \%^     文件首  <a href="pattern.html#%2Fzero-width">/zero-width</a>             <b class="vimtag"> <a name="E71">E71</a> </b>
  <a href="pattern.html#%2F\%$">/\%$</a>   \%$     \%$     文件尾  <a href="pattern.html#%2Fzero-width">/zero-width</a> 
- <a href="pattern.html#%2F\%V">/\%V</a>   \%V     \%V     可视区域内  <a href="pattern.html#%2Fzero-width">/zero-width</a> 
- <a href="pattern.html#%2F\%%23">/\%#</a>   \%#     \%#     光标位置  <a href="pattern.html#%2Fzero-width">/zero-width</a> 
- <a href="pattern.html#%2F\%'m">/\%'m</a>  \%'m    \%'m    位置标记 m 的位置  <a href="pattern.html#%2Fzero-width">/zero-width</a> 
+ <a href="pattern.html#%2F\%V">/\%V</a>   \%V     \%V     可視區域內  <a href="pattern.html#%2Fzero-width">/zero-width</a> 
+ <a href="pattern.html#%2F\%%23">/\%#</a>   \%#     \%#     光標位置  <a href="pattern.html#%2Fzero-width">/zero-width</a> 
+ <a href="pattern.html#%2F\%'m">/\%'m</a>  \%'m    \%'m    位置標記 m 的位置  <a href="pattern.html#%2Fzero-width">/zero-width</a> 
  <a href="pattern.html#%2F\%l">/\%l</a>   \%23l   \%23l   在第 23 行  <a href="pattern.html#%2Fzero-width">/zero-width</a> 
  <a href="pattern.html#%2F\%c">/\%c</a>   \%23c   \%23c   在第 23 列  <a href="pattern.html#%2Fzero-width">/zero-width</a> 
- <a href="pattern.html#%2F\%v">/\%v</a>   \%23v   \%23v   在虚拟第 23 列  <a href="pattern.html#%2Fzero-width">/zero-width</a> 
+ <a href="pattern.html#%2F\%v">/\%v</a>   \%23v   \%23v   在虛擬第 23 列  <a href="pattern.html#%2Fzero-width">/zero-width</a> 
 
-字符类 <code class="notvi">{Vi 无此功能}</code>:                           <b class="vimtag"> <a name="%2Fcharacter-classes">/character-classes</a> </b>
+字符類 <code class="notvi">{Vi 無此功能}</code>:                           <b class="vimtag"> <a name="%2Fcharacter-classes">/character-classes</a> </b>
 <code class="section">      magic   nomagic   匹配 </code>
- <a href="pattern.html#%2F\i">/\i</a>    \i      \i      标识符字符 (见 <a href="options.html#'isident'">'isident'</a> 选项)
- <a href="pattern.html#%2F\I">/\I</a>    \I      \I      同 "\i"，但不包括数字字符
- <a href="pattern.html#%2F\k">/\k</a>    \k      \k      关键字字符 (见 <a href="options.html#'iskeyword'">'iskeyword'</a> 选项)
- <a href="pattern.html#%2F\K">/\K</a>    \K      \K      同 "\k"，但不包括数字字符
- <a href="pattern.html#%2F\f">/\f</a>    \f      \f      文件名字符 (见 <a href="options.html#'isfname'">'isfname'</a> 选项)
- <a href="pattern.html#%2F\F">/\F</a>    \F      \F      同 "\f"，但不包括数字字符
- <a href="pattern.html#%2F\p">/\p</a>    \p      \p      可显示字符 (见 <a href="options.html#'isprint'">'isprint'</a> 选项)
- <a href="pattern.html#%2F\P">/\P</a>    \P      \P      同 "\p"，但不包括数字字符
+ <a href="pattern.html#%2F\i">/\i</a>    \i      \i      標識符字符 (見 <a href="options.html#'isident'">'isident'</a> 選項)
+ <a href="pattern.html#%2F\I">/\I</a>    \I      \I      同 "\i"，但不包括數字字符
+ <a href="pattern.html#%2F\k">/\k</a>    \k      \k      關鍵字字符 (見 <a href="options.html#'iskeyword'">'iskeyword'</a> 選項)
+ <a href="pattern.html#%2F\K">/\K</a>    \K      \K      同 "\k"，但不包括數字字符
+ <a href="pattern.html#%2F\f">/\f</a>    \f      \f      文件名字符 (見 <a href="options.html#'isfname'">'isfname'</a> 選項)
+ <a href="pattern.html#%2F\F">/\F</a>    \F      \F      同 "\f"，但不包括數字字符
+ <a href="pattern.html#%2F\p">/\p</a>    \p      \p      可顯示字符 (見 <a href="options.html#'isprint'">'isprint'</a> 選項)
+ <a href="pattern.html#%2F\P">/\P</a>    \P      \P      同 "\p"，但不包括數字字符
  <a href="pattern.html#%2F\s">/\s</a>    \s      \s      空白字符； <code class="special">&lt;Space&gt;</code> 和 <code class="special">&lt;Tab&gt;</code>
  <a href="pattern.html#%2F\S">/\S</a>    \S      \S      非空白字符: \s 之反
- <a href="pattern.html#%2F\d">/\d</a>    \d      \d      数位:                   [0-9]
- <a href="pattern.html#%2F\D">/\D</a>    \D      \D      非数位:                 [^0-9]
- <a href="pattern.html#%2F\x">/\x</a>    \x      \x      十六进制数位:           [0-9A-Fa-f]
- <a href="pattern.html#%2F\X">/\X</a>    \X      \X      非十六进制数位:         [^0-9A-Fa-f]
- <a href="pattern.html#%2F\o">/\o</a>    \o      \o      八进制数位:             [0-7]
- <a href="pattern.html#%2F\O">/\O</a>    \O      \O      非八进制数位:           [^0-7]
- <a href="pattern.html#%2F\w">/\w</a>    \w      \w      单词字符:               [0-9A-Za-z_]
- <a href="pattern.html#%2F\W">/\W</a>    \W      \W      非单词字符:             [^0-9A-Za-z_]
- <a href="pattern.html#%2F\h">/\h</a>    \h      \h      单词首字符:             [A-Za-z_]
- <a href="pattern.html#%2F\H">/\H</a>    \H      \H      非单词首字符:           [^A-Za-z_]
+ <a href="pattern.html#%2F\d">/\d</a>    \d      \d      數位:                   [0-9]
+ <a href="pattern.html#%2F\D">/\D</a>    \D      \D      非數位:                 [^0-9]
+ <a href="pattern.html#%2F\x">/\x</a>    \x      \x      十六進制數位:           [0-9A-Fa-f]
+ <a href="pattern.html#%2F\X">/\X</a>    \X      \X      非十六進制數位:         [^0-9A-Fa-f]
+ <a href="pattern.html#%2F\o">/\o</a>    \o      \o      八進制數位:             [0-7]
+ <a href="pattern.html#%2F\O">/\O</a>    \O      \O      非八進制數位:           [^0-7]
+ <a href="pattern.html#%2F\w">/\w</a>    \w      \w      單詞字符:               [0-9A-Za-z_]
+ <a href="pattern.html#%2F\W">/\W</a>    \W      \W      非單詞字符:             [^0-9A-Za-z_]
+ <a href="pattern.html#%2F\h">/\h</a>    \h      \h      單詞首字符:             [A-Za-z_]
+ <a href="pattern.html#%2F\H">/\H</a>    \H      \H      非單詞首字符:           [^A-Za-z_]
  <a href="pattern.html#%2F\a">/\a</a>    \a      \a      英文字母字符:           [A-Za-z]
  <a href="pattern.html#%2F\A">/\A</a>    \A      \A      非英文字母字符:         [^A-Za-z]
- <a href="pattern.html#%2F\l">/\l</a>    \l      \l      小写字符:               [a-z]
- <a href="pattern.html#%2F\L">/\L</a>    \L      \L      非小写字符:             [^a-z]
- <a href="pattern.html#%2F\u">/\u</a>    \u      \u      大写字符:               [A-Z]
- <a href="pattern.html#%2F\U">/\U</a>    \U      \U      非大写字符              [^A-Z]
- <a href="pattern.html#%2F\_">/\_</a>    \_x     \_x     其中 x 可以是以上任意一个字符: 对应字符类加上换行
- (字符类结束)
+ <a href="pattern.html#%2F\l">/\l</a>    \l      \l      小寫字符:               [a-z]
+ <a href="pattern.html#%2F\L">/\L</a>    \L      \L      非小寫字符:             [^a-z]
+ <a href="pattern.html#%2F\u">/\u</a>    \u      \u      大寫字符:               [A-Z]
+ <a href="pattern.html#%2F\U">/\U</a>    \U      \U      非大寫字符              [^A-Z]
+ <a href="pattern.html#%2F\_">/\_</a>    \_x     \_x     其中 x 可以是以上任意一個字符: 對應字符類加上換行
+ (字符類結束)
 
 <code class="section">      magic   nomagic   匹配 </code>
  <a href="pattern.html#%2F\e">/\e</a>    \e      \e      <code class="special">&lt;Esc&gt;</code>
@@ -482,109 +482,109 @@ nomagic"
  <a href="pattern.html#%2F\r">/\r</a>    \r      \r      <code class="special">&lt;CR&gt;</code>
  <a href="pattern.html#%2F\b">/\b</a>    \b      \b      <code class="special">&lt;BS&gt;</code>
  <a href="pattern.html#%2F\n">/\n</a>    \n      \n      行尾符
- <a href="pattern.html#%2F%7E">/~</a>     ~       \~      上次给出的替代字符串
- <a href="pattern.html#%2F\1">/\1</a>    \1      \1      第一个 \(\) 匹配的字符 <code class="notvi">{Vi 无此功能}</code>
- <a href="pattern.html#%2F\2">/\2</a>    \2      \2      如 "\1"，但用第二个 \(\)
+ <a href="pattern.html#%2F%7E">/~</a>     ~       \~      上次給出的替代字符串
+ <a href="pattern.html#%2F\1">/\1</a>    \1      \1      第一個 \(\) 匹配的字符 <code class="notvi">{Vi 無此功能}</code>
+ <a href="pattern.html#%2F\2">/\2</a>    \2      \2      如 "\1"，但用第二個 \(\)
            ...
- <a href="pattern.html#%2F\9">/\9</a>    \9      \9      如 "\1"，但用第九个 \(\)
+ <a href="pattern.html#%2F\9">/\9</a>    \9      \9      如 "\1"，但用第九個 \(\)
                                                                 <b class="vimtag"> <a name="E68">E68</a> </b>
- <a href="syntax.html#%2F\z1">/\z1</a>   \z1     \z1     仅用于语法高亮，见  <a href="syntax.html#:syn-ext-match">:syn-ext-match</a> 
+ <a href="syntax.html#%2F\z1">/\z1</a>   \z1     \z1     僅用於語法高亮，見  <a href="syntax.html#:syn-ext-match">:syn-ext-match</a> 
            ...
- <a href="syntax.html#%2F\z1">/\z1</a>   \z9     \z9     仅用于语法高亮，见  <a href="syntax.html#:syn-ext-match">:syn-ext-match</a> 
+ <a href="syntax.html#%2F\z1">/\z1</a>   \z9     \z9     僅用於語法高亮，見  <a href="syntax.html#:syn-ext-match">:syn-ext-match</a> 
 
-        x       x       一个没有特殊含义的字符匹配其自身
+        x       x       一個沒有特殊含義的字符匹配其自身
 
- <a href="pattern.html#%2F[]">/[]</a>    []      \[]     [] 内指定的任何字符之一
- <a href="pattern.html#%2F\%[]">/\%[]</a>  \%[]    \%[]    一个可选匹配原的序列
+ <a href="pattern.html#%2F[]">/[]</a>    []      \[]     [] 內指定的任何字符之一
+ <a href="pattern.html#%2F\%[]">/\%[]</a>  \%[]    \%[]    一個可選匹配原的序列
 
- <a href="pattern.html#%2F\c">/\c</a>    \c      \c      忽略大小写，不使用 <a href="options.html#'ignorecase'">'ignorecase'</a> 选项
- <a href="pattern.html#%2F\C">/\C</a>    \C      \C      匹配大小写，不使用 <a href="options.html#'ignorecase'">'ignorecase'</a> 选项
- <a href="pattern.html#%2F\Z">/\Z</a>    \Z      \Z      忽略 Unicode 中的 "组合用字符" 的区别，对于搜索带元音
-                        的希伯来和阿拉伯文本有用。
+ <a href="pattern.html#%2F\c">/\c</a>    \c      \c      忽略大小寫，不使用 <a href="options.html#'ignorecase'">'ignorecase'</a> 選項
+ <a href="pattern.html#%2F\C">/\C</a>    \C      \C      匹配大小寫，不使用 <a href="options.html#'ignorecase'">'ignorecase'</a> 選項
+ <a href="pattern.html#%2F\Z">/\Z</a>    \Z      \Z      忽略 Unicode 中的 "組合用字符" 的區別，對於搜索帶元音
+                        的希伯來和阿拉伯文本有用。
 
 <code class="section">      magic   nomagic   匹配 </code>
- <a href="pattern.html#%2F\m">/\m</a>    \m      \m      对之后模式中字符打开 <a href="options.html#'magic'">'magic'</a> 选项
- <a href="pattern.html#%2F\M">/\M</a>    \M      \M      对之后模式中字符关闭 <a href="options.html#'magic'">'magic'</a> 选项
- <a href="pattern.html#%2F\v">/\v</a>    \v      \v      对之后模式中字符设定 <a href="options.html#'magic'">'magic'</a> 选项为 "very magic"
- <a href="pattern.html#%2F\V">/\V</a>    \V      \V      对之后模式中字符设定 <a href="options.html#'magic'">'magic'</a> 选项为 "very nomagic"
- <a href="pattern.html#%2F\%%23%20">/\%#=</a>    \%#=1   \%#=1   选择正规表达式引擎  <a href="pattern.html#%2Fzero-width">/zero-width</a> 
+ <a href="pattern.html#%2F\m">/\m</a>    \m      \m      對之後模式中字符打開 <a href="options.html#'magic'">'magic'</a> 選項
+ <a href="pattern.html#%2F\M">/\M</a>    \M      \M      對之後模式中字符關閉 <a href="options.html#'magic'">'magic'</a> 選項
+ <a href="pattern.html#%2F\v">/\v</a>    \v      \v      對之後模式中字符設定 <a href="options.html#'magic'">'magic'</a> 選項為 "very magic"
+ <a href="pattern.html#%2F\V">/\V</a>    \V      \V      對之後模式中字符設定 <a href="options.html#'magic'">'magic'</a> 選項為 "very nomagic"
+ <a href="pattern.html#%2F\%%23%20">/\%#=</a>    \%#=1   \%#=1   選擇正規表達式引擎  <a href="pattern.html#%2Fzero-width">/zero-width</a> 
 
- <a href="pattern.html#%2F\%d">/\%d</a>   \%d     \%d     匹配用十进制指定的字符 (如 \%d123)
- <a href="pattern.html#%2F\%x">/\%x</a>   \%x     \%x     匹配用十六进制指定的字符 (如 \%x2a)
- <a href="pattern.html#%2F\%o">/\%o</a>   \%o     \%o     匹配用八进制指定的字符 (如 \%o040)
- <a href="pattern.html#%2F\%u">/\%u</a>   \%u     \%u     匹配指定的多字节字符 (如 \%u20ac)
- <a href="pattern.html#%2F\%U">/\%U</a>   \%U     \%U     匹配指定的巨大多字节字符 (如 \%U12345678)
+ <a href="pattern.html#%2F\%d">/\%d</a>   \%d     \%d     匹配用十進制指定的字符 (如 \%d123)
+ <a href="pattern.html#%2F\%x">/\%x</a>   \%x     \%x     匹配用十六進制指定的字符 (如 \%x2a)
+ <a href="pattern.html#%2F\%o">/\%o</a>   \%o     \%o     匹配用八進制指定的字符 (如 \%o040)
+ <a href="pattern.html#%2F\%u">/\%u</a>   \%u     \%u     匹配指定的多字節字符 (如 \%u20ac)
+ <a href="pattern.html#%2F\%U">/\%U</a>   \%U     \%U     匹配指定的巨大多字節字符 (如 \%U12345678)
  <a href="pattern.html#%2F\%C">/\%C</a>   \%C     \%C     匹配任何合成用字符
 
 <code class="section">示例                    匹配 </code>
 \&lt;\I\i*         或
 \&lt;\h\w*
 \&lt;[a-zA-Z_][a-zA-Z0-9_]*
-                        一个标识符 (例如，在一个 C 程序里)。
+                        一個標識符 (例如，在一個 C 程序裡)。
 
-\(\.$\|\. \)            一个英文句号后跟 <code class="special">&lt;EOL&gt;</code> 或一个空格。
+\(\.$\|\. \)            一個英文句號後跟 <code class="special">&lt;EOL&gt;</code> 或一個空格。
 
-[.!?][])"']*\($\|[ ]\)  一个匹配英文句子结尾的模式。几乎和 ")" 的定义相同。
+[.!?][])"']*\($\|[ ]\)  一個匹配英文句子結尾的模式。幾乎和 ")" 的定義相同。
 
-cat\Z                   匹配 "cat" 和 "càt" ("a" 后跟 0x0300)
-                        不匹配 "càt" (字符 0x00e0)，即使它们看起来可能一样。
+cat\Z                   匹配 "cat" 和 "càt" ("a" 後跟 0x0300)
+                        不匹配 "cat" (字符 0x00e0)，即使它們看起來可能一樣。
 
 
 </pre><hr class="doubleline" /><pre>
-<h4>5. 倍数项                                       <b class="vimtag"> <a name="pattern-multi-items">pattern-multi-items</a> </b></h4>
-一个匹配原后面可以跟一个表示该匹配原匹配次数和方式的修饰。这个修饰称为倍数。
-在  <a href="pattern.html#%2Fmulti">/multi</a>  可以看到一个综述。
+<h4>5. 倍數項                                       <b class="vimtag"> <a name="pattern-multi-items">pattern-multi-items</a> </b></h4>
+一個匹配原後面可以跟一個表示該匹配原匹配次數和方式的修飾。這個修飾稱為倍數。
+在  <a href="pattern.html#%2Fmulti">/multi</a>  可以看到一個綜述。
 
                                                         <b class="vimtag"> <a name="%2Fstar">/star</a> </b> <b class="vimtag"> <a name="%2F\star">/\star</a> </b>
-*       (在没有设定 <a href="options.html#'magic'">'magic'</a> 时使用 \*)
-        匹配 0 或更多个前面的匹配原，尽可能多地匹配。
+*       (在沒有設定 <a href="options.html#'magic'">'magic'</a> 時使用 \*)
+        匹配 0 或更多個前面的匹配原，盡可能多地匹配。
 <code class="section">        示例     <a href="options.html#'nomagic'">'nomagic'</a>      匹配 </code>
         a*         a\*          ""、"a"、"aa"、"aaa" 等。
         .*         \.\*         任意，包括空串，不包括行尾符
-        \_.*       \_.\*        匹配至缓冲区结束
-        \_.*END    \_.\*END     匹配至缓冲区中最后一次出现 "END" 处，包括该
+        \_.*       \_.\*        匹配至緩衝區結束
+        \_.*END    \_.\*END     匹配至緩衝區中最後一次出現 "END" 處，包括該
                                 "END"
 
-        特例: 当 "*" 用在模式的开头或者紧跟在 "^" 之后时，它匹配星号字符。
+        特例: 當 "*" 用在模式的開頭或者緊跟在 "^" 之後時，它匹配星號字符。
 
-        要当心，重复匹配 "\_." 会包括大量的文本，因而可能会花很长时间。例如，
-        "\_.*END" 匹配从当前位置开始到文件中最后一次出现 "END" 的地方。因为
-        "*" 会尽可能多的匹配，它会先跳过到文件结束前的所有行，然后一次退一个字
+        要當心，重複匹配 "\_." 會包括大量的文本，因而可能會花很長時間。例如，
+        "\_.*END" 匹配從當前位置開始到文件中最後一次出現 "END" 的地方。因為
+        "*" 會盡可能多的匹配，它會先跳過到文件結束前的所有行，然後一次退一個字
         符以查找 "END"。
 
                                                         <b class="vimtag"> <a name="%2F\+">/\+</a> </b>
-\+      匹配一个或更多前面的匹配原。尽可能多。<code class="notvi">{Vi 无此功能}</code>
+\+      匹配一個或更多前面的匹配原。盡可能多。<code class="notvi">{Vi 無此功能}</code>
 <code class="section">        例              匹配 </code>
         ^.\+$           任意空行
-        \s\+            一个以上的空白字符
+        \s\+            一個以上的空白字符
 
                                                         <b class="vimtag"> <a name="%2F\%20">/\=</a> </b>
-\=      匹配 0 或 1 个前面的匹配原。尽可能多。<code class="notvi">{Vi 无此功能}</code>
+\=      匹配 0 或 1 個前面的匹配原。盡可能多。<code class="notvi">{Vi 無此功能}</code>
 <code class="section">        例              匹配 </code>
         foo\=           "fo" 和 "foo"
 
                                                         <b class="vimtag"> <a name="%2F\?">/\?</a> </b>
-\?      和 \= 一样。不能和反向查找的 "?" 命令中使用。<code class="notvi">{Vi 无此功能}</code>
+\?      和 \= 一樣。不能和反向查找的 "?" 命令中使用。<code class="notvi">{Vi 無此功能}</code>
 
                                         <b class="vimtag"> <a name="%2F\{">/\{</a> </b> <b class="vimtag"> <a name="E60">E60</a> </b> <b class="vimtag"> <a name="E554">E554</a> </b> <b class="vimtag"> <a name="E870">E870</a> </b>
-\<code class="special">{n,m}</code>  匹配 n 至 m 个前面的匹配原。尽可能多
-\<code class="special">{n}</code>    匹配 n 个前面的匹配原
-\<code class="special">{n,}</code>   匹配至少 n 个前面的匹配原。尽可能多
-\<code class="special">{,m}</code>   匹配 0 至 m 个前面的匹配原。尽可能多
-\<code class="special">{}</code>     匹配 0 个以上前面的匹配原。尽可能多 (和 * 等价)
+\<code class="special">{n,m}</code>  匹配 n 至 m 個前面的匹配原。盡可能多
+\<code class="special">{n}</code>    匹配 n 個前面的匹配原
+\<code class="special">{n,}</code>   匹配至少 n 個前面的匹配原。盡可能多
+\<code class="special">{,m}</code>   匹配 0 至 m 個前面的匹配原。盡可能多
+\<code class="special">{}</code>     匹配 0 個以上前面的匹配原。盡可能多 (和 * 等價)
                                                         <b class="vimtag"> <a name="%2F\{-">/\{-</a> </b>
-\<code class="special">{-n,m}</code> 匹配 n 至 m 个前面的匹配原。尽可能少
-\<code class="special">{-n}</code>   匹配 n 个前面的匹配原
-\<code class="special">{-n,}</code>  匹配至少 n 个前面的匹配原。尽可能少
-\<code class="special">{-,m}</code>  匹配 0 至 m 个前面的匹配原。尽可能少
-\<code class="special">{-}</code>    匹配 0 个以上前面的匹配原。尽可能少
-        <code class="notvi">{Vi 没有这些}</code>
+\<code class="special">{-n,m}</code> 匹配 n 至 m 個前面的匹配原。盡可能少
+\<code class="special">{-n}</code>   匹配 n 個前面的匹配原
+\<code class="special">{-n,}</code>  匹配至少 n 個前面的匹配原。盡可能少
+\<code class="special">{-,m}</code>  匹配 0 至 m 個前面的匹配原。盡可能少
+\<code class="special">{-}</code>    匹配 0 個以上前面的匹配原。盡可能少
+        <code class="notvi">{Vi 沒有這些}</code>
 
-        n 和 m 是正的十进制数或零
+        n 和 m 是正的十進制數或零
                                                                 <b class="vimtag"> <a name="non-greedy">non-greedy</a> </b>
-        如果一个 "-" 紧接在 "{" 之后，那么最短匹配优先算法将启用 (见下面的例
-        子)。特别的，"\<code class="special">{-}</code>" 和 "*" 一样，但使用最短匹配优先算法。 <code class="emphasis">不过</code> ，更早
-        开始的匹配比更短的匹配优先: "a\<code class="special">{-}</code>b" 匹配 "xaaab" 中的 "aaab"。
+        如果一個 "-" 緊接在 "{" 之後，那麼最短匹配優先算法將啟用 (見下面的例
+        子)。特別的，"\<code class="special">{-}</code>" 和 "*" 一樣，但使用最短匹配優先算法。 <code class="emphasis">不過</code> ，更早
+        開始的匹配比更短的匹配優先: "a\<code class="special">{-}</code>b" 匹配 "xaaab" 中的 "aaab"。
 
 <code class="section">        示例                    匹配 </code>
         ab\<code class="special">{2,3}</code>c               "abbc" 或 "abbbc"
@@ -596,648 +596,648 @@ cat\Z                   匹配 "cat" 和 "càt" ("a" 后跟 0x0300)
         a[bc]\<code class="special">{-}</code>[cd]           "abcd" 中的 "abc"
         a[bc]*[cd]              "abcd" 中的 "abcd"
 
-        } 之前可以加 (也可以不加) 一个反斜杠: \<code class="special">{n,m\}</code>。
+        } 之前可以加 (也可以不加) 一個反斜槓: \<code class="special">{n,m\}</code>。
 
                                                         <b class="vimtag"> <a name="%2F\@%20">/\@=</a> </b>
-\@=     零宽度匹配前面的匹配原。<code class="notvi">{Vi 无此功能}</code>
-        类似于 Perl 中的 "(?=pattern)"。
+\@=     零寬度匹配前面的匹配原。<code class="notvi">{Vi 無此功能}</code>
+        類似於 Perl 中的 "(?=pattern)"。
 <code class="section">        示例                    匹配 </code>
         foo\(bar\)\@=           "foobar" 中的 "foo"
         foo\(bar\)\@=foo        空
                                                         <b class="vimtag"> <a name="%2Fzero-width">/zero-width</a> </b>
-        "\@=" (或 "^"，"$"，"\&lt;"，"\&gt;") 的匹配不包括任何字符。这些字符仅仅是用
-        来检查匹配是否存在。这很容易搞错，因为后续的项会在同样位置作匹配。上面
-        的最后一个例子不会匹配 "foobarfoo"，因为 Vim 会尝试在 "bar" 匹配的同样
+        "\@=" (或 "^"，"$"，"\&lt;"，"\&gt;") 的匹配不包括任何字符。這些字符僅僅是用
+        來檢查匹配是否存在。這很容易搞錯，因為後續的項會在同樣位置作匹配。上面
+        的最後一個例子不會匹配 "foobarfoo"，因為 Vim 會嘗試在 "bar" 匹配的同樣
         地方匹配 "foo"。
 
-        <code class="note">注意</code> 使用 "\&amp;" 同使用 "\@=" 是一样的: "foo\&amp;.." 等于 "\(foo\)\@=.."。
-        但用 "\&amp;" 容易些，你可以省了那些括号。
+        <code class="note">注意</code> 使用 "\&amp;" 同使用 "\@=" 是一樣的: "foo\&amp;.." 等於 "\(foo\)\@=.."。
+        但用 "\&amp;" 容易些，你可以省了那些括號。
 
 
                                                         <b class="vimtag"> <a name="%2F\@!">/\@!</a> </b>
-\@!     零宽度否匹配，亦即，要求前面的匹配原在当前位置 <code class="emphasis">不</code> 匹配。
-         <a href="pattern.html#%2Fzero-width">/zero-width</a>  <code class="notvi">{Vi 无此功能}</code>
-        类似于 Perl 中的 "(?!pattern)"。
+\@!     零寬度否匹配，亦即，要求前面的匹配原在當前位置 <code class="emphasis">不</code> 匹配。
+         <a href="pattern.html#%2Fzero-width">/zero-width</a>  <code class="notvi">{Vi 無此功能}</code>
+        類似於 Perl 中的 "(?!pattern)"。
 <code class="section">        示例                    匹配 </code>
-        foo\(bar\)\@!           任意后面不带 "bar" 的 "foo"
-        a.\<code class="special">{-}</code>p\@!              "a"，"ap"，"app"，"appp" 等。后面不带 "p"
-        if \(\(then\)\@!.\)*$   "if " 后面无跟随 "then"
+        foo\(bar\)\@!           任意後面不帶 "bar" 的 "foo"
+        a.\<code class="special">{-}</code>p\@!              "a"，"ap"，"app"，"appp" 等。後面不帶 "p"
+        if \(\(then\)\@!.\)*$   "if " 後面無跟隨 "then"
 
-        使用 "\@!" 要小心，因为很多地方一个模式可以不匹配。"a.*p\@!" 会匹配一
-        个 "a" 直到行尾，因为 ".*" 匹配所有行内的字符，而 "p" 不在行尾匹配。
-        "a.\<code class="special">{-}</code>p\@!" 则可以匹配 "a"，"ap"，"app" 等中的一项，只要它们不再紧跟
-        另外一个 "p"，这是因为 "." 可以匹配 "p" 而 "p\@!" 不匹配这个 "p" 的后
+        使用 "\@!" 要小心，因為很多地方一個模式可以不匹配。"a.*p\@!" 會匹配一
+        個 "a" 直到行尾，因為 ".*" 匹配所有行內的字符，而 "p" 不在行尾匹配。
+        "a.\<code class="special">{-}</code>p\@!" 則可以匹配 "a"，"ap"，"app" 等中的一項，只要它們不再緊跟
+        另外一個 "p"，這是因為 "." 可以匹配 "p" 而 "p\@!" 不匹配這個 "p" 的後
         面。
 
-        你不能用 "\@!" 去寻找匹配所在位置之前的否匹配。"\(foo\)\@!bar" 会匹配
-        "foobar" 中的 "bar"，因为在 "bar" 匹配的位置上，"foo" 并不匹配。如果
-        不想匹配 "foobar"，你可以尝试 "\(foo\)\@!...bar"，但它不能匹配在行首出
-        现的 "bar"。最好的方法是用 "\(foo\)\@&lt;!bar"。
+        你不能用 "\@!" 去尋找匹配所在位置之前的否匹配。"\(foo\)\@!bar" 會匹配
+        "foobar" 中的 "bar"，因為在 "bar" 匹配的位置上，"foo" 並不匹配。如果
+        不想匹配 "foobar"，你可以嘗試 "\(foo\)\@!...bar"，但它不能匹配在行首出
+        現的 "bar"。最好的方法是用 "\(foo\)\@&lt;!bar"。
 
-        有用的例子: 要找到包含 "foo" 但没有 "bar" 的行: 
+        有用的例子: 要找到包含 "foo" 但沒有 "bar" 的行: 
 <code class="example">                /^\%(.*bar\)\@!.*\zsfoo</code>
-        此模式先检查某行中没有一个位置可以匹配 "bar"。如果 ".*bar" 匹配，\@!
-        会拒绝本模式。否则，继续寻找 "foo"。"\zs" 使得匹配从 "foo" 处开始。
+        此模式先檢查某行中沒有一個位置可以匹配 "bar"。如果 ".*bar" 匹配，\@!
+        會拒絕本模式。否則，繼續尋找 "foo"。"\zs" 使得匹配從 "foo" 處開始。
 
                                                         <b class="vimtag"> <a name="%2F\@%3C%20">/\@&lt;=</a> </b>
-\@&lt;=    零宽度反向匹配。要求前面的匹配原紧贴在后面的模式之前匹配。
-         <a href="pattern.html#%2Fzero-width">/zero-width</a>  <code class="notvi">{Vi 无此功能}</code>
-        类似于 Perl 的 "(?&lt;=pattern)"，但是 Vim 允许使用非固定宽度的模式。
+\@&lt;=    零寬度反向匹配。要求前面的匹配原緊貼在後面的模式之前匹配。
+         <a href="pattern.html#%2Fzero-width">/zero-width</a>  <code class="notvi">{Vi 無此功能}</code>
+        類似於 Perl 的 "(?&lt;=pattern)"，但是 Vim 允許使用非固定寬度的模式。
 <code class="section">        示例                    匹配 </code>
-        \(an\_s\+\)\@&lt;=file     在 "an" 和若干个空白或者行尾符之后的 "file"。
-        为了提高性能，最好避免这个倍数项。可以用 "\zs" 替代  <a href="pattern.html#%2F\zs">/\zs</a> 。要匹配
+        \(an\_s\+\)\@&lt;=file     在 "an" 和若干個空白或者行尾符之後的 "file"。
+        為了提高性能，最好避免這個倍數項。可以用 "\zs" 替代  <a href="pattern.html#%2F\zs">/\zs</a> 。要匹配
         上述的示例:
                 an\_s\+\zsfile
-        反向匹配时至少要设一个限制范围，见下。
+        反向匹配時至少要設一個限制範圍，見下。
 
-        "\@&lt;=" 和 "\@&lt;!" 检查刚好在其后模式匹配点之前出现的匹配文本。理论上，
-        这些匹配可以从当前位置之前的任何地方开始，为了限制所需的时间，只有其后
-        匹配所在的行和它上一行 (如果有上一行的话) 会被检索。这对大多数的应用来
-        说已经足够，而且也不会减慢速度太多。
+        "\@&lt;=" 和 "\@&lt;!" 檢查剛好在其後模式匹配點之前出現的匹配文本。理論上，
+        這些匹配可以從當前位置之前的任何地方開始，為了限制所需的時間，只有其後
+        匹配所在的行和它上一行 (如果有上一行的話) 會被檢索。這對大多數的應用來
+        說已經足夠，而且也不會減慢速度太多。
 
-        在旧的正规表达式引擎里，在 "\@&lt;=" 和 "\@&lt;!" 之后的模式部分其实先被匹
-        配，所以不能用 "\1" 之类的结构来引用零宽度匹配原中的 \(\)。反过来倒是
+        在舊的正規表達式引擎裡，在 "\@&lt;=" 和 "\@&lt;!" 之後的模式部分其實先被匹
+        配，所以不能用 "\1" 之類的結構來引用零寬度匹配原中的 \(\)。反過來倒是
         可以的。
-<code class="section">        坏示例                          匹配 </code>
-        \%#=1\1\@&lt;=,\([a-z]\+\)         "abc,abc" 里的 ",abc"
+<code class="section">        壞示例                          匹配 </code>
+        \%#=1\1\@&lt;=,\([a-z]\+\)         "abc,abc" 裡的 ",abc"
 
-        不过，新的正规表达式引擎工作方式不同，最好不要依赖此行为，如果可以避
+        不過，新的正規表達式引擎工作方式不同，最好不要依賴此行為，如果可以避
         免，不要用 \@&lt;=:
 <code class="section">        示例                            匹配 </code>
-        \([a-z]\+\)\zs,\1               "abc,abc" 里的 ",abc"
+        \([a-z]\+\)\zs,\1               "abc,abc" 裡的 ",abc"
 
 \@123&lt;=
-        类似于 "\@&lt;="，但只往回看 123 个字节。这样可以避免去匹配很多已知不会成
-        功的但使模式很慢的尝试。例如，要检查紧接 "span" 之前要否有 "&lt;":
+        類似於 "\@&lt;="，但只往回看 123 個字節。這樣可以避免去匹配很多已知不會成
+        功的但使模式很慢的嘗試。例如，要檢查緊接 "span" 之前要否有 "&lt;":
                 /&lt;\@1&lt;=span
-        这里只须对 "span" 之前一个字节试图匹配 "&lt;"，本来这也是唯一可能的位置。
-        如果跨过行边界，此限制相对于该行的行尾。这样，匹配所在行的行首部分不计
-        入限制范围 (只是为了简单起见)。
-        零相当于无限制。
+        這裡只須對 "span" 之前一個字節試圖匹配 "&lt;"，本來這也是唯一可能的位置。
+        如果跨過行邊界，此限制相對於該行的行尾。這樣，匹配所在行的行首部分不計
+        入限制範圍 (只是為了簡單起見)。
+        零相當於無限制。
 
                                                         <b class="vimtag"> <a name="%2F\@%3C!">/\@&lt;!</a> </b>
-\@&lt;!    零宽度反向否匹配，要求前面的匹配原 <code class="emphasis">不</code> 紧贴在其后的模式之前匹配。换而言
-        之，如果在当前行或之前的一行中没有任何位置这个匹配原可以匹配而且它的匹
-        配文本刚好紧贴在其后模式的匹配点之前。 <a href="pattern.html#%2Fzero-width">/zero-width</a>  <code class="notvi">{Vi 无此功能}</code>
-        类似于 Perl 的 "(?&lt;!pattern)"，但是 Vim 允许使用非固定宽度的模式。
-        该倍数所引用的匹配原必须紧贴在其后匹配之前，所以这个匹配原可以用 ".*"
-        结尾。警告: 该倍数项可能会很慢 (因为在匹配之前的许多位置都要被检查)。
-        如有可能，请使用限制范围，见下。
+\@&lt;!    零寬度反向否匹配，要求前面的匹配原 <code class="emphasis">不</code> 緊貼在其後的模式之前匹配。換而言
+        之，如果在當前行或之前的一行中沒有任何位置這個匹配原可以匹配而且它的匹
+        配文本剛好緊貼在其後模式的匹配點之前。 <a href="pattern.html#%2Fzero-width">/zero-width</a>  <code class="notvi">{Vi 無此功能}</code>
+        類似於 Perl 的 "(?&lt;!pattern)"，但是 Vim 允許使用非固定寬度的模式。
+        該倍數所引用的匹配原必須緊貼在其後匹配之前，所以這個匹配原可以用 ".*"
+        結尾。警告: 該倍數項可能會很慢 (因為在匹配之前的許多位置都要被檢查)。
+        如有可能，請使用限制範圍，見下。
 <code class="section">        示例                    匹配 </code>
         \(foo\)\@&lt;!bar          任何不在 "foobar" 中的 "bar"
-        \(\/\/.*\)\@&lt;!in        不在 "//" 之后 (中间可以有间隔) 的 "in"
+        \(\/\/.*\)\@&lt;!in        不在 "//" 之後 (中間可以有間隔) 的 "in"
 
 \@123&lt;!
-        类似于 "\@&lt;!"，但只往回看 123 个字节。这样可以避免去匹配很多已知不会成
-        功的但使模式很慢的尝试。
+        類似於 "\@&lt;!"，但只往回看 123 個字節。這樣可以避免去匹配很多已知不會成
+        功的但使模式很慢的嘗試。
 
                                                         <b class="vimtag"> <a name="%2F\@%3E">/\@&gt;</a> </b>
-\@&gt;     匹配前面的匹配原时要求完整匹配 (不能回溯)。<code class="notvi">{Vi 无此功能}</code>
-        类似于 Perl 中的 "(?&gt;pattern)"。
+\@&gt;     匹配前面的匹配原時要求完整匹配 (不能回溯)。<code class="notvi">{Vi 無此功能}</code>
+        類似於 Perl 中的 "(?&gt;pattern)"。
 <code class="section">        示例            匹配 </code>
-        \(a*\)\@&gt;a      无 ("a*" 用尽了所有的 "a"，后面不可能再有)
+        \(a*\)\@&gt;a      無 ("a*" 用盡了所有的 "a"，後面不可能再有)
 
-        试图匹配前面的匹配原，就如同匹配一个完整的模式那样。如果以后无法匹配，
-        不会用较短的子模式或者任何其它的方法来重试该匹配原。<code class="note">注意</code>观察以下两者的
-        不同: "a*b" 和 "a*ab" 都匹配 "aaab"，但是后者中的 "a*" 仅仅匹配前两个
-        "a"。"\(a*\)\@&gt;ab" 不会匹配 "aaab"，因为 "a*" 匹配了 "aaa" (尽可能多
-        的 "a")，导致 "ab" 无法匹配。
+        試圖匹配前面的匹配原，就如同匹配一個完整的模式那樣。如果以後無法匹配，
+        不會用較短的子模式或者任何其它的方法來重試該匹配原。<code class="note">注意</code>觀察以下兩者的
+        不同: "a*b" 和 "a*ab" 都匹配 "aaab"，但是後者中的 "a*" 僅僅匹配前兩個
+        "a"。"\(a*\)\@&gt;ab" 不會匹配 "aaab"，因為 "a*" 匹配了 "aaa" (盡可能多
+        的 "a")，導致 "ab" 無法匹配。
 
 
 </pre><hr class="doubleline" /><pre>
 <h4>6.  普通匹配原                                  <b class="vimtag"> <a name="pattern-atoms">pattern-atoms</a> </b></h4>
-一个普通匹配原可能是:
+一個普通匹配原可能是:
 
                                                         <b class="vimtag"> <a name="%2F^">/^</a> </b>
-^       在模式起点或在 "\|"，"\("，"\%("，"\n" 之后: 匹配行首；在其它位置匹配
-        按本义出现的 '^' 字符。 <a href="pattern.html#%2Fzero-width">/zero-width</a> 
+^       在模式起點或在 "\|"，"\("，"\%("，"\n" 之後: 匹配行首；在其它位置匹配
+        按本義出現的 '^' 字符。 <a href="pattern.html#%2Fzero-width">/zero-width</a> 
 <code class="section">        示例            匹配 </code>
-        ^beep(          C 函数 "beep" 开始的地方 (很可能)。
+        ^beep(          C 函數 "beep" 開始的地方 (很可能)。
 
                                                         <b class="vimtag"> <a name="%2F\^">/\^</a> </b>
-\^      匹配按本义出现的 '^' 字符。可以用于任何位置。
+\^      匹配按本義出現的 '^' 字符。可以用於任何位置。
 
                                                         <b class="vimtag"> <a name="%2F\_^">/\_^</a> </b>
-\_^     匹配行首。 <a href="pattern.html#%2Fzero-width">/zero-width</a>  可以用于任何位置。
+\_^     匹配行首。 <a href="pattern.html#%2Fzero-width">/zero-width</a>  可以用於任何位置。
 <code class="section">        示例            匹配 </code>
-        \_s*\_^foo      空白字符及空行，后接行首的 "foo"。
+        \_s*\_^foo      空白字符及空行，後接行首的 "foo"。
 
                                                         <b class="vimtag"> <a name="%2F$">/$</a> </b>
-$       在模式终点或 "\|"、"\)" 或 "\n" (打开 <a href="options.html#'magic'">'magic'</a> 的话) 之前: 匹配行尾
-        <code class="special">&lt;EOL&gt;</code>；其它位置，匹配按本义出现的 '$' 字符。 <a href="pattern.html#%2Fzero-width">/zero-width</a> 
+$       在模式終點或 "\|"、"\)" 或 "\n" (打開 <a href="options.html#'magic'">'magic'</a> 的話) 之前: 匹配行尾
+        <code class="special">&lt;EOL&gt;</code>；其它位置，匹配按本義出現的 '$' 字符。 <a href="pattern.html#%2Fzero-width">/zero-width</a> 
 
                                                         <b class="vimtag"> <a name="%2F\$">/\$</a> </b>
-\$      匹配按本义出现的 '$' 字符。可以用于任何位置。
+\$      匹配按本義出現的 '$' 字符。可以用於任何位置。
 
                                                         <b class="vimtag"> <a name="%2F\_$">/\_$</a> </b>
-\_$     匹配行尾。 <a href="pattern.html#%2Fzero-width">/zero-width</a>   可以用于任何位置。<code class="note">注意</code>: "a\_$b" 永远无法匹
-        配，因为 "b" 不能匹配行尾符。可以使用 "a\nb" 代替  <a href="pattern.html#%2F\n">/\n</a> 。
+\_$     匹配行尾。 <a href="pattern.html#%2Fzero-width">/zero-width</a>   可以用於任何位置。<code class="note">注意</code>: "a\_$b" 永遠無法匹
+        配，因為 "b" 不能匹配行尾符。可以使用 "a\nb" 代替  <a href="pattern.html#%2F\n">/\n</a> 。
 <code class="section">        示例            匹配 </code>
-        foo\_$\_s*      "foo" 在行尾，后接空白字符及空行
+        foo\_$\_s*      "foo" 在行尾，後接空白字符及空行
 
 .       (<a href="options.html#'nomagic'">'nomagic'</a> 的情形: \.)                          <b class="vimtag"> <a name="%2F.">/.</a> </b> <b class="vimtag"> <a name="%2F\.">/\.</a> </b>
-        匹配任何单个字符，不包括行尾符。
+        匹配任何單個字符，不包括行尾符。
 
                                                         <b class="vimtag"> <a name="%2F\_.">/\_.</a> </b>
-\_.     匹配任何单个字符或行尾符。当心: "\_.*" 会一直匹配到缓冲区结尾！
+\_.     匹配任何單個字符或行尾符。當心: "\_.*" 會一直匹配到緩衝區結尾！
 
                                                         <b class="vimtag"> <a name="%2F\%3C">/\&lt;</a> </b>
-\&lt;      匹配单词起点: 下一个字符是单词的首字符。<a href="options.html#'iskeyword'">'iskeyword'</a> 选项指定哪些是组成
-        单词的字符。 <a href="pattern.html#%2Fzero-width">/zero-width</a> 
+\&lt;      匹配單詞起點: 下一個字符是單詞的首字符。<a href="options.html#'iskeyword'">'iskeyword'</a> 選項指定哪些是組成
+        單詞的字符。 <a href="pattern.html#%2Fzero-width">/zero-width</a> 
 
                                                         <b class="vimtag"> <a name="%2F\%3E">/\&gt;</a> </b>
-\&gt;      匹配单词终点: 前一个字符是单词的尾字符。<a href="options.html#'iskeyword'">'iskeyword'</a> 选项指定哪些是组成
-        单词的字符。 <a href="pattern.html#%2Fzero-width">/zero-width</a> 
+\&gt;      匹配單詞終點: 前一個字符是單詞的尾字符。<a href="options.html#'iskeyword'">'iskeyword'</a> 選項指定哪些是組成
+        單詞的字符。 <a href="pattern.html#%2Fzero-width">/zero-width</a> 
 
                                                         <b class="vimtag"> <a name="%2F\zs">/\zs</a> </b>
-\zs     匹配任何位置，并将匹配起始处置于该处: 下一个字符将是整个匹配的第一个字
+\zs     匹配任何位置，並將匹配起始處置於該處: 下一個字符將是整個匹配的第一個字
         符。 <a href="pattern.html#%2Fzero-width">/zero-width</a> 
         例如: 
 <code class="example">                "^\s*\zsif"</code>
-        匹配行首的 "if"，忽略前导的空白字符。
-        可以使用多次，但实际使用最后一次在匹配的分支里遇到的。例如: 
+        匹配行首的 "if"，忽略前導的空白字符。
+        可以使用多次，但實際使用最後一次在匹配的分支裡遇到的。例如: 
 <code class="example">                /\(.\{-}\zsFab\)\{3}</code>
-        找到第三次出现的 "Fab"。
-        不能后跟倍数。 <b class="vimtag"> <a name="E888">E888</a> </b>
-        <code class="notvi">{Vi 无此功能}</code> <code class="notvi">{仅当编译时加入  <a href="various.html#+syntax">+syntax</a>  特性才可用}</code>
+        找到第三次出現的 "Fab"。
+        不能後跟倍數。 <b class="vimtag"> <a name="E888">E888</a> </b>
+        <code class="notvi">{Vi 無此功能}</code> <code class="notvi">{僅當編譯時加入  <a href="various.html#+syntax">+syntax</a>  特性才可用}</code>
                                                         <b class="vimtag"> <a name="%2F\ze">/\ze</a> </b>
-\ze     匹配任何位置，并将匹配结尾处置于该处: 前一个字符将是整个匹配的最后一个
+\ze     匹配任何位置，並將匹配結尾處置於該處: 前一個字符將是整個匹配的最後一個
         字符。 <a href="pattern.html#%2Fzero-width">/zero-width</a> 
-        可以使用多次，但实际使用最后一次在匹配的分支里遇到的。
+        可以使用多次，但實際使用最後一次在匹配的分支裡遇到的。
         例如: "end\ze\(if\|for\)" 匹配 "endif" 和 "endfor" 中的 "end"。
-        不能后跟倍数。  <a href="pattern.html#E888">E888</a> 
-        <code class="notvi">{Vi 无此功能}</code> <code class="notvi">{仅当编译时加入  <a href="various.html#+syntax">+syntax</a>  特性才可用}</code>
+        不能後跟倍數。  <a href="pattern.html#E888">E888</a> 
+        <code class="notvi">{Vi 無此功能}</code> <code class="notvi">{僅當編譯時加入  <a href="various.html#+syntax">+syntax</a>  特性才可用}</code>
 
                                                 <b class="vimtag"> <a name="%2F\%^">/\%^</a> </b> <b class="vimtag"> <a name="start-of-file">start-of-file</a> </b>
-\%^     匹配文件头。当用于一个字符串时，匹配字符串起始处。<code class="notvi">{Vi 无此功能}</code>
-        例如，要查找一个文件中首次出现 "VIM" 的地方: 
+\%^     匹配文件頭。當用於一個字符串時，匹配字符串起始處。<code class="notvi">{Vi 無此功能}</code>
+        例如，要查找一個文件中首次出現 "VIM" 的地方: 
 <code class="example">                /\%^\_.\{-}\zsVIM</code>
 
                                                 <b class="vimtag"> <a name="%2F\%$">/\%$</a> </b> <b class="vimtag"> <a name="end-of-file">end-of-file</a> </b>
-\%$     匹配文件尾。当用于一个字符串时，匹配字符串结束处。<code class="notvi">{Vi 无此功能}</code>
-        <code class="note">注意</code> 下面的模式不匹配文件中的最后一个 "VIM": 
+\%$     匹配文件尾。當用於一個字符串時，匹配字符串結束處。<code class="notvi">{Vi 無此功能}</code>
+        <code class="note">注意</code> 下面的模式不匹配文件中的最後一個 "VIM": 
 <code class="example">                /VIM\_.\{-}\%$</code>
-        它会找到下一个 VIM，因为其后的部分总会匹配。这样才能匹配文件中的最后一
-        个 "VIM": 
+        它會找到下一個 VIM，因為其後的部分總會匹配。這樣才能匹配文件中的最後一
+        個 "VIM": 
 <code class="example">                /VIM\ze\(\(VIM\)\@!\_.\)*\%$</code>
-        这里使用了  <a href="pattern.html#%2F\@!">/\@!</a>  来确定在首个 "VIM" 之后 <code class="emphasis">无法</code> 再次匹配 "VIM"。
-        从文件尾部反向搜索会容易些！
+        這裡使用了  <a href="pattern.html#%2F\@!">/\@!</a>  來確定在首個 "VIM" 之後 <code class="emphasis">無法</code> 再次匹配 "VIM"。
+        從文件尾部反向搜索會容易些！
 
                                                 <b class="vimtag"> <a name="%2F\%V">/\%V</a> </b>
-\%V     在可视区域内匹配。可视模式停止后，在  <a href="visual.html#gv">gv</a>  将会重新选择的区域内匹配。
-        这是一个零宽度  <a href="pattern.html#%2Fzero-width">/zero-width</a>  匹配。要确保整个模式都在可视区域里，把本
-        匹配原放在匹配模式的开始和刚好结尾之前处，例如: 
+\%V     在可視區域內匹配。可視模式停止後，在  <a href="visual.html#gv">gv</a>  將會重新選擇的區域內匹配。
+        這是一個零寬度  <a href="pattern.html#%2Fzero-width">/zero-width</a>  匹配。要確保整個模式都在可視區域裡，把本
+        匹配原放在匹配模式的開始和剛好結尾之前處，例如: 
 <code class="example">                /\%Vfoo.*ba\%Vr</code>
-        这在可视选择只包含 "foo bar" 时，才会匹配。而: 
+        這在可視選擇只包含 "foo bar" 時，才會匹配。而: 
 <code class="example">                /\%Vfoo.*bar\%V</code>
-        这在可视选择区在 "r" 之后继续时，才会匹配 "foo bar"。
-        只能用于当前缓冲区。
+        這在可視選擇區在 "r" 之後繼續時，才會匹配 "foo bar"。
+        只能用於當前緩衝區。
 
                                                 <b class="vimtag"> <a name="%2F\%%23">/\%#</a> </b> <b class="vimtag"> <a name="cursor-position">cursor-position</a> </b>
-\%#     匹配光标位置。仅对显示于窗口内的缓冲区有效。<code class="notvi">{Vi 无此功能}</code>
-        警 告: 如果使用了该模式之后光标被移动，结果不再有效，Vim 不会自动更新
-        匹配。这对语法高亮和 <a href="options.html#'hlsearch'">'hlsearch'</a> 很重要。换言之: 在光标移动时显示并不因
-        此而更新。Vim 只对行被修改 (整行被更新) 或用户使用  <a href="various.html#CTRL-L">CTRL-L</a>  命令时 (整
-        个屏幕被更新) 进行更新。例如，要高亮显示光标下的单词: 
+\%#     匹配光標位置。僅對顯示於窗口內的緩衝區有效。<code class="notvi">{Vi 無此功能}</code>
+        警 告: 如果使用了該模式之後光標被移動，結果不再有效，Vim 不會自動更新
+        匹配。這對語法高亮和 <a href="options.html#'hlsearch'">'hlsearch'</a> 很重要。換言之: 在光標移動時顯示並不因
+        此而更新。Vim 只對行被修改 (整行被更新) 或用戶使用  <a href="various.html#CTRL-L">CTRL-L</a>  命令時 (整
+        個屏幕被更新) 進行更新。例如，要高亮顯示光標下的單詞: 
 <code class="example">                /\k*\%#\k*</code>
-        当设定 <a href="options.html#'hlsearch'">'hlsearch'</a> 时，移动光标并作若干更改，你就能清楚地看到更新在何时
-        进行。
+        當設定 <a href="options.html#'hlsearch'">'hlsearch'</a> 時，移動光標並作若干更改，你就能清楚地看到更新在何時
+        進行。
 
                                                 <b class="vimtag"> <a name="%2F\%'m">/\%'m</a> </b> <b class="vimtag"> <a name="%2F\%%3C'm">/\%&lt;'m</a> </b> <b class="vimtag"> <a name="%2F\%%3E'm">/\%&gt;'m</a> </b>
-\%'m    匹配位置标记 m 的位置。
-\%&lt;'m   匹配位置标记 m 之前的位置。
-\%&gt;'m   匹配位置标记 m 之后的位置。
-        例如，高亮位置标记 's 到 'e 的文本: 
+\%'m    匹配位置標記 m 的位置。
+\%&lt;'m   匹配位置標記 m 之前的位置。
+\%&gt;'m   匹配位置標記 m 之後的位置。
+        例如，高亮位置標記 's 到 'e 的文本: 
 <code class="example">                /.\%&gt;'s.*\%&lt;'e..</code>
-        <code class="note">注意</code> 在匹配里需要两个句号来包含位置标记 'e。这是因为 "\%&lt;'e" 匹配 'e
-        位置标记之前的字符，而既然它是零宽度匹配  <a href="pattern.html#%2Fzero-width">/zero-width</a> ，它并不真正包含
-        该字符。
-        <code class="notvi">{Vi 无此功能}</code>
-        警 告: 如果使用模式后移动了位置标记，结果不再有效。Vim 并不自动更新匹
-        配。这和 "\%#" 里移动光标的情形类似  <a href="pattern.html#%2F\%%23">/\%#</a> 。
+        <code class="note">注意</code> 在匹配裡需要兩個句號來包含位置標記 'e。這是因為 "\%&lt;'e" 匹配 'e
+        位置標記之前的字符，而既然它是零寬度匹配  <a href="pattern.html#%2Fzero-width">/zero-width</a> ，它並不真正包含
+        該字符。
+        <code class="notvi">{Vi 無此功能}</code>
+        警 告: 如果使用模式後移動了位置標記，結果不再有效。Vim 並不自動更新匹
+        配。這和 "\%#" 裡移動光標的情形類似  <a href="pattern.html#%2F\%%23">/\%#</a> 。
 
                                                 <b class="vimtag"> <a name="%2F\%l">/\%l</a> </b> <b class="vimtag"> <a name="%2F\%%3El">/\%&gt;l</a> </b> <b class="vimtag"> <a name="%2F\%%3Cl">/\%&lt;l</a> </b>
 \%23l   匹配指定的行。
-\%&lt;23l  匹配指定行的上方 (行号更小)。
-\%&gt;23l  匹配指定行的下方 (行号更大)。
-        这三个匹配原可以用来匹配缓冲区内的特定行。"23" 可以是任何行号。第一行
-        为 1。 <code class="notvi">{Vi 无此功能}</code>
-        警 告: 当插入和删除行时 Vim 不会自动更新匹配。这意味着语法高亮很快就会
-        有问题。
-        例如，要高亮显示光标所在行: 
+\%&lt;23l  匹配指定行的上方 (行號更小)。
+\%&gt;23l  匹配指定行的下方 (行號更大)。
+        這三個匹配原可以用來匹配緩衝區內的特定行。"23" 可以是任何行號。第一行
+        為 1。 <code class="notvi">{Vi 無此功能}</code>
+        警 告: 當插入和刪除行時 Vim 不會自動更新匹配。這意味著語法高亮很快就會
+        有問題。
+        例如，要高亮顯示光標所在行: 
 <code class="example">                :exe '/\%' . line(".") . 'l.*'</code>
-        当设定 <a href="options.html#'hlsearch'">'hlsearch'</a> 时，移动光标并作若干更改，你就能清楚地看到更新在何时
-        进行。
+        當設定 <a href="options.html#'hlsearch'">'hlsearch'</a> 時，移動光標並作若干更改，你就能清楚地看到更新在何時
+        進行。
 
                                                 <b class="vimtag"> <a name="%2F\%c">/\%c</a> </b> <b class="vimtag"> <a name="%2F\%%3Ec">/\%&gt;c</a> </b> <b class="vimtag"> <a name="%2F\%%3Cc">/\%&lt;c</a> </b>
 \%23c   匹配指定的列。
 \%&lt;23c  匹配指定列之前。
-\%&gt;23c  匹配指定列之后。
-        这三个匹配原可以用来匹配缓冲区或字符串中的特定列。"23" 可以是任何列
-        号。第一列为 1。事实上，列以字节计算 (因此对多字节字符来说是不准确
-        的)。 <code class="notvi">{Vi 无此功能}</code>
-        警 告: 当插入和删除字符时 Vim 并不自动更新匹配。这意味着语法高亮很快就
-        会有问题。
-        例如，要高亮显示光标所在列: 
+\%&gt;23c  匹配指定列之後。
+        這三個匹配原可以用來匹配緩衝區或字符串中的特定列。"23" 可以是任何列
+        號。第一列為 1。事實上，列以字節計算 (因此對多字節字符來說是不準確
+        的)。 <code class="notvi">{Vi 無此功能}</code>
+        警 告: 當插入和刪除字符時 Vim 並不自動更新匹配。這意味著語法高亮很快就
+        會有問題。
+        例如，要高亮顯示光標所在列: 
 <code class="example">                :exe '/\%' . col(".") . 'c'</code>
-        当设定 <a href="options.html#'hlsearch'">'hlsearch'</a> 时，移动光标并作若干更改，你就能清楚地看到更新在何时
-        进行。
-        一个匹配第 44 列单个字节的例子: 
+        當設定 <a href="options.html#'hlsearch'">'hlsearch'</a> 時，移動光標並作若干更改，你就能清楚地看到更新在何時
+        進行。
+        一個匹配第 44 列單個字節的例子: 
 <code class="example">                /\%&gt;43c.\%&lt;46c</code>
-        <code class="note">注意</code>: "\%&lt;46c" 匹配第 45 列，而 "." 匹配 44 列的一个字节。
+        <code class="note">注意</code>: "\%&lt;46c" 匹配第 45 列，而 "." 匹配 44 列的一個字節。
 
                                                 <b class="vimtag"> <a name="%2F\%v">/\%v</a> </b> <b class="vimtag"> <a name="%2F\%%3Ev">/\%&gt;v</a> </b> <b class="vimtag"> <a name="%2F\%%3Cv">/\%&lt;v</a> </b>
-\%23v   匹配指定虚拟列。
-\%&lt;23v  匹配指定虚拟列之前。
-\%&gt;23v  匹配指定虚拟列之后。
-        这三个匹配原可以用来匹配缓冲区或字符串中指定的虚拟列。如果不是在匹配窗
-        口内的缓冲区，使用当前窗口的选项值 (如 <a href="options.html#'tabstop'">'tabstop'</a>)。
-        "23" 可以是任何列号。第一列为 1。
-        <code class="note">注意</code> 某些虚拟列位置永远无法被匹配，因为它们在制表符或其它占用超过一个
-        屏幕位置的特殊字符的中间某处。<code class="notvi">{Vi 无此功能}</code>
-        警 告: 当插入和删除字符时 Vim 并不自动更新高亮的匹配。这意味着语法高亮
-        很快就会有问题。
-        例如，要高亮显示所有位于虚拟第 72 列之后的字符: 
+\%23v   匹配指定虛擬列。
+\%&lt;23v  匹配指定虛擬列之前。
+\%&gt;23v  匹配指定虛擬列之後。
+        這三個匹配原可以用來匹配緩衝區或字符串中指定的虛擬列。如果不是在匹配窗
+        口內的緩衝區，使用當前窗口的選項值 (如 <a href="options.html#'tabstop'">'tabstop'</a>)。
+        "23" 可以是任何列號。第一列為 1。
+        <code class="note">注意</code> 某些虛擬列位置永遠無法被匹配，因為它們在製表符或其它佔用超過一個
+        屏幕位置的特殊字符的中間某處。<code class="notvi">{Vi 無此功能}</code>
+        警 告: 當插入和刪除字符時 Vim 並不自動更新高亮的匹配。這意味著語法高亮
+        很快就會有問題。
+        例如，要高亮顯示所有位於虛擬第 72 列之後的字符: 
 <code class="example">                /\%&gt;72v.*</code>
-        当设定 <a href="options.html#'hlsearch'">'hlsearch'</a> 时，移动光标并作若干更改，你就能清楚地看到更新在何时
-        进行。
+        當設定 <a href="options.html#'hlsearch'">'hlsearch'</a> 時，移動光標並作若干更改，你就能清楚地看到更新在何時
+        進行。
         要匹配直到第 17 列的文本: 
 <code class="example">                /^.*\%17v</code>
-        这里不包括第 17 列，因为这是  <a href="pattern.html#%2Fzero-width">/zero-width</a>  匹配。要包含该列，应用: 
+        這裡不包括第 17 列，因為這是  <a href="pattern.html#%2Fzero-width">/zero-width</a>  匹配。要包含該列，應用: 
 <code class="example">                /^.*\%17v.</code>
-        下例同上，但如果第 17 列没有字符也同样匹配: 
+        下例同上，但如果第 17 列沒有字符也同樣匹配: 
 <code class="example">                /^.*\%&lt;18v.</code>
-        <code class="note">注意</code> 如果没有 "^" 来锚住首列的匹配，第 17 列也能被高亮: 
+        <code class="note">注意</code> 如果沒有 "^" 來錨住首列的匹配，第 17 列也能被高亮: 
 <code class="example">                /.*\%17v</code>
-        <a href="options.html#'hlsearch'">'hlsearch'</a> 高亮第 17 列，因为存在另外一个匹配，其中 ".*" 匹配零个字
+        <a href="options.html#'hlsearch'">'hlsearch'</a> 高亮第 17 列，因為存在另外一個匹配，其中 ".*" 匹配零個字
         符。
 
 
-字符类: <code class="notvi">{Vi 无此功能}</code>
-\i      标识符字符 (见 <a href="options.html#'isident'">'isident'</a> 选项)                  <b class="vimtag"> <a name="%2F\i">/\i</a> </b>
-\I      同 "\i"，但不包括数字字符                       <b class="vimtag"> <a name="%2F\I">/\I</a> </b>
-\k      关键字字符 (见 <a href="options.html#'iskeyword'">'iskeyword'</a> 选项)                <b class="vimtag"> <a name="%2F\k">/\k</a> </b>
-\K      同 "\k"，但不包括数字字符                       <b class="vimtag"> <a name="%2F\K">/\K</a> </b>
-\f      文件名字符 (见 <a href="options.html#'isfname'">'isfname'</a> 选项)                  <b class="vimtag"> <a name="%2F\f">/\f</a> </b>
-\F      同 "\f"，但不包括数字字符                       <b class="vimtag"> <a name="%2F\F">/\F</a> </b>
-\p      可显示字符 (见 <a href="options.html#'isprint'">'isprint'</a> 选项)                  <b class="vimtag"> <a name="%2F\p">/\p</a> </b>
-\P      同 "\p"，但不包括数字字符                       <b class="vimtag"> <a name="%2F\P">/\P</a> </b>
+字符類: <code class="notvi">{Vi 無此功能}</code>
+\i      標識符字符 (見 <a href="options.html#'isident'">'isident'</a> 選項)                  <b class="vimtag"> <a name="%2F\i">/\i</a> </b>
+\I      同 "\i"，但不包括數字字符                       <b class="vimtag"> <a name="%2F\I">/\I</a> </b>
+\k      關鍵字字符 (見 <a href="options.html#'iskeyword'">'iskeyword'</a> 選項)                <b class="vimtag"> <a name="%2F\k">/\k</a> </b>
+\K      同 "\k"，但不包括數字字符                       <b class="vimtag"> <a name="%2F\K">/\K</a> </b>
+\f      文件名字符 (見 <a href="options.html#'isfname'">'isfname'</a> 選項)                  <b class="vimtag"> <a name="%2F\f">/\f</a> </b>
+\F      同 "\f"，但不包括數字字符                       <b class="vimtag"> <a name="%2F\F">/\F</a> </b>
+\p      可顯示字符 (見 <a href="options.html#'isprint'">'isprint'</a> 選項)                  <b class="vimtag"> <a name="%2F\p">/\p</a> </b>
+\P      同 "\p"，但不包括數字字符                       <b class="vimtag"> <a name="%2F\P">/\P</a> </b>
 
-<code class="note">备注</code>: 上面这些适用于多字节字符，而下面只匹配 ASCII 字符，因为它们由范围限定。
+<code class="note">備註</code>: 上面這些適用於多字節字符，而下面只匹配 ASCII 字符，因為它們由範圍限定。
 
                                                 <b class="vimtag"> <a name="whitespace">whitespace</a> </b> <b class="vimtag"> <a name="white-space">white-space</a> </b>
 \s      空白字符； <code class="special">&lt;Space&gt;</code> 和 <code class="special">&lt;Tab&gt;</code>                     <b class="vimtag"> <a name="%2F\s">/\s</a> </b>
 \S      非空白字符: \s 之反                             <b class="vimtag"> <a name="%2F\S">/\S</a> </b>
-\d      数位:                           [0-9]           <b class="vimtag"> <a name="%2F\d">/\d</a> </b>
-\D      非数位:                         [^0-9]          <b class="vimtag"> <a name="%2F\D">/\D</a> </b>
-\x      十六进制数位:                   [0-9A-Fa-f]     <b class="vimtag"> <a name="%2F\x">/\x</a> </b>
-\X      非十六进制数位:                 [^0-9A-Fa-f]    <b class="vimtag"> <a name="%2F\X">/\X</a> </b>
-\o      八进制数位:                     [0-7]           <b class="vimtag"> <a name="%2F\o">/\o</a> </b>
-\O      非八进制数位:                   [^0-7]          <b class="vimtag"> <a name="%2F\O">/\O</a> </b>
-\w      单词字符:                       [0-9A-Za-z_]    <b class="vimtag"> <a name="%2F\w">/\w</a> </b>
-\W      非单词字符:                     [^0-9A-Za-z_]   <b class="vimtag"> <a name="%2F\W">/\W</a> </b>
-\h      单词首字符:                     [A-Za-z_]       <b class="vimtag"> <a name="%2F\h">/\h</a> </b>
-\H      非单词首字符:                   [^A-Za-z_]      <b class="vimtag"> <a name="%2F\H">/\H</a> </b>
+\d      數位:                           [0-9]           <b class="vimtag"> <a name="%2F\d">/\d</a> </b>
+\D      非數位:                         [^0-9]          <b class="vimtag"> <a name="%2F\D">/\D</a> </b>
+\x      十六進制數位:                   [0-9A-Fa-f]     <b class="vimtag"> <a name="%2F\x">/\x</a> </b>
+\X      非十六進制數位:                 [^0-9A-Fa-f]    <b class="vimtag"> <a name="%2F\X">/\X</a> </b>
+\o      八進制數位:                     [0-7]           <b class="vimtag"> <a name="%2F\o">/\o</a> </b>
+\O      非八進制數位:                   [^0-7]          <b class="vimtag"> <a name="%2F\O">/\O</a> </b>
+\w      單詞字符:                       [0-9A-Za-z_]    <b class="vimtag"> <a name="%2F\w">/\w</a> </b>
+\W      非單詞字符:                     [^0-9A-Za-z_]   <b class="vimtag"> <a name="%2F\W">/\W</a> </b>
+\h      單詞首字符:                     [A-Za-z_]       <b class="vimtag"> <a name="%2F\h">/\h</a> </b>
+\H      非單詞首字符:                   [^A-Za-z_]      <b class="vimtag"> <a name="%2F\H">/\H</a> </b>
 \a      英文字母字符:                   [A-Za-z]        <b class="vimtag"> <a name="%2F\a">/\a</a> </b>
 \A      非英文字母字符:                 [^A-Za-z]       <b class="vimtag"> <a name="%2F\A">/\A</a> </b>
-\l      小写字符:                       [a-z]           <b class="vimtag"> <a name="%2F\l">/\l</a> </b>
-\L      非小写字符:                     [^a-z]          <b class="vimtag"> <a name="%2F\L">/\L</a> </b>
-\u      大写字符:                       [A-Z]           <b class="vimtag"> <a name="%2F\u">/\u</a> </b>
-\U      非大写字符:                     [^A-Z]          <b class="vimtag"> <a name="%2F\U">/\U</a> </b>
+\l      小寫字符:                       [a-z]           <b class="vimtag"> <a name="%2F\l">/\l</a> </b>
+\L      非小寫字符:                     [^a-z]          <b class="vimtag"> <a name="%2F\L">/\L</a> </b>
+\u      大寫字符:                       [A-Z]           <b class="vimtag"> <a name="%2F\u">/\u</a> </b>
+\U      非大寫字符:                     [^A-Z]          <b class="vimtag"> <a name="%2F\U">/\U</a> </b>
 
-        <code class="note">备注</code>: 使用匹配原比使用 [] 构造要快。
+        <code class="note">備註</code>: 使用匹配原比使用 [] 構造要快。
 
-        <code class="note">备注</code>: 字符类不使用 <a href="options.html#'ignorecase'">'ignorecase'</a>，"\c" 和 "\C" 的设定。
+        <code class="note">備註</code>: 字符類不使用 <a href="options.html#'ignorecase'">'ignorecase'</a>，"\c" 和 "\C" 的設定。
 
                 <b class="vimtag"> <a name="%2F\_">/\_</a> </b> <b class="vimtag"> <a name="E63">E63</a> </b> <b class="vimtag"> <a name="%2F\_i">/\_i</a> </b> <b class="vimtag"> <a name="%2F\_I">/\_I</a> </b> <b class="vimtag"> <a name="%2F\_k">/\_k</a> </b> <b class="vimtag"> <a name="%2F\_K">/\_K</a> </b> <b class="vimtag"> <a name="%2F\_f">/\_f</a> </b> <b class="vimtag"> <a name="%2F\_F">/\_F</a> </b>
                 <b class="vimtag"> <a name="%2F\_p">/\_p</a> </b> <b class="vimtag"> <a name="%2F\_P">/\_P</a> </b> <b class="vimtag"> <a name="%2F\_s">/\_s</a> </b> <b class="vimtag"> <a name="%2F\_S">/\_S</a> </b> <b class="vimtag"> <a name="%2F\_d">/\_d</a> </b> <b class="vimtag"> <a name="%2F\_D">/\_D</a> </b> <b class="vimtag"> <a name="%2F\_x">/\_x</a> </b> <b class="vimtag"> <a name="%2F\_X">/\_X</a> </b>
                 <b class="vimtag"> <a name="%2F\_o">/\_o</a> </b> <b class="vimtag"> <a name="%2F\_O">/\_O</a> </b> <b class="vimtag"> <a name="%2F\_w">/\_w</a> </b> <b class="vimtag"> <a name="%2F\_W">/\_W</a> </b> <b class="vimtag"> <a name="%2F\_h">/\_h</a> </b> <b class="vimtag"> <a name="%2F\_H">/\_H</a> </b> <b class="vimtag"> <a name="%2F\_a">/\_a</a> </b> <b class="vimtag"> <a name="%2F\_A">/\_A</a> </b>
                 <b class="vimtag"> <a name="%2F\_l">/\_l</a> </b> <b class="vimtag"> <a name="%2F\_L">/\_L</a> </b> <b class="vimtag"> <a name="%2F\_u">/\_u</a> </b> <b class="vimtag"> <a name="%2F\_U">/\_U</a> </b>
-\_x     其中 x 为上面列出的可用字符之一: 结果为对应字符类加上行尾符
-(字符类结束)
+\_x     其中 x 為上面列出的可用字符之一: 結果為對應字符類加上行尾符
+(字符類結束)
 
 \e      匹配 <code class="special">&lt;Esc&gt;</code>                                      <b class="vimtag"> <a name="%2F\e">/\e</a> </b>
 \t      匹配 <code class="special">&lt;Tab&gt;</code>                                      <b class="vimtag"> <a name="%2F\t">/\t</a> </b>
 \r      匹配 <code class="special">&lt;CR&gt;</code>                                       <b class="vimtag"> <a name="%2F\r">/\r</a> </b>
 \b      匹配 <code class="special">&lt;BS&gt;</code>                                       <b class="vimtag"> <a name="%2F\b">/\b</a> </b>
 \n      匹配行尾符                                      <b class="vimtag"> <a name="%2F\n">/\n</a> </b>
-        当对字符串而不是缓冲区进行匹配时，匹配一个按本义出现的换行字符。
+        當對字符串而不是緩衝區進行匹配時，匹配一個按本義出現的換行字符。
 
-~       匹配上次给出的替代字符串                        <b class="vimtag"> <a name="%2F%7E">/~</a> </b> <b class="vimtag"> <a name="%2F\%7E">/\~</a> </b>
+~       匹配上次給出的替代字符串                        <b class="vimtag"> <a name="%2F%7E">/~</a> </b> <b class="vimtag"> <a name="%2F\%7E">/\~</a> </b>
 
-\(\)    一个由转义的括号括起来的模式。                  <b class="vimtag"> <a name="%2F\(">/\(</a> </b> <b class="vimtag"> <a name="%2F\(\)">/\(\)</a> </b> <b class="vimtag"> <a name="%2F\)">/\)</a> </b>
+\(\)    一個由轉義的括號括起來的模式。                  <b class="vimtag"> <a name="%2F\(">/\(</a> </b> <b class="vimtag"> <a name="%2F\(\)">/\(\)</a> </b> <b class="vimtag"> <a name="%2F\)">/\)</a> </b>
         例: "\(^a\)" 匹配行首的 'a'。
         <b class="vimtag"> <a name="E51">E51</a> </b> <b class="vimtag"> <a name="E54">E54</a> </b> <b class="vimtag"> <a name="E55">E55</a> </b> <b class="vimtag"> <a name="E872">E872</a> </b> <b class="vimtag"> <a name="E873">E873</a> </b>
 
-\1      匹配和第一个 \( 和 \) 之间的子表达式的匹配文本  <b class="vimtag"> <a name="%2F\1">/\1</a> </b> <b class="vimtag"> <a name="E65">E65</a> </b>
-        相同的字符串。 <code class="notvi">{Vi 无此功能}</code>
+\1      匹配和第一個 \( 和 \) 之間的子表達式的匹配文本  <b class="vimtag"> <a name="%2F\1">/\1</a> </b> <b class="vimtag"> <a name="E65">E65</a> </b>
+        相同的字符串。 <code class="notvi">{Vi 無此功能}</code>
         例如: "\([a-z]\).\1" 匹配 "ata"，"ehe"，"tot" 等。
-\2      类似于 "\1"，但使用第二子表达式，               <b class="vimtag"> <a name="%2F\2">/\2</a> </b>
+\2      類似於 "\1"，但使用第二子表達式，               <b class="vimtag"> <a name="%2F\2">/\2</a> </b>
    ...                                                  <b class="vimtag"> <a name="%2F\3">/\3</a> </b>
-\9      类似于 "\1"，但使用第三子表达式。               <b class="vimtag"> <a name="%2F\9">/\9</a> </b>
-        <code class="note">备注</code>: 各组的标号是基于哪一个 "\(" 先出现 (自左至右)，而 <code class="emphasis">非</code> 哪一个先匹
+\9      類似於 "\1"，但使用第三子表達式。               <b class="vimtag"> <a name="%2F\9">/\9</a> </b>
+        <code class="note">備註</code>: 各組的標號是基於哪一個 "\(" 先出現 (自左至右)，而 <code class="emphasis">非</code> 哪一個先匹
         配。
 
-\%(\)   一个由转义的括号括起来的模式。                  <b class="vimtag"> <a name="%2F\%(\)">/\%(\)</a> </b> <b class="vimtag"> <a name="%2F\%(">/\%(</a> </b> <b class="vimtag"> <a name="E53">E53</a> </b>
-        类似 \(\)，但不算作一个子表达式。这样做允许使用更多的群组，并且处理时
-        会稍快些。
-        <code class="notvi">{Vi 无此功能}</code>
+\%(\)   一個由轉義的括號括起來的模式。                  <b class="vimtag"> <a name="%2F\%(\)">/\%(\)</a> </b> <b class="vimtag"> <a name="%2F\%(">/\%(</a> </b> <b class="vimtag"> <a name="E53">E53</a> </b>
+        類似 \(\)，但不算作一個子表達式。這樣做允許使用更多的群組，並且處理時
+        會稍快些。
+        <code class="notvi">{Vi 無此功能}</code>
 
-x       一个没有特殊含义的单个字符，匹配其自身
+x       一個沒有特殊含義的單個字符，匹配其自身
 
                                                         <b class="vimtag"> <a name="%2F\">/\</a> </b> <b class="vimtag"> <a name="%2F\\">/\\</a> </b>
-\x      一个反斜杠带一个没有特殊含义的单个字符，保留作将来的扩展
+\x      一個反斜槓帶一個沒有特殊含義的單個字符，保留作將來的擴展
 
 []      (<a href="options.html#'nomagic'">'nomagic'</a> 的情形: \[])         <b class="vimtag"> <a name="%2F[]">/[]</a> </b> <b class="vimtag"> <a name="%2F\[]">/\[]</a> </b> <b class="vimtag"> <a name="%2F\_[]">/\_[]</a> </b> <b class="vimtag"> <a name="%2Fcollection">/collection</a> </b>
 \_[]
-        一个集合。一组由方括号括起来的字符。匹配集合中的任何一个字符。
+        一個集合。一組由方括號括起來的字符。匹配集合中的任何一個字符。
 <code class="section">        示例            匹配 </code>
         <code class="special">[xyz]</code>           'x'、'y' 或 'z' 之一
-        [a-zA-Z]$       出现在行尾的字母字符
+        [a-zA-Z]$       出現在行尾的字母字符
         \c[a-z]$        同上
-        [Ð-ÑÐÑ]             俄语字符集 (包括 utf-8 和 cp1251)
+        [D-NDN]             俄語字符集 (包括 utf-8 和 cp1251)
 
                                                                 <b class="vimtag"> <a name="%2F[\n]">/[\n]</a> </b>
-        如果在集合前加上 "\_" 的话，同时匹配行尾符，这等价于给集合加上 "\n"。
-        即使该模式以 "^" 开始，也能匹配行尾符！因此 "\_[^ab]" 将匹配行尾符以及
+        如果在集合前加上 "\_" 的話，同時匹配行尾符，這等價於給集合加上 "\n"。
+        即使該模式以 "^" 開始，也能匹配行尾符！因此 "\_[^ab]" 將匹配行尾符以及
         所有非 "a" 或 "b" 的字符。
-        这使其与 Vi 兼容: 没有 "\_" 或 "\n" 时，集合不匹配行尾符。
+        這使其與 Vi 兼容: 沒有 "\_" 或 "\n" 時，集合不匹配行尾符。
                                                                 <b class="vimtag"> <a name="E769">E769</a> </b>
-        如果没有 ']'，Vim 不会给出错误信息，而是假设不使用集合。可用于直接搜索
-        '['。不过内部搜索会得到 E769。同时要<code class="note">注意</code>在 ":substitute" 命令里，整个
-        命令作为模式处理，例如 ":s/[/x/" 搜索 "[/x" 并替换为空，而不是搜索 "["
-        并替换为 "x"！
+        如果沒有 ']'，Vim 不會給出錯誤信息，而是假設不使用集合。可用於直接搜索
+        '['。不過內部搜索會得到 E769。同時要<code class="note">注意</code>在 ":substitute" 命令裡，整個
+        命令作為模式處理，例如 ":s/[/x/" 搜索 "[/x" 並替換為空，而不是搜索 "["
+        並替換為 "x"！
 
                                                                 <b class="vimtag"> <a name="E944">E944</a> </b> <b class="vimtag"> <a name="E945">E945</a> </b>
-        如果集合以 "^" 开始，它匹配所有 <code class="emphasis">不在</code> 集合内的字符: "[^xyz]" 匹配任何不
+        如果集合以 "^" 開始，它匹配所有 <code class="emphasis">不在</code> 集合內的字符: "[^xyz]" 匹配任何不
         是 'x'、'y' 和 'z' 的字符。
-        - 如果集合中的两个字符以 '-' 隔开，表示它们之间的所有 ASCII 字符。例
-          如，"[0-9]" 匹配任何十进制数位。如果开始字符大于结束字符，如 [c-a]，
-          报错 E944。可以使用非 ASCII 字符，但在旧的正规表达式引擎中字符值的距
-          离不能超过 256。例如设置 re=1 后搜索 [\u3000-\u4000]，会报错 E945。
-          在模式之前加上 \%#=2 可以解决这个问题。
-        - 字符类表达式被解释为该字符类代表的字符集合。支持以下字符类:
-<code class="section">                  名称        函数      内容 </code>
-<b class="vimtag"> <a name="[:alnum:]">[:alnum:]</a> </b>       [:alnum:]   isalnum   字母和数位
+        - 如果集合中的兩個字符以 '-' 隔開，表示它們之間的所有 ASCII 字符。例
+          如，"[0-9]" 匹配任何十進制數位。如果開始字符大於結束字符，如 [c-a]，
+          報錯 E944。可以使用非 ASCII 字符，但在舊的正規表達式引擎中字符值的距
+          離不能超過 256。例如設置 re=1 後搜索 [\u3000-\u4000]，會報錯 E945。
+          在模式之前加上 \%#=2 可以解決這個問題。
+        - 字符類表達式被解釋為該字符類代表的字符集合。支持以下字符類:
+<code class="section">                  名稱        函數      內容 </code>
+<b class="vimtag"> <a name="[:alnum:]">[:alnum:]</a> </b>       [:alnum:]   isalnum   字母和數位
 <b class="vimtag"> <a name="[:alpha:]">[:alpha:]</a> </b>       [:alpha:]   isalpha   字母
-<b class="vimtag"> <a name="[:blank:]">[:blank:]</a> </b>       [:blank:]             空格和制表
+<b class="vimtag"> <a name="[:blank:]">[:blank:]</a> </b>       [:blank:]             空格和製表
 <b class="vimtag"> <a name="[:cntrl:]">[:cntrl:]</a> </b>       [:cntrl:]   iscntrl   控制字符
-<b class="vimtag"> <a name="[:digit:]">[:digit:]</a> </b>       [:digit:]             十进制数位 '0' 到 '9'
-<b class="vimtag"> <a name="[:graph:]">[:graph:]</a> </b>       [:graph:]   isgraph   ASCII 可显示字符，不包括空格
-<b class="vimtag"> <a name="[:lower:]">[:lower:]</a> </b>       [:lower:]   (1)       小写字母 (使用 <a href="options.html#'ignorecase'">'ignorecase'</a> 时代表所有
+<b class="vimtag"> <a name="[:digit:]">[:digit:]</a> </b>       [:digit:]             十進制數位 '0' 到 '9'
+<b class="vimtag"> <a name="[:graph:]">[:graph:]</a> </b>       [:graph:]   isgraph   ASCII 可顯示字符，不包括空格
+<b class="vimtag"> <a name="[:lower:]">[:lower:]</a> </b>       [:lower:]   (1)       小寫字母 (使用 <a href="options.html#'ignorecase'">'ignorecase'</a> 時代表所有
                                         字母)
-<b class="vimtag"> <a name="[:print:]">[:print:]</a> </b>       [:print:]   (2)       可显示字符，包括空格
-<b class="vimtag"> <a name="[:punct:]">[:punct:]</a> </b>       [:punct:]   ispunct   ASCII 标点字符
-<b class="vimtag"> <a name="[:space:]">[:space:]</a> </b>       [:space:]             空白字符: 空格、制表、CR、NL、垂直制
-                                        表、换页
-<b class="vimtag"> <a name="[:upper:]">[:upper:]</a> </b>       [:upper:]   (3)       大写字母 (使用 <a href="options.html#'ignorecase'">'ignorecase'</a> 时代表所有
+<b class="vimtag"> <a name="[:print:]">[:print:]</a> </b>       [:print:]   (2)       可顯示字符，包括空格
+<b class="vimtag"> <a name="[:punct:]">[:punct:]</a> </b>       [:punct:]   ispunct   ASCII 標點字符
+<b class="vimtag"> <a name="[:space:]">[:space:]</a> </b>       [:space:]             空白字符: 空格、製表、CR、NL、垂直制
+                                        表、換頁
+<b class="vimtag"> <a name="[:upper:]">[:upper:]</a> </b>       [:upper:]   (3)       大寫字母 (使用 <a href="options.html#'ignorecase'">'ignorecase'</a> 時代表所有
                                         字母)
-<b class="vimtag"> <a name="[:xdigit:]">[:xdigit:]</a> </b>      [:xdigit:]            十六进制数位: 0-9、a-f、A-F
+<b class="vimtag"> <a name="[:xdigit:]">[:xdigit:]</a> </b>      [:xdigit:]            十六進制數位: 0-9、a-f、A-F
 <b class="vimtag"> <a name="[:return:]">[:return:]</a> </b>      [:return:]            <code class="special">&lt;CR&gt;</code> 字符
 <b class="vimtag"> <a name="[:tab:]">[:tab:]</a> </b>         [:tab:]               <code class="special">&lt;Tab&gt;</code> 字符
 <b class="vimtag"> <a name="[:escape:]">[:escape:]</a> </b>      [:escape:]            <code class="special">&lt;Esc&gt;</code> 字符
 <b class="vimtag"> <a name="[:backspace:]">[:backspace:]</a> </b>   [:backspace:]         <code class="special">&lt;BS&gt;</code> 字符
-          方括号括起的字符类表达式是对于方括号定界的集合的扩充。例如，下面的模
-          式是一个 UNIX 文件名: "[-./[:alnum:]_~]\+"。即至少有一个字符的字符列
-          表，其中字符可以是 '-'，'.'，'/'，字母，数位，'_' 或 '~' 中的一个。
-          这些项仅对 8 位字符有效，但在新的正规表达式引擎里， [:lower:] 和
-          [:upper:] 也可用于多字节字符。见  <a href="pattern.html#two-engines">two-engines</a> 。将来，其它项目可能也
-          可用于多字节字符。现在，要得到所有的 "alpha" 字符，可用:
+          方括號括起的字符類表達式是對於方括號定界的集合的擴充。例如，下面的模
+          式是一個 UNIX 文件名: "[-./[:alnum:]_~]\+"。即至少有一個字符的字符列
+          表，其中字符可以是 '-'，'.'，'/'，字母，數位，'_' 或 '~' 中的一個。
+          這些項僅對 8 位字符有效，但在新的正規表達式引擎裡， [:lower:] 和
+          [:upper:] 也可用於多字節字符。見  <a href="pattern.html#two-engines">two-engines</a> 。將來，其它項目可能也
+          可用於多字節字符。現在，要得到所有的 "alpha" 字符，可用:
           [[:lower:][:upper:]]。
 
-          "函数" 列显示使用的库函数。具体实现取决于系统。否则:
-          (1) 编译时带  <a href="various.html#+multi_byte">+multi_byte</a>  特性时，ASCII 使用 islower()，其它字符使
-          用 Vim 内建规则。
-          (2) 使用 Vim 内建规则
+          "函數" 列顯示使用的庫函數。具體實現取決於系統。否則:
+          (1) 編譯時帶  <a href="various.html#+multi_byte">+multi_byte</a>  特性時，ASCII 使用 islower()，其它字符使
+          用 Vim 內建規則。
+          (2) 使用 Vim 內建規則
           (3) 用 (1) 但使用 isupper()
                                                         <b class="vimtag"> <a name="%2F[[%20">/[[=</a> </b> <b class="vimtag"> <a name="[%20%20]">[==]</a> </b>
-        - 等价类 (equivalence class)。匹配的字符和被比较的字符 "几乎" 相同，但
-          重音的区别可以忽略。目前支持 Unicode、latin1 和 latin9。形式是:
+        - 等價類 (equivalence class)。匹配的字符和被比較的字符 "幾乎" 相同，但
+          重音的區別可以忽略。目前支持 Unicode、latin1 和 latin9。形式是:
                 [=a=]
                                                         <b class="vimtag"> <a name="%2F[[.">/[[.</a> </b> <b class="vimtag"> <a name="[..]">[..]</a> </b>
-        - 排序规则元素 (collation element)。目前只能简单地接受如下形式的单个字
+        - 排序規則元素 (collation element)。目前只能簡單地接受如下形式的單個字
           符:
                 [.a.]
                                                           <b class="vimtag"> <a name="%2F\]">/\]</a> </b>
-        - 要在集合之内包括字符 ']'，^'，'-' 或 '\'，只需在该字符前加上反斜杠
+        - 要在集合之內包括字符 ']'，^'，'-' 或 '\'，只需在該字符前加上反斜槓
           "[xyz\]]"，"[\^xyz]"，"[xy\-z]" 和 "[xyz\\]"。
-          (<code class="note">备注</code>: POSIX 不支持这种反斜杠的用法)。
-          对于 ']' 你也可以将其作为第一个字符 (但可能在 "^" 之后) 而无须转义:
-          "[]xyz]" 或 "[^]xyz]"  <code class="notvi">{Vi 无此功能}</code>。
-          对于 '-' 你也可以将其作为第一个或最后一个字符: "[-xyz]"，"[^-xyz]"
+          (<code class="note">備註</code>: POSIX 不支持這種反斜槓的用法)。
+          對於 ']' 你也可以將其作為第一個字符 (但可能在 "^" 之後) 而無須轉義:
+          "[]xyz]" 或 "[^]xyz]"  <code class="notvi">{Vi 無此功能}</code>。
+          對於 '-' 你也可以將其作為第一個或最後一個字符: "[-xyz]"，"[^-xyz]"
           或 "[xyz-]"。
-          对于 '\' 你也可以将其放置在除了 "^]-\bdertnoUux" 以外的任何一个字符
-          之前而无须转义: "[\xyz]" 匹配 '\'，'x'，'y' 及 'z'。但是用 "\\" 好
-          些，因为将来的扩展可能会在 '\' 之后使用其它字符。
-        - 省略结尾的 ] 不被视为错误。"[]" 等同于 "[]]"，匹配 ']' 字符。
-        - 当 <a href="options.html#'cpoptions'">'cpoptions'</a> 中不包括 'l' 标志位时，以下转义可用 <code class="notvi">{Vi 无此功能}</code>:
+          對於 '\' 你也可以將其放置在除了 "^]-\bdertnoUux" 以外的任何一個字符
+          之前而無須轉義: "[\xyz]" 匹配 '\'，'x'，'y' 及 'z'。但是用 "\\" 好
+          些，因為將來的擴展可能會在 '\' 之後使用其它字符。
+        - 省略結尾的 ] 不被視為錯誤。"[]" 等同於 "[]]"，匹配 ']' 字符。
+        - 當 <a href="options.html#'cpoptions'">'cpoptions'</a> 中不包括 'l' 標誌位時，以下轉義可用 <code class="notvi">{Vi 無此功能}</code>:
                 \e      <code class="special">&lt;Esc&gt;</code>
                 \t      <code class="special">&lt;Tab&gt;</code>
                 \r      <code class="special">&lt;CR&gt;</code>    ( <code class="emphasis">不是</code> 行尾符！)
                 \b      <code class="special">&lt;BS&gt;</code>
-                \n      换行符，见上  <a href="pattern.html#%2F[\n]">/[\n]</a> 
-                \d123   字符的十进制表示
-                \o40    字符的八进制表示，最大值为 0377
-                \x20    字符的十六进制表示，最大值为 0xff
-                \u20AC  多字节字符的十六进制表示，最大值为 0xffff
-                \U1234  多字节字符的十六进制表示，最大值为 0xffffffff
-          <code class="note">备注</code>: 其它曾在前面提到的反斜杠转义码 (<code class="vim">译者注</code>: 如 \s、\d 等)
-                在方括号 [] 之内是不起作用的！
-        - 用集合来匹配可能会很慢。因为每个字符都要和集合中的每一个字符作比较。
-          尽可能使用上面提到的其它匹配原。例如: 同样是匹配一个数位，"\d" 要比
+                \n      換行符，見上  <a href="pattern.html#%2F[\n]">/[\n]</a> 
+                \d123   字符的十進製表示
+                \o40    字符的八進製表示，最大值為 0377
+                \x20    字符的十六進製表示，最大值為 0xff
+                \u20AC  多字節字符的十六進製表示，最大值為 0xffff
+                \U1234  多字節字符的十六進製表示，最大值為 0xffffffff
+          <code class="note">備註</code>: 其它曾在前面提到的反斜槓轉義碼 (<code class="vim">譯者注</code>: 如 \s、\d 等)
+                在方括號 [] 之內是不起作用的！
+        - 用集合來匹配可能會很慢。因為每個字符都要和集合中的每一個字符作比較。
+          盡可能使用上面提到的其它匹配原。例如: 同樣是匹配一個數位，"\d" 要比
           "[0-9]" 快的多。
 
                                                 <b class="vimtag"> <a name="%2F\%[]">/\%[]</a> </b> <b class="vimtag"> <a name="E69">E69</a> </b> <b class="vimtag"> <a name="E70">E70</a> </b> <b class="vimtag"> <a name="E369">E369</a> </b>
-\%[]    一个可选匹配原的序列。它总能匹配，但试图匹配尽量多的列出的匹配原，而在
-        第一个不匹配的地方终止。例如: 
+\%[]    一個可選匹配原的序列。它總能匹配，但試圖匹配盡量多的列出的匹配原，而在
+        第一個不匹配的地方終止。例如: 
 <code class="example">                /r\%[ead]</code>
-        匹配 "r"，"re"，"rea" 或者 "read"。采用最长可能的匹配。下面例子可以用
-        来匹配 Ex 命令 "function"，其中 "fu" 是必须的而 "nction" 是可选的: 
+        匹配 "r"，"re"，"rea" 或者 "read"。採用最長可能的匹配。下面例子可以用
+        來匹配 Ex 命令 "function"，其中 "fu" 是必須的而 "nction" 是可選的: 
 <code class="example">                /\&lt;fu\%[nction]\&gt;</code>
-        这里用到了单词结尾匹配原 "\&gt;" 来避免匹配 "full" 中的 "fu"。
-        当要匹配的不是普通字符时，问题就变得更复杂了。你不一定会经常这样，但可
-        以这么做。例如: 
+        這裡用到了單詞結尾匹配原 "\&gt;" 來避免匹配 "full" 中的 "fu"。
+        當要匹配的不是普通字符時，問題就變得更複雜了。你不一定會經常這樣，但可
+        以這麼做。例如: 
 <code class="example">                /\&lt;r\%[[eo]ad]\&gt;</code>
         匹配 "r"，"re"，"ro"，"rea"，"roa"，"read" 及 "road"。
-        [] 里不能有 \(\)、\%(\) 或 \z(\) 项，\%[] 也不能嵌套。
-        要包含 "["，用 "[[]" 而 "]" 则可用 "[]]"，例如: 
+        [] 裡不能有 \(\)、\%(\) 或 \z(\) 項，\%[] 也不能嵌套。
+        要包含 "["，用 "[[]" 而 "]" 則可用 "[]]"，例如: 
 <code class="example">                /index\%[[[]0[]]]</code>
         匹配 "index"、"index["、"index[0" 和 "index[0]"。
-        <code class="notvi">{仅当编译时加入  <a href="various.html#+syntax">+syntax</a>  特性才有效}</code>
+        <code class="notvi">{僅當編譯時加入  <a href="various.html#+syntax">+syntax</a>  特性才有效}</code>
 
                                 <b class="vimtag"> <a name="%2F\%d">/\%d</a> </b> <b class="vimtag"> <a name="%2F\%x">/\%x</a> </b> <b class="vimtag"> <a name="%2F\%o">/\%o</a> </b> <b class="vimtag"> <a name="%2F\%u">/\%u</a> </b> <b class="vimtag"> <a name="%2F\%U">/\%U</a> </b> <b class="vimtag"> <a name="E678">E678</a> </b>
 
-\%d123  匹配十进制指定的字符。后面必须跟着非数位。
-\%o40   匹配八进制指定的字符，至多 0377。
-        小于 040 的数必须后面跟着非八进制的数位或非数位。
-\%x2a   匹配不超过两位十六进制数位指定的字符。
-\%u20AC 匹配不超过四位十六进制数位指定的字符。
-\%U1234abcd     匹配不超过八位十六进制数位指定的字符。
+\%d123  匹配十進制指定的字符。後面必須跟著非數位。
+\%o40   匹配八進制指定的字符，至多 0377。
+        小於 040 的數必須後面跟著非八進制的數位或非數位。
+\%x2a   匹配不超過兩位十六進制數位指定的字符。
+\%u20AC 匹配不超過四位十六進制數位指定的字符。
+\%U1234abcd     匹配不超過八位十六進制數位指定的字符。
 
 </pre><hr class="doubleline" /><pre>
-<h4>7. 忽略大小写                                           <b class="vimtag"> <a name="%2Fignorecase">/ignorecase</a> </b></h4>
-如果选项 <a href="options.html#'ignorecase'">'ignorecase'</a> 打开的话，忽略正常字母的大小写。设定 <a href="options.html#'smartcase'">'smartcase'</a> 会在模
-式只包含小写字母时才忽略大小写。
+<h4>7. 忽略大小寫                                           <b class="vimtag"> <a name="%2Fignorecase">/ignorecase</a> </b></h4>
+如果選項 <a href="options.html#'ignorecase'">'ignorecase'</a> 打開的話，忽略正常字母的大小寫。設定 <a href="options.html#'smartcase'">'smartcase'</a> 會在模
+式只包含小寫字母時才忽略大小寫。
                                                         <b class="vimtag"> <a name="%2F\c">/\c</a> </b> <b class="vimtag"> <a name="%2F\C">/\C</a> </b>
-如果模式的任何位置出现了 "\c"，整个模式会像打开 <a href="options.html#'ignorecase'">'ignorecase'</a> 一样处理。真正的
-<a href="options.html#'ignorecase'">'ignorecase'</a> 和 <a href="options.html#'smartcase'">'smartcase'</a> 的值会被忽略。"\C" 的效果恰好相反: 强制对整个模式
-匹配大小写。
-<code class="notvi">{仅 Vim 支持 \c 和 \C}</code>
-<code class="note">注意</code> <a href="options.html#'ignorecase'">'ignorecase'</a>，"\c" 和 "\C" 对字符类无效。
+如果模式的任何位置出現了 "\c"，整個模式會像打開 <a href="options.html#'ignorecase'">'ignorecase'</a> 一樣處理。真正的
+<a href="options.html#'ignorecase'">'ignorecase'</a> 和 <a href="options.html#'smartcase'">'smartcase'</a> 的值會被忽略。"\C" 的效果恰好相反: 強制對整個模式
+匹配大小寫。
+<code class="notvi">{僅 Vim 支持 \c 和 \C}</code>
+<code class="note">注意</code> <a href="options.html#'ignorecase'">'ignorecase'</a>，"\c" 和 "\C" 對字符類無效。
 
 例如:
 <code class="section">        模式    <a href="options.html#'ignorecase'">'ignorecase'</a>  <a href="options.html#'smartcase'">'smartcase'</a>       匹配 </code>
-        foo       关            -               foo
-        foo       开            -               foo Foo FOO
-        Foo       开            关              foo Foo FOO
-        Foo       开            开                  Foo
+        foo       關            -               foo
+        foo       開            -               foo Foo FOO
+        Foo       開            關              foo Foo FOO
+        Foo       開            開                  Foo
         \cfoo     -             -               foo Foo FOO
         foo\C     -             -               foo
 
-技术细节:                                               <b class="vimtag"> <a name="NL-used-for-Nul">NL-used-for-Nul</a> </b>
-文件中的 <code class="special">&lt;Nul&gt;</code> 字符在内存中存储为 <code class="special">&lt;NL&gt;</code>。显示为 "^@"。翻译是在读写文件时完成
-的。为了在查找模式中匹配 <code class="special">&lt;Nul&gt;</code> 你可以使用 <code class="keystroke">CTRL-@</code> 或 "<code class="keystroke">CTRL-V</code> 000"。这应该不出你
-的所料。在内部，该字符被替换为 <code class="special">&lt;NL&gt;</code>。不寻常的是键入 <code class="keystroke">CTRL-V</code> <code class="keystroke">CTRL-J</code> 同样插入一个
-<code class="special">&lt;NL&gt;</code>，因此也搜索文件中的 <code class="special">&lt;Nul&gt;</code>。<code class="notvi">{Vi 则完全不能处理文件中的 <code class="special">&lt;Nul&gt;</code> 字符}</code>
+技術細節:                                               <b class="vimtag"> <a name="NL-used-for-Nul">NL-used-for-Nul</a> </b>
+文件中的 <code class="special">&lt;Nul&gt;</code> 字符在內存中存儲為 <code class="special">&lt;NL&gt;</code>。顯示為 "^@"。翻譯是在讀寫文件時完成
+的。為了在查找模式中匹配 <code class="special">&lt;Nul&gt;</code> 你可以使用 <code class="keystroke">CTRL-@</code> 或 "<code class="keystroke">CTRL-V</code> 000"。這應該不出你
+的所料。在內部，該字符被替換為 <code class="special">&lt;NL&gt;</code>。不尋常的是鍵入 <code class="keystroke">CTRL-V</code> <code class="keystroke">CTRL-J</code> 同樣插入一個
+<code class="special">&lt;NL&gt;</code>，因此也搜索文件中的 <code class="special">&lt;Nul&gt;</code>。<code class="notvi">{Vi 則完全不能處理文件中的 <code class="special">&lt;Nul&gt;</code> 字符}</code>
 
                                                         <b class="vimtag"> <a name="CR-used-for-NL">CR-used-for-NL</a> </b>
-当 <a href="options.html#'fileformat'">'fileformat'</a> 为 "mac" 时，<code class="special">&lt;NL&gt;</code> 字符在内部储存为 <code class="special">&lt;CR&gt;</code>。在文本里显示为 "^J"。
-除此以外，和 <code class="special">&lt;NL&gt;</code> 作为 <code class="special">&lt;Nul&gt;</code> 的用法类似。
+當 <a href="options.html#'fileformat'">'fileformat'</a> 為 "mac" 時，<code class="special">&lt;NL&gt;</code> 字符在內部儲存為 <code class="special">&lt;CR&gt;</code>。在文本裡顯示為 "^J"。
+除此以外，和 <code class="special">&lt;NL&gt;</code> 作為 <code class="special">&lt;Nul&gt;</code> 的用法類似。
 
-在作表达式求值时，模式中的 <code class="special">&lt;NL&gt;</code> 字符匹配字符串中的 <code class="special">&lt;NL&gt;</code>。用 "\n" (反斜杠 n) 来
-匹配 <code class="special">&lt;NL&gt;</code> 在这里是行不通的，它仅对缓冲区内的文本有效。
+在作表達式求值時，模式中的 <code class="special">&lt;NL&gt;</code> 字符匹配字符串中的 <code class="special">&lt;NL&gt;</code>。用 "\n" (反斜槓 n) 來
+匹配 <code class="special">&lt;NL&gt;</code> 在這裡是行不通的，它僅對緩衝區內的文本有效。
 
                                                         <b class="vimtag"> <a name="pattern-multi-byte">pattern-multi-byte</a> </b>
-模式匹配对于多字节字符同样适用。大体上使用并无区别，不过要<code class="note">注意</code>无效字节可能引起
-的问题，一个包含无效字节的模式永远不会得到匹配。
+模式匹配對於多字節字符同樣適用。大體上使用並無區別，不過要<code class="note">注意</code>無效字節可能引起
+的問題，一個包含無效字節的模式永遠不會得到匹配。
 
 </pre><hr class="doubleline" /><pre>
 <h4>8. 合成用字符                                           <b class="vimtag"> <a name="patterns-composing">patterns-composing</a> </b></h4>
                                                         <b class="vimtag"> <a name="%2F\Z">/\Z</a> </b>
-如果模式的任何位置出现了 "\Z"，所有的合成用字符将被忽略。这时，只比较基本字
-符，合成用字符可以不同，其数量也可以不同。这一功能只在 <a href="options.html#'encoding'">'encoding'</a> 为 'utf-8'
-时有意义。
-例外: 如果模式以一或多个合成用字符开始，它们必须匹配。
+如果模式的任何位置出現了 "\Z"，所有的合成用字符將被忽略。這時，只比較基本字
+符，合成用字符可以不同，其數量也可以不同。這一功能只在 <a href="options.html#'encoding'">'encoding'</a> 為 'utf-8'
+時有意義。
+例外: 如果模式以一或多個合成用字符開始，它們必須匹配。
                                                         <b class="vimtag"> <a name="%2F\%C">/\%C</a> </b>
-"\%C" 可用来跳过任何合成用字符。例如，模式 "a" 不匹配 "càt" (这里 a 有合成用字
-符 0x0300)，但 "a\%C" 可以。<code class="note">注意</code> 不匹配 "cát" (这里 á 是字符 0xe1，没有合成用
-字符)。但匹配 "cat" (这里 a 就是简单的 a)。
+"\%C" 可用來跳過任何合成用字符。例如，模式 "a" 不匹配 "càt" (這裡 a 有合成用字
+符 0x0300)，但 "a\%C" 可以。<code class="note">注意</code> 不匹配 "cat" (這裡 a 是字符 0xe1，沒有合成用
+字符)。但匹配 "cat" (這裡 a 就是簡單的 a)。
 
-如果一个合成用字符出现在模式的开始处或在不包含合成用字符的项目之后出现，它匹配
-任何包含该合成用字符的字符。
+如果一個合成用字符出現在模式的開始處或在不包含合成用字符的項目之後出現，它匹配
+任何包含該合成用字符的字符。
 
-句号和合成用字符联用和合成用字符本身的效果相同，但是你不用担心该字符前面出现的
-是什么项目。
+句號和合成用字符聯用和合成用字符本身的效果相同，但是你不用擔心該字符前面出現的
+是什麼項目。
 
-合成用字符出现的顺序无关重要。另外，文本可以使用比模式更多的合成用字符，它仍然
-匹配。但模式中合成用字符必须全数出现在文本中。
+合成用字符出現的順序無關重要。另外，文本可以使用比模式更多的合成用字符，它仍然
+匹配。但模式中合成用字符必須全數出現在文本中。
 
 假定 B 是基本字符，x 和 y 是合成用字符:
-<code class="section">        模式            文本            匹配与否 </code>
+<code class="section">        模式            文本            匹配與否 </code>
         Bxy             Bxy             是 (完全匹配)
-        Bxy             Byx             是 (忽略顺序)
+        Bxy             Byx             是 (忽略順序)
         Bxy             By              否 (缺失 x)
         Bxy             Bx              否 (缺失 y)
         Bx              Bx              是 (完全匹配)
         Bx              By              否 (缺失 x)
-        Bx              Bxy             是 (忽略多余的 y)
-        Bx              Byx             是 (忽略多余的 y)
+        Bx              Bxy             是 (忽略多餘的 y)
+        Bx              Byx             是 (忽略多餘的 y)
 
 </pre><hr class="doubleline" /><pre>
-<h4>9. 与 Perl 模式的比较                                   <b class="vimtag"> <a name="perl-patterns">perl-patterns</a> </b></h4>
-Vim 中的正则表达式和 Perl 的在功能上来说非常相似。它们之间的区别基本上只是在表
-示方法上。这里给出一个它们之间的区别的总结:
+<h4>9. 與 Perl 模式的比較                                   <b class="vimtag"> <a name="perl-patterns">perl-patterns</a> </b></h4>
+Vim 中的正則表達式和 Perl 的在功能上來說非常相似。它們之間的區別基本上只是在表
+示方法上。這裡給出一個它們之間的區別的總結:
 
 <code class="section">功能                            Vim 方言        Perl 方言 </code>
 </pre><hr class="singleline" /><pre>
-强制不区分大小写                \c              (?i)
-强制区分大小写                  \C              (?-i)
-不须被引用的群组                \%(atom\)       (?:atom)
-保守的倍数描述                  \<code class="special">{-n,m}</code>         *?，+?，??，<code class="special">{}</code>?
-零宽度匹配                      atom\@=         (?=atom)
-零宽度否匹配                    atom\@!         (?!atom)
-零宽度反向匹配                  atom\@&lt;=        (?&lt;=atom)
-零宽度反向否匹配                atom\@&lt;!        (?&lt;!atom)
-无重试匹配                      atom\@&gt;         (?&gt;atom)
+強制不區分大小寫                \c              (?i)
+強制區分大小寫                  \C              (?-i)
+不須被引用的群組                \%(atom\)       (?:atom)
+保守的倍數描述                  \<code class="special">{-n,m}</code>         *?，+?，??，<code class="special">{}</code>?
+零寬度匹配                      atom\@=         (?=atom)
+零寬度否匹配                    atom\@!         (?!atom)
+零寬度反向匹配                  atom\@&lt;=        (?&lt;=atom)
+零寬度反向否匹配                atom\@&lt;!        (?&lt;!atom)
+無重試匹配                      atom\@&gt;         (?&gt;atom)
 
-(译注: 常见的其它译法
-不须被引用的群组                非捕获分组
-保守的倍数描述                  非贪婪匹配
-零宽度匹配                      正向预搜索匹配
-零宽度否匹配                    正向预搜索不匹配
-零宽度反向匹配                  反向预搜索匹配
-零宽度反向否匹配                反向预搜索不匹配
+(譯注: 常見的其它譯法
+不須被引用的群組                非捕獲分組
+保守的倍數描述                  非貪婪匹配
+零寬度匹配                      正向預搜索匹配
+零寬度否匹配                    正向預搜索不匹配
+零寬度反向匹配                  反向預搜索匹配
+零寬度反向否匹配                反向預搜索不匹配
 )
 
-Vim 和 Perl 匹配一个字符串中的换行符时有所不同:
+Vim 和 Perl 匹配一個字符串中的換行符時有所不同:
 
-在 Perl 里，^ 和 $ 缺省只匹配文本的开始和结尾。但是你也可以设定 'm' 标志位来使
-它们匹配内嵌的换行符。你还可以设定 's' 标志位使句号 (.) 可以也用来匹配换行符。
-(顺便提一下，使用类似上面 i 标志位的用法，可以在在模式内部改变这两个标志位。)
+在 Perl 裡，^ 和 $ 缺省只匹配文本的開始和結尾。但是你也可以設定 'm' 標誌位來使
+它們匹配內嵌的換行符。你還可以設定 's' 標誌位使句號 (.) 可以也用來匹配換行符。
+(順便提一下，使用類似上面 i 標誌位的用法，可以在在模式內部改變這兩個標誌位。)
 
-另一方面，Vim 中的 ^ 和 $ 永远匹配内嵌的换行符。但另外有两个匹配原:  \%^ 和
-\%$，可以分别用来匹配 (且只匹配) 文本的起始和结尾。对第二个问题，Vim 用 \_ "修
-饰符" 来解决: 把它放在一个句号或字符类之前，对应的模式就可以同时匹配换行字符。
+另一方面，Vim 中的 ^ 和 $ 永遠匹配內嵌的換行符。但另外有兩個匹配原:  \%^ 和
+\%$，可以分別用來匹配 (且只匹配) 文本的起始和結尾。對第二個問題，Vim 用 \_ "修
+飾符" 來解決: 把它放在一個句號或字符類之前，對應的模式就可以同時匹配換行字符。
 
-最后，以下这些结构是 Perl 独有的:
-- 在正则表达式内执行任意代码:  (?{perl 代码})
-- 条件表达式:  (?(条件)真值表达式|假值表达式)
+最後，以下這些結構是 Perl 獨有的:
+- 在正則表達式內執行任意代碼:  (?{perl 代碼})
+- 條件表達式:  (?(條件)真值表達式|假值表達式)
 
-... 而这些是 Vim 独有的:
-- 改变模式的 <a href="options.html#'magic'">'magic'</a> 属性:  \v \V \m \M (对于避免反斜杠非常有用)
-- 可选匹配原的序列:  \%[atoms]
-- \&amp; (\&amp; 之于 \| 就像 "与" 之于 "或"；它强迫多个模式在同一个位置匹配)
-- 通过行/列号匹配:  \%5l \%5c \%5v
-- 设置匹配的开始和结束位置:  \zs \ze
+... 而這些是 Vim 獨有的:
+- 改變模式的 <a href="options.html#'magic'">'magic'</a> 屬性:  \v \V \m \M (對於避免反斜槓非常有用)
+- 可選匹配原的序列:  \%[atoms]
+- \&amp; (\&amp; 之於 \| 就像 "與" 之於 "或"；它強迫多個模式在同一個位置匹配)
+- 通過行/列號匹配:  \%5l \%5c \%5v
+- 設置匹配的開始和結束位置:  \zs \ze
 
 </pre><hr class="doubleline" /><pre>
-<h4>10. 高亮显示匹配                                        <b class="vimtag"> <a name="match-highlight">match-highlight</a> </b></h4>
+<h4>10. 高亮顯示匹配                                        <b class="vimtag"> <a name="match-highlight">match-highlight</a> </b></h4>
                                                         <b class="vimtag"> <a name=":mat">:mat</a> </b> <b class="vimtag"> <a name=":match">:match</a> </b>
 :mat[ch] <code class="special">{group}</code> /<code class="special">{pattern}</code>/
-                定义一个在当前窗口高亮显示的模式。它会以 <code class="special">{group}</code> 高亮。例: 
+                定義一個在當前窗口高亮顯示的模式。它會以 <code class="special">{group}</code> 高亮。例: 
 <code class="example">                        :highlight MyGroup ctermbg=green guibg=green</code>
 <code class="example">                        :match MyGroup /TODO/</code>
-                除了 // 以外，任何字符都可以用来标识一个 <code class="special">{pattern}</code> 的开始和结
-                束。要当心某些特殊的字符，例如 '"' 和 '|'。
+                除了 // 以外，任何字符都可以用來標識一個 <code class="special">{pattern}</code> 的開始和結
+                束。要當心某些特殊的字符，例如 '"' 和 '|'。
 
-                该命令执行时，<code class="special">{group}</code> 必须已经定义。
+                該命令執行時，<code class="special">{group}</code> 必須已經定義。
 
-                对于 <a href="options.html#'hlsearch'">'hlsearch'</a> 要高亮的字符，仍然适用 <code class="special">{group}</code> 高亮，因为匹配
-                高亮的优先级比 <a href="options.html#'hlsearch'">'hlsearch'</a> 要高。同样的，语法高亮 (见 <a href="options.html#'syntax'">'syntax'</a>)
-                也被匹配否决。
+                對於 <a href="options.html#'hlsearch'">'hlsearch'</a> 要高亮的字符，仍然適用 <code class="special">{group}</code> 高亮，因為匹配
+                高亮的優先級比 <a href="options.html#'hlsearch'">'hlsearch'</a> 要高。同樣的，語法高亮 (見 <a href="options.html#'syntax'">'syntax'</a>)
+                也被匹配否決。
 
-                <code class="note">注意</code> 使用 <a href="options.html#'hlsearch'">'hlsearch'</a> 高亮显示最近使用的查找模式对所有窗口都有
-                效，而以 ":match" 定义的模式仅仅对当前窗口生效。当切换至另一个
-                缓冲区时，该设定被保留。
+                <code class="note">注意</code> 使用 <a href="options.html#'hlsearch'">'hlsearch'</a> 高亮顯示最近使用的查找模式對所有窗口都有
+                效，而以 ":match" 定義的模式僅僅對當前窗口生效。當切換至另一個
+                緩衝區時，該設定被保留。
 
-                <a href="options.html#'ignorecase'">'ignorecase'</a> 不起作用。在模式中使用  <a href="pattern.html#%2F\c">/\c</a>  来忽略大小写，否则，
-                大小写总是区分的。
+                <a href="options.html#'ignorecase'">'ignorecase'</a> 不起作用。在模式中使用  <a href="pattern.html#%2F\c">/\c</a>  來忽略大小寫，否則，
+                大小寫總是區分的。
 
-                <a href="options.html#'redrawtime'">'redrawtime'</a> 定义搜索模式匹配的最大时间。
+                <a href="options.html#'redrawtime'">'redrawtime'</a> 定義搜索模式匹配的最大時間。
 
-                匹配行尾而 Vim 只重绘部分显示时，结果可能会令你意想不到。这是
-                因为 Vim 在重绘开始的行上寻找匹配的缘故。
+                匹配行尾而 Vim 只重繪部分顯示時，結果可能會令你意想不到。這是
+                因為 Vim 在重繪開始的行上尋找匹配的緣故。
 
-                另见  <a href="eval.html#matcharg()">matcharg()</a>  和  <a href="eval.html#getmatches()">getmatches()</a> 。前者返回上次  <a href="pattern.html#:match">:match</a>  命
-                令使用的高亮组和模式。后者返回  <a href="eval.html#matchadd()">matchadd()</a>  和  <a href="pattern.html#:match">:match</a>  两者定
-                义的所有高亮组和模式的列表。
+                另見  <a href="eval.html#matcharg()">matcharg()</a>  和  <a href="eval.html#getmatches()">getmatches()</a> 。前者返回上次  <a href="pattern.html#:match">:match</a>  命
+                令使用的高亮組和模式。後者返回  <a href="eval.html#matchadd()">matchadd()</a>  和  <a href="pattern.html#:match">:match</a>  兩者定
+                義的所有高亮組和模式的列表。
 
-                 <a href="pattern.html#:match">:match</a>  定义的高亮匹配仅限于三个 (除了  <a href="pattern.html#:match">:match</a>  以外，还有
-                 <a href="pattern.html#:2match">:2match</a>  和  <a href="pattern.html#:3match">:3match</a>  可用)。而  <a href="eval.html#matchadd()">matchadd()</a>  无此限制，而且还
-                能排定匹配的优先级。
+                 <a href="pattern.html#:match">:match</a>  定義的高亮匹配僅限於三個 (除了  <a href="pattern.html#:match">:match</a>  以外，還有
+                 <a href="pattern.html#:2match">:2match</a>  和  <a href="pattern.html#:3match">:3match</a>  可用)。而  <a href="eval.html#matchadd()">matchadd()</a>  無此限制，而且還
+                能排定匹配的優先級。
 
-                另一个例子，高亮显示虚拟第 72 列之后的所有文本: 
+                另一個例子，高亮顯示虛擬第 72 列之後的所有文本: 
 <code class="example">                        :highlight rightMargin term=bold ctermfg=blue guifg=blue</code>
 <code class="example">                        :match rightMargin /.\%&gt;72v/</code>
-                要高亮显示所有位于虚拟第 7 列的文本: 
+                要高亮顯示所有位於虛擬第 7 列的文本: 
 <code class="example">                        :highlight col8 ctermbg=grey guibg=grey</code>
 <code class="example">                        :match col8 /\%&lt;8v.\%&gt;7v/</code>
-                <code class="note">注意</code> 用两个项目是为了匹配那些占用了超过一个虚拟列的字符，例如
+                <code class="note">注意</code> 用兩個項目是為了匹配那些佔用了超過一個虛擬列的字符，例如
                 TAB。
 
 :mat[ch]
 :mat[ch] none
-                清除上次定义的匹配模式。
+                清除上次定義的匹配模式。
 
 
 :2mat[ch] <code class="special">{group}</code> /<code class="special">{pattern}</code>/                                   <b class="vimtag"> <a name=":2match">:2match</a> </b>
@@ -1246,11 +1246,11 @@ Vim 和 Perl 匹配一个字符串中的换行符时有所不同:
 :3mat[ch] <code class="special">{group}</code> /<code class="special">{pattern}</code>/                                   <b class="vimtag"> <a name=":3match">:3match</a> </b>
 :3mat[ch]
 :3mat[ch] none
-                和上面的  <a href="pattern.html#:match">:match</a>  完全类似，但设置不同的匹配。这样，同时可以有
-                三组激活的匹配。如果不同匹配在相同位置出现，最小编号的匹配优
+                和上面的  <a href="pattern.html#:match">:match</a>  完全類似，但設置不同的匹配。這樣，同時可以有
+                三組激活的匹配。如果不同匹配在相同位置出現，最小編號的匹配優
                 先。
-                ":3match" 命令用于  <a href="pi_paren.html#matchparen">matchparen</a>  插件。建议使用 ":match" 进行手
-                动的搜索，而 ":2match" 用于其它的插件。
+                ":3match" 命令用於  <a href="pi_paren.html#matchparen">matchparen</a>  插件。建議使用 ":match" 進行手
+                動的搜索，而 ":2match" 用於其它的插件。
 
 
  vim:tw=78:ts=8:ft=help:norl:

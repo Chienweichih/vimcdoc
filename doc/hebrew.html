@@ -1,17 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>VIM: hebrew</title>
 <link rel="stylesheet" href="vim-stylesheet.css" type="text/css">
 </head>
 <body>
 <div id=banner>
-<a href="help.html">帮助总览</a> &middot;
-<a href="quickref.html">快速参考</a> &middot;
+<a href="help.html">幫助總覽</a> &middot;
+<a href="quickref.html">快速參考</a> &middot;
 <a href="index.html">命令索引</a> &middot;
-<a href="usr_toc.html">用户手册</a> &middot;
-<a href="help.html#reference_toc">参考手册</a>
+<a href="usr_toc.html">用戶手冊</a> &middot;
+<a href="help.html#reference_toc">參考手冊</a>
 </div>
 
 <div id=outer>
@@ -20,77 +20,77 @@
 <b class="vimtag"> <a name="hebrew.txt">hebrew.txt</a> </b>    For Vim version 8.0.  最近更新: 2008年4月
 
 
-           <code class="vim">VIM 参考手册    by Ron Aaron (and Avner Lottem)</code>
-                                <code class="vim">译者</code>: Willis
+           <code class="vim">VIM 參考手冊    by Ron Aaron (and Avner Lottem)</code>
+                                <code class="vim">譯者</code>: Willis
                                 http://vimcdoc.sf.net
 
 
-Vim 的希伯来语支持 (选项和映射)                                 <b class="vimtag"> <a name="hebrew">hebrew</a> </b>
+Vim 的希伯來語支持 (選項和映射)                                 <b class="vimtag"> <a name="hebrew">hebrew</a> </b>
 
 
-<a href="options.html#'rightleft'">'rightleft'</a> 的功能是由 Avner Lottem &lt;alottem at gmail dot com&gt; 最早创建的。
-Ron Aaron &lt;ron at ronware dot org&gt; 现在为支持这些功能提供帮助。
+<a href="options.html#'rightleft'">'rightleft'</a> 的功能是由 Avner Lottem &lt;alottem at gmail dot com&gt; 最早創建的。
+Ron Aaron &lt;ron at ronware dot org&gt; 現在為支持這些功能提供幫助。
 
-<code class="notvi">{Vi 没有这些功能}</code>
+<code class="notvi">{Vi 沒有這些功能}</code>
 
-所有这些只有在编译时加入  <a href="various.html#+rightleft">+rightleft</a>  特性才能得到。
+所有這些只有在編譯時加入  <a href="various.html#+rightleft">+rightleft</a>  特性才能得到。
 
 
-简介
+簡介
 </pre><hr class="singleline" /><pre>
-希伯来语专用的选项包括 <a href="options.html#'hkmap'">'hkmap'</a>、<a href="options.html#'hkmapp'">'hkmapp'</a>、<a href="options.html#'keymap'">'keymap'</a>=hebrew 和 <a href="options.html#'aleph'">'aleph'</a>。
-对希伯来语有用的选项包括 <a href="options.html#'delcombine'">'delcombine'</a>、<a href="options.html#'allowrevins'">'allowrevins'</a>、<a href="options.html#'revins'">'revins'</a>、<a href="options.html#'rightleft'">'rightleft'</a>
+希伯來語專用的選項包括 <a href="options.html#'hkmap'">'hkmap'</a>、<a href="options.html#'hkmapp'">'hkmapp'</a>、<a href="options.html#'keymap'">'keymap'</a>=hebrew 和 <a href="options.html#'aleph'">'aleph'</a>。
+對希伯來語有用的選項包括 <a href="options.html#'delcombine'">'delcombine'</a>、<a href="options.html#'allowrevins'">'allowrevins'</a>、<a href="options.html#'revins'">'revins'</a>、<a href="options.html#'rightleft'">'rightleft'</a>
 和 <a href="options.html#'rightleftcmd'">'rightleftcmd'</a>。
 
-<a href="options.html#'rightleft'">'rightleft'</a> 模式反转显示的顺序，所以字符不是通常的从左到右，而是从右到左的显
-示。这主要是对希伯来语和其它中东的语言有用。参阅  <a href="rileft.html#rileft.txt">rileft.txt</a>  去了解更多。
+<a href="options.html#'rightleft'">'rightleft'</a> 模式反轉顯示的順序，所以字符不是通常的從左到右，而是從右到左的顯
+示。這主要是對希伯來語和其它中東的語言有用。參閱  <a href="rileft.html#rileft.txt">rileft.txt</a>  去瞭解更多。
 
-细节
+細節
 </pre><hr class="singleline" /><pre>
-+  选项:
-   +  <a href="options.html#'rightleft'">'rightleft'</a> (<a href="options.html#'rl'">'rl'</a>) 把窗口朝向设为从右到左。这意味着逻辑上的文字 <code class="badlink">'ABC'</code> 会
-      被显示成 <code class="badlink">'CBA'</code>。文字将从窗口右边界开始输出，而不是左边。
-   +  <a href="options.html#'hkmap'">'hkmap'</a> (<a href="options.html#'hk'">'hk'</a>) 在插入/替换模式中把键盘映射设成希伯来方式。
-   +  <a href="options.html#'aleph'">'aleph'</a> (<a href="options.html#'al'">'al'</a>)，数值，保存 Aleph 的十进制代码，键盘映射用。
-   +  <a href="options.html#'hkmapp'">'hkmapp'</a> (<a href="options.html#'hkp'">'hkp'</a>) 把键盘映射设成 <code class="badlink">'根据读音的希伯来语'</code>。
++  選項:
+   +  <a href="options.html#'rightleft'">'rightleft'</a> (<a href="options.html#'rl'">'rl'</a>) 把窗口朝向設為從右到左。這意味著邏輯上的文字 <code class="badlink">'ABC'</code> 會
+      被顯示成 <code class="badlink">'CBA'</code>。文字將從窗口右邊界開始輸出，而不是左邊。
+   +  <a href="options.html#'hkmap'">'hkmap'</a> (<a href="options.html#'hk'">'hk'</a>) 在插入/替換模式中把鍵盤映射設成希伯來方式。
+   +  <a href="options.html#'aleph'">'aleph'</a> (<a href="options.html#'al'">'al'</a>)，數值，保存 Aleph 的十進制代碼，鍵盤映射用。
+   +  <a href="options.html#'hkmapp'">'hkmapp'</a> (<a href="options.html#'hkp'">'hkp'</a>) 把鍵盤映射設成 <code class="badlink">'根據讀音的希伯來語'</code>。
 
-   <code class="note">注意</code>: 这三个选项 (<a href="options.html#'hkmap'">'hkmap'</a>、<a href="options.html#'hkmapp'">'hkmapp'</a> 和 <a href="options.html#'aleph'">'aleph'</a>) 现在已经作废。你应该用
-         ":set keymap=hebrewp" 来代替。
+   <code class="note">注意</code>: 這三個選項 (<a href="options.html#'hkmap'">'hkmap'</a>、<a href="options.html#'hkmapp'">'hkmapp'</a> 和 <a href="options.html#'aleph'">'aleph'</a>) 現在已經作廢。你應該用
+         ":set keymap=hebrewp" 來代替。
 
-   +  <a href="options.html#'delcombine'">'delcombine'</a> (<a href="options.html#'deco'">'deco'</a>)，布尔值，如果编辑 UTF-8 编码的希伯来文字，可以在一
-      个字符上 (带有 niqud ) 上按 'x' 来去掉 niqud 或者 te`amim。
+   +  <a href="options.html#'delcombine'">'delcombine'</a> (<a href="options.html#'deco'">'deco'</a>)，布爾值，如果編輯 UTF-8 編碼的希伯來文字，可以在一
+      個字符上 (帶有 niqud ) 上按 'x' 來去掉 niqud 或者 te`amim。
 
-   +  <a href="options.html#'rightleftcmd'">'rightleftcmd'</a> (<a href="options.html#'rlc'">'rlc'</a>) 从右边开始显示用于搜索的命令行提示，这只适用于
+   +  <a href="options.html#'rightleftcmd'">'rightleftcmd'</a> (<a href="options.html#'rlc'">'rlc'</a>) 從右邊開始顯示用於搜索的命令行提示，這只適用於
       <a href="options.html#'rightleft'">'rightleft'</a> 的窗口。
 
-+  编码:
-   +  Unix 上，ISO 8859-8 编码 (希伯来字母编码: 224-250)。
-   +  MS DOS 上，PC 编码 (希伯来字母编码: 128-154)。
-      这些都是缺省值，可以用 <a href="options.html#'aleph'">'aleph'</a> 选项来覆盖。
-   +  你应该选用 UTF8，因为它支持组合用字符 (如果不是 UTF8 编码，<a href="options.html#'deco'">'deco'</a> 什么都
++  編碼:
+   +  Unix 上，ISO 8859-8 編碼 (希伯來字母編碼: 224-250)。
+   +  MS DOS 上，PC 編碼 (希伯來字母編碼: 128-154)。
+      這些都是缺省值，可以用 <a href="options.html#'aleph'">'aleph'</a> 選項來覆蓋。
+   +  你應該選用 UTF8，因為它支持組合用字符 (如果不是 UTF8 編碼，<a href="options.html#'deco'">'deco'</a> 什麼都
       不做)。
 
-+  Vim 参数:
-   +  'vim -H file' 启动希伯来文件 file 的编辑，也就是，打开 <a href="options.html#'rightleft'">'rightleft'</a> 和
++  Vim 參數:
+   +  'vim -H file' 啟動希伯來文件 file 的編輯，也就是，打開 <a href="options.html#'rightleft'">'rightleft'</a> 和
       <a href="options.html#'hkmap'">'hkmap'</a>。
 
-+  按键:
-   +  <a href="options.html#'allowrevins'">'allowrevins'</a> 选项使得 <code class="keystroke">CTRL-_</code> 命令在插入和命令行模式下可用。
++  按鍵:
+   +  <a href="options.html#'allowrevins'">'allowrevins'</a> 選項使得 <code class="keystroke">CTRL-_</code> 命令在插入和命令行模式下可用。
 
-   +  插入/替换模式下的 <code class="keystroke">CTRL-_</code> 切换 <a href="options.html#'revins'">'revins'</a> 和 <a href="options.html#'hkmap'">'hkmap'</a>:
+   +  插入/替換模式下的 <code class="keystroke">CTRL-_</code> 切換 <a href="options.html#'revins'">'revins'</a> 和 <a href="options.html#'hkmap'">'hkmap'</a>:
 
-      在从右到左的窗口里，<a href="options.html#'revins'">'revins'</a> 和 <a href="options.html#'nohkmap'">'nohkmap'</a> 被切换，因为可能输入英语。
+      在從右到左的窗口裡，<a href="options.html#'revins'">'revins'</a> 和 <a href="options.html#'nohkmap'">'nohkmap'</a> 被切換，因為可能輸入英語。
 
-      在从左到右的窗口里，<a href="options.html#'revins'">'revins'</a> 和 <a href="options.html#'hkmap'">'hkmap'</a> 被切换，因为可能输入希伯来语。
+      在從左到右的窗口裡，<a href="options.html#'revins'">'revins'</a> 和 <a href="options.html#'hkmap'">'hkmap'</a> 被切換，因為可能輸入希伯來語。
 
-      <code class="keystroke">CTRL-_</code> 把光标移到输入文本的结尾。
+      <code class="keystroke">CTRL-_</code> 把光標移到輸入文本的結尾。
 
-   +  <code class="keystroke">CTRL-_</code> 在命令行模式下切换键盘映射 (参见下面的漏洞)。
-      这个设置和 <a href="options.html#'hkmap'">'hkmap'</a> 无关，后者只适用于插入/替换模式。
+   +  <code class="keystroke">CTRL-_</code> 在命令行模式下切換鍵盤映射 (參見下面的漏洞)。
+      這個設置和 <a href="options.html#'hkmap'">'hkmap'</a> 無關，後者只適用於插入/替換模式。
 
-      <code class="note">注意</code>: 在有些键盘上，<code class="keystroke">CTRL-_</code> 被映射成 <code class="keystroke">CTRL-?</code>。
+      <code class="note">注意</code>: 在有些鍵盤上，<code class="keystroke">CTRL-_</code> 被映射成 <code class="keystroke">CTRL-?</code>。
 
-   +  <a href="options.html#'hkmap'">'hkmap'</a> 设置时，键盘的映射如下 (标准以色利键盘):
+   +  <a href="options.html#'hkmap'">'hkmap'</a> 設置時，鍵盤的映射如下 (標準以色利鍵盤):
 
         q w e r t y u i o p
         / ' ק ר א ט ו ן ם פ
@@ -101,41 +101,41 @@ Ron Aaron &lt;ron at ronware dot org&gt; 现在为支持这些功能提供帮助
           z x c v b n m , . /
           ז ס ב ה נ מ צ ת ץ .
 
-      这也是当 'keymap=hebrew' 设置时的映射方式。使用 <a href="options.html#'keymap'">'keymap'</a> 的好处是它在
-      UTF8 下正常工作，例如，输入的字符是正确的；<a href="options.html#'hkmap'">'hkmap'</a> 则不然。<a href="options.html#'keymap'">'keymap'</a> 键盘
-      也可以插入 niqud 和 te`amim。要了解具体这些映射是什么，看看 <code class="badlink">'hebrew'</code> 等
-      键盘映射文件。
+      這也是當 'keymap=hebrew' 設置時的映射方式。使用 <a href="options.html#'keymap'">'keymap'</a> 的好處是它在
+      UTF8 下正常工作，例如，輸入的字符是正確的；<a href="options.html#'hkmap'">'hkmap'</a> 則不然。<a href="options.html#'keymap'">'keymap'</a> 鍵盤
+      也可以插入 niqud 和 te`amim。要瞭解具體這些映射是什麼，看看 <code class="badlink">'hebrew'</code> 等
+      鍵盤映射文件。
 
-反向输入
+反向輸入
 
-如果 <a href="options.html#'revins'">'revins'</a> (反向输入) 选项被打开，插入是反向的。这可以用来输入希伯来语。这
-时，输入文字时，光标不动，文本向右移动。<code class="special">&lt;BS&gt;</code> 删除光标下的字符，<code class="keystroke">CTRL-W</code> 和
-<code class="keystroke">CTRL-U</code> 工作的方向也经过反转。无论 <a href="options.html#'backspace'">'backspace'</a> 选项如何设置，<code class="special">&lt;BS&gt;</code>、<code class="keystroke">CTRL-W</code> 和
-<code class="keystroke">CTRL-U</code> 并不会在插入点开始处和行尾停住。
+如果 <a href="options.html#'revins'">'revins'</a> (反向輸入) 選項被打開，插入是反向的。這可以用來輸入希伯來語。這
+時，輸入文字時，光標不動，文本向右移動。<code class="special">&lt;BS&gt;</code> 刪除光標下的字符，<code class="keystroke">CTRL-W</code> 和
+<code class="keystroke">CTRL-U</code> 工作的方向也經過反轉。無論 <a href="options.html#'backspace'">'backspace'</a> 選項如何設置，<code class="special">&lt;BS&gt;</code>、<code class="keystroke">CTRL-W</code> 和
+<code class="keystroke">CTRL-U</code> 並不會在插入點開始處和行尾停住。
 
-现在 (还) 没有反向替换模式。
+現在 (還) 沒有反向替換模式。
 
-如果设置了 "showmode" 选项，反向插入模式激活时，状态行会显示
+如果設置了 "showmode" 選項，反向插入模式激活時，狀態行會顯示
 "-- REVERSE INSERT --"。
 
-如果打开了 <a href="options.html#'allowrevins'">'allowrevins'</a> 选项，<code class="keystroke">CTRL-_</code> 也可以进入反向插入模式，而且还有一些附带
-的功能: 首先，键盘映射根据窗口的朝向自动切换 - 如果在从左到右的窗口，<a href="options.html#'revins'">'revins'</a>
-被用来输入希伯来文，所以键盘改变为希伯来方式 (设置 <a href="options.html#'hkmap'">'hkmap'</a>)；如果在从右到左的
-窗口，<a href="options.html#'revins'">'revins'</a> 被用来输入英语，所以键盘切换成英语方式 (关闭 <a href="options.html#'hkmap'">'hkmap'</a>)。其次，通
-过 <code class="keystroke">CTRL-_</code> 来退出 <a href="options.html#'revins'">'revins'</a> 时的光标移动到输入文字的末尾 (如果可能的话)。
+如果打開了 <a href="options.html#'allowrevins'">'allowrevins'</a> 選項，<code class="keystroke">CTRL-_</code> 也可以進入反向插入模式，而且還有一些附帶
+的功能: 首先，鍵盤映射根據窗口的朝向自動切換 - 如果在從左到右的窗口，<a href="options.html#'revins'">'revins'</a>
+被用來輸入希伯來文，所以鍵盤改變為希伯來方式 (設置 <a href="options.html#'hkmap'">'hkmap'</a>)；如果在從右到左的
+窗口，<a href="options.html#'revins'">'revins'</a> 被用來輸入英語，所以鍵盤切換成英語方式 (關閉 <a href="options.html#'hkmap'">'hkmap'</a>)。其次，通
+過 <code class="keystroke">CTRL-_</code> 來退出 <a href="options.html#'revins'">'revins'</a> 時的光標移動到輸入文字的末尾 (如果可能的話)。
 
-在从右到左的窗口粘贴
+在從右到左的窗口粘貼
 </pre><hr class="singleline" /><pre>
-如果用鼠标剪切文本，然后在从右到左的窗口中粘贴，文本会被反向，这时因为从剪切缓
-冲区里得到的字符是从左到右的，而文件中的插入操作是从右到左的。要避免这个问题，
-在粘贴前切换 <a href="options.html#'revins'">'revins'</a> 选项 (通过键入 <code class="keystroke">CTRL-?</code> 或者 <code class="keystroke">CTRL-_</code> )。
+如果用鼠標剪切文本，然後在從右到左的窗口中粘貼，文本會被反向，這時因為從剪切緩
+沖區裡得到的字符是從左到右的，而文件中的插入操作是從右到左的。要避免這個問題，
+在粘貼前切換 <a href="options.html#'revins'">'revins'</a> 選項 (通過鍵入 <code class="keystroke">CTRL-?</code> 或者 <code class="keystroke">CTRL-_</code> )。
 
 
-希伯来字母和 <a href="options.html#'isprint'">'isprint'</a> 变量
+希伯來字母和 <a href="options.html#'isprint'">'isprint'</a> 變量
 </pre><hr class="singleline" /><pre>
-有时希伯来字母代码在 <a href="options.html#'isprint'">'isprint'</a> 变量定义的非可显示字符的范围内。例如，在 Linux
-控制台上，希伯来字体的编码从 128 开始，而缺省的 <a href="options.html#'isprint'">'isprint'</a> 变量是 @,161-255。
-结果就是所有的希伯来字母都被显示成 ~x。要解决这个问题，执行 
+有時希伯來字母代碼在 <a href="options.html#'isprint'">'isprint'</a> 變量定義的非可顯示字符的範圍內。例如，在 Linux
+控制台上，希伯來字體的編碼從 128 開始，而缺省的 <a href="options.html#'isprint'">'isprint'</a> 變量是 @,161-255。
+結果就是所有的希伯來字母都被顯示成 ~x。要解決這個問題，執行 
 <code class="example">        set isprint=@,128-255</code>
 <code class="example"></code>
 <code class="example"></code>

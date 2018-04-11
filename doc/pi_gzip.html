@@ -1,17 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>VIM: pi_gzip</title>
 <link rel="stylesheet" href="vim-stylesheet.css" type="text/css">
 </head>
 <body>
 <div id=banner>
-<a href="help.html">帮助总览</a> &middot;
-<a href="quickref.html">快速参考</a> &middot;
+<a href="help.html">幫助總覽</a> &middot;
+<a href="quickref.html">快速參考</a> &middot;
 <a href="index.html">命令索引</a> &middot;
-<a href="usr_toc.html">用户手册</a> &middot;
-<a href="help.html#reference_toc">参考手册</a>
+<a href="usr_toc.html">用戶手冊</a> &middot;
+<a href="help.html#reference_toc">參考手冊</a>
 </div>
 
 <div id=outer>
@@ -20,26 +20,26 @@
 <b class="vimtag"> <a name="pi_gzip.txt">pi_gzip.txt</a> </b>   For Vim version 8.0.  最近更新: 2017年8月
 
 
-                  <code class="vim">VIM 参考手册    by Bram Moolenaar</code>
-           <code class="vim">译者</code>: iCrazy &lt;icrazy@ustc.edu&gt;  http://vimcdoc.sf.net
+                  <code class="vim">VIM 參考手冊    by Bram Moolenaar</code>
+           <code class="vim">譯者</code>: iCrazy &lt;icrazy@ustc.edu&gt;  http://vimcdoc.sf.net
 
 
-用 Vim 编辑压缩的文件                           <b class="vimtag"> <a name="gzip">gzip</a> </b> <b class="vimtag"> <a name="bzip2">bzip2</a> </b> <b class="vimtag"> <a name="compress">compress</a> </b>
+用 Vim 編輯壓縮的文件                           <b class="vimtag"> <a name="gzip">gzip</a> </b> <b class="vimtag"> <a name="bzip2">bzip2</a> </b> <b class="vimtag"> <a name="compress">compress</a> </b>
 
-1. 自动命令                      <a href="pi_gzip.html#gzip-autocmd">gzip-autocmd</a> 
+1. 自動命令                      <a href="pi_gzip.html#gzip-autocmd">gzip-autocmd</a> 
 
-这里涉及到的功能是一个  <a href="usr_05.html#standard-plugin">standard-plugin</a> 。
-这个插件仅在 <a href="options.html#'compatible'">'compatible'</a> 选项没有被置位的情况下有效。
-您可以通过设置变量 "loaded_gzip" 来避免装载这个插件:
+這裡涉及到的功能是一個  <a href="usr_05.html#standard-plugin">standard-plugin</a> 。
+這個插件僅在 <a href="options.html#'compatible'">'compatible'</a> 選項沒有被置位的情況下有效。
+您可以通過設置變量 "loaded_gzip" 來避免裝載這個插件:
         :let loaded_gzip = 1
 
-<code class="notvi">{Vi 没有以上的功能}</code>
+<code class="notvi">{Vi 沒有以上的功能}</code>
 
 </pre><hr class="doubleline" /><pre>
-<h4>1. 自动命令                                             <b class="vimtag"> <a name="gzip-autocmd">gzip-autocmd</a> </b></h4>
-这个插件建立自动命令来截获对具有以下扩展名的文件的读写:
+<h4>1. 自動命令                                             <b class="vimtag"> <a name="gzip-autocmd">gzip-autocmd</a> </b></h4>
+這個插件建立自動命令來截獲對具有以下擴展名的文件的讀寫:
 
-<code class="section">        扩展名          压缩格式 </code>
+<code class="section">        擴展名          壓縮格式 </code>
         *.Z             compress (Lempel-Ziv)
         *.gz            gzip
         *.bz2           bzip2
@@ -48,13 +48,13 @@
         *.lz            lzip
         *.zst           zstd
 
-您仅仅知道这些就已经足够了，此插件没有选项。
+您僅僅知道這些就已經足夠了，此插件沒有選項。
 
-在解压缩一个文件之后，会自动重新检测文件格式。这样可能会使一个类似 "foo.c.gz"
+在解壓縮一個文件之後，會自動重新檢測文件格式。這樣可能會使一個類似 "foo.c.gz"
 的文件具有 "c" 的文件格式。
 
-如果您设置了 <a href="options.html#'patchmode'">'patchmode'</a>，在进行压缩后该值会被自动加到文件的扩展名后面。因而编
-辑 patchmode 文件不会产生自动解压缩的效果。如果您希望这样，您需要改变文件名。
+如果您設置了 <a href="options.html#'patchmode'">'patchmode'</a>，在進行壓縮後該值會被自動加到文件的擴展名後面。因而編
+輯 patchmode 文件不會產生自動解壓縮的效果。如果您希望這樣，您需要改變文件名。
 
 </pre><hr class="doubleline" /><pre>
 <h4> vim:tw=78:ts=8:ft=help:norl:</h4></pre>

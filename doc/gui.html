@@ -1,17 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>VIM: gui</title>
 <link rel="stylesheet" href="vim-stylesheet.css" type="text/css">
 </head>
 <body>
 <div id=banner>
-<a href="help.html">帮助总览</a> &middot;
-<a href="quickref.html">快速参考</a> &middot;
+<a href="help.html">幫助總覽</a> &middot;
+<a href="quickref.html">快速參考</a> &middot;
 <a href="index.html">命令索引</a> &middot;
-<a href="usr_toc.html">用户手册</a> &middot;
-<a href="help.html#reference_toc">参考手册</a>
+<a href="usr_toc.html">用戶手冊</a> &middot;
+<a href="help.html#reference_toc">參考手冊</a>
 </div>
 
 <div id=outer>
@@ -20,83 +20,83 @@
 <b class="vimtag"> <a name="gui.txt">gui.txt</a> </b>       For Vim version 8.0.  最近更新: 2017年7月
 
 
-                  <code class="vim">VIM 参考手册    by Bram Moolenaar</code>
-                                <code class="vim">译者</code>: Willis
+                  <code class="vim">VIM 參考手冊    by Bram Moolenaar</code>
+                                <code class="vim">譯者</code>: Willis
                                 http://vimcdoc.sf.net
 
 
-Vim 的图形用户界面                                      <b class="vimtag"> <a name="gui">gui</a> </b> <b class="vimtag"> <a name="GUI">GUI</a> </b>
+Vim 的圖形用戶界面                                      <b class="vimtag"> <a name="gui">gui</a> </b> <b class="vimtag"> <a name="GUI">GUI</a> </b>
 
-1. 启动 GUI                      <a href="gui.html#gui-start">gui-start</a> 
-2. 滚动条                        <a href="gui.html#gui-scrollbars">gui-scrollbars</a> 
-3. 鼠标控制                      <a href="gui.html#gui-mouse">gui-mouse</a> 
-4. 使用 GUI 进行选择             <a href="gui.html#gui-selections">gui-selections</a> 
-5. 菜单                          <a href="gui.html#menus">menus</a> 
+1. 啟動 GUI                      <a href="gui.html#gui-start">gui-start</a> 
+2. 滾動條                        <a href="gui.html#gui-scrollbars">gui-scrollbars</a> 
+3. 鼠標控制                      <a href="gui.html#gui-mouse">gui-mouse</a> 
+4. 使用 GUI 進行選擇             <a href="gui.html#gui-selections">gui-selections</a> 
+5. 菜單                          <a href="gui.html#menus">menus</a> 
 6. 附加                          <a href="gui.html#gui-extras">gui-extras</a> 
-7. 外壳命令                      <a href="gui.html#gui-shell">gui-shell</a> 
+7. 外殼命令                      <a href="gui.html#gui-shell">gui-shell</a> 
 
-其它的 GUI 文档:
- <a href="gui_x11.html#gui_x11.txt">gui_x11.txt</a>    关于 X11 GUI 的特定内容。
- <a href="gui_w32.html#gui_w32.txt">gui_w32.txt</a>    关于 Win32 GUI 的特定内容。
+其它的 GUI 文檔:
+ <a href="gui_x11.html#gui_x11.txt">gui_x11.txt</a>    關於 X11 GUI 的特定內容。
+ <a href="gui_w32.html#gui_w32.txt">gui_w32.txt</a>    關於 Win32 GUI 的特定內容。
 
-<code class="notvi">{Vi 没有这里的任何命令}</code>
+<code class="notvi">{Vi 沒有這裡的任何命令}</code>
 
 </pre><hr class="doubleline" /><pre>
-<h4>1. 启动 GUI                                     <b class="vimtag"> <a name="gui-start">gui-start</a> </b> <b class="vimtag"> <a name="E229">E229</a> </b> <b class="vimtag"> <a name="E233">E233</a> </b></h4>
-首先，需要确定你确实有包含 GUI 代码的 Vim 版本。你可以用 ":version" 命令检查这
-一点。它应该输出 "with xxx GUI"，而 "xxx" 是 X11-Motif、X11-Athena、Photon、
+<h4>1. 啟動 GUI                                     <b class="vimtag"> <a name="gui-start">gui-start</a> </b> <b class="vimtag"> <a name="E229">E229</a> </b> <b class="vimtag"> <a name="E233">E233</a> </b></h4>
+首先，需要確定你確實有包含 GUI 代碼的 Vim 版本。你可以用 ":version" 命令檢查這
+一點。它應該輸出 "with xxx GUI"，而 "xxx" 是 X11-Motif、X11-Athena、Photon、
 GTK、GTK2、GTK3 等，或者 "MS-Windows 32 bit GUI version"。
 
-如何启动 GUI 决定于你的系统。多数情况下，你可以这样启动 Vim 的 GUI 版本:
+如何啟動 GUI 決定於你的系統。多數情況下，你可以這樣啟動 Vim 的 GUI 版本:
     gvim <code class="special">[options]</code> [files...]
 
-GUI 和非 GUI 版本在 Vim 的 X11 版本上都可以运行。见  <a href="gui_x11.html#gui-x11-start">gui-x11-start</a> 。
+GUI 和非 GUI 版本在 Vim 的 X11 版本上都可以運行。見  <a href="gui_x11.html#gui-x11-start">gui-x11-start</a> 。
 
                         <b class="vimtag"> <a name="gui-init">gui-init</a> </b> <b class="vimtag"> <a name="gvimrc">gvimrc</a> </b> <b class="vimtag"> <a name=".gvimrc">.gvimrc</a> </b> <b class="vimtag"> <a name="_gvimrc">_gvimrc</a> </b> <b class="vimtag"> <a name="$MYGVIMRC">$MYGVIMRC</a> </b>
-gvimrc 文件是 GUI 专用的启动命令应该放置的地方。它总在  <a href="starting.html#vimrc">vimrc</a>  文件之后执行。
-如果你有这样的文件，$MYGVIMRC 环境变量保存它的名字。
+gvimrc 文件是 GUI 專用的啟動命令應該放置的地方。它總在  <a href="starting.html#vimrc">vimrc</a>  文件之後執行。
+如果你有這樣的文件，$MYGVIMRC 環境變量保存它的名字。
 
-当 GUI 开始时，开展以下初始化操作 (按照给出的顺序):
-- <a href="options.html#'term'">'term'</a> 选项设为 "builtin_gui"，复位终端选项到其 GUI 的缺省值
+當 GUI 開始時，開展以下初始化操作 (按照給出的順序):
+- <a href="options.html#'term'">'term'</a> 選項設為 "builtin_gui"，復位終端選項到其 GUI 的缺省值
    <a href="term.html#terminal-options">terminal-options</a> 。
-- 如果存在系统菜单文件，执行之。该文件名通常是 "$VIMRUNTIME/menu.vim"。你需要
-  用 ":version" 检查这一点。另见  <a href="starting.html#$VIMRUNTIME">$VIMRUNTIME</a> 。要跳过菜单载入，在
-  <a href="options.html#'guioptions'">'guioptions'</a> 里加入 'M'。             <b class="vimtag"> <a name="buffers-menu">buffers-menu</a> </b> <b class="vimtag"> <a name="no_buffers_menu">no_buffers_menu</a> </b>
-  系统菜单文件包含 "Buffers" 菜单。如果你不需要，在你的 .vimrc (不是
-  .gvimrc！) 里，设置 "no_buffers_menu" 变量: 
+- 如果存在系統菜單文件，執行之。該文件名通常是 "$VIMRUNTIME/menu.vim"。你需要
+  用 ":version" 檢查這一點。另見  <a href="starting.html#$VIMRUNTIME">$VIMRUNTIME</a> 。要跳過菜單載入，在
+  <a href="options.html#'guioptions'">'guioptions'</a> 裡加入 'M'。             <b class="vimtag"> <a name="buffers-menu">buffers-menu</a> </b> <b class="vimtag"> <a name="no_buffers_menu">no_buffers_menu</a> </b>
+  系統菜單文件包含 "Buffers" 菜單。如果你不需要，在你的 .vimrc (不是
+  .gvimrc！) 裡，設置 "no_buffers_menu" 變量: 
 <code class="example">        :let no_buffers_menu = 1</code>
-  <code class="note">注意</code>: 切换语法高亮也会载入菜单文件，因此屏蔽 Buffers 菜单必须在 ":syntax on"
+  <code class="note">注意</code>: 切換語法高亮也會載入菜單文件，因此屏蔽 Buffers 菜單必須在 ":syntax on"
   之前。
-  路径名被截短到 35 个字符。你可以截短到不同的长度，例如 50:
+  路徑名被截短到 35 個字符。你可以截短到不同的長度，例如 50:
         :let bmenu_max_pathlen = 50
-- 如果启动 Vim 时 使用 "-U <code class="special">{gvimrc}</code>" 命令行选项，初始化过程会读入 <code class="special">{gvimrc}</code> 文
-  件。以下的步骤被跳过。如果 <code class="special">{gvimrc}</code> 为 "NONE"，初始化过程不读入任何文件。
-- 对 Unix 和 MS-Windows 而言，如果系统 gvimrc 存在，执行之。该文件的名字通常是
-  "$VIM/gvimrc"。你可以用 ":version" 检查这一点。另见  <a href="starting.html#$VIM">$VIM</a> 。
-- 尝试以下步骤，只使用第一个可用的:
-  - 如果 GVIMINIT 环境变量存在而且非空，把它作为 Ex 命令执行之。
-  - 如果用户 gvimrc 文件存在，执行之。该文件的名字通常是 "$HOME/.gvimrc"。用
-    ":version" 检查之。
-  - 对 Win32 而言，如果没设置 $HOME，使用 "$VIM\_gvimrc"。
-  - 如果 "_gvimrc" 文件没找到，尝试 ".gvimrc"。反之亦然。
-  第一个找到的文件名保存在 $MYGVIMRC 里，除非后者已经被设置。
-- 如果置位 <a href="options.html#'exrc'">'exrc'</a> 选项 (缺省 <code class="emphasis">并非</code> 如此)，执行文件 ./.gvimrc。如果该文件不属于
-  你，有一些安全的限制。如果 ".gvimrc" 找不到，尝试 "_gvimrc"。Macintosh 和
-  DOS/Win32 环境下先尝试 "_gvimrc"。
+- 如果啟動 Vim 時 使用 "-U <code class="special">{gvimrc}</code>" 命令行選項，初始化過程會讀入 <code class="special">{gvimrc}</code> 文
+  件。以下的步驟被跳過。如果 <code class="special">{gvimrc}</code> 為 "NONE"，初始化過程不讀入任何文件。
+- 對 Unix 和 MS-Windows 而言，如果系統 gvimrc 存在，執行之。該文件的名字通常是
+  "$VIM/gvimrc"。你可以用 ":version" 檢查這一點。另見  <a href="starting.html#$VIM">$VIM</a> 。
+- 嘗試以下步驟，只使用第一個可用的:
+  - 如果 GVIMINIT 環境變量存在而且非空，把它作為 Ex 命令執行之。
+  - 如果用戶 gvimrc 文件存在，執行之。該文件的名字通常是 "$HOME/.gvimrc"。用
+    ":version" 檢查之。
+  - 對 Win32 而言，如果沒設置 $HOME，使用 "$VIM\_gvimrc"。
+  - 如果 "_gvimrc" 文件沒找到，嘗試 ".gvimrc"。反之亦然。
+  第一個找到的文件名保存在 $MYGVIMRC 裡，除非後者已經被設置。
+- 如果置位 <a href="options.html#'exrc'">'exrc'</a> 選項 (缺省 <code class="emphasis">並非</code> 如此)，執行文件 ./.gvimrc。如果該文件不屬於
+  你，有一些安全的限制。如果 ".gvimrc" 找不到，嘗試 "_gvimrc"。Macintosh 和
+  DOS/Win32 環境下先嘗試 "_gvimrc"。
 
-<code class="note">注意</code>: 如果 Vim 启动时使用 "-u NONE" 而且没有给出 "-U" 参数，或者使用 "-U
-NONE"，则除了第一步以外，都不执行。
+<code class="note">注意</code>: 如果 Vim 啟動時使用 "-u NONE" 而且沒有給出 "-U" 參數，或者使用 "-U
+NONE"，則除了第一步以外，都不執行。
 
-这些步骤都在普通 Vim 初始化之 <code class="emphasis">后</code> 执行，比如读取 .vimrc 文件。见
+這些步驟都在普通 Vim 初始化之 <code class="emphasis">後</code> 執行，比如讀取 .vimrc 文件。見
  <a href="starting.html#initialization">initialization</a> 。
-GUI 窗口只在全部的初始化执行完毕后才会打开。如果你希望在打开 GUI 窗口后执行某
-些命令，使用  <a href="autocmd.html#GUIEnter">GUIEnter</a>  自动事件。例如: 
+GUI 窗口只在全部的初始化執行完畢後才會打開。如果你希望在打開 GUI 窗口後執行某
+些命令，使用  <a href="autocmd.html#GUIEnter">GUIEnter</a>  自動事件。例如: 
 <code class="example">        :autocmd GUIEnter * winpos 100 50</code>
 <code class="example"></code>
-你可以使用 gvimrc 文件设置你自己定制的菜单 (见  <a href="gui.html#:menu">:menu</a> )，并初始化其它你希望和
-终端版本不同的设置。
+你可以使用 gvimrc 文件設置你自己定制的菜單 (見  <a href="gui.html#:menu">:menu</a> )，並初始化其它你希望和
+終端版本不同的設置。
 
-建议你把自己的 GUI 初始化部分放在:
+建議你把自己的 GUI 初始化部分放在:
         Unix                $HOME/.gvimrc 或 $HOME/.vim/gvimrc
         OS/2                $HOME/.gvimrc、$HOME/vimfiles/gvimrc 或
                             $VIM/.gvimrc
@@ -105,248 +105,248 @@ GUI 窗口只在全部的初始化执行完毕后才会打开。如果你希望�
         Amiga               s:.gvimrc、home:.gvimrc、home:vimfiles:gvimrc 或
                             $VIM/.gvimrc
 
-按上述的顺序依次查找个人化的初始文件，只读入第一个找到的文件。
+按上述的順序依次查找個人化的初始文件，只讀入第一個找到的文件。
 
-若干选项只有在 GUI 版本的 Vim 里才有意义。它们是 <a href="options.html#'guicursor'">'guicursor'</a>、<a href="options.html#'guifont'">'guifont'</a>、
-<a href="options.html#'guipty'">'guipty'</a> 和 <a href="options.html#'guioptions'">'guioptions'</a>。和其它选项一样，他们的文档在  <a href="options.html#options.txt">options.txt</a> 。
+若干選項只有在 GUI 版本的 Vim 裡才有意義。它們是 <a href="options.html#'guicursor'">'guicursor'</a>、<a href="options.html#'guifont'">'guifont'</a>、
+<a href="options.html#'guipty'">'guipty'</a> 和 <a href="options.html#'guioptions'">'guioptions'</a>。和其它選項一樣，他們的文檔在  <a href="options.html#options.txt">options.txt</a> 。
 
-如果使用 Motif 或者 Athena 版本的 GUI (不适用于 GTK+ 或 Win32 版本)，可以使用
-一些 X 资源。见  <a href="gui_x11.html#gui-resources">gui-resources</a> 。
+如果使用 Motif 或者 Athena 版本的 GUI (不適用於 GTK+ 或 Win32 版本)，可以使用
+一些 X 資源。見  <a href="gui_x11.html#gui-resources">gui-resources</a> 。
 
-另外一个在不同场合下设置颜色的方法是使用高亮组。"Normal" 组用来设置背景和前景
-色。示例 (看上去很悦目): 
+另外一個在不同場合下設置顏色的方法是使用高亮組。"Normal" 組用來設置背景和前景
+色。示例 (看上去很悅目): 
 <code class="example"></code>
 <code class="example">        :highlight Normal guibg=grey90</code>
 <code class="example"></code>
-"guibg" 和 "guifg" 设置覆盖正常的背景和前景设置。其它 Normal 高亮组的设置都没
-有用到。使用 "guifont" 选项设置字体。
+"guibg" 和 "guifg" 設置覆蓋正常的背景和前景設置。其它 Normal 高亮組的設置都沒
+有用到。使用 "guifont" 選項設置字體。
 
-要设置光标在不同模式下的颜色，也请查看 <a href="options.html#'guicursor'">'guicursor'</a> 选项。
+要設置光標在不同模式下的顏色，也請查看 <a href="options.html#'guicursor'">'guicursor'</a> 選項。
 
-Vim 试图在启动时使窗口在屏幕上的大小合适，以免部分内容不可见。在 X 窗口系统
-下，这需要一些猜测。使用 <a href="options.html#'guiheadroom'">'guiheadroom'</a> 选项，你可以改变窗口标题和任务栏的高
+Vim 試圖在啟動時使窗口在屏幕上的大小合適，以免部分內容不可見。在 X 窗口系統
+下，這需要一些猜測。使用 <a href="options.html#'guiheadroom'">'guiheadroom'</a> 選項，你可以改變窗口標題和任務欄的高
 度。
 
                                                 <b class="vimtag"> <a name=":winp">:winp</a> </b> <b class="vimtag"> <a name=":winpos">:winpos</a> </b> <b class="vimtag"> <a name="E188">E188</a> </b>
 :winp[os]
-                显示 GUI vim 窗口以像素计的当前左上角位置。并非在所有系统上都
+                顯示 GUI vim 窗口以像素計的當前左上角位置。並非在所有系統上都
                 可以。
-                另见  <a href="eval.html#getwinposx()">getwinposx()</a>  和  <a href="eval.html#getwinposy()">getwinposy()</a> 。
+                另見  <a href="eval.html#getwinposx()">getwinposx()</a>  和  <a href="eval.html#getwinposy()">getwinposy()</a> 。
 
 :winp[os] <code class="special">{X}</code> <code class="special">{Y}</code>                                                       <b class="vimtag"> <a name="E466">E466</a> </b>
-                把 GUI vim 窗口放在给定 <code class="special">{X}</code> 和 <code class="special">{Y}</code> 坐标。坐标应指定以像素计的
-                窗口左上角的位置。并非在所有系统上都可以。
-                可以在 (新版的) xterm 里使用  <a href="syntax.html#xterm-color">xterm-color</a> 。
-                如果 GUI 窗口还没有打开，坐标值被记住，直到窗口打开为止。该位
-                置会被调整，使得窗口在屏幕上大小合适 (如果可能)。
+                把 GUI vim 窗口放在給定 <code class="special">{X}</code> 和 <code class="special">{Y}</code> 坐標。坐標應指定以像素計的
+                窗口左上角的位置。並非在所有系統上都可以。
+                可以在 (新版的) xterm 裡使用  <a href="syntax.html#xterm-color">xterm-color</a> 。
+                如果 GUI 窗口還沒有打開，坐標值被記住，直到窗口打開為止。該位
+                置會被調整，使得窗口在屏幕上大小合適 (如果可能)。
 
                                                     <b class="vimtag"> <a name=":win">:win</a> </b> <b class="vimtag"> <a name=":winsize">:winsize</a> </b> <b class="vimtag"> <a name="E465">E465</a> </b>
 :win[size] <code class="special">{width}</code> <code class="special">{height}</code>
-                设置窗口高度为 <code class="special">{width}</code> 宽 <code class="special">{height}</code> 高，以字符计。
-                已废弃，应使用 ":set lines=11 columns=22"。
-                如果你得到比期待中少的行数，检查 <a href="options.html#'guiheadroom'">'guiheadroom'</a> 选项。
+                設置窗口高度為 <code class="special">{width}</code> 寬 <code class="special">{height}</code> 高，以字符計。
+                已廢棄，應使用 ":set lines=11 columns=22"。
+                如果你得到比期待中少的行數，檢查 <a href="options.html#'guiheadroom'">'guiheadroom'</a> 選項。
 
-如果你运行 X 窗口系统，你可以这样得到关于 Vim 运行所在的窗口的信息: 
+如果你運行 X 窗口系統，你可以這樣得到關於 Vim 運行所在的窗口的信息: 
 <code class="example">        :!xwininfo -id $WINDOWID</code>
 <code class="example">        :!xprop -id $WINDOWID</code>
 <code class="example">        :execute '!xwininfo -id ' . v:windowid</code>
 <code class="example">        :execute '!xprop -id ' . v:windowid</code>
 
                                                         <b class="vimtag"> <a name="gui-IME">gui-IME</a> </b> <b class="vimtag"> <a name="iBus">iBus</a> </b>
-在 X 里依赖于 XIM 框架输入国际字符的输入法，尤其是 iBus，已知会给 gVim 带来一
-些不良效果。包括不能输入空格，输入字符间有长时间的延迟，或者输入的字符不能为
-应用所识别等。
+在 X 裡依賴於 XIM 框架輸入國際字符的輸入法，尤其是 iBus，已知會給 gVim 帶來一
+些不良效果。包括不能輸入空格，輸入字符間有長時間的延遲，或者輸入的字符不能為
+應用所識別等。
 
-一个可行的解决方法，虽然不知什么原因，是启动时用  <a href="starting.html#-f">-f</a>  参数，不让 gvim 进入后台
-执行。
+一個可行的解決方法，雖然不知什麼原因，是啟動時用  <a href="starting.html#-f">-f</a>  參數，不讓 gvim 進入後台
+執行。
 
 </pre><hr class="doubleline" /><pre>
-<h4>2. 滚动条                                               <b class="vimtag"> <a name="gui-scrollbars">gui-scrollbars</a> </b></h4>
-系统有若干垂直滚动条和一个水平滚动条。你可以用 <a href="options.html#'guioptions'">'guioptions'</a> 选项设置会出现哪一
-个。
+<h4>2. 滾動條                                               <b class="vimtag"> <a name="gui-scrollbars">gui-scrollbars</a> </b></h4>
+系統有若干垂直滾動條和一個水平滾動條。你可以用 <a href="options.html#'guioptions'">'guioptions'</a> 選項設置會出現哪一
+個。
 
-界面看起来是这样 (使用 ":set guioptions=mlrb" 的情形下):
+界面看起來是這樣 (使用 ":set guioptions=mlrb" 的情形下):
 
                        +------------------------------+ `
-                       | File  Edit              Help | &lt;- 菜单栏 (m) `
+                       | File  Edit              Help | &lt;- 菜單欄 (m) `
                        +-+--------------------------+-+ `
                         <a href="motion.html#^">^</a>                            <a href="motion.html#^">^</a>  `
-                        <a href="pattern.html#%23">#</a>  文本区域                  <a href="pattern.html#%23">#</a>  `
+                        <a href="pattern.html#%23">#</a>  文本區域                  <a href="pattern.html#%23">#</a>  `
                        | |                          | | `
                         <a href="visual.html#v">v</a> __________________________ <a href="visual.html#v">v</a>  `
- Vim 窗口间的       -&gt; |-+ File.c              5,2  +-| `
- 普通状态行             <a href="motion.html#^">^</a> """""""""""""""""""""""""" <a href="motion.html#^">^</a>  `
+ Vim 窗口間的       -&gt; |-+ File.c              5,2  +-| `
+ 普通狀態行             <a href="motion.html#^">^</a> """""""""""""""""""""""""" <a href="motion.html#^">^</a>  `
                        | |                          | | `
-                       | | 另一个文件缓冲区。       | | `
+                       | | 另一個文件緩衝區。       | | `
                        | |                          | | `
                         <a href="pattern.html#%23">#</a>                            <a href="pattern.html#%23">#</a>  `
- 左滚动条 (l)       -&gt;  <a href="pattern.html#%23">#</a>                            <a href="pattern.html#%23">#</a>  &lt;- 右滚动条  (r) `
+ 左滾動條 (l)       -&gt;  <a href="pattern.html#%23">#</a>                            <a href="pattern.html#%23">#</a>  &lt;- 右滾動條  (r) `
                         <a href="pattern.html#%23">#</a>                            <a href="pattern.html#%23">#</a>  `
                        | |                          | | `
                         <a href="visual.html#v">v</a>                            <a href="visual.html#v">v</a>  `
                        +-+--------------------------+-+ `
-                       | |&lt; ####                   &gt;| | &lt;- 底部滚动条  (b) `
+                       | |&lt; ####                   &gt;| | &lt;- 底部滾動條  (b) `
                        +-+--------------------------+-+ `
 
-任何滚动条或者菜单都可以关闭，只要在 <a href="options.html#'guioptions'">'guioptions'</a> 字符串里没有相应的字母就行
-了。底部滚动条只有在置位 <a href="options.html#'nowrap'">'nowrap'</a> 时才有用。
+任何滾動條或者菜單都可以關閉，只要在 <a href="options.html#'guioptions'">'guioptions'</a> 字符串裡沒有相應的字母就行
+了。底部滾動條只有在置位 <a href="options.html#'nowrap'">'nowrap'</a> 時才有用。
 
 
-垂 直 滚 动 条                                          <b class="vimtag"> <a name="gui-vert-scroll">gui-vert-scroll</a> </b>
+垂 直 滾 動 條                                          <b class="vimtag"> <a name="gui-vert-scroll">gui-vert-scroll</a> </b>
 
-每个 Vim 窗口都有紧挨着的滚动条，可以上下滚动来实现缓冲区内文本的位置移动。滚
-动条拇指 (thumb) 指示缓冲区可见的部分。如果滚动条被一直往下拖动，最后文件的末
-行会出现在窗口的顶部。
+每個 Vim 窗口都有緊挨著的滾動條，可以上下滾動來實現緩衝區內文本的位置移動。滾
+動條拇指 (thumb) 指示緩衝區可見的部分。如果滾動條被一直往下拖動，最後文件的末
+行會出現在窗口的頂部。
 
-如果窗口被缩小到零高度 (因为另一个窗口的增大)，其滚动条消失。在窗口恢复时才重
-新出现。
+如果窗口被縮小到零高度 (因為另一個窗口的增大)，其滾動條消失。在窗口恢復時才重
+新出現。
 
-如果窗口被垂直分割，该窗口会在成为当前窗口时得到滚动条。想象当前窗口的正中间有
-一条贯穿窗口的垂直线。如果两边都有滚动条，而当前窗口的中间线属于左半边，那么
-右面的滚动条列包含当前窗口右边各窗口的滚动条。另外一侧也是如此。
+如果窗口被垂直分割，該窗口會在成為當前窗口時得到滾動條。想像當前窗口的正中間有
+一條貫穿窗口的垂直線。如果兩邊都有滾動條，而當前窗口的中間線屬於左半邊，那麼
+右面的滾動條列包含當前窗口右邊各窗口的滾動條。另外一側也是如此。
 
-水 平 滚 动 条                                          <b class="vimtag"> <a name="gui-horiz-scroll">gui-horiz-scroll</a> </b>
+水 平 滾 動 條                                          <b class="vimtag"> <a name="gui-horiz-scroll">gui-horiz-scroll</a> </b>
 
-水平滚动条 (出现在 Vim GUI 的底部) 可以在 <a href="options.html#'wrap'">'wrap'</a> 选项关闭时用来水平滚动文本。
-滚动条拇指的大小设置会使得最长可见行的文本可以最大限度的左右滚动。光标在有必要
-时才会移动，使得它总保持在一个可视的字符上 (除非置位了 <a href="options.html#'virtualedit'">'virtualedit'</a>)。
+水平滾動條 (出現在 Vim GUI 的底部) 可以在 <a href="options.html#'wrap'">'wrap'</a> 選項關閉時用來水平滾動文本。
+滾動條拇指的大小設置會使得最長可見行的文本可以最大限度的左右滾動。光標在有必要
+時才會移動，使得它總保持在一個可視的字符上 (除非置位了 <a href="options.html#'virtualedit'">'virtualedit'</a>)。
 
-计算最长可见行的长度需要若干计算，而且每次有改变的时候对需要进行。如果这需要太
-多时间，或者你不希望光标跳到别的行上，在 <a href="options.html#'guioptions'">'guioptions'</a> 里包含 'h' 标志位。这
-样，滚动限于当前光标所在文本行上。
+計算最長可見行的長度需要若干計算，而且每次有改變的時候對需要進行。如果這需要太
+多時間，或者你不希望光標跳到別的行上，在 <a href="options.html#'guioptions'">'guioptions'</a> 裡包含 'h' 標誌位。這
+樣，滾動限於當前光標所在文本行上。
 
                                                         <b class="vimtag"> <a name="athena-intellimouse">athena-intellimouse</a> </b>
-如果你有 Intellimouse 鼠标并且 X 服务器支持滚轮，那你就可以用滚轮在 gvim 里上
-下滚动文本。XFree86 4.0 和以后的版本都没有问题，一些老的版本里你需要加上补丁。
-见  <a href="scroll.html#scroll-mouse-wheel">scroll-mouse-wheel</a> 。
+如果你有 Intellimouse 鼠標並且 X 服務器支持滾輪，那你就可以用滾輪在 gvim 裡上
+下滾動文本。XFree86 4.0 和以後的版本都沒有問題，一些老的版本裡你需要加上補丁。
+見  <a href="scroll.html#scroll-mouse-wheel">scroll-mouse-wheel</a> 。
 
-对较老的 XFree86 版本你需要给 X 服务器打上补丁。以下页面有关于 Linux 上使用
-Intellimouse 的一点信息，还有补丁和 X 服务器可执行文件的链接 (后者也许不一定有
+對較老的 XFree86 版本你需要給 X 服務器打上補丁。以下頁面有關於 Linux 上使用
+Intellimouse 的一點信息，還有補丁和 X 服務器可執行文件的鏈接 (後者也許不一定有
 你需要的):
     http://www.inria.fr/koala/colas/mouse-wheel-scroll/
 
 </pre><hr class="doubleline" /><pre>
-<h4>3. 鼠标控制                                             <b class="vimtag"> <a name="gui-mouse">gui-mouse</a> </b></h4>
-鼠标只有在 <a href="options.html#'mouse'">'mouse'</a> 选项设置合适的标志位时才会工作。如果打开了 GUI 的时候还没有
-设置 <a href="options.html#'mouse'">'mouse'</a>，<a href="options.html#'mouse'">'mouse'</a> 选项会自动设为 "a"，使得它除了在  <a href="message.html#hit-enter">hit-enter</a>  提示以外的
-所有的模式下都能使用。如果你不希望这样，修改 <a href="options.html#'mouse'">'mouse'</a> 选项的一个好地方是在
-"gvimrc" 文件里。
+<h4>3. 鼠標控制                                             <b class="vimtag"> <a name="gui-mouse">gui-mouse</a> </b></h4>
+鼠標只有在 <a href="options.html#'mouse'">'mouse'</a> 選項設置合適的標誌位時才會工作。如果打開了 GUI 的時候還沒有
+設置 <a href="options.html#'mouse'">'mouse'</a>，<a href="options.html#'mouse'">'mouse'</a> 選項會自動設為 "a"，使得它除了在  <a href="message.html#hit-enter">hit-enter</a>  提示以外的
+所有的模式下都能使用。如果你不希望這樣，修改 <a href="options.html#'mouse'">'mouse'</a> 選項的一個好地方是在
+"gvimrc" 文件裡。
 
-其它相关的选项:
-<a href="options.html#'mousefocus'">'mousefocus'</a>    窗口焦点随鼠标指针改变  <a href="gui.html#gui-mouse-focus">gui-mouse-focus</a> 
-<a href="options.html#'mousemodel'">'mousemodel'</a>    哪个鼠标按钮执行什么动作
-<a href="options.html#'mousehide'">'mousehide'</a>     输入文本时隐藏鼠标指针
-<a href="options.html#'selectmode'">'selectmode'</a>    开始选择模式还是可视模式
+其它相關的選項:
+<a href="options.html#'mousefocus'">'mousefocus'</a>    窗口焦點隨鼠標指針改變  <a href="gui.html#gui-mouse-focus">gui-mouse-focus</a> 
+<a href="options.html#'mousemodel'">'mousemodel'</a>    哪個鼠標按鈕執行什麼動作
+<a href="options.html#'mousehide'">'mousehide'</a>     輸入文本時隱藏鼠標指針
+<a href="options.html#'selectmode'">'selectmode'</a>    開始選擇模式還是可視模式
 
-一个设置这些选项的快速方法是使用 ":behave" 命令。
+一個設置這些選項的快速方法是使用 ":behave" 命令。
                                                         <b class="vimtag"> <a name=":behave">:behave</a> </b> <b class="vimtag"> <a name=":be">:be</a> </b>
-:be[have] <code class="special">{model}</code>       设置鼠标和选择的行为。可接受的参数是:
-                           mswin        MS-Windows 行为
-                           xterm        Xterm 行为
+:be[have] <code class="special">{model}</code>       設置鼠標和選擇的行為。可接受的參數是:
+                           mswin        MS-Windows 行為
+                           xterm        Xterm 行為
 
-                        ":behave" 的使用改变了以下选项:
-<code class="section">                        选项            mswin                   xterm   </code>
+                        ":behave" 的使用改變了以下選項:
+<code class="section">                        選項            mswin                   xterm   </code>
                         <a href="options.html#'selectmode'">'selectmode'</a>    "mouse,key"             ""
                         <a href="options.html#'mousemodel'">'mousemodel'</a>    "popup"                 "extend"
                         <a href="options.html#'keymodel'">'keymodel'</a>      "startsel,stopsel"      ""
                         <a href="options.html#'selection'">'selection'</a>     "exclusive"             "inclusive"
 
-在 $VIMRUNTIME 目录下，有一个脚本叫  <a href="gui_w32.html#mswin.vim">mswin.vim</a> 。它会定义一些 MS-Windows 的剪
-切/复制/粘贴的键盘映射，但这是 <code class="emphasis">不</code> 兼容的，因为它使用了 <code class="keystroke">CTRL-V</code>、 <code class="keystroke">CTRL-X</code> 和
-<code class="keystroke">CTRL-C</code> 键。不过如果你不在意，使用这个命令: 
+在 $VIMRUNTIME 目錄下，有一個腳本叫  <a href="gui_w32.html#mswin.vim">mswin.vim</a> 。它會定義一些 MS-Windows 的剪
+切/複製/粘貼的鍵盤映射，但這是 <code class="emphasis">不</code> 兼容的，因為它使用了 <code class="keystroke">CTRL-V</code>、 <code class="keystroke">CTRL-X</code> 和
+<code class="keystroke">CTRL-C</code> 鍵。不過如果你不在意，使用這個命令: 
 <code class="example">        :so $VIMRUNTIME/mswin.vim</code>
 <code class="example"></code>
-关于使用鼠标滚轮进行滚动的部分，见  <a href="scroll.html#scroll-mouse-wheel">scroll-mouse-wheel</a> 。
+關於使用鼠標滾輪進行滾動的部分，見  <a href="scroll.html#scroll-mouse-wheel">scroll-mouse-wheel</a> 。
 
 
-3.1 使用鼠标移动光标                                    <b class="vimtag"> <a name="gui-mouse-move">gui-mouse-move</a> </b>
+3.1 使用鼠標移動光標                                    <b class="vimtag"> <a name="gui-mouse-move">gui-mouse-move</a> </b>
 
-在文本缓冲区某处点击鼠标左键，就会移动光标到那里！
-<code class="section">在此模式下工作      当 <a href="options.html#'mouse'">'mouse'</a> 包含...时 </code>
+在文本緩衝區某處點擊鼠標左鍵，就會移動光標到那裡！
+<code class="section">在此模式下工作      當 <a href="options.html#'mouse'">'mouse'</a> 包含...時 </code>
 普通模式            'n' 或 'a'
-可视模式            'v' 或 'a'
+可視模式            'v' 或 'a'
 插入模式            'i' 或 'a'
 
-选择模式和可视模式一样处理。
+選擇模式和可視模式一樣處理。
 
-你可以和操作符一起使用这个功能，比如 'd' 删除从当前光标位置到你用鼠标指向的位
-置。即，按 'd'，然后在某处点击鼠标。
+你可以和操作符一起使用這個功能，比如 'd' 刪除從當前光標位置到你用鼠標指向的位
+置。即，按 'd'，然後在某處點擊鼠標。
 
                                                         <b class="vimtag"> <a name="gui-mouse-focus">gui-mouse-focus</a> </b>
-可以置位 <a href="options.html#'mousefocus'">'mousefocus'</a> 选项使得键盘焦点随着鼠标指针转移。这意味着，鼠标在哪个窗
-口，哪个窗口就被激活。警告: 使用菜单的时候，这并不完善，因为菜单命令总是针对最
-顶上的窗口。
+可以置位 <a href="options.html#'mousefocus'">'mousefocus'</a> 選項使得鍵盤焦點隨著鼠標指針轉移。這意味著，鼠標在哪個窗
+口，哪個窗口就被激活。警告: 使用菜單的時候，這並不完善，因為菜單命令總是針對最
+頂上的窗口。
 
-如果你在 ':' 行上 (或者 '/' 或 '?')，那么点击鼠标左键或右键只会把光标定位在
-':' 行上 (如果 <a href="options.html#'mouse'">'mouse'</a> 包含 'c'、'a' 或 'A' 的话)。
+如果你在 ':' 行上 (或者 '/' 或 '?')，那麼點擊鼠標左鍵或右鍵只會把光標定位在
+':' 行上 (如果 <a href="options.html#'mouse'">'mouse'</a> 包含 'c'、'a' 或 'A' 的話)。
 
-任何情况下，点击鼠标中键可以用来粘贴当前的选择内容。
-
-
-3.2 使用鼠标进行选择                                    <b class="vimtag"> <a name="gui-mouse-select">gui-mouse-select</a> </b>
-
-鼠标可以用来开始选择。怎样开始决定于 <a href="options.html#'mousemodel'">'mousemodel'</a> 选项:
-<a href="options.html#'mousemodel'">'mousemodel'</a> 是 "extend": 使用鼠标右键
-<a href="options.html#'mousemodel'">'mousemodel'</a> 是 "popup":  使用鼠标左键，按住 Shift 键。
-
-如果还没有开始选择，那么选择范围从以前的光标位置开始，到鼠标所点击的位置。如果
-已经有选择，那么离鼠标最近的那端会被扩展。
-
-如果 <a href="options.html#'selectmode'">'selectmode'</a> 包含 "mouse"，那么选择区处于选择模式。这意味着输入正常的文本
-会替代选择内容。见  <a href="visual.html#Select-mode">Select-mode</a> 。不然，选择区处于可视模式。
-
-双击可以选择单词，三击可以选择行，四击可以选择矩形块。
-
-关于如何使用选择区，见  <a href="gui.html#gui-selections">gui-selections</a> 。
+任何情況下，點擊鼠標中鍵可以用來粘貼當前的選擇內容。
 
 
-3.3 另一种鼠标的文本选择                                <b class="vimtag"> <a name="gui-mouse-modeless">gui-mouse-modeless</a> </b>
+3.2 使用鼠標進行選擇                                    <b class="vimtag"> <a name="gui-mouse-select">gui-mouse-select</a> </b>
+
+鼠標可以用來開始選擇。怎樣開始決定於 <a href="options.html#'mousemodel'">'mousemodel'</a> 選項:
+<a href="options.html#'mousemodel'">'mousemodel'</a> 是 "extend": 使用鼠標右鍵
+<a href="options.html#'mousemodel'">'mousemodel'</a> 是 "popup":  使用鼠標左鍵，按住 Shift 鍵。
+
+如果還沒有開始選擇，那麼選擇範圍從以前的光標位置開始，到鼠標所點擊的位置。如果
+已經有選擇，那麼離鼠標最近的那端會被擴展。
+
+如果 <a href="options.html#'selectmode'">'selectmode'</a> 包含 "mouse"，那麼選擇區處於選擇模式。這意味著輸入正常的文本
+會替代選擇內容。見  <a href="visual.html#Select-mode">Select-mode</a> 。不然，選擇區處於可視模式。
+
+雙擊可以選擇單詞，三擊可以選擇行，四擊可以選擇矩形塊。
+
+關於如何使用選擇區，見  <a href="gui.html#gui-selections">gui-selections</a> 。
+
+
+3.3 另一種鼠標的文本選擇                                <b class="vimtag"> <a name="gui-mouse-modeless">gui-mouse-modeless</a> </b>
                                                         <b class="vimtag"> <a name="modeless-selection">modeless-selection</a> </b>
-以下情形使用另一种选择:
+以下情形使用另一種選擇:
 - 在命令行模式下
-- 在命令行窗口中，指针在另外一个窗口
-- 在  <a href="message.html#hit-enter">hit-enter</a>  提示时
-- 当前模式不在 <a href="options.html#'mouse'">'mouse'</a> 选项里
-- 在 GUI 模式里，按住 CTRL 和 SHIFT 键
-因为 Vim 就像没有选择区那样继续，而且没有和选择区相关联的模式，这种选择称为无
-模式的选择。可以选择任何在 Vim 窗口里的文本。在文本开始的地方鼠标左键，拖到尾
-部再释放。要扩展选择，在 <a href="options.html#'mousemodel'">'mousemodel'</a> 为 "extend" 的时候，使用鼠标右键；在
-<a href="options.html#'mousemodel'">'mousemodel'</a> 为 "popup" 的时候，使用鼠标左键并按住 Shift 键。
+- 在命令行窗口中，指針在另外一個窗口
+- 在  <a href="message.html#hit-enter">hit-enter</a>  提示時
+- 當前模式不在 <a href="options.html#'mouse'">'mouse'</a> 選項裡
+- 在 GUI 模式裡，按住 CTRL 和 SHIFT 鍵
+因為 Vim 就像沒有選擇區那樣繼續，而且沒有和選擇區相關聯的模式，這種選擇稱為無
+模式的選擇。可以選擇任何在 Vim 窗口裡的文本。在文本開始的地方鼠標左鍵，拖到尾
+部再釋放。要擴展選擇，在 <a href="options.html#'mousemodel'">'mousemodel'</a> 為 "extend" 的時候，使用鼠標右鍵；在
+<a href="options.html#'mousemodel'">'mousemodel'</a> 為 "popup" 的時候，使用鼠標左鍵並按住 Shift 鍵。
 
-选择区在选择文本滚动或者改变时被撤销。
+選擇區在選擇文本滾動或者改變時被撤銷。
 
-在命令行上 <code class="keystroke">CTRL-Y</code> 可以用来复制选择区到剪贴板里。在插入模式下，可以使用
-<code class="keystroke">CTRL-O</code> : <code class="keystroke">CTRL-Y</code> <code class="special">&lt;CR&gt;</code>。如果 <a href="options.html#'guioptions'">'guioptions'</a> 包含 a 或 A (X11 上的缺省值)，选择被自
-动复制到 "* 寄存器里。
+在命令行上 <code class="keystroke">CTRL-Y</code> 可以用來複製選擇區到剪貼板裡。在插入模式下，可以使用
+<code class="keystroke">CTRL-O</code> : <code class="keystroke">CTRL-Y</code> <code class="special">&lt;CR&gt;</code>。如果 <a href="options.html#'guioptions'">'guioptions'</a> 包含 a 或 A (X11 上的缺省值)，選擇被自
+動複製到 "* 寄存器裡。
 
-这时用鼠标中键就可以粘贴文本。非 X11 系统上，可以使用 <code class="keystroke">CTRL-R</code> +。
+這時用鼠標中鍵就可以粘貼文本。非 X11 系統上，可以使用 <code class="keystroke">CTRL-R</code> +。
 
 
-3.4 在状态行上使用鼠标                                  <b class="vimtag"> <a name="gui-mouse-status">gui-mouse-status</a> </b>
+3.4 在狀態行上使用鼠標                                  <b class="vimtag"> <a name="gui-mouse-status">gui-mouse-status</a> </b>
 
-在 Vim 窗口下方的状态行上点击鼠标左键或者右键使得该窗口成为当前窗口。实际上，
-这发生在鼠标释放的时候 (以区别拖动时的点击操作)。
+在 Vim 窗口下方的狀態行上點擊鼠標左鍵或者右鍵使得該窗口成為當前窗口。實際上，
+這發生在鼠標釋放的時候 (以區別拖動時的點擊操作)。
 
-使用鼠标左键，状态行可以上下拖动，从而调整上下窗口的大小。这样并不改变窗口焦
-点。
+使用鼠標左鍵，狀態行可以上下拖動，從而調整上下窗口的大小。這樣並不改變窗口焦
+點。
 
-这同样适用于垂直分割线: 点击把焦点给左侧的窗口，左右拖动使得两侧窗口更宽和更
+這同樣適用於垂直分割線: 點擊把焦點給左側的窗口，左右拖動使得兩側窗口更寬和更
 窄。
 
 
-3.5 各种鼠标点击                                        <b class="vimtag"> <a name="gui-mouse-various">gui-mouse-various</a> </b>
+3.5 各種鼠標點擊                                        <b class="vimtag"> <a name="gui-mouse-various">gui-mouse-various</a> </b>
 
-    <code class="special">&lt;S-LeftMouse&gt;</code>       正向搜索鼠标点击所在的单词。
-                        当 <a href="options.html#'mousemodel'">'mousemodel'</a> 为 "popup" 时，该操作开始或者扩展选择
-                        区。
-    <code class="special">&lt;S-RightMouse&gt;</code>      反向搜索鼠标点击所在的单词。
-    <code class="special">&lt;C-LeftMouse&gt;</code>       跳转到鼠标点击所在的标签上。
-    <code class="special">&lt;C-RightMouse&gt;</code>      跳回上次标签跳转之前的位置 (等同于 "<code class="keystroke">CTRL-T</code>")
+    <code class="special">&lt;S-LeftMouse&gt;</code>       正向搜索鼠標點擊所在的單詞。
+                        當 <a href="options.html#'mousemodel'">'mousemodel'</a> 為 "popup" 時，該操作開始或者擴展選擇
+                        區。
+    <code class="special">&lt;S-RightMouse&gt;</code>      反向搜索鼠標點擊所在的單詞。
+    <code class="special">&lt;C-LeftMouse&gt;</code>       跳轉到鼠標點擊所在的標籤上。
+    <code class="special">&lt;C-RightMouse&gt;</code>      跳回上次標籤跳轉之前的位置 (等同於 "<code class="keystroke">CTRL-T</code>")
 
 
-3.6 鼠标映射                                            <b class="vimtag"> <a name="gui-mouse-mapping">gui-mouse-mapping</a> </b>
+3.6 鼠標映射                                            <b class="vimtag"> <a name="gui-mouse-mapping">gui-mouse-mapping</a> </b>
 
-鼠标事件，包括各种修饰符，可以被映射。例如: 
+鼠標事件，包括各種修飾符，可以被映射。例如: 
 <code class="example">   :map &lt;S-LeftMouse&gt;     &lt;RightMouse&gt;</code>
 <code class="example">   :map &lt;S-LeftDrag&gt;      &lt;RightDrag&gt;</code>
 <code class="example">   :map &lt;S-LeftRelease&gt;   &lt;RightRelease&gt;</code>
@@ -359,114 +359,114 @@ Intellimouse 的一点信息，还有补丁和 X 服务器可执行文件的链�
 <code class="example">   :map &lt;4-S-LeftMouse&gt;   &lt;4-RightMouse&gt;</code>
 <code class="example">   :map &lt;4-S-LeftDrag&gt;    &lt;4-RightDrag&gt;</code>
 <code class="example">   :map &lt;4-S-LeftRelease&gt; &lt;4-RightRelease&gt;</code>
-这些映射使得选择的使用方式符合和 Motif 应用方式，Shift + 鼠标左键允许扩展可视
-区域，而不是鼠标右键。
+這些映射使得選擇的使用方式符合和 Motif 應用方式，Shift + 鼠標左鍵允許擴展可視
+區域，而不是鼠標右鍵。
 
-带修饰符的鼠标映射不适用于无模式的选择。
+帶修飾符的鼠標映射不適用於無模式的選擇。
 
 
 3.7 拖放                                                        <b class="vimtag"> <a name="drag-n-drop">drag-n-drop</a> </b>
 
-你可以拖放一个或多个文件到 Vim 窗口里，这样，它们就会被打开，如果执行了
- <a href="windows.html#:drop">:drop</a>  命令那样。
+你可以拖放一個或多個文件到 Vim 窗口裡，這樣，它們就會被打開，如果執行了
+ <a href="windows.html#:drop">:drop</a>  命令那樣。
 
-如果这么做的时候你按住 Shift，Vim 改变到第一个放下的文件所在的目录。如果你按住
-Ctrl，Vim 总会为文件分割出一个新的窗口。不然，只有当前缓冲区被改变的时候才会这
-么做。
+如果這麼做的時候你按住 Shift，Vim 改變到第一個放下的文件所在的目錄。如果你按住
+Ctrl，Vim 總會為文件分割出一個新的窗口。不然，只有當前緩衝區被改變的時候才會這
+麼做。
 
-你可以在 Vim 里放下目录。这会为该目录启动探索器插件 (假设该插件被打开，不然你
-会得到错误信息)。按住 Shift 这改变到该目录。
+你可以在 Vim 裡放下目錄。這會為該目錄啟動探索器插件 (假設該插件被打開，不然你
+會得到錯誤信息)。按住 Shift 這改變到該目錄。
 
-如果 Vim 碰巧在编辑命令行，放下文件的名字和目录会插入在光标位置上。这使得你在
-任何 Ex 命令上都可以使用这些名字。特殊字符 (空格、制表、双引号、'|'、非
-MS-Windows 系统上的反斜杠) 会被转义。
+如果 Vim 碰巧在編輯命令行，放下文件的名字和目錄會插入在光標位置上。這使得你在
+任何 Ex 命令上都可以使用這些名字。特殊字符 (空格、製表、雙引號、'|'、非
+MS-Windows 系統上的反斜槓) 會被轉義。
 
 </pre><hr class="doubleline" /><pre>
-<h4>4. 使用 GUI 进行选择                                    <b class="vimtag"> <a name="gui-selections">gui-selections</a> </b></h4>
+<h4>4. 使用 GUI 進行選擇                                    <b class="vimtag"> <a name="gui-selections">gui-selections</a> </b></h4>
                                                         <b class="vimtag"> <a name="quotestar">quotestar</a> </b>
-你可以用鼠标进行选择 (见  <a href="gui.html#gui-mouse-select">gui-mouse-select</a> )，或者使用 Vim 的可视模式 (见
- <a href="visual.html#v">v</a> )。如果 <a href="options.html#'guioptions'">'guioptions'</a> 里包含 'a'，那么无论什么时候开始选择 (可视或选择模
-式)，或者选择内容发生改变的时候，Vim 成为窗口系统的主选择区的拥有者
-(MS-Windows 上使用  <a href="gui_w32.html#gui-clipboard">gui-clipboard</a> ；X11 上使用  <a href="gui_x11.html#x11-selection">x11-selection</a>  - 不管具体哪个
-更合适，你应该据此理解所谓的主选择区)。
+你可以用鼠標進行選擇 (見  <a href="gui.html#gui-mouse-select">gui-mouse-select</a> )，或者使用 Vim 的可視模式 (見
+ <a href="visual.html#v">v</a> )。如果 <a href="options.html#'guioptions'">'guioptions'</a> 裡包含 'a'，那麼無論什麼時候開始選擇 (可視或選擇模
+式)，或者選擇內容發生改變的時候，Vim 成為窗口系統的主選擇區的擁有者
+(MS-Windows 上使用  <a href="gui_w32.html#gui-clipboard">gui-clipboard</a> ；X11 上使用  <a href="gui_x11.html#x11-selection">x11-selection</a>  - 不管具體哪個
+更合適，你應該據此理解所謂的主選擇區)。
 
                                                         <b class="vimtag"> <a name="clipboard">clipboard</a> </b>
-有一个特殊的寄存器可以存放选择内容，这就是 "* 寄存器。除非选择文本的相关信息发
-生改变 (比如你在某处按了鼠标左键)，或者另一个应用想要粘贴选择文本。这时，文本
-被放到 "* 寄存器里。例如，剪切一行并使之当前的选择区并放到剪贴板上: 
+有一個特殊的寄存器可以存放選擇內容，這就是 "* 寄存器。除非選擇文本的相關信息發
+生改變 (比如你在某處按了鼠標左鍵)，或者另一個應用想要粘貼選擇文本。這時，文本
+被放到 "* 寄存器裡。例如，剪切一行並使之當前的選擇區並放到剪貼板上: 
 <code class="example"></code>
 <code class="example">        "*dd</code>
 <code class="example"></code>
-类似的，你想粘贴别的应用的选择内容，比如通过点击鼠标中键，的时候，该选择内容被
-先放到 "* 寄存器上，然后再像其它寄存器那样被 <code class="badlink">'put'</code> (放置)。例如，放置选择内容
-(剪贴板的内容) 可以这样: 
+類似的，你想粘貼別的應用的選擇內容，比如通過點擊鼠標中鍵，的時候，該選擇內容被
+先放到 "* 寄存器上，然後再像其它寄存器那樣被 <code class="badlink">'put'</code> (放置)。例如，放置選擇內容
+(剪貼板的內容) 可以這樣: 
 <code class="example"></code>
 <code class="example">        "*p</code>
 <code class="example"></code>
-如果在 X11 中使用该寄存器，另见  <a href="gui_x11.html#x11-selection">x11-selection</a> 。那里也解释了相关的 "+ 寄存
+如果在 X11 中使用該寄存器，另見  <a href="gui_x11.html#x11-selection">x11-selection</a> 。那裡也解釋了相關的 "+ 寄存
 器。
 
-<code class="note">注意</code> 在从一个 Vim 粘贴文本到另一个单独的 Vim 的时候，选择类型 (字符、行、或块)
-也会被复制。对于其它应用，类型总是面向字符的。不过，如果文本通过
- <a href="gui_x11.html#x11-cut-buffer">x11-cut-buffer</a>  传输，选择类型 <code class="emphasis">总</code> 会丢失。
+<code class="note">注意</code> 在從一個 Vim 粘貼文本到另一個單獨的 Vim 的時候，選擇類型 (字符、行、或塊)
+也會被複製。對於其它應用，類型總是面向字符的。不過，如果文本通過
+ <a href="gui_x11.html#x11-cut-buffer">x11-cut-buffer</a>  傳輸，選擇類型 <code class="emphasis">總</code> 會丟失。
 
-当 <a href="options.html#'clipboard'">'clipboard'</a> 选项包含了 "unnamed" 字符串的时候，无名寄存器和 "* 相同。这样，
-你可以抽出和粘贴选择内容，而无须在这些命令前面附加 "*。
+當 <a href="options.html#'clipboard'">'clipboard'</a> 選項包含了 "unnamed" 字符串的時候，無名寄存器和 "* 相同。這樣，
+你可以抽出和粘貼選擇內容，而無須在這些命令前面附加 "*。
 
 </pre><hr class="doubleline" /><pre>
-<h4>5. 菜单                                                 <b class="vimtag"> <a name="menus">menus</a> </b></h4>
-用户手册  <a href="usr_42.html#usr_42.txt">usr_42.txt</a>  有本节内容的简单介绍。
+<h4>5. 菜單                                                 <b class="vimtag"> <a name="menus">menus</a> </b></h4>
+用戶手冊  <a href="usr_42.html#usr_42.txt">usr_42.txt</a>  有本節內容的簡單介紹。
 
 
-5.1 使用菜单                                            <b class="vimtag"> <a name="using-menus">using-menus</a> </b>
+5.1 使用菜單                                            <b class="vimtag"> <a name="using-menus">using-menus</a> </b>
 
-基本上，菜单和映射类似。你可以定义自己的菜单，多少都可以。
-Vim  的长期用户不太用菜单。但是它的优势在你可以增加自己的菜单和菜单项。它们在
-你记不住键序列的功能的时候很有用。
+基本上，菜單和映射類似。你可以定義自己的菜單，多少都可以。
+Vim  的長期用戶不太用菜單。但是它的優勢在你可以增加自己的菜單和菜單項。它們在
+你記不住鍵序列的功能的時候很有用。
 
-关于如何创建不同语言的菜单，见  <a href="mlang.html#:menutrans">:menutrans</a> 。
+關於如何創建不同語言的菜單，見  <a href="mlang.html#:menutrans">:menutrans</a> 。
 
                                                         <b class="vimtag"> <a name="menu.vim">menu.vim</a> </b>
-缺省菜单从 "$VIMRUNTIME/menu.vim" 文件里读取。关于该路径从何而来，见
- <a href="starting.html#$VIMRUNTIME">$VIMRUNTIME</a> 。 你可以设置你自己的菜单。从缺省菜单开始是一个好主意。你可以增加
-更多项目，或者如果完全不喜欢缺省菜单，从删除所有菜单开始  <a href="gui.html#:unmenu-all">:unmenu-all</a> 。你可以
-把下行加到 .vimrc (不是 .gvimrc) 文件以禁止缺省的菜单的调入: 
+缺省菜單從 "$VIMRUNTIME/menu.vim" 文件裡讀取。關於該路徑從何而來，見
+ <a href="starting.html#$VIMRUNTIME">$VIMRUNTIME</a> 。 你可以設置你自己的菜單。從缺省菜單開始是一個好主意。你可以增加
+更多項目，或者如果完全不喜歡缺省菜單，從刪除所有菜單開始  <a href="gui.html#:unmenu-all">:unmenu-all</a> 。你可以
+把下行加到 .vimrc (不是 .gvimrc) 文件以禁止缺省的菜單的調入: 
 <code class="example">        :let did_install_default_menus = 1</code>
-如果你也不想载入 Syntax 菜单: 
+如果你也不想載入 Syntax 菜單: 
 <code class="example">        :let did_install_syntax_menu = 1</code>
-Syntax 菜单第一项可以用来显示包含所有可用的文件类型的菜单 (载入需要不少时间)。
-如果你确实想要启动时就同时得到所有文件类型，加入: 
+Syntax 菜單第一項可以用來顯示包含所有可用的文件類型的菜單 (載入需要不少時間)。
+如果你確實想要啟動時就同時得到所有文件類型，加入: 
 <code class="example">                :let do_syntax_sel_menu = 1</code>
 <code class="example"></code>
 
                                                         <b class="vimtag"> <a name="console-menus">console-menus</a> </b>
-尽管本文档讨论 GUI，你其实也可以在控制台模式使用菜单。你需要自行载入
- <a href="gui.html#menu.vim">menu.vim</a> ，因为在那里，这一步不是自动进行的。你可以使用  <a href="gui.html#:emenu">:emenu</a>  命令和带
-<a href="options.html#'wildmenu'">'wildmenu'</a> 的命令行补全，从而能像真实的菜单系统那样对菜单项进行访问。要做到这
-一点，在你的 .vimrc 文件里放入如下命令: 
+儘管本文檔討論 GUI，你其實也可以在控制台模式使用菜單。你需要自行載入
+ <a href="gui.html#menu.vim">menu.vim</a> ，因為在那裡，這一步不是自動進行的。你可以使用  <a href="gui.html#:emenu">:emenu</a>  命令和帶
+<a href="options.html#'wildmenu'">'wildmenu'</a> 的命令行補全，從而能像真實的菜單系統那樣對菜單項進行訪問。要做到這
+一點，在你的 .vimrc 文件裡放入如下命令: 
 <code class="example">        :source $VIMRUNTIME/menu.vim</code>
 <code class="example">        :set wildmenu</code>
 <code class="example">        :set cpo-=&lt;</code>
 <code class="example">        :set wcm=&lt;C-Z&gt;</code>
 <code class="example">        :map &lt;F4&gt; :emenu &lt;C-Z&gt;</code>
-按 <code class="special">&lt;F4&gt;</code> 会启动菜单。你可以用光标移动键来选择菜单项。按 <code class="special">&lt;Enter&gt;</code> 执行。如果你想
+按 <code class="special">&lt;F4&gt;</code> 會啟動菜單。你可以用光標移動鍵來選擇菜單項。按 <code class="special">&lt;Enter&gt;</code> 執行。如果你想
 取消，按 <code class="special">&lt;Esc&gt;</code>。
-本功能需要在编译时加入  <a href="various.html#+menu">+menu</a>  特性。
+本功能需要在編譯時加入  <a href="various.html#+menu">+menu</a>  特性。
 
                                                         <b class="vimtag"> <a name="tear-off-menus">tear-off-menus</a> </b>
-GTK+ 2 和 Motif 支持可撕下的菜单。它们是一种有粘性的菜单，亦即一直在屏幕上存在
-的弹出式菜单。如果它们不能调整大小，可能你在 defaults 文件里使用了类似于
-"Vim*geometry" 的设置。你应该使用 "Vim.geometry"。
+GTK+ 2 和 Motif 支持可撕下的菜單。它們是一種有粘性的菜單，亦即一直在屏幕上存在
+的彈出式菜單。如果它們不能調整大小，可能你在 defaults 文件裡使用了類似於
+"Vim*geometry" 的設置。你應該使用 "Vim.geometry"。
 
-至于 GTK+ 3，从 GTK+ 3.4 开始，可撕下的菜单被废弃了。因而如果 gvim 链接了 GTK+
-3.4 或更新的版本，关闭其支持。
+至於 GTK+ 3，從 GTK+ 3.4 開始，可撕下的菜單被廢棄了。因而如果 gvim 鏈接了 GTK+
+3.4 或更新的版本，關閉其支持。
 
-Win32 GUI 版本模拟 Motif 的可撕下菜单。实际上，Motif 用户很容易说出两者的区
-别，但我们只希望能一样有用就够了。你也可以同时使用  <a href="gui_w32.html#:tearoff">:tearoff</a>  命令和
- <a href="gui.html#hidden-menus">hidden-menus</a> ，来创建不在主菜单栏出现的浮动菜单。
+Win32 GUI 版本模擬 Motif 的可撕下菜單。實際上，Motif 用戶很容易說出兩者的區
+別，但我們只希望能一樣有用就夠了。你也可以同時使用  <a href="gui_w32.html#:tearoff">:tearoff</a>  命令和
+ <a href="gui.html#hidden-menus">hidden-menus</a> ，來創建不在主菜單欄出現的浮動菜單。
 
 
-5.2 创建新的菜单                                        <b class="vimtag"> <a name="creating-menus">creating-menus</a> </b>
+5.2 創建新的菜單                                        <b class="vimtag"> <a name="creating-menus">creating-menus</a> </b>
 
                                 <b class="vimtag"> <a name=":me">:me</a> </b>  <b class="vimtag"> <a name=":menu">:menu</a> </b>  <b class="vimtag"> <a name=":noreme">:noreme</a> </b>  <b class="vimtag"> <a name=":noremenu">:noremenu</a> </b>
                                 <b class="vimtag"> <a name=":am">:am</a> </b>  <b class="vimtag"> <a name=":amenu">:amenu</a> </b> <b class="vimtag"> <a name=":an">:an</a> </b>      <b class="vimtag"> <a name=":anoremenu">:anoremenu</a> </b>
@@ -479,49 +479,49 @@ Win32 GUI 版本模拟 Motif 的可撕下菜单。实际上，Motif 用户很容
                                 <b class="vimtag"> <a name=":cme">:cme</a> </b> <b class="vimtag"> <a name=":cmenu">:cmenu</a> </b> <b class="vimtag"> <a name=":cnoreme">:cnoreme</a> </b> <b class="vimtag"> <a name=":cnoremenu">:cnoremenu</a> </b>
                                 <b class="vimtag"> <a name="E330">E330</a> </b> <b class="vimtag"> <a name="E327">E327</a> </b> <b class="vimtag"> <a name="E331">E331</a> </b> <b class="vimtag"> <a name="E336">E336</a> </b> <b class="vimtag"> <a name="E333">E333</a> </b>
                                 <b class="vimtag"> <a name="E328">E328</a> </b> <b class="vimtag"> <a name="E329">E329</a> </b> <b class="vimtag"> <a name="E337">E337</a> </b> <b class="vimtag"> <a name="E792">E792</a> </b>
-要创建新的菜单项，使用 ":menu" 命令群。它们和 ":map" 命令群非常类似，但是第一
-个参数是菜单项名。形式为 '.' 分隔的菜单或子菜单的路径，例如: 
+要創建新的菜單項，使用 ":menu" 命令群。它們和 ":map" 命令群非常類似，但是第一
+個參數是菜單項名。形式為 '.' 分隔的菜單或子菜單的路徑，例如: 
 <code class="example"></code>
 <code class="example">   :menu File.Save  :w&lt;CR&gt;</code>
 <code class="example">   :inoremenu File.Save  &lt;C-O&gt;:w&lt;CR&gt;</code>
 <code class="example">   :menu Edit.Big\ Changes.Delete\ All\ Spaces  :%s/[ ^I]//g&lt;CR&gt;</code>
 <code class="example"></code>
-最后一项会在菜单栏里创建一个新的项目 "Edit"，在它上面按下鼠标键，会弹出菜单，
-里面包含 "Big Changes" 一项，这又是包含 "Delete All Spaces" 项的一个子菜单。如
-果选择了该项，执行操作。
+最後一項會在菜單欄裡創建一個新的項目 "Edit"，在它上面按下鼠標鍵，會彈出菜單，
+裡面包含 "Big Changes" 一項，這又是包含 "Delete All Spaces" 項的一個子菜單。如
+果選擇了該項，執行操作。
 
-菜单名里可用的特殊字符:
+菜單名裡可用的特殊字符:
 
-        &amp;       下一个字符是快捷键。确信该快捷键在 (子) 菜单里只使用一次。如果
-                你想插入按本义出现的 "&amp;"，使用 "&amp;&amp;"。
-        <code class="special">&lt;Tab&gt;</code>   分隔菜单名和右对齐的文本。这被用来显示等价的命令输入。为了方便
-                起见，这里可以使用文本 "<code class="special">&lt;Tab&gt;</code>"。如果你使用真正的制表键，别忘了
-                在前面加上反斜杠！
+        &amp;       下一個字符是快捷鍵。確信該快捷鍵在 (子) 菜單裡只使用一次。如果
+                你想插入按本義出現的 "&amp;"，使用 "&amp;&amp;"。
+        <code class="special">&lt;Tab&gt;</code>   分隔菜單名和右對齊的文本。這被用來顯示等價的命令輸入。為了方便
+                起見，這裡可以使用文本 "<code class="special">&lt;Tab&gt;</code>"。如果你使用真正的製表鍵，別忘了
+                在前面加上反斜槓！
 示例: 
 <code class="example"></code>
 <code class="example">   :amenu &amp;File.&amp;Open&lt;Tab&gt;:e  :browse e&lt;CR&gt;</code>
 <code class="example"></code>
-[按文本直接输入]
-通过快捷键 "F" (按着 <code class="special">&lt;Alt&gt;</code> 键)，然后 "O"，就可以使用这个菜单。第二部分显示为
-"Open     :e"。这里 ":e" 右对齐，而 "O" 有下划线，指示这是那个快捷键。
+[按文本直接輸入]
+通過快捷鍵 "F" (按著 <code class="special">&lt;Alt&gt;</code> 鍵)，然後 "O"，就可以使用這個菜單。第二部分顯示為
+"Open     :e"。這裡 ":e" 右對齊，而 "O" 有下劃線，指示這是那個快捷鍵。
 
-":amenu" 命令可以用来一次定义所有模式下的菜单项。要使得该命令正确工作，在有些
-模式下需要自动插入一个字符:
-<code class="section">        模式            前面插入        后面附加        </code>
+":amenu" 命令可以用來一次定義所有模式下的菜單項。要使得該命令正確工作，在有些
+模式下需要自動插入一個字符:
+<code class="section">        模式            前面插入        後面附加        </code>
         普通            不需要          不需要
-        可视            <code class="special">&lt;C-C&gt;</code>           &lt;C-\&gt;<code class="special">&lt;C-G&gt;</code>
+        可視            <code class="special">&lt;C-C&gt;</code>           &lt;C-\&gt;<code class="special">&lt;C-G&gt;</code>
         插入            &lt;C-\&gt;<code class="special">&lt;C-O&gt;</code>
         命令行          <code class="special">&lt;C-C&gt;</code>           &lt;C-\&gt;<code class="special">&lt;C-G&gt;</code>
         等待操作符      <code class="special">&lt;C-C&gt;</code>           &lt;C-\&gt;<code class="special">&lt;C-G&gt;</code>
 
-附加 <code class="keystroke">CTRL-\</code> <code class="keystroke">CTRL-G</code> 是为了能在置位 <a href="options.html#'insertmode'">'insertmode'</a> 的时候回到插入模式。
+附加 <code class="keystroke">CTRL-\</code> <code class="keystroke">CTRL-G</code> 是為了能在置位 <a href="options.html#'insertmode'">'insertmode'</a> 的時候回到插入模式。
  <a href="intro.html#CTRL-\_CTRL-G">CTRL-\_CTRL-G</a> 
 
 示例: 
 <code class="example"></code>
 <code class="example">   :amenu File.Next     :next^M</code>
 <code class="example"></code>
-等价于: 
+等價於: 
 <code class="example"></code>
 <code class="example">   :nmenu File.Next     :next^M</code>
 <code class="example">   :vmenu File.Next     ^C:next^M^\^G</code>
@@ -529,44 +529,44 @@ Win32 GUI 版本模拟 Motif 的可撕下菜单。实际上，Motif 用户很容
 <code class="example">   :cmenu File.Next     ^C:next^M^\^G</code>
 <code class="example">   :omenu File.Next     ^C:next^M^\^G</code>
 <code class="example"></code>
-小心: 插入模式下，因为使用 <code class="keystroke">CTRL-O</code>，只对单个普通模式的命令有效。如果你有两个或
-多个命令，必须使用 ":imenu" 命令。要在任何模式下插入文本，可以使用表达式寄存器
+小心: 插入模式下，因為使用 <code class="keystroke">CTRL-O</code>，只對單個普通模式的命令有效。如果你有兩個或
+多個命令，必須使用 ":imenu" 命令。要在任何模式下插入文本，可以使用表達式寄存器
 : 
 <code class="example"></code>
 <code class="example">   :amenu Insert.foobar   "='foobar'&lt;CR&gt;P</code>
 <code class="example"></code>
-<code class="note">注意</code>这里使用 <a href="options.html#'cpoptions'">'cpoptions'</a> 里的 '&lt;' 和 'k' 标志位 (如果包含了它们，<code class="special">&lt;&gt;</code> 形式和原始
-的键码都不会被识别)。
+<code class="note">注意</code>這裡使用 <a href="options.html#'cpoptions'">'cpoptions'</a> 裡的 '&lt;' 和 'k' 標誌位 (如果包含了它們，<code class="special">&lt;&gt;</code> 形式和原始
+的鍵碼都不會被識別)。
 
-<code class="note">注意</code> 命令行模式下的 <code class="special">&lt;Esc&gt;</code> 执行该命令，和映射的情况相同。这是 Vi 兼容的行为。使
+<code class="note">注意</code> 命令行模式下的 <code class="special">&lt;Esc&gt;</code> 執行該命令，和映射的情況相同。這是 Vi 兼容的行為。使
 用 <code class="keystroke">CTRL-C</code> 退出命令行模式。
 
                                                 <b class="vimtag"> <a name=":menu-%3Csilent%3E">:menu-&lt;silent&gt;</a> </b> <b class="vimtag"> <a name=":menu-silent">:menu-silent</a> </b>
-要定义在命令行上不会回显的菜单，增加 "<code class="special">&lt;silent&gt;</code>" 作为第一个参数。例如: 
+要定義在命令行上不會回顯的菜單，增加 "<code class="special">&lt;silent&gt;</code>" 作為第一個參數。例如: 
 <code class="example">        :menu &lt;silent&gt; Settings.Ignore\ case  :set ic&lt;CR&gt;</code>
-":set ic" 在使用该菜单时不会回显。但是执行命令时给出的消息仍然会。要把那些也去
-掉，在执行命令时增加 ":silent": 
+":set ic" 在使用該菜單時不會回顯。但是執行命令時給出的消息仍然會。要把那些也去
+掉，在執行命令時增加 ":silent": 
 <code class="example">        :menu &lt;silent&gt; Search.Header :exe ":silent normal /Header\r"&lt;CR&gt;</code>
-"<code class="special">&lt;silent&gt;</code>" 也可以出现 (但只能) 在 "<code class="special">&lt;special&gt;</code>" 或 "<code class="special">&lt;script&gt;</code>" 之后。
+"<code class="special">&lt;silent&gt;</code>" 也可以出現 (但只能) 在 "<code class="special">&lt;special&gt;</code>" 或 "<code class="special">&lt;script&gt;</code>" 之後。
 
                                         <b class="vimtag"> <a name=":menu-%3Cspecial%3E">:menu-&lt;special&gt;</a> </b> <b class="vimtag"> <a name=":menu-special">:menu-special</a> </b>
-定义菜单时，特殊键可用 <code class="special">&lt;&gt;</code> 记法，即使 <a href="options.html#'cpoptions'">'cpoptions'</a> 包含了 "&lt;" 标志位也没问题。可
-用于不希望看到设置 <a href="options.html#'cpoptions'">'cpoptions'</a> 时出现副作用的场合。例如: 
+定義菜單時，特殊鍵可用 <code class="special">&lt;&gt;</code> 記法，即使 <a href="options.html#'cpoptions'">'cpoptions'</a> 包含了 "&lt;" 標誌位也沒問題。可
+用於不希望看到設置 <a href="options.html#'cpoptions'">'cpoptions'</a> 時出現副作用的場合。例如: 
 <code class="example">        :menu &lt;special&gt; Search.Header /Header&lt;CR&gt;</code>
-"<code class="special">&lt;special&gt;</code>" 必须是第一个参数或出现 (但只能) 在 "<code class="special">&lt;silent&gt;</code>" 或 "<code class="special">&lt;script&gt;</code>" 之后。
+"<code class="special">&lt;special&gt;</code>" 必須是第一個參數或出現 (但只能) 在 "<code class="special">&lt;silent&gt;</code>" 或 "<code class="special">&lt;script&gt;</code>" 之後。
 
                                                 <b class="vimtag"> <a name=":menu-%3Cscript%3E">:menu-&lt;script&gt;</a> </b> <b class="vimtag"> <a name=":menu-script">:menu-script</a> </b>
-菜单的 "to" 部分会检查映射。如果你不想这样。使用 ":noremenu" 命令 (或者特定模
-式下的类似命令)。
-如果你需要局部于脚本的映射，增加 "<code class="special">&lt;script&gt;</code>" 作为 ":menu" 的第一个或紧跟在
-"<code class="special">&lt;silent&gt;</code>" 或 "<code class="special">&lt;special&gt;</code>" 之后的参数。
+菜單的 "to" 部分會檢查映射。如果你不想這樣。使用 ":noremenu" 命令 (或者特定模
+式下的類似命令)。
+如果你需要局部於腳本的映射，增加 "<code class="special">&lt;script&gt;</code>" 作為 ":menu" 的第一個或緊跟在
+"<code class="special">&lt;silent&gt;</code>" 或 "<code class="special">&lt;special&gt;</code>" 之後的參數。
 
                                                         <b class="vimtag"> <a name="menu-priority">menu-priority</a> </b>
-你可以给菜单指定优先级。高优先级的菜单出现在右边。优先级在 ":menu" 命令之前以
-数字形式给出。例如: 
+你可以給菜單指定優先級。高優先級的菜單出現在右邊。優先級在 ":menu" 命令之前以
+數字形式給出。例如: 
 <code class="example">        :80menu Buffer.next :bn&lt;CR&gt;</code>
 <code class="example"></code>
-缺省菜单有如下的优先级:
+缺省菜單有如下的優先級:
         File            10
         Edit            20
         Tools           40
@@ -575,163 +575,163 @@ Win32 GUI 版本模拟 Motif 的可撕下菜单。实际上，Motif 用户很容
         Window          70
         Help            9999
 
-如果没有或者给出优先级为零，则使用 500。
-弹出菜单不使用优先级。
+如果沒有或者給出優先級為零，則使用 500。
+彈出菜單不使用優先級。
 
-如果系统支持 (Motif 和 GTK+)，Help 菜单会出现在菜单栏的最右侧。GTK+ 2 和 3 版
-本已经不再继续这么做，因为该环境现在不再鼓励右对齐帮助菜单的界面设计风格。
+如果系統支持 (Motif 和 GTK+)，Help 菜單會出現在菜單欄的最右側。GTK+ 2 和 3 版
+本已經不再繼續這麼做，因為該環境現在不再鼓勵右對齊幫助菜單的界面設計風格。
 
-你可以使用超过 9999 的优先级，使得菜单能出现在 Help 菜单之后。但这是不合标准的
-做法，并不鼓励。最高的可能优先级大约是 32000。最低为 1。
+你可以使用超過 9999 的優先級，使得菜單能出現在 Help 菜單之後。但這是不合標準的
+做法，並不鼓勵。最高的可能優先級大約是 32000。最低為 1。
 
                                                         <b class="vimtag"> <a name="sub-menu-priority">sub-menu-priority</a> </b>
-相同的机制可以用来定位子菜单。这里，优先级用出现在菜单名前且用句号分隔的优先级
-列表给出: 
+相同的機制可以用來定位子菜單。這裡，優先級用出現在菜單名前且用句號分隔的優先級
+列表給出: 
 <code class="example">        :menu 80.500 Buffer.next :bn&lt;CR&gt;</code>
-子菜单优先级只有在不想该项目在正常的位置出现的时候才需要。例如，把某个子菜单放
-在其它项目之前: 
+子菜單優先級只有在不想該項目在正常的位置出現的時候才需要。例如，把某個子菜單放
+在其它項目之前: 
 <code class="example">        :menu 80.100 Buffer.first :brew&lt;CR&gt;</code>
-也可以把子菜单放在其它项目之后，并期望使用缺省优先级的未来项目会加在它之前: 
+也可以把子菜單放在其它項目之後，並期望使用缺省優先級的未來項目會加在它之前: 
 <code class="example">        :menu 80.900 Buffer.last :blast&lt;CR&gt;</code>
-如果不给出某个数字，使用缺省值 500: 
+如果不給出某個數字，使用缺省值 500: 
 <code class="example">        :menu .900 myMenu.test :echo "text"&lt;CR&gt;</code>
-菜单优先级只有在建立新菜单时才会用到。一旦已经存在 (比如，在别的模式下)，优先
-级不会改变。因此，优先级只有在菜单第一次用到的时候才需要给出。弹出菜单是一个例
-外。每个模式都有单独的菜单 (普通、操作符等待、可视、插入、命令行)。每个菜单里
-的顺序可以不同。这和菜单栏的菜单不同，那里所有模式下都使用相同的顺序。
-<code class="note">注意</code>: 现在，子菜单优先级不是在所有版本的 GUI 上都能工作。
+菜單優先級只有在建立新菜單時才會用到。一旦已經存在 (比如，在別的模式下)，優先
+級不會改變。因此，優先級只有在菜單第一次用到的時候才需要給出。彈出菜單是一個例
+外。每個模式都有單獨的菜單 (普通、操作符等待、可視、插入、命令行)。每個菜單裡
+的順序可以不同。這和菜單欄的菜單不同，那裡所有模式下都使用相同的順序。
+<code class="note">注意</code>: 現在，子菜單優先級不是在所有版本的 GUI 上都能工作。
 
                                                         <b class="vimtag"> <a name="menu-separator">menu-separator</a> </b> <b class="vimtag"> <a name="E332">E332</a> </b>
-菜单项可以用一个特殊项目分隔，它在项目间插入一些空白。根据不同系统情况，有的显
-示为一条线，有的显示为虚线。这些项目必须以 '-' 开始和结尾。两者之间的部分用来
-给出一个独一无二的名字。和正常的项目一样，也可以使用优先级。例如: 
+菜單項可以用一個特殊項目分隔，它在項目間插入一些空白。根據不同系統情況，有的顯
+示為一條線，有的顯示為虛線。這些項目必須以 '-' 開始和結尾。兩者之間的部分用來
+給出一個獨一無二的名字。和正常的項目一樣，也可以使用優先級。例如: 
 <code class="example">        :menu Example.item1     :做些事</code>
 <code class="example">        :menu Example.-Sep-     :</code>
-<code class="example">        :menu Example.item2     :做些别的事</code>
-<code class="note">注意</code>分隔符也需要一个右手边的表达式。是什么没有关系，因为该项目永远不会选到。简
-单点，用单个冒号就可以了。
+<code class="example">        :menu Example.item2     :做些別的事</code>
+<code class="note">注意</code>分隔符也需要一個右手邊的表達式。是什麼沒有關係，因為該項目永遠不會選到。簡
+單點，用單個冒號就可以了。
 
                                                         <b class="vimtag"> <a name="gui-toolbar">gui-toolbar</a> </b>
-目前，只有 Win32、Athena、Motif、GTK+ (X11) 和 Photon GUI 才有工具栏。适当的时
-候，在其它 GUI 上也会开放这一功能。缺省的工具栏在 menu.vim 里定义。
-工具栏显示与否有 <a href="options.html#'guioptions'">'guioptions'</a> 里的 'T' 字母控制。你可以同时有菜单和工具栏，或
-者只用其中一项，甚至全不要。其外观通过 <a href="options.html#'toolbar'">'toolbar'</a> 选项控制。你可以在图像、文本
-或者两者兼有之间选择。
+目前，只有 Win32、Athena、Motif、GTK+ (X11) 和 Photon GUI 才有工具欄。適當的時
+候，在其它 GUI 上也會開放這一功能。缺省的工具欄在 menu.vim 裡定義。
+工具欄顯示與否有 <a href="options.html#'guioptions'">'guioptions'</a> 裡的 'T' 字母控制。你可以同時有菜單和工具欄，或
+者只用其中一項，甚至全不要。其外觀通過 <a href="options.html#'toolbar'">'toolbar'</a> 選項控制。你可以在圖像、文本
+或者兩者兼有之間選擇。
 
                                                         <b class="vimtag"> <a name="toolbar-icon">toolbar-icon</a> </b>
-工具栏定义为一个特殊的菜单，名为 ToolBar。它只有一层。Vim 如此解释该菜单里面的
-项目:
-1)  如果给出 "icon=" 参数，则使用该名字指定的文件。这个文件可以给出完整路径，
-    或者只是基础名。如果是后者，在 <a href="options.html#'runtimepath'">'runtimepath'</a> 的 "bitmaps" 目录里搜索该文
-    件，就像第三点那样。例如: 
+工具欄定義為一個特殊的菜單，名為 ToolBar。它只有一層。Vim 如此解釋該菜單裡面的
+項目:
+1)  如果給出 "icon=" 參數，則使用該名字指定的文件。這個文件可以給出完整路徑，
+    或者只是基礎名。如果是後者，在 <a href="options.html#'runtimepath'">'runtimepath'</a> 的 "bitmaps" 目錄裡搜索該文
+    件，就像第三點那樣。例如: 
 <code class="example">        :amenu icon=/usr/local/pixmaps/foo_icon.xpm ToolBar.Foo :echo "Foo"&lt;CR&gt;</code>
 <code class="example">        :amenu icon=FooIcon ToolBar.Foo :echo "Foo"&lt;CR&gt;</code>
-    <code class="note">注意</code>在第一个例子里，需要包含扩展名，而第二个例子就不需要。
-    如果该文件不能打开，则尝试下面的步骤。
-    文件名里的空格必须用反斜杠转义。
-    菜单优先级必须在 icon 参数 <code class="emphasis">之后</code> 给出: 
+    <code class="note">注意</code>在第一個例子裡，需要包含擴展名，而第二個例子就不需要。
+    如果該文件不能打開，則嘗試下面的步驟。
+    文件名裡的空格必須用反斜槓轉義。
+    菜單優先級必須在 icon 參數 <code class="emphasis">之後</code> 給出: 
 <code class="example">        :amenu icon=foo 1.42 ToolBar.Foo :echo "42!"&lt;CR&gt;</code>
-2)  名为 'BuiltIn##' 的项目，其中 ## 是一个数字，用来指定 Vim 第 ## 个内建的位
-    图。目前，有 31 个编号的位图，从 0 到 30。它们包含了多数常见的编辑操作
+2)  名為 'BuiltIn##' 的項目，其中 ## 是一個數字，用來指定 Vim 第 ## 個內建的位
+    圖。目前，有 31 個編號的位圖，從 0 到 30。它們包含了多數常見的編輯操作
      <a href="gui.html#builtin-tools">builtin-tools</a> 。 
 <code class="example">        :amenu ToolBar.BuiltIn22 :call SearchNext("back")&lt;CR&gt;</code>
-3)  首先在 <code class="badlink">'runtimpath'</code> 里的 "bitmaps" 里搜索某个其它名字的项目。如果找到，该
-    位图文件被用作工具按钮的图像。<code class="note">注意</code> 准确的文件名和具体的操作系统有关: 例
+3)  首先在 <code class="badlink">'runtimpath'</code> 裡的 "bitmaps" 裡搜索某個其它名字的項目。如果找到，該
+    位圖文件被用作工具按鈕的圖像。<code class="note">注意</code> 準確的文件名和具體的操作系統有關: 例
     如，Win32 上命令 
 <code class="example">        :amenu ToolBar.Hello :echo "hello"&lt;CR&gt;</code>
-    会找到文件 'hello.bmp'。在 GTK+/X11 上则是 'Hello.xpm'。在 GTK+ 2 上则按序
+    會找到文件 'hello.bmp'。在 GTK+/X11 上則是 'Hello.xpm'。在 GTK+ 2 上則按序
     查找文件 'Hello.png'、'Hello.xpm' 和 'Hello.bmp'，最先找到的被使用。
-    MS-Windows 和 GTK+ 2 上位图被缩放到合适的按钮大小。在 MS-Windows 上，18 乘
+    MS-Windows 和 GTK+ 2 上位圖被縮放到合適的按鈕大小。在 MS-Windows 上，18 乘
     18 像素最好。
-    在 MS-Windows 上，位图使用标准的调色板，使用 16 色。浅灰色的像素会被替换成
-    窗口框架的颜色，而深灰色像素被换成窗口阴影的颜色。根据你的系统，也许可以使
-    用比这个更多的颜色。
-4)  如果该位图找不到，Vim 在内建名字的列表里查找该名字。因为每个内建按钮图像都
+    在 MS-Windows 上，位圖使用標準的調色板，使用 16 色。淺灰色的像素會被替換成
+    窗口框架的顏色，而深灰色像素被換成窗口陰影的顏色。根據你的系統，也許可以使
+    用比這個更多的顏色。
+4)  如果該位圖找不到，Vim 在內建名字的列表裡查找該名字。因為每個內建按鈕圖像都
     有名字。
-    因此，如果没有 open.bmp 的话，命令 
+    因此，如果沒有 open.bmp 的話，命令 
 <code class="example">        :amenu ToolBar.Open :e</code>
-    会显示内建的 "open a file" 按钮图标。
-    在 menu.vim 里可以看到所有内建的名字。
-5)  如果以上都不行，就显示一个可用的空白按钮。
+    會顯示內建的 "open a file" 按鈕圖標。
+    在 menu.vim 裡可以看到所有內建的名字。
+5)  如果以上都不行，就顯示一個可用的空白按鈕。
 
                                                         <b class="vimtag"> <a name="builtin-tools">builtin-tools</a> </b>
-<code class="section">号  名字                正常定义的操作  </code>
-00  New                 打开新窗口
-01  Open                浏览要在当前窗口打开的文件
-02  Save                把缓冲区写回文件
-03  Undo                撤销上次改变
-04  Redo                重做上次撤销的改变
-05  Cut                 删除选择的文本到剪贴板
-06  Copy                复制选择的文本到剪贴板
-07  Paste               从剪贴板粘贴文本
-08  Print               打印当前缓冲区
-09  Help                打开缓冲区，显示 Vim 的内建帮助
-10  Find                开始搜索命令
-11  SaveAll             把所有修改过的缓冲区写回文件
-12  SaveSesn            把当前的情况写到会话文件
-13  NewSesn             创建一个新的会话文件
-14  LoadSesn            载入会话文件
-15  RunScript           浏览文件，并作为 Vim 脚本执行
-16  Replace             执行 substitute 命令，给出提示
-17  WinClose            关闭当前窗口
-18  WinMax              使得当前窗口使用尽量多行
-19  WinMin              使得当前窗口使用尽量少行
-20  WinSplit            分割当前窗口
-21  Shell               启动外壳
+<code class="section">號  名字                正常定義的操作  </code>
+00  New                 打開新窗口
+01  Open                瀏覽要在當前窗口打開的文件
+02  Save                把緩衝區寫回文件
+03  Undo                撤銷上次改變
+04  Redo                重做上次撤銷的改變
+05  Cut                 刪除選擇的文本到剪貼板
+06  Copy                複製選擇的文本到剪貼板
+07  Paste               從剪貼板粘貼文本
+08  Print               打印當前緩衝區
+09  Help                打開緩衝區，顯示 Vim 的內建幫助
+10  Find                開始搜索命令
+11  SaveAll             把所有修改過的緩衝區寫回文件
+12  SaveSesn            把當前的情況寫到會話文件
+13  NewSesn             創建一個新的會話文件
+14  LoadSesn            載入會話文件
+15  RunScript           瀏覽文件，並作為 Vim 腳本執行
+16  Replace             執行 substitute 命令，給出提示
+17  WinClose            關閉當前窗口
+18  WinMax              使得當前窗口使用盡量多行
+19  WinMin              使得當前窗口使用盡量少行
+20  WinSplit            分割當前窗口
+21  Shell               啟動外殼
 22  FindPrev            反向再次搜索
 23  FindNext            正向再次搜索
-24  FindHelp            提示关键字，搜索相关帮助
-25  Make                运行 make，跳到第一个错误
-26  TagJump             跳转至光标所在的标签
-27  RunCtags            运行 Ctags，为当前目录的文件构造标签
-28  WinVSplit           垂直分割当前窗口
-29  WinMaxWidth         使得当前窗口使用尽量多列
-30  WinMinWidth         使得当前窗口使用尽量少列
+24  FindHelp            提示關鍵字，搜索相關幫助
+25  Make                運行 make，跳到第一個錯誤
+26  TagJump             跳轉至光標所在的標籤
+27  RunCtags            運行 Ctags，為當前目錄的文件構造標籤
+28  WinVSplit           垂直分割當前窗口
+29  WinMaxWidth         使得當前窗口使用盡量多列
+30  WinMinWidth         使得當前窗口使用盡量少列
 
                                         <b class="vimtag"> <a name="hidden-menus">hidden-menus</a> </b> <b class="vimtag"> <a name="win32-hidden-menus">win32-hidden-menus</a> </b>
-在 Win32 和 GTK+ GUI 上，以 ']' 开始的菜单名使得该菜单不会在主菜单栏里出现。你
-可以用  <a href="gui.html#:popup">:popup</a>  或者  <a href="gui_w32.html#:tearoff">:tearoff</a>  命令来显示之。
+在 Win32 和 GTK+ GUI 上，以 ']' 開始的菜單名使得該菜單不會在主菜單欄裡出現。你
+可以用  <a href="gui.html#:popup">:popup</a>  或者  <a href="gui_w32.html#:tearoff">:tearoff</a>  命令來顯示之。
 
                                                         <b class="vimtag"> <a name="popup-menu">popup-menu</a> </b>
-在 Win32、GTK+、Motif、Athena 和 Photon GUI 上，你可以定义特殊的 "PopUp" 菜
-单。如果 <a href="options.html#'mousemodel'">'mousemodel'</a> 设为 popup 或者 popup_setpos，这将是按下鼠标右键时显示的
-菜单。
+在 Win32、GTK+、Motif、Athena 和 Photon GUI 上，你可以定義特殊的 "PopUp" 菜
+單。如果 <a href="options.html#'mousemodel'">'mousemodel'</a> 設為 popup 或者 popup_setpos，這將是按下鼠標右鍵時顯示的
+菜單。
 
 
-5.3 显示菜单如何被映射                                  <b class="vimtag"> <a name="showing-menus">showing-menus</a> </b>
+5.3 顯示菜單如何被映射                                  <b class="vimtag"> <a name="showing-menus">showing-menus</a> </b>
 
-要看看现有的菜单是如何被映射的，在 menu 命令之后只使用一个参数 (就像你使用
-":map" 命令那样)。如果指定的菜单是一个子菜单，那么所有该子树下面的层次结构都会
-显示。如果 :menu 后面不给出任何参数，显示所在模式下的 <code class="emphasis">所有</code> 菜单项 (例如，命令
-行模式下显示 :cmenu)。
+要看看現有的菜單是如何被映射的，在 menu 命令之後只使用一個參數 (就像你使用
+":map" 命令那樣)。如果指定的菜單是一個子菜單，那麼所有該子樹下面的層次結構都會
+顯示。如果 :menu 後面不給出任何參數，顯示所在模式下的 <code class="emphasis">所有</code> 菜單項 (例如，命令
+行模式下顯示 :cmenu)。
 
-该列表里，在右手边表达式之前显示的特殊字符的含义是:
-*       菜单是通过 "nore" 形式定义的，以禁止重映射。
-&amp;       菜单定义时包含了 "<code class="special">&lt;script&gt;</code>"， 使得重映射只限于局部于脚本的映射。
--       菜单被屏蔽。
+該列表裡，在右手邊表達式之前顯示的特殊字符的含義是:
+*       菜單是通過 "nore" 形式定義的，以禁止重映射。
+&amp;       菜單定義時包含了 "<code class="special">&lt;script&gt;</code>"， 使得重映射只限於局部於腳本的映射。
+-       菜單被屏蔽。
 
-<code class="note">注意</code> 在 menu 命令里输入菜单名时，按 <code class="special">&lt;Tab&gt;</code> 可以用来补全菜单项目名。
+<code class="note">注意</code> 在 menu 命令裡輸入菜單名時，按 <code class="special">&lt;Tab&gt;</code> 可以用來補全菜單項目名。
 
 
-5.4 执行菜单                                            <b class="vimtag"> <a name="execute-menus">execute-menus</a> </b>
+5.4 執行菜單                                            <b class="vimtag"> <a name="execute-menus">execute-menus</a> </b>
 
                                                 <b class="vimtag"> <a name=":em">:em</a> </b>  <b class="vimtag"> <a name=":emenu">:emenu</a> </b> <b class="vimtag"> <a name="E334">E334</a> </b> <b class="vimtag"> <a name="E335">E335</a> </b>
-:<code class="special">[range]</code>em[enu] <code class="special">{menu}</code>          从命令行上执行 <code class="special">{menu}</code> 菜单。缺省执行普通模式的
-                                命令。如果给出行范围 range，执行可视模式的菜
-                                单。
-                                如果从 <code class="special">&lt;c-o&gt;</code> 那里调用，执行插入模式命令。例如:
+:<code class="special">[range]</code>em[enu] <code class="special">{menu}</code>          從命令行上執行 <code class="special">{menu}</code> 菜單。缺省執行普通模式的
+                                命令。如果給出行範圍 range，執行可視模式的菜
+                                單。
+                                如果從 <code class="special">&lt;c-o&gt;</code> 那裡調用，執行插入模式命令。例如:
 
 <code class="example">        :emenu File.Exit</code>
 <code class="example"></code>
-如果控制台模式的 vim 编译时加入 WANT_MENU，你可以用 :emenu 来访问你已经习惯的
-GUI 模式下有用的菜单项目。关于一个能用于此目的的选项，见 <a href="options.html#'wildmenu'">'wildmenu'</a>。例子又可
-以见  <a href="gui.html#console-menus">console-menus</a> 。
+如果控制台模式的 vim 編譯時加入 WANT_MENU，你可以用 :emenu 來訪問你已經習慣的
+GUI 模式下有用的菜單項目。關於一個能用於此目的的選項，見 <a href="options.html#'wildmenu'">'wildmenu'</a>。例子又可
+以見  <a href="gui.html#console-menus">console-menus</a> 。
 
-如果使用行范围 range，并且选择的行和 '&lt;、'&gt; 指定的范围相同，则使用最近一次可视
-选择的范围执行菜单命令。
+如果使用行範圍 range，並且選擇的行和 '&lt;、'&gt; 指定的範圍相同，則使用最近一次可視
+選擇的範圍執行菜單命令。
 
 
-5.5 删除菜单                                            <b class="vimtag"> <a name="delete-menus">delete-menus</a> </b>
+5.5 刪除菜單                                            <b class="vimtag"> <a name="delete-menus">delete-menus</a> </b>
 
                                                 <b class="vimtag"> <a name=":unme">:unme</a> </b>  <b class="vimtag"> <a name=":unmenu">:unmenu</a> </b>
                                                 <b class="vimtag"> <a name=":aun">:aun</a> </b>   <b class="vimtag"> <a name=":aunmenu">:aunmenu</a> </b>
@@ -742,39 +742,39 @@ GUI 模式下有用的菜单项目。关于一个能用于此目的的选项，�
                                                 <b class="vimtag"> <a name=":sunme">:sunme</a> </b> <b class="vimtag"> <a name=":sunmenu">:sunmenu</a> </b>
                                                 <b class="vimtag"> <a name=":iunme">:iunme</a> </b> <b class="vimtag"> <a name=":iunmenu">:iunmenu</a> </b>
                                                 <b class="vimtag"> <a name=":cunme">:cunme</a> </b> <b class="vimtag"> <a name=":cunmenu">:cunmenu</a> </b>
-要删除一个菜单项或者整个子菜单，使用 umenu 命令，类似于 unmap 命令。例如: 
+要刪除一個菜單項或者整個子菜單，使用 umenu 命令，類似於 unmap 命令。例如: 
 <code class="example">    :unmenu! Edit.Paste</code>
 <code class="example"></code>
-会删除插入和命令行模式下的 Edit 菜单的 Paste 项。
+會刪除插入和命令行模式下的 Edit 菜單的 Paste 項。
 
-<code class="note">注意</code> 在 umenu 命令里输入菜单名时，按 <code class="special">&lt;Tab&gt;</code> 可以用来补全菜单项目名。
+<code class="note">注意</code> 在 umenu 命令裡輸入菜單名時，按 <code class="special">&lt;Tab&gt;</code> 可以用來補全菜單項目名。
 
-要删除所有的菜单，可用:                         <b class="vimtag"> <a name=":unmenu-all">:unmenu-all</a> </b>  
-<code class="example">        :unmenu *       " 删除普通和可视模式下的所有菜单</code>
-<code class="example">        :unmenu! *      " 删除插入和命令行模式下的所有菜单</code>
-<code class="example">        :aunmenu *      " 删除所有模式下的所有菜单</code>
+要刪除所有的菜單，可用:                         <b class="vimtag"> <a name=":unmenu-all">:unmenu-all</a> </b>  
+<code class="example">        :unmenu *       " 刪除普通和可視模式下的所有菜單</code>
+<code class="example">        :unmenu! *      " 刪除插入和命令行模式下的所有菜單</code>
+<code class="example">        :aunmenu *      " 刪除所有模式下的所有菜單</code>
 <code class="example"></code>
-如果你想去掉菜单栏: 
+如果你想去掉菜單欄: 
 <code class="example">        :set guioptions-=m</code>
 <code class="example"></code>
 <code class="example"></code>
-5.6 屏蔽菜单                                    <b class="vimtag"> <a name="disable-menus">disable-menus</a> </b>
+5.6 屏蔽菜單                                    <b class="vimtag"> <a name="disable-menus">disable-menus</a> </b>
 
                                                 <b class="vimtag"> <a name=":menu-disable">:menu-disable</a> </b> <b class="vimtag"> <a name=":menu-enable">:menu-enable</a> </b>
-如果你不想删除某个菜单，但想暂时屏蔽之，可以在 ":menu" 命令里使用 "enable" 或
-"disable" 关键字。例如: 
+如果你不想刪除某個菜單，但想暫時屏蔽之，可以在 ":menu" 命令裡使用 "enable" 或
+"disable" 關鍵字。例如: 
 <code class="example">        :menu disable &amp;File.&amp;Open\.\.\.</code>
 <code class="example">        :amenu enable *</code>
 <code class="example">        :amenu disable &amp;Tools.*</code>
 <code class="example"></code>
-和其它 menu 命令一样，该命令作用于指定的模式上。<code class="note">注意</code> 需要包含进来 "&amp;" 这样的字
-符，以便找到经过翻译的名字。如果参数是 "*"，所有的菜单都受到影响。否则，给定的
-菜单名和下面所有的子菜单 (如果存在的话) 都会受影响。
+和其它 menu 命令一樣，該命令作用於指定的模式上。<code class="note">注意</code> 需要包含進來 "&amp;" 這樣的字
+符，以便找到經過翻譯的名字。如果參數是 "*"，所有的菜單都受到影響。否則，給定的
+菜單名和下面所有的子菜單 (如果存在的話) 都會受影響。
 
 
-5.7 菜单示例                                    <b class="vimtag"> <a name="menu-examples">menu-examples</a> </b>
+5.7 菜單示例                                    <b class="vimtag"> <a name="menu-examples">menu-examples</a> </b>
 
-这里是一个如何用 menu 增加菜单项的例子。你可以为光标下的关键字增加菜单项。使用
+這裡是一個如何用 menu 增加菜單項的例子。你可以為光標下的關鍵字增加菜單項。使用
 寄存器 "z"。 
 <code class="example"></code>
 <code class="example">  :nmenu Words.Add\ Var         wb"zye:menu! Words.&lt;C-R&gt;z &lt;C-R&gt;z&lt;CR&gt;</code>
@@ -784,99 +784,99 @@ GUI 模式下有用的菜单项目。关于一个能用于此目的的选项，�
 <code class="example">  :imenu Words.Add\ Var         &lt;Esc&gt;wb"zye:menu! Words.&lt;C-R&gt;z &lt;C-R&gt;z&lt;CR&gt;a</code>
 <code class="example">  :imenu Words.Remove\ Var      &lt;Esc&gt;wb"zye:unmenu! Words.&lt;C-R&gt;z&lt;CR&gt;a</code>
 <code class="example"></code>
-(这里的右手边表达式使用 <code class="special">&lt;&gt;</code> 记法，你可以复制/粘贴这里的文本来测试这些映射，或者
-把这些行加到你的 gvimrc 文件里；"<code class="special">&lt;C-R&gt;</code>" 是 <code class="keystroke">CTRL-R</code>，"<code class="special">&lt;CR&gt;</code>" 是 <code class="special">&lt;CR&gt;</code> 键。 <a href="intro.html#%3C%3E">&lt;&gt;</a> )
+(這裡的右手邊表達式使用 <code class="special">&lt;&gt;</code> 記法，你可以複製/粘貼這裡的文本來測試這些映射，或者
+把這些行加到你的 gvimrc 文件裡；"<code class="special">&lt;C-R&gt;</code>" 是 <code class="keystroke">CTRL-R</code>，"<code class="special">&lt;CR&gt;</code>" 是 <code class="special">&lt;CR&gt;</code> 鍵。 <a href="intro.html#%3C%3E">&lt;&gt;</a> )
 
 
-5.8 工具提示 (Tooltips) 和菜单提示
+5.8 工具提示 (Tooltips) 和菜單提示
 
-见用户手册的  <a href="usr_42.html#42.4">42.4</a>  一节。
+見用戶手冊的  <a href="usr_42.html#42.4">42.4</a>  一節。
 
                                                         <b class="vimtag"> <a name=":tmenu">:tmenu</a> </b> <b class="vimtag"> <a name=":tm">:tm</a> </b>
-:tm[enu] <code class="special">{menupath}</code> <code class="special">{rhs}</code>       为菜单或者工具定义提示。
-                                <code class="notvi">{仅存在于 X11 和 Win32 GUI}</code>
+:tm[enu] <code class="special">{menupath}</code> <code class="special">{rhs}</code>       為菜單或者工具定義提示。
+                                <code class="notvi">{僅存在於 X11 和 Win32 GUI}</code>
 
-:tm[enu] <code class="special">[menupath]</code>             列出菜单提示。<code class="notvi">{仅存在于 X11 和 Win32 GUI}</code>
+:tm[enu] <code class="special">[menupath]</code>             列出菜單提示。<code class="notvi">{僅存在於 X11 和 Win32 GUI}</code>
 
                                                         <b class="vimtag"> <a name=":tunmenu">:tunmenu</a> </b> <b class="vimtag"> <a name=":tu">:tu</a> </b>
-:tu[nmenu] <code class="special">{menupath}</code>           删除菜单或者工具的提示。
-                                <code class="notvi">{仅存在于 X11 和 Win32 GUI}</code>
+:tu[nmenu] <code class="special">{menupath}</code>           刪除菜單或者工具的提示。
+                                <code class="notvi">{僅存在於 X11 和 Win32 GUI}</code>
 
-如果为某菜单项定义了提示，当鼠标移过该项目时，命令行区域会出现该提示，就像标准
-Windows 菜单提示出现在状态栏那样。(除非 Vim 在命令行模式的时候，这时当然什么都
-不会显示。)
-如果为某工具栏项目定义了提示，当鼠标移过该按钮时，提示以通常的方式出现。要改变
-它们的颜色，使用  <a href="syntax.html#hl-Tooltip">hl-Tooltip</a>  高亮组。
+如果為某菜單項定義了提示，當鼠標移過該項目時，命令行區域會出現該提示，就像標準
+Windows 菜單提示出現在狀態欄那樣。(除非 Vim 在命令行模式的時候，這時當然什麼都
+不會顯示。)
+如果為某工具欄項目定義了提示，當鼠標移過該按鈕時，提示以通常的方式出現。要改變
+它們的顏色，使用  <a href="syntax.html#hl-Tooltip">hl-Tooltip</a>  高亮組。
 
-"提示" 可以为每个菜单项目定义。例如，在这样定义菜单项时: 
+"提示" 可以為每個菜單項目定義。例如，在這樣定義菜單項時: 
 <code class="example">        :amenu MyMenu.Hello :echo "Hello"&lt;CR&gt;</code>
-提示可以这样定义: 
+提示可以這樣定義: 
 <code class="example">        :tmenu MyMenu.Hello Displays a greeting.</code>
-然后这样删除: 
+然後這樣刪除: 
 <code class="example">        :tunmenu MyMenu.Hello</code>
 <code class="example"></code>
-现在，工具提示只有在 X11 和 Win32 GUI 上才支持。不过，在不远的将来，应该在其它
-gui 平台上也会出现。
+現在，工具提示只有在 X11 和 Win32 GUI 上才支持。不過，在不遠的將來，應該在其它
+gui 平台上也會出現。
 
-":tmenu" 菜单和其它菜单命令使用相同的参数。":tunmenu" 删除已存在的菜单提示，使
-用方式和其它的 umenu 命令一样。
+":tmenu" 菜單和其它菜單命令使用相同的參數。":tunmenu" 刪除已存在的菜單提示，使
+用方式和其它的 umenu 命令一樣。
 
-如果菜单项目不再合法，(即，在所有模式下，它的动作都被删除) Vim 为你删除菜单的
-提示 (和菜单项)。这意味着 :aunmenu 彻底删除了菜单项目 - 你不需要再运行
+如果菜單項目不再合法，(即，在所有模式下，它的動作都被刪除) Vim 為你刪除菜單的
+提示 (和菜單項)。這意味著 :aunmenu 徹底刪除了菜單項目 - 你不需要再運行
 :tunmenu 了。
 
 
-5.9 弹出式菜单
+5.9 彈出式菜單
 
-在 Win32 和 GTK+ GUI 上，你可以在光标位置下生成一个菜单。这和 PopUp 菜单类似，
-除了你可以弹出任何菜单树以外。
+在 Win32 和 GTK+ GUI 上，你可以在光標位置下生成一個菜單。這和 PopUp 菜單類似，
+除了你可以彈出任何菜單樹以外。
 
-该命令只是为了后向兼容才存在，不鼓励使用。因为它的行为很奇特。
+該命令只是為了後向兼容才存在，不鼓勵使用。因為它的行為很奇特。
 
                                                         <b class="vimtag"> <a name=":popup">:popup</a> </b> <b class="vimtag"> <a name=":popu">:popu</a> </b>
-:popu[p] <code class="special">{name}</code>                 弹出菜单 <code class="special">{name}</code>。菜单名必须有至少一项子项，但
-                                不一定需要出现在菜单栏上 (见  <a href="gui.html#hidden-menus">hidden-menus</a> )。
-                                <code class="notvi">{仅在 Win32 和 GTK GUI 上有效}</code>
+:popu[p] <code class="special">{name}</code>                 彈出菜單 <code class="special">{name}</code>。菜單名必須有至少一項子項，但
+                                不一定需要出現在菜單欄上 (見  <a href="gui.html#hidden-menus">hidden-menus</a> )。
+                                <code class="notvi">{僅在 Win32 和 GTK GUI 上有效}</code>
 
-:popu[p]! <code class="special">{name}</code>                和上面类似，但使用鼠标指针所在的位置，而不是光
-                                标位置。
+:popu[p]! <code class="special">{name}</code>                和上面類似，但使用鼠標指針所在的位置，而不是光
+                                標位置。
 
 示例: 
 <code class="example">        :popup File</code>
-会使得 "File" 菜单 (如果有的话) 出现在文本光标 (如果有 ! 则是鼠标指针) 的位置
+會使得 "File" 菜單 (如果有的話) 出現在文本光標 (如果有 ! 則是鼠標指針) 的位置
 上。 
 <code class="example"></code>
 <code class="example">        :amenu ]Toolbar.Make    :make&lt;CR&gt;</code>
 <code class="example">        :popup ]Toolbar</code>
-会创建一个弹出式菜单，该菜单并不存在于主菜单栏中。
+會創建一個彈出式菜單，該菜單並不存在於主菜單欄中。
 
-<code class="note">注意</code> ']' 开始的菜单不会显示。
+<code class="note">注意</code> ']' 開始的菜單不會顯示。
 
 </pre><hr class="doubleline" /><pre>
 <h4>6. 附加                                                 <b class="vimtag"> <a name="gui-extras">gui-extras</a> </b></h4>
-这一节说明其它和 GUI 相关的特性。
+這一節說明其它和 GUI 相關的特性。
 
-- 在 GUI 上，按 escape 之后不需要等一秒，因为没有键码会以 <code class="special">&lt;Esc&gt;</code> 开始。
+- 在 GUI 上，按 escape 之後不需要等一秒，因為沒有鍵碼會以 <code class="special">&lt;Esc&gt;</code> 開始。
 
-- 在 GUI 上，输入 ^V 紧跟一个特殊键会插入 "<code class="special">&lt;Key&gt;</code>"，因为所用到的内部字符串没有
-  意义。也可以按下修饰符，得到 "<code class="special">&lt;Modifiers-Key&gt;</code>"。
+- 在 GUI 上，輸入 ^V 緊跟一個特殊鍵會插入 "<code class="special">&lt;Key&gt;</code>"，因為所用到的內部字符串沒有
+  意義。也可以按下修飾符，得到 "<code class="special">&lt;Modifiers-Key&gt;</code>"。
 
-- 在 GUI 上，修饰符 SHIFT、CTRL 和 ALT (或 META) 可以在映射里和特殊键或鼠标一
+- 在 GUI 上，修飾符 SHIFT、CTRL 和 ALT (或 META) 可以在映射裡和特殊鍵或鼠標一
   起使用，例如 :map <code class="special">&lt;M-LeftDrag&gt;</code> <code class="special">&lt;LeftDrag&gt;</code>
 
-- 在 GUI 上，若干普通键在映射等命令里可以带修饰符，它们是 <code class="special">&lt;Space&gt;</code>、<code class="special">&lt;Tab&gt;</code>、
+- 在 GUI 上，若干普通鍵在映射等命令裡可以帶修飾符，它們是 <code class="special">&lt;Space&gt;</code>、<code class="special">&lt;Tab&gt;</code>、
   <code class="special">&lt;NL&gt;</code>、<code class="special">&lt;CR&gt;</code> 和 <code class="special">&lt;Esc&gt;</code>。
 
-- 要在 Vim 脚本里检查是不是使用 GUI，你可以这么使用: 
+- 要在 Vim 腳本裡檢查是不是使用 GUI，你可以這麼使用: 
 <code class="example"></code>
 <code class="example">        if has("gui_running")</code>
-<code class="example">           echo "是的，我们有 GUI"</code>
+<code class="example">           echo "是的，我們有 GUI"</code>
 <code class="example">        else</code>
-<code class="example">           echo "无聊的老终端"</code>
+<code class="example">           echo "無聊的老終端"</code>
 <code class="example">        endif</code>
                                                 <b class="vimtag"> <a name="setting-guifont">setting-guifont</a> </b>
-- 如果你在多个系统上使用同一个 vimrc 文件，你可以这样设置不同类型的 GUI 专用的
-  选项: 
+- 如果你在多個系統上使用同一個 vimrc 文件，你可以這樣設置不同類型的 GUI 專用的
+  選項: 
 <code class="example"></code>
 <code class="example">        if has("gui_running")</code>
 <code class="example">            if has("gui_gtk2")</code>
@@ -889,17 +889,17 @@ gui 平台上也会出现。
 <code class="example">            endif</code>
 <code class="example">        endif</code>
 <code class="example"></code>
-MS Mincho 是一个推荐的日文字体。相关信息见: http://www.lexikan.com/mincho.htm
+MS Mincho 是一個推薦的日文字體。相關信息見: http://www.lexikan.com/mincho.htm
 
 </pre><hr class="doubleline" /><pre>
-<h4>7. 外壳命令                                             <b class="vimtag"> <a name="gui-shell">gui-shell</a> </b></h4>
-X11 GUI 上，外部命令在 gvim 窗口里执行。见  <a href="gui_x11.html#gui-pty">gui-pty</a> 。
+<h4>7. 外殼命令                                             <b class="vimtag"> <a name="gui-shell">gui-shell</a> </b></h4>
+X11 GUI 上，外部命令在 gvim 窗口裡執行。見  <a href="gui_x11.html#gui-pty">gui-pty</a> 。
 
-警 告: 在 X11 GUI 上执行外部命令不总是可以的。"普通" 的命令，像 "ls"、"grep"、
-"make" 大多数没问题。需要一个智能终端的命令，比如 "less" 和 "ispell" 就不行。
-有的可能挂起，需要从另外一个终端杀死进程才能终止。所以，要小心一点。
+警 告: 在 X11 GUI 上執行外部命令不總是可以的。"普通" 的命令，像 "ls"、"grep"、
+"make" 大多數沒問題。需要一個智能終端的命令，比如 "less" 和 "ispell" 就不行。
+有的可能掛起，需要從另外一個終端殺死進程才能終止。所以，要小心一點。
 
-Win32 GUI 上，外部命令在一个单独的窗口上执行。见  <a href="gui_w32.html#gui-shell-win32">gui-shell-win32</a> 。
+Win32 GUI 上，外部命令在一個單獨的窗口上執行。見  <a href="gui_w32.html#gui-shell-win32">gui-shell-win32</a> 。
 
  vim:tw=78:sw=4:ts=8:ft=help:norl:
 </pre>

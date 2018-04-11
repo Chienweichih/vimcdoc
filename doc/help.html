@@ -1,17 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>VIM: help</title>
 <link rel="stylesheet" href="vim-stylesheet.css" type="text/css">
 </head>
 <body>
 <div id=banner>
-<a href="help.html">帮助总览</a> &middot;
-<a href="quickref.html">快速参考</a> &middot;
+<a href="help.html">幫助總覽</a> &middot;
+<a href="quickref.html">快速參考</a> &middot;
 <a href="index.html">命令索引</a> &middot;
-<a href="usr_toc.html">用户手册</a> &middot;
-<a href="help.html#reference_toc">参考手册</a>
+<a href="usr_toc.html">用戶手冊</a> &middot;
+<a href="help.html#reference_toc">參考手冊</a>
 </div>
 
 <div id=outer>
@@ -19,166 +19,166 @@
 <pre>
 <b class="vimtag"> <a name="help.txt">help.txt</a> </b>      For Vim version 8.0.  最近更新: 2017年7月
 
-                        VIM - 主帮助文件
+                        VIM - 主幫助文件
                                                                          k
-             移动:  使用光标键，或者用 "h" 向左，                      h   l
+             移動:  使用光標鍵，或者用 "h" 向左，                      h   l
                     "j" 向下，"k" 向上，"l" 向右。                       j
-       关闭本窗口:  使用 ":q<code class="special">&lt;Enter&gt;</code>"。
-         离开 Vim:  使用 ":qa!<code class="special">&lt;Enter&gt;</code>" (当心，所有的改动都会丢失！)。
+       關閉本窗口:  使用 ":q<code class="special">&lt;Enter&gt;</code>"。
+         離開 Vim:  使用 ":qa!<code class="special">&lt;Enter&gt;</code>" (當心，所有的改動都會丟失！)。
 
-   跳转到一个主题:  将光标置于标签 (例如  <a href="help.html#bars">bars</a> ) 上然后输入 <code class="keystroke">CTRL-]</code>。
-         使用鼠标:  ":set mouse=a" 启动对鼠标的支持 (用于 xterm 或 GUI)。
-                    在标签 (例如  <a href="help.html#bars">bars</a> ) 上双击。
-             跳回:  键入 <code class="keystroke">CTRL-T</code> 或 <code class="keystroke">CTRL-O</code>。重复则继续向后。
+   跳轉到一個主題:  將光標置於標籤 (例如  <a href="help.html#bars">bars</a> ) 上然後輸入 <code class="keystroke">CTRL-]</code>。
+         使用鼠標:  ":set mouse=a" 啟動對鼠標的支持 (用於 xterm 或 GUI)。
+                    在標籤 (例如  <a href="help.html#bars">bars</a> ) 上雙擊。
+             跳回:  鍵入 <code class="keystroke">CTRL-T</code> 或 <code class="keystroke">CTRL-O</code>。重複則繼續向後。
 
-     获取特定帮助:  在  <a href="helphelp.html#:help">:help</a>  命令后给出参数可以直接跳转到任何的帮助主题。
-                    还可以通过前缀进一步指定上下文:            <b class="vimtag"> <a name="help-context">help-context</a> </b>
+     獲取特定幫助:  在  <a href="helphelp.html#:help">:help</a>  命令後給出參數可以直接跳轉到任何的幫助主題。
+                    還可以通過前綴進一步指定上下文:            <b class="vimtag"> <a name="help-context">help-context</a> </b>
 
-<code class="section">                          类别                  前缀       例子 </code>
+<code class="section">                          類別                  前綴       例子 </code>
                       普通模式命令                         :help x
-                      可视模式命令                v_       :help v_u
+                      可視模式命令                v_       :help v_u
                       插入模式命令                i_       :help i_<code class="special">&lt;Esc&gt;</code>
                       命令行模式命令              :        :help :quit
-                      命令行编辑                  c_       :help c_<code class="special">&lt;Del&gt;</code>
-                      Vim 命令参数                -        :help -r
-                      选项                        '        :help <a href="options.html#'textwidth'">'textwidth'</a>
-                      正规表达式                  /        :help /[
-                    更多上下文及说明参见  <a href="usr_02.html#help-summary">help-summary</a> 。
+                      命令行編輯                  c_       :help c_<code class="special">&lt;Del&gt;</code>
+                      Vim 命令參數                -        :help -r
+                      選項                        '        :help <a href="options.html#'textwidth'">'textwidth'</a>
+                      正規表達式                  /        :help /[
+                    更多上下文及說明參見  <a href="usr_02.html#help-summary">help-summary</a> 。
 
-         查找帮助:  键入 ":help word"，接着键入 <code class="keystroke">CTRL-D</code> 可以看到匹配 "word" 的
-                    帮助主题。
+         查找幫助:  鍵入 ":help word"，接著鍵入 <code class="keystroke">CTRL-D</code> 可以看到匹配 "word" 的
+                    幫助主題。
                     也可用 ":helpgrep word"。 <a href="helphelp.html#:helpgrep">:helpgrep</a> 
 
-Vim 代表 Vi IMproved。Vim 主要由 Bram Moolenaar 编写，但没有许多其他人的帮助是
-不可能的。请见  <a href="intro.html#credits">credits</a> 。
+Vim 代表 Vi IMproved。Vim 主要由 Bram Moolenaar 編寫，但沒有許多其他人的幫助是
+不可能的。請見  <a href="intro.html#credits">credits</a> 。
 </pre><hr class="singleline" /><pre>
                                                 <b class="vimtag"> <a name="doc-file-list">doc-file-list</a> </b> <b class="vimtag"> <a name="Q_ct">Q_ct</a> </b>
-基础:
- <a href="quickref.html#quickref">quickref</a>       总览最常用的命令
- <a href="usr_01.html#tutor">tutor</a>          面向初学者的 30 分钟教程
- <a href="uganda.html#copying">copying</a>        版权信息
- <a href="uganda.html#iccf">iccf</a>           资助乌干达贫困儿童
- <a href="sponsor.html#sponsor">sponsor</a>        赞助 Vim 的开发，成为一名注册用户
- <a href="intro.html#www">www</a>            互联网上的 Vim
- <a href="intro.html#bugs">bugs</a>           如何提交漏洞报告
+基礎:
+ <a href="quickref.html#quickref">quickref</a>       總覽最常用的命令
+ <a href="usr_01.html#tutor">tutor</a>          面向初學者的 30 分鐘教程
+ <a href="uganda.html#copying">copying</a>        版權信息
+ <a href="uganda.html#iccf">iccf</a>           資助烏干達貧困兒童
+ <a href="sponsor.html#sponsor">sponsor</a>        贊助 Vim 的開發，成為一名註冊用戶
+ <a href="intro.html#www">www</a>            互聯網上的 Vim
+ <a href="intro.html#bugs">bugs</a>           如何提交漏洞報告
 
-用户手册: 这些文件解释如何完成一项编辑任务。
+用戶手冊: 這些文件解釋如何完成一項編輯任務。
 
- <a href="usr_toc.html#usr_toc.txt">usr_toc.txt</a>    目录
+ <a href="usr_toc.html#usr_toc.txt">usr_toc.txt</a>    目錄
 
-<code class="section">初步知识 </code>
- <a href="usr_01.html#usr_01.txt">usr_01.txt</a>   关于本手册
+<code class="section">初步知識 </code>
+ <a href="usr_01.html#usr_01.txt">usr_01.txt</a>   關於本手冊
  <a href="usr_02.html#usr_02.txt">usr_02.txt</a>   Vim 初步
- <a href="usr_03.html#usr_03.txt">usr_03.txt</a>   移动
- <a href="usr_04.html#usr_04.txt">usr_04.txt</a>   做小改动
- <a href="usr_05.html#usr_05.txt">usr_05.txt</a>   选项设置
- <a href="usr_06.html#usr_06.txt">usr_06.txt</a>   使用语法高亮
- <a href="usr_07.html#usr_07.txt">usr_07.txt</a>   编辑多个文件
+ <a href="usr_03.html#usr_03.txt">usr_03.txt</a>   移動
+ <a href="usr_04.html#usr_04.txt">usr_04.txt</a>   做小改動
+ <a href="usr_05.html#usr_05.txt">usr_05.txt</a>   選項設置
+ <a href="usr_06.html#usr_06.txt">usr_06.txt</a>   使用語法高亮
+ <a href="usr_07.html#usr_07.txt">usr_07.txt</a>   編輯多個文件
  <a href="usr_08.html#usr_08.txt">usr_08.txt</a>   分割窗口
  <a href="usr_09.html#usr_09.txt">usr_09.txt</a>   使用 GUI 版本
  <a href="usr_10.html#usr_10.txt">usr_10.txt</a>   做大修改
- <a href="usr_11.html#usr_11.txt">usr_11.txt</a>   从崩溃中恢复
- <a href="usr_12.html#usr_12.txt">usr_12.txt</a>   小窍门
+ <a href="usr_11.html#usr_11.txt">usr_11.txt</a>   從崩潰中恢復
+ <a href="usr_12.html#usr_12.txt">usr_12.txt</a>   小竅門
 
-<code class="section">高效地编辑 </code>
- <a href="usr_20.html#usr_20.txt">usr_20.txt</a>   快速键入命令行
- <a href="usr_21.html#usr_21.txt">usr_21.txt</a>   离开和回来
- <a href="usr_22.html#usr_22.txt">usr_22.txt</a>   寻找要编辑的文件
- <a href="usr_23.html#usr_23.txt">usr_23.txt</a>   编辑特殊文件
+<code class="section">高效地編輯 </code>
+ <a href="usr_20.html#usr_20.txt">usr_20.txt</a>   快速鍵入命令行
+ <a href="usr_21.html#usr_21.txt">usr_21.txt</a>   離開和回來
+ <a href="usr_22.html#usr_22.txt">usr_22.txt</a>   尋找要編輯的文件
+ <a href="usr_23.html#usr_23.txt">usr_23.txt</a>   編輯特殊文件
  <a href="usr_24.html#usr_24.txt">usr_24.txt</a>   快速插入
- <a href="usr_25.html#usr_25.txt">usr_25.txt</a>   编辑带格式的文本
- <a href="usr_26.html#usr_26.txt">usr_26.txt</a>   重复
+ <a href="usr_25.html#usr_25.txt">usr_25.txt</a>   編輯帶格式的文本
+ <a href="usr_26.html#usr_26.txt">usr_26.txt</a>   重複
  <a href="usr_27.html#usr_27.txt">usr_27.txt</a>   查找命令及模式
- <a href="usr_28.html#usr_28.txt">usr_28.txt</a>   折叠
- <a href="usr_29.html#usr_29.txt">usr_29.txt</a>   在代码间移动
- <a href="usr_30.html#usr_30.txt">usr_30.txt</a>   编辑程序
+ <a href="usr_28.html#usr_28.txt">usr_28.txt</a>   折疊
+ <a href="usr_29.html#usr_29.txt">usr_29.txt</a>   在代碼間移動
+ <a href="usr_30.html#usr_30.txt">usr_30.txt</a>   編輯程序
  <a href="usr_31.html#usr_31.txt">usr_31.txt</a>   利用 GUI
- <a href="usr_32.html#usr_32.txt">usr_32.txt</a>   撤销树
+ <a href="usr_32.html#usr_32.txt">usr_32.txt</a>   撤銷樹
 
-<code class="section">调节 Vim </code>
- <a href="usr_40.html#usr_40.txt">usr_40.txt</a>   创建新的命令
- <a href="usr_41.html#usr_41.txt">usr_41.txt</a>   编写 Vim 脚本
- <a href="usr_42.html#usr_42.txt">usr_42.txt</a>   添加新的菜单
- <a href="usr_43.html#usr_43.txt">usr_43.txt</a>   使用文件类型
- <a href="usr_44.html#usr_44.txt">usr_44.txt</a>   自定义语法高亮
- <a href="usr_45.html#usr_45.txt">usr_45.txt</a>   选择你的语言
+<code class="section">調節 Vim </code>
+ <a href="usr_40.html#usr_40.txt">usr_40.txt</a>   創建新的命令
+ <a href="usr_41.html#usr_41.txt">usr_41.txt</a>   編寫 Vim 腳本
+ <a href="usr_42.html#usr_42.txt">usr_42.txt</a>   添加新的菜單
+ <a href="usr_43.html#usr_43.txt">usr_43.txt</a>   使用文件類型
+ <a href="usr_44.html#usr_44.txt">usr_44.txt</a>   自定義語法高亮
+ <a href="usr_45.html#usr_45.txt">usr_45.txt</a>   選擇你的語言
 
-<code class="section">让 Vim 工作</code>
- <a href="usr_90.html#usr_90.txt">usr_90.txt</a>   安装 Vim
+<code class="section">讓 Vim 工作</code>
+ <a href="usr_90.html#usr_90.txt">usr_90.txt</a>   安裝 Vim
 
 
-参考手册: 这些文件详细地解释 Vim 的每个细节。                   <b class="vimtag"> <a name="reference_toc">reference_toc</a> </b>
+參考手冊: 這些文件詳細地解釋 Vim 的每個細節。                   <b class="vimtag"> <a name="reference_toc">reference_toc</a> </b>
 
-<code class="section">一般主题 </code>
- <a href="intro.html#intro.txt">intro.txt</a>      对 Vim 的一般介绍；帮助文件中所使用的符号
- <a href="help.html#help.txt">help.txt</a>       总览及快速参考 (本文件)
- <a href="helphelp.html#helphelp.txt">helphelp.txt</a>   关于如何使用帮助文件
- <a href="index.html#index.txt">index.txt</a>      以字母顺序排列的命令索引
- <a href="tags.html">help-tags</a>      可跳转的所有标签 (标签索引)
- <a href="howto.html#howto.txt">howto.txt</a>      如何完成最常见的编辑任务
- <a href="tips.html#tips.txt">tips.txt</a>       Vim 的各种窍门
- <a href="message.html#message.txt">message.txt</a>    (错误) 信息及解释
- <a href="quotes.html#quotes.txt">quotes.txt</a>     Vim 的用户评价
- <a href="todo.html#todo.txt">todo.txt</a>       已知的问题以及扩展计划
- <a href="develop.html#develop.txt">develop.txt</a>    Vim 的开发
- <a href="debug.html#debug.txt">debug.txt</a>      调试 Vim 自身
- <a href="uganda.html#uganda.txt">uganda.txt</a>     Vim 发布条件和怎么花你的 money
+<code class="section">一般主題 </code>
+ <a href="intro.html#intro.txt">intro.txt</a>      對 Vim 的一般介紹；幫助文件中所使用的符號
+ <a href="help.html#help.txt">help.txt</a>       總覽及快速參考 (本文件)
+ <a href="helphelp.html#helphelp.txt">helphelp.txt</a>   關於如何使用幫助文件
+ <a href="index.html#index.txt">index.txt</a>      以字母順序排列的命令索引
+ <a href="tags.html">help-tags</a>      可跳轉的所有標籤 (標籤索引)
+ <a href="howto.html#howto.txt">howto.txt</a>      如何完成最常見的編輯任務
+ <a href="tips.html#tips.txt">tips.txt</a>       Vim 的各種竅門
+ <a href="message.html#message.txt">message.txt</a>    (錯誤) 信息及解釋
+ <a href="quotes.html#quotes.txt">quotes.txt</a>     Vim 的用戶評價
+ <a href="todo.html#todo.txt">todo.txt</a>       已知的問題以及擴展計劃
+ <a href="develop.html#develop.txt">develop.txt</a>    Vim 的開發
+ <a href="debug.html#debug.txt">debug.txt</a>      調試 Vim 自身
+ <a href="uganda.html#uganda.txt">uganda.txt</a>     Vim 發佈條件和怎麼花你的 money
 
-<code class="section">基本编辑 </code>
- <a href="starting.html#starting.txt">starting.txt</a>   启动 Vim，Vim 命令参数，初始化
- <a href="editing.html#editing.txt">editing.txt</a>    编辑和写入文件
- <a href="motion.html#motion.txt">motion.txt</a>     有关移动的命令
- <a href="scroll.html#scroll.txt">scroll.txt</a>     在窗口中滚动文本
- <a href="insert.html#insert.txt">insert.txt</a>     插入模式和替换模式
- <a href="change.html#change.txt">change.txt</a>     删除和替换文本
- <a href="indent.html#indent.txt">indent.txt</a>     C 及其它语言的自动缩进
- <a href="undo.html#undo.txt">undo.txt</a>       撤销和重做
- <a href="repeat.html#repeat.txt">repeat.txt</a>     重复命令，Vim 脚本及调试
- <a href="visual.html#visual.txt">visual.txt</a>     使用可视模式 (选择一个文本区域)
- <a href="various.html#various.txt">various.txt</a>    各种其它命令
- <a href="recover.html#recover.txt">recover.txt</a>    从崩溃中恢复
+<code class="section">基本編輯 </code>
+ <a href="starting.html#starting.txt">starting.txt</a>   啟動 Vim，Vim 命令參數，初始化
+ <a href="editing.html#editing.txt">editing.txt</a>    編輯和寫入文件
+ <a href="motion.html#motion.txt">motion.txt</a>     有關移動的命令
+ <a href="scroll.html#scroll.txt">scroll.txt</a>     在窗口中滾動文本
+ <a href="insert.html#insert.txt">insert.txt</a>     插入模式和替換模式
+ <a href="change.html#change.txt">change.txt</a>     刪除和替換文本
+ <a href="indent.html#indent.txt">indent.txt</a>     C 及其它語言的自動縮進
+ <a href="undo.html#undo.txt">undo.txt</a>       撤銷和重做
+ <a href="repeat.html#repeat.txt">repeat.txt</a>     重複命令，Vim 腳本及調試
+ <a href="visual.html#visual.txt">visual.txt</a>     使用可視模式 (選擇一個文本區域)
+ <a href="various.html#various.txt">various.txt</a>    各種其它命令
+ <a href="recover.html#recover.txt">recover.txt</a>    從崩潰中恢復
 
-<code class="section">高级编辑 </code>
- <a href="cmdline.html#cmdline.txt">cmdline.txt</a>    命令行编辑
- <a href="options.html#options.txt">options.txt</a>    所有选项的描述
- <a href="pattern.html#pattern.txt">pattern.txt</a>    正则表达式及查找命令
- <a href="map.html#map.txt">map.txt</a>        键盘映射及缩写
- <a href="tagsrch.html#tagsrch.txt">tagsrch.txt</a>    标签及特殊查找
- <a href="quickfix.html#quickfix.txt">quickfix.txt</a>   支持快速 编辑-编译-修正 循环的命令
- <a href="windows.html#windows.txt">windows.txt</a>    使用多窗口多缓冲区的命令
- <a href="tabpage.html#tabpage.txt">tabpage.txt</a>    使用多个标签页的命令
- <a href="syntax.html#syntax.txt">syntax.txt</a>     语法高亮
- <a href="spell.html#spell.txt">spell.txt</a>      拼写检查
- <a href="diff.html#diff.txt">diff.txt</a>       编辑同一文本的两到四个版本
- <a href="autocmd.html#autocmd.txt">autocmd.txt</a>    当事件发生时自动执行命令
- <a href="filetype.html#filetype.txt">filetype.txt</a>   对某一类型文件的专有设定
- <a href="eval.html#eval.txt">eval.txt</a>       表达式求值，条件执行命令
- <a href="channel.html#channel.txt">channel.txt</a>    作业、通道、进程间通信
- <a href="fold.html#fold.txt">fold.txt</a>       隐藏 (折叠) 一定范围内的文本
+<code class="section">高級編輯 </code>
+ <a href="cmdline.html#cmdline.txt">cmdline.txt</a>    命令行編輯
+ <a href="options.html#options.txt">options.txt</a>    所有選項的描述
+ <a href="pattern.html#pattern.txt">pattern.txt</a>    正則表達式及查找命令
+ <a href="map.html#map.txt">map.txt</a>        鍵盤映射及縮寫
+ <a href="tagsrch.html#tagsrch.txt">tagsrch.txt</a>    標籤及特殊查找
+ <a href="quickfix.html#quickfix.txt">quickfix.txt</a>   支持快速 編輯-編譯-修正 循環的命令
+ <a href="windows.html#windows.txt">windows.txt</a>    使用多窗口多緩衝區的命令
+ <a href="tabpage.html#tabpage.txt">tabpage.txt</a>    使用多個標籤頁的命令
+ <a href="syntax.html#syntax.txt">syntax.txt</a>     語法高亮
+ <a href="spell.html#spell.txt">spell.txt</a>      拼寫檢查
+ <a href="diff.html#diff.txt">diff.txt</a>       編輯同一文本的兩到四個版本
+ <a href="autocmd.html#autocmd.txt">autocmd.txt</a>    當事件發生時自動執行命令
+ <a href="filetype.html#filetype.txt">filetype.txt</a>   對某一類型文件的專有設定
+ <a href="eval.html#eval.txt">eval.txt</a>       表達式求值，條件執行命令
+ <a href="channel.html#channel.txt">channel.txt</a>    作業、通道、進程間通信
+ <a href="fold.html#fold.txt">fold.txt</a>       隱藏 (折疊) 一定範圍內的文本
 
-<code class="section">特殊问题 </code>
+<code class="section">特殊問題 </code>
  <a href="print.html#print.txt">print.txt</a>      打印
- <a href="remote.html#remote.txt">remote.txt</a>     将 Vim 用作服务器/客户端
- <a href="term.html#term.txt">term.txt</a>       使用不同终端和鼠标
- <a href="digraph.html#digraph.txt">digraph.txt</a>    可用的二合字母清单
- <a href="mbyte.html#mbyte.txt">mbyte.txt</a>      多字节文本支持
- <a href="mlang.html#mlang.txt">mlang.txt</a>      非英语语言支持
- <a href="arabic.html#arabic.txt">arabic.txt</a>     阿拉伯语支持及编辑
- <a href="farsi.html#farsi.txt">farsi.txt</a>      Farsi (波斯语) 编辑
- <a href="hebrew.html#hebrew.txt">hebrew.txt</a>     希伯来语支持及编辑
- <a href="russian.html#russian.txt">russian.txt</a>    俄罗斯语支持及编辑
- <a href="ft_ada.html#ft_ada.txt">ft_ada.txt</a>     Ada (编程语言) 支持
- <a href="ft_sql.html#ft_sql.txt">ft_sql.txt</a>     SQL 文件类型插件相关
- <a href="hangulin.html#hangulin.txt">hangulin.txt</a>   Hangul (韩语) 输入模式
- <a href="rileft.html#rileft.txt">rileft.txt</a>     从右向左的编辑模式
+ <a href="remote.html#remote.txt">remote.txt</a>     將 Vim 用作服務器/客戶端
+ <a href="term.html#term.txt">term.txt</a>       使用不同終端和鼠標
+ <a href="digraph.html#digraph.txt">digraph.txt</a>    可用的二合字母清單
+ <a href="mbyte.html#mbyte.txt">mbyte.txt</a>      多字節文本支持
+ <a href="mlang.html#mlang.txt">mlang.txt</a>      非英語語言支持
+ <a href="arabic.html#arabic.txt">arabic.txt</a>     阿拉伯語支持及編輯
+ <a href="farsi.html#farsi.txt">farsi.txt</a>      Farsi (波斯語) 編輯
+ <a href="hebrew.html#hebrew.txt">hebrew.txt</a>     希伯來語支持及編輯
+ <a href="russian.html#russian.txt">russian.txt</a>    俄羅斯語支持及編輯
+ <a href="ft_ada.html#ft_ada.txt">ft_ada.txt</a>     Ada (編程語言) 支持
+ <a href="ft_sql.html#ft_sql.txt">ft_sql.txt</a>     SQL 文件類型插件相關
+ <a href="hangulin.html#hangulin.txt">hangulin.txt</a>   Hangul (韓語) 輸入模式
+ <a href="rileft.html#rileft.txt">rileft.txt</a>     從右向左的編輯模式
 
 <code class="section">GUI </code>
- <a href="gui.html#gui.txt">gui.txt</a>        图形用户界面 (GUI)
+ <a href="gui.html#gui.txt">gui.txt</a>        圖形用戶界面 (GUI)
  <a href="gui_w32.html#gui_w32.txt">gui_w32.txt</a>    Win32 GUI
  <a href="gui_x11.html#gui_x11.txt">gui_x11.txt</a>    X11 GUI
 
-<code class="section">各种接口 </code>
- <a href="if_cscop.html#if_cscop.txt">if_cscop.txt</a>   联用 cscope 与 Vim
+<code class="section">各種接口 </code>
+ <a href="if_cscop.html#if_cscop.txt">if_cscop.txt</a>   聯用 cscope 與 Vim
  <a href="if_lua.html#if_lua.txt">if_lua.txt</a>     Lua 接口
  <a href="if_mzsch.html#if_mzsch.txt">if_mzsch.txt</a>   MzScheme 接口
  <a href="if_perl.html#if_perl.txt">if_perl.txt</a>    Perl 接口
@@ -186,27 +186,27 @@ Vim 代表 Vi IMproved。Vim 主要由 Bram Moolenaar 编写，但没有许多�
  <a href="if_tcl.html#if_tcl.txt">if_tcl.txt</a>     Tcl 接口
  <a href="if_ole.html#if_ole.txt">if_ole.txt</a>     Win32 下的 OLE 接口
  <a href="if_ruby.html#if_ruby.txt">if_ruby.txt</a>    Ruby 接口
- <a href="debugger.html#debugger.txt">debugger.txt</a>   与调试程序的接口
+ <a href="debugger.html#debugger.txt">debugger.txt</a>   與調試程序的接口
  <a href="workshop.html#workshop.txt">workshop.txt</a>   Sun Visual Workshop 接口
- <a href="netbeans.html#netbeans.txt">netbeans.txt</a>   NetBeans 外部编辑器接口
- <a href="sign.html#sign.txt">sign.txt</a>       调试标号
+ <a href="netbeans.html#netbeans.txt">netbeans.txt</a>   NetBeans 外部編輯器接口
+ <a href="sign.html#sign.txt">sign.txt</a>       調試標號
 
 <code class="section">版本 </code>
- <a href="vi_diff.html#vi_diff.txt">vi_diff.txt</a>    Vim 和 Vi 之间的主要区别
- <a href="version4.html#version4.txt">version4.txt</a>   Vim 3.0 和 4.x 版本的区别
- <a href="version5.html#version5.txt">version5.txt</a>   Vim 4.6 和 5.x 版本的区别
- <a href="version6.html#version6.txt">version6.txt</a>   Vim 5.7 和 6.x 版本的区别
- <a href="version7.html#version7.txt">version7.txt</a>   Vim 6.4 和 7.x 版本的区别
- <a href="version8.html#version8.txt">version8.txt</a>   Vim 7.4 和 8.x 版本的区别
+ <a href="vi_diff.html#vi_diff.txt">vi_diff.txt</a>    Vim 和 Vi 之間的主要區別
+ <a href="version4.html#version4.txt">version4.txt</a>   Vim 3.0 和 4.x 版本的區別
+ <a href="version5.html#version5.txt">version5.txt</a>   Vim 4.6 和 5.x 版本的區別
+ <a href="version6.html#version6.txt">version6.txt</a>   Vim 5.7 和 6.x 版本的區別
+ <a href="version7.html#version7.txt">version7.txt</a>   Vim 6.4 和 7.x 版本的區別
+ <a href="version8.html#version8.txt">version8.txt</a>   Vim 7.4 和 8.x 版本的區別
                                                 <b class="vimtag"> <a name="sys-file-list">sys-file-list</a> </b>
-<code class="section">特定系统相关 </code>
+<code class="section">特定系統相關 </code>
  <a href="os_390.html#os_390.txt">os_390.txt</a>     OS/390 Unix
  <a href="os_amiga.html#os_amiga.txt">os_amiga.txt</a>   Amiga
  <a href="os_beos.html#os_beos.txt">os_beos.txt</a>    BeOS 和 BeBox
- <a href="os_dos.html#os_dos.txt">os_dos.txt</a>     MS-DOS 和 MS-Windows NT/95 通用的条目
+ <a href="os_dos.html#os_dos.txt">os_dos.txt</a>     MS-DOS 和 MS-Windows NT/95 通用的條目
  <a href="os_mac.html#os_mac.txt">os_mac.txt</a>     Macintosh
  <a href="os_mint.html#os_mint.txt">os_mint.txt</a>    Atari MiNT
- <a href="os_msdos.html#os_msdos.txt">os_msdos.txt</a>   MS-DOS (纯 DOS 及 Windows 内的 DOS 窗口)
+ <a href="os_msdos.html#os_msdos.txt">os_msdos.txt</a>   MS-DOS (純 DOS 及 Windows 內的 DOS 窗口)
  <a href="os_os2.html#os_os2.txt">os_os2.txt</a>     OS/2
  <a href="os_qnx.html#os_qnx.txt">os_qnx.txt</a>     QNX
  <a href="os_risc.html#os_risc.txt">os_risc.txt</a>    RISC-OS
@@ -214,31 +214,31 @@ Vim 代表 Vi IMproved。Vim 主要由 Bram Moolenaar 编写，但没有许多�
  <a href="os_vms.html#os_vms.txt">os_vms.txt</a>     VMS
  <a href="os_win32.html#os_win32.txt">os_win32.txt</a>   MS-Windows 95/98/NT
                                         <b class="vimtag"> <a name="standard-plugin-list">standard-plugin-list</a> </b>
-<code class="section">标准插件 </code>
- <a href="pi_getscript.html#pi_getscript.txt">pi_getscript.txt</a>  下载 Vim 脚本的最新版本
- <a href="pi_gzip.html#pi_gzip.txt">pi_gzip.txt</a>       读写压缩过的文件
- <a href="pi_logipat.html#pi_logipat.txt">pi_logipat.txt</a>    模式的逻辑操作符
- <a href="pi_netrw.html#pi_netrw.txt">pi_netrw.txt</a>      通过网络读写文件
- <a href="pi_paren.html#pi_paren.txt">pi_paren.txt</a>      高亮匹配括号
+<code class="section">標準插件 </code>
+ <a href="pi_getscript.html#pi_getscript.txt">pi_getscript.txt</a>  下載 Vim 腳本的最新版本
+ <a href="pi_gzip.html#pi_gzip.txt">pi_gzip.txt</a>       讀寫壓縮過的文件
+ <a href="pi_logipat.html#pi_logipat.txt">pi_logipat.txt</a>    模式的邏輯操作符
+ <a href="pi_netrw.html#pi_netrw.txt">pi_netrw.txt</a>      通過網絡讀寫文件
+ <a href="pi_paren.html#pi_paren.txt">pi_paren.txt</a>      高亮匹配括號
  <a href="pi_tar.html#pi_tar.txt">pi_tar.txt</a>        Tar 文件探索器
- <a href="pi_vimball.html#pi_vimball.txt">pi_vimball.txt</a>    创建自安装的 Vim 脚本
- <a href="pi_zip.html#pi_zip.txt">pi_zip.txt</a>        Zip 归档探索器
+ <a href="pi_vimball.html#pi_vimball.txt">pi_vimball.txt</a>    創建自安裝的 Vim 腳本
+ <a href="pi_zip.html#pi_zip.txt">pi_zip.txt</a>        Zip 歸檔探索器
 
-本地附加文档
- <code class="badlink">local-additions</code>        请查阅英文文档
+本地附加文檔
+ <code class="badlink">local-additions</code>        請查閱英文文檔
 
 
 </pre><hr class="singleline" /><pre>
-<b class="vimtag"> <a name="bars">bars</a> </b>          Bars 举例
+<b class="vimtag"> <a name="bars">bars</a> </b>          Bars 舉例
 
-现在你已经通过 <code class="keystroke">CTRL-]</code> 或双击鼠标跳转到这里了，<code class="keystroke">CTRL-T</code>、<code class="keystroke">CTRL-O</code>、g<code class="special">&lt;RightMouse&gt;</code>、
-或 <code class="special">&lt;C-RightMouse&gt;</code> 可以用来跳回到你原来的地方。
+現在你已經通過 <code class="keystroke">CTRL-]</code> 或雙擊鼠標跳轉到這裡了，<code class="keystroke">CTRL-T</code>、<code class="keystroke">CTRL-O</code>、g<code class="special">&lt;RightMouse&gt;</code>、
+或 <code class="special">&lt;C-RightMouse&gt;</code> 可以用來跳回到你原來的地方。
 
-<code class="note">注意</code> 标签包含在两个 | 字符之间，但打开高亮时这些字符被隐藏，这样更易于命令的阅
-读。
+<code class="note">注意</code> 標籤包含在兩個 | 字符之間，但打開高亮時這些字符被隱藏，這樣更易於命令的閱
+讀。
 
-不过，你可以在任何单词上按 <code class="keystroke">CTRL-]</code>，即使该单词不出现在 | 之间也无妨。Vim 会试图
-寻找该单词的相关帮助，尤其是单引号之间的选项名，如 <a href="options.html#'compatible'">'compatible'</a>。
+不過，你可以在任何單詞上按 <code class="keystroke">CTRL-]</code>，即使該單詞不出現在 | 之間也無妨。Vim 會試圖
+尋找該單詞的相關幫助，尤其是單引號之間的選項名，如 <a href="options.html#'compatible'">'compatible'</a>。
 
 </pre><hr class="singleline" /><pre>
  vim:tw=78:fo=tcq2:isk=!-~,^*,^\|,^\":ts=8:ft=help:norl:

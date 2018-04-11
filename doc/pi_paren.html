@@ -1,17 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>VIM: pi_paren</title>
 <link rel="stylesheet" href="vim-stylesheet.css" type="text/css">
 </head>
 <body>
 <div id=banner>
-<a href="help.html">帮助总览</a> &middot;
-<a href="quickref.html">快速参考</a> &middot;
+<a href="help.html">幫助總覽</a> &middot;
+<a href="quickref.html">快速參考</a> &middot;
 <a href="index.html">命令索引</a> &middot;
-<a href="usr_toc.html">用户手册</a> &middot;
-<a href="help.html#reference_toc">参考手册</a>
+<a href="usr_toc.html">用戶手冊</a> &middot;
+<a href="help.html#reference_toc">參考手冊</a>
 </div>
 
 <div id=outer>
@@ -20,51 +20,51 @@
 <b class="vimtag"> <a name="pi_paren.txt">pi_paren.txt</a> </b>  For Vim version 8.0.  最近更新: 2013年8月
 
 
-                  <code class="vim">VIM 参考手册    by Bram Moolenaar</code>
-                                <code class="vim">译者</code>: Willis
+                  <code class="vim">VIM 參考手冊    by Bram Moolenaar</code>
+                                <code class="vim">譯者</code>: Willis
                                 http://vimcdoc.sf.net
 
 
-高亮匹配括号                                            <b class="vimtag"> <a name="matchparen">matchparen</a> </b>
+高亮匹配括號                                            <b class="vimtag"> <a name="matchparen">matchparen</a> </b>
 
-这里提到的功能是一个标准插件  <a href="usr_05.html#standard-plugin">standard-plugin</a> 。
-只有 <a href="options.html#'compatible'">'compatible'</a> 不置位时才能使用此插件。
+這裡提到的功能是一個標準插件  <a href="usr_05.html#standard-plugin">standard-plugin</a> 。
+只有 <a href="options.html#'compatible'">'compatible'</a> 不置位時才能使用此插件。
 
-设置 "loaded_matchparen" 变量可以避免载入此插件: 
+設置 "loaded_matchparen" 變量可以避免載入此插件: 
 <code class="example">        :let loaded_matchparen = 1</code>
 <code class="example"></code>
-此插件安装 CursorMoved、CursorMovedI 和 WinEnter 自动命令来重新定义匹配高亮。
+此插件安裝 CursorMoved、CursorMovedI 和 WinEnter 自動命令來重新定義匹配高亮。
 
                                         <b class="vimtag"> <a name=":NoMatchParen">:NoMatchParen</a> </b> <b class="vimtag"> <a name=":DoMatchParen">:DoMatchParen</a> </b>
-要在载入此插件后关闭它，用: 
+要在載入此插件後關閉它，用: 
 <code class="example"></code>
 <code class="example">        :NoMatchParen</code>
 <code class="example"></code>
-要再次打开: 
+要再次打開: 
 <code class="example"></code>
 <code class="example">        :DoMatchParen</code>
 <code class="example"></code>
-使用的高亮是 MatchParen。":highlight" 命令可用来为它指定不同的颜色。例如: 
+使用的高亮是 MatchParen。":highlight" 命令可用來為它指定不同的顏色。例如: 
 <code class="example"></code>
 <code class="example">        :hi MatchParen ctermbg=blue guibg=lightblue</code>
 <code class="example"></code>
-匹配的字符组来自 <a href="options.html#'matchpairs'">'matchpairs'</a> 选项。你可以改变该值来高亮不同的匹配。<code class="note">注意</code> 不是
-什么值都可以。比如，你不能高亮单引号或双引号，因为它们的开始和结束字符相同。
+匹配的字符組來自 <a href="options.html#'matchpairs'">'matchpairs'</a> 選項。你可以改變該值來高亮不同的匹配。<code class="note">注意</code> 不是
+什麼值都可以。比如，你不能高亮單引號或雙引號，因為它們的開始和結束字符相同。
 
-使用语法高亮的属性。如果光标目前不在字符串或注释语法项目里，则忽略字符串和注释
-里的匹配。任何名字里包含 "string" 或 "comment" 的语法项目都被认为是字符串或注
-释项目。
+使用語法高亮的屬性。如果光標目前不在字符串或註釋語法項目裡，則忽略字符串和註釋
+裡的匹配。任何名字裡包含 "string" 或 "comment" 的語法項目都被認為是字符串或注
+釋項目。
 
-移动光标时，限制搜索范围以避免延迟。这些限制包括:
-- 窗口的可见部分。
-- 光标上下 100 行，避免关闭折叠存在时的延迟过长。
-- 光标前后 <a href="options.html#'synmaxcol'">'synmaxcol'</a> 乘以 2 个字节，避免存在带语法高亮的长行时延迟过长。
-- 300 毫秒 (插入模式下是 60 毫秒) 的超时。可用 g:matchparen_timeout 和
-  g:matchparen_insert_timeout 变量或局部于缓冲区的 b:matchparen_timeout 和
-  b:matchparen_insert_timeout 来改变。
+移動光標時，限制搜索範圍以避免延遲。這些限制包括:
+- 窗口的可見部分。
+- 光標上下 100 行，避免關閉折疊存在時的延遲過長。
+- 光標前後 <a href="options.html#'synmaxcol'">'synmaxcol'</a> 乘以 2 個字節，避免存在帶語法高亮的長行時延遲過長。
+- 300 毫秒 (插入模式下是 60 毫秒) 的超時。可用 g:matchparen_timeout 和
+  g:matchparen_insert_timeout 變量或局部於緩衝區的 b:matchparen_timeout 和
+  b:matchparen_insert_timeout 來改變。
 
-如果你希望  <a href="motion.html#%">%</a>  命令更好的工作，可以使用 matchit 插件，见  <a href="usr_05.html#matchit-install">matchit-install</a> 。该
-插件也可用于跳过注释里的匹配。这不同于 matchparen 高亮，两者使用不同的机制。
+如果你希望  <a href="motion.html#%">%</a>  命令更好的工作，可以使用 matchit 插件，見  <a href="usr_05.html#matchit-install">matchit-install</a> 。該
+插件也可用於跳過註釋裡的匹配。這不同於 matchparen 高亮，兩者使用不同的機制。
 
 </pre><hr class="doubleline" /><pre>
 <h4> vim:tw=78:ts=8:ft=help:norl:</h4></pre>

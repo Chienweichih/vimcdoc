@@ -1,17 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>VIM: ft_sql</title>
 <link rel="stylesheet" href="vim-stylesheet.css" type="text/css">
 </head>
 <body>
 <div id=banner>
-<a href="help.html">帮助总览</a> &middot;
-<a href="quickref.html">快速参考</a> &middot;
+<a href="help.html">幫助總覽</a> &middot;
+<a href="quickref.html">快速參考</a> &middot;
 <a href="index.html">命令索引</a> &middot;
-<a href="usr_toc.html">用户手册</a> &middot;
-<a href="help.html#reference_toc">参考手册</a>
+<a href="usr_toc.html">用戶手冊</a> &middot;
+<a href="help.html#reference_toc">參考手冊</a>
 </div>
 
 <div id=outer>
@@ -20,55 +20,55 @@
 <b class="vimtag"> <a name="ft_sql.txt">ft_sql.txt</a> </b>    For Vim version 8.0.  最近更新: 2013年8月
 
                                 作者: David Fishburn
-                                <code class="vim">译者</code>: Willis
+                                <code class="vim">譯者</code>: Willis
                                 http://vimcdoc.sf.net
 
-这里介绍用于 SQL 文件的文件类型插件。
+這裡介紹用於 SQL 文件的文件類型插件。
 
-结构化查询语言 (Structured Query Language，SQL) 是规范支持用户和关系型数据库进
-行交互的语句的标准。Vim 包含了 SQL 导航、缩进和语法高亮的功能。
+結構化查詢語言 (Structured Query Language，SQL) 是規範支持用戶和關係型數據庫進
+行交互的語句的標準。Vim 包含了 SQL 導航、縮進和語法高亮的功能。
 
-1. 导航                                          <a href="ft_sql.html#sql-navigation">sql-navigation</a> 
+1. 導航                                          <a href="ft_sql.html#sql-navigation">sql-navigation</a> 
     1.1 matchit                                  <a href="ft_sql.html#sql-matchit">sql-matchit</a> 
-    1.2 文本对象动作                             <a href="ft_sql.html#sql-object-motions">sql-object-motions</a> 
-    1.3 预定义对象动作                           <a href="ft_sql.html#sql-predefined-objects">sql-predefined-objects</a> 
+    1.2 文本對像動作                             <a href="ft_sql.html#sql-object-motions">sql-object-motions</a> 
+    1.3 預定義對像動作                           <a href="ft_sql.html#sql-predefined-objects">sql-predefined-objects</a> 
     1.4 宏                                       <a href="ft_sql.html#sql-macros">sql-macros</a> 
 2. SQL 方言                                      <a href="ft_sql.html#sql-dialects">sql-dialects</a> 
     2.1 SQLSetType                               <a href="ft_sql.html#SQLSetType">SQLSetType</a> 
     2.2 SQLGetType                               <a href="ft_sql.html#SQLGetType">SQLGetType</a> 
     2.3 SQL 方言缺省值                           <a href="ft_sql.html#sql-type-default">sql-type-default</a> 
 3. 增加新的 SQL 方言                             <a href="ft_sql.html#sql-adding-dialects">sql-adding-dialects</a> 
-4. 全能 SQL 补全                                 <a href="ft_sql.html#sql-completion">sql-completion</a> 
-    4.1 静态模式                                 <a href="ft_sql.html#sql-completion-static">sql-completion-static</a> 
-    4.2 动态模式                                 <a href="ft_sql.html#sql-completion-dynamic">sql-completion-dynamic</a> 
+4. 全能 SQL 補全                                 <a href="ft_sql.html#sql-completion">sql-completion</a> 
+    4.1 靜態模式                                 <a href="ft_sql.html#sql-completion-static">sql-completion-static</a> 
+    4.2 動態模式                                 <a href="ft_sql.html#sql-completion-dynamic">sql-completion-dynamic</a> 
     4.3 教程                                     <a href="ft_sql.html#sql-completion-tutorial">sql-completion-tutorial</a> 
-        4.3.1 补全表                             <a href="ft_sql.html#sql-completion-tables">sql-completion-tables</a> 
-        4.3.2 补全列                             <a href="ft_sql.html#sql-completion-columns">sql-completion-columns</a> 
-        4.3.3 补全过程                           <a href="ft_sql.html#sql-completion-procedures">sql-completion-procedures</a> 
-        4.3.4 补全视图                           <a href="ft_sql.html#sql-completion-views">sql-completion-views</a> 
-    4.4 定制补全                                 <a href="ft_sql.html#sql-completion-customization">sql-completion-customization</a> 
+        4.3.1 補全表                             <a href="ft_sql.html#sql-completion-tables">sql-completion-tables</a> 
+        4.3.2 補全列                             <a href="ft_sql.html#sql-completion-columns">sql-completion-columns</a> 
+        4.3.3 補全過程                           <a href="ft_sql.html#sql-completion-procedures">sql-completion-procedures</a> 
+        4.3.4 補全視圖                           <a href="ft_sql.html#sql-completion-views">sql-completion-views</a> 
+    4.4 定制補全                                 <a href="ft_sql.html#sql-completion-customization">sql-completion-customization</a> 
     4.5 SQL 映射                                 <a href="ft_sql.html#sql-completion-maps">sql-completion-maps</a> 
-    4.6 使用其它文件类型                         <a href="ft_sql.html#sql-completion-filetypes">sql-completion-filetypes</a> 
+    4.6 使用其它文件類型                         <a href="ft_sql.html#sql-completion-filetypes">sql-completion-filetypes</a> 
 
 </pre><hr class="doubleline" /><pre>
-<h4>1. 导航                                         <b class="vimtag"> <a name="sql-navigation">sql-navigation</a> </b></h4>
-SQL 文件类型为文件导航提供了一些选项。
+<h4>1. 導航                                         <b class="vimtag"> <a name="sql-navigation">sql-navigation</a> </b></h4>
+SQL 文件類型為文件導航提供了一些選項。
 
 
 1.1 matchit                                     <b class="vimtag"> <a name="sql-matchit">sql-matchit</a> </b>
 </pre><hr class="singleline" /><pre>
-matchit 插件 (http://www.vim.org/scripts/script.php?script_id=39) 提供许多附加
-功能，并且可以为不同语言定制。matchit 插件通过定义缓冲区局部变量 b:match_words
-来进行配置。在若干关键字上按 % 键会把光标移动到匹配文本处。例如，如果光标在
-"if" 上，按 % 会在 "else"、"elseif" 和 "end if" 关键字之间循环。
+matchit 插件 (http://www.vim.org/scripts/script.php?script_id=39) 提供許多附加
+功能，並且可以為不同語言定制。matchit 插件通過定義緩衝區局部變量 b:match_words
+來進行配置。在若干關鍵字上按 % 鍵會把光標移動到匹配文本處。例如，如果光標在
+"if" 上，按 % 會在 "else"、"elseif" 和 "end if" 關鍵字之間循環。
 
-支持以下关键字: 
+支持以下關鍵字: 
 <code class="example">    if</code>
 <code class="example">    elseif | elsif</code>
 <code class="example">    else [if]</code>
 <code class="example">    end if</code>
 <code class="example"></code>
-<code class="example">    [while 条件] loop</code>
+<code class="example">    [while 條件] loop</code>
 <code class="example">        leave</code>
 <code class="example">        break</code>
 <code class="example">        continue</code>
@@ -83,7 +83,7 @@ matchit 插件 (http://www.vim.org/scripts/script.php?script_id=39) 提供许多
 <code class="example">    end loop</code>
 <code class="example"></code>
 <code class="example">    do</code>
-<code class="example">        语句</code>
+<code class="example">        語句</code>
 <code class="example">    doend</code>
 <code class="example"></code>
 <code class="example">    case</code>
@@ -100,33 +100,33 @@ matchit 插件 (http://www.vim.org/scripts/script.php?script_id=39) 提供许多
 <code class="example">    returns</code>
 <code class="example"></code>
 <code class="example"></code>
-1.2 文本对象动作                                <b class="vimtag"> <a name="sql-object-motions">sql-object-motions</a> </b>
+1.2 文本對像動作                                <b class="vimtag"> <a name="sql-object-motions">sql-object-motions</a> </b>
 </pre><hr class="singleline" /><pre>
-Vim 预定义了若干处理文本对象动作  <a href="motion.html#object-motions">object-motions</a>  的键。本文件插件试图把这些键
-翻译成对 SQL 语言有意义的映射。
+Vim 預定義了若干處理文本對像動作  <a href="motion.html#object-motions">object-motions</a>  的鍵。本文件插件試圖把這些鍵
+翻譯成對 SQL 語言有意義的映射。
 
-存在以下的普通模式  <a href="intro.html#Normal">Normal</a>  和可视模式  <a href="visual.html#Visual">Visual</a>  映射 (编辑 SQL 文件时): 
-<code class="example">    ]]              正向移动到下一个 'begin'</code>
-<code class="example">    [[              反向移动到前一个 'begin'</code>
-<code class="example">    ][              正向移动到下一个 'end'</code>
-<code class="example">    []              反向移动到前一个 'end'</code>
+存在以下的普通模式  <a href="intro.html#Normal">Normal</a>  和可視模式  <a href="visual.html#Visual">Visual</a>  映射 (編輯 SQL 文件時): 
+<code class="example">    ]]              正向移動到下一個 'begin'</code>
+<code class="example">    [[              反向移動到前一個 'begin'</code>
+<code class="example">    ][              正向移動到下一個 'end'</code>
+<code class="example">    []              反向移動到前一個 'end'</code>
 <code class="example"></code>
 <code class="example"></code>
-1.3 预定义对象动作                              <b class="vimtag"> <a name="sql-predefined-objects">sql-predefined-objects</a> </b>
+1.3 預定義對像動作                              <b class="vimtag"> <a name="sql-predefined-objects">sql-predefined-objects</a> </b>
 </pre><hr class="singleline" /><pre>
-多数关系型数据库支持若干标准特性、表、索引、触发器和存储过程。每个供应商也有一
-些私有的对象。以下一组映射的建立是为了方便在这些对象间移动。取决你使用的数据库
-供应商，应该可以调整可用的对象。本文件插件试图定义许多标准和附加的对象。为了尽
-可能灵活， <a href="starting.html#vimrc">vimrc</a>  里可以这样改写可用的对象列表: 
+多數關係型數據庫支持若干標準特性、表、索引、觸發器和存儲過程。每個供應商也有一
+些私有的對象。以下一組映射的建立是為了方便在這些對像間移動。取決你使用的數據庫
+供應商，應該可以調整可用的對象。本文件插件試圖定義許多標準和附加的對象。為了盡
+可能靈活， <a href="starting.html#vimrc">vimrc</a>  裡可以這樣改寫可用的對象列表: 
 <code class="example">    let g:ftplugin_sql_objects = 'function,procedure,event,table,trigger' .</code>
 <code class="example">                \ ',schema,service,publication,database,datatype,domain' .</code>
 <code class="example">                \ ',index,subscription,synchronization,view,variable'</code>
 <code class="example"></code>
-存在使用上述列表的下述普通模式  <a href="intro.html#Normal">Normal</a>  和可视模式  <a href="visual.html#Visual">Visual</a>  映射: 
-<code class="example">    ]}              正向移动到下一个 'create &lt;对象名&gt;'</code>
-<code class="example">    [{              反向移动到前一个 'create &lt;对象名&gt;'</code>
+存在使用上述列表的下述普通模式  <a href="intro.html#Normal">Normal</a>  和可視模式  <a href="visual.html#Visual">Visual</a>  映射: 
+<code class="example">    ]}              正向移動到下一個 'create &lt;對像名&gt;'</code>
+<code class="example">    [{              反向移動到前一個 'create &lt;對像名&gt;'</code>
 <code class="example"></code>
-重复按 ]} 会在每个 create 语句之间循环: 
+重複按 ]} 會在每個 create 語句之間循環: 
 <code class="example">    create table t1 (</code>
 <code class="example">        ...</code>
 <code class="example">    );</code>
@@ -138,14 +138,14 @@ Vim 预定义了若干处理文本对象动作  <a href="motion.html#object-moti
 <code class="example"></code>
 <code class="example">    create index i1 on t1 (c1);</code>
 <code class="example"></code>
-缺省的 g:ftplugin_sql_objects 设置是: 
+缺省的 g:ftplugin_sql_objects 設置是: 
 <code class="example">    let g:ftplugin_sql_objects = 'function,procedure,event,' .</code>
 <code class="example">                \ '\\(existing\\\\|global\\s\\+temporary\\s\\+\\)\\\{,1}' .</code>
 <code class="example">                \ 'table,trigger' .</code>
 <code class="example">                \ ',schema,service,publication,database,datatype,domain' .</code>
 <code class="example">                \ ',index,subscription,synchronization,view,variable'</code>
 <code class="example"></code>
-该设置同时能处理以下情形: 
+該設置同時能處理以下情形: 
 <code class="example">    create table t1 (</code>
 <code class="example">        ...</code>
 <code class="example">    );</code>
@@ -156,28 +156,28 @@ Vim 预定义了若干处理文本对象动作  <a href="motion.html#object-moti
 <code class="example">        ...</code>
 <code class="example">    );</code>
 <code class="example"></code>
-缺省，文件类型插件只寻找 CREATE 语句。在  <a href="starting.html#vimrc">vimrc</a>  里你可以改写下行为: 
+缺省，文件類型插件只尋找 CREATE 語句。在  <a href="starting.html#vimrc">vimrc</a>  裡你可以改寫下行為: 
 <code class="example">    let g:ftplugin_sql_statements = 'create,alter'</code>
 <code class="example"></code>
-文件类型插件定义了三种注释类型: 
+文件類型插件定義了三種註釋類型: 
 <code class="example">    1.  --</code>
 <code class="example">    2.  //</code>
 <code class="example">    3.  /*</code>
 <code class="example">         *</code>
 <code class="example">         */</code>
 <code class="example"></code>
-存在用于注释的下述普通模式  <a href="intro.html#Normal">Normal</a>  和可视模式  <a href="visual.html#Visual">Visual</a>  映射: 
-<code class="example">    ]"              正向移动到注释开始处</code>
-<code class="example">    ["              反向移动到注释结束处</code>
+存在用於註釋的下述普通模式  <a href="intro.html#Normal">Normal</a>  和可視模式  <a href="visual.html#Visual">Visual</a>  映射: 
+<code class="example">    ]"              正向移動到註釋開始處</code>
+<code class="example">    ["              反向移動到註釋結束處</code>
 <code class="example"></code>
 <code class="example"></code>
 <code class="example"></code>
 1.4 宏                                          <b class="vimtag"> <a name="sql-macros">sql-macros</a> </b>
 </pre><hr class="singleline" /><pre>
-支持 Vim 寻找宏定义的特性  <a href="options.html#'define'">'define'</a> 。使用以下正规表达式: 
+支持 Vim 尋找宏定義的特性  <a href="options.html#'define'">'define'</a> 。使用以下正規表達式: 
 <code class="example">    \c\&lt;\(VARIABLE\|DECLARE\|IN\|OUT\|INOUT\)\&gt;</code>
 <code class="example"></code>
-该设置可以处理下面的代码: 
+該設置可以處理下面的代碼: 
 <code class="example">    CREATE VARIABLE myVar1 INTEGER;</code>
 <code class="example"></code>
 <code class="example">    CREATE PROCEDURE sp_test(</code>
@@ -194,11 +194,11 @@ Vim 预定义了若干处理文本对象动作  <a href="motion.html#object-moti
 <code class="example">         WHERE c4 = myVar1;</code>
 <code class="example">    END;</code>
 <code class="example"></code>
-把光标放在下面这行的 "myVar1" 上: 
+把光標放在下面這行的 "myVar1" 上: 
 <code class="example">         WHERE c4 = myVar1;</code>
 <code class="example">                     ^</code>
 <code class="example"></code>
-按下面的任何一个键: 
+按下面的任何一個鍵: 
 <code class="example">    [d</code>
 <code class="example">    [D</code>
 <code class="example">    [CTRL-D</code>
@@ -212,86 +212,86 @@ Vim 预定义了若干处理文本对象动作  <a href="motion.html#object-moti
                                                 <b class="vimtag"> <a name="mysql">mysql</a> </b> <b class="vimtag"> <a name="postgresql">postgresql</a> </b> <b class="vimtag"> <a name="psql">psql</a> </b>
                                                 <b class="vimtag"> <a name="informix">informix</a> </b>
 
-所有关系型数据库都支持 SQL。各供应商之间通用 SQL 的一个语言子集 (例如，CREATE
-TABLE、CREATE INDEX)，但供应商自己对 SQL 有相当多的扩展。Oracle 支持 "CREATE
-OR REPLACE" 语法，CREATE TABLE 语句也可以指定列缺省值，还有过程语言 (用于存储
-过程和激发器)。
+所有關係型數據庫都支持 SQL。各供應商之間通用 SQL 的一個語言子集 (例如，CREATE
+TABLE、CREATE INDEX)，但供應商自己對 SQL 有相當多的擴展。Oracle 支持 "CREATE
+OR REPLACE" 語法，CREATE TABLE 語句也可以指定列缺省值，還有過程語言 (用於存儲
+過程和激發器)。
 
-Vim 发布提供的语法高亮缺省基于 Oracle 的 PL/SQL。SQL 缩进脚本缺省支持 Oracle
-和 SQL Anywhere。文件类型插件缺省支持所有供应商并保持供应商中立，但可以进行扩
+Vim 發佈提供的語法高亮缺省基於 Oracle 的 PL/SQL。SQL 縮進腳本缺省支持 Oracle
+和 SQL Anywhere。文件類型插件缺省支持所有供應商並保持供應商中立，但可以進行擴
 展。
 
-Vim 支持许多不同的供应商，目前这是通过语法脚本完成的。不幸的是，如果你要切换语
-法规则，必须建立以下之一:
-    1.  新文件类型
-    2.  定制的自动命令
-    3.  手动步骤 / 命令
+Vim 支持許多不同的供應商，目前這是通過語法腳本完成的。不幸的是，如果你要切換語
+法規則，必須建立以下之一:
+    1.  新文件類型
+    2.  定制的自動命令
+    3.  手動步驟 / 命令
 
-大多数用户只使用一个供应商的数据库产品，因此最好能在  <a href="starting.html#vimrc">vimrc</a>  里指定缺省值。
+大多數用戶只使用一個供應商的數據庫產品，因此最好能在  <a href="starting.html#vimrc">vimrc</a>  裡指定缺省值。
 
 
 2.1 SQLSetType                                  <b class="vimtag"> <a name="sqlsettype">sqlsettype</a> </b> <b class="vimtag"> <a name="SQLSetType">SQLSetType</a> </b>
 </pre><hr class="singleline" /><pre>
-对于使用多个不同的数据库的用户，最好随时为每个缓冲区都可以切换不同的供应商规则
-(缩进、语法)。ftplugin/sql.vim 文件定义以下函数: 
+對於使用多個不同的數據庫的用戶，最好隨時為每個緩衝區都可以切換不同的供應商規則
+(縮進、語法)。ftplugin/sql.vim 文件定義以下函數: 
 <code class="example">    SQLSetType</code>
 
-如果不带任何参数，此函数设置缩进和语法脚本回缺省值，见  <a href="ft_sql.html#sql-type-default">sql-type-default</a> 。
-如果关闭 Vi 兼容模式  <a href="options.html#'compatible'">'compatible'</a> ，<code class="special">&lt;Tab&gt;</code> 键可以补全可选参数。
+如果不帶任何參數，此函數設置縮進和語法腳本回缺省值，見  <a href="ft_sql.html#sql-type-default">sql-type-default</a> 。
+如果關閉 Vi 兼容模式  <a href="options.html#'compatible'">'compatible'</a> ，<code class="special">&lt;Tab&gt;</code> 鍵可以補全可選參數。
 
-输入函数名和空格，然后用补全就可以提供参数。该函数接受的参数是待执行的 Vim 脚
-本名。因此，利用  <a href="cmdline.html#cmdline-completion">cmdline-completion</a>  特性，它在  <a href="options.html#'runtimepath'">'runtimepath'</a>  里查找所有名
-字包含 <code class="badlink">'sql'</code> 的脚本。
-此过程需要对名字的拼写进行猜测。下面是一些例子: 
+輸入函數名和空格，然後用補全就可以提供參數。該函數接受的參數是待執行的 Vim 腳
+本名。因此，利用  <a href="cmdline.html#cmdline-completion">cmdline-completion</a>  特性，它在  <a href="options.html#'runtimepath'">'runtimepath'</a>  裡查找所有名
+字包含 <code class="badlink">'sql'</code> 的腳本。
+此過程需要對名字的拼寫進行猜測。下面是一些例子: 
 <code class="example">    :SQLSetType</code>
 <code class="example">    :SQLSetType sqloracle</code>
 <code class="example">    :SQLSetType sqlanywhere</code>
 <code class="example">    :SQLSetType sqlinformix</code>
 <code class="example">    :SQLSetType mysql</code>
 <code class="example"></code>
-最容易的方法是用 <code class="special">&lt;Tab&gt;</code> 字符，先用第一个 <code class="special">&lt;Tab&gt;</code> 补全命令名 (SQLSetType)，在空格
-和另一个 <code class="special">&lt;Tab&gt;</code> 之后，显示可用的 Vim 脚本名的列表: 
+最容易的方法是用 <code class="special">&lt;Tab&gt;</code> 字符，先用第一個 <code class="special">&lt;Tab&gt;</code> 補全命令名 (SQLSetType)，在空格
+和另一個 <code class="special">&lt;Tab&gt;</code> 之後，顯示可用的 Vim 腳本名的列表: 
 <code class="example">    :SQL&lt;Tab&gt;&lt;space&gt;&lt;Tab&gt;</code>
 <code class="example"></code>
 <code class="example"></code>
 2.2 SQLGetType                                  <b class="vimtag"> <a name="sqlgettype">sqlgettype</a> </b> <b class="vimtag"> <a name="SQLGetType">SQLGetType</a> </b>
 </pre><hr class="singleline" /><pre>
-你随时可以用 SQLGetType 命令得到正在使用的 SQL 方言。ftplugin/sql.vim 定义此函
-数: 
+你隨時可以用 SQLGetType 命令得到正在使用的 SQL 方言。ftplugin/sql.vim 定義此函
+數: 
 <code class="example">    SQLGetType</code>
 <code class="example"></code>
-会显示: 
+會顯示: 
 <code class="example">    Current SQL dialect in use:sqlanywhere</code>
 <code class="example"></code>
 <code class="example"></code>
 2.3 SQL 方言缺省值                              <b class="vimtag"> <a name="sql-type-default">sql-type-default</a> </b>
 </pre><hr class="singleline" /><pre>
-前面已经提到，Vim 语法规则缺省基于 Oracle (PL/SQL)。你可以在  <a href="starting.html#vimrc">vimrc</a>  里加上以
-下各行之一，对此进行修改: 
+前面已經提到，Vim 語法規則缺省基於 Oracle (PL/SQL)。你可以在  <a href="starting.html#vimrc">vimrc</a>  裡加上以
+下各行之一，對此進行修改: 
 <code class="example">    let g:sql_type_default = 'sqlanywhere'</code>
 <code class="example">    let g:sql_type_default = 'sqlinformix'</code>
 <code class="example">    let g:sql_type_default = 'mysql'</code>
 <code class="example"></code>
-如果你在  <a href="starting.html#vimrc">vimrc</a>  里加入: 
+如果你在  <a href="starting.html#vimrc">vimrc</a>  裡加入: 
 <code class="example">    let g:sql_type_default = 'sqlinformix'</code>
 <code class="example"></code>
-下次编辑 SQL 文件时，Vim 会自动载入以下的脚本: 
+下次編輯 SQL 文件時，Vim 會自動載入以下的腳本: 
 <code class="example">    ftplugin/sql.vim</code>
 <code class="example">    syntax/sqlinformix.vim</code>
 <code class="example">    indent/sql.vim</code>
 
-<code class="note">注意</code>没有载入 indent/sqlinformix.sql，这时因为没有 Informix 专用的缩进文件。如
-果指定文件不存在，Vim 会载入缺省文件。
+<code class="note">注意</code>沒有載入 indent/sqlinformix.sql，這時因為沒有 Informix 專用的縮進文件。如
+果指定文件不存在，Vim 會載入缺省文件。
 
 
 </pre><hr class="doubleline" /><pre>
 <h4>3. 增加新的 SQL 方言                            <b class="vimtag"> <a name="sql-adding-dialects">sql-adding-dialects</a> </b></h4>
-如果使用 Vim 缺省发布还没有提供定制版本的 SQL 方言，查看 http://www.vim.org，
-了解现在是否已经有你需要的定制版本。如果还没有，你可以从复制一个现有的脚本开始
-做起。阅读  <a href="filetype.html#filetype-plugins">filetype-plugins</a>  了解详情。
+如果使用 Vim 缺省發佈還沒有提供定製版本的 SQL 方言，查看 http://www.vim.org，
+瞭解現在是否已經有你需要的定製版本。如果還沒有，你可以從複製一個現有的腳本開始
+做起。閱讀  <a href="filetype.html#filetype-plugins">filetype-plugins</a>  瞭解詳情。
 
-为了帮助识别这些脚本，建立文件时应使用 "sql" 前缀。例如，如果你决定建立 SQLite
-数据库的定制版本，可以从下表中挑选要建立的文件: 
+為了幫助識別這些腳本，建立文件時應使用 "sql" 前綴。例如，如果你決定建立 SQLite
+數據庫的定製版本，可以從下表中挑選要建立的文件: 
 <code class="example">    Unix</code>
 <code class="example">        ~/.vim/syntax/sqlite.vim</code>
 <code class="example">        ~/.vim/indent/sqlite.vim</code>
@@ -299,25 +299,25 @@ Vim 支持许多不同的供应商，目前这是通过语法脚本完成的。�
 <code class="example">        $VIM/vimfiles/syntax/sqlite.vim</code>
 <code class="example">        $VIM/vimfiles/indent/sqlite.vim</code>
 <code class="example"></code>
-不需要修改 SQLSetType 函数。在你使用 SQLSetType 命令时，它会自动挑选新的 SQL
-文件并载入它们。
+不需要修改 SQLSetType 函數。在你使用 SQLSetType 命令時，它會自動挑選新的 SQL
+文件並載入它們。
 
 
 </pre><hr class="doubleline" /><pre>
-<h4>4. 全能 SQL 补全                                <b class="vimtag"> <a name="sql-completion">sql-completion</a> </b></h4>                                                <b class="vimtag"> <a name="omni-sql-completion">omni-sql-completion</a> </b>
+<h4>4. 全能 SQL 補全                                <b class="vimtag"> <a name="sql-completion">sql-completion</a> </b></h4>                                                <b class="vimtag"> <a name="omni-sql-completion">omni-sql-completion</a> </b>
 
-Vim 7 包含了代码补全的接口和函数以允许插件开发者为任何语言提供代码补全。Vim 7
-已经包含了 SQL 语言代码补全。
+Vim 7 包含了代碼補全的接口和函數以允許插件開發者為任何語言提供代碼補全。Vim 7
+已經包含了 SQL 語言代碼補全。
 
-SQL 补全插件有两种方式，静态和动态。静态模式从当前语法高亮规则里提取数据来构造
-弹出菜单，而动态模式直接从数据库提取数据来构造弹出菜单。这包括所有的表和列、过
-程名和更多对象。
+SQL 補全插件有兩種方式，靜態和動態。靜態模式從當前語法高亮規則裡提取數據來構造
+彈出菜單，而動態模式直接從數據庫提取數據來構造彈出菜單。這包括所有的表和列、過
+程名和更多對象。
 
-4.1 静态模式                                    <b class="vimtag"> <a name="sql-completion-static">sql-completion-static</a> </b>
+4.1 靜態模式                                    <b class="vimtag"> <a name="sql-completion-static">sql-completion-static</a> </b>
 </pre><hr class="singleline" /><pre>
-编辑文件类型为 SQL 的文件时，静态弹出菜单包含激活的语法规则里定义的项目。插件
-缺省定义了一些映射以帮助用户重新定义要显示的项目清单。
-缺省的静态映射是: 
+編輯文件類型為 SQL 的文件時，靜態彈出菜單包含激活的語法規則裡定義的項目。插件
+缺省定義了一些映射以幫助用戶重新定義要顯示的項目清單。
+缺省的靜態映射是: 
 <code class="example">    imap &lt;buffer&gt; &lt;C-C&gt;a &lt;C-\&gt;&lt;C-O&gt;:call sqlcomplete#Map('syntax')&lt;CR&gt;&lt;C-X&gt;&lt;C-O&gt;</code>
 <code class="example">    imap &lt;buffer&gt; &lt;C-C&gt;k &lt;C-\&gt;&lt;C-O&gt;:call sqlcomplete#Map('sqlKeyword\w*')&lt;CR&gt;&lt;C-X&gt;&lt;C-O&gt;</code>
 <code class="example">    imap &lt;buffer&gt; &lt;C-C&gt;f &lt;C-\&gt;&lt;C-O&gt;:call sqlcomplete#Map('sqlFunction')&lt;CR&gt;&lt;C-X&gt;&lt;C-O&gt;</code>
@@ -325,41 +325,41 @@ SQL 补全插件有两种方式，静态和动态。静态模式从当前语法�
 <code class="example">    imap &lt;buffer&gt; &lt;C-C&gt;T &lt;C-\&gt;&lt;C-O&gt;:call sqlcomplete#Map('sqlType')&lt;CR&gt;&lt;C-X&gt;&lt;C-O&gt;</code>
 <code class="example">    imap &lt;buffer&gt; &lt;C-C&gt;s &lt;C-\&gt;&lt;C-O&gt;:call sqlcomplete#Map('sqlStatement')&lt;CR&gt;&lt;C-X&gt;&lt;C-O&gt;</code>
 <code class="example"></code>
-"<code class="special">&lt;C-C&gt;</code>" 也可以由用户在 .vimrc 里自定义，因为不是在所有平台下它都可用: 
+"<code class="special">&lt;C-C&gt;</code>" 也可以由用戶在 .vimrc 裡自定義，因為不是在所有平台下它都可用: 
 <code class="example">    let g:ftplugin_sql_omni_key = '&lt;C-C&gt;'</code>
 
-静态映射 (基于语法高亮组) 都符合以下格式: 
+靜態映射 (基於語法高亮組) 都符合以下格式: 
 <code class="example">    imap &lt;buffer&gt; &lt;C-C&gt;k &lt;C-\&gt;&lt;C-O&gt;:call sqlcomplete#Map('sqlKeyword')&lt;CR&gt;&lt;C-X&gt;&lt;C-O&gt;</code>
 <code class="example"></code>
-让我们把这行命令拆开来解释一下: 
+讓我們把這行命令拆開來解釋一下: 
 <code class="example">    imap                   - 建立插入模式映射</code>
-<code class="example">    &lt;buffer&gt;               - 只用于此缓冲区</code>
-<code class="example">    &lt;C-C&gt;k                 - 你选择的要映射的键</code>
-<code class="example">    &lt;C-\&gt;&lt;C-O&gt;             - 执行单个命令，然后回到插入模式</code>
-<code class="example">    :call sqlcomplete#Map( - 允许 SQL 补全插件执行一些例行函数，使之可以和其他</code>
-<code class="example">                             补全插件一起使用。</code>
-<code class="example">                             指示你想要 SQL 补全插件补全哪个项目。</code>
-<code class="example">                             该例中我们要求插件显示语法高亮组 'sqlKeyword' 的</code>
-<code class="example">                             项目。</code>
-<code class="example">                             编辑 SQL 文件时，执行下面命令可以查看高亮组名清单</code>
-<code class="example">                             以供选择</code>
+<code class="example">    &lt;buffer&gt;               - 只用於此緩衝區</code>
+<code class="example">    &lt;C-C&gt;k                 - 你選擇的要映射的鍵</code>
+<code class="example">    &lt;C-\&gt;&lt;C-O&gt;             - 執行單個命令，然後回到插入模式</code>
+<code class="example">    :call sqlcomplete#Map( - 允許 SQL 補全插件執行一些例行函數，使之可以和其他</code>
+<code class="example">                             補全插件一起使用。</code>
+<code class="example">                             指示你想要 SQL 補全插件補全哪個項目。</code>
+<code class="example">                             該例中我們要求插件顯示語法高亮組 'sqlKeyword' 的</code>
+<code class="example">                             項目。</code>
+<code class="example">                             編輯 SQL 文件時，執行下面命令可以查看高亮組名清單</code>
+<code class="example">                             以供選擇</code>
 <code class="example">                                 :syntax list</code>
-<code class="example">    'sqlKeyword'           - 我们要求显示 sqlKeyword 高亮组的项目</code>
-<code class="example">    'sqlKeyword\w*'        - Vim 7.4 开始可用的另一个选项，使用正规表达式来决</code>
-<code class="example">                             定使用的语法高亮组</code>
-<code class="example">    )&lt;CR&gt;                  - 执行 :let 命令</code>
-<code class="example">    &lt;C-X&gt;&lt;C-O&gt;             - 激活全能补全的标准键击。传递 'sqlKeyword' 参数指</code>
-<code class="example">                             定 SQL 补全插件用 sqlKeyword 高亮组的项目来构造弹</code>
-<code class="example">                             出菜单。该插件同时缓存结果直到 Vim 重启为止。它用</code>
-<code class="example">                             syntaxcomplete 插件来提取 syntax 列表。</code>
+<code class="example">    'sqlKeyword'           - 我們要求顯示 sqlKeyword 高亮組的項目</code>
+<code class="example">    'sqlKeyword\w*'        - Vim 7.4 開始可用的另一個選項，使用正規表達式來決</code>
+<code class="example">                             定使用的語法高亮組</code>
+<code class="example">    )&lt;CR&gt;                  - 執行 :let 命令</code>
+<code class="example">    &lt;C-X&gt;&lt;C-O&gt;             - 激活全能補全的標準鍵擊。傳遞 'sqlKeyword' 參數指</code>
+<code class="example">                             定 SQL 補全插件用 sqlKeyword 高亮組的項目來構造彈</code>
+<code class="example">                             出菜單。該插件同時緩存結果直到 Vim 重啟為止。它用</code>
+<code class="example">                             syntaxcomplete 插件來提取 syntax 列表。</code>
 <code class="example"></code>
-使用 <a href="options.html#'syntax'">'syntax'</a> 关键字是个特例。它使用 syntaxcomplete 插件来提取所有的语法项目。
-这样可以有效使用所有 Vim SQL 语法文件。此文档编写时，这里包含了不同 SQL 方言的
-10 种语法文件 (见上第 3 节， <a href="ft_sql.html#sql-dialects">sql-dialects</a> )。
+使用 <a href="options.html#'syntax'">'syntax'</a> 關鍵字是個特例。它使用 syntaxcomplete 插件來提取所有的語法項目。
+這樣可以有效使用所有 Vim SQL 語法文件。此文檔編寫時，這裡包含了不同 SQL 方言的
+10 種語法文件 (見上第 3 節， <a href="ft_sql.html#sql-dialects">sql-dialects</a> )。
 
-这里是从语法文件提取的可用项目的例子: 
+這裡是從語法文件提取的可用項目的例子: 
 <code class="example">     All</code>
-<code class="example">         - 包含所有语法高亮组的内容</code>
+<code class="example">         - 包含所有語法高亮組的內容</code>
 <code class="example">     Statement</code>
 <code class="example">         - Select、Insert、Update、Delete、Create、Alter、...</code>
 <code class="example">     Function</code>
@@ -372,137 +372,137 @@ SQL 补全插件有两种方式，静态和动态。静态模式从当前语法�
 <code class="example">         - Integer、Char、Varchar、Date、DateTime、Timestamp、...</code>
 <code class="example"></code>
 <code class="example"></code>
-4.2 动态模式                                    <b class="vimtag"> <a name="sql-completion-dynamic">sql-completion-dynamic</a> </b>
+4.2 動態模式                                    <b class="vimtag"> <a name="sql-completion-dynamic">sql-completion-dynamic</a> </b>
 </pre><hr class="singleline" /><pre>
-动态模式直接从数据库提取数据来构造弹出菜单。为了打开动态功能，你需要安装
+動態模式直接從數據庫提取數據來構造彈出菜單。為了打開動態功能，你需要安裝
 dbext.vim 插件。(http://vim.sourceforge.net/script.php?script_id=356)。
 
-SQL 补全插件的若干特性使用动态模式。安装完 dbext 插件后，参阅 dbext-tutorial
-教程来了解附加的配置和使用说明。dbext 插件允许 SQL 补全插件显示表、过程、视图
-和列的清单。 
-<code class="example">     表清单</code>
-<code class="example">         - 所有模式 (schema) 拥有者的所有表</code>
-<code class="example">     过程清单</code>
-<code class="example">         - 所有模式拥有者的所有存储过程</code>
-<code class="example">     视图清单</code>
-<code class="example">         - 所有模式拥有者的所有视图</code>
-<code class="example">     列清单</code>
-<code class="example">         - 选择的表包含的所有列</code>
+SQL 補全插件的若干特性使用動態模式。安裝完 dbext 插件後，參閱 dbext-tutorial
+教程來瞭解附加的配置和使用說明。dbext 插件允許 SQL 補全插件顯示表、過程、視圖
+和列的清單。 
+<code class="example">     表清單</code>
+<code class="example">         - 所有模式 (schema) 擁有者的所有表</code>
+<code class="example">     過程清單</code>
+<code class="example">         - 所有模式擁有者的所有存儲過程</code>
+<code class="example">     視圖清單</code>
+<code class="example">         - 所有模式擁有者的所有視圖</code>
+<code class="example">     列清單</code>
+<code class="example">         - 選擇的表包含的所有列</code>
 <code class="example"></code>
-要在插入模式下打开弹出菜单，可以分别为每组使用下面的键组合 (其中 <code class="special">&lt;C-C&gt;</code> 意味着
-按住 CTRL 键的同时按住 C):
-     表清单                - <code class="special">&lt;C-C&gt;</code>t
+要在插入模式下打開彈出菜單，可以分別為每組使用下面的鍵組合 (其中 <code class="special">&lt;C-C&gt;</code> 意味著
+按住 CTRL 鍵的同時按住 C):
+     表清單                - <code class="special">&lt;C-C&gt;</code>t
                            - <code class="special">&lt;C-X&gt;</code><code class="special">&lt;C-O&gt;</code> (缺省映射假定使用表)
-     存储过程清单          - <code class="special">&lt;C-C&gt;</code>p
-     视图清单              - <code class="special">&lt;C-C&gt;</code>v
-     列清单                - <code class="special">&lt;C-C&gt;</code>c
+     存儲過程清單          - <code class="special">&lt;C-C&gt;</code>p
+     視圖清單              - <code class="special">&lt;C-C&gt;</code>v
+     列清單                - <code class="special">&lt;C-C&gt;</code>c
 
-     钻进 / 钻出           - 查看显示表清单的弹出窗口时，<code class="special">&lt;Right&gt;</code> 可将当前高亮
-                             的表替代为该表的列清单。
-                           - 查看显示列清单的弹出窗口时，<code class="special">&lt;Left&gt;</code> 可将列清单替代
-                             为表清单。
-                           - 这样你可以快速钻进表里查看包含的列然后快速回来。
+     鑽進 / 鑽出           - 查看顯示表清單的彈出窗口時，<code class="special">&lt;Right&gt;</code> 可將當前高亮
+                             的表替代為該表的列清單。
+                           - 查看顯示列清單的彈出窗口時，<code class="special">&lt;Left&gt;</code> 可將列清單替代
+                             為表清單。
+                           - 這樣你可以快速鑽進表裡查看包含的列然後快速回來。
                            - <code class="special">&lt;Right&gt;</code> 和 <code class="special">&lt;Left&gt;</code> 可在  <a href="starting.html#.vimrc">.vimrc</a>  中指定: 
 <code class="example">                                let g:ftplugin_sql_omni_key_right = '&lt;Right&gt;'</code>
 <code class="example">                                let g:ftplugin_sql_omni_key_left  = '&lt;Left&gt;'</code>
 <code class="example"></code>
-SQL 补全插件缓存若干弹出窗口的显示清单。这样，重新显示这些清单的速度就会大大加
-快。如果数据库加入了新表或新列，插件缓存需要清空。此功能的缺省映射是: 
+SQL 補全插件緩存若干彈出窗口的顯示清單。這樣，重新顯示這些清單的速度就會大大加
+快。如果數據庫加入了新表或新列，插件緩存需要清空。此功能的缺省映射是: 
 <code class="example">    imap &lt;buffer&gt; &lt;C-C&gt;R &lt;C-\&gt;&lt;C-O&gt;:call sqlcomplete#Map('ResetCache')&lt;CR&gt;&lt;C-X&gt;&lt;C-O&gt;</code>
 <code class="example"></code>
 <code class="example"></code>
 4.3 SQL 教程                                    <b class="vimtag"> <a name="sql-completion-tutorial">sql-completion-tutorial</a> </b>
 </pre><hr class="singleline" /><pre>
 
-本教程的目的是为了带你了解 SQL 补全插件的常用功能，以便: 
+本教程的目的是為了帶你瞭解 SQL 補全插件的常用功能，以便: 
 <code class="example">     a) 你能熟悉插件的使用</code>
-<code class="example">     b) 你能得到一些常用功能的介绍</code>
-<code class="example">     c) 说明如何定制你的特定偏好</code>
+<code class="example">     b) 你能得到一些常用功能的介紹</code>
+<code class="example">     c) 說明如何定制你的特定偏好</code>
 <code class="example">     d) 展示插件 "最好用" 的方法 (最容易的配置方法)。</code>
 <code class="example"></code>
-首先，建立新缓冲区: 
+首先，建立新緩衝區: 
 <code class="example">     :e tutorial.sql</code>
 <code class="example"></code>
 <code class="example"></code>
-静态特性
+靜態特性
 </pre><hr class="singleline" /><pre>
-要得到各种清单，只要进入插入模式，输入:
-    <code class="special">&lt;C-C&gt;</code>s   (显示 SQL 语句)
-这时你可以往下翻页查看清单，直到看到 "select" 为止。如果你知道要找什么项目，比
-如你知道该语句以字母 "s" 开头，可以先预输入 (不输入引号) "se" 然后按:
+要得到各種清單，只要進入插入模式，輸入:
+    <code class="special">&lt;C-C&gt;</code>s   (顯示 SQL 語句)
+這時你可以往下翻頁查看清單，直到看到 "select" 為止。如果你知道要找什麼項目，比
+如你知道該語句以字母 "s" 開頭，可以先預輸入 (不輸入引號) "se" 然後按:
     <code class="special">&lt;C-Space&gt;</code>t
-假定弹出清单里高亮了 "select"，按 <code class="special">&lt;Enter&gt;</code> 选择该项目。现在输入:
-    * fr<code class="special">&lt;C-C&gt;</code>a (显示所有语法项目)
-然后选择弹出清单里的 "from"。
+假定彈出清單裡高亮了 "select"，按 <code class="special">&lt;Enter&gt;</code> 選擇該項目。現在輸入:
+    * fr<code class="special">&lt;C-C&gt;</code>a (顯示所有語法項目)
+然後選擇彈出清單裡的 "from"。
 
-编写存储过程时可用 "type" 清单。它包含数据库支持类型的清单。这取决于你使用的语
-法文件，因此可能是也可能不是完全准确。SQL Anywhere 语法文件 (sqlanywhere.vim)
+編寫存儲過程時可用 "type" 清單。它包含數據庫支持類型的清單。這取決於你使用的語
+法文件，因此可能是也可能不是完全準確。SQL Anywhere 語法文件 (sqlanywhere.vim)
 包含此支持: 
 <code class="example">     BEGIN</code>
-<code class="example">        DECLARE customer_id &lt;C-C&gt;T &lt;-- 从清单里选择一个类型</code>
+<code class="example">        DECLARE customer_id &lt;C-C&gt;T &lt;-- 從清單裡選擇一個類型</code>
 <code class="example"></code>
 <code class="example"></code>
-动态特性
+動態特性
 </pre><hr class="singleline" /><pre>
-要利用动态特性，先安装 (http://vim.sourceforge.net/script.php?script_id=356)
-dbext.vim 插件。它也带有自己的教程。从 SQL 补全插件的角度而言，dbext 提供的主
-要特性是连接到数据库。dbext 的连接设置文件是定义连接信息的最有效的方法。一旦建
-立好连接，SQL 补全插件在后台使用 dbext 的功能来为弹出菜单填充数据。
+要利用動態特性，先安裝 (http://vim.sourceforge.net/script.php?script_id=356)
+dbext.vim 插件。它也帶有自己的教程。從 SQL 補全插件的角度而言，dbext 提供的主
+要特性是連接到數據庫。dbext 的連接設置文件是定義連接信息的最有效的方法。一旦建
+立好連接，SQL 補全插件在後台使用 dbext 的功能來為彈出菜單填充數據。
 
-下面假设 dbext.vim 已经经过正确配置。简单的测试方法是运行命令 :DBListTable。如
-果显示了表清单，那么 dbext.vim 工作正常。如果不行，查询 dbext.txt 文档。
+下面假設 dbext.vim 已經經過正確配置。簡單的測試方法是運行命令 :DBListTable。如
+果顯示了表清單，那麼 dbext.vim 工作正常。如果不行，查詢 dbext.txt 文檔。
 
-假定你照着 dbext-tutorial 教程来做，可以按 <code class="special">&lt;C-C&gt;</code>t 来显示表清单。这时会有一些延
-迟，因为 dbext 正在建立表清单。显示清单后按 <code class="special">&lt;C-W&gt;</code> 会同时删除弹出菜单和清单激活
-时已经选中的表名。
+假定你照著 dbext-tutorial 教程來做，可以按 <code class="special">&lt;C-C&gt;</code>t 來顯示表清單。這時會有一些延
+遲，因為 dbext 正在建立表清單。顯示清單後按 <code class="special">&lt;C-W&gt;</code> 會同時刪除彈出菜單和清單激活
+時已經選中的表名。
 
- 4.3.1 补全表:                                  <b class="vimtag"> <a name="sql-completion-tables">sql-completion-tables</a> </b>
+ 4.3.1 補全表:                                  <b class="vimtag"> <a name="sql-completion-tables">sql-completion-tables</a> </b>
 
-按 <code class="special">&lt;C-C&gt;</code>t 显示通过 dbext 插件连接的数据库里的表清单。
-<code class="note">注意</code>: 所有 SQL 补全弹出菜单都支持在按键映射之前输入前缀。这时，弹出菜单只包含
-该前缀开始的项目。
+按 <code class="special">&lt;C-C&gt;</code>t 顯示通過 dbext 插件連接的數據庫裡的表清單。
+<code class="note">注意</code>: 所有 SQL 補全彈出菜單都支持在按鍵映射之前輸入前綴。這時，彈出菜單只包含
+該前綴開始的項目。
 
- 4.3.2 补全列:                                  <b class="vimtag"> <a name="sql-completion-columns">sql-completion-columns</a> </b>
+ 4.3.2 補全列:                                  <b class="vimtag"> <a name="sql-completion-columns">sql-completion-columns</a> </b>
 
-SQL 补全插件也能显示特定表的列清单。<code class="special">&lt;C-C&gt;</code>c 激活列补全。
+SQL 補全插件也能顯示特定表的列清單。<code class="special">&lt;C-C&gt;</code>c 激活列補全。
 
-<code class="note">注意</code>: 下面的例子在弹出菜单激活时用 <code class="special">&lt;Right&gt;</code> 来激活列清单。
+<code class="note">注意</code>: 下面的例子在彈出菜單激活時用 <code class="special">&lt;Right&gt;</code> 來激活列清單。
 
-使用列补全的示例:
-     - 再按一次 <code class="special">&lt;C-C&gt;</code>t 显示表清单。
-     - 补全窗口显示清单时，按 <code class="special">&lt;Right&gt;</code>，表清单会被替换为高亮表包含的列清单 (在
-       同样短暂的延迟后)。
-     - 按下 <code class="special">&lt;Left&gt;</code>，列清单又被替换为表清单。这样，你就可以来回快速进出各种表和
-       列清单。
-     - 高亮同一个表时，如果又按 <code class="special">&lt;Right&gt;</code>，你会<code class="note">注意</code>到不再有延迟，这是因为列清单
-       已经进行了缓存。如果改变了已经缓存的表的模式 (schema)， <code class="special">&lt;C-C&gt;</code>R 命令可以
-       清除 SQL 补全缓存。
-     - <code class="note">注意</code>: <code class="special">&lt;Right&gt;</code> 和 <code class="special">&lt;Left&gt;</code> 设计在补全窗口激活时工作。如果没有激活补全窗
-       口，执行普通的 <code class="special">&lt;Right&gt;</code> 或 <code class="special">&lt;Left&gt;</code>。
+使用列補全的示例:
+     - 再按一次 <code class="special">&lt;C-C&gt;</code>t 顯示表清單。
+     - 補全窗口顯示清單時，按 <code class="special">&lt;Right&gt;</code>，表清單會被替換為高亮表包含的列清單 (在
+       同樣短暫的延遲後)。
+     - 按下 <code class="special">&lt;Left&gt;</code>，列清單又被替換為表清單。這樣，你就可以來回快速進出各種表和
+       列清單。
+     - 高亮同一個表時，如果又按 <code class="special">&lt;Right&gt;</code>，你會<code class="note">注意</code>到不再有延遲，這是因為列清單
+       已經進行了緩存。如果改變了已經緩存的表的模式 (schema)， <code class="special">&lt;C-C&gt;</code>R 命令可以
+       清除 SQL 補全緩存。
+     - <code class="note">注意</code>: <code class="special">&lt;Right&gt;</code> 和 <code class="special">&lt;Left&gt;</code> 設計在補全窗口激活時工作。如果沒有激活補全窗
+       口，執行普通的 <code class="special">&lt;Right&gt;</code> 或 <code class="special">&lt;Left&gt;</code>。
 
-让我们看看如何动态构造 SQL 语句。select 语句需要一个列清单。SQL 补全插件有两个
-方法构造列清单。 
+讓我們看看如何動態構造 SQL 語句。select 語句需要一個列清單。SQL 補全插件有兩個
+方法構造列清單。 
 <code class="example">    一次一列:</code>
-        1. 输入 SELECT 后，按 <code class="special">&lt;C-C&gt;</code>t 显示表清单。
-        2. 从清单里选择一个表。
-        3. 按 <code class="special">&lt;Right&gt;</code> 显示列清单。
-        4. 从清单里选择列并按回车。
-        5. 输入 "," 并按 <code class="special">&lt;C-C&gt;</code>c。一般，生成列清单需要光标在表名上。插件使用该
-           名字来决定从哪个表提取列清单。在这一步，因为我们按 <code class="special">&lt;C-C&gt;</code>c 时光标不
-           在表名上，显示前一次使用的表的列清单。选择另一列，然后继续。
-        6. 根据需要，反复进行第 5 步。 
+        1. 輸入 SELECT 後，按 <code class="special">&lt;C-C&gt;</code>t 顯示表清單。
+        2. 從清單裡選擇一個表。
+        3. 按 <code class="special">&lt;Right&gt;</code> 顯示列清單。
+        4. 從清單裡選擇列並按回車。
+        5. 輸入 "," 並按 <code class="special">&lt;C-C&gt;</code>c。一般，生成列清單需要光標在表名上。插件使用該
+           名字來決定從哪個表提取列清單。在這一步，因為我們按 <code class="special">&lt;C-C&gt;</code>c 時光標不
+           在表名上，顯示前一次使用的表的列清單。選擇另一列，然後繼續。
+        6. 根據需要，反覆進行第 5 步。 
 <code class="example">    特定表的所有列:</code>
-        1. 输入 SELECT 后，按 <code class="special">&lt;C-C&gt;</code>t 显示表清单。
-        2. 高亮你需要所有列清单的表。
-        3. 按 <code class="special">&lt;Enter&gt;</code> 从清单里选择该表。
-        4. 按 <code class="special">&lt;C-C&gt;</code>l 来请求该表以逗号分隔的所有列的清单。
-        5. 基于第三步选择的表名，插件试图决定合适的表别名。你会得到提示，接受
-           或者修改该别名。然后按 OK。
-        6. 表名被该表用逗号分隔的列清单替换，每列前面都会加上表的别名。
-        7. 步骤 3 和 4 可以被 <code class="special">&lt;C-C&gt;</code>L 替换，它在映射里内嵌了 <code class="special">&lt;C-Y&gt;</code> 以选择清单里
-           当前正在高亮的表。
+        1. 輸入 SELECT 後，按 <code class="special">&lt;C-C&gt;</code>t 顯示表清單。
+        2. 高亮你需要所有列清單的表。
+        3. 按 <code class="special">&lt;Enter&gt;</code> 從清單裡選擇該表。
+        4. 按 <code class="special">&lt;C-C&gt;</code>l 來請求該表以逗號分隔的所有列的清單。
+        5. 基於第三步選擇的表名，插件試圖決定合適的表別名。你會得到提示，接受
+           或者修改該別名。然後按 OK。
+        6. 表名被該表用逗號分隔的列清單替換，每列前面都會加上表的別名。
+        7. 步驟 3 和 4 可以被 <code class="special">&lt;C-C&gt;</code>L 替換，它在映射裡內嵌了 <code class="special">&lt;C-Y&gt;</code> 以選擇清單裡
+           當前正在高亮的表。
 
-编写 select 语句时进行了一项特殊的准备工作。考虑下列语句: 
+編寫 select 語句時進行了一項特殊的準備工作。考慮下列語句: 
 <code class="example">     select *</code>
 <code class="example">       from customer c,</code>
 <code class="example">            contact cn,</code>
@@ -511,163 +511,163 @@ SQL 补全插件也能显示特定表的列清单。<code class="special">&lt;C-
 <code class="example">            site_options so</code>
 <code class="example">      where c.</code>
 <code class="example"></code>
-"c" 是 "customer" 表的别名。在插入模式下输入最后一个 "c." 之后，按 <code class="special">&lt;C-C&gt;</code>c 或
-<code class="special">&lt;C-X&gt;</code><code class="special">&lt;C-O&gt;</code> 会因此弹出 customer 表的列清单。因为插件会往回查找到 select 语句开
-始处并从那里开始寻找 FROM 字句定义的表清单。该例中它发现了字符串 "customer c"
-并因此知道 "c" 是 customer 表的别名。这里也支持可选的 "AS" 关键字， "customer
+"c" 是 "customer" 表的別名。在插入模式下輸入最後一個 "c." 之後，按 <code class="special">&lt;C-C&gt;</code>c 或
+<code class="special">&lt;C-X&gt;</code><code class="special">&lt;C-O&gt;</code> 會因此彈出 customer 表的列清單。因為插件會往回查找到 select 語句開
+始處並從那裡開始尋找 FROM 字句定義的表清單。該例中它發現了字符串 "customer c"
+並因此知道 "c" 是 customer 表的別名。這裡也支持可選的 "AS" 關鍵字， "customer
 AS c"。
 
 
- 4.3.3 补全过程:                                <b class="vimtag"> <a name="sql-completion-procedures">sql-completion-procedures</a> </b>
+ 4.3.3 補全過程:                                <b class="vimtag"> <a name="sql-completion-procedures">sql-completion-procedures</a> </b>
 
-和表清单类似，<code class="special">&lt;C-C&gt;</code>p 显示数据库里保存的存储过程的清单。
+和表清單類似，<code class="special">&lt;C-C&gt;</code>p 顯示數據庫裡保存的存儲過程的清單。
 
- 4.3.4 补全视图:                                <b class="vimtag"> <a name="sql-completion-views">sql-completion-views</a> </b>
+ 4.3.4 補全視圖:                                <b class="vimtag"> <a name="sql-completion-views">sql-completion-views</a> </b>
 
-和表清单类似，<code class="special">&lt;C-C&gt;</code>v 显示数据库里视图的清单。
+和表清單類似，<code class="special">&lt;C-C&gt;</code>v 顯示數據庫裡視圖的清單。
 
 
-4.4 定制补全                                    <b class="vimtag"> <a name="sql-completion-customization">sql-completion-customization</a> </b>
+4.4 定制補全                                    <b class="vimtag"> <a name="sql-completion-customization">sql-completion-customization</a> </b>
 </pre><hr class="singleline" /><pre>
 
-在  <a href="starting.html#vimrc">vimrc</a>  里，可以用若干选项定制 SQL 补全插件: 
-<code class="example">    omni_sql_no_default_maps (无缺省映射)</code>
-        - 缺省: 没有定义
-        - 如果定义此变量，不建立全能补全的映射。详见  <a href="ft_sql.html#sql-completion-maps">sql-completion-maps</a> 。
+在  <a href="starting.html#vimrc">vimrc</a>  裡，可以用若干選項定制 SQL 補全插件: 
+<code class="example">    omni_sql_no_default_maps (無缺省映射)</code>
+        - 缺省: 沒有定義
+        - 如果定義此變量，不建立全能補全的映射。詳見  <a href="ft_sql.html#sql-completion-maps">sql-completion-maps</a> 。
 
-<code class="example">    omni_sql_use_tbl_alias (使用表别名)</code>
+<code class="example">    omni_sql_use_tbl_alias (使用表別名)</code>
         - 缺省: a
-        - 只有生成逗号分隔的列清单时才使用此设置。缺省映射为 <code class="special">&lt;C-C&gt;</code>l。生成列清
-          单时，每列前面都加上一个别名，例如:  e.emp_id, c.emp_name。此选项有
-          三种设置: 
-<code class="example">                n - 不使用别名</code>
-<code class="example">                d - 使用缺省的 (经过计算的) 别名</code>
-<code class="example">                a - 要求确认别名</code>
+        - 只有生成逗號分隔的列清單時才使用此設置。缺省映射為 <code class="special">&lt;C-C&gt;</code>l。生成列清
+          單時，每列前面都加上一個別名，例如:  e.emp_id, c.emp_name。此選項有
+          三種設置: 
+<code class="example">                n - 不使用別名</code>
+<code class="example">                d - 使用缺省的 (經過計算的) 別名</code>
+<code class="example">                a - 要求確認別名</code>
 
-          以下一些规则决定别名:
-               1.  如果表名包含 '_'，用它作为分隔符: 
+          以下一些規則決定別名:
+               1.  如果表名包含 '_'，用它作為分隔符: 
 <code class="example">                   MY_TABLE_NAME --&gt; MTN</code>
 <code class="example">                   my_table_name --&gt; mtn</code>
 <code class="example">                   My_table_NAME --&gt; MtN</code>
-               2.  如果表名 <code class="emphasis">不</code> 包含 '_'，但 <code class="emphasis">包含</code> 混合大小写，使用大小写作为分
+               2.  如果表名 <code class="emphasis">不</code> 包含 '_'，但 <code class="emphasis">包含</code> 混合大小寫，使用大小寫作為分
                    隔符: 
 <code class="example">                   MyTableName --&gt; MTN</code>
-               3.  如果表名 <code class="emphasis">不</code> 包含 '_' 而且也 <code class="emphasis">不</code> 包含混合大小写，使用表的第一
-                   个字母: 
+               3.  如果表名 <code class="emphasis">不</code> 包含 '_' 而且也 <code class="emphasis">不</code> 包含混合大小寫，使用表的第一
+                   個字母: 
 <code class="example">                   mytablename --&gt; m</code>
 <code class="example">                   MYTABLENAME --&gt; M</code>
 <code class="example"></code>
-<code class="example">    omni_sql_ignorecase (忽略大小写)</code>
-        - 缺省: <a href="options.html#'ignorecase'">'ignorecase'</a> 的当前设置
-        - 合法的设置是 0 或 1。
-        - 启动补全之前如果输入一些字符，产生的列表会被过滤，只显示这些字符开始
-          的项目。如果此选项为 0，列表过滤时考虑大小写的敏感性。 
+<code class="example">    omni_sql_ignorecase (忽略大小寫)</code>
+        - 缺省: <a href="options.html#'ignorecase'">'ignorecase'</a> 的當前設置
+        - 合法的設置是 0 或 1。
+        - 啟動補全之前如果輸入一些字符，產生的列表會被過濾，只顯示這些字符開始
+          的項目。如果此選項為 0，列表過濾時考慮大小寫的敏感性。 
 <code class="example"></code>
-<code class="example">    omni_sql_include_owner (包含拥有者)</code>
-        - 缺省: 0，除非安装了 dbext.vim 3.00
-        - 合法的设置是 0 或 1。
-        - 如果用 dbext.vim 3.00 或更高版本补全表、过程或视图，对象清单里同时包
-          含拥有者的名字。补全这些对象时如果打开了 omni_sql_include_owner，拥
-          有者的名字会被替代。 
+<code class="example">    omni_sql_include_owner (包含擁有者)</code>
+        - 缺省: 0，除非安裝了 dbext.vim 3.00
+        - 合法的設置是 0 或 1。
+        - 如果用 dbext.vim 3.00 或更高版本補全表、過程或視圖，對像清單裡同時包
+          含擁有者的名字。補全這些對像時如果打開了 omni_sql_include_owner，擁
+          有者的名字會被替代。 
 <code class="example"></code>
-<code class="example">    omni_sql_precache_syntax_groups (预缓存语法组)</code>
+<code class="example">    omni_sql_precache_syntax_groups (預緩存語法組)</code>
         - 缺省:
           [<a href="options.html#'syntax'">'syntax'</a>,<code class="badlink">'sqlKeyword'</code>,<code class="badlink">'sqlFunction'</code>,<code class="badlink">'sqlOption'</code>,<code class="badlink">'sqlType'</code>,<code class="badlink">'sqlStatement'</code>]
-        - sqlcomplete 可以和其它补全插件一起使用。 <a href="ft_sql.html#sql-completion-filetypes">sql-completion-filetypes</a> 
-          提供简要说明。当文件类型暂时改为 SQL 时， sqlcompletion 插件缓存此选
-          项列表列出的语法组。
+        - sqlcomplete 可以和其它補全插件一起使用。 <a href="ft_sql.html#sql-completion-filetypes">sql-completion-filetypes</a> 
+          提供簡要說明。當文件類型暫時改為 SQL 時， sqlcompletion 插件緩存此選
+          項列表列出的語法組。
 
 <code class="example"></code>
 4.5 SQL 映射                                    <b class="vimtag"> <a name="sql-completion-maps">sql-completion-maps</a> </b>
 </pre><hr class="singleline" /><pre>
 
-缺省 SQL 映射在本文档的其它章节里已经有更详细的描述。这里列出所有映射，并带有
-每个映射的简短描述。
+缺省 SQL 映射在本文檔的其它章節裡已經有更詳細的描述。這裡列出所有映射，並帶有
+每個映射的簡短描述。
 
-静态映射
+靜態映射
 </pre><hr class="singleline" /><pre>
-这些映射使用 Vim 的语法高亮规则来给补全清单填充数据。 
+這些映射使用 Vim 的語法高亮規則來給補全清單填充數據。 
 <code class="example">    &lt;C-C&gt;a</code>
-        - 显示所有的 SQL 语法项目。 
+        - 顯示所有的 SQL 語法項目。 
 <code class="example">    &lt;C-C&gt;k</code>
-        - 显示所有 <code class="badlink">'sqlKeyword'</code> 定义的 SQL 语法项目。 
+        - 顯示所有 <code class="badlink">'sqlKeyword'</code> 定義的 SQL 語法項目。 
 <code class="example">    &lt;C-C&gt;f</code>
-        - 显示所有 <code class="badlink">'sqlFunction'</code> 定义的 SQL 语法项目。 
+        - 顯示所有 <code class="badlink">'sqlFunction'</code> 定義的 SQL 語法項目。 
 <code class="example">    &lt;C-C&gt;o</code>
-        - 显示所有 <code class="badlink">'sqlOption'</code> 定义的 SQL 语法项目。 
+        - 顯示所有 <code class="badlink">'sqlOption'</code> 定義的 SQL 語法項目。 
 <code class="example">    &lt;C-C&gt;T</code>
-        - 显示所有 <code class="badlink">'sqlType'</code> 定义的 SQL 语法项目。 
+        - 顯示所有 <code class="badlink">'sqlType'</code> 定義的 SQL 語法項目。 
 <code class="example">    &lt;C-C&gt;s</code>
-        - 显示所有 <code class="badlink">'sqlStatement'</code> 定义的 SQL 语法项目。
+        - 顯示所有 <code class="badlink">'sqlStatement'</code> 定義的 SQL 語法項目。
 
-动态映射
+動態映射
 </pre><hr class="singleline" /><pre>
-这些映射使用 dbext.vim 插件来给补全清单填充数据。 
+這些映射使用 dbext.vim 插件來給補全清單填充數據。 
 <code class="example">    &lt;C-C&gt;t</code>
-        - 显示表清单。 
+        - 顯示表清單。 
 <code class="example">    &lt;C-C&gt;p</code>
-        - 显示过程清单。 
+        - 顯示過程清單。 
 <code class="example">    &lt;C-C&gt;v</code>
-        - 显示视图清单。 
+        - 顯示視圖清單。 
 <code class="example">    &lt;C-C&gt;c</code>
-        - 显示特定表的列清单。 
+        - 顯示特定表的列清單。 
 <code class="example">    &lt;C-C&gt;l</code>
-        - 显示特定表用逗号分隔的列清单。 
+        - 顯示特定表用逗號分隔的列清單。 
 <code class="example">    &lt;C-C&gt;L</code>
-        - 显示特定表用逗号分隔的列清单。
-          只有补全窗口激活时才能使用此映射。 
+        - 顯示特定表用逗號分隔的列清單。
+          只有補全窗口激活時才能使用此映射。 
 <code class="example">    &lt;Right&gt;</code>
-        - 显示补全窗口当前高亮表的列清单。 
+        - 顯示補全窗口當前高亮表的列清單。 
 <code class="example">    &lt;Left&gt;</code>
-        - 显示表清单。 
+        - 顯示表清單。 
 <code class="example">    &lt;C-C&gt;R</code>
-        - 本映射删除所有缓存项目并强制 SQL 补全重新生成所有的项目清单。
+        - 本映射刪除所有緩存項目並強制 SQL 補全重新生成所有的項目清單。
 
 定制映射
 </pre><hr class="singleline" /><pre>
-根据需要，你可以建立许多附加的键映射。一般来说，映射指定不同的语法高亮组。
+根據需要，你可以建立許多附加的鍵映射。一般來說，映射指定不同的語法高亮組。
 
-如果你不希望建立缺省的映射或者选择的键不能用于你的平台 (通常在 *nix 上)，在
- <a href="starting.html#vimrc">vimrc</a>  里定义下面的变量: 
+如果你不希望建立缺省的映射或者選擇的鍵不能用於你的平台 (通常在 *nix 上)，在
+ <a href="starting.html#vimrc">vimrc</a>  裡定義下面的變量: 
 <code class="example">    let g:omni_sql_no_default_maps = 1</code>
 <code class="example"></code>
-不要直接编辑 ftplugin/sql.vim！如果修改了此文件，将来的更新会覆盖你的改动。Vim
-有一个特殊的目录结构，你可以进行定制而无须修改 Vim 发布里包含的文件。如果你希
-望定制映射，建立 after/ftplugin/sql.vim (见  <a href="options.html#after-directory">after-directory</a> )，并在那里放上和
-ftplugin/sql.vim 相同的映射并使用你自己的键击。之所以选择 <code class="special">&lt;C-C&gt;</code>，是因为它在
-Windows 和 *nix 平台上都能工作。Windows 平台上也可用 <code class="special">&lt;C-Space&gt;</code> 或 ALT 键。
+不要直接編輯 ftplugin/sql.vim！如果修改了此文件，將來的更新會覆蓋你的改動。Vim
+有一個特殊的目錄結構，你可以進行定制而無須修改 Vim 發佈裡包含的文件。如果你希
+望定制映射，建立 after/ftplugin/sql.vim (見  <a href="options.html#after-directory">after-directory</a> )，並在那裡放上和
+ftplugin/sql.vim 相同的映射並使用你自己的鍵擊。之所以選擇 <code class="special">&lt;C-C&gt;</code>，是因為它在
+Windows 和 *nix 平台上都能工作。Windows 平台上也可用 <code class="special">&lt;C-Space&gt;</code> 或 ALT 鍵。
 
 
-4.6 使用其它文件类型                            <b class="vimtag"> <a name="sql-completion-filetypes">sql-completion-filetypes</a> </b>
+4.6 使用其它文件類型                            <b class="vimtag"> <a name="sql-completion-filetypes">sql-completion-filetypes</a> </b>
 </pre><hr class="singleline" /><pre>
 
-很多时候，SQL 可以用于不同的文件类型。例如，Perl、Java、PHP 和 Javascript 都可
-以和数据库进行交互。通常你既需要 SQL 补全，也需要当前编辑的语言的补全功能。
+很多時候，SQL 可以用於不同的文件類型。例如，Perl、Java、PHP 和 Javascript 都可
+以和數據庫進行交互。通常你既需要 SQL 補全，也需要當前編輯的語言的補全功能。
 
-使用下面的步骤，这很容易做到 (假设 Perl 文件): 
+使用下面的步驟，這很容易做到 (假設 Perl 文件): 
 <code class="example">    1.  :e test.pl</code>
 <code class="example">    2.  :set filetype=sql</code>
 <code class="example">    3.  :set ft=perl</code>
 <code class="example"></code>
-步骤 1
+步驟 1
 </pre><hr class="singleline" /><pre>
-开始编辑 Perl 文件。Vim 自动设置文件类型为 "perl"。缺省，Vim 执行合适的文件类
-型文件 ftplugin/perl.vim。如果你依照  <a href="insert.html#ft-syntax-omni">ft-syntax-omni</a>  的指示使用语法补全插件，
-那么  <a href="options.html#'omnifunc'">'omnifunc'</a>  选项已经被设置为 "syntax#Complete"。按 <code class="special">&lt;C-X&gt;</code><code class="special">&lt;C-O&gt;</code> 会显示全能
-补全的弹出菜单，里面包含 Perl 的语法项目。
+開始編輯 Perl 文件。Vim 自動設置文件類型為 "perl"。缺省，Vim 執行合適的文件類
+型文件 ftplugin/perl.vim。如果你依照  <a href="insert.html#ft-syntax-omni">ft-syntax-omni</a>  的指示使用語法補全插件，
+那麼  <a href="options.html#'omnifunc'">'omnifunc'</a>  選項已經被設置為 "syntax#Complete"。按 <code class="special">&lt;C-X&gt;</code><code class="special">&lt;C-O&gt;</code> 會顯示全能
+補全的彈出菜單，裡面包含 Perl 的語法項目。
 
-步骤 2
+步驟 2
 </pre><hr class="singleline" /><pre>
-手动设置文件类型为 <code class="badlink">'sql'</code> 会激活相应的文件类型文件 ftplugin/sql.vim。该文件定义
-很多特定于缓冲区的 SQL 补全的映射，见  <a href="ft_sql.html#sql-completion-maps">sql-completion-maps</a> 。现在这些映射已经
-建立，而 SQL 补全插件也已经初始化。所有 SQL 语法项目也在缓存里准备完毕。SQL 文
-件类型脚本会检测到我们在试图使用两个不同的补全插件。因为 SQL 映射都以 <code class="special">&lt;C-C&gt;</code> 开
-始，而这些映射只在使用时才会激活  <a href="options.html#'omnifunc'">'omnifunc'</a> 。所以用 <code class="special">&lt;C-X&gt;</code><code class="special">&lt;C-O&gt;</code> 仍然可以继续
-使用 Perl 补全 (使用语法补全插件)，而 <code class="special">&lt;C-C&gt;</code> 则使用 SQL 补全的功能。
+手動設置文件類型為 <code class="badlink">'sql'</code> 會激活相應的文件類型文件 ftplugin/sql.vim。該文件定義
+很多特定於緩衝區的 SQL 補全的映射，見  <a href="ft_sql.html#sql-completion-maps">sql-completion-maps</a> 。現在這些映射已經
+建立，而 SQL 補全插件也已經初始化。所有 SQL 語法項目也在緩存裡準備完畢。SQL 文
+件類型腳本會檢測到我們在試圖使用兩個不同的補全插件。因為 SQL 映射都以 <code class="special">&lt;C-C&gt;</code> 開
+始，而這些映射只在使用時才會激活  <a href="options.html#'omnifunc'">'omnifunc'</a> 。所以用 <code class="special">&lt;C-X&gt;</code><code class="special">&lt;C-O&gt;</code> 仍然可以繼續
+使用 Perl 補全 (使用語法補全插件)，而 <code class="special">&lt;C-C&gt;</code> 則使用 SQL 補全的功能。
 
-步骤 3
+步驟 3
 </pre><hr class="singleline" /><pre>
-把文件类型设回 Perl，那么所有与 "perl" 有关的项目都回到原来的设置。
+把文件類型設回 Perl，那麼所有與 "perl" 有關的項目都回到原來的設置。
 
 vim:tw=78:ts=8:ft=help:norl:
 </pre>

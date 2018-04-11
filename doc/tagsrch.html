@@ -1,17 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>VIM: tagsrch</title>
 <link rel="stylesheet" href="vim-stylesheet.css" type="text/css">
 </head>
 <body>
 <div id=banner>
-<a href="help.html">帮助总览</a> &middot;
-<a href="quickref.html">快速参考</a> &middot;
+<a href="help.html">幫助總覽</a> &middot;
+<a href="quickref.html">快速參考</a> &middot;
 <a href="index.html">命令索引</a> &middot;
-<a href="usr_toc.html">用户手册</a> &middot;
-<a href="help.html#reference_toc">参考手册</a>
+<a href="usr_toc.html">用戶手冊</a> &middot;
+<a href="help.html#reference_toc">參考手冊</a>
 </div>
 
 <div id=outer>
@@ -20,178 +20,178 @@
 <b class="vimtag"> <a name="tagsrch.txt">tagsrch.txt</a> </b>   For Vim version 8.0.  最近更新: 2017年8月
 
 
-                  <code class="vim">VIM 参考手册    by Bram Moolenaar</code>
-                                <code class="vim">译者</code>: Willis
+                  <code class="vim">VIM 參考手冊    by Bram Moolenaar</code>
+                                <code class="vim">譯者</code>: Willis
                                 http://vimcdoc.sf.net
 
 
-标签和特殊搜索                                          <b class="vimtag"> <a name="tags-and-searches">tags-and-searches</a> </b>
+標籤和特殊搜索                                          <b class="vimtag"> <a name="tags-and-searches">tags-and-searches</a> </b>
 
-用户手册  <a href="usr_29.html#29.1">29.1</a>  有这部分内容的介绍。
+用戶手冊  <a href="usr_29.html#29.1">29.1</a>  有這部分內容的介紹。
 
-1. 跳转到标签                    <a href="tagsrch.html#tag-commands">tag-commands</a> 
-2. 标签栈                        <a href="tagsrch.html#tag-stack">tag-stack</a> 
-3. 标签匹配表                    <a href="tagsrch.html#tag-matchlist">tag-matchlist</a> 
-4. 标签细节                      <a href="tagsrch.html#tag-details">tag-details</a> 
-5. 标签文件格式                  <a href="tagsrch.html#tags-file-format">tags-file-format</a> 
-6. 头文件搜索                    <a href="tagsrch.html#include-search">include-search</a> 
+1. 跳轉到標籤                    <a href="tagsrch.html#tag-commands">tag-commands</a> 
+2. 標籤棧                        <a href="tagsrch.html#tag-stack">tag-stack</a> 
+3. 標籤匹配表                    <a href="tagsrch.html#tag-matchlist">tag-matchlist</a> 
+4. 標籤細節                      <a href="tagsrch.html#tag-details">tag-details</a> 
+5. 標籤文件格式                  <a href="tagsrch.html#tags-file-format">tags-file-format</a> 
+6. 頭文件搜索                    <a href="tagsrch.html#include-search">include-search</a> 
 
 </pre><hr class="doubleline" /><pre>
-<h4>1. 跳转到标签                                           <b class="vimtag"> <a name="tag-commands">tag-commands</a> </b></h4>
+<h4>1. 跳轉到標籤                                           <b class="vimtag"> <a name="tag-commands">tag-commands</a> </b></h4>
                                                         <b class="vimtag"> <a name="tag">tag</a> </b> <b class="vimtag"> <a name="tags">tags</a> </b>
-标签是出现在 "tags" 文件的一个标识符。它是一种能够跳转的标记。例如，在 C 程序
-里，每个函数名都可以是一个标签。在使用标签文件之前，"tags" 文件由 ctags 这样的
+標籤是出現在 "tags" 文件的一個標識符。它是一種能夠跳轉的標記。例如，在 C 程序
+裡，每個函數名都可以是一個標籤。在使用標籤文件之前，"tags" 文件由 ctags 這樣的
 程序生成。
 
-使用 ":tag" 命令移动光标到标签上。使用 <code class="keystroke">CTRL-]</code> 命令，光标所在的关键字就可用作标
-签。如果光标不在关键字上，则使用最右侧的一个关键字。
+使用 ":tag" 命令移動光標到標籤上。使用 <code class="keystroke">CTRL-]</code> 命令，光標所在的關鍵字就可用作標
+簽。如果光標不在關鍵字上，則使用最右側的一個關鍵字。
 
-":tag" 命令对 C 程序十分有效。如果你看到一个函数的调用而想知道该函数的作用，把
-光标移动到函数名上，并按 <code class="keystroke">CTRL-]</code>。它会把你带到该函数的定义上。简单的，按 <code class="keystroke">CTRL-T</code>
-就可以回去。同时，也请阅读下面关于标签栈的描述。
+":tag" 命令對 C 程序十分有效。如果你看到一個函數的調用而想知道該函數的作用，把
+光標移動到函數名上，並按 <code class="keystroke">CTRL-]</code>。它會把你帶到該函數的定義上。簡單的，按 <code class="keystroke">CTRL-T</code>
+就可以回去。同時，也請閱讀下面關於標籤棧的描述。
 
                                                 <b class="vimtag"> <a name=":ta">:ta</a> </b> <b class="vimtag"> <a name=":tag">:tag</a> </b> <b class="vimtag"> <a name="E426">E426</a> </b> <b class="vimtag"> <a name="E429">E429</a> </b>
 :<code class="special">[count]</code>ta[g][!] <code class="special">{ident}</code>
-                        根据 tags 文件的信息，跳转到 <code class="special">{ident}</code> 的定义上。
-                        把 <code class="special">{ident}</code> 放在堆栈上。[!] 见  <a href="tagsrch.html#tag-!">tag-!</a> 。
-                        <code class="special">{ident}</code> 可以是个正规表达式。见  <a href="tagsrch.html#tag-regexp">tag-regexp</a> 。
-                        如果有 <code class="special">{ident}</code> 的多个匹配，则跳转到它们中的第 <code class="special">[count]</code>
-                        个。如果 <code class="special">[count]</code> 被省略，则跳转到第一个。要跳转到其它
-                        匹配的标签，参见  <a href="tagsrch.html#tag-matchlist">tag-matchlist</a> 。
+                        根據 tags 文件的信息，跳轉到 <code class="special">{ident}</code> 的定義上。
+                        把 <code class="special">{ident}</code> 放在堆棧上。[!] 見  <a href="tagsrch.html#tag-!">tag-!</a> 。
+                        <code class="special">{ident}</code> 可以是個正規表達式。見  <a href="tagsrch.html#tag-regexp">tag-regexp</a> 。
+                        如果有 <code class="special">{ident}</code> 的多個匹配，則跳轉到它們中的第 <code class="special">[count]</code>
+                        個。如果 <code class="special">[count]</code> 被省略，則跳轉到第一個。要跳轉到其它
+                        匹配的標籤，參見  <a href="tagsrch.html#tag-matchlist">tag-matchlist</a> 。
 
 g<code class="special">&lt;LeftMouse&gt;</code>                                            <b class="vimtag"> <a name="g%3CLeftMouse%3E">g&lt;LeftMouse&gt;</a> </b>
 <code class="special">&lt;C-LeftMouse&gt;</code>                                   <b class="vimtag"> <a name="%3CC-LeftMouse%3E">&lt;C-LeftMouse&gt;</a> </b> <b class="vimtag"> <a name="CTRL-]">CTRL-]</a> </b>
-<code class="keystroke">CTRL-]</code>                  跳转到光标所在的关键字的定义。和 ":tag <code class="special">{ident}</code>" 相同，
-                        只不过 <code class="special">{ident}</code> 是光标之下或者之后的关键字。
-                        如果有 <code class="special">{ident}</code> 的多个匹配，则跳转到它们中的第 <code class="special">[count]</code>
-                        个。如果没有 <code class="special">[count]</code>，跳转到第一个。 要跳转到其它匹配
-                        的标签，参见  <a href="tagsrch.html#tag-matchlist">tag-matchlist</a> 。
-                        <code class="notvi">{Vi: 光标之后的标识符}</code>
+<code class="keystroke">CTRL-]</code>                  跳轉到光標所在的關鍵字的定義。和 ":tag <code class="special">{ident}</code>" 相同，
+                        只不過 <code class="special">{ident}</code> 是光標之下或者之後的關鍵字。
+                        如果有 <code class="special">{ident}</code> 的多個匹配，則跳轉到它們中的第 <code class="special">[count]</code>
+                        個。如果沒有 <code class="special">[count]</code>，跳轉到第一個。 要跳轉到其它匹配
+                        的標籤，參見  <a href="tagsrch.html#tag-matchlist">tag-matchlist</a> 。
+                        <code class="notvi">{Vi: 光標之後的標識符}</code>
 
                                                         <b class="vimtag"> <a name="v_CTRL-]">v_CTRL-]</a> </b>
 <code class="special">{Visual}</code><code class="keystroke">CTRL-]</code>          和 ":tag <code class="special">{ident}</code>" 相同，其中 <code class="special">{ident}</code> 是高亮的文本。
-                        <code class="notvi">{Vi 无此功能}</code>
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="telnet-CTRL-]">telnet-CTRL-]</a> </b>
-<code class="keystroke">CTRL-]</code> 是缺省的 telnet 转义键。在你按 <code class="keystroke">CTRL-]</code> 进行标签跳转的时候，你会得到
-telnet 的提示符。许多版本的 telnet 允许你改变或者屏蔽缺省的转义键。见 telnet
-的手册页。你可以用 'telnet -E <code class="special">{Hostname}</code>' 来屏蔽转义键，或者用 'telnet -e
-<code class="special">{EscapeCharacter}</code> <code class="special">{Hostname}</code>' 来指定别的转义键。如果可能，用 "ssh" 来代替
-"telnet" 也可解决这个问题。
+<code class="keystroke">CTRL-]</code> 是缺省的 telnet 轉義鍵。在你按 <code class="keystroke">CTRL-]</code> 進行標籤跳轉的時候，你會得到
+telnet 的提示符。許多版本的 telnet 允許你改變或者屏蔽缺省的轉義鍵。見 telnet
+的手冊頁。你可以用 'telnet -E <code class="special">{Hostname}</code>' 來屏蔽轉義鍵，或者用 'telnet -e
+<code class="special">{EscapeCharacter}</code> <code class="special">{Hostname}</code>' 來指定別的轉義鍵。如果可能，用 "ssh" 來代替
+"telnet" 也可解決這個問題。
 
                                                         <b class="vimtag"> <a name="tag-priority">tag-priority</a> </b>
-如果有标签的多个匹配，使用以下的优先级:
-1. "FSC"  当前文件的完整的匹配静态标签。
-2. "F C"  当前文件的完整匹配全局标签。
-3. "F  "  其他文件的完整匹配全局标签。
-4. "FS "  其他文件的完整匹配静态标签。
-5. " SC"  当前文件的忽略大小写的匹配静态标签。
-6. "  C"  当前文件的忽略大小写匹配全局标签。
-7. "   "  其他文件的忽略大小写匹配全局标签。
-8. " S "  其他文件的忽略大小写匹配静态标签。
+如果有標籤的多個匹配，使用以下的優先級:
+1. "FSC"  當前文件的完整的匹配靜態標籤。
+2. "F C"  當前文件的完整匹配全局標籤。
+3. "F  "  其他文件的完整匹配全局標籤。
+4. "FS "  其他文件的完整匹配靜態標籤。
+5. " SC"  當前文件的忽略大小寫的匹配靜態標籤。
+6. "  C"  當前文件的忽略大小寫匹配全局標籤。
+7. "   "  其他文件的忽略大小寫匹配全局標籤。
+8. " S "  其他文件的忽略大小寫匹配靜態標籤。
 
-<code class="note">注意</code> 当前文件改变时，优先顺序多数情况下不会改变，以免使 ":tnext" 的使用引起混
-淆。在使用 ":tag <code class="special">{ident}</code>" 时，优先顺序才会改变。
+<code class="note">注意</code> 當前文件改變時，優先順序多數情況下不會改變，以免使 ":tnext" 的使用引起混
+淆。在使用 ":tag <code class="special">{ident}</code>" 時，優先順序才會改變。
 
-以下情况下，":tag" 命令不会查找忽略大小写的匹配:
-- <a href="options.html#'ignorecase'">'ignorecase'</a> 选项关闭 且 <a href="options.html#'tagcase'">'tagcase'</a> 为 "followic"
-- <a href="options.html#'tagcase'">'tagcase'</a> 为 "match"
-- <a href="options.html#'tagcase'">'tagcase'</a> 为 "smart" 且模式包含大写字符。
-- <a href="options.html#'tagcase'">'tagcase'</a> 为 "followscs" 且 <a href="options.html#'smartcase'">'smartcase'</a> 选项打开，且模式包含大写字符。
+以下情況下，":tag" 命令不會查找忽略大小寫的匹配:
+- <a href="options.html#'ignorecase'">'ignorecase'</a> 選項關閉 且 <a href="options.html#'tagcase'">'tagcase'</a> 為 "followic"
+- <a href="options.html#'tagcase'">'tagcase'</a> 為 "match"
+- <a href="options.html#'tagcase'">'tagcase'</a> 為 "smart" 且模式包含大寫字符。
+- <a href="options.html#'tagcase'">'tagcase'</a> 為 "followscs" 且 <a href="options.html#'smartcase'">'smartcase'</a> 選項打開，且模式包含大寫字符。
 
-以下情况下，查找忽略大小写的匹配:
-- 使用模式 (以 "/" 开始)
+以下情況下，查找忽略大小寫的匹配:
+- 使用模式 (以 "/" 開始)
 - ":tselect"
-- <a href="options.html#'tagcase'">'tagcase'</a> 为 "followic" 且 <a href="options.html#'ignorecase'">'ignorecase'</a> 关闭 (<code class="vim">译者注</code>: 应为打开)
-- <a href="options.html#'tagcase'">'tagcase'</a> 为 "match" (<code class="vim">译者注</code>: 应为 "ignore")
-- <a href="options.html#'tagcase'">'tagcase'</a> 为 "followscs" 且 <a href="options.html#'smartcase'">'smartcase'</a> 选项关闭
+- <a href="options.html#'tagcase'">'tagcase'</a> 為 "followic" 且 <a href="options.html#'ignorecase'">'ignorecase'</a> 關閉 (<code class="vim">譯者注</code>: 應為打開)
+- <a href="options.html#'tagcase'">'tagcase'</a> 為 "match" (<code class="vim">譯者注</code>: 應為 "ignore")
+- <a href="options.html#'tagcase'">'tagcase'</a> 為 "followscs" 且 <a href="options.html#'smartcase'">'smartcase'</a> 選項關閉
 
-<code class="note">注意</code> 使用忽略大小写查找就无法应用 tags 文件的二分法查找，从而减慢了查找速度。
-这可以用大小写合并排序的标签文件来解决。具体解释见 <a href="options.html#'tagbsearch'">'tagbsearch'</a> 选项。
+<code class="note">注意</code> 使用忽略大小寫查找就無法應用 tags 文件的二分法查找，從而減慢了查找速度。
+這可以用大小寫合併排序的標籤文件來解決。具體解釋見 <a href="options.html#'tagbsearch'">'tagbsearch'</a> 選項。
 
 </pre><hr class="doubleline" /><pre>
-<h4>2. 标签栈                               <b class="vimtag"> <a name="tag-stack">tag-stack</a> </b> <b class="vimtag"> <a name="tagstack">tagstack</a> </b> <b class="vimtag"> <a name="E425">E425</a> </b></h4>
-标签栈记住你跳转过的标签，还有从哪里跳转到这些标签。只有在设置 <a href="options.html#'tagstack'">'tagstack'</a> 选项
-的时候，标签才被压到堆栈里。
+<h4>2. 標籤棧                               <b class="vimtag"> <a name="tag-stack">tag-stack</a> </b> <b class="vimtag"> <a name="tagstack">tagstack</a> </b> <b class="vimtag"> <a name="E425">E425</a> </b></h4>
+標籤棧記住你跳轉過的標籤，還有從哪裡跳轉到這些標籤。只有在設置 <a href="options.html#'tagstack'">'tagstack'</a> 選項
+的時候，標籤才被壓到堆棧裡。
 
 g<code class="special">&lt;RightMouse&gt;</code>                                           <b class="vimtag"> <a name="g%3CRightMouse%3E">g&lt;RightMouse&gt;</a> </b>
 <code class="special">&lt;C-RightMouse&gt;</code>                                  <b class="vimtag"> <a name="%3CC-RightMouse%3E">&lt;C-RightMouse&gt;</a> </b> <b class="vimtag"> <a name="CTRL-T">CTRL-T</a> </b>
-<code class="keystroke">CTRL-T</code>                  跳到标签栈上第 <code class="special">[count]</code> 个较早的项目 (缺省为 1)。
-                        <code class="notvi">{Vi 无此功能}</code>
+<code class="keystroke">CTRL-T</code>                  跳到標籤棧上第 <code class="special">[count]</code> 個較早的項目 (缺省為 1)。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                 <b class="vimtag"> <a name=":po">:po</a> </b> <b class="vimtag"> <a name=":pop">:pop</a> </b> <b class="vimtag"> <a name="E555">E555</a> </b> <b class="vimtag"> <a name="E556">E556</a> </b>
-:<code class="special">[count]</code>po[p][!]        跳到标签栈上第 <code class="special">[count]</code> 个较早的项目 (缺省为 1)。
-                        [!] 见  <a href="tagsrch.html#tag-!">tag-!</a> 。<code class="notvi">{Vi 无此功能}</code>
+:<code class="special">[count]</code>po[p][!]        跳到標籤棧上第 <code class="special">[count]</code> 個較早的項目 (缺省為 1)。
+                        [!] 見  <a href="tagsrch.html#tag-!">tag-!</a> 。<code class="notvi">{Vi 無此功能}</code>
 
-:<code class="special">[count]</code>ta[g][!]        跳到标签栈上第 <code class="special">[count]</code> 个较新的项目 (缺省为 1)。
-                        [!] 见  <a href="tagsrch.html#tag-!">tag-!</a> 。<code class="notvi">{Vi 无此功能}</code>
+:<code class="special">[count]</code>ta[g][!]        跳到標籤棧上第 <code class="special">[count]</code> 個較新的項目 (缺省為 1)。
+                        [!] 見  <a href="tagsrch.html#tag-!">tag-!</a> 。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":tags">:tags</a> </b>
-:tags                   显示标签栈的内容。激活的项目以 '&gt;' 标明。<code class="notvi">{Vi 无此功能}</code>
+:tags                   顯示標籤棧的內容。激活的項目以 '&gt;' 標明。<code class="notvi">{Vi 無此功能}</code>
 
-":tags" 的输出结果类似于:
+":tags" 的輸出結果類似於:
 
    # TO tag      FROM line in file/text
    1  1 main             1  harddisk2:text/vim/test
  &gt; 2  2 FuncA           58  i = FuncA(10);
    3  1 FuncC          357  harddisk2:text/vim/src/amiga.c
 
-该列表显示你跳转到的标签和跳转前光标的位置。较早的项目在顶部，较新的在底部。
+該列表顯示你跳轉到的標籤和跳轉前光標的位置。較早的項目在頂部，較新的在底部。
 
-'&gt;' 指向活动的项目。这是下一个 ":tag" 命令将使用的标签。<code class="keystroke">CTRL-T</code> 和 ":pop" 使用
-活动项目之上的那项的位置。
+'&gt;' 指向活動的項目。這是下一個 ":tag" 命令將使用的標籤。<code class="keystroke">CTRL-T</code> 和 ":pop" 使用
+活動項目之上的那項的位置。
 
-"TO" 之下的那列显示匹配表的当前匹配的数目。<code class="note">注意</code> 这不会因为使用 ":pop" 或者
-":tag" 而改变。
+"TO" 之下的那列顯示匹配表的當前匹配的數目。<code class="note">注意</code> 這不會因為使用 ":pop" 或者
+":tag" 而改變。
 
-记住文件名和行号可以使你回到 tag 命令之前的位置。即使你删除或者插入行，行号也
-会保持正确，除非你用别的程序 (比如，另外一个 Vim 的实例) 做这些事。
+記住文件名和行號可以使你回到 tag 命令之前的位置。即使你刪除或者插入行，行號也
+會保持正確，除非你用別的程序 (比如，另外一個 Vim 的實例) 做這些事。
 
-对于当前文件，"file/text" 列显示该位置的文本。缩进被删除，长行也被截短，以便能
-放进窗口里显示。
+對於當前文件，"file/text" 列顯示該位置的文本。縮進被刪除，長行也被截短，以便能
+放進窗口裡顯示。
 
-有若干命令可以让你跳到之前用过的标签。一些例子包括:
+有若干命令可以讓你跳到之前用過的標籤。一些例子包括:
 
-        ":pop" 或 <code class="keystroke">CTRL-T</code>        到上一个标签之前的位置
-        <code class="special">{count}</code><code class="keystroke">CTRL-T</code>           到第 <code class="special">{count}</code> 个较早的标签之前的位置
-        ":tag"                  到更新的标签
-        ":0tag"                 到前一个使用过的标签
+        ":pop" 或 <code class="keystroke">CTRL-T</code>        到上一個標籤之前的位置
+        <code class="special">{count}</code><code class="keystroke">CTRL-T</code>           到第 <code class="special">{count}</code> 個較早的標籤之前的位置
+        ":tag"                  到更新的標籤
+        ":0tag"                 到前一個使用過的標籤
 
-最明显的应用就是浏览程序的调用图。考虑下面的调用图:
+最明顯的應用就是瀏覽程序的調用圖。考慮下面的調用圖:
 
         main  ---&gt;  FuncA  ---&gt;  FuncC
               ---&gt;  FuncB
 
-(解释: main 调用 FuncA 和 FuncB; FuncA 调用 FuncC)。
-从 main 到 FuncA，你可以在调用 FuncA 的行上用 <code class="keystroke">CTRL-]</code>。然后再用 <code class="keystroke">CTRL-]</code> 跳到
-FuncC。如果你现在想跳回到 main，你只需要按 <code class="keystroke">CTRL-T</code> 两次。然后你可以用 <code class="keystroke">CTRL-]</code> 到
+(解釋: main 調用 FuncA 和 FuncB; FuncA 調用 FuncC)。
+從 main 到 FuncA，你可以在調用 FuncA 的行上用 <code class="keystroke">CTRL-]</code>。然後再用 <code class="keystroke">CTRL-]</code> 跳到
+FuncC。如果你現在想跳回到 main，你只需要按 <code class="keystroke">CTRL-T</code> 兩次。然後你可以用 <code class="keystroke">CTRL-]</code> 到
 FuncB。
 
-如果你使用 ":ta <code class="special">{ident}</code>" 或者 <code class="keystroke">CTRL-]</code> 命令，该标签被加在栈的当前位置。如果栈已
-满 (最多可以容纳 20 项)，最早的项目被删除，较早的项目则依次前移 (索引号分别减
-1)。如果最近使用的项目不在底部，它其后的项目都被删除。这意味着调用图上的旧的分
-支丢失了。在上面解释的命令执行以后，标签栈看起来像这样:
+如果你使用 ":ta <code class="special">{ident}</code>" 或者 <code class="keystroke">CTRL-]</code> 命令，該標籤被加在棧的當前位置。如果棧已
+滿 (最多可以容納 20 項)，最早的項目被刪除，較早的項目則依次前移 (索引號分別減
+1)。如果最近使用的項目不在底部，它其後的項目都被刪除。這意味著調用圖上的舊的分
+支丟失了。在上面解釋的命令執行以後，標籤棧看起來像這樣:
 
    # TO tag     FROM line in file/text
    1  1 main            1  harddisk2:text/vim/test
    2  1 FuncB          59  harddisk2:text/vim/src/main.c
 
                                                         <b class="vimtag"> <a name="E73">E73</a> </b>
-如果你试图使用标签栈，而其中没有任何内容，你会得到一个错误信息。
+如果你試圖使用標籤棧，而其中沒有任何內容，你會得到一個錯誤信息。
 
 </pre><hr class="doubleline" /><pre>
-<h4>3. 标签匹配表                           <b class="vimtag"> <a name="tag-matchlist">tag-matchlist</a> </b> <b class="vimtag"> <a name="E427">E427</a> </b> <b class="vimtag"> <a name="E428">E428</a> </b></h4>
-如果有多个匹配的标签，这些命令可以用来在它们之间跳转。<code class="note">注意</code> 这些命令不影响标签
-栈，它保留原来的项目。
+<h4>3. 標籤匹配表                           <b class="vimtag"> <a name="tag-matchlist">tag-matchlist</a> </b> <b class="vimtag"> <a name="E427">E427</a> </b> <b class="vimtag"> <a name="E428">E428</a> </b></h4>
+如果有多個匹配的標籤，這些命令可以用來在它們之間跳轉。<code class="note">注意</code> 這些命令不影響標籤
+棧，它保留原來的項目。
 
                                                         <b class="vimtag"> <a name=":ts">:ts</a> </b> <b class="vimtag"> <a name=":tselect">:tselect</a> </b>
-:ts[elect][!] <code class="special">[ident]</code>   根据 tags 文件的信息，列出匹配 <code class="special">[ident]</code> 的标签。
-                        如果 <code class="special">[ident]</code> 没有给出，使用标签栈上最后的标签名。
-                        第一列的 '&gt;' 指示列表的当前位置 (如果有的话)。
-                        <code class="special">[ident]</code> 可以是正规表达式模式，见  <a href="tagsrch.html#tag-regexp">tag-regexp</a> 。
-                        列表使用的优先级顺序见  <a href="tagsrch.html#tag-priority">tag-priority</a> 。
-                        <code class="notvi">{Vi 无此功能}</code>
-                        示例输出:
+:ts[elect][!] <code class="special">[ident]</code>   根據 tags 文件的信息，列出匹配 <code class="special">[ident]</code> 的標籤。
+                        如果 <code class="special">[ident]</code> 沒有給出，使用標籤棧上最後的標籤名。
+                        第一列的 '&gt;' 指示列表的當前位置 (如果有的話)。
+                        <code class="special">[ident]</code> 可以是正規表達式模式，見  <a href="tagsrch.html#tag-regexp">tag-regexp</a> 。
+                        列表使用的優先級順序見  <a href="tagsrch.html#tag-priority">tag-priority</a> 。
+                        <code class="notvi">{Vi 無此功能}</code>
+                        示例輸出:
 
 
 <code class="example">         nr pri kind tag                file</code>
@@ -203,548 +203,548 @@ FuncB。
 <code class="example">                        mch_delay(msec, ignoreinput)</code>
 <code class="example">        Enter nr of choice (&lt;CR&gt; to abort):</code>
 
-                        "pri" 列见  <a href="tagsrch.html#tag-priority">tag-priority</a> 。<code class="note">注意</code> 这决定于当前文件，因而
-                        ":tselect xxx" 可能会输出不同的结果。
-                        如果 tags 文件给出标签的类型。"kind" 列输出此信息。
-                        "info" 列给出 tags 文件找到的信息。这决定于产生 tags
+                        "pri" 列見  <a href="tagsrch.html#tag-priority">tag-priority</a> 。<code class="note">注意</code> 這決定於當前文件，因而
+                        ":tselect xxx" 可能會輸出不同的結果。
+                        如果 tags 文件給出標籤的類型。"kind" 列輸出此信息。
+                        "info" 列給出 tags 文件找到的信息。這決定於產生 tags
                         文件的程序。
-                        如果列表很长，你可能会看到  <a href="message.html#more-prompt">more-prompt</a> 。如果你已经看
-                        到要用的标签，按 'q' 并输入那个数字。
+                        如果列表很長，你可能會看到  <a href="message.html#more-prompt">more-prompt</a> 。如果你已經看
+                        到要用的標籤，按 'q' 並輸入那個數字。
 
                                                         <b class="vimtag"> <a name=":sts">:sts</a> </b> <b class="vimtag"> <a name=":stselect">:stselect</a> </b>
-:sts[elect][!] <code class="special">[ident]</code>  ":tselect[!] <code class="special">[ident]</code>" 并分割窗口以显示选择的标签。
-                        <code class="notvi">{Vi 无此功能}</code>
+:sts[elect][!] <code class="special">[ident]</code>  ":tselect[!] <code class="special">[ident]</code>" 並分割窗口以顯示選擇的標籤。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="g]">g]</a> </b>
-g]                      类似于 <code class="keystroke">CTRL-]</code>，但使用 ":tselect" 而不是 ":tag"。
-                        <code class="notvi">{Vi 无此功能}</code>
+g]                      類似於 <code class="keystroke">CTRL-]</code>，但使用 ":tselect" 而不是 ":tag"。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="v_g]">v_g]</a> </b>
-<code class="special">{Visual}</code>g]              和 "g]" 相同，但使用高亮文本作为标识符。
-                        <code class="notvi">{Vi 无此功能}</code>
+<code class="special">{Visual}</code>g]              和 "g]" 相同，但使用高亮文本作為標識符。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":tj">:tj</a> </b> <b class="vimtag"> <a name=":tjump">:tjump</a> </b>
-:tj[ump][!] <code class="special">[ident]</code>     类似于 ":tselect"，但如果只有一个匹配，直接跳转之。
-                        <code class="notvi">{Vi 无此功能}</code>
+:tj[ump][!] <code class="special">[ident]</code>     類似於 ":tselect"，但如果只有一個匹配，直接跳轉之。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":stj">:stj</a> </b> <b class="vimtag"> <a name=":stjump">:stjump</a> </b>
-:stj[ump][!] <code class="special">[ident]</code>    ":tjump[!] <code class="special">[ident]</code>" 并分割窗口以显示选择的标签。
-                        <code class="notvi">{Vi 无此功能}</code>
+:stj[ump][!] <code class="special">[ident]</code>    ":tjump[!] <code class="special">[ident]</code>" 並分割窗口以顯示選擇的標籤。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="g_CTRL-]">g_CTRL-]</a> </b>
-g <code class="keystroke">CTRL-]</code>                类似于 <code class="keystroke">CTRL-]</code>，但使用 ":tjump" 而不是 ":tag"。
-                        <code class="notvi">{Vi 无此功能}</code>
+g <code class="keystroke">CTRL-]</code>                類似於 <code class="keystroke">CTRL-]</code>，但使用 ":tjump" 而不是 ":tag"。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="v_g_CTRL-]">v_g_CTRL-]</a> </b>
-<code class="special">{Visual}</code>g <code class="keystroke">CTRL-]</code>        和 "g <code class="keystroke">CTRL-]</code>" 相同，但使用高亮文本作为标识符。
-                        <code class="notvi">{Vi 无此功能}</code>
+<code class="special">{Visual}</code>g <code class="keystroke">CTRL-]</code>        和 "g <code class="keystroke">CTRL-]</code>" 相同，但使用高亮文本作為標識符。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":tn">:tn</a> </b> <b class="vimtag"> <a name=":tnext">:tnext</a> </b>
-:<code class="special">[count]</code>tn[ext][!]      跳转到向下 <code class="special">[count]</code> 个匹配的标签 (缺省为 1)。[!] 见
-                         <a href="tagsrch.html#tag-!">tag-!</a> 。<code class="notvi">{Vi 无此功能}</code>
+:<code class="special">[count]</code>tn[ext][!]      跳轉到向下 <code class="special">[count]</code> 個匹配的標籤 (缺省為 1)。[!] 見
+                         <a href="tagsrch.html#tag-!">tag-!</a> 。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":tp">:tp</a> </b> <b class="vimtag"> <a name=":tprevious">:tprevious</a> </b>
-:<code class="special">[count]</code>tp[revious][!]  跳转到向上 <code class="special">[count]</code> 个匹配的标签 (缺省为 1)。[!] 见
-                         <a href="tagsrch.html#tag-!">tag-!</a> 。<code class="notvi">{Vi 无此功能}</code>
+:<code class="special">[count]</code>tp[revious][!]  跳轉到向上 <code class="special">[count]</code> 個匹配的標籤 (缺省為 1)。[!] 見
+                         <a href="tagsrch.html#tag-!">tag-!</a> 。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":tN">:tN</a> </b> <b class="vimtag"> <a name=":tNext">:tNext</a> </b>
-:<code class="special">[count]</code>tN[ext][!]      和 ":tprevious" 相同。<code class="notvi">{Vi 无此功能}</code>
+:<code class="special">[count]</code>tN[ext][!]      和 ":tprevious" 相同。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":tr">:tr</a> </b> <b class="vimtag"> <a name=":trewind">:trewind</a> </b>
-:<code class="special">[count]</code>tr[ewind][!]    跳转到第一个匹配的标签。如果给出 <code class="special">[count]</code>，跳到第
-                        <code class="special">[count]</code> 个匹配的标签。[!] 见  <a href="tagsrch.html#tag-!">tag-!</a> 。<code class="notvi">{Vi 无此功能}</code>
+:<code class="special">[count]</code>tr[ewind][!]    跳轉到第一個匹配的標籤。如果給出 <code class="special">[count]</code>，跳到第
+                        <code class="special">[count]</code> 個匹配的標籤。[!] 見  <a href="tagsrch.html#tag-!">tag-!</a> 。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":tf">:tf</a> </b> <b class="vimtag"> <a name=":tfirst">:tfirst</a> </b>
-:<code class="special">[count]</code>tf[irst][!]     和 ":trewind" 相同。<code class="notvi">{Vi 无此功能}</code>
+:<code class="special">[count]</code>tf[irst][!]     和 ":trewind" 相同。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":tl">:tl</a> </b> <b class="vimtag"> <a name=":tlast">:tlast</a> </b>
-:tl[ast][!]             跳到最后匹配的标签。[!] 见  <a href="tagsrch.html#tag-!">tag-!</a> 。<code class="notvi">{Vi 无此功能}</code>
+:tl[ast][!]             跳到最後匹配的標籤。[!] 見  <a href="tagsrch.html#tag-!">tag-!</a> 。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":lt">:lt</a> </b> <b class="vimtag"> <a name=":ltag">:ltag</a> </b>
-:lt[ag][!] <code class="special">[ident]</code>      跳转到标签 <code class="special">[ident]</code> 上并在当前窗口的新位置列表中加入匹
-                        配的标签。
-                        <code class="special">[ident]</code> 可以是正规表达式，见  <a href="tagsrch.html#tag-regexp">tag-regexp</a> 。如果
-                        <code class="special">[ident]</code> 没有给出，使用标签栈上最后的标签名。查找标签行
-                        的搜索模式会加上 "\V" 前缀，转义所有的特殊字符 (very
-                        nomagic)。显示匹配标签的位置列表独立于标签栈。 [!] 见
+:lt[ag][!] <code class="special">[ident]</code>      跳轉到標籤 <code class="special">[ident]</code> 上並在當前窗口的新位置列表中加入匹
+                        配的標籤。
+                        <code class="special">[ident]</code> 可以是正規表達式，見  <a href="tagsrch.html#tag-regexp">tag-regexp</a> 。如果
+                        <code class="special">[ident]</code> 沒有給出，使用標籤棧上最後的標籤名。查找標籤行
+                        的搜索模式會加上 "\V" 前綴，轉義所有的特殊字符 (very
+                        nomagic)。顯示匹配標籤的位置列表獨立於標籤棧。 [!] 見
                          <a href="tagsrch.html#tag-!">tag-!</a> 。
-                        <code class="notvi">{Vi 无此功能}</code>
+                        <code class="notvi">{Vi 無此功能}</code>
 
-如果没有其他消息，Vim 显示跳到的是哪个匹配的标签，还有匹配标签的总数: 
+如果沒有其他消息，Vim 顯示跳到的是哪個匹配的標籤，還有匹配標籤的總數: 
 <code class="example">        tag 1 of 3 or more</code>
-" or more" 用于说明 Vim 并没有尝试完所有的 tags 文件。多用几次 ":tnext" 或者用
-":tlast" 也许会找到更多。
+" or more" 用於說明 Vim 並沒有嘗試完所有的 tags 文件。多用幾次 ":tnext" 或者用
+":tlast" 也許會找到更多。
 
-如果因为有其他的消息使得你没看到这个消息，或者你想知道现在在哪里，以下这个命令
-会再次显示本消息 (并跳转到最近一次的相同的标签): 
+如果因為有其他的消息使得你沒看到這個消息，或者你想知道現在在哪裡，以下這個命令
+會再次顯示本消息 (並跳轉到最近一次的相同的標籤): 
 <code class="example">        :0tn</code>
 
                                                         <b class="vimtag"> <a name="tag-skip-file">tag-skip-file</a> </b>
-如果找到一个匹配的标签，但是相应的文件却不存在，该匹配被跳过，而使用下一个匹
-配。Vim 报告这一点，提醒你文件的丢失。在匹配列表的结束处，会给出错误。
+如果找到一個匹配的標籤，但是相應的文件卻不存在，該匹配被跳過，而使用下一個匹
+配。Vim 報告這一點，提醒你文件的丟失。在匹配列表的結束處，會給出錯誤。
 
                                                         <b class="vimtag"> <a name="tag-preview">tag-preview</a> </b>
-标签匹配表也可用在预览窗口。命令和上面一样，除了前面有个 "p"。
-<code class="notvi">{仅当编译时加入  <a href="various.html#+quickfix">+quickfix</a>  特性才有效}</code>
+標籤匹配表也可用在預覽窗口。命令和上面一樣，除了前面有個 "p"。
+<code class="notvi">{僅當編譯時加入  <a href="various.html#+quickfix">+quickfix</a>  特性才有效}</code>
 
                                                         <b class="vimtag"> <a name=":pts">:pts</a> </b> <b class="vimtag"> <a name=":ptselect">:ptselect</a> </b>
-:pts[elect][!] <code class="special">[ident]</code>  ":tselect[!] <code class="special">[ident]</code>" 并在预览窗口显示新的标签。详情见
+:pts[elect][!] <code class="special">[ident]</code>  ":tselect[!] <code class="special">[ident]</code>" 並在預覽窗口顯示新的標籤。詳情見
                          <a href="windows.html#:ptag">:ptag</a> 。
-                        <code class="notvi">{Vi 无此功能}</code>
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":ptj">:ptj</a> </b> <b class="vimtag"> <a name=":ptjump">:ptjump</a> </b>
-:ptj[ump][!] <code class="special">[ident]</code>    ":tjump[!] <code class="special">[ident]</code>" 并在预览窗口显示新的标签。详情见
+:ptj[ump][!] <code class="special">[ident]</code>    ":tjump[!] <code class="special">[ident]</code>" 並在預覽窗口顯示新的標籤。詳情見
                          <a href="windows.html#:ptag">:ptag</a> 。
-                        <code class="notvi">{Vi 无此功能}</code>
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":ptn">:ptn</a> </b> <b class="vimtag"> <a name=":ptnext">:ptnext</a> </b>
-:<code class="special">[count]</code>ptn[ext][!]     在预览窗口里 ":tnext"。见  <a href="windows.html#:ptag">:ptag</a> 。
-                        <code class="notvi">{Vi 无此功能}</code>
+:<code class="special">[count]</code>ptn[ext][!]     在預覽窗口裡 ":tnext"。見  <a href="windows.html#:ptag">:ptag</a> 。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":ptp">:ptp</a> </b> <b class="vimtag"> <a name=":ptprevious">:ptprevious</a> </b>
-:<code class="special">[count]</code>ptp[revious][!] 在预览窗口里 ":tprevious"。见  <a href="windows.html#:ptag">:ptag</a> 。
-                        <code class="notvi">{Vi 无此功能}</code>
+:<code class="special">[count]</code>ptp[revious][!] 在預覽窗口裡 ":tprevious"。見  <a href="windows.html#:ptag">:ptag</a> 。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":ptN">:ptN</a> </b> <b class="vimtag"> <a name=":ptNext">:ptNext</a> </b>
-:<code class="special">[count]</code>ptN[ext][!]     等价于 ":ptprevious"。
-                        <code class="notvi">{Vi 无此功能}</code>
+:<code class="special">[count]</code>ptN[ext][!]     等價於 ":ptprevious"。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":ptr">:ptr</a> </b> <b class="vimtag"> <a name=":ptrewind">:ptrewind</a> </b>
-:<code class="special">[count]</code>ptr[ewind][!]   在预览窗口中 ":trewind"。见  <a href="windows.html#:ptag">:ptag</a> 。
-                        <code class="notvi">{Vi 无此功能}</code>
+:<code class="special">[count]</code>ptr[ewind][!]   在預覽窗口中 ":trewind"。見  <a href="windows.html#:ptag">:ptag</a> 。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":ptf">:ptf</a> </b> <b class="vimtag"> <a name=":ptfirst">:ptfirst</a> </b>
-:<code class="special">[count]</code>ptf[irst][!]    等价于 ":ptrewind"。
-                        <code class="notvi">{Vi 无此功能}</code>
+:<code class="special">[count]</code>ptf[irst][!]    等價於 ":ptrewind"。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":ptl">:ptl</a> </b> <b class="vimtag"> <a name=":ptlast">:ptlast</a> </b>
-:ptl[ast][!]            在预览窗口中见 ":tlast"。见  <a href="windows.html#:ptag">:ptag</a> 。
-                        <code class="notvi">{Vi 无此功能}</code>
+:ptl[ast][!]            在預覽窗口中見 ":tlast"。見  <a href="windows.html#:ptag">:ptag</a> 。
+                        <code class="notvi">{Vi 無此功能}</code>
 
 </pre><hr class="doubleline" /><pre>
-<h4>4. 标签细节                                             <b class="vimtag"> <a name="tag-details">tag-details</a> </b></h4>
+<h4>4. 標籤細節                                             <b class="vimtag"> <a name="tag-details">tag-details</a> </b></h4>
                                                         <b class="vimtag"> <a name="static-tag">static-tag</a> </b>
-静态标签是为特定文件定义的标签。在 C 程序里，这可能是一个静态函数。
+靜態標籤是為特定文件定義的標籤。在 C 程序裡，這可能是一個靜態函數。
 
-Vi 里跳转某个标签的同时设置当前搜索模式。这意味着在标签跳转后，"n" 命令不再查
-找跳转前最后使用的模式了。Vim 没有这么做，因为我们认为这是一个错误。你仍然可以
-从搜索历史里查找到标签的搜索模式。如果你真的想要从前 Vi 那样的行为，在
-<a href="options.html#'cpoptions'">'cpoptions'</a> 里设置 't' 标志位。
+Vi 裡跳轉某個標籤的同時設置當前搜索模式。這意味著在標籤跳轉後，"n" 命令不再查
+找跳轉前最後使用的模式了。Vim 沒有這麼做，因為我們認為這是一個錯誤。你仍然可以
+從搜索歷史裡查找到標籤的搜索模式。如果你真的想要從前 Vi 那樣的行為，在
+<a href="options.html#'cpoptions'">'cpoptions'</a> 裡設置 't' 標誌位。
 
                                                         <b class="vimtag"> <a name="tag-binary-search">tag-binary-search</a> </b>
-Vim 使用二分法查找标签文件，以快速查找到希望找到的标签 (如果编译时打开
- <a href="various.html#+tag_binary">+tag_binary</a>  特性的话)。不过这只有在 tags 文件按 ASCII 字节值排序才有效。因
-此，如果没有匹配，Vim 会按照线性查找再来一次。如果你只想要线性查找。复位
-<a href="options.html#'tagbsearch'">'tagbsearch'</a> 选项。或者更好的: 对 tags 文件排序！
+Vim 使用二分法查找標籤文件，以快速查找到希望找到的標籤 (如果編譯時打開
+ <a href="various.html#+tag_binary">+tag_binary</a>  特性的話)。不過這只有在 tags 文件按 ASCII 字節值排序才有效。因
+此，如果沒有匹配，Vim 會按照線性查找再來一次。如果你只想要線性查找。復位
+<a href="options.html#'tagbsearch'">'tagbsearch'</a> 選項。或者更好的: 對 tags 文件排序！
 
-<code class="note">注意</code> 如果不查找特定名字，标签的查找不使用二分法查找。这包括忽略大小写的查找或
-不以固定字符串开始的正规表达式的查找。这样的标签搜索可能会慢很多。前者可以用大
-小写合并排序来解决。详情见 <a href="options.html#'tagbsearch'">'tagbsearch'</a>。
+<code class="note">注意</code> 如果不查找特定名字，標籤的查找不使用二分法查找。這包括忽略大小寫的查找或
+不以固定字符串開始的正規表達式的查找。這樣的標籤搜索可能會慢很多。前者可以用大
+小寫合併排序來解決。詳情見 <a href="options.html#'tagbsearch'">'tagbsearch'</a>。
 
                                                         <b class="vimtag"> <a name="tag-regexp">tag-regexp</a> </b>
-":tag" 和 ":tselect" 命令接受正规表达式参数。 <a href="pattern.html#pattern">pattern</a>  可以看到如何使用特别的
-字符。如果参数以 '/' 开始，它被认为是一个模式。如果不是，它被认为是按本义出现
-的完整的标签名。
+":tag" 和 ":tselect" 命令接受正規表達式參數。 <a href="pattern.html#pattern">pattern</a>  可以看到如何使用特別的
+字符。如果參數以 '/' 開始，它被認為是一個模式。如果不是，它被認為是按本義出現
+的完整的標籤名。
 示例: 
 <code class="example">    :tag main</code>
-        跳转到最高优先级的 "main" 标签。 
+        跳轉到最高優先級的 "main" 標籤。 
 <code class="example">    :tag /^get</code>
-        跳转到最后优先级的 "get" 开始的标签。 
+        跳轉到最後優先級的 "get" 開始的標籤。 
 <code class="example">    :tag /norm</code>
-        列出所有包含 "norm" 的标签，例如 "id_norm"。
-如果参数既能按本义匹配，也能按正规表达式匹配，本义匹配有更高的优先级。比如，
+        列出所有包含 "norm" 的標籤，例如 "id_norm"。
+如果參數既能按本義匹配，也能按正規表達式匹配，本義匹配有更高的優先級。比如，
 ":tag /open" 在 "open_file" 和 "file_open" 之前匹配 "open"。
-如果使用模式，那么忽略大小写。如果你想在模式中匹配大小写，使用 "\C"。
+如果使用模式，那麼忽略大小寫。如果你想在模式中匹配大小寫，使用 "\C"。
 
                                                         <b class="vimtag"> <a name="tag-!">tag-!</a> </b>
-如果当前文件里有需要的标签，就没有问题。不然，采取的行动决定于当前文件是否发生
-了改变，还有是否命令之后加了 !，还有 <a href="options.html#'autowrite'">'autowrite'</a> 选项:
+如果當前文件裡有需要的標籤，就沒有問題。不然，採取的行動決定於當前文件是否發生
+了改變，還有是否命令之後加了 !，還有 <a href="options.html#'autowrite'">'autowrite'</a> 選項:
 
-<code class="section">标签在          文件是          autowrite                       </code>
-<code class="section">当前文件里      否改变  !       选项    行动    </code>
+<code class="section">標籤在          文件是          autowrite                       </code>
+<code class="section">當前文件裡      否改變  !       選項    行動    </code>
 </pre><hr class="singleline" /><pre>
-    是          x       x       x       转到标签
-    否          否      x       x       读入其他文件，转到标签
-    否          是      是      x       放弃当前文件，读入其他文件，转到标签
-    否          是      否      开      写入当前文件，读入其他文件，转到标签
-    否          是      否      关      失败
+    是          x       x       x       轉到標籤
+    否          否      x       x       讀入其他文件，轉到標籤
+    否          是      是      x       放棄當前文件，讀入其他文件，轉到標籤
+    否          是      否      開      寫入當前文件，讀入其他文件，轉到標籤
+    否          是      否      關      失敗
 </pre><hr class="singleline" /><pre>
 
-- 如果标签在当前文件里，该命令总能工作。
-- 如果标签在另外的文件里而当前文件没有改变。那个文件成为当前文件，并读入到缓冲
-  区里。
-- 如果标签在另外的文件里而当前文件发生了改变。而命令后加了 !，那么当前文件的改
-  变被放弃，那个文件成为当前文件，并读入缓冲区。
-- 如果标签在另外的文件里而当前文件发生了改变。而 <a href="options.html#'autowrite'">'autowrite'</a> 选项被打开，那么
-  当前文件的改变被保存，那个文件成为当前文件，并读入缓冲区。
-- 如果标签在另外的文件里而当前文件发生了改变。而 <a href="options.html#'autowrite'">'autowrite'</a> 选项被关闭，那么
-  该命令失败。此时，如果你想保存改变，先用 ":w" 命令，再用不带参数的 ":tag"。
-  这是因为标签已经在堆栈上了。如果你想放弃改变，你可以用 ":tag!" 命令。
+- 如果標籤在當前文件裡，該命令總能工作。
+- 如果標籤在另外的文件裡而當前文件沒有改變。那個文件成為當前文件，並讀入到緩衝
+  區裡。
+- 如果標籤在另外的文件裡而當前文件發生了改變。而命令後加了 !，那麼當前文件的改
+  變被放棄，那個文件成為當前文件，並讀入緩衝區。
+- 如果標籤在另外的文件裡而當前文件發生了改變。而 <a href="options.html#'autowrite'">'autowrite'</a> 選項被打開，那麼
+  當前文件的改變被保存，那個文件成為當前文件，並讀入緩衝區。
+- 如果標籤在另外的文件裡而當前文件發生了改變。而 <a href="options.html#'autowrite'">'autowrite'</a> 選項被關閉，那麼
+  該命令失敗。此時，如果你想保存改變，先用 ":w" 命令，再用不帶參數的 ":tag"。
+  這是因為標籤已經在堆棧上了。如果你想放棄改變，你可以用 ":tag!" 命令。
 
                                                         <b class="vimtag"> <a name="tag-security">tag-security</a> </b>
-<code class="note">注意</code> Vim 为了安全原因禁止某些命令。这类似于在当前目录下的 exrc/vimrc 文件里使
-用了 <a href="options.html#'secure'">'secure'</a> 选项。见  <a href="starting.html#trojan-horse">trojan-horse</a>  和  <a href="eval.html#sandbox">sandbox</a> 。
-如果 <code class="special">{tagaddress}</code> 改变了缓冲区，你会得到警告:
+<code class="note">注意</code> Vim 為了安全原因禁止某些命令。這類似於在當前目錄下的 exrc/vimrc 文件裡使
+用了 <a href="options.html#'secure'">'secure'</a> 選項。見  <a href="starting.html#trojan-horse">trojan-horse</a>  和  <a href="eval.html#sandbox">sandbox</a> 。
+如果 <code class="special">{tagaddress}</code> 改變了緩衝區，你會得到警告:
         "WARNING: tag command changed a buffer!!!"
-在将来的版本里，也许会禁止对缓冲区的改变。这些都是为了安全原因: 有的人可能在
-tags 文件里隐藏了恶意的命令。如果不这么做，你也许不能看到这一点。例如: 
+在將來的版本裡，也許會禁止對緩衝區的改變。這些都是為了安全原因: 有的人可能在
+tags 文件裡隱藏了惡意的命令。如果不這麼做，你也許不能看到這一點。例如: 
 <code class="example">        :$d|/tag-function-name/</code>
-<code class="notvi">{Vi 没有这个安全保护措施}</code>
+<code class="notvi">{Vi 沒有這個安全保護措施}</code>
 
-Vi 里跳转某个标签的同时设置当前搜索模式。Vim 没有这么做，以前的搜索模式还是记
-住的。除非 <a href="options.html#'cpoptions'">'cpoptions'</a> 里设置了 't' 标志位。搜索历史里包含了这个搜索模式，所以
-在搜索失败的时候你可以修改这个模式。
+Vi 裡跳轉某個標籤的同時設置當前搜索模式。Vim 沒有這麼做，以前的搜索模式還是記
+住的。除非 <a href="options.html#'cpoptions'">'cpoptions'</a> 裡設置了 't' 標誌位。搜索歷史裡包含了這個搜索模式，所以
+在搜索失敗的時候你可以修改這個模式。
 
                                         <b class="vimtag"> <a name="emacs-tags">emacs-tags</a> </b> <b class="vimtag"> <a name="emacs_tags">emacs_tags</a> </b> <b class="vimtag"> <a name="E430">E430</a> </b>
-Emacs 风格的 tag 文件只有在 Vim 编译的时候加入  <a href="various.html#+emacs_tags">+emacs_tags</a>  特性时才有效。对
-不起，这里没有 Emacs 标签文件的解释，支持它只是为了后向兼容。:-)。
+Emacs 風格的 tag 文件只有在 Vim 編譯的時候加入  <a href="various.html#+emacs_tags">+emacs_tags</a>  特性時才有效。對
+不起，這裡沒有 Emacs 標籤文件的解釋，支持它只是為了後向兼容。:-)。
 
-Emacs 标签文件的行可能很长。Vim 只处理不超过 510 字节的行。要看到哪些行被忽
-略，设置 <a href="options.html#'verbose'">'verbose'</a> 为 5 或更高。
+Emacs 標籤文件的行可能很長。Vim 只處理不超過 510 字節的行。要看到哪些行被忽
+略，設置 <a href="options.html#'verbose'">'verbose'</a> 為 5 或更高。
 
                                                         <b class="vimtag"> <a name="tags-option">tags-option</a> </b>
-<a href="options.html#'tags'">'tags'</a> 选项是文件名的列表。其中的每个文件都用来搜索标签。这可以用来指定不同于
-缺省的 "tags" 文件的标签文件。它也可以用来访问一个公用的标签文件。
+<a href="options.html#'tags'">'tags'</a> 選項是文件名的列表。其中的每個文件都用來搜索標籤。這可以用來指定不同於
+缺省的 "tags" 文件的標籤文件。它也可以用來訪問一個公用的標籤文件。
 
-下列情况下，不再查找列表中的下个文件:
-- 找到了当前缓冲区的匹配的静态标签。
-- 找到了全局标签。
-同时也取决于是否忽略大小写。以下条件下忽略大小写:
-- <a href="options.html#'tagcase'">'tagcase'</a> 为 "followic" 并且置位 <a href="options.html#'ignorecase'">'ignorecase'</a>
-- <a href="options.html#'tagcase'">'tagcase'</a> 为 "ignore"
-- <a href="options.html#'tagcase'">'tagcase'</a> 为 "smart" 且模式只包含小写字符。
-- <a href="options.html#'tagcase'">'tagcase'</a> 为 "followscs" 且置位 <a href="options.html#'smartcase'">'smartcase'</a> 且模式只包含小写字符。
-如果不忽略大小写，而当前标签文件找到大小写不符合的匹配，那么就会查找下一个文
-件。如果没有匹配大小写的标签，则使用第一个大小写不符合的匹配。如果忽略大小写，
-而找到全局的匹配 (不论大小写)，则立即使用之，而无须继续查找下一个文件。
+下列情況下，不再查找列表中的下個文件:
+- 找到了當前緩衝區的匹配的靜態標籤。
+- 找到了全局標籤。
+同時也取決於是否忽略大小寫。以下條件下忽略大小寫:
+- <a href="options.html#'tagcase'">'tagcase'</a> 為 "followic" 並且置位 <a href="options.html#'ignorecase'">'ignorecase'</a>
+- <a href="options.html#'tagcase'">'tagcase'</a> 為 "ignore"
+- <a href="options.html#'tagcase'">'tagcase'</a> 為 "smart" 且模式只包含小寫字符。
+- <a href="options.html#'tagcase'">'tagcase'</a> 為 "followscs" 且置位 <a href="options.html#'smartcase'">'smartcase'</a> 且模式只包含小寫字符。
+如果不忽略大小寫，而當前標籤文件找到大小寫不符合的匹配，那麼就會查找下一個文
+件。如果沒有匹配大小寫的標籤，則使用第一個大小寫不符合的匹配。如果忽略大小寫，
+而找到全局的匹配 (不論大小寫)，則立即使用之，而無須繼續查找下一個文件。
 
-如果标签文件以 "./" 开始，则 '.' 会被替代成当前的文件所在的路径。这样，你可以
-使用当前文件所在的目录下的标签文件 (无论当前目录在哪里)。使用 "./" 的逻辑是，
-你可以定义哪个标签文件最先查找: 先当前目录 ("tags,./tags")，还是先当前文件所处
-的目录 ("./tags,tags")。
+如果標籤文件以 "./" 開始，則 '.' 會被替代成當前的文件所在的路徑。這樣，你可以
+使用當前文件所在的目錄下的標籤文件 (無論當前目錄在哪裡)。使用 "./" 的邏輯是，
+你可以定義哪個標籤文件最先查找: 先當前目錄 ("tags,./tags")，還是先當前文件所處
+的目錄 ("./tags,tags")。
 
 例如: 
 <code class="example">        :set tags=./tags,tags,/home/user/commontags</code>
 <code class="example"></code>
-在这个例子里，先查找当前文件所处目录的 "tags" 文件。再查找当前目录下的 "tags"
-文件。如果没有，再查找 "/home/user/commontags"。
+在這個例子裡，先查找當前文件所處目錄的 "tags" 文件。再查找當前目錄下的 "tags"
+文件。如果沒有，再查找 "/home/user/commontags"。
 
-要 Vi 兼容，可以在 <a href="options.html#'cpoptions'">'cpoptions'</a> 里包含 'd' 标志位。这样，"./tags" 会是当前目录
-下的 tags 文件，而不是当前文件所在的目录下的。
+要 Vi 兼容，可以在 <a href="options.html#'cpoptions'">'cpoptions'</a> 裡包含 'd' 標誌位。這樣，"./tags" 會是當前目錄
+下的 tags 文件，而不是當前文件所在的目錄下的。
 
-除了逗号以外，也可以用空格。而在字符串值的选项里，空格需要用反斜杠转义: 
+除了逗號以外，也可以用空格。而在字符串值的選項裡，空格需要用反斜槓轉義: 
 <code class="example">        :set tags=tags\ /home/user/commontags</code>
 <code class="example"></code>
-这样，要在文件名里包含空格，需要三个反斜杠。要在文件名里包含逗号，需要两个反斜
-杠。例如，可以用: 
+這樣，要在文件名裡包含空格，需要三個反斜槓。要在文件名裡包含逗號，需要兩個反斜
+槓。例如，可以用: 
 <code class="example">        :set tags=tag\\\ file,/home/user/common\\,tags</code>
 <code class="example"></code>
-来指定文件 "tag file" 和 "/home/user/common,tags"。<a href="options.html#'tags'">'tags'</a> 选项会包含值
+來指定文件 "tag file" 和 "/home/user/common,tags"。<a href="options.html#'tags'">'tags'</a> 選項會包含值
 "tag\ file,/home/user/common\,tags"。
 
-如果打开 <a href="options.html#'tagrelative'">'tagrelative'</a> 选项 (这是缺省值) 而使用别的目录的标签文件，该标签文件
-所引用的文件名相对于标签文件本身所处的目录。
+如果打開 <a href="options.html#'tagrelative'">'tagrelative'</a> 選項 (這是缺省值) 而使用別的目錄的標籤文件，該標籤文件
+所引用的文件名相對於標籤文件本身所處的目錄。
 
 </pre><hr class="doubleline" /><pre>
-<h4>5. 标签文件格式                                 <b class="vimtag"> <a name="tags-file-format">tags-file-format</a> </b> <b class="vimtag"> <a name="E431">E431</a> </b></h4>
+<h4>5. 標籤文件格式                                 <b class="vimtag"> <a name="tags-file-format">tags-file-format</a> </b> <b class="vimtag"> <a name="E431">E431</a> </b></h4>
                                                 <b class="vimtag"> <a name="ctags">ctags</a> </b> <b class="vimtag"> <a name="jtags">jtags</a> </b>
-标签文件是外部程序创建的，比如 "ctags"。对每个函数，它会包含一个标签。有些版本
-的 "ctags" 会为每个 "#define" 宏、类型等价定义 (typedef)、枚举 (enum) 等也创建
-标签。
+標籤文件是外部程序創建的，比如 "ctags"。對每個函數，它會包含一個標籤。有些版本
+的 "ctags" 會為每個 "#define" 宏、類型等價定義 (typedef)、枚舉 (enum) 等也創建
+標籤。
 
-能产生标签文件的程序有:
-ctags                   大多数 Unix 系统都能找到。只支持 C。只有基本的功能。
+能產生標籤文件的程序有:
+ctags                   大多數 Unix 系統都能找到。只支持 C。只有基本的功能。
                                                         <b class="vimtag"> <a name="Exuberant_ctags">Exuberant_ctags</a> </b>
-exuberant ctags         这是很好的一个。它支持 C、C++、Java、Fortran、Eiffel
-                        等等。它能为很多项目产生标签。见
+exuberant ctags         這是很好的一個。它支持 C、C++、Java、Fortran、Eiffel
+                        等等。它能為很多項目產生標籤。見
                         http://ctags.sourceforge.net。
-etags                   和 Emacs 有关。支持很多语言。
-JTags                   用 Java 编写，为 Java 而设计。可以在这里找到:
+etags                   和 Emacs 有關。支持很多語言。
+JTags                   用 Java 編寫，為 Java 而設計。可以在這裡找到:
                         http://www.fleiner.com/jtags/。
-ptags.py                用 Python 编写，为 Python 而设计。它位于你的 Python 源
-                        代码目录 Tools/scripts/ptags.py。
-ptags                   用 Perl 编写，为 Perl 而设计。可以在这里找到:
+ptags.py                用 Python 編寫，為 Python 而設計。它位於你的 Python 源
+                        代碼目錄 Tools/scripts/ptags.py。
+ptags                   用 Perl 編寫，為 Perl 而設計。可以在這裡找到:
                         http://www.eleves.ens.fr:8080/home/nthiery/Tags/。
-gnatxref                为 Ada 而设计。见 http://www.gnuada.org/。gnatxref 是
+gnatxref                為 Ada 而設計。見 http://www.gnuada.org/。gnatxref 是
                         gnat 包的一部分。
 
 
-标签文件的行应是以下三种格式之一:
+標籤文件的行應是以下三種格式之一:
 
 1.  <code class="special">{tagname}</code>           <code class="special">{TAB}</code> <code class="special">{tagfile}</code> <code class="special">{TAB}</code> <code class="special">{tagaddress}</code>
 2.  <code class="special">{tagfile}</code>:<code class="special">{tagname}</code> <code class="special">{TAB}</code> <code class="special">{tagfile}</code> <code class="special">{TAB}</code> <code class="special">{tagaddress}</code>
 3.  <code class="special">{tagname}</code>           <code class="special">{TAB}</code> <code class="special">{tagfile}</code> <code class="special">{TAB}</code> <code class="special">{tagaddress}</code> <code class="special">{term}</code> <code class="special">{field}</code> ..
 
-第一个是普通的标签，和 Vi 完全兼容。传统的 ctags 实现只能产生这种格式。通常，
-这用于被别的文件所引用的全局函数，
+第一個是普通的標籤，和 Vi 完全兼容。傳統的 ctags 實現只能產生這種格式。通常，
+這用於被別的文件所引用的全局函數，
 
-标签文件行可以用 <code class="special">&lt;LF&gt;</code> 或者 <code class="special">&lt;CR&gt;</code><code class="special">&lt;LF&gt;</code> 结尾。在 Macintosh 上，<code class="special">&lt;CR&gt;</code> 也能工作。<code class="special">&lt;CR&gt;</code>
-和 <code class="special">&lt;NL&gt;</code> 字符不应该在行内出现。
+標籤文件行可以用 <code class="special">&lt;LF&gt;</code> 或者 <code class="special">&lt;CR&gt;</code><code class="special">&lt;LF&gt;</code> 結尾。在 Macintosh 上，<code class="special">&lt;CR&gt;</code> 也能工作。<code class="special">&lt;CR&gt;</code>
+和 <code class="special">&lt;NL&gt;</code> 字符不應該在行內出現。
 
                                                         <b class="vimtag"> <a name="tag-old-static">tag-old-static</a> </b>
-第二个格式只限于静态标签。现在已经废弃了，被第三个格式取而代之。只有 Elvis
-1.x, Vim 还有很少的 ctags 版本支持。静态变量用于本地函数，只有文件 <code class="special">{tagfile}</code>
-才引用。<code class="note">注意</code> 对静态变量而言，<code class="special">{tagfile}</code> 的两次出现必须完全一致。关于如何使用静
-态变量，见下面的  <a href="tagsrch.html#tags-option">tags-option</a> 。
+第二個格式只限於靜態標籤。現在已經廢棄了，被第三個格式取而代之。只有 Elvis
+1.x, Vim 還有很少的 ctags 版本支持。靜態變量用於本地函數，只有文件 <code class="special">{tagfile}</code>
+才引用。<code class="note">注意</code> 對靜態變量而言，<code class="special">{tagfile}</code> 的兩次出現必須完全一致。關於如何使用靜
+態變量，見下面的  <a href="tagsrch.html#tags-option">tags-option</a> 。
 
-第三个格式是新出现的。它在每行尾部的可选字段上包含了附加的信息。它和 Vi 后向兼
-容。只有新的 ctags 版本 (比如 Exuberant ctags) 才支持这种格式。
+第三個格式是新出現的。它在每行尾部的可選字段上包含了附加的信息。它和 Vi 後向兼
+容。只有新的 ctags 版本 (比如 Exuberant ctags) 才支持這種格式。
 
-<code class="special">{tagname}</code>       标识符。通常是函数的名字，但可以是任何标识符。不能包含 <code class="special">&lt;Tab&gt;</code>。
-<code class="special">{TAB}</code>           单个 <code class="special">&lt;Tab&gt;</code> 字符。<code class="note">注意</code>: 以前的版本允许任意多个空白字符。现在不
-                支持，因为 <code class="special">{tagfile}</code> 里可能包含空格。编译时加入
-                 <a href="various.html#+tag_any_white">+tag_any_white</a>  特性可以重新打开这个功能。 <b class="vimtag"> <a name="tag-any-white">tag-any-white</a> </b>
-<code class="special">{tagfile}</code>       包含 <code class="special">{tagname}</code> 定义的文件。可以是绝对路径或者相对路径。还可以
-                包含环境变量甚至通配符 (尽管使用通配符很值得怀疑)。它不能包含
+<code class="special">{tagname}</code>       標識符。通常是函數的名字，但可以是任何標識符。不能包含 <code class="special">&lt;Tab&gt;</code>。
+<code class="special">{TAB}</code>           單個 <code class="special">&lt;Tab&gt;</code> 字符。<code class="note">注意</code>: 以前的版本允許任意多個空白字符。現在不
+                支持，因為 <code class="special">{tagfile}</code> 裡可能包含空格。編譯時加入
+                 <a href="various.html#+tag_any_white">+tag_any_white</a>  特性可以重新打開這個功能。 <b class="vimtag"> <a name="tag-any-white">tag-any-white</a> </b>
+<code class="special">{tagfile}</code>       包含 <code class="special">{tagname}</code> 定義的文件。可以是絕對路徑或者相對路徑。還可以
+                包含環境變量甚至通配符 (儘管使用通配符很值得懷疑)。它不能包含
                 <code class="special">&lt;Tab&gt;</code>。
-<code class="special">{tagaddress}</code>    可以定位到 tag 的光标位置的 Ex 命令。可以是任何 Ex 命令，尽管
-                有一些限制 (见  <a href="tagsrch.html#tag-security">tag-security</a> )。Posix 只允许行号和搜索命令，这
+<code class="special">{tagaddress}</code>    可以定位到 tag 的光標位置的 Ex 命令。可以是任何 Ex 命令，儘管
+                有一些限制 (見  <a href="tagsrch.html#tag-security">tag-security</a> )。Posix 只允許行號和搜索命令，這
                 也是最常用的。
-<code class="special">{term}</code>          ;" 分号和双引号两个字符。这被 Vi 解释为注释的开始，从而忽略其
-                后的部分。这样，就能和 Vi 后向兼容，因为 Vi 忽略后面的字段。
-<code class="special">{field}</code> ..      可选的字段列表。每个字段有以下形式:
+<code class="special">{term}</code>          ;" 分號和雙引號兩個字符。這被 Vi 解釋為註釋的開始，從而忽略其
+                後的部分。這樣，就能和 Vi 後向兼容，因為 Vi 忽略後面的字段。
+<code class="special">{field}</code> ..      可選的字段列表。每個字段有以下形式:
 
                         <code class="special">&lt;Tab&gt;</code><code class="special">{fieldname}</code>:<code class="special">{value}</code>
 
-                <code class="special">{fieldname}</code> 标识字段，并且只能包含字母 [a-zA-Z]。
+                <code class="special">{fieldname}</code> 標識字段，並且只能包含字母 [a-zA-Z]。
                 <code class="special">{value}</code> 可以使任何字符串，但不能包含 <code class="special">&lt;Tab&gt;</code>。
-                以下字符有特殊含义:
+                以下字符有特殊含義:
                         "\t" 代表 <code class="special">&lt;Tab&gt;</code>
                         "\r" 代表 <code class="special">&lt;CR&gt;</code>
                         "\n" 代表 <code class="special">&lt;NL&gt;</code>
-                        "\\" 代表单个 '\' 字符
+                        "\\" 代表單個 '\' 字符
 
-                有一个字段不需要 ':'。那就是标签的类型。它的处理方式就像前面
-                有 "kind:" 开头那样。ctags 能产生的类型见它的文档。
+                有一個字段不需要 ':'。那就是標籤的類型。它的處理方式就像前面
+                有 "kind:" 開頭那樣。ctags 能產生的類型見它的文檔。
 
-                唯一的 Vim 能识别的其他字段是 "file:" (带一个空值)。用于静态变
+                唯一的 Vim 能識別的其他字段是 "file:" (帶一個空值)。用於靜態變
                 量。
 
-标签文件的开头可以包含这样开始的行:
+標籤文件的開頭可以包含這樣開始的行:
         !_TAG_
-排序以后，他们一般都排在最前面。只有很少的以 "!" 开头的标签能排在他们前面。Vim
-识别两项。第一个是指示文件是否排序的标志。如果找到这么一行，Vim 使用二分法查找
-标签文件:
+排序以後，他們一般都排在最前面。只有很少的以 "!" 開頭的標籤能排在他們前面。Vim
+識別兩項。第一個是指示文件是否排序的標誌。如果找到這麼一行，Vim 使用二分法查找
+標籤文件:
 <code class="section">        !_TAG_FILE_SORTED<code class="special">&lt;Tab&gt;</code>1<code class="special">&lt;Tab&gt;</code><code class="special">{anything}</code> </code>
 
-标签文件可以按大小写合并排序，以免忽略大小写时只能进行线性查找 (<a href="options.html#'ignorecase'">'ignorecase'</a>
-置位且 <a href="options.html#'tagcase'">'tagcase'</a> 为 "followic" 或 <a href="options.html#'tagcase'">'tagcase'</a> 为 "ignore" 时忽略大小写)。详情见
-<a href="options.html#'tagbsearch'">'tagbsearch'</a>。这时可以用值 2:
+標籤文件可以按大小寫合併排序，以免忽略大小寫時只能進行線性查找 (<a href="options.html#'ignorecase'">'ignorecase'</a>
+置位且 <a href="options.html#'tagcase'">'tagcase'</a> 為 "followic" 或 <a href="options.html#'tagcase'">'tagcase'</a> 為 "ignore" 時忽略大小寫)。詳情見
+<a href="options.html#'tagbsearch'">'tagbsearch'</a>。這時可以用值 2:
 <code class="section">        !_TAG_FILE_SORTED<code class="special">&lt;Tab&gt;</code>2<code class="special">&lt;Tab&gt;</code><code class="special">{anything}</code> </code>
 
-另一个 Vim 识别的标签，只有在编译时带了  <a href="various.html#+multi_byte">+multi_byte</a>  特性才有效。它指定标签文
-件的编码:
+另一個 Vim 識別的標籤，只有在編譯時帶了  <a href="various.html#+multi_byte">+multi_byte</a>  特性才有效。它指定標籤文
+件的編碼:
 <code class="section">        !_TAG_FILE_ENCODING<code class="special">&lt;Tab&gt;</code>utf-8<code class="special">&lt;Tab&gt;</code><code class="special">{anything}</code> </code>
-这里 "utf-8" 是标签们所用的编码。Vim 会把查找的标签从 <a href="options.html#'encoding'">'encoding'</a> 转为标签文件
-的编码。当列出标签时，则反之。如果转换失败，则直接使用未经转换的标签。
+這裡 "utf-8" 是標籤們所用的編碼。Vim 會把查找的標籤從 <a href="options.html#'encoding'">'encoding'</a> 轉為標籤文件
+的編碼。當列出標籤時，則反之。如果轉換失敗，則直接使用未經轉換的標籤。
 
                                                         <b class="vimtag"> <a name="tag-search">tag-search</a> </b>
-标签搜索命令可以是任何 Ex 命令，但通常就是普通的搜索命令。比如:
+標籤搜索命令可以是任何 Ex 命令，但通常就是普通的搜索命令。比如:
 <code class="section">        tag1    file1   /^main(argc, argv)/ </code>
 <code class="section">        tag2    file2   108 </code>
 
-该命令执行时总假设不设定 <a href="options.html#'magic'">'magic'</a>。搜索模式里仅有的特别的字符是 "^" (行首) 和
-"$" (<code class="special">&lt;EOL&gt;</code>)。见  <a href="pattern.html#pattern">pattern</a> 。<code class="note">注意</code>，你必须在搜索文本里的每个反斜杠前加上反斜杠。
-这和 Vi 反向兼容。
+該命令執行時總假設不設定 <a href="options.html#'magic'">'magic'</a>。搜索模式裡僅有的特別的字符是 "^" (行首) 和
+"$" (<code class="special">&lt;EOL&gt;</code>)。見  <a href="pattern.html#pattern">pattern</a> 。<code class="note">注意</code>，你必須在搜索文本裡的每個反斜槓前加上反斜槓。
+這和 Vi 反向兼容。
 
                                                         <b class="vimtag"> <a name="E434">E434</a> </b> <b class="vimtag"> <a name="E435">E435</a> </b>
-如果该命令是一个普通的搜索命令 (也就是，以 "/" 或 "?" 开头和结尾)，会进行一些
-特殊处理:
-- 搜索从文件第 1 行开始。
-  如果用 "/"，搜索方向为正向，"?" 则为反向。
-  <code class="note">注意</code> <a href="options.html#'wrapscan'">'wrapscan'</a> 没有影响，总是搜索整个文件。
-  <code class="notvi">{Vi 使用 <a href="options.html#'wrapscan'">'wrapscan'</a>，使得有时标签可能找不到}</code>。
-  {Vi 从别的文件的第二行开始搜索。如果没有置位 <a href="options.html#'wrapscan'">'wrapscan'</a>，它不会去找别的文件
-  的第一行的标签}
-- 如果搜索失败，忽略大小写再重新尝试一次。如果还不行，搜索:
+如果該命令是一個普通的搜索命令 (也就是，以 "/" 或 "?" 開頭和結尾)，會進行一些
+特殊處理:
+- 搜索從文件第 1 行開始。
+  如果用 "/"，搜索方向為正向，"?" 則為反向。
+  <code class="note">注意</code> <a href="options.html#'wrapscan'">'wrapscan'</a> 沒有影響，總是搜索整個文件。
+  <code class="notvi">{Vi 使用 <a href="options.html#'wrapscan'">'wrapscan'</a>，使得有時標籤可能找不到}</code>。
+  {Vi 從別的文件的第二行開始搜索。如果沒有置位 <a href="options.html#'wrapscan'">'wrapscan'</a>，它不會去找別的文件
+  的第一行的標籤}
+- 如果搜索失敗，忽略大小寫再重新嘗試一次。如果還不行，搜索:
         "^tagname[ \t]*("
-  (实际的标签前面加上 '^' 而后面加上 "[ \t]*(")。应用函数名的时候，它会找到在
-  第 0 列的函数名。这会有助于找到该函数，即使它的参数和生成 tags 文件时有差
-  异。如果还不行，进行另外一个搜索:
+  (實際的標籤前面加上 '^' 而後面加上 "[ \t]*(")。應用函數名的時候，它會找到在
+  第 0 列的函數名。這會有助於找到該函數，即使它的參數和生成 tags 文件時有差
+  異。如果還不行，進行另外一個搜索:
         "^[#a-zA-Z_].*\&lt;tagname[ \t]*("
-  这意味着: 以 '#' 或者一个标识符开始的一行，包含标签本身，后面紧跟空白和一个
-  '('。这会找到宏名和前面有返回类型的函数名。<code class="notvi">{Vi 没有这些额外的搜索}</code>
+  這意味著: 以 '#' 或者一個標識符開始的一行，包含標籤本身，後面緊跟空白和一個
+  '('。這會找到宏名和前面有返回類型的函數名。<code class="notvi">{Vi 沒有這些額外的搜索}</code>
 
 </pre><hr class="doubleline" /><pre>
-<h4>6. 头文件搜索                           <b class="vimtag"> <a name="include-search">include-search</a> </b> <b class="vimtag"> <a name="definition-search">definition-search</a> </b></h4>                                                        <b class="vimtag"> <a name="E387">E387</a> </b> <b class="vimtag"> <a name="E388">E388</a> </b> <b class="vimtag"> <a name="E389">E389</a> </b>
+<h4>6. 頭文件搜索                           <b class="vimtag"> <a name="include-search">include-search</a> </b> <b class="vimtag"> <a name="definition-search">definition-search</a> </b></h4>                                                        <b class="vimtag"> <a name="E387">E387</a> </b> <b class="vimtag"> <a name="E388">E388</a> </b> <b class="vimtag"> <a name="E389">E389</a> </b>
 
-这些命令递归地查找当前文件和所有遇到的头文件的一个字符串。这可以用来查找变量的
-定义，函数或者宏。如果只想查找当前缓冲区，用  <a href="pattern.html#pattern-searches">pattern-searches</a>  列出来的命令。
+這些命令遞歸地查找當前文件和所有遇到的頭文件的一個字符串。這可以用來查找變量的
+定義，函數或者宏。如果只想查找當前緩衝區，用  <a href="pattern.html#pattern-searches">pattern-searches</a>  列出來的命令。
 
-这些命令只有在编译时加入  <a href="various.html#+find_in_path">+find_in_path</a>  特性才会有效。
+這些命令只有在編譯時加入  <a href="various.html#+find_in_path">+find_in_path</a>  特性才會有效。
 
-如果一个文件的某行包含另一个文件，那么那个文件在当前缓冲区继续之前先进行搜索。
-头文件里包含的头文件也会被搜索。当头文件找不到时，它被悄悄地忽略掉。用
- <a href="tagsrch.html#:checkpath">:checkpath</a>  命令检查哪些文件可能找不到。是不是因为你的 <a href="options.html#'path'">'path'</a> 选项没有设对。
-<code class="note">注意</code>: 被搜索的是头文件本身，不是可能正在编辑它的缓冲区。只有当前的文件除外，它
-使用缓冲区里的行。
+如果一個文件的某行包含另一個文件，那麼那個文件在當前緩衝區繼續之前先進行搜索。
+頭文件裡包含的頭文件也會被搜索。當頭文件找不到時，它被悄悄地忽略掉。用
+ <a href="tagsrch.html#:checkpath">:checkpath</a>  命令檢查哪些文件可能找不到。是不是因為你的 <a href="options.html#'path'">'path'</a> 選項沒有設對。
+<code class="note">注意</code>: 被搜索的是頭文件本身，不是可能正在編輯它的緩衝區。只有當前的文件除外，它
+使用緩衝區裡的行。
 
-字符串可能是任何的关键字或者定义的宏。对于关键字，任何匹配都会找到。对于定义的
-宏，只有用匹配 <a href="options.html#'define'">'define'</a> 选项的行才会被找到。它的缺省值是 "^#\s*define"。这对 C
-程序适用，对于其它语言你可能想改变之。C++ 的一个例子见 <a href="options.html#'define'">'define'</a>。该字符串不能
-包含换行符，只能匹配一行之内的文本。
+字符串可能是任何的關鍵字或者定義的宏。對於關鍵字，任何匹配都會找到。對於定義的
+宏，只有用匹配 <a href="options.html#'define'">'define'</a> 選項的行才會被找到。它的缺省值是 "^#\s*define"。這對 C
+程序適用，對於其它語言你可能想改變之。C++ 的一個例子見 <a href="options.html#'define'">'define'</a>。該字符串不能
+包含換行符，只能匹配一行之內的文本。
 
-如果找到一个定义的宏的匹配，并且该行以反斜杠结尾的话。行的显示在下一行继续。
+如果找到一個定義的宏的匹配，並且該行以反斜槓結尾的話。行的顯示在下一行繼續。
 
-"[" 开头的命令从当前文件开始查找。"]" 开始的命令从当前光标位置开始。
+"[" 開頭的命令從當前文件開始查找。"]" 開始的命令從當前光標位置開始。
 
-<a href="options.html#'include'">'include'</a> 选项用于定义可以包含另一个文件的行。缺省是 "\^#\s*include"。它适用于
-C 程序。<code class="note">注意</code>: Vim 并不试图识别 C 语法。如果 <a href="options.html#'include'">'include'</a> 选项在 #ifdef/#endif 之
-间或者注释内的一行上匹配，它也会被搜索到。<a href="options.html#'isfname'">'isfname'</a> 选项用于识别匹配之后的文件
+<a href="options.html#'include'">'include'</a> 選項用於定義可以包含另一個文件的行。缺省是 "\^#\s*include"。它適用於
+C 程序。<code class="note">注意</code>: Vim 並不試圖識別 C 語法。如果 <a href="options.html#'include'">'include'</a> 選項在 #ifdef/#endif 之
+間或者註釋內的一行上匹配，它也會被搜索到。<a href="options.html#'isfname'">'isfname'</a> 選項用於識別匹配之後的文件
 名。
 
-<a href="options.html#'path'">'path'</a> 选项用于查找不含绝对路径的头文件所在的目录。
+<a href="options.html#'path'">'path'</a> 選項用於查找不含絕對路徑的頭文件所在的目錄。
 
-<a href="options.html#'comments'">'comments'</a> 选项用来显示或者跳转到一行的命令。如果定义的模式可能包含注释，这些
-行用来跳过搜索，除非使用 [!]。一个特例: 如果一行匹配模式 "^# *define"，它不会
-被认为是注释。
+<a href="options.html#'comments'">'comments'</a> 選項用來顯示或者跳轉到一行的命令。如果定義的模式可能包含註釋，這些
+行用來跳過搜索，除非使用 [!]。一個特例: 如果一行匹配模式 "^# *define"，它不會
+被認為是註釋。
 
-如果你想列出所有的匹配，然后选择一个并跳转之，你可以使用一个映射来做这件事。这
-里是一个例子: 
+如果你想列出所有的匹配，然後選擇一個並跳轉之，你可以使用一個映射來做這件事。這
+裡是一個例子: 
 <code class="example"></code>
 <code class="example">  :map &lt;F4&gt; [I:let nr = input("Which one: ")&lt;Bar&gt;exe "normal " . nr ."[\t"&lt;CR&gt;</code>
 
                                                         <b class="vimtag"> <a name="[i">[i</a> </b>
-[i                      显示第一个包含光标所在的关键字的行。搜索从文件开头开
-                        始。看起来像注释的行被忽略 (见 <a href="options.html#'comments'">'comments'</a> 选项)。如果
-                        给出一个计数，跳转到第 count 个匹配的行，注释行不忽
-                        略。<code class="notvi">{Vi 无此功能}</code>
+[i                      顯示第一個包含光標所在的關鍵字的行。搜索從文件開頭開
+                        始。看起來像註釋的行被忽略 (見 <a href="options.html#'comments'">'comments'</a> 選項)。如果
+                        給出一個計數，跳轉到第 count 個匹配的行，註釋行不忽
+                        略。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="]i">]i</a> </b>
-]i                      类似于 "[i"，但是从当前光标位置开始。
-                        <code class="notvi">{Vi 无此功能}</code>
+]i                      類似於 "[i"，但是從當前光標位置開始。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":is">:is</a> </b> <b class="vimtag"> <a name=":isearch">:isearch</a> </b>
 :<code class="special">[range]</code>is[earch][!] <code class="special">[count]</code> [/]pattern[/]
-                        类似于 "[i" 和 "]i"，但在 <code class="special">[range]</code> 行范围搜索 (缺省: 整
-                        个文件)。
-                        关于 [/] 和 [!] 见  <a href="tagsrch.html#:search-args">:search-args</a> 。<code class="notvi">{Vi 无此功能}</code>
+                        類似於 "[i" 和 "]i"，但在 <code class="special">[range]</code> 行範圍搜索 (缺省: 整
+                        個文件)。
+                        關於 [/] 和 [!] 見  <a href="tagsrch.html#:search-args">:search-args</a> 。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="[I">[I</a> </b>
-[I                      显示包含光标下的关键字的所有的行。找到的每行都显示文件
-                        名和行号。搜索从文件头开始。<code class="notvi">{Vi 无此功能}</code>
+[I                      顯示包含光標下的關鍵字的所有的行。找到的每行都顯示文件
+                        名和行號。搜索從文件頭開始。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="]I">]I</a> </b>
-]I                      类似于 "[I"，但是从当前光标位置开始。
-                        <code class="notvi">{Vi 无此功能}</code>
+]I                      類似於 "[I"，但是從當前光標位置開始。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":il">:il</a> </b> <b class="vimtag"> <a name=":ilist">:ilist</a> </b>
 :<code class="special">[range]</code>il[ist][!] [/]pattern[/]
-                        类似于 "[I" 和 "]I"，但在 <code class="special">[range]</code> 行范围搜索 (缺省:
-                        整个文件)。
-                        关于 [/] 和 [!] 见  <a href="tagsrch.html#:search-args">:search-args</a> 。<code class="notvi">{Vi 无此功能}</code>
+                        類似於 "[I" 和 "]I"，但在 <code class="special">[range]</code> 行範圍搜索 (缺省:
+                        整個文件)。
+                        關於 [/] 和 [!] 見  <a href="tagsrch.html#:search-args">:search-args</a> 。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="[_CTRL-I">[_CTRL-I</a> </b>
-[ <code class="keystroke">CTRL-I</code>                跳转到第一个包含光标所在的关键字的行。搜索从文件开头开
-                        始。看起来像注释的行被忽略 (见 <a href="options.html#'comments'">'comments'</a> 选项)。如果
-                        给出一个计数，跳转到第 count 个匹配的行，注释行不忽
-                        略。<code class="notvi">{Vi 无此功能}</code>
+[ <code class="keystroke">CTRL-I</code>                跳轉到第一個包含光標所在的關鍵字的行。搜索從文件開頭開
+                        始。看起來像註釋的行被忽略 (見 <a href="options.html#'comments'">'comments'</a> 選項)。如果
+                        給出一個計數，跳轉到第 count 個匹配的行，註釋行不忽
+                        略。<code class="notvi">{Vi 無此功能}</code>
 
 
                                                         <b class="vimtag"> <a name="]_CTRL-I">]_CTRL-I</a> </b>
-] <code class="keystroke">CTRL-I</code>                类似于 "[ <code class="keystroke">CTRL-I</code>"，但是从当前光标位置开始。
-                        <code class="notvi">{Vi 无此功能}</code>
+] <code class="keystroke">CTRL-I</code>                類似於 "[ <code class="keystroke">CTRL-I</code>"，但是從當前光標位置開始。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":ij">:ij</a> </b> <b class="vimtag"> <a name=":ijump">:ijump</a> </b>
 :<code class="special">[range]</code>ij[ump][!] <code class="special">[count]</code> [/]pattern[/]
-                        类似于 "[ <code class="keystroke">CTRL-I</code>"  和 "] <code class="keystroke">CTRL-I</code>"，但在 <code class="special">[range]</code> 行范围
-                        搜索 (缺省: 整个文件)。
-                        关于 [/] 和 [!] 见  <a href="tagsrch.html#:search-args">:search-args</a> 。<code class="notvi">{Vi 无此功能}</code>
+                        類似於 "[ <code class="keystroke">CTRL-I</code>"  和 "] <code class="keystroke">CTRL-I</code>"，但在 <code class="special">[range]</code> 行範圍
+                        搜索 (缺省: 整個文件)。
+                        關於 [/] 和 [!] 見  <a href="tagsrch.html#:search-args">:search-args</a> 。<code class="notvi">{Vi 無此功能}</code>
 
 <code class="keystroke">CTRL-W</code> <code class="keystroke">CTRL-I</code>                                   <b class="vimtag"> <a name="CTRL-W_CTRL-I">CTRL-W_CTRL-I</a> </b> <b class="vimtag"> <a name="CTRL-W_i">CTRL-W_i</a> </b>
-<code class="keystroke">CTRL-W</code> i                打开一个新窗口，把光标放在第一个包含光标所在的关键字的
-                        行。搜索从文件开头开始。看起来像注释的行被忽略 (见
-                        <a href="options.html#'comments'">'comments'</a> 选项)。如果给出一个计数，跳转到第 count 个
-                        匹配的行，注释行不忽略。 <code class="notvi">{Vi 无此功能}</code>
+<code class="keystroke">CTRL-W</code> i                打開一個新窗口，把光標放在第一個包含光標所在的關鍵字的
+                        行。搜索從文件開頭開始。看起來像註釋的行被忽略 (見
+                        <a href="options.html#'comments'">'comments'</a> 選項)。如果給出一個計數，跳轉到第 count 個
+                        匹配的行，註釋行不忽略。 <code class="notvi">{Vi 無此功能}</code>
 
 
                                                         <b class="vimtag"> <a name=":isp">:isp</a> </b> <b class="vimtag"> <a name=":isplit">:isplit</a> </b>
 :<code class="special">[range]</code>isp[lit][!] <code class="special">[count]</code> [/]pattern[/]
-                        类似于 "<code class="keystroke">CTRL-W</code> i"  和 "<code class="keystroke">CTRL-W</code> i"，但在 <code class="special">[range]</code> 行范围
-                        搜索 (缺省: 整个文件)。
-                        关于 [/] 和 [!] 见  <a href="tagsrch.html#:search-args">:search-args</a> 。<code class="notvi">{Vi 无此功能}</code>
+                        類似於 "<code class="keystroke">CTRL-W</code> i"  和 "<code class="keystroke">CTRL-W</code> i"，但在 <code class="special">[range]</code> 行範圍
+                        搜索 (缺省: 整個文件)。
+                        關於 [/] 和 [!] 見  <a href="tagsrch.html#:search-args">:search-args</a> 。<code class="notvi">{Vi 無此功能}</code>
 
 
                                                         <b class="vimtag"> <a name="[d">[d</a> </b>
-[d                      显示第一个包含光标所在的关键字的宏定义。搜索从文件头
-                        开始。如果给出一个计数，跳转到第 count 个匹配的行。
-                        <code class="notvi">{Vi 无此功能}</code>
+[d                      顯示第一個包含光標所在的關鍵字的宏定義。搜索從文件頭
+                        開始。如果給出一個計數，跳轉到第 count 個匹配的行。
+                        <code class="notvi">{Vi 無此功能}</code>
 
 
                                                         <b class="vimtag"> <a name="]d">]d</a> </b>
-]d                      类似于 "[d"，但是从当前光标位置开始。<code class="notvi">{Vi 无此功能}</code>
+]d                      類似於 "[d"，但是從當前光標位置開始。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":ds">:ds</a> </b> <b class="vimtag"> <a name=":dsearch">:dsearch</a> </b>
 :<code class="special">[range]</code>ds[earch][!] <code class="special">[count]</code> [/]string[/]
-                        类似于 "[d"  和 "]d"，但在 <code class="special">[range]</code> 行范围搜索 (缺省:
-                        整个文件)。
-                        关于 [/] 和 [!] 见  <a href="tagsrch.html#:search-args">:search-args</a> 。<code class="notvi">{Vi 无此功能}</code>
+                        類似於 "[d"  和 "]d"，但在 <code class="special">[range]</code> 行範圍搜索 (缺省:
+                        整個文件)。
+                        關於 [/] 和 [!] 見  <a href="tagsrch.html#:search-args">:search-args</a> 。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="[D">[D</a> </b>
-[D                      显示包含光标下的宏的所有的宏定义。找到的每行都显示文件
-                        名和行号。搜索从文件头开始。<code class="notvi">{Vi 无此功能}</code>
+[D                      顯示包含光標下的宏的所有的宏定義。找到的每行都顯示文件
+                        名和行號。搜索從文件頭開始。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="]D">]D</a> </b>
-]D                      类似于 "[D"，但是从当前光标位置开始。<code class="notvi">{Vi 无此功能}</code>
+]D                      類似於 "[D"，但是從當前光標位置開始。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":dli">:dli</a> </b> <b class="vimtag"> <a name=":dlist">:dlist</a> </b>
 :<code class="special">[range]</code>dli[st][!] [/]string[/]
-                        类似于  <a href="tagsrch.html#[D">[D</a>  和  <a href="tagsrch.html#]D">]D</a> ，但在 <code class="special">[range]</code> 行范围搜索 (缺省: 整
-                        个文件)。
-                        关于 [/] 和 [!] 见  <a href="tagsrch.html#:search-args">:search-args</a> 。<code class="notvi">{Vi 无此功能}</code>
-                        <code class="note">注意</code>  <a href="change.html#:dl">:dl</a>  功能等同带 "l" 标志位的  <a href="change.html#:delete">:delete</a> ，而不是
+                        類似於  <a href="tagsrch.html#[D">[D</a>  和  <a href="tagsrch.html#]D">]D</a> ，但在 <code class="special">[range]</code> 行範圍搜索 (缺省: 整
+                        個文件)。
+                        關於 [/] 和 [!] 見  <a href="tagsrch.html#:search-args">:search-args</a> 。<code class="notvi">{Vi 無此功能}</code>
+                        <code class="note">注意</code>  <a href="change.html#:dl">:dl</a>  功能等同帶 "l" 標誌位的  <a href="change.html#:delete">:delete</a> ，而不是
                          <a href="tagsrch.html#:dlist">:dlist</a> 。
 
 
                                                         <b class="vimtag"> <a name="[_CTRL-D">[_CTRL-D</a> </b>
-[ <code class="keystroke">CTRL-D</code>                跳转到第一个包含光标所在的关键字的宏定义。搜索从文件头
-                        开始。如果给出一个计数，跳转到第 count 个匹配的行。
-                        <code class="notvi">{Vi 无此功能}</code>
+[ <code class="keystroke">CTRL-D</code>                跳轉到第一個包含光標所在的關鍵字的宏定義。搜索從文件頭
+                        開始。如果給出一個計數，跳轉到第 count 個匹配的行。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="]_CTRL-D">]_CTRL-D</a> </b>
-] <code class="keystroke">CTRL-D</code>                类似于 "[ <code class="keystroke">CTRL-D</code>"，但是从当前光标开始。<code class="notvi">{Vi 无此功能}</code>
+] <code class="keystroke">CTRL-D</code>                類似於 "[ <code class="keystroke">CTRL-D</code>"，但是從當前光標開始。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":dj">:dj</a> </b> <b class="vimtag"> <a name=":djump">:djump</a> </b>
 :<code class="special">[range]</code>dj[ump][!] <code class="special">[count]</code> [/]string[/]
-                        类似于 "[ <code class="keystroke">CTRL-D</code>"  和 "] <code class="keystroke">CTRL-D</code>"，但是在 <code class="special">[range]</code> 行范
-                        围内搜索 (缺省: 整个文件)。
-                        关于 [/] 和 [!] 见  <a href="tagsrch.html#:search-args">:search-args</a> 。<code class="notvi">{Vi 无此功能}</code>
+                        類似於 "[ <code class="keystroke">CTRL-D</code>"  和 "] <code class="keystroke">CTRL-D</code>"，但是在 <code class="special">[range]</code> 行范
+                        圍內搜索 (缺省: 整個文件)。
+                        關於 [/] 和 [!] 見  <a href="tagsrch.html#:search-args">:search-args</a> 。<code class="notvi">{Vi 無此功能}</code>
 
 
 <code class="keystroke">CTRL-W</code> <code class="keystroke">CTRL-D</code>                                   <b class="vimtag"> <a name="CTRL-W_CTRL-D">CTRL-W_CTRL-D</a> </b> <b class="vimtag"> <a name="CTRL-W_d">CTRL-W_d</a> </b>
-<code class="keystroke">CTRL-W</code> d                打开一个新窗口，把光标放在第一个包含光标所在的关键字的
-                        宏定义行。搜索从文件头开始。如果给出一个计数，跳转到第
-                        count 个匹配的行。<code class="notvi">{Vi 无此功能}</code>
+<code class="keystroke">CTRL-W</code> d                打開一個新窗口，把光標放在第一個包含光標所在的關鍵字的
+                        宏定義行。搜索從文件頭開始。如果給出一個計數，跳轉到第
+                        count 個匹配的行。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":dsp">:dsp</a> </b> <b class="vimtag"> <a name=":dsplit">:dsplit</a> </b>
 :<code class="special">[range]</code>dsp[lit][!] <code class="special">[count]</code> [/]string[/]
-                        类似于 "<code class="keystroke">CTRL-W</code> d"，但是在 <code class="special">[range]</code> 行范围内查找
-                        (缺省: 整个文件)。
-                        关于 [/] 和 [!] 见  <a href="tagsrch.html#:search-args">:search-args</a> 。<code class="notvi">{Vi 无此功能}</code>
+                        類似於 "<code class="keystroke">CTRL-W</code> d"，但是在 <code class="special">[range]</code> 行範圍內查找
+                        (缺省: 整個文件)。
+                        關於 [/] 和 [!] 見  <a href="tagsrch.html#:search-args">:search-args</a> 。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":che">:che</a> </b> <b class="vimtag"> <a name=":checkpath">:checkpath</a> </b>
-:che[ckpath]            列出所有找不到的头文件。<code class="notvi">{Vi 无此功能}</code>
+:che[ckpath]            列出所有找不到的頭文件。<code class="notvi">{Vi 無此功能}</code>
 
-:che[ckpath]!           列出所有的头文件。<code class="notvi">{Vi 无此功能}</code>
+:che[ckpath]!           列出所有的頭文件。<code class="notvi">{Vi 無此功能}</code>
 
                                                                 <b class="vimtag"> <a name=":search-args">:search-args</a> </b>
-以上命令通用的参数:
-[!]     如果包含，查找包括识别为注释的匹配。如果不包含，则被识别为注释 (根据
-        <a href="options.html#'comments'">'comments'</a> ) 或者是一个 C 注释 ("//" 之后或者 /* */ 之间) 的行不参加匹
-        配。<code class="note">注意</code> 如果一行被识别为注释，但是注释在行中间结束，匹配可能丢失。另
-        外，如果一行是注释，但是没有被识别 (根据 <a href="options.html#'comments'">'comments'</a>)，还是可能从中找到
+以上命令通用的參數:
+[!]     如果包含，查找包括識別為註釋的匹配。如果不包含，則被識別為註釋 (根據
+        <a href="options.html#'comments'">'comments'</a> ) 或者是一個 C 註釋 ("//" 之後或者 /* */ 之間) 的行不參加匹
+        配。<code class="note">注意</code> 如果一行被識別為註釋，但是註釋在行中間結束，匹配可能丟失。另
+        外，如果一行是註釋，但是沒有被識別 (根據 <a href="options.html#'comments'">'comments'</a>)，還是可能從中找到
         匹配。例子: 
 <code class="example">                /* comment</code>
 <code class="example">                   foobar */</code>
-        还是可以找到 "foobar" 的匹配，因为该行没有被识别为注释 (即使语法高亮能
-        够识别)。
-        <code class="note">注意</code>: 因为宏定义一般看起来不像注释，[!] 对 ":dlist"、":dsearch" 和
-        ":djump" 没有影响。
-[/]     模式可以被 '/' 包围。没有 '/' 的话，只有完整单词的匹配，就像使用模式
-        "\&lt;pattern\&gt;" 那样。只有在第二个 '/' 之后，下一个命令才可以通过 '|' 附
-        加在后。例如: 
+        還是可以找到 "foobar" 的匹配，因為該行沒有被識別為註釋 (即使語法高亮能
+        夠識別)。
+        <code class="note">注意</code>: 因為宏定義一般看起來不像註釋，[!] 對 ":dlist"、":dsearch" 和
+        ":djump" 沒有影響。
+[/]     模式可以被 '/' 包圍。沒有 '/' 的話，只有完整單詞的匹配，就像使用模式
+        "\&lt;pattern\&gt;" 那樣。只有在第二個 '/' 之後，下一個命令才可以通過 '|' 附
+        加在後。例如: 
 <code class="example">        :isearch /string/ | echo "the last one"</code>
-        对于 ":djump"、":dsplit"、":dlist" 和 ":dsearch" 命令，模式是按本义理
+        對於 ":djump"、":dsplit"、":dlist" 和 ":dsearch" 命令，模式是按本義理
         解的字符串，而不是搜索模式。
 
  vim:tw=78:ts=8:ft=help:norl:

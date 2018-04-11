@@ -1,17 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>VIM: if_ruby</title>
 <link rel="stylesheet" href="vim-stylesheet.css" type="text/css">
 </head>
 <body>
 <div id=banner>
-<a href="help.html">帮助总览</a> &middot;
-<a href="quickref.html">快速参考</a> &middot;
+<a href="help.html">幫助總覽</a> &middot;
+<a href="quickref.html">快速參考</a> &middot;
 <a href="index.html">命令索引</a> &middot;
-<a href="usr_toc.html">用户手册</a> &middot;
-<a href="help.html#reference_toc">参考手册</a>
+<a href="usr_toc.html">用戶手冊</a> &middot;
+<a href="help.html#reference_toc">參考手冊</a>
 </div>
 
 <div id=outer>
@@ -20,45 +20,45 @@
 <b class="vimtag"> <a name="if_ruby.txt">if_ruby.txt</a> </b>   For Vim version 8.0.  最近更新: 2017年7月
 
 
-                  <code class="vim">VIM 参考手册    by Shugo Maeda</code>
-                                <code class="vim">译者</code>: Willis, tocer
+                  <code class="vim">VIM 參考手冊    by Shugo Maeda</code>
+                                <code class="vim">譯者</code>: Willis, tocer
                                 http://vimcdoc.sf.net
 
 Vim 的 Ruby 接口                                        <b class="vimtag"> <a name="ruby">ruby</a> </b> <b class="vimtag"> <a name="Ruby">Ruby</a> </b>
 
 
 1. 命令                          <a href="if_ruby.html#ruby-commands">ruby-commands</a> 
-2. Vim 模块                      <a href="if_ruby.html#ruby-vim">ruby-vim</a> 
-3. Vim::Buffer 对象              <a href="if_ruby.html#ruby-buffer">ruby-buffer</a> 
-4. Vim::Window 对象              <a href="if_ruby.html#ruby-window">ruby-window</a> 
-5. 全局变量                      <a href="if_ruby.html#ruby-globals">ruby-globals</a> 
-6. 动态调入                      <a href="if_ruby.html#ruby-dynamic">ruby-dynamic</a> 
+2. Vim 模塊                      <a href="if_ruby.html#ruby-vim">ruby-vim</a> 
+3. Vim::Buffer 對像              <a href="if_ruby.html#ruby-buffer">ruby-buffer</a> 
+4. Vim::Window 對像              <a href="if_ruby.html#ruby-window">ruby-window</a> 
+5. 全局變量                      <a href="if_ruby.html#ruby-globals">ruby-globals</a> 
+6. 動態調入                      <a href="if_ruby.html#ruby-dynamic">ruby-dynamic</a> 
 
-<code class="notvi">{Vi 无此功能}</code>
+<code class="notvi">{Vi 無此功能}</code>
                         <b class="vimtag"> <a name="E266">E266</a> </b> <b class="vimtag"> <a name="E267">E267</a> </b> <b class="vimtag"> <a name="E268">E268</a> </b> <b class="vimtag"> <a name="E269">E269</a> </b> <b class="vimtag"> <a name="E270">E270</a> </b> <b class="vimtag"> <a name="E271">E271</a> </b> <b class="vimtag"> <a name="E272">E272</a> </b> <b class="vimtag"> <a name="E273">E273</a> </b>
 
-只有编译 Vim 时加入  <a href="various.html#+ruby">+ruby</a>  特性才会有 Ruby 接口功能。
+只有編譯 Vim 時加入  <a href="various.html#+ruby">+ruby</a>  特性才會有 Ruby 接口功能。
 
-ruby 的主页是 http://www.ruby-lang.org/。你可以在那里找到 Ruby 下载的链接。
+ruby 的主頁是 http://www.ruby-lang.org/。你可以在那裡找到 Ruby 下載的鏈接。
 
 </pre><hr class="doubleline" /><pre>
 <h4>1. 命令                                                 <b class="vimtag"> <a name="ruby-commands">ruby-commands</a> </b></h4>
                                                         <b class="vimtag"> <a name=":ruby">:ruby</a> </b> <b class="vimtag"> <a name=":rub">:rub</a> </b>
-:rub[y] <code class="special">{cmd}</code>           执行 Ruby 命令 <code class="special">{cmd}</code>。要试一试: 
+:rub[y] <code class="special">{cmd}</code>           執行 Ruby 命令 <code class="special">{cmd}</code>。要試一試: 
 <code class="example">                                :ruby print "Hello"</code>
 <code class="example"></code>
 :rub[y] &lt;&lt; <code class="special">{endpattern}</code>
 <code class="special">{script}</code>
 <code class="special">{endpattern}</code>
-                        执行 Ruby 脚本 <code class="special">{script}</code>。
-                        <code class="special">{endpattern}</code>  <code class="emphasis">不能</code> 有前导空白。如果 <code class="special">{endpattern}</code> 省
-                        略，缺省为单个句号 '.'，类似于  <a href="insert.html#:append">:append</a>  和  <a href="insert.html#:insert">:insert</a> 
-                        命令。这种形式的  <a href="if_ruby.html#:ruby">:ruby</a>  命令主要用于在 vim 脚本里包含
-                        ruby 代码。
-                        <code class="note">注意</code>: 如果编译时没有加入 Ruby 特性，这个命令不会工作。
-                        为了避免错误，参看  <a href="if_perl.html#script-here">script-here</a> 。
+                        執行 Ruby 腳本 <code class="special">{script}</code>。
+                        <code class="special">{endpattern}</code>  <code class="emphasis">不能</code> 有前導空白。如果 <code class="special">{endpattern}</code> 省
+                        略，缺省為單個句號 '.'，類似於  <a href="insert.html#:append">:append</a>  和  <a href="insert.html#:insert">:insert</a> 
+                        命令。這種形式的  <a href="if_ruby.html#:ruby">:ruby</a>  命令主要用於在 vim 腳本裡包含
+                        ruby 代碼。
+                        <code class="note">注意</code>: 如果編譯時沒有加入 Ruby 特性，這個命令不會工作。
+                        為了避免錯誤，參看  <a href="if_perl.html#script-here">script-here</a> 。
 
-示例 Vim 脚本: 
+示例 Vim 腳本: 
 <code class="example"></code>
 <code class="example">        function! RedGem()</code>
 <code class="example">        ruby &lt;&lt; EOF</code>
@@ -75,161 +75,161 @@ ruby 的主页是 http://www.ruby-lang.org/。你可以在那里找到 Ruby 下�
 <code class="example">        EOF</code>
 <code class="example">        endfunction</code>
 
-要看运行的 Ruby 版本: 
+要看運行的 Ruby 版本: 
 <code class="example">        :ruby print RUBY_VERSION</code>
 
 
                                                 <b class="vimtag"> <a name=":rubydo">:rubydo</a> </b> <b class="vimtag"> <a name=":rubyd">:rubyd</a> </b> <b class="vimtag"> <a name="E265">E265</a> </b>
-:<code class="special">[range]</code>rubyd[o] <code class="special">{cmd}</code>  在 <code class="special">[range]</code> 界定的每行上分别执行 Ruby 命令 <code class="special">{cmd}</code>，执行
-                        时，$_ 设为相应的行文本，不含结尾的 <code class="special">&lt;EOL&gt;</code>。修改 $_ 就
-                        会修改相应的行，不过要 <code class="note">注意</code>: 此命令不能用来增加或者删
+:<code class="special">[range]</code>rubyd[o] <code class="special">{cmd}</code>  在 <code class="special">[range]</code> 界定的每行上分別執行 Ruby 命令 <code class="special">{cmd}</code>，執行
+                        時，$_ 設為相應的行文本，不含結尾的 <code class="special">&lt;EOL&gt;</code>。修改 $_ 就
+                        會修改相應的行，不過要 <code class="note">注意</code>: 此命令不能用來增加或者刪
                         除行。
-                        缺省的 <code class="special">[range]</code> 是整个文件: "1,$"。
+                        缺省的 <code class="special">[range]</code> 是整個文件: "1,$"。
 
                                                         <b class="vimtag"> <a name=":rubyfile">:rubyfile</a> </b> <b class="vimtag"> <a name=":rubyf">:rubyf</a> </b>
-:rubyf[ile] <code class="special">{file}</code>      执行 Ruby 脚本文件 <code class="special">{file}</code>。这和 `:ruby load <code class="badlink">'file'</code>` 相
-                        当，但可用文件名自动补全功能。
+:rubyf[ile] <code class="special">{file}</code>      執行 Ruby 腳本文件 <code class="special">{file}</code>。這和 `:ruby load <code class="badlink">'file'</code>` 相
+                        當，但可用文件名自動補全功能。
 
 
- <a href="eval.html#sandbox">sandbox</a>  里不能执行 Ruby 命令。
+ <a href="eval.html#sandbox">sandbox</a>  裡不能執行 Ruby 命令。
 
 </pre><hr class="doubleline" /><pre>
-<h4>2. Vim 模块                                             <b class="vimtag"> <a name="ruby-vim">ruby-vim</a> </b></h4>
-Ruby 代码通过 "Vim" 模块调用所有的 vim 功能。
+<h4>2. Vim 模塊                                             <b class="vimtag"> <a name="ruby-vim">ruby-vim</a> </b></h4>
+Ruby 代碼通過 "Vim" 模塊調用所有的 vim 功能。
 
 概述: 
-<code class="example">        print "Hello"                           # 显示消息</code>
-<code class="example">        Vim.command(cmd)                        # 执行 ex 命令</code>
-<code class="example">        num = Vim::Window.count                 # 得到窗口行数</code>
-<code class="example">        w = Vim::Window[n]                      # 得到第 "n" 个窗口</code>
-<code class="example">        cw = Vim::Window.current                # 得到当前窗口</code>
-<code class="example">        num = Vim::Buffer.count                 # 得到缓冲区的个数</code>
-<code class="example">        b = Vim::Buffer[n]                      # 得到第 "n" 个缓冲区</code>
-<code class="example">        cb = Vim::Buffer.current                # 得到当前缓冲区</code>
-<code class="example">        w.height = lines                        # 设置窗口高度</code>
-<code class="example">        w.cursor = [row, col]                   # 设置窗口里的光标位置</code>
-<code class="example">        pos = w.cursor                          # 得到数组 [行, 列]</code>
-<code class="example">        name = b.name                           # 得到缓冲区的文件名</code>
-<code class="example">        line = b[n]                             # 得到缓冲区的某一行</code>
-<code class="example">        num = b.count                           # 得到总的行数</code>
-<code class="example">        b[n] = str                              # 设置缓冲区的某一行</code>
-<code class="example">        b.delete(n)                             # 删除某一行</code>
-<code class="example">        b.append(n, str)                        # 在第 n 行后增加一行</code>
-<code class="example">        line = Vim::Buffer.current.line         # 得到当前行</code>
-<code class="example">        num = Vim::Buffer.current.line_number   # 得到当前行号</code>
-<code class="example">        Vim::Buffer.current.line = "test"       # 设置当前行</code>
+<code class="example">        print "Hello"                           # 顯示消息</code>
+<code class="example">        Vim.command(cmd)                        # 執行 ex 命令</code>
+<code class="example">        num = Vim::Window.count                 # 得到窗口行數</code>
+<code class="example">        w = Vim::Window[n]                      # 得到第 "n" 個窗口</code>
+<code class="example">        cw = Vim::Window.current                # 得到當前窗口</code>
+<code class="example">        num = Vim::Buffer.count                 # 得到緩衝區的個數</code>
+<code class="example">        b = Vim::Buffer[n]                      # 得到第 "n" 個緩衝區</code>
+<code class="example">        cb = Vim::Buffer.current                # 得到當前緩衝區</code>
+<code class="example">        w.height = lines                        # 設置窗口高度</code>
+<code class="example">        w.cursor = [row, col]                   # 設置窗口裡的光標位置</code>
+<code class="example">        pos = w.cursor                          # 得到數組 [行, 列]</code>
+<code class="example">        name = b.name                           # 得到緩衝區的文件名</code>
+<code class="example">        line = b[n]                             # 得到緩衝區的某一行</code>
+<code class="example">        num = b.count                           # 得到總的行數</code>
+<code class="example">        b[n] = str                              # 設置緩衝區的某一行</code>
+<code class="example">        b.delete(n)                             # 刪除某一行</code>
+<code class="example">        b.append(n, str)                        # 在第 n 行後增加一行</code>
+<code class="example">        line = Vim::Buffer.current.line         # 得到當前行</code>
+<code class="example">        num = Vim::Buffer.current.line_number   # 得到當前行號</code>
+<code class="example">        Vim::Buffer.current.line = "test"       # 設置當前行</code>
 
 
-模块函数:
+模塊函數:
 
                                                         <b class="vimtag"> <a name="ruby-message">ruby-message</a> </b>
 Vim::message(<code class="special">{msg}</code>)
-        显示消息 <code class="special">{msg}</code>。
+        顯示消息 <code class="special">{msg}</code>。
 
                                                         <b class="vimtag"> <a name="ruby-set_option">ruby-set_option</a> </b>
 Vim::set_option(<code class="special">{arg}</code>)
-        设置 vim 选项。<code class="special">{arg}</code> 可以是任何一个 ":set" 命令接受的命令。 <code class="note">注意</code> 这意
-        味着参数里不能有空格！参见  <a href="options.html#:set">:set</a> 。
+        設置 vim 選項。<code class="special">{arg}</code> 可以是任何一個 ":set" 命令接受的命令。 <code class="note">注意</code> 這意
+        味著參數里不能有空格！參見  <a href="options.html#:set">:set</a> 。
 
                                                         <b class="vimtag"> <a name="ruby-command">ruby-command</a> </b>
 Vim::command(<code class="special">{cmd}</code>)
-        执行 Ex 命令 <code class="special">{cmd}</code>。
+        執行 Ex 命令 <code class="special">{cmd}</code>。
 
                                                         <b class="vimtag"> <a name="ruby-evaluate">ruby-evaluate</a> </b>
 Vim::evaluate(<code class="special">{expr}</code>)
-        用 vim 内部的表达式分析器执行 <code class="special">{expr}</code> (参看  <a href="eval.html#expression">expression</a> )。执行结果返回
-        的类型如下:
-        - Integer， 如果 Vim 表达式返回数值
-        - Float，如果 Vim 表达式返回浮点数
-        - String，如果 Vim 表达式返回字符串
-        - Array，如果 Vim 表达式返回 Vim 列表
-        - Hash，如果 Vim 表达式返回 Vim 字典
-        递归扩展字典和列表。
+        用 vim 內部的表達式分析器執行 <code class="special">{expr}</code> (參看  <a href="eval.html#expression">expression</a> )。執行結果返回
+        的類型如下:
+        - Integer， 如果 Vim 表達式返回數值
+        - Float，如果 Vim 表達式返回浮點數
+        - String，如果 Vim 表達式返回字符串
+        - Array，如果 Vim 表達式返回 Vim 列表
+        - Hash，如果 Vim 表達式返回 Vim 字典
+        遞歸擴展字典和列表。
 
 </pre><hr class="doubleline" /><pre>
-<h4>3. Vim::Buffer 对象                                     <b class="vimtag"> <a name="ruby-buffer">ruby-buffer</a> </b></h4>
-Vim::Buffer 对象代表 Vim 缓冲区。
+<h4>3. Vim::Buffer 對像                                     <b class="vimtag"> <a name="ruby-buffer">ruby-buffer</a> </b></h4>
+Vim::Buffer 對像代表 Vim 緩衝區。
 
-类方法:
+類方法:
 
-current         返回当前缓冲区对象。
-count           返回缓冲区的总数。
-self[<code class="special">{n}</code>]       返回第 <code class="special">{n}</code> 个缓冲区。首个缓冲区的序号是 0。
+current         返回當前緩衝區對象。
+count           返回緩衝區的總數。
+self[<code class="special">{n}</code>]       返回第 <code class="special">{n}</code> 個緩衝區。首個緩衝區的序號是 0。
 
 方法:
 
-name            返回缓冲区的名字。
-number          返回缓冲区的序号。
-count           返回总行数。
-length          返回总行数。
-self[<code class="special">{n}</code>]       从缓冲区中返回一行。<code class="special">{n}</code> 是行号。
+name            返回緩衝區的名字。
+number          返回緩衝區的序號。
+count           返回總行數。
+length          返回總行數。
+self[<code class="special">{n}</code>]       從緩衝區中返回一行。<code class="special">{n}</code> 是行號。
 self[<code class="special">{n}</code>] = <code class="special">{str}</code>
-                设置缓冲区的一行。<code class="special">{n}</code> 是行号。
-delete(<code class="special">{n}</code>)     删除缓冲区的一行。<code class="special">{n}</code> 是行号。
+                設置緩衝區的一行。<code class="special">{n}</code> 是行號。
+delete(<code class="special">{n}</code>)     刪除緩衝區的一行。<code class="special">{n}</code> 是行號。
 append(<code class="special">{n}</code>, <code class="special">{str}</code>)
-                在第 <code class="special">{n}</code> 行后增加一行。
-line            如果缓冲区激活，返回缓冲区的当前行。
-line = <code class="special">{str}</code>    如果缓冲区激活，设置缓冲区的当前行。
-line_number     如果缓冲区激活，返回当前行的行号。
+                在第 <code class="special">{n}</code> 行後增加一行。
+line            如果緩衝區激活，返回緩衝區的當前行。
+line = <code class="special">{str}</code>    如果緩衝區激活，設置緩衝區的當前行。
+line_number     如果緩衝區激活，返回當前行的行號。
 
 </pre><hr class="doubleline" /><pre>
-<h4>4. Vim::Window 对象                                     <b class="vimtag"> <a name="ruby-window">ruby-window</a> </b></h4>
-Vim::Window 对象代表 Vim 窗口。
+<h4>4. Vim::Window 對像                                     <b class="vimtag"> <a name="ruby-window">ruby-window</a> </b></h4>
+Vim::Window 對像代表 Vim 窗口。
 
-类方法:
+類方法:
 
-current         返回当前窗口对象。
-count           返回窗口的总数。
-self[<code class="special">{n}</code>]       返回第 <code class="special">{n}</code> 个窗口。首个窗口的序号是 0。
+current         返回當前窗口對象。
+count           返回窗口的總數。
+self[<code class="special">{n}</code>]       返回第 <code class="special">{n}</code> 個窗口。首個窗口的序號是 0。
 
 方法:
 
-buffer          返回显示的缓冲区对象。
+buffer          返回顯示的緩衝區對象。
 height          返回窗口的高度。
-height = <code class="special">{n}</code>    设置窗口的高度为 <code class="special">{n}</code>。
-width           返回窗口的宽度。
-width = <code class="special">{n}</code>     设置窗口的宽度为 <code class="special">{n}</code>。
-cursor          返回光标位置数组: [行、列]。
+height = <code class="special">{n}</code>    設置窗口的高度為 <code class="special">{n}</code>。
+width           返回窗口的寬度。
+width = <code class="special">{n}</code>     設置窗口的寬度為 <code class="special">{n}</code>。
+cursor          返回光標位置數組: [行、列]。
 cursor = [<code class="special">{row}</code>, <code class="special">{col}</code>]
-                设置光标位置为行 <code class="special">{row}</code> 和列 <code class="special">{col}</code>。
+                設置光標位置為行 <code class="special">{row}</code> 和列 <code class="special">{col}</code>。
 
 </pre><hr class="doubleline" /><pre>
-<h4>5. 全局变量                                             <b class="vimtag"> <a name="ruby-globals">ruby-globals</a> </b></h4>
-有两个全局变量。
+<h4>5. 全局變量                                             <b class="vimtag"> <a name="ruby-globals">ruby-globals</a> </b></h4>
+有兩個全局變量。
 
-$curwin         当前窗口对象。
-$curbuf         当前缓冲区对象。
+$curwin         當前窗口對象。
+$curbuf         當前緩衝區對象。
 
 </pre><hr class="doubleline" /><pre>
-<h4>6. 动态调入                                             <b class="vimtag"> <a name="ruby-dynamic">ruby-dynamic</a> </b></h4>
-MS-Windows 和 Unix 上，可以动态调入 Ruby 库。 <a href="various.html#:version">:version</a>  输出这时应包括
+<h4>6. 動態調入                                             <b class="vimtag"> <a name="ruby-dynamic">ruby-dynamic</a> </b></h4>
+MS-Windows 和 Unix 上，可以動態調入 Ruby 庫。 <a href="various.html#:version">:version</a>  輸出這時應包括
  <a href="various.html#+ruby%2Fdyn">+ruby/dyn</a> 。
 
-这意味着 Vim 只有在必要时才寻找 Ruby DLL 或动态库文件。如果不使用 Ruby 接口，
-你就不需要它。这样，即使没有该 DLL 文件，你也可使用 Vim。
+這意味著 Vim 只有在必要時才尋找 Ruby DLL 或動態庫文件。如果不使用 Ruby 接口，
+你就不需要它。這樣，即使沒有該 DLL 文件，你也可使用 Vim。
 
 
 <code class="section">MS-Windows </code>
 
-必须安装正确的 Ruby 版本才能工作。该包可以从这里下载:
+必須安裝正確的 Ruby 版本才能工作。該包可以從這裡下載:
 http://rubyinstaller.org/downloads/
 目前的版本是 rubyinstaller-2.2.5.exe
 
-要使用 Ruby 接口，Ruby DLL 必须在搜索路径上。控制台窗口里输入 "path" 可以看到
-(搜索路径) 当前使用的目录。也可用 <a href="options.html#'rubydll'">'rubydll'</a> 选项设置 Ruby DLL。
+要使用 Ruby 接口，Ruby DLL 必須在搜索路徑上。控制台窗口裡輸入 "path" 可以看到
+(搜索路徑) 當前使用的目錄。也可用 <a href="options.html#'rubydll'">'rubydll'</a> 選項設置 Ruby DLL。
 
-DLL 名必须匹配 Vim 编译时所使用的 Ruby 版本。目前，该名字为
-"msvcrt-ruby220.dll"，也就是 Ruby 2.2.X。要确信这一点，编辑 "gvim.exe" 文件并
+DLL 名必須匹配 Vim 編譯時所使用的 Ruby 版本。目前，該名字為
+"msvcrt-ruby220.dll"，也就是 Ruby 2.2.X。要確信這一點，編輯 "gvim.exe" 文件並
 查找 "ruby\d*.dll\c"。
 
-如果编译 Vim 时要使用带 MSVC 的 RubyInstaller 1.9 或 2.X，需要一点技巧。详见
+如果編譯 Vim 時要使用帶 MSVC 的 RubyInstaller 1.9 或 2.X，需要一點技巧。詳見
 src/INSTALLpc.txt。
 
 
 <code class="section">Unix </code>
 
-<a href="options.html#'rubydll'">'rubydll'</a> 选项可用来指定 Ruby 共享库文件，而不用编译时指定的 DYNAMIC_RUBY_DLL
-文件。共享库的版本必须和 Vim 编译使用的 Ruby 版本保持一致。
+<a href="options.html#'rubydll'">'rubydll'</a> 選項可用來指定 Ruby 共享庫文件，而不用編譯時指定的 DYNAMIC_RUBY_DLL
+文件。共享庫的版本必須和 Vim 編譯使用的 Ruby 版本保持一致。
 
 </pre><hr class="doubleline" /><pre>
 <h4> vim:tw=78:ts=8:ft=help:norl:</h4></pre>

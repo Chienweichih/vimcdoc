@@ -1,17 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>VIM: insert</title>
 <link rel="stylesheet" href="vim-stylesheet.css" type="text/css">
 </head>
 <body>
 <div id=banner>
-<a href="help.html">帮助总览</a> &middot;
-<a href="quickref.html">快速参考</a> &middot;
+<a href="help.html">幫助總覽</a> &middot;
+<a href="quickref.html">快速參考</a> &middot;
 <a href="index.html">命令索引</a> &middot;
-<a href="usr_toc.html">用户手册</a> &middot;
-<a href="help.html#reference_toc">参考手册</a>
+<a href="usr_toc.html">用戶手冊</a> &middot;
+<a href="help.html#reference_toc">參考手冊</a>
 </div>
 
 <div id=outer>
@@ -20,362 +20,362 @@
 <b class="vimtag"> <a name="insert.txt">insert.txt</a> </b>    For Vim version 8.0.  最近更新: 2017年8月
 
 
-                  <code class="vim">VIM 参考手册    by Bram Moolenaar</code>
-                                <code class="vim">译者</code>: Willis，tocer
+                  <code class="vim">VIM 參考手冊    by Bram Moolenaar</code>
+                                <code class="vim">譯者</code>: Willis，tocer
                                 http://vimcdoc.sf.net
 
 
                                                 <b class="vimtag"> <a name="Insert">Insert</a> </b> <b class="vimtag"> <a name="Insert-mode">Insert-mode</a> </b>
-插入和替换文本                                  <b class="vimtag"> <a name="mode-ins-repl">mode-ins-repl</a> </b>
+插入和替換文本                                  <b class="vimtag"> <a name="mode-ins-repl">mode-ins-repl</a> </b>
 
-本文件主要讨论插入和替换模式。最后讨论一些其它方式插入文本的命令。
+本文件主要討論插入和替換模式。最後討論一些其它方式插入文本的命令。
 
-最常用的命令的总览可以在用户手册第 24 章  <a href="usr_24.html#usr_24.txt">usr_24.txt</a>  找到。
+最常用的命令的總覽可以在用戶手冊第 24 章  <a href="usr_24.html#usr_24.txt">usr_24.txt</a>  找到。
 
-1. 特殊键                                                <a href="insert.html#ins-special-keys">ins-special-keys</a> 
-2. 特殊的特殊键                                          <a href="insert.html#ins-special-special">ins-special-special</a> 
-3. <a href="options.html#'textwidth'">'textwidth'</a> 和 <a href="options.html#'wrapmargin'">'wrapmargin'</a> 选项                      <a href="insert.html#ins-textwidth">ins-textwidth</a> 
-4. <a href="options.html#'expandtab'">'expandtab'</a>、<a href="options.html#'smarttab'">'smarttab'</a> 和 <a href="options.html#'softtabstop'">'softtabstop'</a>  选项        <a href="insert.html#ins-expandtab">ins-expandtab</a> 
-5. 替换模式                                              <a href="insert.html#Replace-mode">Replace-mode</a> 
-6. 虚拟替换模式                                          <a href="insert.html#Virtual-Replace-mode">Virtual-Replace-mode</a> 
-7. 插入模式补全                                          <a href="insert.html#ins-completion">ins-completion</a> 
+1. 特殊鍵                                                <a href="insert.html#ins-special-keys">ins-special-keys</a> 
+2. 特殊的特殊鍵                                          <a href="insert.html#ins-special-special">ins-special-special</a> 
+3. <a href="options.html#'textwidth'">'textwidth'</a> 和 <a href="options.html#'wrapmargin'">'wrapmargin'</a> 選項                      <a href="insert.html#ins-textwidth">ins-textwidth</a> 
+4. <a href="options.html#'expandtab'">'expandtab'</a>、<a href="options.html#'smarttab'">'smarttab'</a> 和 <a href="options.html#'softtabstop'">'softtabstop'</a>  選項        <a href="insert.html#ins-expandtab">ins-expandtab</a> 
+5. 替換模式                                              <a href="insert.html#Replace-mode">Replace-mode</a> 
+6. 虛擬替換模式                                          <a href="insert.html#Virtual-Replace-mode">Virtual-Replace-mode</a> 
+7. 插入模式補全                                          <a href="insert.html#ins-completion">ins-completion</a> 
 8. 插入模式命令                                          <a href="insert.html#inserting">inserting</a> 
 9. Ex 插入命令                                           <a href="insert.html#inserting-ex">inserting-ex</a> 
 10. 插入文件                                             <a href="insert.html#inserting-file">inserting-file</a> 
 
-关于如何移动光标到没有字符的位置，另见 <a href="options.html#'virtualedit'">'virtualedit'</a>。对编辑表格有用。
+關於如何移動光標到沒有字符的位置，另見 <a href="options.html#'virtualedit'">'virtualedit'</a>。對編輯表格有用。
 
 </pre><hr class="doubleline" /><pre>
-<h4>1. 特殊键                                               <b class="vimtag"> <a name="ins-special-keys">ins-special-keys</a> </b></h4>
-在插入和替换模式里，以下字符有特殊含义；其它字符被直接插入。要插入这些特殊字符
-到缓冲区里，在前面加上 <code class="keystroke">CTRL-V</code>。要插入 <code class="special">&lt;Nul&gt;</code> 字符，使用 "<code class="keystroke">CTRL-V</code> <code class="keystroke">CTRL-@</code>" 或者
-"<code class="keystroke">CTRL-V</code> 000"。在有的系统上，你必须使用 "<code class="keystroke">CTRL-V</code> 003" 来插入 <code class="keystroke">CTRL-C</code>。<code class="note">注意</code>: 如果
-<code class="keystroke">CTRL-V</code> 被映射，你也许会经常使用 <code class="keystroke">CTRL-Q</code> 来代替  <a href="insert.html#i_CTRL-Q">i_CTRL-Q</a> 。
+<h4>1. 特殊鍵                                               <b class="vimtag"> <a name="ins-special-keys">ins-special-keys</a> </b></h4>
+在插入和替換模式裡，以下字符有特殊含義；其它字符被直接插入。要插入這些特殊字符
+到緩衝區裡，在前面加上 <code class="keystroke">CTRL-V</code>。要插入 <code class="special">&lt;Nul&gt;</code> 字符，使用 "<code class="keystroke">CTRL-V</code> <code class="keystroke">CTRL-@</code>" 或者
+"<code class="keystroke">CTRL-V</code> 000"。在有的系統上，你必須使用 "<code class="keystroke">CTRL-V</code> 003" 來插入 <code class="keystroke">CTRL-C</code>。<code class="note">注意</code>: 如果
+<code class="keystroke">CTRL-V</code> 被映射，你也許會經常使用 <code class="keystroke">CTRL-Q</code> 來代替  <a href="insert.html#i_CTRL-Q">i_CTRL-Q</a> 。
 
-如果插入时你在特殊的语言模式下工作，参见 <a href="options.html#'langmap'">'langmap'</a> 选项  <a href="options.html#'langmap'">'langmap'</a>  了解如何避
-免反复进出这些模式。
+如果插入時你在特殊的語言模式下工作，參見 <a href="options.html#'langmap'">'langmap'</a> 選項  <a href="options.html#'langmap'">'langmap'</a>  瞭解如何避
+免反覆進出這些模式。
 
-如果置位了 <a href="options.html#'insertmode'">'insertmode'</a>，<code class="special">&lt;Esc&gt;</code> 和一些其它的键有另外的含义。见  <a href="options.html#'insertmode'">'insertmode'</a> 。
+如果置位了 <a href="options.html#'insertmode'">'insertmode'</a>，<code class="special">&lt;Esc&gt;</code> 和一些其它的鍵有另外的含義。見  <a href="options.html#'insertmode'">'insertmode'</a> 。
 
-<code class="section">字符            动作    </code>
+<code class="section">字符            動作    </code>
 </pre><hr class="singleline" /><pre>
                                                 <b class="vimtag"> <a name="i_CTRL-[">i_CTRL-[</a> </b> <b class="vimtag"> <a name="i_%3CEsc%3E">i_&lt;Esc&gt;</a> </b>
-<code class="special">&lt;Esc&gt;</code> 或 <code class="keystroke">CTRL-[</code> 结束插入或替换模式，回到普通模式。结束缩写。
-                <code class="note">注意</code>: 如果你很难在键盘上敲上 <code class="special">&lt;Esc&gt;</code> 键，训练自己使用 <code class="keystroke">CTRL-[</code>。
-                如果 Esc 不能用而你使用的是 Mac，试试 <code class="keystroke">CTRL-Esc</code>。或者在辅助功能
-                里关闭收听。
+<code class="special">&lt;Esc&gt;</code> 或 <code class="keystroke">CTRL-[</code> 結束插入或替換模式，回到普通模式。結束縮寫。
+                <code class="note">注意</code>: 如果你很難在鍵盤上敲上 <code class="special">&lt;Esc&gt;</code> 鍵，訓練自己使用 <code class="keystroke">CTRL-[</code>。
+                如果 Esc 不能用而你使用的是 Mac，試試 <code class="keystroke">CTRL-Esc</code>。或者在輔助功能
+                裡關閉收聽。
                                                 <b class="vimtag"> <a name="i_CTRL-C">i_CTRL-C</a> </b>
-<code class="keystroke">CTRL-C</code>          退出插入模式，回到普通模式。不检查缩写。不激活  <a href="autocmd.html#InsertLeave">InsertLeave</a> 
-                自动命令事件。
+<code class="keystroke">CTRL-C</code>          退出插入模式，回到普通模式。不檢查縮寫。不激活  <a href="autocmd.html#InsertLeave">InsertLeave</a> 
+                自動命令事件。
 
                                                 <b class="vimtag"> <a name="i_CTRL-@">i_CTRL-@</a> </b>
-<code class="keystroke">CTRL-@</code>          插入最近插入的文本，并停止插入
-                <code class="notvi">{Vi: 仅当敲入第一个字符时，而且只限于前 128 个字符}</code>
+<code class="keystroke">CTRL-@</code>          插入最近插入的文本，並停止插入
+                <code class="notvi">{Vi: 僅當敲入第一個字符時，而且只限於前 128 個字符}</code>
                                                 <b class="vimtag"> <a name="i_CTRL-A">i_CTRL-A</a> </b>
-<code class="keystroke">CTRL-A</code>          插入最近插入的文本。<code class="notvi">{Vi 无此功能}</code>
+<code class="keystroke">CTRL-A</code>          插入最近插入的文本。<code class="notvi">{Vi 無此功能}</code>
 
                                                 <b class="vimtag"> <a name="i_CTRL-H">i_CTRL-H</a> </b> <b class="vimtag"> <a name="i_%3CBS%3E">i_&lt;BS&gt;</a> </b> <b class="vimtag"> <a name="i_BS">i_BS</a> </b>
-<code class="special">&lt;BS&gt;</code> 或 <code class="keystroke">CTRL-H</code>  删除光标前的字符 (关于连接行，见  <a href="insert.html#i_backspacing">i_backspacing</a> )。
-                如果你的 <code class="special">&lt;BS&gt;</code> 键不正确，见  <a href="options.html#:fixdel">:fixdel</a> 。<code class="notvi">{Vi: 不删除自动的缩进}</code>
+<code class="special">&lt;BS&gt;</code> 或 <code class="keystroke">CTRL-H</code>  刪除光標前的字符 (關於連接行，見  <a href="insert.html#i_backspacing">i_backspacing</a> )。
+                如果你的 <code class="special">&lt;BS&gt;</code> 鍵不正確，見  <a href="options.html#:fixdel">:fixdel</a> 。<code class="notvi">{Vi: 不刪除自動的縮進}</code>
                                                 <b class="vimtag"> <a name="i_%3CDel%3E">i_&lt;Del&gt;</a> </b> <b class="vimtag"> <a name="i_DEL">i_DEL</a> </b>
-<code class="special">&lt;Del&gt;</code>           删除光标下的字符。如果光标在行尾，并且 <a href="options.html#'backspace'">'backspace'</a> 选项包括
-                "eol"，删除 <code class="special">&lt;EOL&gt;</code>；下一行就此附加于当前行之后。
-                如果你的 <code class="special">&lt;Del&gt;</code> 键不正确，见  <a href="options.html#:fixdel">:fixdel</a> 。<code class="notvi">{Vi: 不删除自动的缩进}</code>
-                <code class="notvi">{Vi 无此功能}</code>
+<code class="special">&lt;Del&gt;</code>           刪除光標下的字符。如果光標在行尾，並且 <a href="options.html#'backspace'">'backspace'</a> 選項包括
+                "eol"，刪除 <code class="special">&lt;EOL&gt;</code>；下一行就此附加於當前行之後。
+                如果你的 <code class="special">&lt;Del&gt;</code> 鍵不正確，見  <a href="options.html#:fixdel">:fixdel</a> 。<code class="notvi">{Vi: 不刪除自動的縮進}</code>
+                <code class="notvi">{Vi 無此功能}</code>
                                                 <b class="vimtag"> <a name="i_CTRL-W">i_CTRL-W</a> </b>
-<code class="keystroke">CTRL-W</code>          删除光标前的单词 (关于连接行，见  <a href="insert.html#i_backspacing">i_backspacing</a> )。关于单词的
-                定义，见  <a href="motion.html#word-motions">word-motions</a>  关于 "单词动作" 的定义。
+<code class="keystroke">CTRL-W</code>          刪除光標前的單詞 (關於連接行，見  <a href="insert.html#i_backspacing">i_backspacing</a> )。關於單詞的
+                定義，見  <a href="motion.html#word-motions">word-motions</a>  關於 "單詞動作" 的定義。
                                                 <b class="vimtag"> <a name="i_CTRL-U">i_CTRL-U</a> </b>
-<code class="keystroke">CTRL-U</code>          删除当前行上光标前的所有输入字符。如果没有新输入的字符而
-                <a href="options.html#'backspace'">'backspace'</a> 不为空，删除当前行上光标前的所有字符。
-                关于连接行，见  <a href="insert.html#i_backspacing">i_backspacing</a> 。
+<code class="keystroke">CTRL-U</code>          刪除當前行上光標前的所有輸入字符。如果沒有新輸入的字符而
+                <a href="options.html#'backspace'">'backspace'</a> 不為空，刪除當前行上光標前的所有字符。
+                關於連接行，見  <a href="insert.html#i_backspacing">i_backspacing</a> 。
 
                                                 <b class="vimtag"> <a name="i_CTRL-I">i_CTRL-I</a> </b> <b class="vimtag"> <a name="i_%3CTab%3E">i_&lt;Tab&gt;</a> </b> <b class="vimtag"> <a name="i_Tab">i_Tab</a> </b>
-<code class="special">&lt;Tab&gt;</code> 或 <code class="keystroke">CTRL-I</code> 插入制表。如果打开 <a href="options.html#'expandtab'">'expandtab'</a> 选项，等价数目的空格被插入 (使
-                用 <code class="keystroke">CTRL-V</code> <code class="special">&lt;Tab&gt;</code> 避免这种扩展: 如果 <code class="keystroke">CTRL-V</code> 被映射，可以使用
-                <code class="keystroke">CTRL-Q</code> <code class="special">&lt;Tab&gt;</code>。 <a href="insert.html#i_CTRL-Q">i_CTRL-Q</a> )。另见 <a href="options.html#'smarttab'">'smarttab'</a> 选项和
+<code class="special">&lt;Tab&gt;</code> 或 <code class="keystroke">CTRL-I</code> 插入製表。如果打開 <a href="options.html#'expandtab'">'expandtab'</a> 選項，等價數目的空格被插入 (使
+                用 <code class="keystroke">CTRL-V</code> <code class="special">&lt;Tab&gt;</code> 避免這種擴展: 如果 <code class="keystroke">CTRL-V</code> 被映射，可以使用
+                <code class="keystroke">CTRL-Q</code> <code class="special">&lt;Tab&gt;</code>。 <a href="insert.html#i_CTRL-Q">i_CTRL-Q</a> )。另見 <a href="options.html#'smarttab'">'smarttab'</a> 選項和
                  <a href="insert.html#ins-expandtab">ins-expandtab</a> 。
                                                 <b class="vimtag"> <a name="i_CTRL-J">i_CTRL-J</a> </b> <b class="vimtag"> <a name="i_%3CNL%3E">i_&lt;NL&gt;</a> </b>
-<code class="special">&lt;NL&gt;</code> 或 <code class="keystroke">CTRL-J</code>  开始新行。
+<code class="special">&lt;NL&gt;</code> 或 <code class="keystroke">CTRL-J</code>  開始新行。
                                                 <b class="vimtag"> <a name="i_CTRL-M">i_CTRL-M</a> </b> <b class="vimtag"> <a name="i_%3CCR%3E">i_&lt;CR&gt;</a> </b>
-<code class="special">&lt;CR&gt;</code> 或 <code class="keystroke">CTRL-M</code>  开始新行。
+<code class="special">&lt;CR&gt;</code> 或 <code class="keystroke">CTRL-M</code>  開始新行。
                                                 <b class="vimtag"> <a name="i_CTRL-K">i_CTRL-K</a> </b>
 <code class="keystroke">CTRL-K</code> <code class="special">{char1}</code> <code class="special">[char2]</code>
-                输入二合字母 (见  <a href="digraph.html#digraphs">digraphs</a> )。当 <code class="special">{char1}</code> 为特殊字符时，该键的
-                键码以 <code class="special">&lt;&gt;</code> 形式插入。例如字符串 "<code class="special">&lt;S-Space&gt;</code>" 可以这样输入:
-                <code class="special">&lt;C-K&gt;</code><code class="special">&lt;S-Space&gt;</code> (两个键)。两个键都不考虑映射。 <code class="notvi">{Vi 无此功能}</code>
+                輸入二合字母 (見  <a href="digraph.html#digraphs">digraphs</a> )。當 <code class="special">{char1}</code> 為特殊字符時，該鍵的
+                鍵碼以 <code class="special">&lt;&gt;</code> 形式插入。例如字符串 "<code class="special">&lt;S-Space&gt;</code>" 可以這樣輸入:
+                <code class="special">&lt;C-K&gt;</code><code class="special">&lt;S-Space&gt;</code> (兩個鍵)。兩個鍵都不考慮映射。 <code class="notvi">{Vi 無此功能}</code>
 
-<code class="keystroke">CTRL-N</code>          查找下一个关键字 (见  <a href="insert.html#i_CTRL-N">i_CTRL-N</a> )。<code class="notvi">{Vi 无此功能}</code>
-<code class="keystroke">CTRL-P</code>          查找上一个关键字 (见  <a href="insert.html#i_CTRL-P">i_CTRL-P</a> )。<code class="notvi">{Vi 无此功能}</code>
+<code class="keystroke">CTRL-N</code>          查找下一個關鍵字 (見  <a href="insert.html#i_CTRL-N">i_CTRL-N</a> )。<code class="notvi">{Vi 無此功能}</code>
+<code class="keystroke">CTRL-P</code>          查找上一個關鍵字 (見  <a href="insert.html#i_CTRL-P">i_CTRL-P</a> )。<code class="notvi">{Vi 無此功能}</code>
 
 <code class="keystroke">CTRL-R</code> {0-9a-z"%#*+:.-=}                                        <b class="vimtag"> <a name="i_CTRL-R">i_CTRL-R</a> </b>
-                插入寄存器内容。在输入 <code class="keystroke">CTRL-R</code> 和第二个字符之间，'"' 会显示出
-                来，以提示你需要输入寄存器的名字。文本插入方式和直接输入相同，
-                但不使用映射和缩写。如果设置了 <a href="options.html#'textwidth'">'textwidth'</a>、<a href="options.html#'formatoptions'">'formatoptions'</a> 或
-                <a href="options.html#'autoindent'">'autoindent'</a>，插入的结果会受到影响。这和使用 "p" 命令和用鼠标
-                粘贴文本不同。
+                插入寄存器內容。在輸入 <code class="keystroke">CTRL-R</code> 和第二個字符之間，'"' 會顯示出
+                來，以提示你需要輸入寄存器的名字。文本插入方式和直接輸入相同，
+                但不使用映射和縮寫。如果設置了 <a href="options.html#'textwidth'">'textwidth'</a>、<a href="options.html#'formatoptions'">'formatoptions'</a> 或
+                <a href="options.html#'autoindent'">'autoindent'</a>，插入的結果會受到影響。這和使用 "p" 命令和用鼠標
+                粘貼文本不同。
                 特殊寄存器:
-                        '"'     无名寄存器，包含最近删除或抽出的文本
-                        '%'     当前文件名
-                        '#'     轮换文件名
-                        '*'     剪贴板内容 (X11: 主选择)
-                        '+'     剪贴板内容
+                        '"'     無名寄存器，包含最近刪除或抽出的文本
+                        '%'     當前文件名
+                        '#'     輪換文件名
+                        '*'     剪貼板內容 (X11: 主選擇)
+                        '+'     剪貼板內容
                         '/'     最近的搜索模式
                         ':'     最近的命令行
                         '.'     最近插入的文本
-                        '-'     最近的行内 (少于一行) 删除
+                        '-'     最近的行內 (少於一行) 刪除
                                                         <b class="vimtag"> <a name="i_CTRL-R_%20">i_CTRL-R_=</a> </b>
-                        '='     表达式寄存器；你会被提示输入一个表达式 (见
+                        '='     表達式寄存器；你會被提示輸入一個表達式 (見
                                  <a href="eval.html#expression">expression</a> )
-                                <code class="note">注意</code> 0x80 (十进制 128) 用于特殊键。例如，你可
-                                以这样移动光标向上:
+                                <code class="note">注意</code> 0x80 (十進制 128) 用於特殊鍵。例如，你可
+                                以這樣移動光標向上:
                                         <code class="keystroke">CTRL-R</code> ="\<code class="special">&lt;Up&gt;</code>"
-                                用 <code class="keystroke">CTRL-R</code> <code class="keystroke">CTRL-R</code> 可以按本义插入文本。
-                                如果结果是  <a href="eval.html#List">List</a> ，里面的项目被看作行，之间以
-                                换行符连接。
-                                如果结果是浮点数，自动转化为字符串。
-                                调用 append() 或 setline() 会打断撤销序列。
-                关于寄存器见  <a href="change.html#registers">registers</a> 。<code class="notvi">{Vi 无此功能}</code>
+                                用 <code class="keystroke">CTRL-R</code> <code class="keystroke">CTRL-R</code> 可以按本義插入文本。
+                                如果結果是  <a href="eval.html#List">List</a> ，裡面的項目被看作行，之間以
+                                換行符連接。
+                                如果結果是浮點數，自動轉化為字符串。
+                                調用 append() 或 setline() 會打斷撤銷序列。
+                關於寄存器見  <a href="change.html#registers">registers</a> 。<code class="notvi">{Vi 無此功能}</code>
 
 <code class="keystroke">CTRL-R</code> <code class="keystroke">CTRL-R</code> {0-9a-z"%#*+/:.-=}                        <b class="vimtag"> <a name="i_CTRL-R_CTRL-R">i_CTRL-R_CTRL-R</a> </b>
-                插入寄存器内容。和单个 <code class="keystroke">CTRL-R</code> 类似，但是文本按本义插入，而不是
-                像键盘输入那样。这意味着如果寄存器包含 <code class="special">&lt;BS&gt;</code> 这样的字符，结果会
+                插入寄存器內容。和單個 <code class="keystroke">CTRL-R</code> 類似，但是文本按本義插入，而不是
+                像鍵盤輸入那樣。這意味著如果寄存器包含 <code class="special">&lt;BS&gt;</code> 這樣的字符，結果會
                 不同。例如，如果寄存器包含 "ab^Hc": 
-<code class="example">        CTRL-R a                产生 "ac"。</code>
-<code class="example">        CTRL-R CTRL-R a         产生 "ab^Hc"。</code>
-                <a href="options.html#'textwidth'">'textwidth'</a>、<a href="options.html#'formatoptions'">'formatoptions'</a> 等等选项仍然适用。如果你连这些都
-                想避免，使用 <code class="keystroke">CTRL-R</code> <code class="keystroke">CTRL-O</code>，见下。
-                '.' 寄存器 (最近插入的文本) 依然如同键盘输入那样的方式插入。
-                <code class="notvi">{Vi 无此功能}</code>
+<code class="example">        CTRL-R a                產生 "ac"。</code>
+<code class="example">        CTRL-R CTRL-R a         產生 "ab^Hc"。</code>
+                <a href="options.html#'textwidth'">'textwidth'</a>、<a href="options.html#'formatoptions'">'formatoptions'</a> 等等選項仍然適用。如果你連這些都
+                想避免，使用 <code class="keystroke">CTRL-R</code> <code class="keystroke">CTRL-O</code>，見下。
+                '.' 寄存器 (最近插入的文本) 依然如同鍵盤輸入那樣的方式插入。
+                <code class="notvi">{Vi 無此功能}</code>
 
 <code class="keystroke">CTRL-R</code> <code class="keystroke">CTRL-O</code> {0-9a-z"%#*+/:.-=}                        <b class="vimtag"> <a name="i_CTRL-R_CTRL-O">i_CTRL-R_CTRL-O</a> </b>
-                按本义插入寄存器内容，并且不进行自动缩进。和鼠标粘贴文本相同
-                 <a href="change.html#%3CMiddleMouse%3E">&lt;MiddleMouse&gt;</a> 。如果寄存器是面向行的，在当前行之上插入文本，
-                类似于 P。
-                不会替换字符！
-                '.' 寄存器 (最近插入的文本) 依然如同键盘输入那样的方式插入。
-                <code class="notvi">{Vi 无此功能}</code>
+                按本義插入寄存器內容，並且不進行自動縮進。和鼠標粘貼文本相同
+                 <a href="change.html#%3CMiddleMouse%3E">&lt;MiddleMouse&gt;</a> 。如果寄存器是面向行的，在當前行之上插入文本，
+                類似於 P。
+                不會替換字符！
+                '.' 寄存器 (最近插入的文本) 依然如同鍵盤輸入那樣的方式插入。
+                <code class="notvi">{Vi 無此功能}</code>
 
 <code class="keystroke">CTRL-R</code> <code class="keystroke">CTRL-P</code> {0-9a-z"%#*+/:.-=}                        <b class="vimtag"> <a name="i_CTRL-R_CTRL-P">i_CTRL-R_CTRL-P</a> </b>
-                按本义插入寄存器内容，修正缩进，和  <a href="change.html#[%3CMiddleMouse%3E">[&lt;MiddleMouse&gt;</a>  类似。
-                不会替换字符！
-                '.' 寄存器 (最近插入的文本) 依然如同键盘输入那样的方式插入。
-                <code class="notvi">{Vi 无此功能}</code>
+                按本義插入寄存器內容，修正縮進，和  <a href="change.html#[%3CMiddleMouse%3E">[&lt;MiddleMouse&gt;</a>  類似。
+                不會替換字符！
+                '.' 寄存器 (最近插入的文本) 依然如同鍵盤輸入那樣的方式插入。
+                <code class="notvi">{Vi 無此功能}</code>
 
                                                 <b class="vimtag"> <a name="i_CTRL-T">i_CTRL-T</a> </b>
-<code class="keystroke">CTRL-T</code>          在当前行开始处插入一个 shiftwidth 的缩进。缩进总是取整到
-                <a href="options.html#'shiftwidth'">'shiftwidth'</a> 的倍数 (这是 vi 兼容的)。
-                <code class="notvi">{Vi: 只有在缩进内部才能用}</code>
+<code class="keystroke">CTRL-T</code>          在當前行開始處插入一個 shiftwidth 的縮進。縮進總是取整到
+                <a href="options.html#'shiftwidth'">'shiftwidth'</a> 的倍數 (這是 vi 兼容的)。
+                <code class="notvi">{Vi: 只有在縮進內部才能用}</code>
                                                 <b class="vimtag"> <a name="i_CTRL-D">i_CTRL-D</a> </b>
-<code class="keystroke">CTRL-D</code>          在当前行开始处删除一个 shiftwidth 的缩进。缩进总是取整到
-                <a href="options.html#'shiftwidth'">'shiftwidth'</a> 的倍数 (这是 vi 兼容的)。
-                <code class="notvi">{Vi: <code class="keystroke">CTRL-D</code> 只有在使用自动缩进之后才有效}</code>
+<code class="keystroke">CTRL-D</code>          在當前行開始處刪除一個 shiftwidth 的縮進。縮進總是取整到
+                <a href="options.html#'shiftwidth'">'shiftwidth'</a> 的倍數 (這是 vi 兼容的)。
+                <code class="notvi">{Vi: <code class="keystroke">CTRL-D</code> 只有在使用自動縮進之後才有效}</code>
                                                 <b class="vimtag"> <a name="i_0_CTRL-D">i_0_CTRL-D</a> </b>
-0 <code class="keystroke">CTRL-D</code>        删除所有当前行的缩进。
-                <code class="notvi">{Vi: <code class="keystroke">CTRL-D</code> 只有在使用自动缩进之后才有效}</code>
+0 <code class="keystroke">CTRL-D</code>        刪除所有當前行的縮進。
+                <code class="notvi">{Vi: <code class="keystroke">CTRL-D</code> 只有在使用自動縮進之後才有效}</code>
                                                 <b class="vimtag"> <a name="i_^_CTRL-D">i_^_CTRL-D</a> </b>
-^ <code class="keystroke">CTRL-D</code>        删除当前行的所有缩进。缩进在下一行上恢复。这可以用于插入卷标。
-                <code class="notvi">{Vi: <code class="keystroke">CTRL-D</code> 只有在使用自动缩进之后才有效}</code>
+^ <code class="keystroke">CTRL-D</code>        刪除當前行的所有縮進。縮進在下一行上恢復。這可以用於插入卷標。
+                <code class="notvi">{Vi: <code class="keystroke">CTRL-D</code> 只有在使用自動縮進之後才有效}</code>
 
                                                 <b class="vimtag"> <a name="i_CTRL-V">i_CTRL-V</a> </b>
-<code class="keystroke">CTRL-V</code>          如果下一个是非数字，按本义插入。对特殊键而言，插入其终端代码。
-                不然，输入的是字符的十、八或十六进制值。 <a href="insert.html#i_CTRL-V_digit">i_CTRL-V_digit</a> 。
-                <code class="keystroke">CTRL-V</code> 之后紧接着输入的字符不经过映射。
-                <code class="notvi">{Vi: 没有十进制字节输入}</code>
-                <code class="note">注意</code>: 当 <code class="keystroke">CTRL-V</code> 被映射时 (例如，用来粘贴文本)，你可能经常需要
-                使用 <code class="keystroke">CTRL-Q</code> 来代替。 <a href="insert.html#i_CTRL-Q">i_CTRL-Q</a> 。
+<code class="keystroke">CTRL-V</code>          如果下一個是非數字，按本義插入。對特殊鍵而言，插入其終端代碼。
+                不然，輸入的是字符的十、八或十六進制值。 <a href="insert.html#i_CTRL-V_digit">i_CTRL-V_digit</a> 。
+                <code class="keystroke">CTRL-V</code> 之後緊接著輸入的字符不經過映射。
+                <code class="notvi">{Vi: 沒有十進制字節輸入}</code>
+                <code class="note">注意</code>: 當 <code class="keystroke">CTRL-V</code> 被映射時 (例如，用來粘貼文本)，你可能經常需要
+                使用 <code class="keystroke">CTRL-Q</code> 來代替。 <a href="insert.html#i_CTRL-Q">i_CTRL-Q</a> 。
 
                                                 <b class="vimtag"> <a name="i_CTRL-Q">i_CTRL-Q</a> </b>
-<code class="keystroke">CTRL-Q</code>          等同于 <code class="keystroke">CTRL-V</code>。
-                <code class="note">注意</code>: 有的终端连接会吃掉 <code class="keystroke">CTRL-Q</code>，导致该快捷键无效。在 GUI 版本
-                里就不会出现这样的问题。
+<code class="keystroke">CTRL-Q</code>          等同於 <code class="keystroke">CTRL-V</code>。
+                <code class="note">注意</code>: 有的終端連接會吃掉 <code class="keystroke">CTRL-Q</code>，導致該快捷鍵無效。在 GUI 版本
+                裡就不會出現這樣的問題。
 
-<code class="keystroke">CTRL-X</code>          进入 <code class="keystroke">CTRL-X</code> 模式，一个子模式。那里你可以给出命令来补全单词或者
-                滚动窗口。见  <a href="insert.html#i_CTRL-X">i_CTRL-X</a>  和  <a href="insert.html#ins-completion">ins-completion</a> 。<code class="notvi">{Vi 无此功能}</code>
+<code class="keystroke">CTRL-X</code>          進入 <code class="keystroke">CTRL-X</code> 模式，一個子模式。那裡你可以給出命令來補全單詞或者
+                滾動窗口。見  <a href="insert.html#i_CTRL-X">i_CTRL-X</a>  和  <a href="insert.html#ins-completion">ins-completion</a> 。<code class="notvi">{Vi 無此功能}</code>
 
                                                 <b class="vimtag"> <a name="i_CTRL-E">i_CTRL-E</a> </b>
-<code class="keystroke">CTRL-E</code>          插入光标下面的字符。<code class="notvi">{Vi 无此功能}</code>
+<code class="keystroke">CTRL-E</code>          插入光標下面的字符。<code class="notvi">{Vi 無此功能}</code>
                                                 <b class="vimtag"> <a name="i_CTRL-Y">i_CTRL-Y</a> </b>
-<code class="keystroke">CTRL-Y</code>          插入光标上面的字符。<code class="notvi">{Vi 无此功能}</code>
-                <code class="note">注意</code> <code class="keystroke">CTRL-E</code> 和 <code class="keystroke">CTRL-Y</code> 不使用 <a href="options.html#'textwidth'">'textwidth'</a>，从而可以从长行里复制
+<code class="keystroke">CTRL-Y</code>          插入光標上面的字符。<code class="notvi">{Vi 無此功能}</code>
+                <code class="note">注意</code> <code class="keystroke">CTRL-E</code> 和 <code class="keystroke">CTRL-Y</code> 不使用 <a href="options.html#'textwidth'">'textwidth'</a>，從而可以從長行裡複製
                 字符。
 
                                                 <b class="vimtag"> <a name="i_CTRL-_">i_CTRL-_</a> </b>
-<code class="keystroke">CTRL-_</code>          切换语言，如下:
-                -  在从右到左的窗口里，切换 revins 和 nohkmap，因为在这种情况
-                   下英语的输入可能就是倒过来的。
-                -  在非从右到左的窗口里，切换 revins 和 hkmap。因为希伯来语等
-                   语种可能是倒过来输入的。
+<code class="keystroke">CTRL-_</code>          切換語言，如下:
+                -  在從右到左的窗口裡，切換 revins 和 nohkmap，因為在這種情況
+                   下英語的輸入可能就是倒過來的。
+                -  在非從右到左的窗口裡，切換 revins 和 hkmap。因為希伯來語等
+                   語種可能是倒過來輸入的。
 
-                <code class="keystroke">CTRL-_</code> 移动光标到输入文本的尾部。
+                <code class="keystroke">CTRL-_</code> 移動光標到輸入文本的尾部。
 
-                该命令只有在 <a href="options.html#'allowrevins'">'allowrevins'</a> 选项置位的时候才有效。
-                请参考  <a href="rileft.html#rileft.txt">rileft.txt</a> ，那里可以了解到更多有关从右到左模式的信
-                息。<code class="notvi">{Vi 无此功能}</code>
-                只有在编译时加入  <a href="various.html#+rightleft">+rightleft</a>  特性才有效。
+                該命令只有在 <a href="options.html#'allowrevins'">'allowrevins'</a> 選項置位的時候才有效。
+                請參考  <a href="rileft.html#rileft.txt">rileft.txt</a> ，那裡可以瞭解到更多有關從右到左模式的信
+                息。<code class="notvi">{Vi 無此功能}</code>
+                只有在編譯時加入  <a href="various.html#+rightleft">+rightleft</a>  特性才有效。
 
                                                 <b class="vimtag"> <a name="i_CTRL-^">i_CTRL-^</a> </b>
-<code class="keystroke">CTRL-^</code>          切换语言字符输入的使用方式。
-                如果定义了语言映射  <a href="map.html#:lmap">:lmap</a> :
-                - 如果 <a href="options.html#'iminsert'">'iminsert'</a> 为 1 (使用 langmap 映射)，变成 0 (不使用
+<code class="keystroke">CTRL-^</code>          切換語言字符輸入的使用方式。
+                如果定義了語言映射  <a href="map.html#:lmap">:lmap</a> :
+                - 如果 <a href="options.html#'iminsert'">'iminsert'</a> 為 1 (使用 langmap 映射)，變成 0 (不使用
                   langmap 映射)。
-                - 如果 <a href="options.html#'iminsert'">'iminsert'</a> 为其它值，变成 1，这样打开了 langmap 映射。
-                如果没有定义语言映射:
-                - 如果 <a href="options.html#'iminsert'">'iminsert'</a> 为 2 (使用输入方法 (Input Method))，变成 0
-                  (不使用输入方法)。
-                - 如果 <a href="options.html#'iminsert'">'iminsert'</a> 为其它值，变成 2，从而打开输入方法。
-                如果 "b:keymap_name" 变量的值设为 1，<a href="options.html#'keymap'">'keymap'</a> 选项或者
-                "<code class="special">&lt;lang&gt;</code>" 出现在状态行上。语言映射通常用来输入不同于键盘上能直
-                接产生的字符。<a href="options.html#'keymap'">'keymap'</a> 选项用来安装若干完整的映射表。
-                <code class="notvi">{Vi 无此功能}</code>
+                - 如果 <a href="options.html#'iminsert'">'iminsert'</a> 為其它值，變成 1，這樣打開了 langmap 映射。
+                如果沒有定義語言映射:
+                - 如果 <a href="options.html#'iminsert'">'iminsert'</a> 為 2 (使用輸入方法 (Input Method))，變成 0
+                  (不使用輸入方法)。
+                - 如果 <a href="options.html#'iminsert'">'iminsert'</a> 為其它值，變成 2，從而打開輸入方法。
+                如果 "b:keymap_name" 變量的值設為 1，<a href="options.html#'keymap'">'keymap'</a> 選項或者
+                "<code class="special">&lt;lang&gt;</code>" 出現在狀態行上。語言映射通常用來輸入不同於鍵盤上能直
+                接產生的字符。<a href="options.html#'keymap'">'keymap'</a> 選項用來安裝若幹完整的映射表。
+                <code class="notvi">{Vi 無此功能}</code>
 
                                                 <b class="vimtag"> <a name="i_CTRL-]">i_CTRL-]</a> </b>
-<code class="keystroke">CTRL-]</code>          切换缩写，不插入字符。<code class="notvi">{Vi 无此功能}</code>
+<code class="keystroke">CTRL-]</code>          切換縮寫，不插入字符。<code class="notvi">{Vi 無此功能}</code>
 
                                                 <b class="vimtag"> <a name="i_%3CInsert%3E">i_&lt;Insert&gt;</a> </b>
-<code class="special">&lt;Insert&gt;</code>        切换插入和替换模式。<code class="notvi">{Vi 无此功能}</code>
+<code class="special">&lt;Insert&gt;</code>        切換插入和替換模式。<code class="notvi">{Vi 無此功能}</code>
 </pre><hr class="singleline" /><pre>
 
                                                 <b class="vimtag"> <a name="i_backspacing">i_backspacing</a> </b>
-<code class="special">&lt;BS&gt;</code>、<code class="keystroke">CTRL-W</code> 和 <code class="keystroke">CTRL-U</code> 的效果决定于 <a href="options.html#'backspace'">'backspace'</a> 选项 (除非置位了 <a href="options.html#'revins'">'revins'</a>)。这
-时一个逗号分隔的项目列表:
+<code class="special">&lt;BS&gt;</code>、<code class="keystroke">CTRL-W</code> 和 <code class="keystroke">CTRL-U</code> 的效果決定於 <a href="options.html#'backspace'">'backspace'</a> 選項 (除非置位了 <a href="options.html#'revins'">'revins'</a>)。這
+時一個逗號分隔的項目列表:
 
-<code class="section">项目        动作 </code>
-indent      允许退格删除自动缩进
-eol         允许退格删除换行符 (连接行)
-start       允许退格删除插入开始之前的位置；<code class="keystroke">CTRL-W</code> 和 <code class="keystroke">CTRL-U</code> 在开始位置停止
+<code class="section">項目        動作 </code>
+indent      允許退格刪除自動縮進
+eol         允許退格刪除換行符 (連接行)
+start       允許退格刪除插入開始之前的位置；<code class="keystroke">CTRL-W</code> 和 <code class="keystroke">CTRL-U</code> 在開始位置停止
 
-如果 <a href="options.html#'backspace'">'backspace'</a> 为空，则使用 Vi 兼容的退格方式。不能退格删除自动缩进、回到第
-一列之前、或者超过插入开始的地方。
+如果 <a href="options.html#'backspace'">'backspace'</a> 為空，則使用 Vi 兼容的退格方式。不能退格刪除自動縮進、回到第
+一列之前、或者超過插入開始的地方。
 
-为了后向兼容起见，取值 "0"、"1" 和 "2" 也是允许的，见  <a href="options.html#'backspace'">'backspace'</a> 。
+為了後向兼容起見，取值 "0"、"1" 和 "2" 也是允許的，見  <a href="options.html#'backspace'">'backspace'</a> 。
 
-如果 <a href="options.html#'backspace'">'backspace'</a> 选项的确包含 "eol"，光标在第一列，而使用了这三个键中的一个，
-当前行会和上一行连接。这实际上删除了光标之前的 <code class="special">&lt;EOL&gt;</code>。
-<code class="notvi">{Vi: 不会跨行，不会删除插入开始位置之前的内容}</code>
+如果 <a href="options.html#'backspace'">'backspace'</a> 選項的確包含 "eol"，光標在第一列，而使用了這三個鍵中的一個，
+當前行會和上一行連接。這實際上刪除了光標之前的 <code class="special">&lt;EOL&gt;</code>。
+<code class="notvi">{Vi: 不會跨行，不會刪除插入開始位置之前的內容}</code>
 
                                                 <b class="vimtag"> <a name="i_CTRL-V_digit">i_CTRL-V_digit</a> </b>
-使用 <code class="keystroke">CTRL-V</code>，字符的十、八、十六进制值可以直接输入。这样你可以输入任何字符，除
-了换行符 (<code class="special">&lt;NL&gt;</code>，其值为 10)。有五个方法可以输入字符值:
+使用 <code class="keystroke">CTRL-V</code>，字符的十、八、十六進制值可以直接輸入。這樣你可以輸入任何字符，除
+了換行符 (<code class="special">&lt;NL&gt;</code>，其值為 10)。有五個方法可以輸入字符值:
 
-<code class="section">第一个字符      模式           最大字符数   最大值 </code>
-(无)            十进制             3            255
-o 或 O          八进制             3            377      (255)
-x 或 X          十六进制           2            ff       (255)
-u               十六进制           4            ffff     (65535)
-U               十六进制           8            7fffffff (2147483647)
+<code class="section">第一個字符      模式           最大字符數   最大值 </code>
+(無)            十進制             3            255
+o 或 O          八進制             3            377      (255)
+x 或 X          十六進制           2            ff       (255)
+u               十六進制           4            ffff     (65535)
+U               十六進制           8            7fffffff (2147483647)
 
-通常你会输入最大数目的字符数。这样，要输入空格 (值为 32)，你需要键入
-<code class="special">&lt;C-V&gt;</code>032。你可以忽略开头的零，这时，数字之后的字符必须不能再是数字。其它模式下
-也一样: 一旦你输入在该模式下不合法的字符，那么这之前的值就会被使用，而 "非法"
-的这个字符以正常的方式继续处理。
+通常你會輸入最大數目的字符數。這樣，要輸入空格 (值為 32)，你需要鍵入
+<code class="special">&lt;C-V&gt;</code>032。你可以忽略開頭的零，這時，數字之後的字符必須不能再是數字。其它模式下
+也一樣: 一旦你輸入在該模式下不合法的字符，那麼這之前的值就會被使用，而 "非法"
+的這個字符以正常的方式繼續處理。
 
-如果你输入的值为 10，在文件中最后会以 0 出现。10 是 <code class="special">&lt;NL&gt;</code>，内部被用来代表 <code class="special">&lt;Nul&gt;</code>
-字符。在写入文件时，<code class="special">&lt;NL&gt;</code> 字符被翻译成 <code class="special">&lt;Nul&gt;</code>。而在每行的最后写入 <code class="special">&lt;NL&gt;</code>。所以，如
-果你想在文件中插入 <code class="special">&lt;NL&gt;</code> 字符，你需要使用换行。
+如果你輸入的值為 10，在文件中最後會以 0 出現。10 是 <code class="special">&lt;NL&gt;</code>，內部被用來代表 <code class="special">&lt;Nul&gt;</code>
+字符。在寫入文件時，<code class="special">&lt;NL&gt;</code> 字符被翻譯成 <code class="special">&lt;Nul&gt;</code>。而在每行的最後寫入 <code class="special">&lt;NL&gt;</code>。所以，如
+果你想在文件中插入 <code class="special">&lt;NL&gt;</code> 字符，你需要使用換行。
 
                                                 <b class="vimtag"> <a name="i_CTRL-X">i_CTRL-X</a> </b> <b class="vimtag"> <a name="insert_expand">insert_expand</a> </b>
-<code class="keystroke">CTRL-X</code> 进入一个子模式，那里可以使用若干命令。绝大多数命令执行关键字补全；见
- <a href="insert.html#ins-completion">ins-completion</a> 。只有在 Vim 编译时加入  <a href="various.html#+insert_expand">+insert_expand</a>  特性才能使用这些功
+<code class="keystroke">CTRL-X</code> 進入一個子模式，那裡可以使用若干命令。絕大多數命令執行關鍵字補全；見
+ <a href="insert.html#ins-completion">ins-completion</a> 。只有在 Vim 編譯時加入  <a href="various.html#+insert_expand">+insert_expand</a>  特性才能使用這些功
 能。
 
-有两个命令可以在不退出插入模式的前提下上下滚动窗口:
+有兩個命令可以在不退出插入模式的前提下上下滾動窗口:
 
                                                 <b class="vimtag"> <a name="i_CTRL-X_CTRL-E">i_CTRL-X_CTRL-E</a> </b>
-<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-E</code>           窗口滚动上移一行。
-                        补全时看这里:  <a href="insert.html#complete_CTRL-E">complete_CTRL-E</a> 
+<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-E</code>           窗口滾動上移一行。
+                        補全時看這裡:  <a href="insert.html#complete_CTRL-E">complete_CTRL-E</a> 
 
                                                 <b class="vimtag"> <a name="i_CTRL-X_CTRL-Y">i_CTRL-X_CTRL-Y</a> </b>
-<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-Y</code>           窗口滚动下移一行。
-                        补全时看这里:  <a href="insert.html#complete_CTRL-Y">complete_CTRL-Y</a> 
+<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-Y</code>           窗口滾動下移一行。
+                        補全時看這裡:  <a href="insert.html#complete_CTRL-Y">complete_CTRL-Y</a> 
 
-按了 <code class="keystroke">CTRL-X</code> 以后，每个 <code class="keystroke">CTRL-E</code> (<code class="keystroke">CTRL-Y</code>) 滚动窗口上 (下) 移一行，除非这使得光标
-不得不离开当前文件中所在的位置。一旦按了另外一个键，<code class="keystroke">CTRL-X</code> 模式就会退出，而回
-到插入模式下解释该键。
+按了 <code class="keystroke">CTRL-X</code> 以後，每個 <code class="keystroke">CTRL-E</code> (<code class="keystroke">CTRL-Y</code>) 滾動窗口上 (下) 移一行，除非這使得光標
+不得不離開當前文件中所在的位置。一旦按了另外一個鍵，<code class="keystroke">CTRL-X</code> 模式就會退出，而回
+到插入模式下解釋該鍵。
 
 
 </pre><hr class="doubleline" /><pre>
-<h4>2. 特殊的特殊键                                 <b class="vimtag"> <a name="ins-special-special">ins-special-special</a> </b></h4>
-一些的键是特殊的。它们停止当前的插入，做一些事情，然后重新插入。这意味着你可以
-不脱离插入模式的情况下做一些事情。这适合于经常使用插入模式的用户，就像编辑器没
-有单独的普通模式一样。这时，也可以设置 <a href="options.html#'backspace'">'backspace'</a> 选项为 "indent,eol,start"
-还有置位 <a href="options.html#'insertmode'">'insertmode'</a> 选项。如果你想给功能键映射到一个命令，你可以使用
+<h4>2. 特殊的特殊鍵                                 <b class="vimtag"> <a name="ins-special-special">ins-special-special</a> </b></h4>
+一些的鍵是特殊的。它們停止當前的插入，做一些事情，然後重新插入。這意味著你可以
+不脫離插入模式的情況下做一些事情。這適合於經常使用插入模式的用戶，就像編輯器沒
+有單獨的普通模式一樣。這時，也可以設置 <a href="options.html#'backspace'">'backspace'</a> 選項為 "indent,eol,start"
+還有置位 <a href="options.html#'insertmode'">'insertmode'</a> 選項。如果你想給功能鍵映射到一個命令，你可以使用
 <code class="keystroke">CTRL-O</code>。
 
-这些键前后的改动 (插入或者删除字符) 可以分别撤销。只有最后的改动可以重做，而其
-行为和 "i" 命令相当。
+這些鍵前後的改動 (插入或者刪除字符) 可以分別撤銷。只有最後的改動可以重做，而其
+行為和 "i" 命令相當。
 
-<code class="section">字符            动作    </code>
+<code class="section">字符            動作    </code>
 </pre><hr class="singleline" /><pre>
-<code class="special">&lt;Up&gt;</code>            光标上移一行                                 <b class="vimtag"> <a name="i_%3CUp%3E">i_&lt;Up&gt;</a> </b>
-<code class="special">&lt;Down&gt;</code>          光标下移一行                                 <b class="vimtag"> <a name="i_%3CDown%3E">i_&lt;Down&gt;</a> </b>
-<code class="keystroke">CTRL-G</code> <code class="special">&lt;Up&gt;</code>     光标上移一行，到插入开始时所在的列           <b class="vimtag"> <a name="i_CTRL-G_%3CUp%3E">i_CTRL-G_&lt;Up&gt;</a> </b>
-<code class="keystroke">CTRL-G</code> k        光标上移一行，到插入开始时所在的列           <b class="vimtag"> <a name="i_CTRL-G_k">i_CTRL-G_k</a> </b>
-<code class="keystroke">CTRL-G</code> <code class="keystroke">CTRL-K</code>   光标上移一行，到插入开始时所在的列           <b class="vimtag"> <a name="i_CTRL-G_CTRL-K">i_CTRL-G_CTRL-K</a> </b>
-<code class="keystroke">CTRL-G</code> <code class="special">&lt;Down&gt;</code>   光标下移一行，到插入开始时所在的列           <b class="vimtag"> <a name="i_CTRL-G_%3CDown%3E">i_CTRL-G_&lt;Down&gt;</a> </b>
-<code class="keystroke">CTRL-G</code> j        光标下移一行，到插入开始时所在的列           <b class="vimtag"> <a name="i_CTRL-G_j">i_CTRL-G_j</a> </b>
-<code class="keystroke">CTRL-G</code> <code class="keystroke">CTRL-J</code>   光标下移一行，到插入开始时所在的列           <b class="vimtag"> <a name="i_CTRL-G_CTRL-J">i_CTRL-G_CTRL-J</a> </b>
-<code class="special">&lt;Left&gt;</code>          光标左移一个字符                             <b class="vimtag"> <a name="i_%3CLeft%3E">i_&lt;Left&gt;</a> </b>
-<code class="special">&lt;Right&gt;</code>         光标右移一个字符                             <b class="vimtag"> <a name="i_%3CRight%3E">i_&lt;Right&gt;</a> </b>
-<code class="special">&lt;S-Left&gt;</code>        光标反向一个单词 (像 "b" 命令那样)           <b class="vimtag"> <a name="i_%3CS-Left%3E">i_&lt;S-Left&gt;</a> </b>
-<code class="special">&lt;C-Left&gt;</code>        光标反向一个单词 (像 "b" 命令那样)           <b class="vimtag"> <a name="i_%3CC-Left%3E">i_&lt;C-Left&gt;</a> </b>
-<code class="special">&lt;S-Right&gt;</code>       光标正向一个单词 (像 "w" 命令那样)           <b class="vimtag"> <a name="i_%3CS-Right%3E">i_&lt;S-Right&gt;</a> </b>
-<code class="special">&lt;C-Right&gt;</code>       光标正向一个单词 (像 "w" 命令那样)           <b class="vimtag"> <a name="i_%3CC-Right%3E">i_&lt;C-Right&gt;</a> </b>
-<code class="special">&lt;Home&gt;</code>          光标移到该行第一个字符                       <b class="vimtag"> <a name="i_%3CHome%3E">i_&lt;Home&gt;</a> </b>
-<code class="special">&lt;End&gt;</code>           光标移到该行最后一个字符                     <b class="vimtag"> <a name="i_%3CEnd%3E">i_&lt;End&gt;</a> </b>
-<code class="special">&lt;C-Home&gt;</code>        光标移到该文件第一个字符                     <b class="vimtag"> <a name="i_%3CC-Home%3E">i_&lt;C-Home&gt;</a> </b>
-<code class="special">&lt;C-End&gt;</code>         光标移到该文件最后一个字符                   <b class="vimtag"> <a name="i_%3CC-End%3E">i_&lt;C-End&gt;</a> </b>
-<code class="special">&lt;LeftMouse&gt;</code>     光标移动鼠标点击处                           <b class="vimtag"> <a name="i_%3CLeftMouse%3E">i_&lt;LeftMouse&gt;</a> </b>
-<code class="special">&lt;S-Up&gt;</code>          上翻窗口一页                                 <b class="vimtag"> <a name="i_%3CS-Up%3E">i_&lt;S-Up&gt;</a> </b>
-<code class="special">&lt;PageUp&gt;</code>        上翻窗口一页                                 <b class="vimtag"> <a name="i_%3CPageUp%3E">i_&lt;PageUp&gt;</a> </b>
-<code class="special">&lt;S-Down&gt;</code>        下翻窗口一页                                 <b class="vimtag"> <a name="i_%3CS-Down%3E">i_&lt;S-Down&gt;</a> </b>
-<code class="special">&lt;PageDown&gt;</code>      下翻窗口一页                                 <b class="vimtag"> <a name="i_%3CPageDown%3E">i_&lt;PageDown&gt;</a> </b>
-<code class="special">&lt;ScrollWheelDown&gt;</code>    窗口向下滚动三行                   <b class="vimtag"> <a name="i_%3CScrollWheelDown%3E">i_&lt;ScrollWheelDown&gt;</a> </b>
-<code class="special">&lt;S-ScrollWheelDown&gt;</code>  窗口向下滚动一个整页               <b class="vimtag"> <a name="i_%3CS-ScrollWheelDown%3E">i_&lt;S-ScrollWheelDown&gt;</a> </b>
-<code class="special">&lt;ScrollWheelUp&gt;</code>      窗口向上滚动三行                   <b class="vimtag"> <a name="i_%3CScrollWheelUp%3E">i_&lt;ScrollWheelUp&gt;</a> </b>
-<code class="special">&lt;S-ScrollWheelUp&gt;</code>    窗口向上滚动一个整页               <b class="vimtag"> <a name="i_%3CS-ScrollWheelUp%3E">i_&lt;S-ScrollWheelUp&gt;</a> </b>
-<code class="special">&lt;ScrollWheelLeft&gt;</code>    窗口向左滚动六列                   <b class="vimtag"> <a name="i_%3CScrollWheelLeft%3E">i_&lt;ScrollWheelLeft&gt;</a> </b>
-<code class="special">&lt;S-ScrollWheelLeft&gt;</code>  窗口向左滚动一个整页               <b class="vimtag"> <a name="i_%3CS-ScrollWheelLeft%3E">i_&lt;S-ScrollWheelLeft&gt;</a> </b>
-<code class="special">&lt;ScrollWheelRight&gt;</code>   窗口向右滚动六列                   <b class="vimtag"> <a name="i_%3CScrollWheelRight%3E">i_&lt;ScrollWheelRight&gt;</a> </b>
-<code class="special">&lt;S-ScrollWheelRight&gt;</code> 窗口向右滚动一个整页               <b class="vimtag"> <a name="i_%3CS-ScrollWheelRight%3E">i_&lt;S-ScrollWheelRight&gt;</a> </b>
-<code class="keystroke">CTRL-O</code>          执行命令，然后返回到插入模式                 <b class="vimtag"> <a name="i_CTRL-O">i_CTRL-O</a> </b>
-<code class="keystroke">CTRL-\</code> <code class="keystroke">CTRL-O</code>   类似于 <code class="keystroke">CTRL-O</code>，但不移动光标                  <b class="vimtag"> <a name="i_CTRL-\_CTRL-O">i_CTRL-\_CTRL-O</a> </b>
-<code class="keystroke">CTRL-L</code>          置位 <a href="options.html#'insertmode'">'insertmode'</a> 时: 转到普通模式           <b class="vimtag"> <a name="i_CTRL-L">i_CTRL-L</a> </b>
-<code class="keystroke">CTRL-G</code> u        打断撤销序列，开始新的改变                   <b class="vimtag"> <a name="i_CTRL-G_u">i_CTRL-G_u</a> </b>
-<code class="keystroke">CTRL-G</code> U        下个左/右光标移动不打断撤销 (但只在光标停在  <b class="vimtag"> <a name="i_CTRL-G_U">i_CTRL-G_U</a> </b>
+<code class="special">&lt;Up&gt;</code>            光標上移一行                                 <b class="vimtag"> <a name="i_%3CUp%3E">i_&lt;Up&gt;</a> </b>
+<code class="special">&lt;Down&gt;</code>          光標下移一行                                 <b class="vimtag"> <a name="i_%3CDown%3E">i_&lt;Down&gt;</a> </b>
+<code class="keystroke">CTRL-G</code> <code class="special">&lt;Up&gt;</code>     光標上移一行，到插入開始時所在的列           <b class="vimtag"> <a name="i_CTRL-G_%3CUp%3E">i_CTRL-G_&lt;Up&gt;</a> </b>
+<code class="keystroke">CTRL-G</code> k        光標上移一行，到插入開始時所在的列           <b class="vimtag"> <a name="i_CTRL-G_k">i_CTRL-G_k</a> </b>
+<code class="keystroke">CTRL-G</code> <code class="keystroke">CTRL-K</code>   光標上移一行，到插入開始時所在的列           <b class="vimtag"> <a name="i_CTRL-G_CTRL-K">i_CTRL-G_CTRL-K</a> </b>
+<code class="keystroke">CTRL-G</code> <code class="special">&lt;Down&gt;</code>   光標下移一行，到插入開始時所在的列           <b class="vimtag"> <a name="i_CTRL-G_%3CDown%3E">i_CTRL-G_&lt;Down&gt;</a> </b>
+<code class="keystroke">CTRL-G</code> j        光標下移一行，到插入開始時所在的列           <b class="vimtag"> <a name="i_CTRL-G_j">i_CTRL-G_j</a> </b>
+<code class="keystroke">CTRL-G</code> <code class="keystroke">CTRL-J</code>   光標下移一行，到插入開始時所在的列           <b class="vimtag"> <a name="i_CTRL-G_CTRL-J">i_CTRL-G_CTRL-J</a> </b>
+<code class="special">&lt;Left&gt;</code>          光標左移一個字符                             <b class="vimtag"> <a name="i_%3CLeft%3E">i_&lt;Left&gt;</a> </b>
+<code class="special">&lt;Right&gt;</code>         光標右移一個字符                             <b class="vimtag"> <a name="i_%3CRight%3E">i_&lt;Right&gt;</a> </b>
+<code class="special">&lt;S-Left&gt;</code>        光標反向一個單詞 (像 "b" 命令那樣)           <b class="vimtag"> <a name="i_%3CS-Left%3E">i_&lt;S-Left&gt;</a> </b>
+<code class="special">&lt;C-Left&gt;</code>        光標反向一個單詞 (像 "b" 命令那樣)           <b class="vimtag"> <a name="i_%3CC-Left%3E">i_&lt;C-Left&gt;</a> </b>
+<code class="special">&lt;S-Right&gt;</code>       光標正向一個單詞 (像 "w" 命令那樣)           <b class="vimtag"> <a name="i_%3CS-Right%3E">i_&lt;S-Right&gt;</a> </b>
+<code class="special">&lt;C-Right&gt;</code>       光標正向一個單詞 (像 "w" 命令那樣)           <b class="vimtag"> <a name="i_%3CC-Right%3E">i_&lt;C-Right&gt;</a> </b>
+<code class="special">&lt;Home&gt;</code>          光標移到該行第一個字符                       <b class="vimtag"> <a name="i_%3CHome%3E">i_&lt;Home&gt;</a> </b>
+<code class="special">&lt;End&gt;</code>           光標移到該行最後一個字符                     <b class="vimtag"> <a name="i_%3CEnd%3E">i_&lt;End&gt;</a> </b>
+<code class="special">&lt;C-Home&gt;</code>        光標移到該文件第一個字符                     <b class="vimtag"> <a name="i_%3CC-Home%3E">i_&lt;C-Home&gt;</a> </b>
+<code class="special">&lt;C-End&gt;</code>         光標移到該文件最後一個字符                   <b class="vimtag"> <a name="i_%3CC-End%3E">i_&lt;C-End&gt;</a> </b>
+<code class="special">&lt;LeftMouse&gt;</code>     光標移動鼠標點擊處                           <b class="vimtag"> <a name="i_%3CLeftMouse%3E">i_&lt;LeftMouse&gt;</a> </b>
+<code class="special">&lt;S-Up&gt;</code>          上翻窗口一頁                                 <b class="vimtag"> <a name="i_%3CS-Up%3E">i_&lt;S-Up&gt;</a> </b>
+<code class="special">&lt;PageUp&gt;</code>        上翻窗口一頁                                 <b class="vimtag"> <a name="i_%3CPageUp%3E">i_&lt;PageUp&gt;</a> </b>
+<code class="special">&lt;S-Down&gt;</code>        下翻窗口一頁                                 <b class="vimtag"> <a name="i_%3CS-Down%3E">i_&lt;S-Down&gt;</a> </b>
+<code class="special">&lt;PageDown&gt;</code>      下翻窗口一頁                                 <b class="vimtag"> <a name="i_%3CPageDown%3E">i_&lt;PageDown&gt;</a> </b>
+<code class="special">&lt;ScrollWheelDown&gt;</code>    窗口向下滾動三行                   <b class="vimtag"> <a name="i_%3CScrollWheelDown%3E">i_&lt;ScrollWheelDown&gt;</a> </b>
+<code class="special">&lt;S-ScrollWheelDown&gt;</code>  窗口向下滾動一個整頁               <b class="vimtag"> <a name="i_%3CS-ScrollWheelDown%3E">i_&lt;S-ScrollWheelDown&gt;</a> </b>
+<code class="special">&lt;ScrollWheelUp&gt;</code>      窗口向上滾動三行                   <b class="vimtag"> <a name="i_%3CScrollWheelUp%3E">i_&lt;ScrollWheelUp&gt;</a> </b>
+<code class="special">&lt;S-ScrollWheelUp&gt;</code>    窗口向上滾動一個整頁               <b class="vimtag"> <a name="i_%3CS-ScrollWheelUp%3E">i_&lt;S-ScrollWheelUp&gt;</a> </b>
+<code class="special">&lt;ScrollWheelLeft&gt;</code>    窗口向左滾動六列                   <b class="vimtag"> <a name="i_%3CScrollWheelLeft%3E">i_&lt;ScrollWheelLeft&gt;</a> </b>
+<code class="special">&lt;S-ScrollWheelLeft&gt;</code>  窗口向左滾動一個整頁               <b class="vimtag"> <a name="i_%3CS-ScrollWheelLeft%3E">i_&lt;S-ScrollWheelLeft&gt;</a> </b>
+<code class="special">&lt;ScrollWheelRight&gt;</code>   窗口向右滾動六列                   <b class="vimtag"> <a name="i_%3CScrollWheelRight%3E">i_&lt;ScrollWheelRight&gt;</a> </b>
+<code class="special">&lt;S-ScrollWheelRight&gt;</code> 窗口向右滾動一個整頁               <b class="vimtag"> <a name="i_%3CS-ScrollWheelRight%3E">i_&lt;S-ScrollWheelRight&gt;</a> </b>
+<code class="keystroke">CTRL-O</code>          執行命令，然後返回到插入模式                 <b class="vimtag"> <a name="i_CTRL-O">i_CTRL-O</a> </b>
+<code class="keystroke">CTRL-\</code> <code class="keystroke">CTRL-O</code>   類似於 <code class="keystroke">CTRL-O</code>，但不移動光標                  <b class="vimtag"> <a name="i_CTRL-\_CTRL-O">i_CTRL-\_CTRL-O</a> </b>
+<code class="keystroke">CTRL-L</code>          置位 <a href="options.html#'insertmode'">'insertmode'</a> 時: 轉到普通模式           <b class="vimtag"> <a name="i_CTRL-L">i_CTRL-L</a> </b>
+<code class="keystroke">CTRL-G</code> u        打斷撤銷序列，開始新的改變                   <b class="vimtag"> <a name="i_CTRL-G_u">i_CTRL-G_u</a> </b>
+<code class="keystroke">CTRL-G</code> U        下個左/右光標移動不打斷撤銷 (但只在光標停在  <b class="vimtag"> <a name="i_CTRL-G_U">i_CTRL-G_U</a> </b>
                 同一行上才是如此)
 </pre><hr class="singleline" /><pre>
 
-<code class="note">注意</code>: 如果光标键把你带出插入模式，查查 <a href="options.html#'noesckeys'">'noesckeys'</a> 选项。
+<code class="note">注意</code>: 如果光標鍵把你帶出插入模式，查查 <a href="options.html#'noesckeys'">'noesckeys'</a> 選項。
 
-<code class="keystroke">CTRL-O</code> 命令有时有副作用: 如果光标在行尾之后，它会先被移动该行最后一个字符上。
-在映射里，通常更好的方法是使用 <code class="special">&lt;Esc&gt;</code>  (先在文本中放一个 "x"，<code class="special">&lt;Esc&gt;</code> 这时总会把
-光标放到它的上面)。或者使用 <code class="keystroke">CTRL-\</code> <code class="keystroke">CTRL-O</code>，不过这时要<code class="note">注意</code>光标可能移到行尾之外
-的位置。<code class="note">注意</code> <code class="keystroke">CTRL-\</code> <code class="keystroke">CTRL-O</code> 之后的命令仍然可以移动光标，光标不会自动恢复到原来
+<code class="keystroke">CTRL-O</code> 命令有時有副作用: 如果光標在行尾之後，它會先被移動該行最後一個字符上。
+在映射裡，通常更好的方法是使用 <code class="special">&lt;Esc&gt;</code>  (先在文本中放一個 "x"，<code class="special">&lt;Esc&gt;</code> 這時總會把
+光標放到它的上面)。或者使用 <code class="keystroke">CTRL-\</code> <code class="keystroke">CTRL-O</code>，不過這時要<code class="note">注意</code>光標可能移到行尾之外
+的位置。<code class="note">注意</code> <code class="keystroke">CTRL-\</code> <code class="keystroke">CTRL-O</code> 之後的命令仍然可以移動光標，光標不會自動恢復到原來
 的位置。
 
-<code class="keystroke">CTRL-O</code> 命令带你到普通模式，此时你如使用进入插入模式的命令，插入模式通常不会嵌
-套。因而，输入完 "a<code class="special">&lt;C-O&gt;</code>a" 然后按 <code class="special">&lt;Esc&gt;</code>，你会回到普通模式，不需要按 <code class="special">&lt;Esc&gt;</code> 两
-次。此规则有例外，如果不是键入此命令，也即，在执行映射或执行脚本时，就会嵌套。
-这样，短暂切换到插入模式的映射才可以工作。
+<code class="keystroke">CTRL-O</code> 命令帶你到普通模式，此時你如使用進入插入模式的命令，插入模式通常不會嵌
+套。因而，輸入完 "a<code class="special">&lt;C-O&gt;</code>a" 然後按 <code class="special">&lt;Esc&gt;</code>，你會回到普通模式，不需要按 <code class="special">&lt;Esc&gt;</code> 兩
+次。此規則有例外，如果不是鍵入此命令，也即，在執行映射或執行腳本時，就會嵌套。
+這樣，短暫切換到插入模式的映射才可以工作。
 
-不是在所有的终端上都能用 Shift + 光标键。
+不是在所有的終端上都能用 Shift + 光標鍵。
 
-另外一个副作用是 "i" 或 "a" 命令之前指定的计数会被忽略。这是因为要实现 <code class="keystroke">CTRL-O</code>
-之后的命令的重复执行太复杂了。
+另外一個副作用是 "i" 或 "a" 命令之前指定的計數會被忽略。這是因為要實現 <code class="keystroke">CTRL-O</code>
+之後的命令的重複執行太複雜了。
 
-一个使用 <code class="keystroke">CTRL-G</code> u 的例子: 
+一個使用 <code class="keystroke">CTRL-G</code> u 的例子: 
 <code class="example"></code>
 <code class="example">        :inoremap &lt;C-H&gt; &lt;C-G&gt;u&lt;C-H&gt;</code>
 <code class="example"></code>
-它重定义退格键开始新的撤销序列。你可以撤销退格键的效果，而不会改变你之前输入的
-内容，就像 <code class="keystroke">CTRL-O</code> u 那样。另一例: 
+它重定義退格鍵開始新的撤銷序列。你可以撤銷退格鍵的效果，而不會改變你之前輸入的
+內容，就像 <code class="keystroke">CTRL-O</code> u 那樣。另一例: 
 <code class="example"></code>
 <code class="example">        :inoremap &lt;CR&gt; &lt;C-]&gt;&lt;C-G&gt;u&lt;CR&gt;</code>
 <code class="example"></code>
-这样，每行之后就不能撤销。在此之前也进行缩写的扩展。
+這樣，每行之後就不能撤銷。在此之前也進行縮寫的擴展。
 
-一个使用 <code class="keystroke">CTRL-G</code> U 的例子: 
+一個使用 <code class="keystroke">CTRL-G</code> U 的例子: 
 <code class="example"></code>
 <code class="example">        inoremap &lt;Left&gt;  &lt;C-G&gt;U&lt;Left&gt;</code>
 <code class="example">        inoremap &lt;Right&gt; &lt;C-G&gt;U&lt;Right&gt;</code>
@@ -387,202 +387,202 @@ U               十六进制           8            7fffffff (2147483647)
 <code class="example">        inoremap &lt;expr&gt; &lt;End&gt; repeat('&lt;C-G&gt;U&lt;Right&gt;', col('$') - col('.'))</code>
 <code class="example">        inoremap ( ()&lt;C-G&gt;U&lt;Left&gt;</code>
 <code class="example"></code>
-这样，可以在插入模式下使用光标键而不会打断撤销序列，从而 . (重做) 命令就能正常
+這樣，可以在插入模式下使用光標鍵而不會打斷撤銷序列，從而 . (重做) 命令就能正常
 工作。
-另外，输入以下的文本 (使用上述的 "(" 映射): 
+另外，輸入以下的文本 (使用上述的 "(" 映射): 
 <code class="example"></code>
 <code class="example">   Lorem ipsum (dolor</code>
 <code class="example"></code>
-可以用 . 重复直到出现期待结果为止
+可以用 . 重複直到出現期待結果為止
 
    Lorem ipsum (dolor)
 
-<code class="keystroke">CTRL-O</code> 的使用分割撤销: 之前输入的文本和之后的被分别撤销。如果不想如此 (比如用
-在映射里)，你可以用 <code class="keystroke">CTRL-R</code> =  <a href="insert.html#i_CTRL-R">i_CTRL-R</a> 。例如，要调用函数: 
+<code class="keystroke">CTRL-O</code> 的使用分割撤銷: 之前輸入的文本和之後的被分別撤銷。如果不想如此 (比如用
+在映射裡)，你可以用 <code class="keystroke">CTRL-R</code> =  <a href="insert.html#i_CTRL-R">i_CTRL-R</a> 。例如，要調用函數: 
 <code class="example">        :imap &lt;F2&gt; &lt;C-R&gt;=MyFunc()&lt;CR&gt;</code>
 <code class="example"></code>
-如果正确设置 <a href="options.html#'whichwrap'">'whichwrap'</a> 选项，在一行的第一个/最后一个字符上按 <code class="special">&lt;Left&gt;</code> 和
-<code class="special">&lt;Right&gt;</code> 键使得光标回绕到上一行/下一行。
+如果正確設置 <a href="options.html#'whichwrap'">'whichwrap'</a> 選項，在一行的第一個/最後一個字符上按 <code class="special">&lt;Left&gt;</code> 和
+<code class="special">&lt;Right&gt;</code> 鍵使得光標迴繞到上一行/下一行。
 
-<code class="keystroke">CTRL-G</code> j 和 <code class="keystroke">CTRL-G</code> k 命令可以用来在某一列前插入文本。例如: 
+<code class="keystroke">CTRL-G</code> j 和 <code class="keystroke">CTRL-G</code> k 命令可以用來在某一列前插入文本。例如: 
 <code class="example">   int i;</code>
 <code class="example">   int j;</code>
-把光标定位在第一个 "int" 上，输入 "istatic <code class="special">&lt;C-G&gt;</code>j       "。结果是: 
+把光標定位在第一個 "int" 上，輸入 "istatic <code class="special">&lt;C-G&gt;</code>j       "。結果是: 
 <code class="example">   static int i;</code>
 <code class="example">          int j;</code>
-要把相同的文本插入在每行的某列之前，使用可视列块命令 "I"  <a href="visual.html#v_b_I">v_b_I</a> 。
+要把相同的文本插入在每行的某列之前，使用可視列塊命令 "I"  <a href="visual.html#v_b_I">v_b_I</a> 。
 
 </pre><hr class="doubleline" /><pre>
-<h4>3. <a href="options.html#'textwidth'">'textwidth'</a> 和 <a href="options.html#'wrapmargin'">'wrapmargin'</a> 选项                     <b class="vimtag"> <a name="ins-textwidth">ins-textwidth</a> </b></h4>
-<a href="options.html#'textwidth'">'textwidth'</a> 选项可以用来在行变得很长之前自动断行。设置 <a href="options.html#'textwidth'">'textwidth'</a> 选项为希望
-的最大行长。如果你输入更多字符 (不是空格或者制表)，最后一个单词会放在一个新行
-上 (除非这是该行唯一一个单词)。如果你设置 <a href="options.html#'textwidth'">'textwidth'</a> 为 0，关闭该特性。
+<h4>3. <a href="options.html#'textwidth'">'textwidth'</a> 和 <a href="options.html#'wrapmargin'">'wrapmargin'</a> 選項                     <b class="vimtag"> <a name="ins-textwidth">ins-textwidth</a> </b></h4>
+<a href="options.html#'textwidth'">'textwidth'</a> 選項可以用來在行變得很長之前自動斷行。設置 <a href="options.html#'textwidth'">'textwidth'</a> 選項為希望
+的最大行長。如果你輸入更多字符 (不是空格或者製表)，最後一個單詞會放在一個新行
+上 (除非這是該行唯一一個單詞)。如果你設置 <a href="options.html#'textwidth'">'textwidth'</a> 為 0，關閉該特性。
 
-<a href="options.html#'wrapmargin'">'wrapmargin'</a> 选项做的事情基本相同。区别在于 <a href="options.html#'textwidth'">'textwidth'</a> 是一个固定的宽度，而
-<a href="options.html#'wrapmargin'">'wrapmargin'</a> 根据屏幕的宽度设置。如果设置 <a href="options.html#'wrapmargin'">'wrapmargin'</a>，这等价于 <a href="options.html#'textwidth'">'textwidth'</a>
-设为 (columns - <a href="options.html#'wrapmargin'">'wrapmargin'</a>)，其中 columns 是屏幕的宽度。
+<a href="options.html#'wrapmargin'">'wrapmargin'</a> 選項做的事情基本相同。區別在於 <a href="options.html#'textwidth'">'textwidth'</a> 是一個固定的寬度，而
+<a href="options.html#'wrapmargin'">'wrapmargin'</a> 根據屏幕的寬度設置。如果設置 <a href="options.html#'wrapmargin'">'wrapmargin'</a>，這等價於 <a href="options.html#'textwidth'">'textwidth'</a>
+設為 (columns - <a href="options.html#'wrapmargin'">'wrapmargin'</a>)，其中 columns 是屏幕的寬度。
 
-如果同时设置 <a href="options.html#'textwidth'">'textwidth'</a> 和 <a href="options.html#'wrapmargin'">'wrapmargin'</a>，使用 <a href="options.html#'textwidth'">'textwidth'</a>。
+如果同時設置 <a href="options.html#'textwidth'">'textwidth'</a> 和 <a href="options.html#'wrapmargin'">'wrapmargin'</a>，使用 <a href="options.html#'textwidth'">'textwidth'</a>。
 
-如果你并不真的想断开行，而只是想文本行在合适的位置回绕，见 <a href="options.html#'linebreak'">'linebreak'</a> 选项。
+如果你並不真的想斷開行，而只是想文本行在合適的位置迴繞，見 <a href="options.html#'linebreak'">'linebreak'</a> 選項。
 
-文本行只有在插入模式下或者附加到行后的时候才会自动断开。在替换模式下，只要行的
-长度没有变，就不会断行。
+文本行只有在插入模式下或者附加到行後的時候才會自動斷開。在替換模式下，只要行的
+長度沒有變，就不會斷行。
 
-长行在你输入一个出现在边界之后的非空白字符的时候断开。什么时候断行的限制还可以
-通过在 <a href="options.html#'formatoptions'">'formatoptions'</a> 选项增加如下字母决定:
-"l"  断行只有在插入开始时文本行的长度不超过 <a href="options.html#'textwidth'">'textwidth'</a> 才会发生。
-"v"  只有在当前插入命令中输入的空白字符上才会断行。这是和 Vi 最兼容的行为。
-"lv" 断行只有在插入开始时文本行的长度不超过 <a href="options.html#'textwidth'">'textwidth'</a> 并且在当前插入命令中输
-     入的空白字符上才会发生。和 "l" 唯一的不同在超过 <a href="options.html#'textwidth'">'textwidth'</a> 边界之后输入
-     非空白字符的时候。
+長行在你輸入一個出現在邊界之後的非空白字符的時候斷開。什麼時候斷行的限制還可以
+通過在 <a href="options.html#'formatoptions'">'formatoptions'</a> 選項增加如下字母決定:
+"l"  斷行只有在插入開始時文本行的長度不超過 <a href="options.html#'textwidth'">'textwidth'</a> 才會發生。
+"v"  只有在當前插入命令中輸入的空白字符上才會斷行。這是和 Vi 最兼容的行為。
+"lv" 斷行只有在插入開始時文本行的長度不超過 <a href="options.html#'textwidth'">'textwidth'</a> 並且在當前插入命令中輸
+     入的空白字符上才會發生。和 "l" 唯一的不同在超過 <a href="options.html#'textwidth'">'textwidth'</a> 邊界之後輸入
+     非空白字符的時候。
 
-通常使用内部函数来决定哪里断行。如果你想使用不同的方法，设置 <a href="options.html#'formatexpr'">'formatexpr'</a> 选项
-为一个表达式，它处理换行的行为。
+通常使用內部函數來決定哪裡斷行。如果你想使用不同的方法，設置 <a href="options.html#'formatexpr'">'formatexpr'</a> 選項
+為一個表達式，它處理換行的行為。
 
-如果你想排版文本块，可以使用 "gq" 操作符。输入 "gq" 和可以移动光标到块尾的移动
-命令。在许多情况下，命令 "gq}" 会做你想要做的事情 (排版直到段落尾部)。或者，你
-可以使用 "gqap"。它会排版整个段落，和当前光标所在的位置无关。或者，你可以使用
-可视模式: 敲击 "v"，移动到块尾，然后输入 "gq"。另见  <a href="change.html#gq">gq</a> 。
+如果你想排版文本塊，可以使用 "gq" 操作符。輸入 "gq" 和可以移動光標到塊尾的移動
+命令。在許多情況下，命令 "gq}" 會做你想要做的事情 (排版直到段落尾部)。或者，你
+可以使用 "gqap"。它會排版整個段落，和當前光標所在的位置無關。或者，你可以使用
+可視模式: 敲擊 "v"，移動到塊尾，然後輸入 "gq"。另見  <a href="change.html#gq">gq</a> 。
 
 </pre><hr class="doubleline" /><pre>
-<h4>4. <a href="options.html#'expandtab'">'expandtab'</a>、<a href="options.html#'smarttab'">'smarttab'</a> 和 <a href="options.html#'softtabstop'">'softtabstop'</a> 选项        <b class="vimtag"> <a name="ins-expandtab">ins-expandtab</a> </b></h4>
-如果打开 <a href="options.html#'expandtab'">'expandtab'</a> 选项，空格可以用来填充制表键的空白位置。如果你需要输入一
-个真正的 <code class="special">&lt;Tab&gt;</code>，先输入 <code class="keystroke">CTRL-V</code> (用 <code class="keystroke">CTRL-Q</code> 如果 <code class="keystroke">CTRL-V</code> 被映射的话  <a href="insert.html#i_CTRL-Q">i_CTRL-Q</a> )。
-缺省 <a href="options.html#'expandtab'">'expandtab'</a> 选项是关闭的。<code class="note">注意</code> 在替换模式里，一个字符被多个空格字符所代
-替。结果是，行内的字符数会增加。退格键只会一次删一个空格键。原来的字符只有在一
-个空格 (最后一个) 上退格才能得回来 <code class="notvi">{Vi 没有 <a href="options.html#'expandtab'">'expandtab'</a> 选项}</code>
+<h4>4. <a href="options.html#'expandtab'">'expandtab'</a>、<a href="options.html#'smarttab'">'smarttab'</a> 和 <a href="options.html#'softtabstop'">'softtabstop'</a> 選項        <b class="vimtag"> <a name="ins-expandtab">ins-expandtab</a> </b></h4>
+如果打開 <a href="options.html#'expandtab'">'expandtab'</a> 選項，空格可以用來填充製表鍵的空白位置。如果你需要輸入一
+個真正的 <code class="special">&lt;Tab&gt;</code>，先輸入 <code class="keystroke">CTRL-V</code> (用 <code class="keystroke">CTRL-Q</code> 如果 <code class="keystroke">CTRL-V</code> 被映射的話  <a href="insert.html#i_CTRL-Q">i_CTRL-Q</a> )。
+缺省 <a href="options.html#'expandtab'">'expandtab'</a> 選項是關閉的。<code class="note">注意</code> 在替換模式裡，一個字符被多個空格字符所代
+替。結果是，行內的字符數會增加。退格鍵只會一次刪一個空格鍵。原來的字符只有在一
+個空格 (最後一個) 上退格才能得回來 <code class="notvi">{Vi 沒有 <a href="options.html#'expandtab'">'expandtab'</a> 選項}</code>
 
                                                         <b class="vimtag"> <a name="ins-smarttab">ins-smarttab</a> </b>
-当 <a href="options.html#'smarttab'">'smarttab'</a> 选项打开时，<code class="special">&lt;Tab&gt;</code> 在行首插入 <a href="options.html#'shiftwidth'">'shiftwidth'</a> 个位置，而在其它地方插
-入 <a href="options.html#'tabstop'">'tabstop'</a> 个。这意味着经常会插入空格而不是 <code class="special">&lt;Tab&gt;</code> 字符。当 <a href="options.html#'smarttab'">'smarttab'</a> 关闭
-时，<code class="special">&lt;Tab&gt;</code> 总是插入 <a href="options.html#'tabstop'">'tabstop'</a> 个位置，而 <a href="options.html#'shiftwidth'">'shiftwidth'</a> 只有在 "&gt;&gt;" 和类似的命令
-中才会用到。<code class="notvi">{Vi 无此功能}</code>
+當 <a href="options.html#'smarttab'">'smarttab'</a> 選項打開時，<code class="special">&lt;Tab&gt;</code> 在行首插入 <a href="options.html#'shiftwidth'">'shiftwidth'</a> 個位置，而在其它地方插
+入 <a href="options.html#'tabstop'">'tabstop'</a> 個。這意味著經常會插入空格而不是 <code class="special">&lt;Tab&gt;</code> 字符。當 <a href="options.html#'smarttab'">'smarttab'</a> 關閉
+時，<code class="special">&lt;Tab&gt;</code> 總是插入 <a href="options.html#'tabstop'">'tabstop'</a> 個位置，而 <a href="options.html#'shiftwidth'">'shiftwidth'</a> 只有在 "&gt;&gt;" 和類似的命令
+中才會用到。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="ins-softtabstop">ins-softtabstop</a> </b>
-如果 <a href="options.html#'softtabstop'">'softtabstop'</a> 选项不为零，<code class="special">&lt;Tab&gt;</code> 插入 <a href="options.html#'softtabstop'">'softtabstop'</a> 个位置，而过去用来删除
-空格的  <code class="special">&lt;BS&gt;</code>，现在会删除 <a href="options.html#'softtabstop'">'softtabstop'</a> 个位置。感觉上， <a href="options.html#'tabstop'">'tabstop'</a> 被设成了
-<a href="options.html#'softtabstop'">'softtabstop'</a> 的值，但实际上一个真正的 <code class="special">&lt;Tab&gt;</code> 字符还是占据 <a href="options.html#'tabstop'">'tabstop'</a> 个位置。从
-而，你的文件在别的应用程序里看起来还是正确的。
+如果 <a href="options.html#'softtabstop'">'softtabstop'</a> 選項不為零，<code class="special">&lt;Tab&gt;</code> 插入 <a href="options.html#'softtabstop'">'softtabstop'</a> 個位置，而過去用來刪除
+空格的  <code class="special">&lt;BS&gt;</code>，現在會刪除 <a href="options.html#'softtabstop'">'softtabstop'</a> 個位置。感覺上， <a href="options.html#'tabstop'">'tabstop'</a> 被設成了
+<a href="options.html#'softtabstop'">'softtabstop'</a> 的值，但實際上一個真正的 <code class="special">&lt;Tab&gt;</code> 字符還是佔據 <a href="options.html#'tabstop'">'tabstop'</a> 個位置。從
+而，你的文件在別的應用程序裡看起來還是正確的。
 
-如果 <a href="options.html#'softtabstop'">'softtabstop'</a> 不为零，<code class="special">&lt;BS&gt;</code> 会试图删除尽量多的空白，以便能够回到往前
-<a href="options.html#'softtabstop'">'softtabstop'</a> 的位置，除非前面一个插入的字符正好就是一个空格，这时它只会删除光
-标前的那个字符。否则，你不一定总能删除光标前的一个字符。你需要先删除
-<code class="badlink">'softabstop'</code> 个字符，然后再输入额外的空格，以到达你想要的地方。
-
-</pre><hr class="doubleline" /><pre>
-<h4>5. 替换模式                             <b class="vimtag"> <a name="Replace">Replace</a> </b> <b class="vimtag"> <a name="Replace-mode">Replace-mode</a> </b> <b class="vimtag"> <a name="mode-replace">mode-replace</a> </b></h4>
-在普通模式里输入 "R" 命令进入替换模式。
-
-在替换模式里，行内的单个字符在你输入字符的时候被删除。如果没有字符可以删了 (在
-行尾)，输入的字符被附加 (和插入模式一样)。这样，一行内的字符数保持不变，直到你
-到达行尾为止。如果输入了 <code class="special">&lt;NL&gt;</code>，插入一个换行符，但不会删除任何字符。
-
-要小心 <code class="special">&lt;Tab&gt;</code> 字符。如果你输入一个正常的打印字符在它上面，字符数仍然一样，但是
-列数看起来少了。
-
-如果你在替换模式下删除字符 (用 <code class="special">&lt;BS&gt;</code>、<code class="keystroke">CTRL-W</code> 或 <code class="keystroke">CTRL-U</code>)，实际发生的事是你删除了
-改变。被替换的字符被复原了。如果你的输入超过已有的部分，新增的字符被删除了。实
-际上，这可以看作是一次一个字符的撤销。
-
-如果打开了 <a href="options.html#'expandtab'">'expandtab'</a> 选项，<code class="special">&lt;Tab&gt;</code> 会用多个空格替换一个字符。结果是，行内的字
-符数增加了。退格键只能一次删一个空格。原来的字符只有在一个空格 (最后一个) 上退
-格才能得回来 <code class="notvi">{Vi 没有 <a href="options.html#'expandtab'">'expandtab'</a> 选项}</code>
+如果 <a href="options.html#'softtabstop'">'softtabstop'</a> 不為零，<code class="special">&lt;BS&gt;</code> 會試圖刪除盡量多的空白，以便能夠回到往前
+<a href="options.html#'softtabstop'">'softtabstop'</a> 的位置，除非前面一個插入的字符正好就是一個空格，這時它只會刪除光
+標前的那個字符。否則，你不一定總能刪除光標前的一個字符。你需要先刪除
+<code class="badlink">'softabstop'</code> 個字符，然後再輸入額外的空格，以到達你想要的地方。
 
 </pre><hr class="doubleline" /><pre>
-<h4>6. 虚拟替换模式                         <b class="vimtag"> <a name="vreplace-mode">vreplace-mode</a> </b> <b class="vimtag"> <a name="Virtual-Replace-mode">Virtual-Replace-mode</a> </b></h4>
-在普通模式里输入 "gR" 命令进入虚拟替换模式。
-<code class="notvi">{仅当编译时加入  <a href="various.html#+vreplace">+vreplace</a>  特性才会有效}</code>
-<code class="notvi">{Vi 没有虚拟替换模式}</code>
+<h4>5. 替換模式                             <b class="vimtag"> <a name="Replace">Replace</a> </b> <b class="vimtag"> <a name="Replace-mode">Replace-mode</a> </b> <b class="vimtag"> <a name="mode-replace">mode-replace</a> </b></h4>
+在普通模式裡輸入 "R" 命令進入替換模式。
 
-虚拟替换模式和替换模式类似，但不是替换文件里的实际字符，而是替换屏幕的领地。这
-样，文件里的字符看起来不会移动。
+在替換模式裡，行內的單個字符在你輸入字符的時候被刪除。如果沒有字符可以刪了 (在
+行尾)，輸入的字符被附加 (和插入模式一樣)。這樣，一行內的字符數保持不變，直到你
+到達行尾為止。如果輸入了 <code class="special">&lt;NL&gt;</code>，插入一個換行符，但不會刪除任何字符。
 
-所以，如果你输入了 <code class="special">&lt;Tab&gt;</code>，它会替换多个普通的字符，而如果你在 <code class="special">&lt;Tab&gt;</code> 上输入字
-母，它可能什么都没有代替，因为 <code class="special">&lt;Tab&gt;</code> 还是会占据相同的位置。
+要小心 <code class="special">&lt;Tab&gt;</code> 字符。如果你輸入一個正常的打印字符在它上面，字符數仍然一樣，但是
+列數看起來少了。
 
-输入 <code class="special">&lt;NL&gt;</code> 不是导致文件后面的字符看起来在移动。结果是，当前行的后面部分被 <code class="special">&lt;NL&gt;</code>
-所替换 (也就是，它们被删除)，而替换继续在下一行进行。新行 <code class="emphasis">不</code> 会被插入，除非你
-到达文件尾部之后。
+如果你在替換模式下刪除字符 (用 <code class="special">&lt;BS&gt;</code>、<code class="keystroke">CTRL-W</code> 或 <code class="keystroke">CTRL-U</code>)，實際發生的事是你刪除了
+改變。被替換的字符被復原了。如果你的輸入超過已有的部分，新增的字符被刪除了。實
+際上，這可以看作是一次一個字符的撤銷。
 
-输入 <code class="keystroke">CTRL-T</code> 和 <code class="keystroke">CTRL-D</code> 会看到有趣的效果。光标前面的字符向一边移动，跟平常一样，
-但是光标后面的字符保持不动。<code class="keystroke">CTRL-T</code> 会隐藏一些被移动字符遮盖的旧行，但是 <code class="keystroke">CTRL-D</code>
-会重新让它们显现出来。
+如果打開了 <a href="options.html#'expandtab'">'expandtab'</a> 選項，<code class="special">&lt;Tab&gt;</code> 會用多個空格替換一個字符。結果是，行內的字
+符數增加了。退格鍵只能一次刪一個空格。原來的字符只有在一個空格 (最後一個) 上退
+格才能得回來 <code class="notvi">{Vi 沒有 <a href="options.html#'expandtab'">'expandtab'</a> 選項}</code>
 
-和替换模式一样，使用 <code class="special">&lt;BS&gt;</code> 等会恢复被替换的字符。即使和 <a href="options.html#'smartindent'">'smartindent'</a>、<code class="keystroke">CTRL-T</code>
+</pre><hr class="doubleline" /><pre>
+<h4>6. 虛擬替換模式                         <b class="vimtag"> <a name="vreplace-mode">vreplace-mode</a> </b> <b class="vimtag"> <a name="Virtual-Replace-mode">Virtual-Replace-mode</a> </b></h4>
+在普通模式裡輸入 "gR" 命令進入虛擬替換模式。
+<code class="notvi">{僅當編譯時加入  <a href="various.html#+vreplace">+vreplace</a>  特性才會有效}</code>
+<code class="notvi">{Vi 沒有虛擬替換模式}</code>
+
+虛擬替換模式和替換模式類似，但不是替換文件裡的實際字符，而是替換屏幕的領地。這
+樣，文件裡的字符看起來不會移動。
+
+所以，如果你輸入了 <code class="special">&lt;Tab&gt;</code>，它會替換多個普通的字符，而如果你在 <code class="special">&lt;Tab&gt;</code> 上輸入字
+母，它可能什麼都沒有代替，因為 <code class="special">&lt;Tab&gt;</code> 還是會佔據相同的位置。
+
+輸入 <code class="special">&lt;NL&gt;</code> 不是導致文件後面的字符看起來在移動。結果是，當前行的後面部分被 <code class="special">&lt;NL&gt;</code>
+所替換 (也就是，它們被刪除)，而替換繼續在下一行進行。新行 <code class="emphasis">不</code> 會被插入，除非你
+到達文件尾部之後。
+
+輸入 <code class="keystroke">CTRL-T</code> 和 <code class="keystroke">CTRL-D</code> 會看到有趣的效果。光標前面的字符向一邊移動，跟平常一樣，
+但是光標後面的字符保持不動。<code class="keystroke">CTRL-T</code> 會隱藏一些被移動字符遮蓋的舊行，但是 <code class="keystroke">CTRL-D</code>
+會重新讓它們顯現出來。
+
+和替換模式一樣，使用 <code class="special">&lt;BS&gt;</code> 等會恢復被替換的字符。即使和 <a href="options.html#'smartindent'">'smartindent'</a>、<code class="keystroke">CTRL-T</code>
 和 <code class="keystroke">CTRL-D</code>、<a href="options.html#'expandtab'">'expandtab'</a>、<a href="options.html#'smarttab'">'smarttab'</a>、<a href="options.html#'softtabstop'">'softtabstop'</a> 等一起使用的效果也是如此。
 
-在 <a href="options.html#'list'">'list'</a> 模式下，虚拟替换模式的行为和不在 <a href="options.html#'list'">'list'</a> 模式下一样，除非 <a href="options.html#'cpoptions'">'cpoptions'</a>
-里设置了 "L"。
+在 <a href="options.html#'list'">'list'</a> 模式下，虛擬替換模式的行為和不在 <a href="options.html#'list'">'list'</a> 模式下一樣，除非 <a href="options.html#'cpoptions'">'cpoptions'</a>
+裡設置了 "L"。
 
-<code class="note">注意</code> 此模式下，不在光标位置上的字符看起来在移动的可能性仅有如下情况: 列表模式
- <a href="options.html#'list'">'list'</a> ，置位 <a href="options.html#'wrap'">'wrap'</a> 时偶尔也会出现 (这时行改变长度，使得比屏幕宽度更窄或者更
-宽)。其他情况下会插入空格以防止之后的字符移动。
+<code class="note">注意</code> 此模式下，不在光標位置上的字符看起來在移動的可能性僅有如下情況: 列表模式
+ <a href="options.html#'list'">'list'</a> ，置位 <a href="options.html#'wrap'">'wrap'</a> 時偶爾也會出現 (這時行改變長度，使得比屏幕寬度更窄或者更
+寬)。其他情況下會插入空格以防止之後的字符移動。
 
-该模式对编辑 <code class="special">&lt;Tab&gt;</code> 分隔表格列的时候很有用，因为输入新的数据的时候同时还能保持
-所有的列对齐。
+該模式對編輯 <code class="special">&lt;Tab&gt;</code> 分隔表格列的時候很有用，因為輸入新的數據的時候同時還能保持
+所有的列對齊。
 
 </pre><hr class="doubleline" /><pre>
-<h4>7. 插入模式补全                                         <b class="vimtag"> <a name="ins-completion">ins-completion</a> </b></h4>
-在插入和替换模式下，有若干命令可以补全输入的部分关键字或者行。这可以用于使用复
-杂关键字的场合 (例如，函数名里有大写字母或者下划线)。
+<h4>7. 插入模式補全                                         <b class="vimtag"> <a name="ins-completion">ins-completion</a> </b></h4>
+在插入和替換模式下，有若干命令可以補全輸入的部分關鍵字或者行。這可以用於使用復
+雜關鍵字的場合 (例如，函數名裡有大寫字母或者下劃線)。
 
-如果编译时关闭了  <a href="various.html#+insert_expand">+insert_expand</a>  特性，这些功能都不可用。
+如果編譯時關閉了  <a href="various.html#+insert_expand">+insert_expand</a>  特性，這些功能都不可用。
 
-补全可以是针对:
+補全可以是針對:
 
 1. 整行                                                  <a href="insert.html#i_CTRL-X_CTRL-L">i_CTRL-X_CTRL-L</a> 
-2. 当前文件内的关键字                                    <a href="insert.html#i_CTRL-X_CTRL-N">i_CTRL-X_CTRL-N</a> 
-3. <a href="options.html#'dictionary'">'dictionary'</a> 的关键字                                 <a href="insert.html#i_CTRL-X_CTRL-K">i_CTRL-X_CTRL-K</a> 
-4. <a href="options.html#'thesaurus'">'thesaurus'</a> 的关键字，同义词风格                      <a href="insert.html#i_CTRL-X_CTRL-T">i_CTRL-X_CTRL-T</a> 
-5. 当前文件及其头文件内的关键字                          <a href="insert.html#i_CTRL-X_CTRL-I">i_CTRL-X_CTRL-I</a> 
-6. 标签                                                  <a href="insert.html#i_CTRL-X_CTRL-]">i_CTRL-X_CTRL-]</a> 
+2. 當前文件內的關鍵字                                    <a href="insert.html#i_CTRL-X_CTRL-N">i_CTRL-X_CTRL-N</a> 
+3. <a href="options.html#'dictionary'">'dictionary'</a> 的關鍵字                                 <a href="insert.html#i_CTRL-X_CTRL-K">i_CTRL-X_CTRL-K</a> 
+4. <a href="options.html#'thesaurus'">'thesaurus'</a> 的關鍵字，同義詞風格                      <a href="insert.html#i_CTRL-X_CTRL-T">i_CTRL-X_CTRL-T</a> 
+5. 當前文件及其頭文件內的關鍵字                          <a href="insert.html#i_CTRL-X_CTRL-I">i_CTRL-X_CTRL-I</a> 
+6. 標籤                                                  <a href="insert.html#i_CTRL-X_CTRL-]">i_CTRL-X_CTRL-]</a> 
 7. 文件名                                                <a href="insert.html#i_CTRL-X_CTRL-F">i_CTRL-X_CTRL-F</a> 
-8. 定义或宏                                              <a href="insert.html#i_CTRL-X_CTRL-D">i_CTRL-X_CTRL-D</a> 
+8. 定義或宏                                              <a href="insert.html#i_CTRL-X_CTRL-D">i_CTRL-X_CTRL-D</a> 
 9. Vim 命令                                              <a href="insert.html#i_CTRL-X_CTRL-V">i_CTRL-X_CTRL-V</a> 
-10. 用户定义的补全                                       <a href="insert.html#i_CTRL-X_CTRL-U">i_CTRL-X_CTRL-U</a> 
-11. 全能 (omni) 补全                                     <a href="insert.html#i_CTRL-X_CTRL-O">i_CTRL-X_CTRL-O</a> 
-12. 拼写建议                                             <a href="insert.html#i_CTRL-X_s">i_CTRL-X_s</a> 
-13. <a href="options.html#'complete'">'complete'</a> 的关键字                                  <a href="insert.html#i_CTRL-N">i_CTRL-N</a>   <a href="insert.html#i_CTRL-P">i_CTRL-P</a> 
+10. 用戶定義的補全                                       <a href="insert.html#i_CTRL-X_CTRL-U">i_CTRL-X_CTRL-U</a> 
+11. 全能 (omni) 補全                                     <a href="insert.html#i_CTRL-X_CTRL-O">i_CTRL-X_CTRL-O</a> 
+12. 拼寫建議                                             <a href="insert.html#i_CTRL-X_s">i_CTRL-X_s</a> 
+13. <a href="options.html#'complete'">'complete'</a> 的關鍵字                                  <a href="insert.html#i_CTRL-N">i_CTRL-N</a>   <a href="insert.html#i_CTRL-P">i_CTRL-P</a> 
 
-所有这些，除了 <code class="keystroke">CTRL-N</code> 和 <code class="keystroke">CTRL-P</code> 以外，都通过 <code class="keystroke">CTRL-X</code> 模式完成。这是插入和替
-换模式的一个子模式。你可以键入 <code class="keystroke">CTRL-X</code> 和一个 <code class="keystroke">CTRL-X</code> 命令进入 <code class="keystroke">CTRL-X</code> 模式。要退
-出，输入不合法的 <code class="keystroke">CTRL-X</code> 模式的命令。合法的键包括 <code class="keystroke">CTRL-X</code> 命令本身，<code class="keystroke">CTRL-N</code> (下一
-个) 和 <code class="keystroke">CTRL-P</code> (前一个)。
+所有這些，除了 <code class="keystroke">CTRL-N</code> 和 <code class="keystroke">CTRL-P</code> 以外，都通過 <code class="keystroke">CTRL-X</code> 模式完成。這是插入和替
+換模式的一個子模式。你可以鍵入 <code class="keystroke">CTRL-X</code> 和一個 <code class="keystroke">CTRL-X</code> 命令進入 <code class="keystroke">CTRL-X</code> 模式。要退
+出，輸入不合法的 <code class="keystroke">CTRL-X</code> 模式的命令。合法的鍵包括 <code class="keystroke">CTRL-X</code> 命令本身，<code class="keystroke">CTRL-N</code> (下一
+個) 和 <code class="keystroke">CTRL-P</code> (前一個)。
 
-如果你想调整匹配的大小写，参见 <a href="options.html#'infercase'">'infercase'</a> 选项。
+如果你想調整匹配的大小寫，參見 <a href="options.html#'infercase'">'infercase'</a> 選項。
 
                                                         <b class="vimtag"> <a name="complete_CTRL-E">complete_CTRL-E</a> </b>
-如果补全处于激活状态，可以用 <code class="keystroke">CTRL-E</code> 来停止补全并回到原来录入的文字。<code class="keystroke">CTRL-E</code> 本
-身不会被插入。
+如果補全處於激活狀態，可以用 <code class="keystroke">CTRL-E</code> 來停止補全並回到原來錄入的文字。<code class="keystroke">CTRL-E</code> 本
+身不會被插入。
 
                                                         <b class="vimtag"> <a name="complete_CTRL-Y">complete_CTRL-Y</a> </b>
-如果已经弹出菜单，可以使用 <code class="keystroke">CTRL-Y</code> 停止补全并接受当前的选择项。<code class="keystroke">CTRL-Y</code> 本身不会
-被插入。键入空格、回车或者其他不可显示字符将离开补全模式并插入键入的字符。
+如果已經彈出菜單，可以使用 <code class="keystroke">CTRL-Y</code> 停止補全並接受當前的選擇項。<code class="keystroke">CTRL-Y</code> 本身不會
+被插入。鍵入空格、回車或者其他不可顯示字符將離開補全模式並插入鍵入的字符。
 
-弹出菜单显示时，有一些特殊键可用，见  <a href="insert.html#popupmenu-keys">popupmenu-keys</a> 。
+彈出菜單顯示時，有一些特殊鍵可用，見  <a href="insert.html#popupmenu-keys">popupmenu-keys</a> 。
 
-<code class="note">注意</code>: <code class="keystroke">CTRL-X</code> 模式下合法的键不经过映射。这使得 ":map ^F ^X^F" 能够工作 (其中 ^F
-是 <code class="keystroke">CTRL-F</code> 而 ^X 是 <code class="keystroke">CTRL-X</code>)。能够使得 <code class="keystroke">CTRL-X</code> 模式退出的键 (任何不是合法 <code class="keystroke">CTRL-X</code>
-模式命令的键) 则经过映射。
-另外，通过 <a href="options.html#'complete'">'complete'</a> 的补全也使用映射。
+<code class="note">注意</code>: <code class="keystroke">CTRL-X</code> 模式下合法的鍵不經過映射。這使得 ":map ^F ^X^F" 能夠工作 (其中 ^F
+是 <code class="keystroke">CTRL-F</code> 而 ^X 是 <code class="keystroke">CTRL-X</code>)。能夠使得 <code class="keystroke">CTRL-X</code> 模式退出的鍵 (任何不是合法 <code class="keystroke">CTRL-X</code>
+模式命令的鍵) 則經過映射。
+另外，通過 <a href="options.html#'complete'">'complete'</a> 的補全也使用映射。
 
-<code class="note">注意</code>: 补全激活时，不能递归使用插入模式。以某种方式调用 ":normal i.." 的映射将
-产生 E523 错误。
+<code class="note">注意</code>: 補全激活時，不能遞歸使用插入模式。以某種方式調用 ":normal i.." 的映射將
+產生 E523 錯誤。
 
-建议使用以下映射来使得输入补全命令简单一点 (不过它们可能屏蔽其它的命令): 
+建議使用以下映射來使得輸入補全命令簡單一點 (不過它們可能屏蔽其它的命令): 
 <code class="example">    :inoremap ^] ^X^]</code>
 <code class="example">    :inoremap ^F ^X^F</code>
 <code class="example">    :inoremap ^D ^X^D</code>
 <code class="example">    :inoremap ^L ^X^L</code>
 <code class="example"></code>
-一个特例是，执行寄存器插入的 <code class="keystroke">CTRL-R</code> (见  <a href="insert.html#i_CTRL-R">i_CTRL-R</a> ) 不会退出 <code class="keystroke">CTRL-X</code> 模式。这主
-要是为了允许通过使用 '=' 寄存器来调用若干函数来决定下一个操作。如果该寄存器的
-内容 (或者 '=' 寄存器计算的结果) 不是合法的 <code class="keystroke">CTRL-X</code> 模式键，那么就会退出 <code class="keystroke">CTRL-X</code>
-模式，如同键盘输入这些内容一样。
+一個特例是，執行寄存器插入的 <code class="keystroke">CTRL-R</code> (見  <a href="insert.html#i_CTRL-R">i_CTRL-R</a> ) 不會退出 <code class="keystroke">CTRL-X</code> 模式。這主
+要是為了允許通過使用 '=' 寄存器來調用若干函數來決定下一個操作。如果該寄存器的
+內容 (或者 '=' 寄存器計算的結果) 不是合法的 <code class="keystroke">CTRL-X</code> 模式鍵，那麼就會退出 <code class="keystroke">CTRL-X</code>
+模式，如同鍵盤輸入這些內容一樣。
 
-例如，下面的程序会如此映射 <code class="special">&lt;Tab&gt;</code>: 如果当前行只有空白，就插入 <code class="special">&lt;Tab&gt;</code>，不然就开始
-或继续 <code class="keystroke">CTRL-N</code> 补全操作: 
+例如，下面的程序會如此映射 <code class="special">&lt;Tab&gt;</code>: 如果當前行只有空白，就插入 <code class="special">&lt;Tab&gt;</code>，不然就開始
+或繼續 <code class="keystroke">CTRL-N</code> 補全操作: 
 <code class="example"></code>
 <code class="example">        function! CleverTab()</code>
 <code class="example">           if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'</code>
@@ -595,351 +595,351 @@ U               十六进制           8            7fffffff (2147483647)
 <code class="example"></code>
 <code class="example"></code>
 <code class="example"></code>
-补全整行                                                <b class="vimtag"> <a name="compl-whole-line">compl-whole-line</a> </b>
+補全整行                                                <b class="vimtag"> <a name="compl-whole-line">compl-whole-line</a> </b>
 
                                                         <b class="vimtag"> <a name="i_CTRL-X_CTRL-L">i_CTRL-X_CTRL-L</a> </b>
-<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-L</code>           反向搜索和当前行光标前字符序列完全相同的行。忽略缩进。
-                        找到的行插入在光标的前面。
-                        <a href="options.html#'complete'">'complete'</a> 选项用来决定匹配在哪个缓冲区里搜索，已载入
-                        和未载入的缓冲区都被使用。
+<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-L</code>           反向搜索和當前行光標前字符序列完全相同的行。忽略縮進。
+                        找到的行插入在光標的前面。
+                        <a href="options.html#'complete'">'complete'</a> 選項用來決定匹配在哪個緩衝區裡搜索，已載入
+                        和未載入的緩衝區都被使用。
         <code class="keystroke">CTRL-L</code>  或
-        <code class="keystroke">CTRL-P</code>          反向搜索前一个匹配行。替换上一次匹配的行。
+        <code class="keystroke">CTRL-P</code>          反向搜索前一個匹配行。替換上一次匹配的行。
 
-        <code class="keystroke">CTRL-N</code>          正向搜索下一个匹配行。替换上一次匹配的行。
+        <code class="keystroke">CTRL-N</code>          正向搜索下一個匹配行。替換上一次匹配的行。
 
-        <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-L</code>   在扩展一行以后，你可以通过接着输入 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-L</code> 得到
-                        紧接着匹配行之后的行，直到见到两个 <code class="keystroke">CTRL-X</code> 为止。只能用
-                        于已载入的缓冲区。
+        <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-L</code>   在擴展一行以後，你可以通過接著輸入 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-L</code> 得到
+                        緊接著匹配行之後的行，直到見到兩個 <code class="keystroke">CTRL-X</code> 為止。只能用
+                        於已載入的緩衝區。
 
-补全当前文件内的关键字                                  <b class="vimtag"> <a name="compl-current">compl-current</a> </b>
+補全當前文件內的關鍵字                                  <b class="vimtag"> <a name="compl-current">compl-current</a> </b>
 
                                                         <b class="vimtag"> <a name="i_CTRL-X_CTRL-P">i_CTRL-X_CTRL-P</a> </b>
                                                         <b class="vimtag"> <a name="i_CTRL-X_CTRL-N">i_CTRL-X_CTRL-N</a> </b>
-<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-N</code>           正向搜索以光标前面的关键字开始的单词。找到的关键字插入
-                        在光标的前面。
+<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-N</code>           正向搜索以光標前面的關鍵字開始的單詞。找到的關鍵字插入
+                        在光標的前面。
 
-<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-P</code>           反向搜索以光标前面的关键字开始的单词。找到的关键字插入
-                        在光标的前面。
+<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-P</code>           反向搜索以光標前面的關鍵字開始的單詞。找到的關鍵字插入
+                        在光標的前面。
 
-        <code class="keystroke">CTRL-N</code>          正向搜索下一个匹配的关键字。替换上一次匹配的关键字。
+        <code class="keystroke">CTRL-N</code>          正向搜索下一個匹配的關鍵字。替換上一次匹配的關鍵字。
 
-        <code class="keystroke">CTRL-P</code>          反向搜索前一个匹配的关键字。替换上一次匹配的关键字。
+        <code class="keystroke">CTRL-P</code>          反向搜索前一個匹配的關鍵字。替換上一次匹配的關鍵字。
 
         <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-N</code> 或
-        <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-P</code>   继续使用 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-N</code> 或 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-P</code> 会复制上次本类
-                        型补全在其它上下文里扩展的单词之后紧跟的单词，直到见到
-                        两个 <code class="keystroke">CTRL-X</code> 为止。
+        <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-P</code>   繼續使用 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-N</code> 或 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-P</code> 會複製上次本類
+                        型補全在其它上下文裡擴展的單詞之後緊跟的單詞，直到見到
+                        兩個 <code class="keystroke">CTRL-X</code> 為止。
 
-如果在光标的前面有一个关键字 (由字母字符和 <a href="options.html#'iskeyword'">'iskeyword'</a> 指定的字符组成的名字)，
-它的前面再加上 "\&lt;" (含义: 单词开始) 就被用作搜索模式。否则 "\&lt;\k\k" 被用作搜
-索模式 (任何包含至少两个字符的关键字的开始)。
+如果在光標的前面有一個關鍵字 (由字母字符和 <a href="options.html#'iskeyword'">'iskeyword'</a> 指定的字符組成的名字)，
+它的前面再加上 "\&lt;" (含義: 單詞開始) 就被用作搜索模式。否則 "\&lt;\k\k" 被用作搜
+索模式 (任何包含至少兩個字符的關鍵字的開始)。
 
-在替换模式里，替换的字符数目决定于匹配字符串的长度。这和直接在替换模式下键盘输
-入经过替换的字符串类似。
+在替換模式裡，替換的字符數目決定於匹配字符串的長度。這和直接在替換模式下鍵盤輸
+入經過替換的字符串類似。
 
-如果光标前面不是一个合法的关键字字符，则匹配任何至少有两个字符的关键字。
+如果光標前面不是一個合法的關鍵字字符，則匹配任何至少有兩個字符的關鍵字。
         例如，要得到:
             printf("(%g, %g, %g)", vector[0], vector[1], vector[2]);
-        只需输入:
+        只需輸入:
             printf("(%g, %g, %g)", vector[0], ^P[1], ^P[2]);
 
-搜索会在文件末尾回绕，这里不使用 <a href="options.html#'wrapscan'">'wrapscan'</a> 的值。
+搜索會在文件末尾迴繞，這裡不使用 <a href="options.html#'wrapscan'">'wrapscan'</a> 的值。
 
-相同的补全内容多次重复会被跳过；这样每次 <code class="keystroke">CTRL-N</code> 和 <code class="keystroke">CTRL-P</code> 都会插入不同的匹配
-(除非只有一个匹配的关键字)。
+相同的補全內容多次重複會被跳過；這樣每次 <code class="keystroke">CTRL-N</code> 和 <code class="keystroke">CTRL-P</code> 都會插入不同的匹配
+(除非只有一個匹配的關鍵字)。
 
-永远不会得到单个字符的匹配，因为它们通常不是你真想要的。
+永遠不會得到單個字符的匹配，因為它們通常不是你真想要的。
         例如，要得到:
                 printf("name = %s\n", name);
         或者:
                 printf("name = %s\n", n^P);
         甚至:
                 printf("name = %s\n", ^P);
-'\n' 中的 'n' 被跳过。
+'\n' 中的 'n' 被跳過。
 
-在扩展完一个词后，你可以使用  <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-P</code> 或 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-N</code> 得到紧跟在扩展词
-之后的单词。这些序列搜索刚刚扩展的文本，并且继续扩展之，使之包括另外一个词。这
-可以用于你需要重复一系列复杂的单词的场合。尽管 <code class="keystroke">CTRL-P</code> 和 <code class="keystroke">CTRL-N</code> 只找至少两个字
-符的字符串，<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-P</code> 和 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-N</code> 可以用来扩展只有一个字符的单词。
+在擴展完一個詞後，你可以使用  <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-P</code> 或 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-N</code> 得到緊跟在擴展詞
+之後的單詞。這些序列搜索剛剛擴展的文本，並且繼續擴展之，使之包括另外一個詞。這
+可以用於你需要重複一系列複雜的單詞的場合。儘管 <code class="keystroke">CTRL-P</code> 和 <code class="keystroke">CTRL-N</code> 只找至少兩個字
+符的字符串，<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-P</code> 和 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-N</code> 可以用來擴展只有一個字符的單詞。
         例如，要得到:
                 M&amp;eacute;xico
-        你可以输入:
+        你可以輸入:
                 M^N^P^X^P^X^P
-<code class="keystroke">CTRL-N</code> 开始一个扩展，而 <code class="keystroke">CTRL-P</code> 回到单个字符 "M"，然后后面的两个 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-P</code>
-分别得到 "&amp;eacute" 和 ";xico"。
+<code class="keystroke">CTRL-N</code> 開始一個擴展，而 <code class="keystroke">CTRL-P</code> 回到單個字符 "M"，然後後面的兩個 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-P</code>
+分別得到 "&amp;eacute" 和 ";xico"。
 
-如果上次的扩展因为超过 <a href="options.html#'textwidth'">'textwidth'</a> 被分割，则只会使用当前行的文本。
+如果上次的擴展因為超過 <a href="options.html#'textwidth'">'textwidth'</a> 被分割，則只會使用當前行的文本。
 
-如果匹配在行尾，那么下一行的第一个单词会被插入，而且显示消息 "word from next
-line"。如果该词被接受，那么下个 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-P</code> 或者 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-N</code> 会搜索那些以
-这个单词开始的行。
+如果匹配在行尾，那麼下一行的第一個單詞會被插入，而且顯示消息 "word from next
+line"。如果該詞被接受，那麼下個 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-P</code> 或者 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-N</code> 會搜索那些以
+這個單詞開始的行。
 
 
-补全 <a href="options.html#'dictionary'">'dictionary'</a> 的关键字                              <b class="vimtag"> <a name="compl-dictionary">compl-dictionary</a> </b>
+補全 <a href="options.html#'dictionary'">'dictionary'</a> 的關鍵字                              <b class="vimtag"> <a name="compl-dictionary">compl-dictionary</a> </b>
 
                                                         <b class="vimtag"> <a name="i_CTRL-X_CTRL-K">i_CTRL-X_CTRL-K</a> </b>
-<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-K</code>           根据 <a href="options.html#'dictionary'">'dictionary'</a> 选项给出的文件搜索光标前关键字开始的
-                        单词。这和 <code class="keystroke">CTRL-N</code> 类似，只不过搜索的是字典文件，而不是
-                        当前文件。找到的关键字插入在光标之前。这可能很慢，因为
-                        在第一个匹配用到之前，所有的匹配都会被找到。缺省，
-                        <a href="options.html#'dictionary'">'dictionary'</a> 选项为空。
-                        要得到哪里能找单词列表的建议，见 <a href="options.html#'dictionary'">'dictionary'</a> 选项。
+<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-K</code>           根據 <a href="options.html#'dictionary'">'dictionary'</a> 選項給出的文件搜索光標前關鍵字開始的
+                        單詞。這和 <code class="keystroke">CTRL-N</code> 類似，只不過搜索的是字典文件，而不是
+                        當前文件。找到的關鍵字插入在光標之前。這可能很慢，因為
+                        在第一個匹配用到之前，所有的匹配都會被找到。缺省，
+                        <a href="options.html#'dictionary'">'dictionary'</a> 選項為空。
+                        要得到哪裡能找單詞列表的建議，見 <a href="options.html#'dictionary'">'dictionary'</a> 選項。
 
         <code class="keystroke">CTRL-K</code>  或
-        <code class="keystroke">CTRL-N</code>          正向搜索下一个匹配的关键字。替换上一次匹配的关键字。
+        <code class="keystroke">CTRL-N</code>          正向搜索下一個匹配的關鍵字。替換上一次匹配的關鍵字。
 
-        <code class="keystroke">CTRL-P</code>          反向搜索前一个匹配的关键字。替换上一次匹配的关键字。
+        <code class="keystroke">CTRL-P</code>          反向搜索前一個匹配的關鍵字。替換上一次匹配的關鍵字。
 
                                                         <b class="vimtag"> <a name="i_CTRL-X_CTRL-T">i_CTRL-X_CTRL-T</a> </b>
-<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-T</code>           和 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-K</code> 类似，但稍有不同。它使用 <a href="options.html#'thesaurus'">'thesaurus'</a>
-                        选项，而不是 <a href="options.html#'dictionary'">'dictionary'</a>。如果匹配在同义词字典里找
-                        到，同一行里其余单词也在匹配里列出，即使它们并不真的匹
-                        配。这样一个单词可以被完全替换。
+<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-T</code>           和 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-K</code> 類似，但稍有不同。它使用 <a href="options.html#'thesaurus'">'thesaurus'</a>
+                        選項，而不是 <a href="options.html#'dictionary'">'dictionary'</a>。如果匹配在同義詞字典裡找
+                        到，同一行裡其餘單詞也在匹配裡列出，即使它們並不真的匹
+                        配。這樣一個單詞可以被完全替換。
 
-                        举一个例子，假想 <a href="options.html#'thesaurus'">'thesaurus'</a> 文件有一行形如: 
+                        舉一個例子，假想 <a href="options.html#'thesaurus'">'thesaurus'</a> 文件有一行形如: 
 <code class="example">                                angry furious mad enraged</code>
-                        把光标放在字母 "ang" 之后并输入 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-T</code> 会匹配单
-                        词 "angry"；继续按会把单词改为 "furious"、"mad" 等等。
-                        其它的使用包括两种语言之间的翻译，或者用关键字给 API
-                        函数归类。
+                        把光標放在字母 "ang" 之後並輸入 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-T</code> 會匹配單
+                        詞 "angry"；繼續按會把單詞改為 "furious"、"mad" 等等。
+                        其它的使用包括兩種語言之間的翻譯，或者用關鍵字給 API
+                        函數歸類。
 
         <code class="keystroke">CTRL-T</code>  或
-        <code class="keystroke">CTRL-N</code>          正向搜索下一个匹配的关键字。替换上一次匹配的关键字。
+        <code class="keystroke">CTRL-N</code>          正向搜索下一個匹配的關鍵字。替換上一次匹配的關鍵字。
 
-        <code class="keystroke">CTRL-P</code>          反向搜索前一个匹配的关键字。替换上一次匹配的关键字。
+        <code class="keystroke">CTRL-P</code>          反向搜索前一個匹配的關鍵字。替換上一次匹配的關鍵字。
 
 
-补全当前文件及其头文件内的关键字                        <b class="vimtag"> <a name="compl-keyword">compl-keyword</a> </b>
+補全當前文件及其頭文件內的關鍵字                        <b class="vimtag"> <a name="compl-keyword">compl-keyword</a> </b>
 
-<a href="options.html#'include'">'include'</a> 选项指定如何找到含有头文件名字的行。<a href="options.html#'path'">'path'</a> 选项用来搜索头文件。
+<a href="options.html#'include'">'include'</a> 選項指定如何找到含有頭文件名字的行。<a href="options.html#'path'">'path'</a> 選項用來搜索頭文件。
 
                                                         <b class="vimtag"> <a name="i_CTRL-X_CTRL-I">i_CTRL-X_CTRL-I</a> </b>
-<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-I</code>           搜索当前文件及其头文件里第一个以光标前面的字母序列开始
-                        的关键字。找到的关键字插入在光标的前面。
+<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-I</code>           搜索當前文件及其頭文件裡第一個以光標前面的字母序列開始
+                        的關鍵字。找到的關鍵字插入在光標的前面。
 
-        <code class="keystroke">CTRL-N</code>          正向搜索下一个匹配的关键字。替换上一次匹配的关键字。
-                        <code class="note">注意</code>: <code class="keystroke">CTRL-I</code> 和 <code class="special">&lt;Tab&gt;</code> 相同，而这可能会在成功的补全之后
-                        输入，因此不使用 <code class="keystroke">CTRL-I</code> 来搜索下一个匹配。
+        <code class="keystroke">CTRL-N</code>          正向搜索下一個匹配的關鍵字。替換上一次匹配的關鍵字。
+                        <code class="note">注意</code>: <code class="keystroke">CTRL-I</code> 和 <code class="special">&lt;Tab&gt;</code> 相同，而這可能會在成功的補全之後
+                        輸入，因此不使用 <code class="keystroke">CTRL-I</code> 來搜索下一個匹配。
 
-        <code class="keystroke">CTRL-P</code>          反向搜索前一个匹配的关键字。替换上一次匹配的关键字。
+        <code class="keystroke">CTRL-P</code>          反向搜索前一個匹配的關鍵字。替換上一次匹配的關鍵字。
 
-        <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-I</code>   继续使用 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-I</code> 会复制上次本类型补全在其它上下
-                        文里扩展的单词之后紧跟的单词，直到见到两个 <code class="keystroke">CTRL-X</code> 为
+        <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-I</code>   繼續使用 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-I</code> 會複製上次本類型補全在其它上下
+                        文裡擴展的單詞之後緊跟的單詞，直到見到兩個 <code class="keystroke">CTRL-X</code> 為
                         止。
 
-补全标签                                                <b class="vimtag"> <a name="compl-tag">compl-tag</a> </b>
+補全標籤                                                <b class="vimtag"> <a name="compl-tag">compl-tag</a> </b>
                                                         <b class="vimtag"> <a name="i_CTRL-X_CTRL-]">i_CTRL-X_CTRL-]</a> </b>
-<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-]</code>           搜索第一个以光标前面的字母序列开始的标签。匹配的标签插
-                        在光标前面。标签名可以包含字母字符和由 <a href="options.html#'iskeyword'">'iskeyword'</a> 决
-                        定的字符 (和关键字相同)。另见  <a href="tagsrch.html#CTRL-]">CTRL-]</a> 。
-                        <a href="options.html#'showfulltag'">'showfulltag'</a> 选项可以用来增加标签定义前后的上下文。
+<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-]</code>           搜索第一個以光標前面的字母序列開始的標籤。匹配的標籤插
+                        在光標前面。標籤名可以包含字母字符和由 <a href="options.html#'iskeyword'">'iskeyword'</a> 決
+                        定的字符 (和關鍵字相同)。另見  <a href="tagsrch.html#CTRL-]">CTRL-]</a> 。
+                        <a href="options.html#'showfulltag'">'showfulltag'</a> 選項可以用來增加標籤定義前後的上下文。
         <code class="keystroke">CTRL-]</code>  或
-        <code class="keystroke">CTRL-N</code>          正向搜索下一个匹配的标签。替换上一次匹配的标签。
+        <code class="keystroke">CTRL-N</code>          正向搜索下一個匹配的標籤。替換上一次匹配的標籤。
 
-        <code class="keystroke">CTRL-P</code>          反向搜索前一个匹配的标签。替换上一次匹配的标签。
+        <code class="keystroke">CTRL-P</code>          反向搜索前一個匹配的標籤。替換上一次匹配的標籤。
 
 
-补全文件名                                              <b class="vimtag"> <a name="compl-filename">compl-filename</a> </b>
+補全文件名                                              <b class="vimtag"> <a name="compl-filename">compl-filename</a> </b>
                                                         <b class="vimtag"> <a name="i_CTRL-X_CTRL-F">i_CTRL-X_CTRL-F</a> </b>
-<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-F</code>           搜索第一个以光标前面的字母序列开始的文件。匹配的文件插
-                        在光标前面。标签名可以包含字母字符和由 <a href="options.html#'isfname'">'isfname'</a> 决
-                        定的字符 (和关键字相同)。<code class="note">注意</code>，(目前) 这里不使用
-                        <a href="options.html#'path'">'path'</a> 选项。
+<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-F</code>           搜索第一個以光標前面的字母序列開始的文件。匹配的文件插
+                        在光標前面。標籤名可以包含字母字符和由 <a href="options.html#'isfname'">'isfname'</a> 決
+                        定的字符 (和關鍵字相同)。<code class="note">注意</code>，(目前) 這裡不使用
+                        <a href="options.html#'path'">'path'</a> 選項。
         <code class="keystroke">CTRL-F</code>  或
-        <code class="keystroke">CTRL-N</code>          正向搜索下一个匹配的文件名。替换上一次匹配的文件名。
+        <code class="keystroke">CTRL-N</code>          正向搜索下一個匹配的文件名。替換上一次匹配的文件名。
 
-        <code class="keystroke">CTRL-P</code>          反向搜索前一个匹配的文件名。替换上一次匹配的文件名。
+        <code class="keystroke">CTRL-P</code>          反向搜索前一個匹配的文件名。替換上一次匹配的文件名。
 
 
-补全定义或宏                                            <b class="vimtag"> <a name="compl-define">compl-define</a> </b>
+補全定義或宏                                            <b class="vimtag"> <a name="compl-define">compl-define</a> </b>
 
-<a href="options.html#'define'">'define'</a> 选项用来指定包含定义的行。<a href="options.html#'include'">'include'</a> 选项用来指定包含头文件名的行。
-<a href="options.html#'path'">'path'</a> 选项用来搜索头文件。
+<a href="options.html#'define'">'define'</a> 選項用來指定包含定義的行。<a href="options.html#'include'">'include'</a> 選項用來指定包含頭文件名的行。
+<a href="options.html#'path'">'path'</a> 選項用來搜索頭文件。
 
                                                         <b class="vimtag"> <a name="i_CTRL-X_CTRL-D">i_CTRL-X_CTRL-D</a> </b>
-<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-D</code>           搜索当前和头文件里第一个以光标前面的字母序列开始的
-                        定义 (或宏)。找到的定义名插入在光标的前面。
+<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-D</code>           搜索當前和頭文件裡第一個以光標前面的字母序列開始的
+                        定義 (或宏)。找到的定義名插入在光標的前面。
         <code class="keystroke">CTRL-D</code>  或
-        <code class="keystroke">CTRL-N</code>          正向搜索下一个匹配的定义。替换上一次匹配的定义。
+        <code class="keystroke">CTRL-N</code>          正向搜索下一個匹配的定義。替換上一次匹配的定義。
 
-        <code class="keystroke">CTRL-P</code>          反向搜索前一个匹配的定义。替换上一次匹配的定义。
+        <code class="keystroke">CTRL-P</code>          反向搜索前一個匹配的定義。替換上一次匹配的定義。
 
-        <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-D</code>   继续使用 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-D</code> 会复制上次本类型补全在其它上下
-                        文里扩展的单词之后紧跟的单词，直到见到两个 <code class="keystroke">CTRL-X</code> 为
+        <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-D</code>   繼續使用 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-D</code> 會複製上次本類型補全在其它上下
+                        文裡擴展的單詞之後緊跟的單詞，直到見到兩個 <code class="keystroke">CTRL-X</code> 為
                         止。
 
 
-补全 Vim 命令                                           <b class="vimtag"> <a name="compl-vim">compl-vim</a> </b>
+補全 Vim 命令                                           <b class="vimtag"> <a name="compl-vim">compl-vim</a> </b>
 
-这里，补全是上下文敏感的，和命令行上的情况相似。它既能补全 Ex 命令，又能补全它
-的参数。可用于编写 Vim 脚本。
+這裡，補全是上下文敏感的，和命令行上的情況相似。它既能補全 Ex 命令，又能補全它
+的參數。可用於編寫 Vim 腳本。
 
                                                         <b class="vimtag"> <a name="i_CTRL-X_CTRL-V">i_CTRL-X_CTRL-V</a> </b>
-<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-V</code>           猜测光标前的项目的条目，并找到第一个匹配。
-                        <code class="note">注意</code>: 如果 <code class="keystroke">CTRL-V</code> 被映射，你通常可以用 <code class="keystroke">CTRL-Q</code> 来代替
+<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-V</code>           猜測光標前的項目的條目，並找到第一個匹配。
+                        <code class="note">注意</code>: 如果 <code class="keystroke">CTRL-V</code> 被映射，你通常可以用 <code class="keystroke">CTRL-Q</code> 來代替
                          <a href="insert.html#i_CTRL-Q">i_CTRL-Q</a> 。
         <code class="keystroke">CTRL-V</code>  或
-        <code class="keystroke">CTRL-N</code>          正向搜索下一个匹配。替换上一次匹配。
+        <code class="keystroke">CTRL-N</code>          正向搜索下一個匹配。替換上一次匹配。
 
-        <code class="keystroke">CTRL-P</code>          反向搜索前一个匹配。替换上一次匹配。
+        <code class="keystroke">CTRL-P</code>          反向搜索前一個匹配。替換上一次匹配。
 
-        <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-V</code>   继续使用 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-V</code> 和 <code class="keystroke">CTRL-V</code> 一样。这允许映射键来
-                        执行 Vim 命令补全，例如: 
+        <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-V</code>   繼續使用 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-V</code> 和 <code class="keystroke">CTRL-V</code> 一樣。這允許映射鍵來
+                        執行 Vim 命令補全，例如: 
 <code class="example">                                :imap &lt;Tab&gt; &lt;C-X&gt;&lt;C-V&gt;</code>
 <code class="example"></code>
-用户定义补全                                            <b class="vimtag"> <a name="compl-function">compl-function</a> </b>
+用戶定義補全                                            <b class="vimtag"> <a name="compl-function">compl-function</a> </b>
 
-命令补全可以由用户通过 <a href="options.html#'completefunc'">'completefunc'</a> 选项自定义一个函数来完成。下面说明如何调
-用此函数，并提供示例  <a href="insert.html#complete-functions">complete-functions</a> 。
+命令補全可以由用戶通過 <a href="options.html#'completefunc'">'completefunc'</a> 選項自定義一個函數來完成。下面說明如何調
+用此函數，並提供示例  <a href="insert.html#complete-functions">complete-functions</a> 。
 
                                                         <b class="vimtag"> <a name="i_CTRL-X_CTRL-U">i_CTRL-X_CTRL-U</a> </b>
-<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-U</code>           猜测光标前面项目的类型，并寻找它的第一个匹配。
+<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-U</code>           猜測光標前面項目的類型，並尋找它的第一個匹配。
         <code class="keystroke">CTRL-U</code>  或
-        <code class="keystroke">CTRL-N</code>          正向搜索下一个匹配。替换上一次匹配。
+        <code class="keystroke">CTRL-N</code>          正向搜索下一個匹配。替換上一次匹配。
 
-        <code class="keystroke">CTRL-P</code>          反向搜索前一个匹配。替换上一次匹配。
+        <code class="keystroke">CTRL-P</code>          反向搜索前一個匹配。替換上一次匹配。
 
 
-全能 (omni) 补全                                        <b class="vimtag"> <a name="compl-omni">compl-omni</a> </b>
+全能 (omni) 補全                                        <b class="vimtag"> <a name="compl-omni">compl-omni</a> </b>
 
-命令补全可以由用户通过 <a href="options.html#'omnifunc'">'omnifunc'</a> 选项自定义一个函数来完成。这通常用于特定文件
-类型的补全。
+命令補全可以由用戶通過 <a href="options.html#'omnifunc'">'omnifunc'</a> 選項自定義一個函數來完成。這通常用於特定文件
+類型的補全。
 
-下面说明如何调用此函数，并提供示例  <a href="insert.html#complete-functions">complete-functions</a> 。
-关于特定文件类型的说明，见  <a href="insert.html#compl-omni-filetypes">compl-omni-filetypes</a> 。
-将来会有更多补全脚本，欢迎查阅 www.vim.org。目前已经有了 C++ 的首个版本。
+下面說明如何調用此函數，並提供示例  <a href="insert.html#complete-functions">complete-functions</a> 。
+關於特定文件類型的說明，見  <a href="insert.html#compl-omni-filetypes">compl-omni-filetypes</a> 。
+將來會有更多補全腳本，歡迎查閱 www.vim.org。目前已經有了 C++ 的首個版本。
 
                                                         <b class="vimtag"> <a name="i_CTRL-X_CTRL-O">i_CTRL-X_CTRL-O</a> </b>
-<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-O</code>           猜测光标前面项目的类型，并寻找它的第一个匹配。
+<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-O</code>           猜測光標前面項目的類型，並尋找它的第一個匹配。
         <code class="keystroke">CTRL-O</code>  或
-        <code class="keystroke">CTRL-N</code>          正向搜索下一个匹配。替换上一次匹配。
+        <code class="keystroke">CTRL-N</code>          正向搜索下一個匹配。替換上一次匹配。
 
-        <code class="keystroke">CTRL-P</code>          反向搜索前一个匹配。替换上一次匹配。
+        <code class="keystroke">CTRL-P</code>          反向搜索前一個匹配。替換上一次匹配。
 
 
-拼写建议                                                <b class="vimtag"> <a name="compl-spelling">compl-spelling</a> </b>
+拼寫建議                                                <b class="vimtag"> <a name="compl-spelling">compl-spelling</a> </b>
 
-定位光标所在或之前的单词，然后提出正确拼写的单词作为建议进行替代。如果该行里有
-一个错误拼写的单词在光标之前或之下，移动光标到它后面。否则，使用刚刚在光标之前
-的那个单词来提出建议，即使该单词没有拼写错误。
+定位光標所在或之前的單詞，然後提出正確拼寫的單詞作為建議進行替代。如果該行裡有
+一個錯誤拼寫的單詞在光標之前或之下，移動光標到它後面。否則，使用剛剛在光標之前
+的那個單詞來提出建議，即使該單詞沒有拼寫錯誤。
 
-<code class="note">NOTE:</code> 很多 Unix 终端上，<code class="keystroke">CTRL-S</code> 暂停显示。这时用 's' 可以代替。如果显示暂停，输
-入 <code class="keystroke">CTRL-Q</code> 会继续显示。
+<code class="note">NOTE:</code> 很多 Unix 終端上，<code class="keystroke">CTRL-S</code> 暫停顯示。這時用 's' 可以代替。如果顯示暫停，輸
+入 <code class="keystroke">CTRL-Q</code> 會繼續顯示。
 
                                                 <b class="vimtag"> <a name="i_CTRL-X_CTRL-S">i_CTRL-X_CTRL-S</a> </b> <b class="vimtag"> <a name="i_CTRL-X_s">i_CTRL-X_s</a> </b>
 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-S</code>  或
-<code class="keystroke">CTRL-X</code> s                定位光标之前的单词，并寻找它的第一个拼写建议。
+<code class="keystroke">CTRL-X</code> s                定位光標之前的單詞，並尋找它的第一個拼寫建議。
         <code class="keystroke">CTRL-S</code>  或
-        <code class="keystroke">CTRL-N</code>          正向搜索下一个建议。替换上一次的建议。 <code class="note">注意</code> 这里不能用
+        <code class="keystroke">CTRL-N</code>          正向搜索下一個建議。替換上一次的建議。 <code class="note">注意</code> 這裡不能用
                         's'。
 
-        <code class="keystroke">CTRL-P</code>          反向搜索前一个建议。替换上一次的建议。
+        <code class="keystroke">CTRL-P</code>          反向搜索前一個建議。替換上一次的建議。
 
 
-从不同的来源补全关键字                                  <b class="vimtag"> <a name="compl-generic">compl-generic</a> </b>
+從不同的來源補全關鍵字                                  <b class="vimtag"> <a name="compl-generic">compl-generic</a> </b>
 
                                                         <b class="vimtag"> <a name="i_CTRL-N">i_CTRL-N</a> </b>
-<code class="keystroke">CTRL-N</code>                  在 <a href="options.html#'complete'">'complete'</a> 选项给出的地方搜索下一个以光标前面的关键
-                        字开始的单词。找到的关键字名插入在光标的前面。
+<code class="keystroke">CTRL-N</code>                  在 <a href="options.html#'complete'">'complete'</a> 選項給出的地方搜索下一個以光標前面的關鍵
+                        字開始的單詞。找到的關鍵字名插入在光標的前面。
 
                                                         <b class="vimtag"> <a name="i_CTRL-P">i_CTRL-P</a> </b>
-<code class="keystroke">CTRL-P</code>                  在 <a href="options.html#'complete'">'complete'</a> 选项给出的地方搜索上一个以光标前面的关键
-                        字开始的单词。找到的关键字名插入在光标的前面。
+<code class="keystroke">CTRL-P</code>                  在 <a href="options.html#'complete'">'complete'</a> 選項給出的地方搜索上一個以光標前面的關鍵
+                        字開始的單詞。找到的關鍵字名插入在光標的前面。
 
-        <code class="keystroke">CTRL-N</code>          正向搜索下一个匹配的关键字。替换上一次匹配的关键字。
+        <code class="keystroke">CTRL-N</code>          正向搜索下一個匹配的關鍵字。替換上一次匹配的關鍵字。
 
-        <code class="keystroke">CTRL-P</code>          反向搜索前一个匹配的关键字。替换上一次匹配的关键字。
+        <code class="keystroke">CTRL-P</code>          反向搜索前一個匹配的關鍵字。替換上一次匹配的關鍵字。
 
         <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-N</code> 或
-        <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-P</code>   继续使用 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-N</code> 或 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-P</code> 会复制上次本类
-                        型补全在其它上下文里扩展的单词之后紧跟的单词，直到见到
-                        两个 <code class="keystroke">CTRL-X</code> 为止。
+        <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-P</code>   繼續使用 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-N</code> 或 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-P</code> 會複製上次本類
+                        型補全在其它上下文裡擴展的單詞之後緊跟的單詞，直到見到
+                        兩個 <code class="keystroke">CTRL-X</code> 為止。
 
 
-寻 找 补 全 的 函 数                                    <b class="vimtag"> <a name="complete-functions">complete-functions</a> </b>
+尋 找 補 全 的 函 數                                    <b class="vimtag"> <a name="complete-functions">complete-functions</a> </b>
 
-这里指 <a href="options.html#'completefunc'">'completefunc'</a> 和 <a href="options.html#'omnifunc'">'omnifunc'</a>。
+這裡指 <a href="options.html#'completefunc'">'completefunc'</a> 和 <a href="options.html#'omnifunc'">'omnifunc'</a>。
 
-函数被调用两次，使用不同的方式:
-- 首先，调用函数以寻找补全文本的开始位置。
-- 然后，调用函数以寻找实际的匹配。
+函數被調用兩次，使用不同的方式:
+- 首先，調用函數以尋找補全文本的開始位置。
+- 然後，調用函數以尋找實際的匹配。
 
-第一次调用时，参数是:
+第一次調用時，參數是:
    a:findstart  1
    a:base       空
 
-函数必须返回补全开始位置的列数，这个数字必须在零到光标所在列 "col('.')" 之间。
-过程应该检查光标之前的字符，并包含那些可能成为补全项一部分的字符。该列到光标列
-之间的文本将来会被匹配结果替换。
+函數必須返回補全開始位置的列數，這個數字必須在零到光標所在列 "col('.')" 之間。
+過程應該檢查光標之前的字符，並包含那些可能成為補全項一部分的字符。該列到光標列
+之間的文本將來會被匹配結果替換。
 
 特殊返回值:
-   -1 如果补全无法进行，撤销补全且报错。
-   -2 安静的撤销，留在补全模式。
-   -3 安静的撤销，退出补全模式。
+   -1 如果補全無法進行，撤銷補全且報錯。
+   -2 安靜的撤銷，留在補全模式。
+   -3 安靜的撤銷，退出補全模式。
 
-第二次调用时，参数是:
+第二次調用時，參數是:
    a:findstart  0
-   a:base       补全必须匹配的文本；即第一次调用定位的文本 (可以为空)
+   a:base       補全必須匹配的文本；即第一次調用定位的文本 (可以為空)
 
-函数必须返回匹配单词的列表。这些匹配通常包含 "a:base" 文本。如果没有匹配，返回
+函數必須返回匹配單詞的列表。這些匹配通常包含 "a:base" 文本。如果沒有匹配，返回
 空列表。
 
-要知道关于匹配词的信息，返回包含匹配列表的一个字典。字典包含以下项目：
-        words           包含匹配单词的列表 (必需)。
-        refresh         用于控制函数重新启动的字符串 (可选)。
-                        目前唯一支持的值是 "always"。效果是每次前导文本改变时
-                        都会调用函数。
-忽略其他项目。
+要知道關於匹配詞的信息，返回包含匹配列表的一個字典。字典包含以下項目：
+        words           包含匹配單詞的列表 (必需)。
+        refresh         用於控制函數重新啟動的字符串 (可選)。
+                        目前唯一支持的值是 "always"。效果是每次前導文本改變時
+                        都會調用函數。
+忽略其他項目。
 
-要在补全结束之后有所行动，参见  <a href="autocmd.html#CompleteDone">CompleteDone</a>  自动命令事件。
+要在補全結束之後有所行動，參見  <a href="autocmd.html#CompleteDone">CompleteDone</a>  自動命令事件。
 
-例如，函数可以这么做: 
-<code class="example">        let matches = ... 单词列表 ...</code>
+例如，函數可以這麼做: 
+<code class="example">        let matches = ... 單詞列表 ...</code>
 <code class="example">        return {'words': matches, 'refresh': 'always'}</code>
 
                                                 <b class="vimtag"> <a name="complete-items">complete-items</a> </b>
-每个列表项可以是字符串或者字典类型。如果是字符串，直接用作补全文本。如果是字
-典，可以包含以下各项:
+每個列表項可以是字符串或者字典類型。如果是字符串，直接用作補全文本。如果是字
+典，可以包含以下各項:
         word            需要插入的文本，必需
-        abbr            "word" 的缩写；如果非空，菜单里使用它而不是 "word"
-        menu            用于弹出菜单的补充文本，在 "word" 或 "abbr" 之后显示
-        info            关于补全项的更多信息，能够在预览窗口显示
-        kind            代表补全类型的单个字母
-        icase           如果非零，比较项目是否等同时忽略大小写；如果省略就假定
-                        为零，这时可以同时加入只有大小写有差异的匹配项
-        dup             如果非零，那么即使和此匹配包含相同单词的匹配项已经存在
-                        也无妨。
-        empty           如果非零，匹配项即使是空字符串也会加入
+        abbr            "word" 的縮寫；如果非空，菜單裡使用它而不是 "word"
+        menu            用於彈出菜單的補充文本，在 "word" 或 "abbr" 之後顯示
+        info            關於補全項的更多信息，能夠在預覽窗口顯示
+        kind            代表補全類型的單個字母
+        icase           如果非零，比較項目是否等同時忽略大小寫；如果省略就假定
+                        為零，這時可以同時加入只有大小寫有差異的匹配項
+        dup             如果非零，那麼即使和此匹配包含相同單詞的匹配項已經存在
+                        也無妨。
+        empty           如果非零，匹配項即使是空字符串也會加入
 
-除了 "icase"、"dup" 和 "empty" 以外，其它各项必须是字符串。如果有一项不合要
-求，报错，而列表的其余项目也不再使用。你可以在返回列表中混用字符串和字典项目。
+除了 "icase"、"dup" 和 "empty" 以外，其它各項必須是字符串。如果有一項不合要
+求，報錯，而列表的其餘項目也不再使用。你可以在返回列表中混用字符串和字典項目。
 
-"menu" 项目用于弹出菜单且可能被截短，所以它应该尽量简短。"info" 项目可以稍长。
-如果在 <a href="options.html#'completeopt'">'completeopt'</a> 中包含 "preview"，预览窗口会显示该项信息。关闭弹出菜单
-后， "info" 项目将保留显示，这对录入函数参数很有用。用单个空格设置 "info" 可以
-清除预览窗口现存的文本。预览窗口的大小缺省是三行，但在 <a href="options.html#'previewheight'">'previewheight'</a> 为 1 或
-2 时使用其值。
+"menu" 項目用於彈出菜單且可能被截短，所以它應該盡量簡短。"info" 項目可以稍長。
+如果在 <a href="options.html#'completeopt'">'completeopt'</a> 中包含 "preview"，預覽窗口會顯示該項信息。關閉彈出菜單
+後， "info" 項目將保留顯示，這對錄入函數參數很有用。用單個空格設置 "info" 可以
+清除預覽窗口現存的文本。預覽窗口的大小缺省是三行，但在 <a href="options.html#'previewheight'">'previewheight'</a> 為 1 或
+2 時使用其值。
 
-"kind" 项目用单一字母表示补全类型。用它可以指定补全的不同显示方式 (不同颜色或
-者图标)。目前，可用如下类型:
-        v       变量
-        f       函数或方法
-        m       结构或类成员
+"kind" 項目用單一字母表示補全類型。用它可以指定補全的不同顯示方式 (不同顏色或
+者圖標)。目前，可用如下類型:
+        v       變量
+        f       函數或方法
+        m       結構或類成員
         t       typedef
         d       #define 或宏
 
-如果搜索匹配耗时较长，可以调用  <a href="eval.html#complete_add()">complete_add()</a>  向总列表中增加每个匹配。不要在
-返回的列表里包含这些匹配！搜索匹配的同时，时不时地调用  <a href="eval.html#complete_check()">complete_check()</a>  来使
-得用户仍然可以按键。如果该函数返回非零，搜索停止。
+如果搜索匹配耗時較長，可以調用  <a href="eval.html#complete_add()">complete_add()</a>  向總列表中增加每個匹配。不要在
+返回的列表裡包含這些匹配！搜索匹配的同時，時不時地調用  <a href="eval.html#complete_check()">complete_check()</a>  來使
+得用戶仍然可以按鍵。如果該函數返回非零，搜索停止。
 
                                                         <b class="vimtag"> <a name="E839">E839</a> </b> <b class="vimtag"> <a name="E840">E840</a> </b>
-该函数可以移动光标，结束后光标会恢复。
-该函数不允许移动到其他窗口，也不允许删除文本。
+該函數可以移動光標，結束後光標會恢復。
+該函數不允許移動到其他窗口，也不允許刪除文本。
 
-一个补全月份名的示例: 
+一個補全月份名的示例: 
 <code class="example">        fun! CompleteMonths(findstart, base)</code>
 <code class="example">          if a:findstart</code>
-<code class="example">            " 定位单词的开始处</code>
+<code class="example">            " 定位單詞的開始處</code>
 <code class="example">            let line = getline('.')</code>
 <code class="example">            let start = col('.') - 1</code>
 <code class="example">            while start &gt; 0 &amp;&amp; line[start - 1] =~ '\a'</code>
@@ -947,7 +947,7 @@ line"。如果该词被接受，那么下个 <code class="keystroke">CTRL-X</cod
 <code class="example">            endwhile</code>
 <code class="example">            return start</code>
 <code class="example">          else</code>
-<code class="example">            " 寻找匹配 "a:base" 的月份</code>
+<code class="example">            " 尋找匹配 "a:base" 的月份</code>
 <code class="example">            let res = []</code>
 <code class="example">            for m in split("Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec")</code>
 <code class="example">              if m =~ '^' . a:base</code>
@@ -959,10 +959,10 @@ line"。如果该词被接受，那么下个 <code class="keystroke">CTRL-X</cod
 <code class="example">        endfun</code>
 <code class="example">        set completefunc=CompleteMonths</code>
 
-功能同上，但是现在假设搜索比较慢: 
+功能同上，但是現在假設搜索比較慢: 
 <code class="example">        fun! CompleteMonths(findstart, base)</code>
 <code class="example">          if a:findstart</code>
-<code class="example">            " 定位单词的开始处</code>
+<code class="example">            " 定位單詞的開始處</code>
 <code class="example">            let line = getline('.')</code>
 <code class="example">            let start = col('.') - 1</code>
 <code class="example">            while start &gt; 0 &amp;&amp; line[start - 1] =~ '\a'</code>
@@ -970,7 +970,7 @@ line"。如果该词被接受，那么下个 <code class="keystroke">CTRL-X</cod
 <code class="example">            endwhile</code>
 <code class="example">            return start</code>
 <code class="example">          else</code>
-<code class="example">            " 寻找匹配 "a:base" 的月份</code>
+<code class="example">            " 尋找匹配 "a:base" 的月份</code>
 <code class="example">            for m in split("Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec")</code>
 <code class="example">              if m =~ '^' . a:base</code>
 <code class="example">                call complete_add(m)</code>
@@ -986,77 +986,77 @@ line"。如果该词被接受，那么下个 <code class="keystroke">CTRL-X</cod
 <code class="example">        set completefunc=CompleteMonths</code>
 
 
-插 入 补 全 弹 出 菜 单                                 <b class="vimtag"> <a name="ins-completion-menu">ins-completion-menu</a> </b>
+插 入 補 全 彈 出 菜 單                                 <b class="vimtag"> <a name="ins-completion-menu">ins-completion-menu</a> </b>
                                                         <b class="vimtag"> <a name="popupmenu-completion">popupmenu-completion</a> </b>
-Vim 可以用更简单的弹出菜单来显示匹配。
+Vim 可以用更簡單的彈出菜單來顯示匹配。
 
-当下面条件符合时使用弹出菜单:
-- <a href="options.html#'completeopt'">'completeopt'</a> 选项包含 "menu" 或 "menuone"。
-- 显示终端至少支持 8 色。
-- 至少有两条匹配项。如果使用 "menuone"，一条匹配也可以。
+當下面條件符合時使用彈出菜單:
+- <a href="options.html#'completeopt'">'completeopt'</a> 選項包含 "menu" 或 "menuone"。
+- 顯示終端至少支持 8 色。
+- 至少有兩條匹配項。如果使用 "menuone"，一條匹配也可以。
 
-选项 <a href="options.html#'pumheight'">'pumheight'</a> 用于设置最大高度。默认值是使用全部有效空间。
+選項 <a href="options.html#'pumheight'">'pumheight'</a> 用於設置最大高度。默認值是使用全部有效空間。
 
-有三个状态:
-1. 插入了完整的匹配，例如在 <code class="keystroke">CTRL-N</code> 或 <code class="keystroke">CTRL-P</code> 之后。
-2. 用光标键选择其它匹配项。此时不插入该匹配项，只在弹出菜单中高亮选中的条目。
-3. 只插入了部分匹配文本，并且已经输入字符或者使用了退格键，这时匹配项列表根据
-   光标前的内容进行调整。
+有三個狀態:
+1. 插入了完整的匹配，例如在 <code class="keystroke">CTRL-N</code> 或 <code class="keystroke">CTRL-P</code> 之後。
+2. 用光標鍵選擇其它匹配項。此時不插入該匹配項，只在彈出菜單中高亮選中的條目。
+3. 只插入了部分匹配文本，並且已經輸入字符或者使用了退格鍵，這時匹配項列表根據
+   光標前的內容進行調整。
 
-开始时你通常处于状态一并插入第一个匹配。如果 <a href="options.html#'completeopt'">'completeopt'</a> 包含了 "longest" 而
-且有多个匹配项，那么开始于状态三。
+開始時你通常處於狀態一併插入第一個匹配。如果 <a href="options.html#'completeopt'">'completeopt'</a> 包含了 "longest" 而
+且有多個匹配項，那麼開始於狀態三。
 
-如果选择其它匹配项，例如键入 <code class="keystroke">CTRL-N</code> 或 <code class="keystroke">CTRL-P</code>，就进入了状态一。这不会改变匹配
-项列表。
+如果選擇其它匹配項，例如鍵入 <code class="keystroke">CTRL-N</code> 或 <code class="keystroke">CTRL-P</code>，就進入了狀態一。這不會改變匹配
+項列表。
 
-如果退回到原文，就会处于状态三。要立即进入该状态，可以使用快捷键映射方法，该映
-射在补全开始后立即使用 <code class="keystroke">CTRL-P</code>: 
+如果退回到原文，就會處於狀態三。要立即進入該狀態，可以使用快捷鍵映射方法，該映
+射在補全開始後立即使用 <code class="keystroke">CTRL-P</code>: 
 <code class="example">        :imap &lt;F7&gt; &lt;C-N&gt;&lt;C-P&gt;</code>
 
                                                 <b class="vimtag"> <a name="popupmenu-keys">popupmenu-keys</a> </b>
-状态一下，这些键有特别的含义:
-<code class="special">&lt;BS&gt;</code> 和 <code class="keystroke">CTRL-H</code>    删除一个字符，查找光标前单词的匹配项。这会减少列表中匹配项的
-                  数目，常常到只有一个项目，然后切换到状态二。
+狀態一下，這些鍵有特別的含義:
+<code class="special">&lt;BS&gt;</code> 和 <code class="keystroke">CTRL-H</code>    刪除一個字符，查找光標前單詞的匹配項。這會減少列表中匹配項的
+                  數目，常常到只有一個項目，然後切換到狀態二。
 其它非特殊字符:
-                  停止补全，不改变匹配，然后插入输入的字符。
+                  停止補全，不改變匹配，然後插入輸入的字符。
 
-状态二和状态三下，这些键有特别的含义:
-<code class="special">&lt;BS&gt;</code> 和 <code class="keystroke">CTRL-H</code>    删除一个字符，并查找光标前变短的单词的匹配项。这可能会发现更
-                  多的匹配项。
-<code class="keystroke">CTRL-L</code>            从当前匹配项中增加一个字符，可能会减少匹配项的数量。
-任何可显示的非空白字符:
-                  加入该字符，减少匹配项的数量。
+狀態二和狀態三下，這些鍵有特別的含義:
+<code class="special">&lt;BS&gt;</code> 和 <code class="keystroke">CTRL-H</code>    刪除一個字符，並查找光標前變短的單詞的匹配項。這可能會發現更
+                  多的匹配項。
+<code class="keystroke">CTRL-L</code>            從當前匹配項中增加一個字符，可能會減少匹配項的數量。
+任何可顯示的非空白字符:
+                  加入該字符，減少匹配項的數量。
 
-全部三个状态中，可以使用这些键:
-<code class="keystroke">CTRL-Y</code>            是 (Yes): 接受当前选择的匹配项并停止补全。
-<code class="keystroke">CTRL-E</code>            结束 (End) 补全，回退到选择匹配前原有的内容 (原先输入的或者
-                  最长的公共字符串)。
-<code class="special">&lt;PageUp&gt;</code>          反向若干项选择一个匹配项，但不插入。
-<code class="special">&lt;PageDown&gt;</code>        正向若干项选择一个匹配项，但不插入。
-<code class="special">&lt;Up&gt;</code>              选择前一个匹配，同 <code class="keystroke">CTRL-P</code>，但不插入。
-<code class="special">&lt;Down&gt;</code>            选择下一个匹配，同 <code class="keystroke">CTRL-N</code>，但不插入。
-<code class="special">&lt;Space&gt;</code> 或 <code class="special">&lt;Tab&gt;</code>  停止补全，不改变匹配，插入键入的该字符
+全部三個狀態中，可以使用這些鍵:
+<code class="keystroke">CTRL-Y</code>            是 (Yes): 接受當前選擇的匹配項並停止補全。
+<code class="keystroke">CTRL-E</code>            結束 (End) 補全，回退到選擇匹配前原有的內容 (原先輸入的或者
+                  最長的公共字符串)。
+<code class="special">&lt;PageUp&gt;</code>          反向若干項選擇一個匹配項，但不插入。
+<code class="special">&lt;PageDown&gt;</code>        正向若干項選擇一個匹配項，但不插入。
+<code class="special">&lt;Up&gt;</code>              選擇前一個匹配，同 <code class="keystroke">CTRL-P</code>，但不插入。
+<code class="special">&lt;Down&gt;</code>            選擇下一個匹配，同 <code class="keystroke">CTRL-N</code>，但不插入。
+<code class="special">&lt;Space&gt;</code> 或 <code class="special">&lt;Tab&gt;</code>  停止補全，不改變匹配，插入鍵入的該字符
 
-<code class="special">&lt;Enter&gt;</code> 键的行为取决于你现在所处的状态:
-状态一:           使用现有的文本，然后插入换行符。
-状态二:           插入当前选择项。
-状态三:           使用现有的文本，然后插入换行符。
+<code class="special">&lt;Enter&gt;</code> 鍵的行為取決於你現在所處的狀態:
+狀態一:           使用現有的文本，然後插入換行符。
+狀態二:           插入當前選擇項。
+狀態三:           使用現有的文本，然後插入換行符。
 
-换句话说: 如果你只使用光标键在匹配项列表中选择其它条目，按 <code class="special">&lt;Enter&gt;</code> 键将插入该
-匹配。如果键入其它字符，按 <code class="special">&lt;Enter&gt;</code> 键将插入换行符。
+換句話說: 如果你只使用光標鍵在匹配項列表中選擇其它條目，按 <code class="special">&lt;Enter&gt;</code> 鍵將插入該
+匹配。如果鍵入其它字符，按 <code class="special">&lt;Enter&gt;</code> 鍵將插入換行符。
 
 
-下面的高亮组能够改变菜单颜色:
-Pmenu           普通项  <a href="syntax.html#hl-Pmenu">hl-Pmenu</a> 
-PmenuSel        选中项  <a href="syntax.html#hl-PmenuSel">hl-PmenuSel</a> 
-PmenuSbar       滚动条  <a href="syntax.html#hl-PmenuSbar">hl-PmenuSbar</a> 
-PmenuThumb      滚动条拇指 (thumb)  <a href="syntax.html#hl-PmenuThumb">hl-PmenuThumb</a> 
+下面的高亮組能夠改變菜單顏色:
+Pmenu           普通項  <a href="syntax.html#hl-Pmenu">hl-Pmenu</a> 
+PmenuSel        選中項  <a href="syntax.html#hl-PmenuSel">hl-PmenuSel</a> 
+PmenuSbar       滾動條  <a href="syntax.html#hl-PmenuSbar">hl-PmenuSbar</a> 
+PmenuThumb      滾動條拇指 (thumb)  <a href="syntax.html#hl-PmenuThumb">hl-PmenuThumb</a> 
 
-显示弹出窗口时，没有专门的映射。但你可以使用插入模式映射并检查  <a href="eval.html#pumvisible()">pumvisible()</a> 
-函数的返回值以进行不同的处理。例如: 
+顯示彈出窗口時，沒有專門的映射。但你可以使用插入模式映射並檢查  <a href="eval.html#pumvisible()">pumvisible()</a> 
+函數的返回值以進行不同的處理。例如: 
 <code class="example">        :inoremap &lt;Down&gt; &lt;C-R&gt;=pumvisible() ? "\&lt;lt&gt;C-N&gt;" : "\&lt;lt&gt;Down&gt;"&lt;CR&gt;</code>
 <code class="example"></code>
-映射中用 <code class="special">&lt;expr&gt;</code> 可以在键入某字符或者满足某些条件时弹出菜单。例如，键入 '.': 
+映射中用 <code class="special">&lt;expr&gt;</code> 可以在鍵入某字符或者滿足某些條件時彈出菜單。例如，鍵入 '.': 
 <code class="example">        inoremap &lt;expr&gt; . MayComplete()</code>
 <code class="example">        func MayComplete()</code>
 <code class="example">            if (can complete)</code>
@@ -1065,196 +1065,196 @@ PmenuThumb      滚动条拇指 (thumb)  <a href="syntax.html#hl-PmenuThumb">hl-
 <code class="example">            return '.'</code>
 <code class="example">        endfunc</code>
 <code class="example"></code>
-详见  <a href="map.html#:map-%3Cexpr%3E">:map-&lt;expr&gt;</a> 。
+詳見  <a href="map.html#:map-%3Cexpr%3E">:map-&lt;expr&gt;</a> 。
 
 
-特 定 文 件 类 型 全 能 补 全 的 补 充 说 明        <b class="vimtag"> <a name="compl-omni-filetypes">compl-omni-filetypes</a> </b>
+特 定 文 件 類 型 全 能 補 全 的 補 充 說 明        <b class="vimtag"> <a name="compl-omni-filetypes">compl-omni-filetypes</a> </b>
 
-文件类型 <code class="special">{filetype}</code> 使用的是 <a href="options.html#'runtimepath'">'runtimepath'</a> 的 autoload/<code class="special">{filetype}</code>complete.vim
-文件。比如对于 "java"，就是文件 autoload/javacomplete.vim。
+文件類型 <code class="special">{filetype}</code> 使用的是 <a href="options.html#'runtimepath'">'runtimepath'</a> 的 autoload/<code class="special">{filetype}</code>complete.vim
+文件。比如對於 "java"，就是文件 autoload/javacomplete.vim。
 
 
 C                                                       <b class="vimtag"> <a name="ft-c-omni">ft-c-omni</a> </b>
 
-C 代码补全需要标签文件。你应该使用 Exuberant ctags 软件，因为它会加入补全所需
-要的额外信息。你可以在这里找到它:  http://ctags.sourceforge.net/ 推荐使用 5.6
-或以后版本。
+C 代碼補全需要標籤文件。你應該使用 Exuberant ctags 軟件，因為它會加入補全所需
+要的額外信息。你可以在這裡找到它:  http://ctags.sourceforge.net/ 推薦使用 5.6
+或以後版本。
 
-对于 5.5.4 版本，你应该打上增加 "typename:" 字段的补丁:
+對於 5.5.4 版本，你應該打上增加 "typename:" 字段的補丁:
         ftp://ftp.vim.org/pub/vim/unstable/patches/ctags-5.5.4.patch
-可以在这里找到 MS-Windows 上已经编译好的可执行版本:
+可以在這裡找到 MS-Windows 上已經編譯好的可執行版本:
         http://georgevreilly.com/vim/ctags.html
 
-如果你想补全系统函数，可以用 ctags 生成包含所有系统头文件的标签文件: 
+如果你想補全系統函數，可以用 ctags 生成包含所有系統頭文件的標籤文件: 
 <code class="example">        % ctags -R -f ~/.vim/systags /usr/include /usr/local/include</code>
-在 vimrc 文件中，把这个标签文件增加到 <a href="options.html#'tags'">'tags'</a> 选项中: 
+在 vimrc 文件中，把這個標籤文件增加到 <a href="options.html#'tags'">'tags'</a> 選項中: 
 <code class="example">        set tags+=~/.vim/systags</code>
 <code class="example"></code>
-如果在不包含 "." 或 "=" 的名字后面用 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-O</code>，会直接从标签文件中补全。这
-适用于任何标识符，包括函数名。如果你想补全标签文件没有的局部变量名，用 <code class="keystroke">CTRL-P</code>
+如果在不包含 "." 或 "=" 的名字後面用 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-O</code>，會直接從標籤文件中補全。這
+適用於任何標識符，包括函數名。如果你想補全標籤文件沒有的局部變量名，用 <code class="keystroke">CTRL-P</code>
 代替。
 
-如果在包含 "." 或 "=" 的名字后面用 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-O</code>，Vim 会试图识别变量类型并指出
-它所含的成员。这意味着只会列出该变量的有效成员。
+如果在包含 "." 或 "=" 的名字後面用 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-O</code>，Vim 會試圖識別變量類型並指出
+它所含的成員。這意味著只會列出該變量的有效成員。
 
-如果成员名字已经完整，<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-O</code> 会为复合类型加上 "." 或 "-&gt;"。
+如果成員名字已經完整，<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-O</code> 會為復合類型加上 "." 或 "-&gt;"。
 
-Vim 没有包含 C 编译器，它只能识别使用明确格式的声明。预处理器指令可能会引起混
-淆。如果在多个位置里定义了同样的结构名，所有可能的结构成员都会被包括。
+Vim 沒有包含 C 編譯器，它只能識別使用明確格式的聲明。預處理器指令可能會引起混
+淆。如果在多個位置裡定義了同樣的結構名，所有可能的結構成員都會被包括。
 
 
 CSS                                                     <b class="vimtag"> <a name="ft-css-omni">ft-css-omni</a> </b>
 
-遵循 CSS 2.1 标准来补全属性和相应的值。
+遵循 CSS 2.1 標準來補全屬性和相應的值。
 
 
 HTML                                                    <b class="vimtag"> <a name="ft-html-omni">ft-html-omni</a> </b>
 XHTML                                                   <b class="vimtag"> <a name="ft-xhtml-omni">ft-xhtml-omni</a> </b>
 
-<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-O</code> 能够补全 (X)HTML 文件的各种元素。它是为了支持编写 XHTML 1.0
-Strict 文件而设计的，但也可用于其它 HTML 版本。特性:
+<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-O</code> 能夠補全 (X)HTML 文件的各種元素。它是為了支持編寫 XHTML 1.0
+Strict 文件而設計的，但也可用於其它 HTML 版本。特性:
 
-- "&lt;" 之后，根据上下文补全标签名 (在标签内部，不给出 div 标签建议)；'/&gt;' 表明
-  空标签
-- 在标签中，补全合适的属性 (不包括标签的 width 属性)；同时显示属性类型；'*' 表
-  明必需的属性
-- 如果属性只有有限的几个可能值，用它们来补全
-- 补全实体 (entity) 名
-- 根据 <code class="special">&lt;style&gt;</code> 标签和包含的 CSS 文件里提取的数据，补全 "class" 和 "id" 属性值
-- 对 "style" 属性值或在 "style" 标签内部补全时，切换到  <a href="insert.html#ft-css-omni">ft-css-omni</a>  补全
-- 对事件属性值或在 "script" 标签内部补全时，切换到  <a href="insert.html#ft-javascript-omni">ft-javascript-omni</a>  补全
-- "&lt;/" 之后，<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-O</code> 会关闭最近打开的标签
+- "&lt;" 之後，根據上下文補全標籤名 (在標籤內部，不給出 div 標籤建議)；'/&gt;' 表明
+  空標籤
+- 在標籤中，補全合適的屬性 (不包括標籤的 width 屬性)；同時顯示屬性類型；'*' 表
+  明必需的屬性
+- 如果屬性只有有限的幾個可能值，用它們來補全
+- 補全實體 (entity) 名
+- 根據 <code class="special">&lt;style&gt;</code> 標籤和包含的 CSS 文件裡提取的數據，補全 "class" 和 "id" 屬性值
+- 對 "style" 屬性值或在 "style" 標籤內部補全時，切換到  <a href="insert.html#ft-css-omni">ft-css-omni</a>  補全
+- 對事件屬性值或在 "script" 標籤內部補全時，切換到  <a href="insert.html#ft-javascript-omni">ft-javascript-omni</a>  補全
+- "&lt;/" 之後，<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-O</code> 會關閉最近打開的標籤
 
-<code class="note">备注</code>: 如果是第一次使用，补全菜单的显示会有少许延迟--这点时间用于数据文件载入。
-<code class="note">备注</code>: 补全可能会在错误格式的文档中失效。在这种情况下，请尝试运行  <a href="quickfix.html#:make">:make</a>  命令
-检查格式问题。
+<code class="note">備註</code>: 如果是第一次使用，補全菜單的顯示會有少許延遲--這點時間用於數據文件載入。
+<code class="note">備註</code>: 補全可能會在錯誤格式的文檔中失效。在這種情況下，請嘗試運行  <a href="quickfix.html#:make">:make</a>  命令
+檢查格式問題。
 
 
-HTML 类型                                               <b class="vimtag"> <a name="html-flavor">html-flavor</a> </b>
+HTML 類型                                               <b class="vimtag"> <a name="html-flavor">html-flavor</a> </b>
 
-默认的 HTML 补全机制依赖于文件类型: HTML 文件使用 HTML 4.01 Transitional 标准
-(<a href="options.html#'filetype'">'filetype'</a> 是 <code class="badlink">'html'</code>)，XHTML 使用 XHTML 1.0 Strict 标准 (<a href="options.html#'filetype'">'filetype'</a> 是
+默認的 HTML 補全機制依賴於文件類型: HTML 文件使用 HTML 4.01 Transitional 標準
+(<a href="options.html#'filetype'">'filetype'</a> 是 <code class="badlink">'html'</code>)，XHTML 使用 XHTML 1.0 Strict 標準 (<a href="options.html#'filetype'">'filetype'</a> 是
 <code class="badlink">'xhtml'</code>)。
 
-如果在任何标签的外部进行补全，你可以选择 DOCTYPE，然后载入合适的数据文件，并用
-于后面所有的补全操作。
+如果在任何標籤的外部進行補全，你可以選擇 DOCTYPE，然後載入合適的數據文件，並用
+於後面所有的補全操作。
 
-关于数据文件格式更多的信息见  <a href="insert.html#xml-omni-datafile">xml-omni-datafile</a> 。vim 的线上站点 ( <a href="intro.html#www">www</a> ) 可以
-找到一些数据文件。
+關於數據文件格式更多的信息見  <a href="insert.html#xml-omni-datafile">xml-omni-datafile</a> 。vim 的線上站點 ( <a href="intro.html#www">www</a> ) 可以
+找到一些數據文件。
 
-<code class="note">注意</code> b:html_omni_flavor 可以指向任何使用 XML 数据的文件。这就使混合 PHP
-( <a href="insert.html#ft-php-omni">ft-php-omni</a> ) 和任何 XML 方言的补全成为可能 (假设你有相应的数据文件)。如果该
-变量没有设置，使用 XHTML 1.0 Strict 标准。
+<code class="note">注意</code> b:html_omni_flavor 可以指向任何使用 XML 數據的文件。這就使混合 PHP
+( <a href="insert.html#ft-php-omni">ft-php-omni</a> ) 和任何 XML 方言的補全成為可能 (假設你有相應的數據文件)。如果該
+變量沒有設置，使用 XHTML 1.0 Strict 標準。
 
 
 JAVASCRIPT                                             <b class="vimtag"> <a name="ft-javascript-omni">ft-javascript-omni</a> </b>
 
-补全绝大部分 JavaScript 语言和 DOM 元素。
+補全絕大部分 JavaScript 語言和 DOM 元素。
 
-补全:
+補全:
 
-- 变量
-- 函数名；显示函数参数
-- 函数参数
-- 变量属性，试图检测变量类型
-- 根据上下文补全 DOM 对象和属性
-- 语言中的关键字
+- 變量
+- 函數名；顯示函數參數
+- 函數參數
+- 變量屬性，試圖檢測變量類型
+- 根據上下文補全 DOM 對像和屬性
+- 語言中的關鍵字
 
-补全机制可以用于单独的 JavaScript 文件 (&amp;ft==javascript)、(X)HTML 的 <code class="special">&lt;script&gt;</code>
-标签内部和事件的属性值 (包含对外部文件的扫描)。
+補全機制可以用於單獨的 JavaScript 文件 (&amp;ft==javascript)、(X)HTML 的 <code class="special">&lt;script&gt;</code>
+標籤內部和事件的屬性值 (包含對外部文件的掃瞄)。
 
 DOM 兼容性
 
-当前 (2006 年初) 有两种主要浏览器 - MS Internet Explorer 和 Mozilla Firefox。
-这两个软件市场占有率达到 90% 以上。理论上，W3C 组织 (http://www.w3c.org) 建立
-标准，但是这些标准并没有完全遵守和实现。
+當前 (2006 年初) 有兩種主要瀏覽器 - MS Internet Explorer 和 Mozilla Firefox。
+這兩個軟件市場佔有率達到 90% 以上。理論上，W3C 組織 (http://www.w3c.org) 建立
+標準，但是這些標準並沒有完全遵守和實現。
 
-<code class="section">                IE      FF      W3C  全能补全 </code>
+<code class="section">                IE      FF      W3C  全能補全 </code>
 <code class="section">                +/-     +/-     +    +               </code>
 <code class="section">                +       +       -    +               </code>
 <code class="section">                +       -       -    -               </code>
 <code class="section">                -       +       -    -               </code>
 
-不管浏览器的实现进度如何，补全插件总是把标准定义的元素放入建议列表。两个主要浏
-览器都实现但标准没有覆盖的元素也作为建议。而其它的元素则不出现于建议列表。
+不管瀏覽器的實現進度如何，補全插件總是把標準定義的元素放入建議列表。兩個主要瀏
+覽器都實現但標準沒有覆蓋的元素也作為建議。而其它的元素則不出現於建議列表。
 
 
 PHP                                                     <b class="vimtag"> <a name="ft-php-omni">ft-php-omni</a> </b>
 
-PHP 代码的补全需要标签文件才能对外部文件的数据和类进行补全。应该使用 Exuberant
-ctags 5.5.4 版本或更新的版本。在这里可以找到它: http://ctags.sourceforge.net/
+PHP 代碼的補全需要標籤文件才能對外部文件的數據和類進行補全。應該使用 Exuberant
+ctags 5.5.4 版本或更新的版本。在這裡可以找到它: http://ctags.sourceforge.net/
 
-脚本对以下项目进行补全:
+腳本對以下項目進行補全:
 
-- $ 变量名之后
-  - 如果变量声明为对象，加上 "-&gt;"，如果标签文件有效，显示类名
-  - 在 "-&gt;" 之后，只补全给定类中的函数和变量名。为了查找类的位置和内容，需要标
-    签文件。因为 PHP 不是强类型的语言，用户可以使用 @var 标签来声明类: 
+- $ 變量名之後
+  - 如果變量聲明為對象，加上 "-&gt;"，如果標籤文件有效，顯示類名
+  - 在 "-&gt;" 之後，只補全給定類中的函數和變量名。為了查找類的位置和內容，需要標
+    簽文件。因為 PHP 不是強類型的語言，用戶可以使用 @var 標籤來聲明類: 
 <code class="example"></code>
 <code class="example">        /* @var $myVar myClass */</code>
 <code class="example">        $myVar-&gt;</code>
 
-    不过，要找到 myClass 的内容，仍然需要标签文件。
+    不過，要找到 myClass 的內容，仍然需要標籤文件。
 
-- 带有附加信息的函数名:
-  - 如果是内建函数，列出可能的参数，在 | 之后列出函数返回的数据类型
-  - 如果是用户函数，列出参数和函数定义所在的文件名 (如果不是当前文件)
+- 帶有附加信息的函數名:
+  - 如果是內建函數，列出可能的參數，在 | 之後列出函數返回的數據類型
+  - 如果是用戶函數，列出參數和函數定義所在的文件名 (如果不是當前文件)
 
 - 常量名
-- 在 "new" 声明之后的类名
+- 在 "new" 聲明之後的類名
 
 
-<code class="note">注意</code>: 如果第一次调用补全功能，Vim 会把所有需要的数据载入内存。这可能需要几秒
-钟。下次补全时，就几乎感觉不到延迟了。
+<code class="note">注意</code>: 如果第一次調用補全功能，Vim 會把所有需要的數據載入內存。這可能需要幾秒
+鐘。下次補全時，就幾乎感覺不到延遲了。
 
-脚本检测光标是否在 &lt;?php ?&gt; 标签内。如果不是，会自动切换到 HTML/CSS/JavaScript
-补全。<code class="note">注意</code>: 和原始 HTML 文件不同，标签补全 (也仅对标签补全而言) 和上下文无关。
+腳本檢測光標是否在 &lt;?php ?&gt; 標籤內。如果不是，會自動切換到 HTML/CSS/JavaScript
+補全。<code class="note">注意</code>: 和原始 HTML 文件不同，標籤補全 (也僅對標籤補全而言) 和上下文無關。
 
 
 RUBY                                                    <b class="vimtag"> <a name="ft-ruby-omni">ft-ruby-omni</a> </b>
 
-Ruby 代码的补全需要 Vim 编译时带  <a href="various.html#+ruby">+ruby</a>  特性。
+Ruby 代碼的補全需要 Vim 編譯時帶  <a href="various.html#+ruby">+ruby</a>  特性。
 
-Ruby 补全会因需分析你的缓冲区以提供补全列表。它会从 <code class="badlink">'require'</code> 载入的和当前缓冲
-区定义的模块里提取补全。
+Ruby 補全會因需分析你的緩衝區以提供補全列表。它會從 <code class="badlink">'require'</code> 載入的和當前緩衝
+區定義的模塊裡提取補全。
 
-<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-O</code> 提供的补全是上下文相关的:
+<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-O</code> 提供的補全是上下文相關的:
 
-<code class="section">          上 下 文                        提 供 的 补 全 </code>
+<code class="section">          上 下 文                        提 供 的 補 全 </code>
 
- 1. 不在类定义中                     类名、常量和全局变量
+ 1. 不在類定義中                     類名、常量和全局變量
 
- 2. 类定义中                         这个类所定义的方法或常量
+ 2. 類定義中                         這個類所定義的方法或常量
 
- 3. '.'、'::' 或者 ':' 之后          被解除参照的对象所适用的方法
+ 3. '.'、'::' 或者 ':' 之後          被解除參照的對象所適用的方法
 
- 4. ':' 或者 ':foo' 之后             符号名 (<code class="badlink">'foo'</code> 起始的那些)
+ 4. ':' 或者 ':foo' 之後             符號名 (<code class="badlink">'foo'</code> 起始的那些)
 
-<code class="note">备注</code>:
- - Vim 会载入/执行程序代码，以便提供补全。这可能会导致部分代码被执行。这一点也
-   许值得关注。缺省行为不再打开这一功能。如果需要此特性，加上 
+<code class="note">備註</code>:
+ - Vim 會載入/執行程序代碼，以便提供補全。這可能會導致部分代碼被執行。這一點也
+   許值得關注。缺省行為不再打開這一功能。如果需要此特性，加上 
 <code class="example">     let g:rubycomplete_buffer_loading = 1</code>
-- 在第 1 点中，Vim 可以解析整个缓冲区以获得用作补全结果的类名列表。默认关闭此
-   功能。要使其生效，在 vimrc 里加入 
+- 在第 1 點中，Vim 可以解析整個緩衝區以獲得用作補全結果的類名列表。默認關閉此
+   功能。要使其生效，在 vimrc 裡加入 
 <code class="example">     let g:rubycomplete_classes_in_global = 1</code>
-- 在第 2 点中，不支持匿名类。
- - 在第 3 点中，Vim 会试图判断对象所支持的方法。
- - Vim 可以检测和载入 Rails 环境并用于 rails 项目的文件。默认关闭此特性。要使
-   其生效，在 vimrc 里加入 
+- 在第 2 點中，不支持匿名類。
+ - 在第 3 點中，Vim 會試圖判斷對像所支持的方法。
+ - Vim 可以檢測和載入 Rails 環境並用於 rails 項目的文件。默認關閉此特性。要使
+   其生效，在 vimrc 裡加入 
 <code class="example">     let g:rubycomplete_rails = 1</code>
 
 
 SYNTAX                                                  <b class="vimtag"> <a name="ft-syntax-omni">ft-syntax-omni</a> </b>
 
-Vim 能够对将近 500 种语言进行语法高亮。高亮支持的一部分是需要知道构成语言的关
-键字。许多文件类型已经有专门的补全脚本，而对其它的文件类型而言，syntaxcomplete
-脚本可以提供基本的补全。实现的方法是用 Vim 知道如何色彩高亮的那些文本来构造全
-能补全列表。它适用于任何文件类型，并可以提供基本但和语言相关的补全机制。
+Vim 能夠對將近 500 種語言進行語法高亮。高亮支持的一部分是需要知道構成語言的關
+鍵字。許多文件類型已經有專門的補全腳本，而對其它的文件類型而言，syntaxcomplete
+腳本可以提供基本的補全。實現的方法是用 Vim 知道如何色彩高亮的那些文本來構造全
+能補全列表。它適用於任何文件類型，並可以提供基本但和語言相關的補全機制。
 
-要打开语法打开补全: 
+要打開語法打開補全: 
 <code class="example">    setlocal omnifunc=syntaxcomplete#Complete</code>
 <code class="example"></code>
-你可以把下列语句放到  <a href="starting.html#.vimrc">.vimrc</a>  中 (要在任何 ":filetype" 命令之后)，使其自动生
+你可以把下列語句放到  <a href="starting.html#.vimrc">.vimrc</a>  中 (要在任何 ":filetype" 命令之後)，使其自動生
 效: 
 <code class="example">    if has("autocmd") &amp;&amp; exists("+omnifunc")</code>
 <code class="example">        autocmd Filetype *</code>
@@ -1263,58 +1263,58 @@ Vim 能够对将近 500 种语言进行语法高亮。高亮支持的一部分�
 <code class="example">                    \   endif</code>
 <code class="example">    endif</code>
 <code class="example"></code>
-只有在针对特定文件类型的插件不存在的情况下，上述语句才对脚本设置补全操作。
+只有在針對特定文件類型的插件不存在的情況下，上述語句才對腳本設置補全操作。
 
-每个文件类型可能有很多语法项目。此插件允许你定制从列表里包含或排除哪些语法组。
-让我们看看 PHP 文件类型如何处理。
+每個文件類型可能有很多語法項目。此插件允許你定制從列表裡包含或排除哪些語法組。
+讓我們看看 PHP 文件類型如何處理。
 
-如果你正在编辑一个 index.php 文件，运行如下命令: 
+如果你正在編輯一個 index.php 文件，運行如下命令: 
 <code class="example">    syntax list</code>
 <code class="example"></code>
-首先你将看到有许多不同的语法组。PHP 语言可以包含来自不同语言的元素，比如
-HTML、 JavaScript 和许多其它语言。这种情况下，syntax 插件只包含由文件类型
-"php" 开头的语法组。例如，缺省 PHP 包含这些语法组: phpEnvVar、phpIntVar、
+首先你將看到有許多不同的語法組。PHP 語言可以包含來自不同語言的元素，比如
+HTML、 JavaScript 和許多其它語言。這種情況下，syntax 插件只包含由文件類型
+"php" 開頭的語法組。例如，缺省 PHP 包含這些語法組: phpEnvVar、phpIntVar、
 phpFunctions。
 
-如果希望包括非本文件类型指定的其他语法项目，可用正规表达式语法
-(autoload\syntaxcomplete.vim 的 13.0 版本加入) 来加入项目。编辑 PHP 文件时查看
-":syntax list" 的输出，我可以看到如下一些项目: 
+如果希望包括非本文件類型指定的其他語法項目，可用正規表達式語法
+(autoload\syntaxcomplete.vim 的 13.0 版本加入) 來加入項目。編輯 PHP 文件時查看
+":syntax list" 的輸出，我可以看到如下一些項目: 
 <code class="example">    htmlArg,htmlTag,htmlTagName,javaScriptStatement,javaScriptGlobalObjects</code>
 <code class="example"></code>
-要在编辑 PHP 文件时时使用 Javascript 和 HTML 关键字语法高亮组，可以指定三个正
-规表达式，每种语言分别一个。也可以简单限制包含组为特写值，而无需正规表达式: 
+要在編輯 PHP 文件時時使用 Javascript 和 HTML 關鍵字語法高亮組，可以指定三個正
+規表達式，每種語言分別一個。也可以簡單限制包含組為特寫值，而無需正規表達式: 
 <code class="example">    let g:omni_syntax_group_include_php = 'php\w\+,javaScript\w\+,html\w\+'</code>
 <code class="example">    let g:omni_syntax_group_include_php = 'phpFunctions,phpMethods'</code>
 
-这个变量的基本形式是: 
-<code class="example">    let g:omni_syntax_group_include_{filetype} = '逗号,分隔的,列表'</code>
+這個變量的基本形式是: 
+<code class="example">    let g:omni_syntax_group_include_{filetype} = '逗號,分隔的,列表'</code>
 <code class="example"></code>
-PHP 语言可以进行语法高亮的项目非常多，而这些项目在全能补全列表里都会出现。
+PHP 語言可以進行語法高亮的項目非常多，而這些項目在全能補全列表裡都會出現。
 
-有些人可能觉得这个列表不实用或者只对某些项感兴趣。(如有必要) 有两种方法可以裁
-剪这个列表。如果不想显示特定语法组，有两种不同的方法来标识这些组。第一个具体列
-出这些语法组的名字。第二个使用正规表达式来指定所有想要的语法组。在 vimrc 中增
-加两者之一即可: 
+有些人可能覺得這個列表不實用或者只對某些項感興趣。(如有必要) 有兩種方法可以裁
+剪這個列表。如果不想顯示特定語法組，有兩種不同的方法來標識這些組。第一個具體列
+出這些語法組的名字。第二個使用正規表達式來指定所有想要的語法組。在 vimrc 中增
+加兩者之一即可: 
 <code class="example">    let g:omni_syntax_group_exclude_php = 'phpCoreConstant,phpConstant'</code>
 <code class="example">    let g:omni_syntax_group_exclude_php = 'php\w*Constant'</code>
 <code class="example"></code>
-该列表可以加入多个语法组，以逗号分隔。这个变量的基本形式是: 
-<code class="example">    let g:omni_syntax_group_exclude_{filetype} = '逗号,分隔的,列表'</code>
+該列表可以加入多個語法組，以逗號分隔。這個變量的基本形式是: 
+<code class="example">    let g:omni_syntax_group_exclude_{filetype} = '逗號,分隔的,列表'</code>
 <code class="example"></code>
-可以建立任意多个这些变量，只要变量名尾部的文件类型不同就行了。
+可以建立任意多個這些變量，只要變量名尾部的文件類型不同就行了。
 
-此插件使用 isKeyword 选项来决定用于语法项目的单词边界。例如，Scheme 语言的补全
-应该包含 "-"，call-with-output-file。取决于你的文件类型，此方法未必能提供你期
-待的单词。设置 g:omni_syntax_use_iskeyword 选项为 0 会强制语法插件在单词字符上
-断开。在 vimrc 可以加如下行进行控制: 
+此插件使用 isKeyword 選項來決定用於語法項目的單詞邊界。例如，Scheme 語言的補全
+應該包含 "-"，call-with-output-file。取決於你的文件類型，此方法未必能提供你期
+待的單詞。設置 g:omni_syntax_use_iskeyword 選項為 0 會強制語法插件在單詞字符上
+斷開。在 vimrc 可以加如下行進行控制: 
 <code class="example">    let g:omni_syntax_use_iskeyword = 0</code>
 <code class="example"></code>
-为了插件开发者着想，本插件提供了公共函数 OmniSyntaxList。本函数可用于提供语法
-项目的列表。编辑 SQL 文件时 (:e syntax.sql)，可以用 ":syntax list" 命令看到各
-种组和语法项目。示例: 
+為了插件開發者著想，本插件提供了公共函數 OmniSyntaxList。本函數可用於提供語法
+項目的列表。編輯 SQL 文件時 (:e syntax.sql)，可以用 ":syntax list" 命令看到各
+種組和語法項目。示例: 
 <code class="example">    syntax list</code>
 <code class="example"></code>
-返回的数据类似如此: 
+返回的數據類似如此: 
 <code class="example">    sqlOperator    xxx some prior all like and any escape exists in is not</code>
 <code class="example">                       or intersect minus between distinct</code>
 <code class="example">                       links to Operator</code>
@@ -1324,20 +1324,20 @@ PHP 语言可以进行语法高亮的项目非常多，而这些项目在全能�
 <code class="example">                       varbinary binary smallmoney</code>
 <code class="example">                       image float integer timestamp real decimal</code>
 <code class="example"></code>
-这里列出两个语法组: sqlOperator 和 sqlType。要得到语法项目的列表，可用几种不同
-的方式调用 OminiSyntaxList。要得到不分组的所有语法项目: 
+這裡列出兩個語法組: sqlOperator 和 sqlType。要得到語法項目的列表，可用幾種不同
+的方式調用 OminiSyntaxList。要得到不分組的所有語法項目: 
 <code class="example">    echo OmniSyntaxList( [] )</code>
 <code class="example"></code>
-要得到 sqlOperator 语法组的所有语法项目: 
+要得到 sqlOperator 語法組的所有語法項目: 
 <code class="example">    echo OmniSyntaxList( ['sqlOperator'] )</code>
 <code class="example"></code>
-要得到 sqlOperator 和 sqlType 两个组的所有语法项目: 
+要得到 sqlOperator 和 sqlType 兩個組的所有語法項目: 
 <code class="example">    echo OmniSyntaxList( ['sqlOperator', 'sqlType'] )</code>
 <code class="example"></code>
-也可用正规表达式: 
+也可用正規表達式: 
 <code class="example">    echo OmniSyntaxList( ['sql\w\+'] )</code>
 <code class="example"></code>
-在插件中，通常可以把输出结果赋给一个列表: 
+在插件中，通常可以把輸出結果賦給一個列表: 
 <code class="example">    let myKeywords = []</code>
 <code class="example">    let myKeywords = OmniSyntaxList( ['sqlKeyword'] )</code>
 <code class="example"></code>
@@ -1345,43 +1345,43 @@ PHP 语言可以进行语法高亮的项目非常多，而这些项目在全能�
 <code class="example"></code>
 SQL                                                     <b class="vimtag"> <a name="ft-sql-omni">ft-sql-omni</a> </b>
 
-SQL 语言的补全包括语句、函数和关键字。还可以动态地补全表、过程、视图和列的列
-表，此时数据直接从数据库里提取。详细的指令和教程见  <a href="ft_sql.html#omni-sql-completion">omni-sql-completion</a> 。
+SQL 語言的補全包括語句、函數和關鍵字。還可以動態地補全表、過程、視圖和列的列
+表，此時數據直接從數據庫裡提取。詳細的指令和教程見  <a href="ft_sql.html#omni-sql-completion">omni-sql-completion</a> 。
 
-SQL 补全插件可以和其它补全插件一起使用。例如，PHP 文件类型有它自己的补全插件。
-因为 PHP 常用来生成访问数据库的动态网站，也可以同时打开 SQL 补全插件。这样就可
-以同时补全 PHP 代码和 SQL 代码。
+SQL 補全插件可以和其它補全插件一起使用。例如，PHP 文件類型有它自己的補全插件。
+因為 PHP 常用來生成訪問數據庫的動態網站，也可以同時打開 SQL 補全插件。這樣就可
+以同時補全 PHP 代碼和 SQL 代碼。
 
 
 XML                                                     <b class="vimtag"> <a name="ft-xml-omni">ft-xml-omni</a> </b>
 
-Vim 7 为 XML 文件中提供上下文相关的补全机制。它依赖于特殊的数据文件
- <a href="insert.html#xml-omni-datafile">xml-omni-datafile</a>  和两个命令:  <a href="insert.html#:XMLns">:XMLns</a>  和  <a href="insert.html#:XMLent">:XMLent</a> 。特性如下:
+Vim 7 為 XML 文件中提供上下文相關的補全機制。它依賴於特殊的數據文件
+ <a href="insert.html#xml-omni-datafile">xml-omni-datafile</a>  和兩個命令:  <a href="insert.html#:XMLns">:XMLns</a>  和  <a href="insert.html#:XMLent">:XMLent</a> 。特性如下:
 
-- "&lt;" 之后，根据上下文补全标签名
-- 标签内部补全合适的属性
-- 如果属性只有有限的几个可能值，用它们来补全
-- 补全实体 (entity) 名 ( <a href="insert.html#xml-omni-datafile">xml-omni-datafile</a>  里的定义加上当前文件 "&lt;!ENTITY" 的
-  声明)
-- "&lt;/" 之后，<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-O</code> 会关闭最后打开的标签
+- "&lt;" 之後，根據上下文補全標籤名
+- 標籤內部補全合適的屬性
+- 如果屬性只有有限的幾個可能值，用它們來補全
+- 補全實體 (entity) 名 ( <a href="insert.html#xml-omni-datafile">xml-omni-datafile</a>  裡的定義加上當前文件 "&lt;!ENTITY" 的
+  聲明)
+- "&lt;/" 之後，<code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-O</code> 會關閉最後打開的標籤
 
-XML 数据文件的格式                                      <b class="vimtag"> <a name="xml-omni-datafile">xml-omni-datafile</a> </b>
+XML 數據文件的格式                                      <b class="vimtag"> <a name="xml-omni-datafile">xml-omni-datafile</a> </b>
 
-XML 数据文件保存在 <a href="options.html#'runtimepath'">'runtimepath'</a> 下的 "autoload/xml" 目录中。Vim 发布在
-"$VIMRUNTIME/autoload/xml" 目录下提供了示例数据文件。这些文件名有特别含义，命
-令里使用会使用这些名字。文件名应该唯一，否则以后会产生冲突。例如，xhtml10s.vim
-代表 XHTML 1.0 Strict 标准的数据文件。
+XML 數據文件保存在 <a href="options.html#'runtimepath'">'runtimepath'</a> 下的 "autoload/xml" 目錄中。Vim 發佈在
+"$VIMRUNTIME/autoload/xml" 目錄下提供了示例數據文件。這些文件名有特別含義，命
+令裡使用會使用這些名字。文件名應該唯一，否則以後會產生衝突。例如，xhtml10s.vim
+代表 XHTML 1.0 Strict 標準的數據文件。
 
-每个文件包含一个名字形如 g:xmldata_xhtml10s 的变量。它由两个部分组成:
+每個文件包含一個名字形如 g:xmldata_xhtml10s 的變量。它由兩個部分組成:
 
-1. "g:xmldata_"  通用前缀，所有数据文件都是如此
-2. "xhtml10s"    文件名，描述 XML 的方言；会用作  <a href="insert.html#:XMLns">:XMLns</a>  命令的参数
+1. "g:xmldata_"  通用前綴，所有數據文件都是如此
+2. "xhtml10s"    文件名，描述 XML 的方言；會用作  <a href="insert.html#:XMLns">:XMLns</a>  命令的參數
 
-第二部分必须和文件名完全一样。
+第二部分必須和文件名完全一樣。
 
-该变量为字典  <a href="eval.html#Dictionary">Dictionary</a>  类型。键是标签名，而值是两个元素的  <a href="eval.html#List">List</a> 。列表中第
-一个元素也是列表，包含可能的子元素名称，第二个元素是字典  <a href="eval.html#Dictionary">Dictionary</a> ，键是属
-性名，而值是属性的可能值。例如: 
+該變量為字典  <a href="eval.html#Dictionary">Dictionary</a>  類型。鍵是標籤名，而值是兩個元素的  <a href="eval.html#List">List</a> 。列表中第
+一個元素也是列表，包含可能的子元素名稱，第二個元素是字典  <a href="eval.html#Dictionary">Dictionary</a> ，鍵是屬
+性名，而值是屬性的可能值。例如: 
 <code class="example"></code>
 <code class="example">    let g:xmldata_crippled = {</code>
 <code class="example">    \ "vimxmlentities": ["amp", "lt", "gt", "apos", "quot"],</code>
@@ -1398,7 +1398,7 @@ XML 数据文件保存在 <a href="options.html#'runtimepath'">'runtimepath'</a>
 <code class="example">    \ 'vimxmlattrinfo': {</code>
 <code class="example">    \ 'attrofchild': ['Menu info', 'Long information visible in preview window']}}</code>
 <code class="example"></code>
-该例应放到 "autoload/xml/crippled.vim" 文件中。可用于编写下述文件: 
+該例應放到 "autoload/xml/crippled.vim" 文件中。可用於編寫下述文件: 
 <code class="example"></code>
 <code class="example">    &lt;tag1 attroftag1b="valueofattr1"&gt;</code>
 <code class="example">        &lt;childoftag1a attrofchild&gt;</code>
@@ -1411,30 +1411,30 @@ XML 数据文件保存在 <a href="options.html#'runtimepath'">'runtimepath'</a>
 <code class="example">        &lt;/childoftag1b&gt;</code>
 <code class="example">    &lt;/tag1&gt;</code>
 <code class="example"></code>
-从该例中，我们可以看到四种特殊元素:
+從該例中，我們可以看到四種特殊元素:
 
-1. "vimxmlentities" - 特殊键，包含此 XML 方言的所有实体的列表。
-2. 如果这个包含属性可能值的列表只有一个元素，而该元素和属性名一样，那么该属性
-   被看作逻辑值，插入时使用 <code class="badlink">'attrname'</code> 而不是 'attrname="'。
-3. "vimxmltaginfo" - 特殊键，包含键为标签名、值为两元素列表的字典。值列表包含
-   附加的菜单信息和长描述。
-4. "vimxmlattrinfo" - 特殊键，包含键为属性名、值为两元素列表的字典。值列表包含
-   附加的菜单信息和长描述。
+1. "vimxmlentities" - 特殊鍵，包含此 XML 方言的所有實體的列表。
+2. 如果這個包含屬性可能值的列表只有一個元素，而該元素和屬性名一樣，那麼該屬性
+   被看作邏輯值，插入時使用 <code class="badlink">'attrname'</code> 而不是 'attrname="'。
+3. "vimxmltaginfo" - 特殊鍵，包含鍵為標籤名、值為兩元素列表的字典。值列表包含
+   附加的菜單信息和長描述。
+4. "vimxmlattrinfo" - 特殊鍵，包含鍵為屬性名、值為兩元素列表的字典。值列表包含
+   附加的菜單信息和長描述。
 
-<code class="note">注意</code>: 数据文件里的标签名 <code class="emphasis">必须</code> 不能包含命名空间的描述。示例见 xsl.vim。
-<code class="note">注意</code>: 所有的数据和函数都作为全局变量/函数可以在任何地方访问，所以它们可以用于
-个人编辑用的函数。
+<code class="note">注意</code>: 數據文件裡的標籤名 <code class="emphasis">必須</code> 不能包含命名空間的描述。示例見 xsl.vim。
+<code class="note">注意</code>: 所有的數據和函數都作為全局變量/函數可以在任何地方訪問，所以它們可以用於
+個人編輯用的函數。
 
 
 DTD -&gt; Vim                                                      <b class="vimtag"> <a name="dtd2vim">dtd2vim</a> </b>
 
- <a href="intro.html#www">www</a>  上有个脚本  <a href="insert.html#dtd2vim">dtd2vim</a> ，能够解析 DTD 并为 Vim XML 全能补全建立 XML 数据文
+ <a href="intro.html#www">www</a>  上有個腳本  <a href="insert.html#dtd2vim">dtd2vim</a> ，能夠解析 DTD 並為 Vim XML 全能補全建立 XML 數據文
 件。
 
     dtd2vim: http://www.vim.org/scripts/script.php?script_id=1462
 
-查看文件开始部分的详细用例。
-该脚本需要 Perl 和:
+查看文件開始部分的詳細用例。
+該腳本需要 Perl 和:
 
     perlSGML: http://savannah.nongnu.org/projects/perlsgml
 
@@ -1443,10 +1443,10 @@ DTD -&gt; Vim                                                      <b class="vim
 
 :XMLns <code class="special">{name}</code> [<code class="special">{namespace}</code>]                                     <b class="vimtag"> <a name=":XMLns">:XMLns</a> </b>
 
-Vim 需要知道要使用的数据文件和命名空间。 <a href="insert.html#:XMLns">:XMLns</a>  命令可以载入数据文件并把数据
-连接到合适的命名空间。第一个 (必需的) 参数是数据名 (xhtml10s、xsl)。第二个参数
-是命名空间编码 (h，xsl)。如果不使用第二个参数，那么将使用默认值--不声明命名空
-间。例如在 .xsl 文件中使用 XML 补全: 
+Vim 需要知道要使用的數據文件和命名空間。 <a href="insert.html#:XMLns">:XMLns</a>  命令可以載入數據文件並把數據
+連接到合適的命名空間。第一個 (必需的) 參數是數據名 (xhtml10s、xsl)。第二個參數
+是命名空間編碼 (h，xsl)。如果不使用第二個參數，那麼將使用默認值--不聲明命名空
+間。例如在 .xsl 文件中使用 XML 補全: 
 <code class="example"></code>
 <code class="example">        :XMLns xhtml10s</code>
 <code class="example">        :XMLns xsl xsl</code>
@@ -1454,27 +1454,27 @@ Vim 需要知道要使用的数据文件和命名空间。 <a href="insert.html#
 <code class="example"></code>
 :XMLent <code class="special">{name}</code>                                                  <b class="vimtag"> <a name=":XMLent">:XMLent</a> </b>
 
-缺省，根据默认命名空间的数据文件补全实体 (entity) 。如果没有默认命名空间，应该
+缺省，根據默認命名空間的數據文件補全實體 (entity) 。如果沒有默認命名空間，應該
 用 XMLent 命令: 
 <code class="example"></code>
 <code class="example">        :XMLent xhtml10s</code>
 <code class="example"></code>
 用法
 
-在下述情况下 (在前一部分的声明之后，| 代表当前光标位置): 
+在下述情況下 (在前一部分的聲明之後，| 代表當前光標位置): 
 <code class="example"></code>
 <code class="example">        &lt;|</code>
 <code class="example"></code>
-补全合适的 XHTML 标签。而: 
+補全合適的 XHTML 標籤。而: 
 <code class="example"></code>
 <code class="example">        &lt;xsl:|</code>
 <code class="example"></code>
-补全合适的 XSL 标签。
+補全合適的 XSL 標籤。
 
 
-由  <a href="eval.html#autoload">autoload</a>  机制提供的 xmlcomplete.vim 脚本定义了函数
-xmlcomplete#GetLastOpenTag()，在 XML 文件中，这个函数可用于取得最后打开的标签
-名 (下例必须先定义 b:unaryTagsStack): 
+由  <a href="eval.html#autoload">autoload</a>  機制提供的 xmlcomplete.vim 腳本定義了函數
+xmlcomplete#GetLastOpenTag()，在 XML 文件中，這個函數可用於取得最後打開的標籤
+名 (下例必須先定義 b:unaryTagsStack): 
 <code class="example"></code>
 <code class="example">        :echo xmlcomplete#GetLastOpenTag("b:unaryTagsStack")</code>
 <code class="example"></code>
@@ -1484,192 +1484,192 @@ xmlcomplete#GetLastOpenTag()，在 XML 文件中，这个函数可用于取得�
 <code class="example"></code>
 </pre><hr class="doubleline" /><pre>
 <h4>8. 插入模式命令                                         <b class="vimtag"> <a name="inserting">inserting</a> </b></h4>
-下列命令可以用来在缓冲区里插入新的文本。它们都可以撤销，也可以通过  "." 命令重
-复。
+下列命令可以用來在緩衝區裡插入新的文本。它們都可以撤銷，也可以通過  "." 命令重
+復。
 
                                                         <b class="vimtag"> <a name="a">a</a> </b>
-a                       在光标后附加文本 <code class="special">[count]</code> 次。如果光标在空行的第一列，
-                        启动插入模式。但在置位了 <a href="options.html#'virtualedit'">'virtualedit'</a> 以后就不是！
+a                       在光標後附加文本 <code class="special">[count]</code> 次。如果光標在空行的第一列，
+                        啟動插入模式。但在置位了 <a href="options.html#'virtualedit'">'virtualedit'</a> 以後就不是！
 
                                                         <b class="vimtag"> <a name="A">A</a> </b>
 A                       在行尾附加文本 <code class="special">[count]</code> 次。
 
 <code class="special">&lt;insert&gt;</code>        或                              <b class="vimtag"> <a name="i">i</a> </b> <b class="vimtag"> <a name="insert">insert</a> </b> <b class="vimtag"> <a name="%3CInsert%3E">&lt;Insert&gt;</a> </b>
-i                       在光标前插入文本 <code class="special">[count]</code> 次。在插入模式里使用 <code class="keystroke">CTRL-O</code>
-                        的时候， <a href="insert.html#i_CTRL-O">i_CTRL-O</a>  不支持计数。
+i                       在光標前插入文本 <code class="special">[count]</code> 次。在插入模式裡使用 <code class="keystroke">CTRL-O</code>
+                        的時候， <a href="insert.html#i_CTRL-O">i_CTRL-O</a>  不支持計數。
 
                                                         <b class="vimtag"> <a name="I">I</a> </b>
-I                       在本行第一个非空白字符之前插入文本 <code class="special">[count]</code> 次。
-                        如果 <a href="options.html#'cpoptions'">'cpoptions'</a> 里有 'H' 标志位而本行只有空白，在最后
-                        一个空白前插入。
+I                       在本行第一個非空白字符之前插入文本 <code class="special">[count]</code> 次。
+                        如果 <a href="options.html#'cpoptions'">'cpoptions'</a> 裡有 'H' 標誌位而本行只有空白，在最後
+                        一個空白前插入。
 
                                                         <b class="vimtag"> <a name="gI">gI</a> </b>
-gI                      在第一列插入文本 <code class="special">[count]</code> 次。<code class="notvi">{Vi 无此功能}</code>
+gI                      在第一列插入文本 <code class="special">[count]</code> 次。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="gi">gi</a> </b>
-gi                      在当前缓冲区最近一次插入模式停止的位置继续插入文本。
-                        该位置记在  <a href="motion.html#'^">'^</a>  位置标记里。如果标记在行末之后，和
-                        "`^i" 有所差异。
-                        该位置在插入/删除行时会自动修正。但 <code class="emphasis">不</code> 在插入/删除字符
-                        时被修正。
-                        使用  <a href="motion.html#:keepjumps">:keepjumps</a>  命令修饰符时，不改变  <a href="motion.html#'^">'^</a>  位置标记。
-                        <code class="notvi">{Vi 无此功能}</code>
+gi                      在當前緩衝區最近一次插入模式停止的位置繼續插入文本。
+                        該位置記在  <a href="motion.html#'^">'^</a>  位置標記裡。如果標記在行末之後，和
+                        "`^i" 有所差異。
+                        該位置在插入/刪除行時會自動修正。但 <code class="emphasis">不</code> 在插入/刪除字符
+                        時被修正。
+                        使用  <a href="motion.html#:keepjumps">:keepjumps</a>  命令修飾符時，不改變  <a href="motion.html#'^">'^</a>  位置標記。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="o">o</a> </b>
-o                       在光标下方开启新行，并插入文本，重复 <code class="special">[count]</code> 次。
-                        <code class="notvi">{Vi: 清空 <code class="special">[count]</code> 个屏幕行}</code>
-                        如果 <a href="options.html#'cpoptions'">'cpoptions'</a> 里有 '#' 标志位，忽略计数。
+o                       在光標下方開啟新行，並插入文本，重複 <code class="special">[count]</code> 次。
+                        <code class="notvi">{Vi: 清空 <code class="special">[count]</code> 個屏幕行}</code>
+                        如果 <a href="options.html#'cpoptions'">'cpoptions'</a> 裡有 '#' 標誌位，忽略計數。
 
                                                         <b class="vimtag"> <a name="O">O</a> </b>
-O                       在光标上方开启新行，并插入文本，重复 <code class="special">[count]</code> 次。
-                        <code class="notvi">{Vi: 清空 <code class="special">[count]</code> 个屏幕行}</code>
-                        如果 <a href="options.html#'cpoptions'">'cpoptions'</a> 里有 '#' 标志位，忽略计数。
+O                       在光標上方開啟新行，並插入文本，重複 <code class="special">[count]</code> 次。
+                        <code class="notvi">{Vi: 清空 <code class="special">[count]</code> 個屏幕行}</code>
+                        如果 <a href="options.html#'cpoptions'">'cpoptions'</a> 裡有 '#' 標誌位，忽略計數。
 
-这些命令用以开始插入文本。你可以用 <code class="special">&lt;Esc&gt;</code> 退出插入模式。关于插入模式里的其它特
-殊字符，见  <a href="insert.html#mode-ins-repl">mode-ins-repl</a> 。<code class="special">[count]</code> 的效果只有在退出插入模式以后才会发生。
+這些命令用以開始插入文本。你可以用 <code class="special">&lt;Esc&gt;</code> 退出插入模式。關於插入模式裡的其它特
+殊字符，見  <a href="insert.html#mode-ins-repl">mode-ins-repl</a> 。<code class="special">[count]</code> 的效果只有在退出插入模式以後才會發生。
 
-如果打开 <a href="options.html#'autoindent'">'autoindent'</a>，新行的缩进从上一行得到。打开 <a href="options.html#'smartindent'">'smartindent'</a> 或 <a href="options.html#'cindent'">'cindent'</a>
-时，行的缩进根据 C 程序的要求自动调整。
+如果打開 <a href="options.html#'autoindent'">'autoindent'</a>，新行的縮進從上一行得到。打開 <a href="options.html#'smartindent'">'smartindent'</a> 或 <a href="options.html#'cindent'">'cindent'</a>
+時，行的縮進根據 C 程序的要求自動調整。
 
-<a href="options.html#'textwidth'">'textwidth'</a> 可以设置一行的最大宽度。如果一行过长，在添加字符时会自动添加换行
+<a href="options.html#'textwidth'">'textwidth'</a> 可以設置一行的最大寬度。如果一行過長，在添加字符時會自動添加換行
 符。
 
 
 </pre><hr class="doubleline" /><pre>
 <h4>9. Ex 插入命令                                          <b class="vimtag"> <a name="inserting-ex">inserting-ex</a> </b></h4>
                                                         <b class="vimtag"> <a name=":a">:a</a> </b> <b class="vimtag"> <a name=":append">:append</a> </b>
-:<code class="special">{range}</code>a[ppend][!]     在指定行下方添加若干行。如果没有给出 <code class="special">{range}</code>，文本会在
-                        当前行之后插入。
-                        加入 [!] 切换此命令执行时的 <a href="options.html#'autoindent'">'autoindent'</a>。
+:<code class="special">{range}</code>a[ppend][!]     在指定行下方添加若干行。如果沒有給出 <code class="special">{range}</code>，文本會在
+                        當前行之後插入。
+                        加入 [!] 切換此命令執行時的 <a href="options.html#'autoindent'">'autoindent'</a>。
 
                                                         <b class="vimtag"> <a name=":i">:i</a> </b> <b class="vimtag"> <a name=":in">:in</a> </b> <b class="vimtag"> <a name=":insert">:insert</a> </b>
-:<code class="special">{range}</code>i[nsert][!]     在指定行上方添加若干行。如果没有给出 <code class="special">{range}</code>，文本会在
-                        当前行之前插入。
-                        加入 [!] 切换此命令执行时的 <a href="options.html#'autoindent'">'autoindent'</a>。
+:<code class="special">{range}</code>i[nsert][!]     在指定行上方添加若干行。如果沒有給出 <code class="special">{range}</code>，文本會在
+                        當前行之前插入。
+                        加入 [!] 切換此命令執行時的 <a href="options.html#'autoindent'">'autoindent'</a>。
 
-这两个命令会继续要求行，直到你输入了只包含 "." 的一行。小心反斜杠开始的行，见
+這兩個命令會繼續要求行，直到你輸入了只包含 "." 的一行。小心反斜槓開始的行，見
  <a href="repeat.html#line-continuation">line-continuation</a> 。
 
-Ex 模式 (见  <a href="starting.html#-e">-e</a> ) 下，行尾的反斜杠可用来插入 NUL 字符。所以要使一行以反斜杠结
-尾，用两个反斜杠。也就是说仅在行尾情况下，反斜杠数目减半。
+Ex 模式 (見  <a href="starting.html#-e">-e</a> ) 下，行尾的反斜槓可用來插入 NUL 字符。所以要使一行以反斜槓結
+尾，用兩個反斜槓。也就是說僅在行尾情況下，反斜槓數目減半。
 
-<code class="note">注意</code>: 这些命令不能和  <a href="repeat.html#:global">:global</a>  或  <a href="repeat.html#:vglobal">:vglobal</a>  一起使用。":append" 和 ":insert"
-在 ":if" 和 ":endif"、":for" 和 ":endfor" 还有 ":while" 和 ":endwhile" 之间不
+<code class="note">注意</code>: 這些命令不能和  <a href="repeat.html#:global">:global</a>  或  <a href="repeat.html#:vglobal">:vglobal</a>  一起使用。":append" 和 ":insert"
+在 ":if" 和 ":endif"、":for" 和 ":endfor" 還有 ":while" 和 ":endwhile" 之間不
 能很好的工作。
 
                                                         <b class="vimtag"> <a name=":start">:start</a> </b> <b class="vimtag"> <a name=":startinsert">:startinsert</a> </b>
-:star[tinsert][!]       在执行完本命令后，启动插入模式。和普通模式下输入 "i"
-                        类似。如果包含 !，和 "A" 类似，附加到行后。否则，就从
-                        光标当前位置开始插入。
-                        <code class="note">注意</code> 在函数或者脚本里使用本命令时，插入只会在函数和脚
-                        本结束的时候才会开始。
-                        此命令不能在  <a href="various.html#:normal">:normal</a>  里使用。
-                        <code class="notvi">{Vi 无此功能}</code>
+:star[tinsert][!]       在執行完本命令後，啟動插入模式。和普通模式下輸入 "i"
+                        類似。如果包含 !，和 "A" 類似，附加到行後。否則，就從
+                        光標當前位置開始插入。
+                        <code class="note">注意</code> 在函數或者腳本裡使用本命令時，插入只會在函數和腳
+                        本結束的時候才會開始。
+                        此命令不能在  <a href="various.html#:normal">:normal</a>  裡使用。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":stopi">:stopi</a> </b> <b class="vimtag"> <a name=":stopinsert">:stopinsert</a> </b>
-:stopi[nsert]           尽快停止插入模式。和在插入模式时输入 <code class="special">&lt;Esc&gt;</code> 类似。可以
-                        用在自动命令里。示例: 
+:stopi[nsert]           盡快停止插入模式。和在插入模式時輸入 <code class="special">&lt;Esc&gt;</code> 類似。可以
+                        用在自動命令裡。示例: 
 <code class="example">                                :au BufEnter scratch stopinsert</code>
 
                                         <b class="vimtag"> <a name="replacing-ex">replacing-ex</a> </b> <b class="vimtag"> <a name=":startreplace">:startreplace</a> </b>
-:startr[eplace][!]      在执行完本命令后，启动替换模式。和普通模式下输入 "R"
-                        类似。如果包含 !，和 "$R" 类似 (也就是，从行尾开始替换
-                        模式)。否则，从光标当前位置开始替换。
-                        <code class="note">注意</code> 在函数或者脚本里使用本命令时，替换只会在函数和脚
-                        本结束的时候才会开始。
-                        <code class="notvi">{Vi 无此功能}</code>
+:startr[eplace][!]      在執行完本命令後，啟動替換模式。和普通模式下輸入 "R"
+                        類似。如果包含 !，和 "$R" 類似 (也就是，從行尾開始替換
+                        模式)。否則，從光標當前位置開始替換。
+                        <code class="note">注意</code> 在函數或者腳本裡使用本命令時，替換只會在函數和腳
+                        本結束的時候才會開始。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":startgreplace">:startgreplace</a> </b>
-:startg[replace][!]     和  <a href="insert.html#:startreplace">:startreplace</a>  完全类似，用虚拟替换模式，和使用
-                         <a href="change.html#gR">gR</a>  类似。
-                        <code class="notvi">{Vi 无此功能}</code>
+:startg[replace][!]     和  <a href="insert.html#:startreplace">:startreplace</a>  完全類似，用虛擬替換模式，和使用
+                         <a href="change.html#gR">gR</a>  類似。
+                        <code class="notvi">{Vi 無此功能}</code>
 
 </pre><hr class="doubleline" /><pre>
 <h4>10. 插入文件                                            <b class="vimtag"> <a name="inserting-file">inserting-file</a> </b></h4>
                                                         <b class="vimtag"> <a name=":r">:r</a> </b> <b class="vimtag"> <a name=":re">:re</a> </b> <b class="vimtag"> <a name=":read">:read</a> </b>
 :r[ead] <code class="special">[++opt]</code> <code class="special">[name]</code>
-                        在光标下方插入文件 <code class="special">[name]</code> (缺省: 当前文件)。
-                         <a href="editing.html#++opt">++opt</a>  说明 <code class="special">[++opt]</code> 可能的取值。
+                        在光標下方插入文件 <code class="special">[name]</code> (缺省: 當前文件)。
+                         <a href="editing.html#++opt">++opt</a>  說明 <code class="special">[++opt]</code> 可能的取值。
 
 :<code class="special">{range}</code>r[ead] <code class="special">[++opt]</code> <code class="special">[name]</code>
-                        在指定行下方插入文件 <code class="special">[name]</code> (缺省: 当前文件)。
-                         <a href="editing.html#++opt">++opt</a>  说明 <code class="special">[++opt]</code> 可能的取值。
+                        在指定行下方插入文件 <code class="special">[name]</code> (缺省: 當前文件)。
+                         <a href="editing.html#++opt">++opt</a>  說明 <code class="special">[++opt]</code> 可能的取值。
 
                                                         <b class="vimtag"> <a name=":r!">:r!</a> </b> <b class="vimtag"> <a name=":read!">:read!</a> </b>
 :<code class="special">[range]</code>r[ead] <code class="special">[++opt]</code> !<code class="special">{cmd}</code>
-                        执行 <code class="special">{cmd}</code> 并把它的标准输出插入到光标下方。临时文件会
-                        建立来保存命令输出的结果，并被读到缓冲区里。
-                        <a href="options.html#'shellredir'">'shellredir'</a> 用来保存命令的输出结果，它可以设置是否包
-                        含标准错误的输出。<code class="special">{cmd}</code> 的执行和 ":!<code class="special">{cmd}</code>" 类似，任何
-                        的 '!' 会被替换成以前的命令  <a href="various.html#:!">:!</a> 。
-                         <a href="editing.html#++opt">++opt</a>  说明 <code class="special">[++opt]</code> 可能的取值。
+                        執行 <code class="special">{cmd}</code> 並把它的標準輸出插入到光標下方。臨時文件會
+                        建立來保存命令輸出的結果，並被讀到緩衝區裡。
+                        <a href="options.html#'shellredir'">'shellredir'</a> 用來保存命令的輸出結果，它可以設置是否包
+                        含標準錯誤的輸出。<code class="special">{cmd}</code> 的執行和 ":!<code class="special">{cmd}</code>" 類似，任何
+                        的 '!' 會被替換成以前的命令  <a href="various.html#:!">:!</a> 。
+                         <a href="editing.html#++opt">++opt</a>  說明 <code class="special">[++opt]</code> 可能的取值。
 
-这些命令插入文件的内容，或者命令的输出结果到缓冲区里。两者都可以撤销。但不能用
-"." 命令重复。它们是基于行工作的，插入从光标所在行或指定行的下方开始。要在第一
+這些命令插入文件的內容，或者命令的輸出結果到緩衝區裡。兩者都可以撤銷。但不能用
+"." 命令重複。它們是基於行工作的，插入從光標所在行或指定行的下方開始。要在第一
 行之上插入文本，使用命令 ":0r <code class="special">{name}</code>"。
 
-在 ":read" 命令之后，光标留在第一个新行的第一个非空白处。和 Ex 模式不一样。那
-里光标留在最后一个新行上 (对不起，那是为了和 Vi 兼容)。
+在 ":read" 命令之後，光標留在第一個新行的第一個非空白處。和 Ex 模式不一樣。那
+裡光標留在最後一個新行上 (對不起，那是為了和 Vi 兼容)。
 
-如果文件名字通过 ":r" 给出，它成为轮换文件。这可以用来，比如说，你想编辑那个文
-件的时候: ":e! #"。该特性可以通过删除 <a href="options.html#'cpoptions'">'cpoptions'</a> 选项里的 'a' 标志位来关闭。
+如果文件名字通過 ":r" 給出，它成為輪換文件。這可以用來，比如說，你想編輯那個文
+件的時候: ":e! #"。該特性可以通過刪除 <a href="options.html#'cpoptions'">'cpoptions'</a> 選項裡的 'a' 標誌位來關閉。
 
-<code class="special">[++opt]</code> 参数里，有一个是 ":read" 专用的: ++edit 参数。当 ":read" 命令就像编辑
-文件一样把文件读入到缓冲区时，这个参数很有用。在空缓冲区上使用如下命令: 
+<code class="special">[++opt]</code> 參數里，有一個是 ":read" 專用的: ++edit 參數。當 ":read" 命令就像編輯
+文件一樣把文件讀入到緩衝區時，這個參數很有用。在空緩衝區上使用如下命令: 
 <code class="example">        :read ++edit filename</code>
-效果是 <a href="options.html#'fileformat'">'fileformat'</a>、<a href="options.html#'fileencoding'">'fileencoding'</a>、<a href="options.html#'bomb'">'bomb'</a> 等选项根据 "filename" 的检测进行设
-置。<code class="note">注意</code> 会留下一行空行，你也许想把它删掉。
+效果是 <a href="options.html#'fileformat'">'fileformat'</a>、<a href="options.html#'fileencoding'">'fileencoding'</a>、<a href="options.html#'bomb'">'bomb'</a> 等選項根據 "filename" 的檢測進行設
+置。<code class="note">注意</code> 會留下一行空行，你也許想把它刪掉。
 
                                                         <b class="vimtag"> <a name="file-read">file-read</a> </b>
-<a href="options.html#'fileformat'">'fileformat'</a> 选项设置文件的 <code class="special">&lt;EOL&gt;</code> 风格:
-<code class="section"><a href="options.html#'fileformat'">'fileformat'</a>    字符               名称                         </code>
+<a href="options.html#'fileformat'">'fileformat'</a> 選項設置文件的 <code class="special">&lt;EOL&gt;</code> 風格:
+<code class="section"><a href="options.html#'fileformat'">'fileformat'</a>    字符               名稱                         </code>
   "dos"         <code class="special">&lt;CR&gt;</code><code class="special">&lt;NL&gt;</code> 或 <code class="special">&lt;NL&gt;</code>   DOS 格式
   "unix"        <code class="special">&lt;NL&gt;</code>               Unix 格式
   "mac"         <code class="special">&lt;CR&gt;</code>               Mac 格式
-以前使用 <a href="options.html#'textmode'">'textmode'</a>。现在已经废弃了。
+以前使用 <a href="options.html#'textmode'">'textmode'</a>。現在已經廢棄了。
 
-如果 <a href="options.html#'fileformat'">'fileformat'</a> 为 "dos"，在 <code class="special">&lt;NL&gt;</code> 之前的 <code class="special">&lt;CR&gt;</code> 被忽略，而在文件尾部的 <code class="keystroke">CTRL-Z</code>
+如果 <a href="options.html#'fileformat'">'fileformat'</a> 為 "dos"，在 <code class="special">&lt;NL&gt;</code> 之前的 <code class="special">&lt;CR&gt;</code> 被忽略，而在文件尾部的 <code class="keystroke">CTRL-Z</code>
 被忽略。
 
-如果 <a href="options.html#'fileformat'">'fileformat'</a> 为 "mac"，文件里的 <code class="special">&lt;NL&gt;</code> 被内部表示为 <code class="special">&lt;CR&gt;</code>。这是为了避免和用
-来表示 <code class="special">&lt;NUL&gt;</code> 的 <code class="special">&lt;NL&gt;</code> 引起混淆。见  <a href="pattern.html#CR-used-for-NL">CR-used-for-NL</a> 。
+如果 <a href="options.html#'fileformat'">'fileformat'</a> 為 "mac"，文件裡的 <code class="special">&lt;NL&gt;</code> 被內部表示為 <code class="special">&lt;CR&gt;</code>。這是為了避免和用
+來表示 <code class="special">&lt;NUL&gt;</code> 的 <code class="special">&lt;NL&gt;</code> 引起混淆。見  <a href="pattern.html#CR-used-for-NL">CR-used-for-NL</a> 。
 
-如果 <a href="options.html#'fileformats'">'fileformats'</a> 选项不为空，Vim 试图识别 <code class="special">&lt;EOL&gt;</code> 的类型 (见  <a href="editing.html#file-formats">file-formats</a> )。
-不过，<a href="options.html#'fileformat'">'fileformat'</a> 选项的值不会被改变，检测到的格式只会在读入文件时使用。
-<a href="options.html#'fileencodings'">'fileencodings'</a> 与此情形类似。
+如果 <a href="options.html#'fileformats'">'fileformats'</a> 選項不為空，Vim 試圖識別 <code class="special">&lt;EOL&gt;</code> 的類型 (見  <a href="editing.html#file-formats">file-formats</a> )。
+不過，<a href="options.html#'fileformat'">'fileformat'</a> 選項的值不會被改變，檢測到的格式只會在讀入文件時使用。
+<a href="options.html#'fileencodings'">'fileencodings'</a> 與此情形類似。
 
-在非 MS-DOS、Win32 和 OS/2 系统上，消息 "[dos format]" 会在读入 DOS 格式的文件
-时给出，以提醒你发生了不寻常的事情。
-在 Macintosh、MS-DOS、Win32 和 OS/2 系统上，消息 "[unix format]" 会在读入 Unix
-格式的文件时给出。
-在非 Macintosh 的系统上，消息 "[Mac format]" 会在读入 Mac 格式的文件时给出。
+在非 MS-DOS、Win32 和 OS/2 系統上，消息 "[dos format]" 會在讀入 DOS 格式的文件
+時給出，以提醒你發生了不尋常的事情。
+在 Macintosh、MS-DOS、Win32 和 OS/2 系統上，消息 "[unix format]" 會在讀入 Unix
+格式的文件時給出。
+在非 Macintosh 的系統上，消息 "[Mac format]" 會在讀入 Mac 格式的文件時給出。
 
-关于如何使用 ":r !" 的一个例子: 
+關於如何使用 ":r !" 的一個例子: 
 <code class="example">        :r !uuencode binfile binfile</code>
-该命令读入 "binfile"，用 uuencode 进行编码，并读入当前缓冲区。可以用于编辑包含
-附带的二进制的文件的 e-mail。
+該命令讀入 "binfile"，用 uuencode 進行編碼，並讀入當前緩衝區。可以用於編輯包含
+附帶的二進制的文件的 e-mail。
 
                                                         <b class="vimtag"> <a name="read-messages">read-messages</a> </b>
-在读入文件时，Vim 会显示消息，显示读入文件的相关信息。以下的表格给出一些项目的
-解释。其它的项目都不言自明。使用长格式还是短格式取决于 <a href="options.html#'shortmess'">'shortmess'</a> 选项的设
+在讀入文件時，Vim 會顯示消息，顯示讀入文件的相關信息。以下的表格給出一些項目的
+解釋。其它的項目都不言自明。使用長格式還是短格式取決於 <a href="options.html#'shortmess'">'shortmess'</a> 選項的設
 置。
 
-<code class="section">        长              短              含义 </code>
-        <code class="special">[readonly]</code>      <code class="special">{RO}</code>            文件被写保护
+<code class="section">        長              短              含義 </code>
+        <code class="special">[readonly]</code>      <code class="special">{RO}</code>            文件被寫保護
         [fifo/socket]                   使用流
         <code class="special">[fifo]</code>                          使用 fifo 流
         <code class="special">[socket]</code>                        使用套接字 (socket) 流
-        [CR missing]                    使用 "dos" <a href="options.html#'fileformat'">'fileformat'</a> 读入文件的时候
-                                        出现没有前导的 CR 的 NL
-        [NL found]                      使用 "mac" <a href="options.html#'fileformat'">'fileformat'</a> 读入文件的时候
-                                        出现 NL (可能是 "unix" 格式)
+        [CR missing]                    使用 "dos" <a href="options.html#'fileformat'">'fileformat'</a> 讀入文件的時候
+                                        出現沒有前導的 CR 的 NL
+        [NL found]                      使用 "mac" <a href="options.html#'fileformat'">'fileformat'</a> 讀入文件的時候
+                                        出現 NL (可能是 "unix" 格式)
         [long lines split]              至少一行以上被分割
-        [NOT converted]                 期待从 <a href="options.html#'fileencoding'">'fileencoding'</a> 到 <a href="options.html#'encoding'">'encoding'</a> 的
-                                        转换但是做不到
-        <code class="special">[converted]</code>                     从 <a href="options.html#'fileencoding'">'fileencoding'</a> 到 <a href="options.html#'encoding'">'encoding'</a> 的转换
+        [NOT converted]                 期待從 <a href="options.html#'fileencoding'">'fileencoding'</a> 到 <a href="options.html#'encoding'">'encoding'</a> 的
+                                        轉換但是做不到
+        <code class="special">[converted]</code>                     從 <a href="options.html#'fileencoding'">'fileencoding'</a> 到 <a href="options.html#'encoding'">'encoding'</a> 的轉換
                                         完成
         <code class="special">[crypted]</code>                       文件被解密
-        [READ ERRORS]                   不是文件所有部分都被成功读入
+        [READ ERRORS]                   不是文件所有部分都被成功讀入
 
 
  vim:tw=78:ts=8:ft=help:norl:

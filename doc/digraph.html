@@ -1,17 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>VIM: digraph</title>
 <link rel="stylesheet" href="vim-stylesheet.css" type="text/css">
 </head>
 <body>
 <div id=banner>
-<a href="help.html">帮助总览</a> &middot;
-<a href="quickref.html">快速参考</a> &middot;
+<a href="help.html">幫助總覽</a> &middot;
+<a href="quickref.html">快速參考</a> &middot;
 <a href="index.html">命令索引</a> &middot;
-<a href="usr_toc.html">用户手册</a> &middot;
-<a href="help.html#reference_toc">参考手册</a>
+<a href="usr_toc.html">用戶手冊</a> &middot;
+<a href="help.html#reference_toc">參考手冊</a>
 </div>
 
 <div id=outer>
@@ -20,54 +20,54 @@
 <b class="vimtag"> <a name="digraph.txt">digraph.txt</a> </b>   For Vim version 8.0.  最近更新: 2017年7月
 
 
-                  <code class="vim">VIM 参考手册    by Bram Moolenaar</code>
-                                <code class="vim">译者</code>: Willis
+                  <code class="vim">VIM 參考手冊    by Bram Moolenaar</code>
+                                <code class="vim">譯者</code>: Willis
                                 http://vimcdoc.sf.net
 
 
 二合字母                                        <b class="vimtag"> <a name="digraph">digraph</a> </b> <b class="vimtag"> <a name="digraphs">digraphs</a> </b> <b class="vimtag"> <a name="Digraphs">Digraphs</a> </b>
 
-二合字母用来输入不能用普通键盘输入的字符。它们通常是可显示的非 ASCII 字符。二
-合字母比用 <code class="keystroke">CTRL-V</code> 输入十进制编码更方便记忆 (见  <a href="insert.html#i_CTRL-V">i_CTRL-V</a> )。
+二合字母用來輸入不能用普通鍵盤輸入的字符。它們通常是可顯示的非 ASCII 字符。二
+合字母比用 <code class="keystroke">CTRL-V</code> 輸入十進制編碼更方便記憶 (見  <a href="insert.html#i_CTRL-V">i_CTRL-V</a> )。
 
-用户手册  <a href="usr_24.html#24.9">24.9</a>  有二合字母的简短介绍。一个替代方案是用 <a href="options.html#'keymap'">'keymap'</a> 选项。
+用戶手冊  <a href="usr_24.html#24.9">24.9</a>  有二合字母的簡短介紹。一個替代方案是用 <a href="options.html#'keymap'">'keymap'</a> 選項。
 
-1. 定义二合字母          <a href="digraph.html#digraphs-define">digraphs-define</a> 
+1. 定義二合字母          <a href="digraph.html#digraphs-define">digraphs-define</a> 
 2. 使用二合字母          <a href="digraph.html#digraphs-use">digraphs-use</a> 
 3. 缺省的二合字母        <a href="digraph.html#digraphs-default">digraphs-default</a> 
 
-<code class="notvi">{Vi 没有这些命令}</code>
+<code class="notvi">{Vi 沒有這些命令}</code>
 
 </pre><hr class="doubleline" /><pre>
-<h4>1. 定义二合字母                                         <b class="vimtag"> <a name="digraphs-define">digraphs-define</a> </b></h4>
+<h4>1. 定義二合字母                                         <b class="vimtag"> <a name="digraphs-define">digraphs-define</a> </b></h4>
                                                 <b class="vimtag"> <a name=":dig">:dig</a> </b> <b class="vimtag"> <a name=":digraphs">:digraphs</a> </b>
-:dig[raphs]             显示当前定义的二合字母。
+:dig[raphs]             顯示當前定義的二合字母。
                                                         <b class="vimtag"> <a name="E104">E104</a> </b> <b class="vimtag"> <a name="E39">E39</a> </b>
 :dig[raphs] <code class="special">{char1}</code><code class="special">{char2}</code> <code class="special">{number}</code> ...
                         把二合字母 <code class="special">{char1}</code><code class="special">{char2}</code> 加入列表。<code class="special">{number}</code> 是字符的
-                        十进制表示形式。例如: 
+                        十進製表示形式。例如: 
 <code class="example">        :digr e: 235 a: 228</code>
-                        避免定义 '_' (下划线) 开头的二合字母，将来它会有特殊的
-                        含义。
+                        避免定義 '_' (下劃線) 開頭的二合字母，將來它會有特殊的
+                        含義。
 
-Vim 通常编译时带有  <a href="various.html#+digraphs">+digraphs</a>  特性。如果没有，":digraph" 命令会显示错误信息。
+Vim 通常編譯時帶有  <a href="various.html#+digraphs">+digraphs</a>  特性。如果沒有，":digraph" 命令會顯示錯誤信息。
 
-":digraphs" 输出的例子: 
+":digraphs" 輸出的例子: 
 <code class="example"> TH Þ  222  ss ß  223  a! à  224  a' á  225  a&gt; â  226  a? ã  227  a: ä  228</code>
 <code class="example"></code>
-每列 (<code class="vim">译者注</code>: "TH Þ  222" 称为一列) 前两个字符是你用来输入二合字母的两个字符。
+每列 (<code class="vim">譯者注</code>: "TH Þ  222" 稱為一列) 前兩個字符是你用來輸入二合字母的兩個字符。
 
-每列的中间是产生的字符。如果你用不支持二合字母的系统察看或者打印，它们可能是乱
-码。
+每列的中間是產生的字符。如果你用不支持二合字母的系統察看或者打印，它們可能是亂
+碼。
 
                                                         <b class="vimtag"> <a name="digraph-encoding">digraph-encoding</a> </b>
-通常，十进制表示形式是字符的 Unicode 数值。<code class="note">注意</code> <a href="options.html#'encoding'">'encoding'</a> 改变的时候该数值并
-不改变。如果需要，字符从 Unicode 转换为 <a href="options.html#'encoding'">'encoding'</a>。这需要该转换确实能实现，有
-时并非如此。NUL 字符会显示为 "10"，这是因为 NUL 字符内部用 NL 字符表示。写回文
-件时它会还原为 NUL 字符的。
+通常，十進製表示形式是字符的 Unicode 數值。<code class="note">注意</code> <a href="options.html#'encoding'">'encoding'</a> 改變的時候該數值並
+不改變。如果需要，字符從 Unicode 轉換為 <a href="options.html#'encoding'">'encoding'</a>。這需要該轉換確實能實現，有
+時並非如此。NUL 字符會顯示為 "10"，這是因為 NUL 字符內部用 NL 字符表示。寫回文
+件時它會還原為 NUL 字符的。
 
-如果 Vim 编译时没有  <a href="various.html#+multi_byte">+multi_byte</a>  特性，你需要指定该字符在 <a href="options.html#'encoding'">'encoding'</a> 里的编
-码。可以这样使用: 
+如果 Vim 編譯時沒有  <a href="various.html#+multi_byte">+multi_byte</a>  特性，你需要指定該字符在 <a href="options.html#'encoding'">'encoding'</a> 裡的編
+碼。可以這樣使用: 
 <code class="example"></code>
 <code class="example">        if has("multi_byte")</code>
 <code class="example">                digraph oe 339</code>
@@ -75,102 +75,102 @@ Vim 通常编译时带有  <a href="various.html#+digraphs">+digraphs</a>  特�
 <code class="example">                digraph oe 189</code>
 <code class="example">        endif</code>
 <code class="example"></code>
-这样，"oe" 二合字母在 Unicode 里使用数值 339，而在 latin9 (iso-8859-15) 里使用
-数值 189。
+這樣，"oe" 二合字母在 Unicode 裡使用數值 339，而在 latin9 (iso-8859-15) 裡使用
+數值 189。
 
 </pre><hr class="doubleline" /><pre>
 <h4>2. 使用二合字母                                         <b class="vimtag"> <a name="digraphs-use">digraphs-use</a> </b></h4>
-有两个方法输入二合字母:                                 <b class="vimtag"> <a name="i_digraph">i_digraph</a> </b>
+有兩個方法輸入二合字母:                                 <b class="vimtag"> <a name="i_digraph">i_digraph</a> </b>
         <code class="keystroke">CTRL-K</code> <code class="special">{char1}</code> <code class="special">{char2}</code>          或
         <code class="special">{char1}</code> <code class="special">&lt;BS&gt;</code> <code class="special">{char2}</code>
-第一个方法总是可以用的；第二个方法只有在 <a href="options.html#'digraph'">'digraph'</a> 选项置位的时候才可用。
+第一個方法總是可以用的；第二個方法只有在 <a href="options.html#'digraph'">'digraph'</a> 選項置位的時候才可用。
 
-如果二合字母 <code class="special">{char1}</code><code class="special">{char2}</code> 不存在，Vim 会搜索二合字母 <code class="special">{char2}</code><code class="special">{char1}</code>。这样，
-即使你不记得何者在前，也能输入。
+如果二合字母 <code class="special">{char1}</code><code class="special">{char2}</code> 不存在，Vim 會搜索二合字母 <code class="special">{char2}</code><code class="special">{char1}</code>。這樣，
+即使你不記得何者在前，也能輸入。
 
-<code class="note">注意</code> 如果输入 <code class="keystroke">CTRL-K</code> <code class="special">{char1}</code> 时，<code class="special">{char1}</code> 是特殊键，Vim 只会输入该键的编码。这
-就不是输入二合字母了。
+<code class="note">注意</code> 如果輸入 <code class="keystroke">CTRL-K</code> <code class="special">{char1}</code> 時，<code class="special">{char1}</code> 是特殊鍵，Vim 只會輸入該鍵的編碼。這
+就不是輸入二合字母了。
 
-一旦你输入了二合字母，Vim 把该字符当成占据文件和屏幕的一个正常字符。示例: 
-<code class="example">        'B' &lt;BS&gt; 'B'    会输入中间断开的 '|' 字符 (166)</code>
-<code class="example">        'a' &lt;BS&gt; '&gt;'    会输入带 circumflex 重音的 'a' (226)</code>
-<code class="example">        CTRL-K '-' '-'  会输入软的破折号 (173)</code>
+一旦你輸入了二合字母，Vim 把該字符當成佔據文件和屏幕的一個正常字符。示例: 
+<code class="example">        'B' &lt;BS&gt; 'B'    會輸入中間斷開的 '|' 字符 (166)</code>
+<code class="example">        'a' &lt;BS&gt; '&gt;'    會輸入帶 circumflex 重音的 'a' (226)</code>
+<code class="example">        CTRL-K '-' '-'  會輸入軟的破折號 (173)</code>
 <code class="example"></code>
-":digraphs" 列出当前的二合字母。一些缺省的二合字母列在下面的  <a href="digraph.html#digraph-table">digraph-table</a> 
-里。
+":digraphs" 列出當前的二合字母。一些缺省的二合字母列在下面的  <a href="digraph.html#digraph-table">digraph-table</a> 
+裡。
 
-对 <code class="keystroke">CTRL-K</code> 而言，有一个通用的二合字母: <code class="keystroke">CTRL-K</code> <code class="special">&lt;Space&gt;</code> <code class="special">{char}</code> 会输入 <code class="special">{char}</code>，并
-设置最高位。你可以用这个方法来输入带 meta 的字符。
+對 <code class="keystroke">CTRL-K</code> 而言，有一個通用的二合字母: <code class="keystroke">CTRL-K</code> <code class="special">&lt;Space&gt;</code> <code class="special">{char}</code> 會輸入 <code class="special">{char}</code>，並
+設置最高位。你可以用這個方法來輸入帶 meta 的字符。
 
-二合字母里不能有 <code class="special">&lt;Esc&gt;</code> 字符。按 <code class="special">&lt;Esc&gt;</code> 的时候，Vim 停止二合字母的输入并回到插入
-或命令行模式，这也可以理解为 <code class="special">&lt;Esc&gt;</code> 退出了二合字母的上下文。用 <code class="keystroke">CTRL-V</code> 155 输入
+二合字母裡不能有 <code class="special">&lt;Esc&gt;</code> 字符。按 <code class="special">&lt;Esc&gt;</code> 的時候，Vim 停止二合字母的輸入並回到插入
+或命令行模式，這也可以理解為 <code class="special">&lt;Esc&gt;</code> 退出了二合字母的上下文。用 <code class="keystroke">CTRL-V</code> 155 輸入
 meta-ESC (CSI)。
 
-如果你本来想输入 'e' 但不小心输入了 'a'，你也许会键入 'a' <code class="special">&lt;BS&gt;</code> 'e'。但是这个序
-列成了二合字母。这也许不是你想要的。要纠正这个错误，你需要再按一次 <code class="special">&lt;BS&gt;</code> e。要
-避免这一点，不要置位 <a href="options.html#'digraph'">'digraph'</a> 选项，只用 <code class="keystroke">CTRL-K</code> 输入二合字母。
+如果你本來想輸入 'e' 但不小心輸入了 'a'，你也許會鍵入 'a' <code class="special">&lt;BS&gt;</code> 'e'。但是這個序
+列成了二合字母。這也許不是你想要的。要糾正這個錯誤，你需要再按一次 <code class="special">&lt;BS&gt;</code> e。要
+避免這一點，不要置位 <a href="options.html#'digraph'">'digraph'</a> 選項，只用 <code class="keystroke">CTRL-K</code> 輸入二合字母。
 
-Vim 里使用值高于 128 的字符可能会有问题。例如: 你输入 ue (u-umlaut) 而编辑器在
-插入模式回显 \334。离开插入模式一切就正常了。<code class="note">注意</code> fmt 删除待排版的文本里所有值
-高于 128 的字符。有的 Unix 系统上，解决方法是定义 LC_CTYPE。如果你使用 csh，把
-这行放入 .cshrc: 
+Vim 裡使用值高於 128 的字符可能會有問題。例如: 你輸入 ue (u-umlaut) 而編輯器在
+插入模式回顯 \334。離開插入模式一切就正常了。<code class="note">注意</code> fmt 刪除待排版的文本裡所有值
+高於 128 的字符。有的 Unix 系統上，解決方法是定義 LC_CTYPE。如果你使用 csh，把
+這行放入 .cshrc: 
 <code class="example">        setenv LC_CTYPE iso_8859_1</code>
 <code class="example"></code>
 </pre><hr class="doubleline" /><pre>
 <h4>3. 缺省的二合字母                                       <b class="vimtag"> <a name="digraphs-default">digraphs-default</a> </b></h4>
-Vim 缺省提供了一些二合字母。":digraphs" 的输出列出这些二合字母。
+Vim 缺省提供了一些二合字母。":digraphs" 的輸出列出這些二合字母。
 
-Vim 在大多数系统中使用相同二合字母。它们适用于 Unicode 和 ISO-8859-1 字符集。
-缺省的二合字母是 RFC1345 提供的助记符。为了方便记住这些助记符，第二个字符有一
-个标准的含义:
+Vim 在大多數系統中使用相同二合字母。它們適用於 Unicode 和 ISO-8859-1 字符集。
+缺省的二合字母是 RFC1345 提供的助記符。為了方便記住這些助記符，第二個字符有一
+個標準的含義:
 
-<code class="section">        字符名                  字符    含义 </code>
-        Exclamation mark        !       Grave (钝音符号)
-        Apostrophe              '       Acute (锐音符号)
-        Greater-Than sign       &gt;       Circumflex (折音/抑扬符号)
-        Question Mark           ?       Tilde (腭化/鼻音化符号)
-        Hyphen-Minus            -       Macron (长音符号)
-        Left parenthesis        (       Breve (短音符号)
-        Full Stop               .       上带点 (Dot)
-        Colon                   :       Diaeresis (分音符号)
-        Comma                   ,       Cedilla (软音符号)
-        Underline               _       带下划线 (Underline)
-        Solidus                 /       带短划线 (Stroke)
-        Quotation mark          "       Double acute (双锐音符号)
-        Semicolon               ;       Ogonek (鼻音化符号)
-        Less-Than sign          &lt;       Caron (楔形/倒折音符号)
-        Zero                    0       上带圆圈 (Ring)
-        Two                     2       上带钩 (Hook)
-        Nine                    9       带角 (Horn)
+<code class="section">        字符名                  字符    含義 </code>
+        Exclamation mark        !       Grave (鈍音符號)
+        Apostrophe              '       Acute (銳音符號)
+        Greater-Than sign       &gt;       Circumflex (折音/抑揚符號)
+        Question Mark           ?       Tilde (顎化/鼻音化符號)
+        Hyphen-Minus            -       Macron (長音符號)
+        Left parenthesis        (       Breve (短音符號)
+        Full Stop               .       上帶點 (Dot)
+        Colon                   :       Diaeresis (分音符號)
+        Comma                   ,       Cedilla (軟音符號)
+        Underline               _       帶下劃線 (Underline)
+        Solidus                 /       帶短劃線 (Stroke)
+        Quotation mark          "       Double acute (雙銳音符號)
+        Semicolon               ;       Ogonek (鼻音化符號)
+        Less-Than sign          &lt;       Caron (楔形/倒折音符號)
+        Zero                    0       上帶圓圈 (Ring)
+        Two                     2       上帶鉤 (Hook)
+        Nine                    9       帶角 (Horn)
 
-        Equals                  =       西里尔字母 (Cyrillic) (= 用作第二字符)
-        Asterisk                *       希腊语
-        Percent sign            %       特殊的希腊/西里尔字母
-        Plus                    +       小写: 阿拉伯语，大写: 希伯来语
-        Three                   3       一些拉丁/希腊/西里尔字母
-        Four                    4       注音符号
+        Equals                  =       西裡爾字母 (Cyrillic) (= 用作第二字符)
+        Asterisk                *       希臘語
+        Percent sign            %       特殊的希臘/西裡爾字母
+        Plus                    +       小寫: 阿拉伯語，大寫: 希伯來語
+        Three                   3       一些拉丁/希臘/西裡爾字母
+        Four                    4       注音符號
         Five                    5       平假名
         Six                     6       片假名
 
 示例: a: 是 ä 而 o: 是 ö
 
-下面列出 RFC1345 定义的单字节二合字母。其他的二合字母见 ":digraphs"。高于 255
-的字符只有在 Vim 编译的时候加上  <a href="various.html#+multi_byte">+multi_byte</a>  特性才能使用。
+下面列出 RFC1345 定義的單字節二合字母。其他的二合字母見 ":digraphs"。高於 255
+的字符只有在 Vim 編譯的時候加上  <a href="various.html#+multi_byte">+multi_byte</a>  特性才能使用。
 
 EURO
 
-特例: RFC1345 没有指定欧元 (euro) 符号。Vim 里为此目的加入了二合字母 =e。<code class="note">注意</code>
-以下区别: latin1 里，二合字母 Cu 用于货币符号，而 latin9 (iso-8859-15) 里二合
-字母 =e 用于欧元符号，尽管两者都代表字符 164，0xa4。为了和 zsh 兼容，Eu 也用于
-欧元符号。
+特例: RFC1345 沒有指定歐元 (euro) 符號。Vim 裡為此目的加入了二合字母 =e。<code class="note">注意</code>
+以下區別: latin1 裡，二合字母 Cu 用於貨幣符號，而 latin9 (iso-8859-15) 裡二合
+字母 =e 用於歐元符號，儘管兩者都代表字符 164，0xa4。為了和 zsh 兼容，Eu 也用於
+歐元符號。
 
 ROUBLE
 
-卢布 (rouble) 符号在 2014 年加入，其代码为 0x20bd。Vim 里为此支持二合字母 =R
+盧布 (rouble) 符號在 2014 年加入，其代碼為 0x20bd。Vim 裡為此支持二合字母 =R
 和 =P。<code class="note">注意</code> R= 和 P= 是其它字符。
 
                                                         <b class="vimtag"> <a name="digraph-table">digraph-table</a> </b>
-<code class="section">字符  二合字母  十六进  十进制  正式名字 </code>
+<code class="section">字符  二合字母  十六進  十進制  正式名字 </code>
 ^@      NU      0x00      0     NULL (NUL)
 ^A      SH      0x01      1     START OF HEADING (SOH)
 ^B      SX      0x02      2     START OF TEXT (STX)
@@ -346,11 +346,11 @@ $       DO      0x24     36     DOLLAR SIGN
 þ       th      0xfe    254     LATIN SMALL LETTER THORN (Icelandic)
 ÿ       y:      0xff    255     LATIN SMALL LETTER Y WITH DIAERESIS
 
-如果 Vim 编译时带有  <a href="mbyte.html#multibyte">multibyte</a>  支持而你使用多字节 <a href="options.html#'encoding'">'encoding'</a>，Vim 提供带有额
-外二合字母的增强版:
+如果 Vim 編譯時帶有  <a href="mbyte.html#multibyte">multibyte</a>  支持而你使用多字節 <a href="options.html#'encoding'">'encoding'</a>，Vim 提供帶有額
+外二合字母的增強版:
 
                                                         <b class="vimtag"> <a name="digraph-table-mbyte">digraph-table-mbyte</a> </b>
-<code class="section">字符  二合字母  十六进  十进制  正式名字 </code>
+<code class="section">字符  二合字母  十六進  十進制  正式名字 </code>
 Ā      A-      0100    0256    LATIN CAPITAL LETTER A WITH MACRON
 ā      a-      0101    0257    LATIN SMALL LETTER A WITH MACRON
 Ă      A(      0102    0258    LATIN CAPITAL LETTER A WITH BREVE

@@ -1,17 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>VIM: tips</title>
 <link rel="stylesheet" href="vim-stylesheet.css" type="text/css">
 </head>
 <body>
 <div id=banner>
-<a href="help.html">帮助总览</a> &middot;
-<a href="quickref.html">快速参考</a> &middot;
+<a href="help.html">幫助總覽</a> &middot;
+<a href="quickref.html">快速參考</a> &middot;
 <a href="index.html">命令索引</a> &middot;
-<a href="usr_toc.html">用户手册</a> &middot;
-<a href="help.html#reference_toc">参考手册</a>
+<a href="usr_toc.html">用戶手冊</a> &middot;
+<a href="help.html#reference_toc">參考手冊</a>
 </div>
 
 <div id=outer>
@@ -20,94 +20,94 @@
 <b class="vimtag"> <a name="tips.txt">tips.txt</a> </b>      For Vim version 8.0.  最近更新: 2010年5月
 
 
-                  <code class="vim">VIM 参考手册    by Bram Moolenaar</code>
-           <code class="vim">译者</code>: iCrazy &lt;icrazy@ustc.edu&gt;, tocer http://vimcdoc.sf.net
+                  <code class="vim">VIM 參考手冊    by Bram Moolenaar</code>
+           <code class="vim">譯者</code>: iCrazy &lt;icrazy@ustc.edu&gt;, tocer http://vimcdoc.sf.net
 
 
 使用 Vim 的技巧                                         <b class="vimtag"> <a name="tips">tips</a> </b>
 
-这里只是一小部分我们认为会对很多用户有用的技巧。更多的技巧都在 wiki 上。URL 可
-以从这里找到:
+這裡只是一小部分我們認為會對很多用戶有用的技巧。更多的技巧都在 wiki 上。URL 可
+以從這裡找到:
 http://www.vim.org
 
-别忘记浏览用户手册，里面也有很多实用的技巧  <a href="usr_toc.html#usr_toc.txt">usr_toc.txt</a> 。
+別忘記瀏覽用戶手冊，裡面也有很多實用的技巧  <a href="usr_toc.html#usr_toc.txt">usr_toc.txt</a> 。
 
-编辑 C 程序                                      <a href="tips.html#C-editing">C-editing</a> 
-查找使用标识符的地方                             <a href="tips.html#ident-search">ident-search</a> 
-在 xterm 中切换屏幕                              <a href="tips.html#xterm-screens">xterm-screens</a> 
-在插入模式下滚屏                                 <a href="tips.html#scroll-insert">scroll-insert</a> 
-平滑的滚屏                                       <a href="tips.html#scroll-smooth">scroll-smooth</a> 
-纠正普通的录入错误                               <a href="tips.html#type-mistakes">type-mistakes</a> 
-统计单词数、行数等                               <a href="tips.html#count-items">count-items</a> 
-恢复光标位置                                     <a href="tips.html#restore-position">restore-position</a> 
+編輯 C 程序                                      <a href="tips.html#C-editing">C-editing</a> 
+查找使用標識符的地方                             <a href="tips.html#ident-search">ident-search</a> 
+在 xterm 中切換屏幕                              <a href="tips.html#xterm-screens">xterm-screens</a> 
+在插入模式下滾屏                                 <a href="tips.html#scroll-insert">scroll-insert</a> 
+平滑的滾屏                                       <a href="tips.html#scroll-smooth">scroll-smooth</a> 
+糾正普通的錄入錯誤                               <a href="tips.html#type-mistakes">type-mistakes</a> 
+統計單詞數、行數等                               <a href="tips.html#count-items">count-items</a> 
+恢復光標位置                                     <a href="tips.html#restore-position">restore-position</a> 
 文件更名                                         <a href="tips.html#rename-files">rename-files</a> 
-更改多个文件中的一个名字                         <a href="tips.html#change-name">change-name</a> 
-加速外部命令的执行                               <a href="tips.html#speed-up">speed-up</a> 
+更改多個文件中的一個名字                         <a href="tips.html#change-name">change-name</a> 
+加速外部命令的執行                               <a href="tips.html#speed-up">speed-up</a> 
 一些有用的映射                                   <a href="tips.html#useful-mappings">useful-mappings</a> 
-压缩帮助文件                                     <a href="tips.html#gzip-helpfile">gzip-helpfile</a> 
-在一个窗口中执行外壳命令                         <a href="tips.html#shell-window">shell-window</a> 
-十六进制编辑                                     <a href="tips.html#hex-editing">hex-editing</a> 
-在自动命令中使用 <code class="special">&lt;&gt;</code> 记法                         <a href="tips.html#autocmd-%3C%3E">autocmd-&lt;&gt;</a> 
-高亮匹配括号                                     <a href="tips.html#match-parens">match-parens</a> 
+壓縮幫助文件                                     <a href="tips.html#gzip-helpfile">gzip-helpfile</a> 
+在一個窗口中執行外殼命令                         <a href="tips.html#shell-window">shell-window</a> 
+十六進制編輯                                     <a href="tips.html#hex-editing">hex-editing</a> 
+在自動命令中使用 <code class="special">&lt;&gt;</code> 記法                         <a href="tips.html#autocmd-%3C%3E">autocmd-&lt;&gt;</a> 
+高亮匹配括號                                     <a href="tips.html#match-parens">match-parens</a> 
 
 </pre><hr class="doubleline" /><pre>
-<h4>编辑 C 程序                                             <b class="vimtag"> <a name="C-editing">C-editing</a> </b></h4>
-Vim 里面有不少功能可以帮助你们编辑 C 程序。以下是一个概括，你们可以使用标签跳
-转到具体的内容中去:
+<h4>編輯 C 程序                                             <b class="vimtag"> <a name="C-editing">C-editing</a> </b></h4>
+Vim 裡面有不少功能可以幫助你們編輯 C 程序。以下是一個概括，你們可以使用標籤跳
+轉到具體的內容中去:
 
- <a href="usr_29.html#usr_29.txt">usr_29.txt</a>             用户手册中关于在程序的不同部分间移动的内容。
- <a href="usr_30.html#usr_30.txt">usr_30.txt</a>             用户手册中关于编辑程序的内容。
- <a href="indent.html#C-indenting">C-indenting</a>            输入时自动设置每行的缩进。
- <a href="change.html#%20">=</a>                      重新缩进一些行。
- <a href="change.html#format-comments">format-comments</a>        对注释进行排版。
+ <a href="usr_29.html#usr_29.txt">usr_29.txt</a>             用戶手冊中關於在程序的不同部分間移動的內容。
+ <a href="usr_30.html#usr_30.txt">usr_30.txt</a>             用戶手冊中關於編輯程序的內容。
+ <a href="indent.html#C-indenting">C-indenting</a>            輸入時自動設置每行的縮進。
+ <a href="change.html#%20">=</a>                      重新縮進一些行。
+ <a href="change.html#format-comments">format-comments</a>        對註釋進行排版。
 
- <a href="tagsrch.html#:checkpath">:checkpath</a>             显示所有被 (嵌套) 包含的文件。
- <a href="tagsrch.html#[i">[i</a>                     在当前和被包含的文件中查找光标所在的的标识符。
+ <a href="tagsrch.html#:checkpath">:checkpath</a>             顯示所有被 (嵌套) 包含的文件。
+ <a href="tagsrch.html#[i">[i</a>                     在當前和被包含的文件中查找光標所在的的標識符。
  <a href="tagsrch.html#[_CTRL-I">[_CTRL-I</a>               跳到 "[i" 的匹配。
- <a href="tagsrch.html#[I">[I</a>                     列出在当前和被包含的文件中匹配光标所在的标识符的行。
- <a href="tagsrch.html#[d">[d</a>                     在当前和被包含的文件中查找光标所在的标识符的宏定义。
+ <a href="tagsrch.html#[I">[I</a>                     列出在當前和被包含的文件中匹配光標所在的標識符的行。
+ <a href="tagsrch.html#[d">[d</a>                     在當前和被包含的文件中查找光標所在的標識符的宏定義。
 
- <a href="tagsrch.html#CTRL-]">CTRL-]</a>                 跳到光标所在的标签处 (例如: 函数的定义)。
- <a href="tagsrch.html#CTRL-T">CTRL-T</a>                 跳回执行 <code class="keystroke">CTRL-]</code> 命令前的地方。
- <a href="tagsrch.html#:tselect">:tselect</a>               从一连串匹配的标签中选出一个。
+ <a href="tagsrch.html#CTRL-]">CTRL-]</a>                 跳到光標所在的標籤處 (例如: 函數的定義)。
+ <a href="tagsrch.html#CTRL-T">CTRL-T</a>                 跳回執行 <code class="keystroke">CTRL-]</code> 命令前的地方。
+ <a href="tagsrch.html#:tselect">:tselect</a>               從一連串匹配的標籤中選出一個。
 
- <a href="pattern.html#gd">gd</a>                     跳到光标所在的局部变量的声明处。
- <a href="pattern.html#gD">gD</a>                     跳到光标所在的全局变量的声明处。
+ <a href="pattern.html#gd">gd</a>                     跳到光標所在的局部變量的聲明處。
+ <a href="pattern.html#gD">gD</a>                     跳到光標所在的全局變量的聲明處。
 
- <a href="editing.html#gf">gf</a>                     跳到光标所在的文件名表示的文件。
+ <a href="editing.html#gf">gf</a>                     跳到光標所在的文件名表示的文件。
 
- <a href="motion.html#%">%</a>                      跳到匹配的 ()、<code class="special">{}</code>、[]、/* */、#if、#else、#endif 处。
- <a href="motion.html#[%2F">[/</a>                     跳到上一个注释开始的位置。
- <a href="motion.html#]%2F">]/</a>                     跳到下一个注释结束的位置。
- <a href="motion.html#[%23">[#</a>                     反向到未闭合的 #if、#ifdef 或 #else 处。
- <a href="motion.html#]%23">]#</a>                     正向到未闭合的 #else 或 #endif 处。
- <a href="motion.html#[(">[(</a>                     反向到未闭合的 '(' 处。
- <a href="motion.html#])">])</a>                     正向到未闭合的 ')' 处。
- <a href="motion.html#[{">[{</a>                     反向到未闭合的 '{' 处。
- <a href="motion.html#]}">]}</a>                     正向到未闭合的 '}' 处。
+ <a href="motion.html#%">%</a>                      跳到匹配的 ()、<code class="special">{}</code>、[]、/* */、#if、#else、#endif 處。
+ <a href="motion.html#[%2F">[/</a>                     跳到上一個註釋開始的位置。
+ <a href="motion.html#]%2F">]/</a>                     跳到下一個註釋結束的位置。
+ <a href="motion.html#[%23">[#</a>                     反向到未閉合的 #if、#ifdef 或 #else 處。
+ <a href="motion.html#]%23">]#</a>                     正向到未閉合的 #else 或 #endif 處。
+ <a href="motion.html#[(">[(</a>                     反向到未閉合的 '(' 處。
+ <a href="motion.html#])">])</a>                     正向到未閉合的 ')' 處。
+ <a href="motion.html#[{">[{</a>                     反向到未閉合的 '{' 處。
+ <a href="motion.html#]}">]}</a>                     正向到未閉合的 '}' 處。
 
- <a href="motion.html#v_ab">v_ab</a>                   选中 "一个块" ("a block")，从 "[(" 至 "])"，含括号
- <a href="motion.html#v_ib">v_ib</a>                   选中 "内含块" ("inner block")，从 "[(" 至 "])"
- <a href="motion.html#v_aB">v_aB</a>                   选中 "一个大块" ("a Block")，从 "[{" 至 "]}"，含括号
- <a href="motion.html#v_iB">v_iB</a>                   选中 "内含大块" ("inner Block")，从 "[{" 至 "]}"
+ <a href="motion.html#v_ab">v_ab</a>                   選中 "一個塊" ("a block")，從 "[(" 至 "])"，含括號
+ <a href="motion.html#v_ib">v_ib</a>                   選中 "內含塊" ("inner block")，從 "[(" 至 "])"
+ <a href="motion.html#v_aB">v_aB</a>                   選中 "一個大塊" ("a Block")，從 "[{" 至 "]}"，含括號
+ <a href="motion.html#v_iB">v_iB</a>                   選中 "內含大塊" ("inner Block")，從 "[{" 至 "]}"
 
 </pre><hr class="doubleline" /><pre>
-<h4>查找使用标识符的地方                                    <b class="vimtag"> <a name="ident-search">ident-search</a> </b></h4>
-你应该已经知道  <a href="tagsrch.html#tags">tags</a>  可以被用来跳转到定义函数和变量的地方。但是有时你希望跳转
-到使用函数和变量的地方。可以用以下两种方法实现:
-1. 使用  <a href="quickfix.html#:grep">:grep</a>  命令。这个应该可以在大多数 Unix 系统上工作，但是速度会比较慢
-(因为它读取所有的文件)，并且只能在一个目录中搜索。
-2. 使用 ID 工具集。这个速度比较快而且可以搜索多个目录。它使用一个数据库来存放
-定位信息。你需要一些额外的程序来使它得以工作，并且你必须使数据库不断保持更新。
+<h4>查找使用標識符的地方                                    <b class="vimtag"> <a name="ident-search">ident-search</a> </b></h4>
+你應該已經知道  <a href="tagsrch.html#tags">tags</a>  可以被用來跳轉到定義函數和變量的地方。但是有時你希望跳轉
+到使用函數和變量的地方。可以用以下兩種方法實現:
+1. 使用  <a href="quickfix.html#:grep">:grep</a>  命令。這個應該可以在大多數 Unix 系統上工作，但是速度會比較慢
+(因為它讀取所有的文件)，並且只能在一個目錄中搜索。
+2. 使用 ID 工具集。這個速度比較快而且可以搜索多個目錄。它使用一個數據庫來存放
+定位信息。你需要一些額外的程序來使它得以工作，並且你必須使數據庫不斷保持更新。
 
 使用 GNU id 工具集 (id-tools):
 
 你所需要的:
-- 安装 GNU id 工具集 (mkid 是用来创建 ID 的，lid 是用来运行宏的)
-- 一个在当前目录下名为 "ID" 的标识符数据库。你可以用外壳命令 "mkid file1 file2
-  .." 来创建它。
+- 安裝 GNU id 工具集 (mkid 是用來創建 ID 的，lid 是用來運行宏的)
+- 一個在當前目錄下名為 "ID" 的標識符數據庫。你可以用外殼命令 "mkid file1 file2
+  .." 來創建它。
 
-把这些添加写你的 .vimrc 文件中: 
+把這些添加寫你的 .vimrc 文件中: 
 <code class="example">        map _u :call ID_search()&lt;Bar&gt;execute "/\\&lt;" . g:word . "\\&gt;"&lt;CR&gt;</code>
 <code class="example">        map _n :n&lt;Bar&gt;execute "/\\&lt;" . g:word . "\\&gt;"&lt;CR&gt;</code>
 <code class="example"></code>
@@ -118,142 +118,142 @@ Vim 里面有不少功能可以帮助你们编辑 C 程序。以下是一个概�
 <code class="example">          execute "next " . x</code>
 <code class="example">        endfun</code>
 <code class="example"></code>
-使用的时候，把光标放在一个单词上，敲入 "_u"，然后 vim 会读入含有这个单词的文
-件。使用 "n" 查找这个单词在相同文件中下一次的出现的地方。使用 "_n" 可以跳转到
-下一个文件。
+使用的時候，把光標放在一個單詞上，敲入 "_u"，然後 vim 會讀入含有這個單詞的文
+件。使用 "n" 查找這個單詞在相同文件中下一次的出現的地方。使用 "_n" 可以跳轉到
+下一個文件。
 
-这些操作已经使用 id-utils-3.2 (这是位于距你最近的 gnu ftp 镜像服务器上的档案
-名称) 测试通过了。
+這些操作已經使用 id-utils-3.2 (這是位於距你最近的 gnu ftp 鏡像服務器上的檔案
+名稱) 測試通過了。
 
-[这个的想法来自于 Andreas Kutschera]
+[這個的想法來自於 Andreas Kutschera]
 
 </pre><hr class="doubleline" /><pre>
-<h4>在 xterm 中切换屏幕                     <b class="vimtag"> <a name="xterm-screens">xterm-screens</a> </b> <b class="vimtag"> <a name="xterm-save-screen">xterm-save-screen</a> </b></h4>
-(来源: comp.editors，作者: Juergen Weigert，回答一个问题的时候)
+<h4>在 xterm 中切換屏幕                     <b class="vimtag"> <a name="xterm-screens">xterm-screens</a> </b> <b class="vimtag"> <a name="xterm-save-screen">xterm-save-screen</a> </b></h4>
+(來源: comp.editors，作者: Juergen Weigert，回答一個問題的時候)
 
-:&gt; 另一个问题就是退出 vim 后，屏幕内容就被留在那儿了，也就是说: 我刚刚正在查看
-:&gt; (或编辑) 的内容就被留在屏幕上了。而我此前执行的命令 (例如: "ls") 的输出却不
-:&gt; 见了，换而言之在滚屏缓冲区里不存在了。我知道有个办法可以在退出 vim 或其他仿
-:&gt; vi 的编辑器的时候恢复屏幕内容，但是我不知道该如何操作。请帮助我，谢谢！
+:&gt; 另一個問題就是退出 vim 後，屏幕內容就被留在那兒了，也就是說: 我剛剛正在查看
+:&gt; (或編輯) 的內容就被留在屏幕上了。而我此前執行的命令 (例如: "ls") 的輸出卻不
+:&gt; 見了，換而言之在滾屏緩衝區裡不存在了。我知道有個辦法可以在退出 vim 或其他仿
+:&gt; vi 的編輯器的時候恢復屏幕內容，但是我不知道該如何操作。請幫助我，謝謝！
 :
-: 我认为可能有人可以回答这个问题。我认为 vim 和 vi 在某个特定的 xterm 安装下和
-: 别的程序一样工作。
+: 我認為可能有人可以回答這個問題。我認為 vim 和 vi 在某個特定的 xterm 安裝下和
+: 別的程序一樣工作。
 
-他们并不一定完全相同，因为这牵扯到一个 termcap 对 terminfo 的问题。你们应该知
-道针对一种特定的终端，有两种数据库可以用来描述它的属性: termcap 和 terminfo。
-当它们中的条目不同，而且以上问题中的一个程序使用 terminfo，另一个使用 termcap
-时，两个程序会出现差异 (请参见:  <a href="various.html#+terminfo">+terminfo</a> )。
+他們並不一定完全相同，因為這牽扯到一個 termcap 對 terminfo 的問題。你們應該知
+道針對一種特定的終端，有兩種數據庫可以用來描述它的屬性: termcap 和 terminfo。
+當它們中的條目不同，而且以上問題中的一個程序使用 terminfo，另一個使用 termcap
+時，兩個程序會出現差異 (請參見:  <a href="various.html#+terminfo">+terminfo</a> )。
 
-在你的问题中，你可能需要以下的控制序列: ^[[?47h 和 ^[[?47l。他们用来在 xterm
-备用和主屏幕缓冲区中切换。一个快速的临时解决方案使用如下的命令序列 
+在你的問題中，你可能需要以下的控制序列: ^[[?47h 和 ^[[?47l。他們用來在 xterm
+備用和主屏幕緩衝區中切換。一個快速的臨時解決方案使用如下的命令序列 
 <code class="example">        echo -n "^[[?47h"; vim ... ; echo -n "^[[?47l"</code>
-这可能就是你所需要的。(我用符号 ^[ 表示 ESC 字符，往后你还会看到数据库使用 \E
-来表示它)。
+這可能就是你所需要的。(我用符號 ^[ 表示 ESC 字符，往後你還會看到數據庫使用 \E
+來表示它)。
 
-在启动的时候，vim 把 termcap 中变量 ti (terminfo:smcup) 的值回显在终端上。退出
-的时候，它回显 te (terminfo: rmcup) 的值。这样一来，这两个变量正好处于以上所述
-的控制序列应该执行的位置。
+在啟動的時候，vim 把 termcap 中變量 ti (terminfo:smcup) 的值回顯在終端上。退出
+的時候，它回顯 te (terminfo: rmcup) 的值。這樣一來，這兩個變量正好處於以上所述
+的控制序列應該執行的位置。
 
-把你的 xterm termcap 条目 (在 /etc/termcap 中) 和 xterm terminfo 条目 (用
-"infocmp -C xterm" 得到) 比较一下。两者应该都会有与下面类似的条目: 
+把你的 xterm termcap 條目 (在 /etc/termcap 中) 和 xterm terminfo 條目 (用
+"infocmp -C xterm" 得到) 比較一下。兩者應該都會有與下面類似的條目: 
 <code class="example">        :te=\E[2J\E[?47l\E8:ti=\E7\E[?47h:</code>
 <code class="example"></code>
-附: 如果你发现了任何差异，那么最好让某人 (或许是你的系统管理员) 彻底地检查一下
+附: 如果你發現了任何差異，那麼最好讓某人 (或許是你的系統管理員) 徹底地檢查一下
     termcap 和 terminfo 的一致性。
 
-<code class="note">备注</code> 1: 如果你在 feature.h 中定义了 FEAT_XTERM_SAVE 之后又重新编译了 Vim，那么
-内置的 xterm 会有上述的 "te" 和 "ti" 条目。
+<code class="note">備註</code> 1: 如果你在 feature.h 中定義了 FEAT_XTERM_SAVE 之後又重新編譯了 Vim，那麼
+內置的 xterm 會有上述的 "te" 和 "ti" 條目。
 
-<code class="note">备注</code> 2: 如果你希望禁止屏幕切换，并且不希望改变你的 termcap，你可以在 .vimrc 文
-件中加入这一行: 
+<code class="note">備註</code> 2: 如果你希望禁止屏幕切換，並且不希望改變你的 termcap，你可以在 .vimrc 文
+件中加入這一行: 
 <code class="example">        :set t_ti= t_te=</code>
 <code class="example"></code>
 </pre><hr class="doubleline" /><pre>
-<h4>在插入模式下滚屏                                        <b class="vimtag"> <a name="scroll-insert">scroll-insert</a> </b></h4>
-如果你处于插入模式下并且希望看一些恰好在屏幕范围以外的东西，你可以使用 <code class="keystroke">CTRL-X</code>
-<code class="keystroke">CTRL-E</code> 和 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-Y</code> 来滚屏。
+<h4>在插入模式下滾屏                                        <b class="vimtag"> <a name="scroll-insert">scroll-insert</a> </b></h4>
+如果你處於插入模式下並且希望看一些恰好在屏幕範圍以外的東西，你可以使用 <code class="keystroke">CTRL-X</code>
+<code class="keystroke">CTRL-E</code> 和 <code class="keystroke">CTRL-X</code> <code class="keystroke">CTRL-Y</code> 來滾屏。
                                                  <a href="insert.html#i_CTRL-X_CTRL-E">i_CTRL-X_CTRL-E</a> 
 
-为了使这个简单些，你可以用这些映射: 
+為了使這個簡單些，你可以用這些映射: 
 <code class="example">        :inoremap &lt;C-E&gt; &lt;C-X&gt;&lt;C-E&gt;</code>
 <code class="example">        :inoremap &lt;C-Y&gt; &lt;C-X&gt;&lt;C-Y&gt;</code>
-(逐字敲入这些字符，并确认 '&lt;' 标志位不在 <a href="options.html#'cpoptions'">'cpoptions'</a> 选项中)。
-不过这样你就不能使用从光标上一行/下一行拷贝文字的功能了  <a href="insert.html#i_CTRL-E">i_CTRL-E</a> 。
+(逐字敲入這些字符，並確認 '&lt;' 標誌位不在 <a href="options.html#'cpoptions'">'cpoptions'</a> 選項中)。
+不過這樣你就不能使用從光標上一行/下一行拷貝文字的功能了  <a href="insert.html#i_CTRL-E">i_CTRL-E</a> 。
 
-你还可以考虑把 <a href="options.html#'scrolloff'">'scrolloff'</a> 设置得大一些，这样你就总能看到光标附近的上下文了。
-如果 <a href="options.html#'scrolloff'">'scrolloff'</a> 的值大于窗口高度的一半，在向上或向下移动光标时，文字会上下卷
-动，但是光标会始终停留在屏幕中间的位置。
+你還可以考慮把 <a href="options.html#'scrolloff'">'scrolloff'</a> 設置得大一些，這樣你就總能看到光標附近的上下文了。
+如果 <a href="options.html#'scrolloff'">'scrolloff'</a> 的值大於窗口高度的一半，在向上或向下移動光標時，文字會上下卷
+動，但是光標會始終停留在屏幕中間的位置。
 
 </pre><hr class="doubleline" /><pre>
-<h4>平滑的滚屏                                              <b class="vimtag"> <a name="scroll-smooth">scroll-smooth</a> </b></h4>
-如果你希望你的滚屏更加平滑一些，你可以使用以下的映射: 
+<h4>平滑的滾屏                                              <b class="vimtag"> <a name="scroll-smooth">scroll-smooth</a> </b></h4>
+如果你希望你的滾屏更加平滑一些，你可以使用以下的映射: 
 <code class="example">        :map &lt;C-U&gt; &lt;C-Y&gt;&lt;C-Y&gt;&lt;C-Y&gt;&lt;C-Y&gt;&lt;C-Y&gt;&lt;C-Y&gt;&lt;C-Y&gt;&lt;C-Y&gt;&lt;C-Y&gt;&lt;C-Y&gt;&lt;C-Y&gt;&lt;C-Y&gt;&lt;C-Y&gt;&lt;C-Y&gt;&lt;C-Y&gt;&lt;C-Y&gt;</code>
 <code class="example">        :map &lt;C-D&gt; &lt;C-E&gt;&lt;C-E&gt;&lt;C-E&gt;&lt;C-E&gt;&lt;C-E&gt;&lt;C-E&gt;&lt;C-E&gt;&lt;C-E&gt;&lt;C-E&gt;&lt;C-E&gt;&lt;C-E&gt;&lt;C-E&gt;&lt;C-E&gt;&lt;C-E&gt;&lt;C-E&gt;&lt;C-E&gt;</code>
 <code class="example"></code>
-(逐字敲入这些字符，并确认 '&lt;' 标志位不在 <a href="options.html#'cpoptions'">'cpoptions'</a> 选项中)。
+(逐字敲入這些字符，並確認 '&lt;' 標誌位不在 <a href="options.html#'cpoptions'">'cpoptions'</a> 選項中)。
 
 </pre><hr class="doubleline" /><pre>
-<h4>纠正普通的录入错误                                      <b class="vimtag"> <a name="type-mistakes">type-mistakes</a> </b></h4>
-如果有一些单词你总是敲错，你可以使用缩写来改正它们。例如: 
+<h4>糾正普通的錄入錯誤                                      <b class="vimtag"> <a name="type-mistakes">type-mistakes</a> </b></h4>
+如果有一些單詞你總是敲錯，你可以使用縮寫來改正它們。例如: 
 <code class="example">        :ab teh the</code>
 <code class="example">        :ab fro for</code>
 <code class="example"></code>
 </pre><hr class="doubleline" /><pre>
-<h4>统计单词数、行数等                                      <b class="vimtag"> <a name="count-items">count-items</a> </b></h4>
-如果需要统计缓冲区中一个模式 (pattern) 出现的频率，使用 substitute 命令并加入
-'n' 标志位以避免实际的替代。Vim 报告的已替代的数目就是模式出现的次数。例: 
+<h4>統計單詞數、行數等                                      <b class="vimtag"> <a name="count-items">count-items</a> </b></h4>
+如果需要統計緩衝區中一個模式 (pattern) 出現的頻率，使用 substitute 命令並加入
+'n' 標誌位以避免實際的替代。Vim 報告的已替代的數目就是模式出現的次數。例: 
 <code class="example"></code>
-<code class="example">        :%s/./&amp;/gn              字符数</code>
-<code class="example">        :%s/\i\+/&amp;/gn           单词数</code>
-<code class="example">        :%s/^//n                行数</code>
-<code class="example">        :%s/the/&amp;/gn            任何地方出现的 "the"</code>
-<code class="example">        :%s/\&lt;the\&gt;/&amp;/gn        作为单词出现的 "the"</code>
+<code class="example">        :%s/./&amp;/gn              字符數</code>
+<code class="example">        :%s/\i\+/&amp;/gn           單詞數</code>
+<code class="example">        :%s/^//n                行數</code>
+<code class="example">        :%s/the/&amp;/gn            任何地方出現的 "the"</code>
+<code class="example">        :%s/\&lt;the\&gt;/&amp;/gn        作為單詞出現的 "the"</code>
 <code class="example"></code>
-你可能希望复位 <a href="options.html#'hlsearch'">'hlsearch'</a> 或者使用 ":nohlsearch"。
-如果你希望没有匹配的时候不显示错误，那么增加标志位 'e'。
+你可能希望復位 <a href="options.html#'hlsearch'">'hlsearch'</a> 或者使用 ":nohlsearch"。
+如果你希望沒有匹配的時候不顯示錯誤，那麼增加標誌位 'e'。
 
-另一种办法就是在可视模式下使用  <a href="editing.html#v_g_CTRL-G">v_g_CTRL-G</a> 。
+另一種辦法就是在可視模式下使用  <a href="editing.html#v_g_CTRL-G">v_g_CTRL-G</a> 。
 
-如果你想在多个文件中查找匹配，用  <a href="quickfix.html#:vimgrep">:vimgrep</a> 。
+如果你想在多個文件中查找匹配，用  <a href="quickfix.html#:vimgrep">:vimgrep</a> 。
 
                                                         <b class="vimtag"> <a name="count-bytes">count-bytes</a> </b>
-如果你想数字节数，你可以这样做:
+如果你想數字節數，你可以這樣做:
 
-        选中那些字符 (列块选择也可以)
-        使用 "y" 来拷贝这些字符
-        使用 strlen() 函数: 
+        選中那些字符 (列塊選擇也可以)
+        使用 "y" 來拷貝這些字符
+        使用 strlen() 函數: 
 <code class="example">                :echo strlen(@")</code>
-一个换行符被当做一个字节。
+一個換行符被當做一個字節。
 
 </pre><hr class="doubleline" /><pre>
-<h4>恢复光标位置                                            <b class="vimtag"> <a name="restore-position">restore-position</a> </b></h4>
-有时你希望写一个映射，让它在文件中的其他地方做一些修改然后恢复光标的位置 (不滚
-动文本)。例如，修改一个文件中的日期标记: 
+<h4>恢復光標位置                                            <b class="vimtag"> <a name="restore-position">restore-position</a> </b></h4>
+有時你希望寫一個映射，讓它在文件中的其他地方做一些修改然後恢復光標的位置 (不滾
+動文本)。例如，修改一個文件中的日期標記: 
 <code class="example"></code>
 <code class="example">   :map &lt;F2&gt; msHmtgg/Last [cC]hange:\s*/e+1&lt;CR&gt;"_D"=strftime("%Y %b %d")&lt;CR&gt;p'tzt`s</code>
 <code class="example"></code>
 分解出保存位置的命令:
-        ms      把光标位置存放在位置标记 's' 中
-        H       跳转到窗口的顶端
-        mt      把这个位置存放在位置标记 't' 中
+        ms      把光標位置存放在位置標記 's' 中
+        H       跳轉到窗口的頂端
+        mt      把這個位置存放在位置標記 't' 中
 
-分解出恢复位置的命令:
-        't      跳转到先前位于窗口顶端的那一行
-        zt      滚屏，使这一行位于窗口的顶端
-        `s      跳转到最初光标的位置
+分解出恢復位置的命令:
+        't      跳轉到先前位於窗口頂端的那一行
+        zt      滾屏，使這一行位於窗口的頂端
+        `s      跳轉到最初光標的位置
 
-更高级的功能见  <a href="eval.html#winsaveview()">winsaveview()</a>  和  <a href="eval.html#winrestview()">winrestview()</a> 。
+更高級的功能見  <a href="eval.html#winsaveview()">winsaveview()</a>  和  <a href="eval.html#winrestview()">winrestview()</a> 。
 
 </pre><hr class="doubleline" /><pre>
 <h4>文件更名                                                <b class="vimtag"> <a name="rename-files">rename-files</a> </b></h4>
-假如我有一个目录，里面有如下的文件 (目录是随机选取的):
+假如我有一個目錄，裡面有如下的文件 (目錄是隨機選取的):
 
 buffer.c
 charset.c
 digraph.c
 ...
 
-现在我希望把 *.c 更名为 *.bla。我可以这样做: 
+現在我希望把 *.c 更名為 *.bla。我可以這樣做: 
 <code class="example"></code>
 <code class="example">        $ vim</code>
 <code class="example">        :r !ls *.c</code>
@@ -262,138 +262,138 @@ digraph.c
 <code class="example">        :q!</code>
 <code class="example"></code>
 </pre><hr class="doubleline" /><pre>
-<h4>更改多个文件中的一个名字                                <b class="vimtag"> <a name="change-name">change-name</a> </b></h4>
-使用脚本文件在若干文件中更改一个名字的示例:
+<h4>更改多個文件中的一個名字                                <b class="vimtag"> <a name="change-name">change-name</a> </b></h4>
+使用腳本文件在若干文件中更改一個名字的示例:
 
-        创建文件 "subs.vim"，包含替代命令和 :update 命令: 
+        創建文件 "subs.vim"，包含替代命令和 :update 命令: 
 <code class="example">                :%s/Jones/Smith/g</code>
 <code class="example">                :%s/Allen/Peter/g</code>
 <code class="example">                :update</code>
 
-        在所有你要改动的文件上执行 Vim，然后为每个参数执行脚本: 
+        在所有你要改動的文件上執行 Vim，然後為每個參數執行腳本: 
 <code class="example"></code>
 <code class="example">                vim *.let</code>
 <code class="example">                argdo source subs.vim</code>
 <code class="example"></code>
-参见  <a href="editing.html#:argdo">:argdo</a> 。
+參見  <a href="editing.html#:argdo">:argdo</a> 。
 
 </pre><hr class="doubleline" /><pre>
-<h4>加速外部命令的执行                                      <b class="vimtag"> <a name="speed-up">speed-up</a> </b></h4>
-在一些情况下，外部命令执行起来非常地慢。而且还会减慢 Unix 上的通配符扩展。这儿
-有一些建议可以加快速度:
+<h4>加速外部命令的執行                                      <b class="vimtag"> <a name="speed-up">speed-up</a> </b></h4>
+在一些情況下，外部命令執行起來非常地慢。而且還會減慢 Unix 上的通配符擴展。這兒
+有一些建議可以加快速度:
 
-如果你的 .cshrc 文件 (根据你使用的外壳，文件名可能不同) 非常地长，你应该把它分
-割成两节: 需要和用户交互的、无需和用户交互的 (经常被称作二级外壳)。当你在 Vim
-中执行一个类似 ":!ls" 的命令时，你就不需要和用户交互的那一部分 (例如: 设置提示
-符)。把那些不必要的部分放到下面这些行后面去: 
+如果你的 .cshrc 文件 (根據你使用的外殼，文件名可能不同) 非常地長，你應該把它分
+割成兩節: 需要和用戶交互的、無需和用戶交互的 (經常被稱作二級外殼)。當你在 Vim
+中執行一個類似 ":!ls" 的命令時，你就不需要和用戶交互的那一部分 (例如: 設置提示
+符)。把那些不必要的部分放到下面這些行後面去: 
 <code class="example"></code>
 <code class="example">        if ($?prompt == 0) then</code>
 <code class="example">                exit 0</code>
 <code class="example">        endif</code>
 <code class="example"></code>
-另一个办法是在 <a href="options.html#'shell'">'shell'</a> 选项中包含 "-f" 参数，例如: 
+另一個辦法是在 <a href="options.html#'shell'">'shell'</a> 選項中包含 "-f" 參數，例如: 
 <code class="example"></code>
 <code class="example">        :set shell=csh\ -f</code>
 <code class="example"></code>
-(这儿的反斜杠是必需的，这样才能在选项中表示一个空格)。
-这样就会使 csh 完全跳过 .cshrc 文件。不过这样可能会造成一些程序不能正常运行。
+(這兒的反斜槓是必需的，這樣才能在選項中表示一個空格)。
+這樣就會使 csh 完全跳過 .cshrc 文件。不過這樣可能會造成一些程序不能正常運行。
 
 </pre><hr class="doubleline" /><pre>
 <h4>一些有用的映射                                  <b class="vimtag"> <a name="useful-mappings">useful-mappings</a> </b></h4>
-这里有一些人们喜欢使用的映射。
+這裡有一些人們喜歡使用的映射。
 
                                                         <b class="vimtag"> <a name="map-backtick">map-backtick</a> </b>  
 <code class="example">        :map ' `</code>
-使得单引号和 ' 一样工作。把光标移动到一个位置标记所在的列，而不是那一行的第一
-个非空白字符。
+使得單引號和 ' 一樣工作。把光標移動到一個位置標記所在的列，而不是那一行的第一
+個非空白字符。
 
                                                         <b class="vimtag"> <a name="emacs-keys">emacs-keys</a> </b>
-要在命令行上实现 Emacs 风格的编辑操作: 
+要在命令行上實現 Emacs 風格的編輯操作: 
 <code class="example">        " 至行首</code>
 <code class="example">        :cnoremap &lt;C-A&gt;         &lt;Home&gt;</code>
-<code class="example">        " 后退一个字符</code>
+<code class="example">        " 後退一個字符</code>
 <code class="example">        :cnoremap &lt;C-B&gt;         &lt;Left&gt;</code>
-<code class="example">        " 删除光标所在的字符</code>
+<code class="example">        " 刪除光標所在的字符</code>
 <code class="example">        :cnoremap &lt;C-D&gt;         &lt;Del&gt;</code>
 <code class="example">        " 至行尾</code>
 <code class="example">        :cnoremap &lt;C-E&gt;         &lt;End&gt;</code>
-<code class="example">        " 前进一个字符</code>
+<code class="example">        " 前進一個字符</code>
 <code class="example">        :cnoremap &lt;C-F&gt;         &lt;Right&gt;</code>
-<code class="example">        " 取回较新的命令行</code>
+<code class="example">        " 取回較新的命令行</code>
 <code class="example">        :cnoremap &lt;C-N&gt;         &lt;Down&gt;</code>
-<code class="example">        " 取回以前 (较旧的) 命令行</code>
+<code class="example">        " 取回以前 (較舊的) 命令行</code>
 <code class="example">        :cnoremap &lt;C-P&gt;         &lt;Up&gt;</code>
-<code class="example">        " 后退一个单词</code>
+<code class="example">        " 後退一個單詞</code>
 <code class="example">        :cnoremap &lt;Esc&gt;&lt;C-B&gt;    &lt;S-Left&gt;</code>
-<code class="example">        " 前进一个单词</code>
+<code class="example">        " 前進一個單詞</code>
 <code class="example">        :cnoremap &lt;Esc&gt;&lt;C-F&gt;    &lt;S-Right&gt;</code>
 <code class="example"></code>
-<code class="note">备注</code>: 前提条件是 '&lt;' 标志位不在 <a href="options.html#'cpoptions'">'cpoptions'</a> 选项中。 <a href="intro.html#%3C%3E">&lt;&gt;</a> 
+<code class="note">備註</code>: 前提條件是 '&lt;' 標誌位不在 <a href="options.html#'cpoptions'">'cpoptions'</a> 選項中。 <a href="intro.html#%3C%3E">&lt;&gt;</a> 
 
                                                         <b class="vimtag"> <a name="format-bullet-list">format-bullet-list</a> </b>
-这个映射可以排版任何带符号的 (bullet) 列表，不过它需要在每一个条目的上下都各有
-一个空行。使用表达式命令，以便对映射的部分进行注释: 
+這個映射可以排版任何帶符號的 (bullet) 列表，不過它需要在每一個條目的上下都各有
+一個空行。使用表達式命令，以便對映射的部分進行註釋: 
 <code class="example"></code>
 <code class="example">        :let m =     ":map _f  :set ai&lt;CR&gt;"   " 需要置位 'autoindent'</code>
-<code class="example">        :let m = m . "{O&lt;Esc&gt;"                " 在项目上面加入空行</code>
-<code class="example">        :let m = m . "}{)^W"                  " 跳转到 bullet 之后的文本</code>
-<code class="example">        :let m = m . "i     &lt;CR&gt;     &lt;Esc&gt;"   " 为缩进加空格</code>
-<code class="example">        :let m = m . "gq}"                    " 排版 bullet 之后的文本</code>
-<code class="example">        :let m = m . "{dd"                    " 删除空行</code>
-<code class="example">        :let m = m . "5lDJ"                   " 把文本放到 bullet 之后</code>
-<code class="example">        :execute m                            |" 定义这个 mapping</code>
+<code class="example">        :let m = m . "{O&lt;Esc&gt;"                " 在項目上面加入空行</code>
+<code class="example">        :let m = m . "}{)^W"                  " 跳轉到 bullet 之後的文本</code>
+<code class="example">        :let m = m . "i     &lt;CR&gt;     &lt;Esc&gt;"   " 為縮進加空格</code>
+<code class="example">        :let m = m . "gq}"                    " 排版 bullet 之後的文本</code>
+<code class="example">        :let m = m . "{dd"                    " 刪除空行</code>
+<code class="example">        :let m = m . "5lDJ"                   " 把文本放到 bullet 之後</code>
+<code class="example">        :execute m                            |" 定義這個 mapping</code>
 <code class="example"></code>
-(<code class="special">&lt;&gt;</code> 记法  <a href="intro.html#%3C%3E">&lt;&gt;</a> 。<code class="note">注意</code> 必须按照字面逐个输入。^W 是 "^" 和 "W"，而不是 <code class="keystroke">CTRL-W</code>。如
-果 '&lt;' 标志位不在 <a href="options.html#'cpoptions'">'cpoptions'</a> 选项中，你可以把这些拷贝/粘贴代码给 Vim 执行。)
+(<code class="special">&lt;&gt;</code> 記法  <a href="intro.html#%3C%3E">&lt;&gt;</a> 。<code class="note">注意</code> 必須按照字面逐個輸入。^W 是 "^" 和 "W"，而不是 <code class="keystroke">CTRL-W</code>。如
+果 '&lt;' 標誌位不在 <a href="options.html#'cpoptions'">'cpoptions'</a> 選項中，你可以把這些拷貝/粘貼代碼給 Vim 執行。)
 
-<code class="note">注意</code> 最后一个注释以 |" 开始，因为 ":execute" 不能直接识别一个注释。
+<code class="note">注意</code> 最後一個註釋以 |" 開始，因為 ":execute" 不能直接識別一個註釋。
 
-你还需要把 <a href="options.html#'textwidth'">'textwidth'</a> 设置成一个非 0 值，例如: 
+你還需要把 <a href="options.html#'textwidth'">'textwidth'</a> 設置成一個非 0 值，例如: 
 <code class="example">        :set tw=70</code>
 <code class="example"></code>
-以下这个映射可以达到同样的效果，不过它从第一行获得列表的缩进 (<code class="note">备注</code>: 这个映射其
-实只有一行，其中有很多空格): 
+以下這個映射可以達到同樣的效果，不過它從第一行獲得列表的縮進 (<code class="note">備註</code>: 這個映射其
+實只有一行，其中有很多空格): 
 <code class="example">        :map _f :set ai&lt;CR&gt;}{a                                                          &lt;Esc&gt;WWmmkD`mi&lt;CR&gt;&lt;Esc&gt;kkddpJgq}'mJO&lt;Esc&gt;j</code>
 
                                                         <b class="vimtag"> <a name="collapse">collapse</a> </b>
-这两个映射可以把一连串的空行 (;b) 或空白行 (;n) 压缩到一行 
+這兩個映射可以把一連串的空行 (;b) 或空白行 (;n) 壓縮到一行 
 <code class="example">    :map ;b   GoZ&lt;Esc&gt;:g/^$/.,/./-j&lt;CR&gt;Gdd</code>
 <code class="example">    :map ;n   GoZ&lt;Esc&gt;:g/^[ &lt;Tab&gt;]*$/.,/[^ &lt;Tab&gt;]/-j&lt;CR&gt;Gdd</code>
 <code class="example"></code>
 </pre><hr class="doubleline" /><pre>
-<h4>压缩帮助文件                                            <b class="vimtag"> <a name="gzip-helpfile">gzip-helpfile</a> </b></h4>
-对于那些磁盘空间极度紧张的人来说，你们可以压缩帮助文件。这样会使得查看帮助文
-件时稍微慢一点，并且需要 "gzip" 这个程序的支持。
+<h4>壓縮幫助文件                                            <b class="vimtag"> <a name="gzip-helpfile">gzip-helpfile</a> </b></h4>
+對於那些磁盤空間極度緊張的人來說，你們可以壓縮幫助文件。這樣會使得查看幫助文
+件時稍微慢一點，並且需要 "gzip" 這個程序的支持。
 
-(1) 压缩所有帮助文件: "gzip doc/*.txt"。
+(1) 壓縮所有幫助文件: "gzip doc/*.txt"。
 
-(2) 编辑文件 "doc/tags"，用 ".txt.gz" 替换 ".txt": 
+(2) 編輯文件 "doc/tags"，用 ".txt.gz" 替換 ".txt": 
 <code class="example">        :%s=\(\t.*\.txt\)\t=\1.gz\t=</code>
 <code class="example"></code>
-(3) 把这一行加入到你的 vimrc 文件中: 
+(3) 把這一行加入到你的 vimrc 文件中: 
 <code class="example">        set helpfile={dirname}/help.txt.gz</code>
 <code class="example"></code>
-这儿 <code class="special">{dirname}</code> 是存放帮助文件的目录。 <a href="pi_gzip.html#gzip">gzip</a>  这个插件会负责解压缩这些文件的。
-如果其它 Vim 文件所在的位置和存放压缩帮助的 "doc" 目录不一致，你必须肯定已经把
-$VIMRUNTIME 设置成存放 Vim 文件的目录。参见:  <a href="starting.html#$VIMRUNTIME">$VIMRUNTIME</a> 。
+這兒 <code class="special">{dirname}</code> 是存放幫助文件的目錄。 <a href="pi_gzip.html#gzip">gzip</a>  這個插件會負責解壓縮這些文件的。
+如果其它 Vim 文件所在的位置和存放壓縮幫助的 "doc" 目錄不一致，你必須肯定已經把
+$VIMRUNTIME 設置成存放 Vim 文件的目錄。參見:  <a href="starting.html#$VIMRUNTIME">$VIMRUNTIME</a> 。
 
 </pre><hr class="doubleline" /><pre>
-<h4>在一个窗口中执行外壳命令                                <b class="vimtag"> <a name="shell-window">shell-window</a> </b></h4>
-很多人都询问能不能在 Vim 中的一个窗口内执行外壳命令。答案是: 不行！加入这个功
-能会给 Vim 增加很多代码量，这也是为什么我们没有这样做的一个很好的理由。毕竟，
-Vim 只是一个编辑器，它本身并不是用来做那些非编辑类工作的。然而，要达到这样的目
-的，你可以用 "splitvt" 程序把你的终端屏幕或显示窗口进行分割。在一些 ftp 服务器
-上你可以找到这个工具。Sam Lantinga &lt;slouken@cs.ucdavis.edu&gt; 对此了解颇多。另一
-种办法是使用在 BSD Unix 系统上出现的 "window" 命令，它支持多个重叠的窗口。或者
-使用最先出现在 www.uni-erlangen.de 上的 "screen" 程序，它支持窗口栈。
+<h4>在一個窗口中執行外殼命令                                <b class="vimtag"> <a name="shell-window">shell-window</a> </b></h4>
+很多人都詢問能不能在 Vim 中的一個窗口內執行外殼命令。答案是: 不行！加入這個功
+能會給 Vim 增加很多代碼量，這也是為什麼我們沒有這樣做的一個很好的理由。畢竟，
+Vim 只是一個編輯器，它本身並不是用來做那些非編輯類工作的。然而，要達到這樣的目
+的，你可以用 "splitvt" 程序把你的終端屏幕或顯示窗口進行分割。在一些 ftp 服務器
+上你可以找到這個工具。Sam Lantinga &lt;slouken@cs.ucdavis.edu&gt; 對此瞭解頗多。另一
+種辦法是使用在 BSD Unix 系統上出現的 "window" 命令，它支持多個重疊的窗口。或者
+使用最先出現在 www.uni-erlangen.de 上的 "screen" 程序，它支持窗口棧。
 
 </pre><hr class="doubleline" /><pre>
-<h4>十六进制编辑                                    <b class="vimtag"> <a name="hex-editing">hex-editing</a> </b> <b class="vimtag"> <a name="using-xxd">using-xxd</a> </b></h4>
-请看用户手册的第  <a href="usr_23.html#23.4">23.4</a>  节。
+<h4>十六進制編輯                                    <b class="vimtag"> <a name="hex-editing">hex-editing</a> </b> <b class="vimtag"> <a name="using-xxd">using-xxd</a> </b></h4>
+請看用戶手冊的第  <a href="usr_23.html#23.4">23.4</a>  節。
 
-如果你用一些专门的扩展名来命名二进制文件 (诸如 exe，bin 等等)，你会发现以下在
-&lt;.vimrc&gt; 文件中使用的一些命令在自动处理这些文件时非常有用。你可以用你希望编辑
-的文件扩展名 (用逗号分隔) 替换以下的 "*.bin": 
+如果你用一些專門的擴展名來命名二進制文件 (諸如 exe，bin 等等)，你會發現以下在
+&lt;.vimrc&gt; 文件中使用的一些命令在自動處理這些文件時非常有用。你可以用你希望編輯
+的文件擴展名 (用逗號分隔) 替換以下的 "*.bin": 
 <code class="example"></code>
 <code class="example">        " vim -b : edit binary using xxd-format!</code>
 <code class="example">        augroup Binary</code>
@@ -408,43 +408,43 @@ Vim 只是一个编辑器，它本身并不是用来做那些非编辑类工作�
 <code class="example">        augroup END</code>
 <code class="example"></code>
 </pre><hr class="doubleline" /><pre>
-<h4>在自动命令中使用 <code class="special">&lt;&gt;</code> 记法                                <b class="vimtag"> <a name="autocmd-%3C%3E">autocmd-&lt;&gt;</a> </b></h4>
-在自动命令的参数中，不能识别 <code class="special">&lt;&gt;</code> 记法。为避免使用特殊的字符，你可以使用一个可以
-自我毁灭的映射来得到 <code class="special">&lt;&gt;</code> 记法，然后从自动命令中调用这个映射。举例如下:
+<h4>在自動命令中使用 <code class="special">&lt;&gt;</code> 記法                                <b class="vimtag"> <a name="autocmd-%3C%3E">autocmd-&lt;&gt;</a> </b></h4>
+在自動命令的參數中，不能識別 <code class="special">&lt;&gt;</code> 記法。為避免使用特殊的字符，你可以使用一個可以
+自我毀滅的映射來得到 <code class="special">&lt;&gt;</code> 記法，然後從自動命令中調用這個映射。舉例如下:
 
                                                 <b class="vimtag"> <a name="map-self-destroy">map-self-destroy</a> </b>  
-<code class="example"> " 此命令自动把文件名加入到菜单列表中。</code>
-<code class="example"> " 它使用了一个可以自我毁灭的映射！</code>
-<code class="example"> " 1. 用缓冲区中的一行把文件名中的点 ('dots') 转换成 \.</code>
-<code class="example"> " 2. 把该行存放在寄存器 '"' 中</code>
-<code class="example"> " 3. 把该名字加入缓冲区菜单列表</code>
-<code class="example"> " 警 告: 这会有些副作用，比如: 覆盖当前的寄存器内容和删除任何 "i" 命令的映射</code>
+<code class="example"> " 此命令自動把文件名加入到菜單列表中。</code>
+<code class="example"> " 它使用了一個可以自我毀滅的映射！</code>
+<code class="example"> " 1. 用緩衝區中的一行把文件名中的點 ('dots') 轉換成 \.</code>
+<code class="example"> " 2. 把該行存放在寄存器 '"' 中</code>
+<code class="example"> " 3. 把該名字加入緩衝區菜單列表</code>
+<code class="example"> " 警 告: 這會有些副作用，比如: 覆蓋當前的寄存器內容和刪除任何 "i" 命令的映射</code>
 <code class="example"> "</code>
 <code class="example"> autocmd BufNewFile,BufReadPre * nmap i :nunmap i&lt;CR&gt;O&lt;C-R&gt;%&lt;Esc&gt;:.g/\./s/\./\\./g&lt;CR&gt;0"9y$u:menu Buffers.&lt;C-R&gt;9 :buffer &lt;C-R&gt;%&lt;C-V&gt;&lt;CR&gt;&lt;CR&gt;</code>
 <code class="example"> autocmd BufNewFile,BufReadPre * normal i</code>
 <code class="example"></code>
-另一个或许更好一些的办法就是使用 ":execute" 命令。在字符串中，你可以通过在 <code class="special">&lt;&gt;</code>
-记法前面加一个反斜杠的方法来使用它。别忘了加倍已经存在的反斜杠的数目以及在 '"'
-前面放一个反斜杠。 
+另一個或許更好一些的辦法就是使用 ":execute" 命令。在字符串中，你可以通過在 <code class="special">&lt;&gt;</code>
+記法前面加一個反斜槓的方法來使用它。別忘了加倍已經存在的反斜槓的數目以及在 '"'
+前面放一個反斜槓。 
 <code class="example"></code>
 <code class="example">  autocmd BufNewFile,BufReadPre * exe "normal O\&lt;C-R&gt;%\&lt;Esc&gt;:.g/\\./s/\\./\\\\./g\&lt;CR&gt;0\"9y$u:menu Buffers.\&lt;C-R&gt;9 :buffer \&lt;C-R&gt;%\&lt;C-V&gt;\&lt;CR&gt;\&lt;CR&gt;"</code>
 <code class="example"></code>
-为了建立一个真正的缓冲区菜单，需要用到用户函数 (参见  <a href="eval.html#:function">:function</a> )，不过那里不
-使用 <code class="special">&lt;&gt;</code> 记法，所以失去了在这里举例的意义。
+為了建立一個真正的緩衝區菜單，需要用到用戶函數 (參見  <a href="eval.html#:function">:function</a> )，不過那裡不
+使用 <code class="special">&lt;&gt;</code> 記法，所以失去了在這裡舉例的意義。
 
 </pre><hr class="doubleline" /><pre>
-<h4>高亮匹配括号                                                    <b class="vimtag"> <a name="match-parens">match-parens</a> </b></h4>
-本例演示一些高级技巧的用法:
-- 使用  <a href="autocmd.html#CursorMoved">CursorMoved</a>  自动命令事件
-- 使用  <a href="eval.html#searchpairpos()">searchpairpos()</a>  查找匹配括号
-- 使用  <a href="eval.html#synID()">synID()</a>  检测光标是否在字符串或注释上
-- 使用  <a href="pattern.html#:match">:match</a>  高亮一些内容
+<h4>高亮匹配括號                                                    <b class="vimtag"> <a name="match-parens">match-parens</a> </b></h4>
+本例演示一些高級技巧的用法:
+- 使用  <a href="autocmd.html#CursorMoved">CursorMoved</a>  自動命令事件
+- 使用  <a href="eval.html#searchpairpos()">searchpairpos()</a>  查找匹配括號
+- 使用  <a href="eval.html#synID()">synID()</a>  檢測光標是否在字符串或註釋上
+- 使用  <a href="pattern.html#:match">:match</a>  高亮一些內容
 - 使用  <a href="pattern.html#pattern">pattern</a>  匹配文件的特定位置。
 
-它应该被放在 Vim 脚本里，因为使用了局部于脚本的变量。它跳过字符串或注释里的匹
-配，除非光标起始于字符串或者注释的内部。这需要语法高亮的支持。
+它應該被放在 Vim 腳本裡，因為使用了局部於腳本的變量。它跳過字符串或註釋裡的匹
+配，除非光標起始於字符串或者註釋的內部。這需要語法高亮的支持。
 
- <a href="pi_paren.html#matchparen">matchparen</a>  插件使用稍稍改进的版本。
+ <a href="pi_paren.html#matchparen">matchparen</a>  插件使用稍稍改進的版本。
 
 <code class="example">        let s:paren_hl_on = 0</code>
 <code class="example">        function s:Highlight_Matching_Paren()</code>

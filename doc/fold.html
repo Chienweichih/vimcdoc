@@ -1,17 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>VIM: fold</title>
 <link rel="stylesheet" href="vim-stylesheet.css" type="text/css">
 </head>
 <body>
 <div id=banner>
-<a href="help.html">帮助总览</a> &middot;
-<a href="quickref.html">快速参考</a> &middot;
+<a href="help.html">幫助總覽</a> &middot;
+<a href="quickref.html">快速參考</a> &middot;
 <a href="index.html">命令索引</a> &middot;
-<a href="usr_toc.html">用户手册</a> &middot;
-<a href="help.html#reference_toc">参考手册</a>
+<a href="usr_toc.html">用戶手冊</a> &middot;
+<a href="help.html#reference_toc">參考手冊</a>
 </div>
 
 <div id=outer>
@@ -20,113 +20,113 @@
 <b class="vimtag"> <a name="fold.txt">fold.txt</a> </b>      For Vim version 8.0.  最近更新: 2017年7月
 
 
-                  <code class="vim">VIM 参考手册    by Bram Moolenaar</code>
-                      <code class="vim">译者</code>: Zimin&lt;cranecai@users.sf.net&gt;，tocer
+                  <code class="vim">VIM 參考手冊    by Bram Moolenaar</code>
+                      <code class="vim">譯者</code>: Zimin&lt;cranecai@users.sf.net&gt;，tocer
 
 
-折叠                                            <b class="vimtag"> <a name="Folding">Folding</a> </b> <b class="vimtag"> <a name="folding">folding</a> </b> <b class="vimtag"> <a name="folds">folds</a> </b>
+折疊                                            <b class="vimtag"> <a name="Folding">Folding</a> </b> <b class="vimtag"> <a name="folding">folding</a> </b> <b class="vimtag"> <a name="folds">folds</a> </b>
 
-你可以在用户手册的第 28 章找到有关折叠的序论。 <a href="usr_28.html#usr_28.txt">usr_28.txt</a> 
+你可以在用戶手冊的第 28 章找到有關折疊的序論。 <a href="usr_28.html#usr_28.txt">usr_28.txt</a> 
 
-1. 折叠方法              <a href="fold.html#fold-methods">fold-methods</a> 
-2. 折叠命令              <a href="fold.html#fold-commands">fold-commands</a> 
-3. 折叠选项              <a href="fold.html#fold-options">fold-options</a> 
-4. 折叠行为              <a href="fold.html#fold-behavior">fold-behavior</a> 
+1. 折疊方法              <a href="fold.html#fold-methods">fold-methods</a> 
+2. 折疊命令              <a href="fold.html#fold-commands">fold-commands</a> 
+3. 折疊選項              <a href="fold.html#fold-options">fold-options</a> 
+4. 折疊行為              <a href="fold.html#fold-behavior">fold-behavior</a> 
 
-<code class="notvi">{Vi 没有折叠}</code>
-<code class="notvi">{仅当编译时加入  <a href="various.html#+folding">+folding</a>  特性才有效}</code>
+<code class="notvi">{Vi 沒有折疊}</code>
+<code class="notvi">{僅當編譯時加入  <a href="various.html#+folding">+folding</a>  特性才有效}</code>
 
 </pre><hr class="doubleline" /><pre>
-<h4>1. 折叠方法                                     <b class="vimtag"> <a name="fold-methods">fold-methods</a> </b></h4>
-可用选项 <a href="options.html#'foldmethod'">'foldmethod'</a> 来设定折叠方法。
+<h4>1. 折疊方法                                     <b class="vimtag"> <a name="fold-methods">fold-methods</a> </b></h4>
+可用選項 <a href="options.html#'foldmethod'">'foldmethod'</a> 來設定折疊方法。
 
-设置选项 <a href="options.html#'foldmethod'">'foldmethod'</a> 为非 "manual" 的其它值时，所有的折叠都会被删除并且创建新
-的。如果设置成 "manual"，将不去除已有的折叠。可以利用这一点来先自动定义折叠，
-然后手工调整。
+設置選項 <a href="options.html#'foldmethod'">'foldmethod'</a> 為非 "manual" 的其它值時，所有的折疊都會被刪除並且創建新
+的。如果設置成 "manual"，將不去除已有的折疊。可以利用這一點來先自動定義折疊，
+然後手工調整。
 
-有 6 种方法来选定折叠:
-        manual          手工定义折叠
-        indent          更多的缩进表示更高级别的折叠
-        expr            用表达式来定义折叠
-        syntax          用语法高亮来定义折叠
-        diff            对没有更改的文本进行折叠
-        marker          对文中的标志折叠
+有 6 種方法來選定折疊:
+        manual          手工定義折疊
+        indent          更多的縮進表示更高級別的折疊
+        expr            用表達式來定義折疊
+        syntax          用語法高亮來定義折疊
+        diff            對沒有更改的文本進行折疊
+        marker          對文中的標誌折疊
 
 
 手 工                                           <b class="vimtag"> <a name="fold-manual">fold-manual</a> </b>
 
-使用命令来手工定义要折叠的范围。分析文本并发现折叠的脚本也可用这种方法。
+使用命令來手工定義要折疊的範圍。分析文本並發現折疊的腳本也可用這種方法。
 
-折叠的级别仅由嵌套次数来定义。要对一定行数的折叠增加级别，可以对相同的行反复定
-义折叠。
+折疊的級別僅由嵌套次數來定義。要對一定行數的折疊增加級別，可以對相同的行反覆定
+義折疊。
 
-当你退出文件编辑时，手工折叠会被遗弃。要保存折叠，使用  <a href="starting.html#:mkview">:mkview</a>  命令。之后要
-恢复可以使用  <a href="starting.html#:loadview">:loadview</a> 。
-
-
-缩 进                                           <b class="vimtag"> <a name="fold-indent">fold-indent</a> </b>
-
-由缩进行自动定义折叠。
-
-折叠级别由行的缩进除以 <a href="options.html#'shiftwidth'">'shiftwidth'</a> (向下取整) 计算而得。连续的，有同样或更高
-的折叠级别的行，形成一个折叠。在其中，有更高折叠级别的行形成嵌套的折叠。
-
-嵌套的级别数受 <a href="options.html#'foldnestmax'">'foldnestmax'</a> 选项限制。
-
-某些行会被忽略并得到上一行或下一行的折叠级别 (取较小值)。符合条件的这样的行要
-么是空行，要么以 <a href="options.html#'foldignore'">'foldignore'</a> 选项里包含的字符开始。在查找 <a href="options.html#'foldignore'">'foldignore'</a> 里包含
-的字符时，空白字符会被忽略。对于 C，该选项使用 "#" 来略过要预处理的那些行。
-
-当你想用另一种方式来略过行时，使用 "expr" 方法。在 <a href="options.html#'foldexpr'">'foldexpr'</a> 中  <a href="eval.html#indent()">indent()</a>  函
-数被用来取得一行的缩进。
+當你退出文件編輯時，手工折疊會被遺棄。要保存折疊，使用  <a href="starting.html#:mkview">:mkview</a>  命令。之後要
+恢復可以使用  <a href="starting.html#:loadview">:loadview</a> 。
 
 
-表 达 式                                                <b class="vimtag"> <a name="fold-expr">fold-expr</a> </b>
+縮 進                                           <b class="vimtag"> <a name="fold-indent">fold-indent</a> </b>
 
-就像用 "indent" 方式一样，表达式方式的折叠也是由折叠级别自动定义的。对每行，通
-过计算选项 <a href="options.html#'foldexpr'">'foldexpr'</a> 的值来并得到它的折叠级别。如:
-对所有以制表符开始的连续的几行，创建折叠: 
+由縮進行自動定義折疊。
+
+折疊級別由行的縮進除以 <a href="options.html#'shiftwidth'">'shiftwidth'</a> (向下取整) 計算而得。連續的，有同樣或更高
+的折疊級別的行，形成一個折疊。在其中，有更高折疊級別的行形成嵌套的折疊。
+
+嵌套的級別數受 <a href="options.html#'foldnestmax'">'foldnestmax'</a> 選項限制。
+
+某些行會被忽略並得到上一行或下一行的折疊級別 (取較小值)。符合條件的這樣的行要
+麼是空行，要麼以 <a href="options.html#'foldignore'">'foldignore'</a> 選項裡包含的字符開始。在查找 <a href="options.html#'foldignore'">'foldignore'</a> 裡包含
+的字符時，空白字符會被忽略。對於 C，該選項使用 "#" 來略過要預處理的那些行。
+
+當你想用另一種方式來略過行時，使用 "expr" 方法。在 <a href="options.html#'foldexpr'">'foldexpr'</a> 中  <a href="eval.html#indent()">indent()</a>  函
+數被用來取得一行的縮進。
+
+
+表 達 式                                                <b class="vimtag"> <a name="fold-expr">fold-expr</a> </b>
+
+就像用 "indent" 方式一樣，表達式方式的折疊也是由折疊級別自動定義的。對每行，通
+過計算選項 <a href="options.html#'foldexpr'">'foldexpr'</a> 的值來並得到它的折疊級別。如:
+對所有以製表符開始的連續的幾行，創建折疊: 
 <code class="example">        :set foldexpr=getline(v:lnum)[0]==\"\\t\"</code>
-调用一函数来计算折叠级别:   
+調用一函數來計算折疊級別:   
 <code class="example">        :set foldexpr=MyFoldLevel(v:lnum)</code>
-用空白行分开的段落构成折叠:   
+用空白行分開的段落構成折疊:   
 <code class="example">        :set foldexpr=getline(v:lnum)=~'^\\s*$'&amp;&amp;getline(v:lnum+1)=~'\\S'?'&lt;1':1</code>
 同上:   
 <code class="example">        :set foldexpr=getline(v:lnum-1)=~'^\\s*$'&amp;&amp;getline(v:lnum)=~'\\S'?'&gt;1':1</code>
-<code class="note">备注</code>: ":set" 要特殊处理的字符必须用反斜杠转义。(空格，反斜杠，双引号等等，参考
+<code class="note">備註</code>: ":set" 要特殊處理的字符必須用反斜槓轉義。(空格，反斜槓，雙引號等等，參考
  <a href="options.html#option-backslash">option-backslash</a> )
 
-这些是表达式的计算条件:
-- 当前缓冲区和窗口值依所在行而定
-- 变量 "v:lnum" 被定为该行行号
-- 计算结果将用以下方式解释:
+這些是表達式的計算條件:
+- 當前緩衝區和窗口值依所在行而定
+- 變量 "v:lnum" 被定為該行行號
+- 計算結果將用以下方式解釋:
 <code class="section">  值                    代表 </code>
-  0                     这行不折叠
-  1, 2, ..              这行的折叠级别 1，2 等
-  -1                    折叠级别没有定义，使用这行之前或之后一行的级别值，取其
-                        中较小的一个。
-  "="                   使用上一行的折叠级别。
-  "a1", "a2", ..        上一行的折叠级别加 1，2，..，结果适用于当前行
-  "s1", "s2", ..        上一行的折叠级别减 1，2，..，结果适用于当前行
-  "&lt;1", "&lt;2", ..        此折叠级别在本行结束
-  "&gt;1", "&gt;2", ..        此折叠级别在本行开始
+  0                     這行不折疊
+  1, 2, ..              這行的折疊級別 1，2 等
+  -1                    折疊級別沒有定義，使用這行之前或之後一行的級別值，取其
+                        中較小的一個。
+  "="                   使用上一行的折疊級別。
+  "a1", "a2", ..        上一行的折疊級別加 1，2，..，結果適用於當前行
+  "s1", "s2", ..        上一行的折疊級別減 1，2，..，結果適用於當前行
+  "&lt;1", "&lt;2", ..        此折疊級別在本行結束
+  "&gt;1", "&gt;2", ..        此折疊級別在本行開始
 
-不需要用 "&gt;1" ("&lt;1") 标志折叠的开始 (结束)。当这行折叠级别高于 (低于) 上一行的
-级别时，折叠将开始 (结束)。
+不需要用 "&gt;1" ("&lt;1") 標誌折疊的開始 (結束)。當這行折疊級別高於 (低於) 上一行的
+級別時，折疊將開始 (結束)。
 
-表达式必须没有副作用。在缓冲区里的文字，光标位置，查找模式，选项等等，不能被改
-动。如果你非常小心，改动并恢复这些设置还是可以的。
+表達式必須沒有副作用。在緩衝區裡的文字，光標位置，查找模式，選項等等，不能被改
+動。如果你非常小心，改動並恢復這些設置還是可以的。
 
-表达式中有错误或者计算结果不能识别时，Vim 不会产生错误消息，而是将折叠级别设为
-0。所以当需要调试时，可将 <a href="options.html#'debug'">'debug'</a> 选项设为 "msg"，错误消息就可以被见到了。
+表達式中有錯誤或者計算結果不能識別時，Vim 不會產生錯誤消息，而是將折疊級別設為
+0。所以當需要調試時，可將 <a href="options.html#'debug'">'debug'</a> 選項設為 "msg"，錯誤消息就可以被見到了。
 
-<code class="note">备注</code>: 由于每一行关于表达式的值都要被计算，这一折叠方式可能会很慢！
+<code class="note">備註</code>: 由於每一行關於表達式的值都要被計算，這一折疊方式可能會很慢！
 
-最好避免使用 "=" ， "a" 和 "s" 作为返回值，因为 Vim 不得不经常向后回溯以得到折
-叠级别。这会降低执行速度。
+最好避免使用 "=" ， "a" 和 "s" 作為返回值，因為 Vim 不得不經常向後回溯以得到折
+疊級別。這會降低執行速度。
 
-使用 "a1" 和 "s1" 的一例: 用于多行 C 注释，以 "/*" 开始的行返回 "a1" 以开始折
-叠，包含 "*/" 的一行返回 "s1" 使该行之后结束折叠: 
+使用 "a1" 和 "s1" 的一例: 用於多行 C 註釋，以 "/*" 開始的行返回 "a1" 以開始折
+疊，包含 "*/" 的一行返回 "s1" 使該行之後結束折疊: 
 <code class="example">  if match(thisline, '/\*') &gt;= 0</code>
 <code class="example">    return 'a1'</code>
 <code class="example">  elseif match(thisline, '\*/') &gt;= 0</code>
@@ -134,50 +134,50 @@
 <code class="example">  else</code>
 <code class="example">    return '='</code>
 <code class="example">  endif</code>
-不过，此代码不适用于单行注释，字符串等。
+不過，此代碼不適用於單行註釋，字符串等。
 
- <a href="eval.html#foldlevel()">foldlevel()</a>  计算相对于上一折叠级别的折叠级别。但要<code class="note">注意</code>，如果该级别未知，
-foidlevel() 返回 -1。它返回的级别对应于该行开始的位置，尽管折叠本身可能在该行
-结束。
+ <a href="eval.html#foldlevel()">foldlevel()</a>  計算相對於上一折疊級別的折疊級別。但要<code class="note">注意</code>，如果該級別未知，
+foidlevel() 返回 -1。它返回的級別對應於該行開始的位置，儘管折疊本身可能在該行
+結束。
 
-折叠可能会没有及时更新。用  <a href="fold.html#zx">zx</a>  或者  <a href="fold.html#zX">zX</a>  可以强制折叠更新。
+折疊可能會沒有及時更新。用  <a href="fold.html#zx">zx</a>  或者  <a href="fold.html#zX">zX</a>  可以強制折疊更新。
 
 
-语 法                                           <b class="vimtag"> <a name="fold-syntax">fold-syntax</a> </b>
+語 法                                           <b class="vimtag"> <a name="fold-syntax">fold-syntax</a> </b>
 
-由带有 "fold" 参数的语法项来定义折叠。 <a href="syntax.html#:syn-fold">:syn-fold</a> 
+由帶有 "fold" 參數的語法項來定義折疊。 <a href="syntax.html#:syn-fold">:syn-fold</a> 
 
-折叠级别由嵌套的折叠层数来定义。嵌套数由 <a href="options.html#'foldnestmax'">'foldnestmax'</a> 限定。
+折疊級別由嵌套的折疊層數來定義。嵌套數由 <a href="options.html#'foldnestmax'">'foldnestmax'</a> 限定。
 
-要小心指定合适的语法同步方式。如果这里有问题，折叠和显示高亮可能会不一致。尤其
-在使用可能跨越多行的模式时更要小心。如果有疑问，不妨尝试如下的强制同步: 
+要小心指定合適的語法同步方式。如果這裡有問題，折疊和顯示高亮可能會不一致。尤其
+在使用可能跨越多行的模式時更要小心。如果有疑問，不妨嘗試如下的強制同步: 
 <code class="example">        :syn sync fromstart</code>
 
 
-比 较                                           <b class="vimtag"> <a name="fold-diff">fold-diff</a> </b>
+比 較                                           <b class="vimtag"> <a name="fold-diff">fold-diff</a> </b>
 
-对没有改动的文本或靠近改动的文本自动定义折叠。
+對沒有改動的文本或靠近改動的文本自動定義折疊。
 
-这个方法仅适用于当前窗口设定 <a href="options.html#'diff'">'diff'</a> 选项来显示不同之处时才有效。不然，整个缓冲
-区就是一个大的折叠。
+這個方法僅適用於當前窗口設定 <a href="options.html#'diff'">'diff'</a> 選項來顯示不同之處時才有效。不然，整個緩衝
+區就是一個大的折疊。
 
-选项 <a href="options.html#'diffopt'">'diffopt'</a> 可以指定上下文。即折叠和不被折叠包括的改变之间相距的行数。比
-如，设定上下文为 8: 
+選項 <a href="options.html#'diffopt'">'diffopt'</a> 可以指定上下文。即折疊和不被折疊包括的改變之間相距的行數。比
+如，設定上下文為 8: 
 <code class="example">        :set diffopt=filler,context:8</code>
-默认值是 6。
+默認值是 6。
 
-当设定了 <a href="options.html#'scrollbind'">'scrollbind'</a> 选项时，Vim 会试图在其它比较窗口中打开相同的折叠，这样这
-些窗口就会显示同一处文本。
+當設定了 <a href="options.html#'scrollbind'">'scrollbind'</a> 選項時，Vim 會試圖在其它比較窗口中打開相同的折疊，這樣這
+些窗口就會顯示同一處文本。
 
 
-标 志                                           <b class="vimtag"> <a name="fold-marker">fold-marker</a> </b>
+標 志                                           <b class="vimtag"> <a name="fold-marker">fold-marker</a> </b>
 
-在文本中可以加入标志来指明折叠开始和结束的地方。这可以让你精确的定义折叠。这也
-让你可以放心地删除和复制折叠而不用担心错误包括了某些行。选项 <a href="options.html#'foldtext'">'foldtext'</a> 通常设
-置为使折叠行显示折叠标志之前的文本。这样做可以为折叠命名。
+在文本中可以加入標誌來指明折疊開始和結束的地方。這可以讓你精確的定義折疊。這也
+讓你可以放心地刪除和複製折疊而不用擔心錯誤包括了某些行。選項 <a href="options.html#'foldtext'">'foldtext'</a> 通常設
+置為使折疊行顯示折疊標誌之前的文本。這樣做可以為折疊命名。
 
-标志可以包含级别数，也可以使用匹配对。包含级别数较简单，你无须添加结束标志，并
-可以避免标志不配对的问题。如: 
+標誌可以包含級別數，也可以使用匹配對。包含級別數較簡單，你無須添加結束標誌，並
+可以避免標誌不配對的問題。如: 
 <code class="example">        /* global variables {{{1 */</code>
 <code class="example">        int varA, varB;</code>
 <code class="example"></code>
@@ -188,16 +188,16 @@ foidlevel() 返回 -1。它返回的级别对应于该行开始的位置，尽�
 <code class="example">        /* funcB() {{{2 */</code>
 <code class="example">        void funcB() {}</code>
 <code class="example"></code>
-折叠开始于 "{{{" 标志。接下去的数字决定了折叠级别。产生的效果依当前折叠级别和
-该折叠标志给定的级别的大小关系而定:
-1. 如果遇到级别相同的标志，上一个折叠结束，另一个有同样级别的折叠开始。
-2. 如果遇到级别更高的标志，开始一个嵌套的折叠。
-3. 如果遇到级别更低的标志，所有大于或等于当前级别的折叠结束，且指定级别的折叠
-   开始。
+折疊開始於 "{{{" 標誌。接下去的數字決定了折疊級別。產生的效果依當前折疊級別和
+該折疊標誌給定的級別的大小關係而定:
+1. 如果遇到級別相同的標誌，上一個折疊結束，另一個有同樣級別的折疊開始。
+2. 如果遇到級別更高的標誌，開始一個嵌套的折疊。
+3. 如果遇到級別更低的標誌，所有大於或等於當前級別的折疊結束，且指定級別的折疊
+   開始。
 
-数字指定了折叠级别。不能使用 0 (忽略级别为 0 的标志)。你可以使用 "}}}" 带上一
-个数字来表示这个级别的折叠结束。此行以下的折叠级别将比当前级别小一。<code class="note">备注</code>: Vim
-不会回溯匹配的标志 (这将耗费太多的时间)。如: 
+數字指定了折疊級別。不能使用 0 (忽略級別為 0 的標誌)。你可以使用 "}}}" 帶上一
+個數字來表示這個級別的折疊結束。此行以下的折疊級別將比當前級別小一。<code class="note">備註</code>: Vim
+不會回溯匹配的標誌 (這將耗費太多的時間)。如: 
 <code class="example"></code>
 <code class="example">        {{{1</code>
 <code class="example">        fold level here is 1</code>
@@ -206,8 +206,8 @@ foidlevel() 返回 -1。它返回的级别对应于该行开始的位置，尽�
 <code class="example">        }}}3</code>
 <code class="example">        fold level here is 2</code>
 <code class="example"></code>
-你也可以用一对匹配标志 "{{{" 和 "}}}" 来定义折叠。每个 "{{{" 使折叠级别加 1，
-"}}}" 使折叠级别减 1。<code class="note">注意</code>一定要使标志匹配！如: 
+你也可以用一對匹配標誌 "{{{" 和 "}}}" 來定義折疊。每個 "{{{" 使折疊級別加 1，
+"}}}" 使折疊級別減 1。<code class="note">注意</code>一定要使標誌匹配！如: 
 <code class="example"></code>
 <code class="example">        {{{</code>
 <code class="example">        fold level here is 1</code>
@@ -216,232 +216,232 @@ foidlevel() 返回 -1。它返回的级别对应于该行开始的位置，尽�
 <code class="example">        }}}</code>
 <code class="example">        fold level here is 1</code>
 <code class="example"></code>
-带数字的标志和没有带数字的标志可以混合使用。对于一个大折叠我们可以使用带数字的
-标志，在函数的内部我们可以使用不带数字的。如对文件中的 "结构定义"，"局部变量"
-和 "函数原型" 各个部分，使用级别 1 的折叠。对定义和函数体使用级别 2 的标志。而
-在函数内部可以使用不带数字的标志。当你在一函数中作更改以分割折叠时，你无须记着
-标志在哪里。
+帶數字的標誌和沒有帶數字的標誌可以混合使用。對於一個大折疊我們可以使用帶數字的
+標誌，在函數的內部我們可以使用不帶數字的。如對文件中的 "結構定義"，"局部變量"
+和 "函數原型" 各個部分，使用級別 1 的折疊。對定義和函數體使用級別 2 的標誌。而
+在函數內部可以使用不帶數字的標誌。當你在一函數中作更改以分割折疊時，你無須記著
+標誌在哪裡。
 
-选项 <a href="options.html#'foldmarker'">'foldmarker'</a> 可设定所用的标志。建议保留默认值 "{{<code class="special">{,}</code>}}"。这样在 Vim 用户
-间交换文件时就不会出问题。有时为了要编辑的文件必须改变该选项 (如，文件包含了来
-自另一个编辑器的折叠标志，或对于当前文件的语法而言，折叠标志会产生歧义等)。
+選項 <a href="options.html#'foldmarker'">'foldmarker'</a> 可設定所用的標誌。建議保留默認值 "{{<code class="special">{,}</code>}}"。這樣在 Vim 用戶
+間交換文件時就不會出問題。有時為了要編輯的文件必須改變該選項 (如，文件包含了來
+自另一個編輯器的折疊標誌，或對於當前文件的語法而言，折疊標誌會產生歧義等)。
 
                                                         <b class="vimtag"> <a name="fold-create-marker">fold-create-marker</a> </b>
-"zf" 可通过标志来创建一个折叠。 Vim 将为你插入开始和结束标志。这些标志由
-<a href="options.html#'foldmarker'">'foldmarker'</a> 指定。标志会被添加在行末。如果 <a href="options.html#'commentstring'">'commentstring'</a> 不为空，使用之。
-以下情况下可能无法正常工作:
-- 此行已有一个带级别的标志了。Vim 无法判断该如何做。
-- 在附近的折叠里使用了带级别的标志，使添加无法进行。
-- 这行包含在一注释中，且 <a href="options.html#'commentstring'">'commentstring'</a> 不为空，且嵌套的注释是非法的。如，在
-  C 的注释中加入 /* {{{ */ ，这将使现有的注释中断。你可以在注释之前或之后添加
-  标志，或手工添加。
-总的来说，当你已有带级别的标志时，再让 Vim 为你创建标志不是个好主意。
+"zf" 可通過標誌來創建一個折疊。 Vim 將為你插入開始和結束標誌。這些標誌由
+<a href="options.html#'foldmarker'">'foldmarker'</a> 指定。標誌會被添加在行末。如果 <a href="options.html#'commentstring'">'commentstring'</a> 不為空，使用之。
+以下情況下可能無法正常工作:
+- 此行已有一個帶級別的標誌了。Vim 無法判斷該如何做。
+- 在附近的折疊裡使用了帶級別的標誌，使添加無法進行。
+- 這行包含在一註釋中，且 <a href="options.html#'commentstring'">'commentstring'</a> 不為空，且嵌套的註釋是非法的。如，在
+  C 的註釋中加入 /* {{{ */ ，這將使現有的註釋中斷。你可以在註釋之前或之後添加
+  標誌，或手工添加。
+總的來說，當你已有帶級別的標誌時，再讓 Vim 為你創建標誌不是個好主意。
 
                                                         <b class="vimtag"> <a name="fold-delete-marker">fold-delete-marker</a> </b>
-"zd" 可用来删除一个用标志定义的折叠。 Vim 将为你删除标志。Vim 将在折叠的开始和
-结束处根据 <a href="options.html#'foldmarker'">'foldmarker'</a> 查找开始和结束标志。如果标志周围文字和 <a href="options.html#'commentstring'">'commentstring'</a>
-匹配，这些文字也会被删除。
-但在以下情况下无法正确执行:
-- 当一行包含有多于一个的标志且其中一个指定了级别。Vim 不考虑结果是不是真能删除
-  折叠，而仅删除第一个标志。
-- 当这个标志带有级别且同时被用来开始或结束几个折叠时。
+"zd" 可用來刪除一個用標誌定義的折疊。 Vim 將為你刪除標誌。Vim 將在折疊的開始和
+結束處根據 <a href="options.html#'foldmarker'">'foldmarker'</a> 查找開始和結束標誌。如果標誌周圍文字和 <a href="options.html#'commentstring'">'commentstring'</a>
+匹配，這些文字也會被刪除。
+但在以下情況下無法正確執行:
+- 當一行包含有多於一個的標誌且其中一個指定了級別。Vim 不考慮結果是不是真能刪除
+  折疊，而僅刪除第一個標誌。
+- 當這個標誌帶有級別且同時被用來開始或結束幾個折疊時。
 
 </pre><hr class="doubleline" /><pre>
-<h4>2. 折叠命令                                     <b class="vimtag"> <a name="fold-commands">fold-commands</a> </b> <b class="vimtag"> <a name="E490">E490</a> </b></h4>
-所有的折叠命令用 "z" 开头。提示: 如果你从侧面看 "z" 像一张叠起来的纸。
+<h4>2. 折疊命令                                     <b class="vimtag"> <a name="fold-commands">fold-commands</a> </b> <b class="vimtag"> <a name="E490">E490</a> </b></h4>
+所有的折疊命令用 "z" 開頭。提示: 如果你從側面看 "z" 像一張疊起來的紙。
 
 
-<code class="section">创 建 和 删 除 折 叠 </code>
+<code class="section">創 建 和 刪 除 折 疊 </code>
                                                         <b class="vimtag"> <a name="zf">zf</a> </b> <b class="vimtag"> <a name="E350">E350</a> </b>
 zf<code class="special">{motion}</code>  或
-<code class="special">{Visual}</code>zf      创建折叠操作符。
-                仅当 <a href="options.html#'foldmethod'">'foldmethod'</a> 设为 "manual" 或 "marker" 时有效。
-                用 "manual" 方式，新建的折叠会被关闭。同时 <a href="options.html#'foldenable'">'foldenable'</a> 会被设
+<code class="special">{Visual}</code>zf      創建折疊操作符。
+                僅當 <a href="options.html#'foldmethod'">'foldmethod'</a> 設為 "manual" 或 "marker" 時有效。
+                用 "manual" 方式，新建的折疊會被關閉。同時 <a href="options.html#'foldenable'">'foldenable'</a> 會被設
                 定。
-                参考  <a href="fold.html#fold-create-marker">fold-create-marker</a> 。
+                參考  <a href="fold.html#fold-create-marker">fold-create-marker</a> 。
 
                                                         <b class="vimtag"> <a name="zF">zF</a> </b>
-zF              对 <code class="special">[count]</code> 行创建折叠。其余同 "zf" 。
+zF              對 <code class="special">[count]</code> 行創建折疊。其餘同 "zf" 。
 
 :<code class="special">{range}</code>fo[ld]                                          <b class="vimtag"> <a name=":fold">:fold</a> </b> <b class="vimtag"> <a name=":fo">:fo</a> </b>
-                对 <code class="special">{range}</code> 内的行创建折叠。其余同 "zf" 。
+                對 <code class="special">{range}</code> 內的行創建折疊。其餘同 "zf" 。
 
                                                         <b class="vimtag"> <a name="zd">zd</a> </b> <b class="vimtag"> <a name="E351">E351</a> </b>
-zd              删除 (delete) 在光标下的折叠。当光标在被折叠的行上，该折叠被删
-                除。嵌套的折叠上移一级。在可视模式下所选区域 (部分) 涵盖的一层
-                折叠被删除。
-                小心: 这很容易比你想象地要删得多，手动折叠不能撤销。
-                仅当 <a href="options.html#'foldmethod'">'foldmethod'</a> 设为 "manual" 或 "marker" 时有效。
-                参考  <a href="fold.html#fold-delete-marker">fold-delete-marker</a> 。
+zd              刪除 (delete) 在光標下的折疊。當光標在被折疊的行上，該折疊被刪
+                除。嵌套的折疊上移一級。在可視模式下所選區域 (部分) 涵蓋的一層
+                折疊被刪除。
+                小心: 這很容易比你想像地要刪得多，手動折疊不能撤銷。
+                僅當 <a href="options.html#'foldmethod'">'foldmethod'</a> 設為 "manual" 或 "marker" 時有效。
+                參考  <a href="fold.html#fold-delete-marker">fold-delete-marker</a> 。
 
                                                         <b class="vimtag"> <a name="zD">zD</a> </b>
-zD              循环删除 (Delete) 光标下的折叠。在可视模式下所选区域 (部分) 涵
-                盖的折叠和嵌套的折叠都被删除。
-                仅当 <a href="options.html#'foldmethod'">'foldmethod'</a> 设为 "manual" 或 "marker" 时有效。
-                参考  <a href="fold.html#fold-delete-marker">fold-delete-marker</a> 。
+zD              循環刪除 (Delete) 光標下的折疊。在可視模式下所選區域 (部分) 涵
+                蓋的折疊和嵌套的折疊都被刪除。
+                僅當 <a href="options.html#'foldmethod'">'foldmethod'</a> 設為 "manual" 或 "marker" 時有效。
+                參考  <a href="fold.html#fold-delete-marker">fold-delete-marker</a> 。
 
                                                         <b class="vimtag"> <a name="zE">zE</a> </b> <b class="vimtag"> <a name="E352">E352</a> </b>
-zE              除去 (Eliminate) 窗口里所有的折叠。
-                仅当 <a href="options.html#'foldmethod'">'foldmethod'</a> 设为 "manual" 或 "marker" 时有效。
-                参考  <a href="fold.html#fold-delete-marker">fold-delete-marker</a> 。
+zE              除去 (Eliminate) 窗口裡所有的折疊。
+                僅當 <a href="options.html#'foldmethod'">'foldmethod'</a> 設為 "manual" 或 "marker" 時有效。
+                參考  <a href="fold.html#fold-delete-marker">fold-delete-marker</a> 。
 
 
-<code class="section">打 开 和 关 闭 折 叠 </code>
+<code class="section">打 開 和 關 閉 折 疊 </code>
 
-一个小于 <a href="options.html#'foldminlines'">'foldminlines'</a> 的折叠的显示就像它被打开时一样。所以，以下的命令对于小
-折叠所起的作用与描述不同。
+一個小於 <a href="options.html#'foldminlines'">'foldminlines'</a> 的折疊的顯示就像它被打開時一樣。所以，以下的命令對於小
+折疊所起的作用與描述不同。
 
                                                         <b class="vimtag"> <a name="zo">zo</a> </b>
-zo              打开 (open) 在光标下的折叠。当给定计数时，相应深度的折叠被打
-                开。在可视模式下，所选区域的所有行的折叠被打开一级。
+zo              打開 (open) 在光標下的折疊。當給定計數時，相應深度的折疊被打
+                開。在可視模式下，所選區域的所有行的折疊被打開一級。
 
                                                         <b class="vimtag"> <a name="zO">zO</a> </b>
-zO              循环打开 (Open) 光标下的折叠。不在光标下的折叠不改变。
-                在可视模式下，打开所有的在选中区域里的折叠，包括被部分选中的。
+zO              循環打開 (Open) 光標下的折疊。不在光標下的折疊不改變。
+                在可視模式下，打開所有的在選中區域裡的折疊，包括被部分選中的。
 
                                                         <b class="vimtag"> <a name="zc">zc</a> </b>
-zc              关闭 (close) 在光标下的折叠。当给定计数时，相应深度的折叠被关
-                闭。在可视模式下，所选区域里的所有行的折叠被关闭一级。
-                <a href="options.html#'foldenable'">'foldenable'</a> 被设定。
+zc              關閉 (close) 在光標下的折疊。當給定計數時，相應深度的折疊被關
+                閉。在可視模式下，所選區域裡的所有行的折疊被關閉一級。
+                <a href="options.html#'foldenable'">'foldenable'</a> 被設定。
 
                                                         <b class="vimtag"> <a name="zC">zC</a> </b>
-zC              循环关闭 (Close) 在光标下的所有折叠。不在光标下的折叠不改变。
-                在可视模式下，关闭所有的在选中区域里的折叠，包括被部分选中的。
-                <a href="options.html#'foldenable'">'foldenable'</a> 被设定。
+zC              循環關閉 (Close) 在光標下的所有折疊。不在光標下的折疊不改變。
+                在可視模式下，關閉所有的在選中區域裡的折疊，包括被部分選中的。
+                <a href="options.html#'foldenable'">'foldenable'</a> 被設定。
 
                                                         <b class="vimtag"> <a name="za">za</a> </b>
-za              当光标位于一关闭的折叠上时，打开之。当折叠嵌套时，你可能需要用
-                "za" 数次。当给定计数时，打开相应数量的被关闭的折叠。
-                当光标位于一打开的折叠上时，关闭之且设定 <a href="options.html#'foldenable'">'foldenable'</a> 。这仅关
-                闭一级折叠，因为再次使用 "za" 将再次打开折叠。当给定计数时，关
-                闭相应数量的折叠 (这不同于重复 "za" 许多次)。
+za              當光標位於一關閉的折疊上時，打開之。當折疊嵌套時，你可能需要用
+                "za" 數次。當給定計數時，打開相應數量的被關閉的折疊。
+                當光標位於一打開的折疊上時，關閉之且設定 <a href="options.html#'foldenable'">'foldenable'</a> 。這僅關
+                閉一級折疊，因為再次使用 "za" 將再次打開折疊。當給定計數時，關
+                閉相應數量的折疊 (這不同於重複 "za" 許多次)。
 
                                                         <b class="vimtag"> <a name="zA">zA</a> </b>
-zA              当处在一关闭的折叠上时，循环地打开折叠。
-                当处在一打开的折叠上时，循环地关闭折叠且设定 <a href="options.html#'foldenable'">'foldenable'</a>。
+zA              當處在一關閉的折疊上時，循環地打開折疊。
+                當處在一打開的折疊上時，循環地關閉折疊且設定 <a href="options.html#'foldenable'">'foldenable'</a>。
 
                                                         <b class="vimtag"> <a name="zv">zv</a> </b>
-zv              查看 (view) 光标所在的行: 仅打开足够的折叠使光标所在的行不被折
-                叠。
+zv              查看 (view) 光標所在的行: 僅打開足夠的折疊使光標所在的行不被折
+                疊。
 
                                                         <b class="vimtag"> <a name="zx">zx</a> </b>
-zx              更新折叠: 撤销被手工打开和关闭的折叠: 再次应用 <a href="options.html#'foldlevel'">'foldlevel'</a>。
-                然后使用 "zv" : 查看光标所在行。
-                同时强制重新计算折叠。使用 "foldexpr" 并且缓冲区发生改变但折叠
-                不能正确地更新时，这会有用。
+zx              更新折疊: 撤銷被手工打開和關閉的折疊: 再次應用 <a href="options.html#'foldlevel'">'foldlevel'</a>。
+                然後使用 "zv" : 查看光標所在行。
+                同時強制重新計算折疊。使用 "foldexpr" 並且緩衝區發生改變但折疊
+                不能正確地更新時，這會有用。
 
                                                         <b class="vimtag"> <a name="zX">zX</a> </b>
-zX              手工恢复被打开和关闭的折叠: 再次应用 <a href="options.html#'foldlevel'">'foldlevel'</a>。
-                也同时强制重新计算折叠，同  <a href="fold.html#zx">zx</a> 。
+zX              手工恢復被打開和關閉的折疊: 再次應用 <a href="options.html#'foldlevel'">'foldlevel'</a>。
+                也同時強制重新計算折疊，同  <a href="fold.html#zx">zx</a> 。
 
                                                         <b class="vimtag"> <a name="zm">zm</a> </b>
-zm              折起更多 (more): <a href="options.html#'foldlevel'">'foldlevel'</a> 减 v:count1。如果 <a href="options.html#'foldlevel'">'foldlevel'</a> 已
-                经为 0，则不会被减小。
-                <a href="options.html#'foldenable'">'foldenable'</a> 被设定。
+zm              折起更多 (more): <a href="options.html#'foldlevel'">'foldlevel'</a> 減 v:count1。如果 <a href="options.html#'foldlevel'">'foldlevel'</a> 已
+                經為 0，則不會被減小。
+                <a href="options.html#'foldenable'">'foldenable'</a> 被設定。
 
                                                         <b class="vimtag"> <a name="zM">zM</a> </b>
-zM              关闭所有折叠: <a href="options.html#'foldlevel'">'foldlevel'</a> 设为 0。
-                <a href="options.html#'foldenable'">'foldenable'</a> 被设定。
+zM              關閉所有折疊: <a href="options.html#'foldlevel'">'foldlevel'</a> 設為 0。
+                <a href="options.html#'foldenable'">'foldenable'</a> 被設定。
 
                                                         <b class="vimtag"> <a name="zr">zr</a> </b>
-zr              减少 (reduce) 折叠: <a href="options.html#'foldlevel'">'foldlevel'</a> 加 v:count1。
+zr              減少 (reduce) 折疊: <a href="options.html#'foldlevel'">'foldlevel'</a> 加 v:count1。
 
                                                         <b class="vimtag"> <a name="zR">zR</a> </b>
-zR              打开所有的折叠。<a href="options.html#'foldlevel'">'foldlevel'</a> 设为最高级别。
+zR              打開所有的折疊。<a href="options.html#'foldlevel'">'foldlevel'</a> 設為最高級別。
 
                                                         <b class="vimtag"> <a name=":foldo">:foldo</a> </b> <b class="vimtag"> <a name=":foldopen">:foldopen</a> </b>
 :<code class="special">{range}</code>foldo[pen][!]
-                在 <code class="special">{range}</code> 内打开折叠。当加上 [!] 时，所有的折叠都被打开。对查
-                看在 <code class="special">{range}</code> 内的所有文本很有用。没有 [!] 时，打开一级折叠。
+                在 <code class="special">{range}</code> 內打開折疊。當加上 [!] 時，所有的折疊都被打開。對查
+                看在 <code class="special">{range}</code> 內的所有文本很有用。沒有 [!] 時，打開一級折疊。
 
                                                         <b class="vimtag"> <a name=":foldc">:foldc</a> </b> <b class="vimtag"> <a name=":foldclose">:foldclose</a> </b>
 :<code class="special">{range}</code>foldc[lose][!]
-                在 <code class="special">{range}</code> 内关闭折叠。当加上 [!] 时，所有的折叠都被关闭。对隐
-                藏在 <code class="special">{range}</code> 内的所有文本很有用。没有 [!] 时，关闭一级折叠。
+                在 <code class="special">{range}</code> 內關閉折疊。當加上 [!] 時，所有的折疊都被關閉。對隱
+                藏在 <code class="special">{range}</code> 內的所有文本很有用。沒有 [!] 時，關閉一級折疊。
 
                                                         <b class="vimtag"> <a name="zn">zn</a> </b>
-zn              不折叠 (none): 复位 <a href="options.html#'foldenable'">'foldenable'</a>。所有的折叠被打开。
+zn              不折疊 (none): 復位 <a href="options.html#'foldenable'">'foldenable'</a>。所有的折疊被打開。
 
                                                         <b class="vimtag"> <a name="zN">zN</a> </b>
-zN              正常折叠 (normal): 设定 <a href="options.html#'foldenable'">'foldenable'</a>。所有的折叠都展现它们之前
-                的样子。
+zN              正常折疊 (normal): 設定 <a href="options.html#'foldenable'">'foldenable'</a>。所有的折疊都展現它們之前
+                的樣子。
 
                                                         <b class="vimtag"> <a name="zi">zi</a> </b>
-zi              翻转 <a href="options.html#'foldenable'">'foldenable'</a> 的值。
+zi              翻轉 <a href="options.html#'foldenable'">'foldenable'</a> 的值。
 
 
-<code class="section">在 折 叠 间 移 动 </code>
+<code class="section">在 折 疊 間 移 動 </code>
                                                         <b class="vimtag"> <a name="[z">[z</a> </b>
-[z              到当前打开的折叠的开始。如果已在开始处，移到包含这个折叠的折叠
-                开始处。如果没有包含它的折叠，命令执行失败。
-                当给定计数，重复此命令 <code class="special">[count]</code> 次。
+[z              到當前打開的折疊的開始。如果已在開始處，移到包含這個折疊的折疊
+                開始處。如果沒有包含它的折疊，命令執行失敗。
+                當給定計數，重複此命令 <code class="special">[count]</code> 次。
 
                                                         <b class="vimtag"> <a name="]z">]z</a> </b>
-]z              到当前打开的折叠的结束。如果已在结束处，移到包含这个折叠的折叠
-                结束处。如果没有包含它的折叠，命令执行失败。
-                当给定计数，重复此命令 <code class="special">[count]</code> 次。
+]z              到當前打開的折疊的結束。如果已在結束處，移到包含這個折疊的折疊
+                結束處。如果沒有包含它的折疊，命令執行失敗。
+                當給定計數，重複此命令 <code class="special">[count]</code> 次。
 
                                                         <b class="vimtag"> <a name="zj">zj</a> </b>
-zj              向下移动。到达下一个折叠的开始处。关闭的折叠也被计入。
-                当给定计数，重复此命令 <code class="special">[count]</code> 次。
-                此命令可在  <a href="motion.html#operator">operator</a>  后使用。
+zj              向下移動。到達下一個折疊的開始處。關閉的折疊也被計入。
+                當給定計數，重複此命令 <code class="special">[count]</code> 次。
+                此命令可在  <a href="motion.html#operator">operator</a>  後使用。
 
                                                         <b class="vimtag"> <a name="zk">zk</a> </b>
-zk              向上移动到前一折叠的结束处。关闭的折叠也被计入。
-                当给定计数，重复此命令 <code class="special">[count]</code> 次。
-                此命令可在  <a href="motion.html#operator">operator</a>  后使用。
+zk              向上移動到前一折疊的結束處。關閉的折疊也被計入。
+                當給定計數，重複此命令 <code class="special">[count]</code> 次。
+                此命令可在  <a href="motion.html#operator">operator</a>  後使用。
 
 
-<code class="section">对 折 叠 执 行 命 令 </code>
+<code class="section">對 折 疊 執 行 命 令 </code>
 
 :<code class="special">[range]</code>foldd[oopen] <code class="special">{cmd}</code>                      <b class="vimtag"> <a name=":foldd">:foldd</a> </b> <b class="vimtag"> <a name=":folddoopen">:folddoopen</a> </b>
-                对所有不在关闭的折叠中的行执行 <code class="special">{cmd}</code>。
-                给定 <code class="special">[range]</code> 时，仅对范围内那些行起作用。
-                每次命令被执行时，光标会被定位在要被操作的行上。
-                就如 ":global" 命令: 首先标记出所有不在关闭的折叠中的行。然后
-                对所有标记过的行，执行 <code class="special">{cmd}</code>。所以当 <code class="special">{cmd}</code> 改变了文本的折叠
-                时，对命令执行的位置没有影响 (当然，删除行例外)。
+                對所有不在關閉的折疊中的行執行 <code class="special">{cmd}</code>。
+                給定 <code class="special">[range]</code> 時，僅對範圍內那些行起作用。
+                每次命令被執行時，光標會被定位在要被操作的行上。
+                就如 ":global" 命令: 首先標記出所有不在關閉的折疊中的行。然後
+                對所有標記過的行，執行 <code class="special">{cmd}</code>。所以當 <code class="special">{cmd}</code> 改變了文本的折疊
+                時，對命令執行的位置沒有影響 (當然，刪除行例外)。
                 如: 
 <code class="example">                        :folddoopen s/end/loop_end/ge</code>
-                使用标志位 "e" 避免了当 "end" 不匹配时得到错误消息。
+                使用標誌位 "e" 避免了當 "end" 不匹配時得到錯誤消息。
 
 :<code class="special">[range]</code>folddoc[losed] <code class="special">{cmd}</code>                    <b class="vimtag"> <a name=":folddoc">:folddoc</a> </b> <b class="vimtag"> <a name=":folddoclosed">:folddoclosed</a> </b>
-                对所有在关闭的折叠里的行，执行 <code class="special">{cmd}</code>。
+                對所有在關閉的折疊裡的行，執行 <code class="special">{cmd}</code>。
                 其它同 ":folddoopen" 命令。
 
 </pre><hr class="doubleline" /><pre>
-<h4>3. 折叠选项                                     <b class="vimtag"> <a name="fold-options">fold-options</a> </b></h4>
-颜 色                                                   <b class="vimtag"> <a name="fold-colors">fold-colors</a> </b>
+<h4>3. 折疊選項                                     <b class="vimtag"> <a name="fold-options">fold-options</a> </b></h4>
+顏 色                                                   <b class="vimtag"> <a name="fold-colors">fold-colors</a> </b>
 
-对关闭的折叠的颜色的设定由 Folded 高亮组  <a href="syntax.html#hl-Folded">hl-Folded</a>  决定。对折叠栏的颜色的设
-定由 FolderColumn 高亮组  <a href="syntax.html#hl-FoldColumn">hl-FoldColumn</a>  决定。
-下面是设定颜色的例子: 
+對關閉的折疊的顏色的設定由 Folded 高亮組  <a href="syntax.html#hl-Folded">hl-Folded</a>  決定。對折疊欄的顏色的設
+定由 FolderColumn 高亮組  <a href="syntax.html#hl-FoldColumn">hl-FoldColumn</a>  決定。
+下面是設定顏色的例子: 
 <code class="example"></code>
 <code class="example">        :highlight Folded guibg=grey guifg=blue</code>
 <code class="example">        :highlight FoldColumn guibg=darkgrey guifg=white</code>
 
 
-折 叠 级 别                                             <b class="vimtag"> <a name="fold-foldlevel">fold-foldlevel</a> </b>
+折 疊 級 別                                             <b class="vimtag"> <a name="fold-foldlevel">fold-foldlevel</a> </b>
 
-<a href="options.html#'foldlevel'">'foldlevel'</a> 是个数值选项: 数字越大则打开的折叠更多。
-当 <a href="options.html#'foldlevel'">'foldlevel'</a> 为 0 时，所有的折叠关闭。
-当 <a href="options.html#'foldlevel'">'foldlevel'</a> 为正数时，一些折叠关闭。
-当 <a href="options.html#'foldlevel'">'foldlevel'</a> 很大时，所有的折叠打开。
-<a href="options.html#'foldlevel'">'foldlevel'</a> 的改变后立即生效。之后，折叠可以被手动地打开和关闭。
-当其值增大，在新级别 (<code class="vim">译者注</code>: 旧级别？) 之上的折叠被打开。手工打开的折叠不会被
-关闭。
-当其值减小，在新级别之上的折叠被关闭。手工关闭的折叠不会被打开。
+<a href="options.html#'foldlevel'">'foldlevel'</a> 是個數值選項: 數字越大則打開的折疊更多。
+當 <a href="options.html#'foldlevel'">'foldlevel'</a> 為 0 時，所有的折疊關閉。
+當 <a href="options.html#'foldlevel'">'foldlevel'</a> 為正數時，一些折疊關閉。
+當 <a href="options.html#'foldlevel'">'foldlevel'</a> 很大時，所有的折疊打開。
+<a href="options.html#'foldlevel'">'foldlevel'</a> 的改變後立即生效。之後，折疊可以被手動地打開和關閉。
+當其值增大，在新級別 (<code class="vim">譯者注</code>: 舊級別？) 之上的折疊被打開。手工打開的折疊不會被
+關閉。
+當其值減小，在新級別之上的折疊被關閉。手工關閉的折疊不會被打開。
 
 
-折 叠 文 本                                             <b class="vimtag"> <a name="fold-foldtext">fold-foldtext</a> </b>
+折 疊 文 本                                             <b class="vimtag"> <a name="fold-foldtext">fold-foldtext</a> </b>
 
-<a href="options.html#'foldtext'">'foldtext'</a> 是个字符串选项，定义了一个表达式。这个表达式被用来求得关闭折叠所显
+<a href="options.html#'foldtext'">'foldtext'</a> 是個字符串選項，定義了一個表達式。這個表達式被用來求得關閉折疊所顯
 示的文字。如: 
 <code class="example"></code>
 <code class="example">    :set foldtext=v:folddashes.substitute(getline(v:foldstart),'/\\*\\\|\\*/\\\|{{{\\d\\=','','g')</code>
 <code class="example"></code>
-显示了折叠的第一行，除去其中的 "/*"、"*/" 和 "{{{" 。
-<code class="note">备注</code>: 使用反斜杠是为了避免一些字符被 ":set" 命令解释。使用一个函数更简单: 
+顯示了折疊的第一行，除去其中的 "/*"、"*/" 和 "{{{" 。
+<code class="note">備註</code>: 使用反斜槓是為了避免一些字符被 ":set" 命令解釋。使用一個函數更簡單: 
 <code class="example"></code>
 <code class="example">    :set foldtext=MyFoldText()</code>
 <code class="example">    :function MyFoldText()</code>
@@ -450,80 +450,80 @@ zk              向上移动到前一折叠的结束处。关闭的折叠也被�
 <code class="example">    :  return v:folddashes . sub</code>
 <code class="example">    :endfunction</code>
 <code class="example"></code>
-<a href="options.html#'foldtext'">'foldtext'</a> 的计算是在沙盘  <a href="eval.html#sandbox">sandbox</a>  里完成的。其中的当前窗口设为要显示该行的窗
-口。错误被忽略。
+<a href="options.html#'foldtext'">'foldtext'</a> 的計算是在沙盤  <a href="eval.html#sandbox">sandbox</a>  裡完成的。其中的當前窗口設為要顯示該行的窗
+口。錯誤被忽略。
 
-默认值是  <a href="eval.html#foldtext()">foldtext()</a> 。对于大多数类型的折叠它可以返回适合的文字。如果你不喜欢
-它，你可以自己指定 <a href="options.html#'foldtext'">'foldtext'</a> 表达式。可以使用以下这些 Vim 变量:
-        v:foldstart     折叠首行的行号
-        v:foldend       折叠末行的行号
-        v:folddashes    一个含有连字符的字符串，用来表示折叠级别
-        v:foldlevel     折叠级别
+默認值是  <a href="eval.html#foldtext()">foldtext()</a> 。對於大多數類型的折疊它可以返回適合的文字。如果你不喜歡
+它，你可以自己指定 <a href="options.html#'foldtext'">'foldtext'</a> 表達式。可以使用以下這些 Vim 變量:
+        v:foldstart     折疊首行的行號
+        v:foldend       折疊末行的行號
+        v:folddashes    一個含有連字符的字符串，用來表示折疊級別
+        v:foldlevel     折疊級別
 
-在结果中，制表符被替换为空格，而不可显示的字符被替换为可显示的字符。
+在結果中，製表符被替換為空格，而不可顯示的字符被替換為可顯示的字符。
 
-结果行被截短以适合窗口的宽度，永远不会回绕。
-当在文字后有空余时，用 <a href="options.html#'fillchars'">'fillchars'</a> 来填充。
+結果行被截短以適合窗口的寬度，永遠不會迴繞。
+當在文字後有空餘時，用 <a href="options.html#'fillchars'">'fillchars'</a> 來填充。
 
-<code class="note">备注</code>: 对那些 ":set" 命令作特殊处理的字符在其前面须加上反斜杠。如: 空格，反斜杠
-和双引号。  <a href="options.html#option-backslash">option-backslash</a> 
+<code class="note">備註</code>: 對那些 ":set" 命令作特殊處理的字符在其前面須加上反斜槓。如: 空格，反斜槓
+和雙引號。  <a href="options.html#option-backslash">option-backslash</a> 
 
 
-折 叠 栏                                                <b class="vimtag"> <a name="fold-foldcolumn">fold-foldcolumn</a> </b>
+折 疊 欄                                                <b class="vimtag"> <a name="fold-foldcolumn">fold-foldcolumn</a> </b>
 
-<a href="options.html#'foldcolumn'">'foldcolumn'</a> 是个数字，它设定了在窗口的边上表示折叠的栏的宽度。当为 0 时，没有
-折叠栏。一个普通值是 4 或 5。最小可用的值是 2，不过 1 仍然可以提供一些信息。最
+<a href="options.html#'foldcolumn'">'foldcolumn'</a> 是個數字，它設定了在窗口的邊上表示折疊的欄的寬度。當為 0 時，沒有
+折疊欄。一個普通值是 4 或 5。最小可用的值是 2，不過 1 仍然可以提供一些信息。最
 大是 12。
 
-一个打开的折叠由一栏来表示，顶端是 '-'，其下方是 '|'。这栏在折叠结束的地方结
-束。当折叠嵌套时，嵌套的折叠出现在被包含的折叠右方一个字符位置。
+一個打開的折疊由一欄來表示，頂端是 '-'，其下方是 '|'。這欄在折疊結束的地方結
+束。當折疊嵌套時，嵌套的折疊出現在被包含的折疊右方一個字符位置。
 
-一个关闭的折叠由 '+' 表示。
+一個關閉的折疊由 '+' 表示。
 
-当折叠栏太窄而不能显示所有折叠时，显示一数字来表示嵌套的级别。
+當折疊欄太窄而不能顯示所有折疊時，顯示一數字來表示嵌套的級別。
 
-在折叠栏点击鼠标，可以打开和关闭折叠:
-- 点击 '+' 打开在这行的关闭折叠
-- 在任何其他非空字符上点击，关闭这行上的打开折叠
+在折疊欄點擊鼠標，可以打開和關閉折疊:
+- 點擊 '+' 打開在這行的關閉折疊
+- 在任何其他非空字符上點擊，關閉這行上的打開折疊
 
 
-其 他 选 项
+其 他 選 項
 
-<a href="options.html#'foldenable'">'foldenable'</a>  <a href="options.html#'fen'">'fen'</a>:    复位时打开所有折叠。
-<a href="options.html#'foldexpr'">'foldexpr'</a>    <a href="options.html#'fde'">'fde'</a>:    用于 "expr" 折叠的表达式。
-<a href="options.html#'foldignore'">'foldignore'</a>  <a href="options.html#'fdi'">'fdi'</a>:    用于 "indent" 折叠的字符。
-<a href="options.html#'foldmarker'">'foldmarker'</a>  <a href="options.html#'fmr'">'fmr'</a>:    用于 "marker" 折叠的标志。
-<a href="options.html#'foldmethod'">'foldmethod'</a>  <a href="options.html#'fdm'">'fdm'</a>:    当前折叠方法。
-<a href="options.html#'foldminlines'">'foldminlines'</a> <a href="options.html#'fml'">'fml'</a>:   关闭折叠的最小显示行数。
-<a href="options.html#'foldnestmax'">'foldnestmax'</a> <a href="options.html#'fdn'">'fdn'</a>:    用于 "indent" 和 "syntax" 折叠的最大嵌套层数。
-<a href="options.html#'foldopen'">'foldopen'</a>    <a href="options.html#'fdo'">'fdo'</a>:    哪一种命令可以打开关闭的折叠。
-<a href="options.html#'foldclose'">'foldclose'</a>   <a href="options.html#'fcl'">'fcl'</a>:    当光标不在折叠上时关闭折叠。
+<a href="options.html#'foldenable'">'foldenable'</a>  <a href="options.html#'fen'">'fen'</a>:    復位時打開所有折疊。
+<a href="options.html#'foldexpr'">'foldexpr'</a>    <a href="options.html#'fde'">'fde'</a>:    用於 "expr" 折疊的表達式。
+<a href="options.html#'foldignore'">'foldignore'</a>  <a href="options.html#'fdi'">'fdi'</a>:    用於 "indent" 折疊的字符。
+<a href="options.html#'foldmarker'">'foldmarker'</a>  <a href="options.html#'fmr'">'fmr'</a>:    用於 "marker" 折疊的標誌。
+<a href="options.html#'foldmethod'">'foldmethod'</a>  <a href="options.html#'fdm'">'fdm'</a>:    當前折疊方法。
+<a href="options.html#'foldminlines'">'foldminlines'</a> <a href="options.html#'fml'">'fml'</a>:   關閉折疊的最小顯示行數。
+<a href="options.html#'foldnestmax'">'foldnestmax'</a> <a href="options.html#'fdn'">'fdn'</a>:    用於 "indent" 和 "syntax" 折疊的最大嵌套層數。
+<a href="options.html#'foldopen'">'foldopen'</a>    <a href="options.html#'fdo'">'fdo'</a>:    哪一種命令可以打開關閉的折疊。
+<a href="options.html#'foldclose'">'foldclose'</a>   <a href="options.html#'fcl'">'fcl'</a>:    當光標不在折疊上時關閉折疊。
 
 </pre><hr class="doubleline" /><pre>
-<h4>4. 折叠行为                                             <b class="vimtag"> <a name="fold-behavior">fold-behavior</a> </b></h4>
-当上下移动和滚动时，光标将移至连续折叠的行的第一行。当光标已在被折叠的行上时，
-它移动到下一个没有被折叠的行上，或下一个关闭的折叠。
+<h4>4. 折疊行為                                             <b class="vimtag"> <a name="fold-behavior">fold-behavior</a> </b></h4>
+當上下移動和滾動時，光標將移至連續折疊的行的第一行。當光標已在被折疊的行上時，
+它移動到下一個沒有被折疊的行上，或下一個關閉的折疊。
 
-当光标在被折叠的行上时，光标总是显示在第一列。标尺显示确切的光标位置。光标本应
-也在实际位置显示的，但因为被折叠而无法做到。
+當光標在被折疊的行上時，光標總是顯示在第一列。標尺顯示確切的光標位置。光標本應
+也在實際位置顯示的，但因為被折疊而無法做到。
 
-许多移动命令处理连续被折叠的行就像处理空行一样。如，"w" 命令只在首列停一次。
+許多移動命令處理連續被折疊的行就像處理空行一樣。如，"w" 命令只在首列停一次。
 
-在插入模式下，光标所在的行不会被折叠。这让你看得见你键入的内容。
+在插入模式下，光標所在的行不會被折疊。這讓你看得見你鍵入的內容。
 
-当使用操作符时，一个关闭的行被作为整体处理。所以 "dl" 在光标下删除了整个关闭的
-折叠。
+當使用操作符時，一個關閉的行被作為整體處理。所以 "dl" 在光標下刪除了整個關閉的
+折疊。
 
-作用于缓冲区行的 Ex 命令的执行范围会被调整，使得它总是从关闭折叠的第一行开始，
-在关闭折叠的最后一行结束。所以，命令: 
+作用於緩衝區行的 Ex 命令的執行範圍會被調整，使得它總是從關閉折疊的第一行開始，
+在關閉折疊的最後一行結束。所以，命令: 
 <code class="example">        :s/foo/bar/g</code>
-当光标在关闭的折叠上时，它将在整个折叠里用 "bar" 替换 "foo"。
-不过  <a href="fold.html#:folddoopen">:folddoopen</a>  和  <a href="fold.html#:folddoclosed">:folddoclosed</a>  的操作并非如此。
+當光標在關閉的折疊上時，它將在整個折疊裡用 "bar" 替換 "foo"。
+不過  <a href="fold.html#:folddoopen">:folddoopen</a>  和  <a href="fold.html#:folddoclosed">:folddoclosed</a>  的操作並非如此。
 
-编辑一个已经被编辑过的缓冲区时，上次被使用的折叠设置会被再次使用。对手工定义折
-叠方式，已经被定义的折叠会被恢复。对所有的折叠方式，手工打开和关闭的折叠会被恢
-复。如果这个缓冲区曾经在这个窗口里被编辑，过去用的值被恢复。否则，来自该缓冲区
-最近一次编辑的窗口值被使用。
+編輯一個已經被編輯過的緩衝區時，上次被使用的折疊設置會被再次使用。對手工定義折
+疊方式，已經被定義的折疊會被恢復。對所有的折疊方式，手工打開和關閉的折疊會被恢
+復。如果這個緩衝區曾經在這個窗口裡被編輯，過去用的值被恢復。否則，來自該緩衝區
+最近一次編輯的窗口值被使用。
 
 </pre><hr class="doubleline" /><pre>
 <h4> vim:tw=78:ts=8:ft=help:norl:</h4></pre>

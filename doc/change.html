@@ -1,17 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>VIM: change</title>
 <link rel="stylesheet" href="vim-stylesheet.css" type="text/css">
 </head>
 <body>
 <div id=banner>
-<a href="help.html">帮助总览</a> &middot;
-<a href="quickref.html">快速参考</a> &middot;
+<a href="help.html">幫助總覽</a> &middot;
+<a href="quickref.html">快速參考</a> &middot;
 <a href="index.html">命令索引</a> &middot;
-<a href="usr_toc.html">用户手册</a> &middot;
-<a href="help.html#reference_toc">参考手册</a>
+<a href="usr_toc.html">用戶手冊</a> &middot;
+<a href="help.html#reference_toc">參考手冊</a>
 </div>
 
 <div id=outer>
@@ -20,78 +20,78 @@
 <b class="vimtag"> <a name="change.txt">change.txt</a> </b>    For Vim version 8.0.  最近更新: 2017年7月
 
 
-                  <code class="vim">VIM 参考手册    by Bram Moolenaar</code>
-                                <code class="vim">译者</code>: Willis
+                  <code class="vim">VIM 參考手冊    by Bram Moolenaar</code>
+                                <code class="vim">譯者</code>: Willis
                                 http://vimcdoc.sf.net
 
 
-本文档描述删除和修改文本的命令。在本文中，修改文本意味着用单个命令删除部分文本
-并将其替换成其他文本。所有本文描述的命令都可以被撤销。其中非命令行 (Ex) 的命令
-可以用 "." 命令重复。
+本文檔描述刪除和修改文本的命令。在本文中，修改文本意味著用單個命令刪除部分文本
+並將其替換成其他文本。所有本文描述的命令都可以被撤銷。其中非命令行 (Ex) 的命令
+可以用 "." 命令重複。
 
-1. 删除文本                      <a href="change.html#deleting">deleting</a> 
-2. 删除并插入                    <a href="change.html#delete-insert">delete-insert</a> 
-3. 简单修改                      <a href="change.html#simple-change">simple-change</a>          <b class="vimtag"> <a name="changing">changing</a> </b>
-4. 复杂修改                      <a href="change.html#complex-change">complex-change</a> 
-   4.1 过滤命令                     <a href="change.html#filter">filter</a> 
+1. 刪除文本                      <a href="change.html#deleting">deleting</a> 
+2. 刪除並插入                    <a href="change.html#delete-insert">delete-insert</a> 
+3. 簡單修改                      <a href="change.html#simple-change">simple-change</a>          <b class="vimtag"> <a name="changing">changing</a> </b>
+4. 複雜修改                      <a href="change.html#complex-change">complex-change</a> 
+   4.1 過濾命令                     <a href="change.html#filter">filter</a> 
    4.2 替代                         <a href="change.html#:substitute">:substitute</a> 
-   4.3 搜索与替代                   <a href="change.html#search-replace">search-replace</a> 
-   4.4 调整制表                     <a href="change.html#change-tabs">change-tabs</a> 
-5. 复制并移动文本                <a href="change.html#copy-move">copy-move</a> 
+   4.3 搜索與替代                   <a href="change.html#search-replace">search-replace</a> 
+   4.4 調整製表                     <a href="change.html#change-tabs">change-tabs</a> 
+5. 複製並移動文本                <a href="change.html#copy-move">copy-move</a> 
 6. 文本排版                      <a href="change.html#formatting">formatting</a> 
 7. 文本排序                      <a href="change.html#sorting">sorting</a> 
 
-关于插入文本部分，参阅  <a href="insert.html#insert.txt">insert.txt</a> 。
+關於插入文本部分，參閱  <a href="insert.html#insert.txt">insert.txt</a> 。
 
 </pre><hr class="doubleline" /><pre>
-<h4>1. 删除文本                                             <b class="vimtag"> <a name="deleting">deleting</a> </b> <b class="vimtag"> <a name="E470">E470</a> </b></h4>
+<h4>1. 刪除文本                                             <b class="vimtag"> <a name="deleting">deleting</a> </b> <b class="vimtag"> <a name="E470">E470</a> </b></h4>
 ["x]<code class="special">&lt;Del&gt;</code>       或                                      <b class="vimtag"> <a name="%3CDel%3E">&lt;Del&gt;</a> </b> <b class="vimtag"> <a name="x">x</a> </b> <b class="vimtag"> <a name="dl">dl</a> </b>
-["x]x                   删除 <code class="special">[count]</code> 个光标之下和之后的字符 [到寄存器 x 里]
-                        (非  <a href="motion.html#linewise">linewise</a>  行动作)。和 "dl" 相同。
-                        <code class="special">&lt;Del&gt;</code> 键不使用 <code class="special">[count]</code> 计数。相反，如果有计数，它删
-                        除该计数的最后一位。
-                        如果 <code class="special">&lt;Del&gt;</code> 键的操作与你预期的不符，参见  <a href="options.html#:fixdel">:fixdel</a> 。关
-                        于如何删除换行符 (连接行)，参见  <a href="options.html#'whichwrap'">'whichwrap'</a> 。
+["x]x                   刪除 <code class="special">[count]</code> 個光標之下和之後的字符 [到寄存器 x 裡]
+                        (非  <a href="motion.html#linewise">linewise</a>  行動作)。和 "dl" 相同。
+                        <code class="special">&lt;Del&gt;</code> 鍵不使用 <code class="special">[count]</code> 計數。相反，如果有計數，它刪
+                        除該計數的最後一位。
+                        如果 <code class="special">&lt;Del&gt;</code> 鍵的操作與你預期的不符，參見  <a href="options.html#:fixdel">:fixdel</a> 。關
+                        於如何刪除換行符 (連接行)，參見  <a href="options.html#'whichwrap'">'whichwrap'</a> 。
                         <code class="notvi">{Vi 不支持 <code class="special">&lt;Del&gt;</code>}</code>
 
                                                         <b class="vimtag"> <a name="X">X</a> </b> <b class="vimtag"> <a name="dh">dh</a> </b>
-["x]X                   删除 <code class="special">[count]</code> 个光标之前的字符 [到寄存器 x 里] (非
-                         <a href="motion.html#linewise">linewise</a>  行动作)。和 "dh" 相同。另见  <a href="options.html#'whichwrap'">'whichwrap'</a> 。
+["x]X                   刪除 <code class="special">[count]</code> 個光標之前的字符 [到寄存器 x 裡] (非
+                         <a href="motion.html#linewise">linewise</a>  行動作)。和 "dh" 相同。另見  <a href="options.html#'whichwrap'">'whichwrap'</a> 。
 
                                                         <b class="vimtag"> <a name="d">d</a> </b>
-["x]d<code class="special">{motion}</code>           删除 <code class="special">{motion}</code> 动作跨越的文本 [到寄存器 x 里]。例外见
+["x]d<code class="special">{motion}</code>           刪除 <code class="special">{motion}</code> 動作跨越的文本 [到寄存器 x 裡]。例外見
                         下。
 
                                                         <b class="vimtag"> <a name="dd">dd</a> </b>
-["x]dd                  删除 <code class="special">[count]</code> 行 [到寄存器 x 里]， <a href="motion.html#linewise">linewise</a>  行动作。
+["x]dd                  刪除 <code class="special">[count]</code> 行 [到寄存器 x 裡]， <a href="motion.html#linewise">linewise</a>  行動作。
 
                                                         <b class="vimtag"> <a name="D">D</a> </b>
-["x]D                   删除光标所在的字符到行尾及其后的 <code class="special">[count]</code>-1 行 [到寄
-                        存器 x 里] (非  <a href="motion.html#linewise">linewise</a>  行动作)。和 "d$" 同义。
-                        如果 <a href="options.html#'cpoptions'">'cpoptions'</a> 里有 '#' 标志位，忽略计数。
+["x]D                   刪除光標所在的字符到行尾及其後的 <code class="special">[count]</code>-1 行 [到寄
+                        存器 x 裡] (非  <a href="motion.html#linewise">linewise</a>  行動作)。和 "d$" 同義。
+                        如果 <a href="options.html#'cpoptions'">'cpoptions'</a> 裡有 '#' 標誌位，忽略計數。
 
 <code class="special">{Visual}</code>["x]x   或                                      <b class="vimtag"> <a name="v_x">v_x</a> </b> <b class="vimtag"> <a name="v_d">v_d</a> </b> <b class="vimtag"> <a name="v_%3CDel%3E">v_&lt;Del&gt;</a> </b>
 <code class="special">{Visual}</code>["x]d   或
-<code class="special">{Visual}</code>["x]<code class="special">&lt;Del&gt;</code>       删除高亮文本 [到寄存器 x 里] (关于 <code class="special">{Visual}</code> 见
-                         <a href="visual.html#Visual-mode">Visual-mode</a> )。<code class="notvi">{Vi 无此功能}</code>
+<code class="special">{Visual}</code>["x]<code class="special">&lt;Del&gt;</code>       刪除高亮文本 [到寄存器 x 裡] (關於 <code class="special">{Visual}</code> 見
+                         <a href="visual.html#Visual-mode">Visual-mode</a> )。<code class="notvi">{Vi 無此功能}</code>
 
 <code class="special">{Visual}</code>["x]<code class="keystroke">CTRL-H</code>   或                                 <b class="vimtag"> <a name="v_CTRL-H">v_CTRL-H</a> </b> <b class="vimtag"> <a name="v_%3CBS%3E">v_&lt;BS&gt;</a> </b>
-<code class="special">{Visual}</code>["x]<code class="special">&lt;BS&gt;</code>        在选择模式时，删除高亮文本 [到寄存器 x 里]。
+<code class="special">{Visual}</code>["x]<code class="special">&lt;BS&gt;</code>        在選擇模式時，刪除高亮文本 [到寄存器 x 裡]。
 
 <code class="special">{Visual}</code>["x]X   或                                      <b class="vimtag"> <a name="v_X">v_X</a> </b> <b class="vimtag"> <a name="v_D">v_D</a> </b> <b class="vimtag"> <a name="v_b_D">v_b_D</a> </b>
-<code class="special">{Visual}</code>["x]D           删除高亮行 [到寄存器 x 里] (关于 <code class="special">{Visual}</code> 见
-                         <a href="visual.html#Visual-mode">Visual-mode</a> )。在可视列块模式里，"D" 删除高亮的文本直
-                        到行尾。<code class="notvi">{Vi 无此功能}</code>
+<code class="special">{Visual}</code>["x]D           刪除高亮行 [到寄存器 x 裡] (關於 <code class="special">{Visual}</code> 見
+                         <a href="visual.html#Visual-mode">Visual-mode</a> )。在可視列塊模式裡，"D" 刪除高亮的文本直
+                        到行尾。<code class="notvi">{Vi 無此功能}</code>
 
                                         <b class="vimtag"> <a name=":d">:d</a> </b> <b class="vimtag"> <a name=":de">:de</a> </b> <b class="vimtag"> <a name=":del">:del</a> </b> <b class="vimtag"> <a name=":delete">:delete</a> </b> <b class="vimtag"> <a name=":dl">:dl</a> </b> <b class="vimtag"> <a name=":dp">:dp</a> </b>
-:<code class="special">[range]</code>d[elete] <code class="special">[x]</code>    删除 <code class="special">[range]</code> 范围的行 (缺省: 当前行) [到寄存器 x 里]。
-                        <code class="note">注意</code> 这些奇异的缩写:
-                           :dl          删除并列出 (list)
+:<code class="special">[range]</code>d[elete] <code class="special">[x]</code>    刪除 <code class="special">[range]</code> 範圍的行 (缺省: 當前行) [到寄存器 x 裡]。
+                        <code class="note">注意</code> 這些奇異的縮寫:
+                           :dl          刪除並列出 (list)
                            :dell        同上
                            :delel       同上
                            :deletl      同上
                            :deletel     同上
-                           :dp          删除并显示 (print)
+                           :dp          刪除並顯示 (print)
                            :dep         同上
                            :delp        同上
                            :delep       同上
@@ -99,268 +99,268 @@
                            :deletep     同上
 
 :<code class="special">[range]</code>d[elete] <code class="special">[x]</code> <code class="special">{count}</code>
-                        从 <code class="special">[range]</code> 指定的范围开始，删除 <code class="special">{count}</code> 行 (缺省: 当前
-                        行  <a href="cmdline.html#cmdline-ranges">cmdline-ranges</a> ) [到寄存器 x 里]。
+                        從 <code class="special">[range]</code> 指定的範圍開始，刪除 <code class="special">{count}</code> 行 (缺省: 當前
+                        行  <a href="cmdline.html#cmdline-ranges">cmdline-ranges</a> ) [到寄存器 x 裡]。
 
-这些命令删除文本。你可以用  <a href="repeat.html#.">.</a>  命令重复它们 (除了  <a href="change.html#:d">:d</a> )，也可以撤销它们。用可
-视模式可以删除文本列块。关于寄存器的解释，参见  <a href="change.html#registers">registers</a> 。
+這些命令刪除文本。你可以用  <a href="repeat.html#.">.</a>  命令重複它們 (除了  <a href="change.html#:d">:d</a> )，也可以撤銷它們。用可
+視模式可以刪除文本列塊。關於寄存器的解釋，參見  <a href="change.html#registers">registers</a> 。
 
-d<code class="special">{motion}</code> 命令的一个特例: 如果动作不面向行，动作的开始和结束处不在同一行，开始
-位置之前只有空白，并且结束位置之后没有非空白的话，该删除会转为行动作。这意味着
-删除命令可能删除你还想保留的空白行。 <a href="motion.html#o_v">o_v</a>  操作符强制该动作面向字符。
+d<code class="special">{motion}</code> 命令的一個特例: 如果動作不面向行，動作的開始和結束處不在同一行，開始
+位置之前只有空白，並且結束位置之後沒有非空白的話，該刪除會轉為行動作。這意味著
+刪除命令可能刪除你還想保留的空白行。 <a href="motion.html#o_v">o_v</a>  操作符強制該動作面向字符。
 
-如果 <a href="options.html#'cpoptions'">'cpoptions'</a> 包括 'E' 标志位，删除文本里的空区域 (例如，在首列上 "d0") 会
-报错。
+如果 <a href="options.html#'cpoptions'">'cpoptions'</a> 包括 'E' 標誌位，刪除文本裡的空區域 (例如，在首列上 "d0") 會
+報錯。
 
                                                         <b class="vimtag"> <a name="J">J</a> </b>
-J                       连接 <code class="special">[count]</code> 行，但至少包含两行。删除缩进，插入不多于
-                        两个的空格 (见下)。在缓冲区末行此操作会失败。<code class="special">[count]</code>
-                        如果过多，会自行缩减至余下可用的行。
+J                       連接 <code class="special">[count]</code> 行，但至少包含兩行。刪除縮進，插入不多於
+                        兩個的空格 (見下)。在緩衝區末行此操作會失敗。<code class="special">[count]</code>
+                        如果過多，會自行縮減至餘下可用的行。
 
                                                         <b class="vimtag"> <a name="v_J">v_J</a> </b>
-<code class="special">{Visual}</code>J               连接高亮行，但至少包含两行。删除缩进，插入不多于两个的
-                        空格 (见下)。<code class="notvi">{Vi 无此功能}</code>。
+<code class="special">{Visual}</code>J               連接高亮行，但至少包含兩行。刪除縮進，插入不多於兩個的
+                        空格 (見下)。<code class="notvi">{Vi 無此功能}</code>。
 
                                                         <b class="vimtag"> <a name="gJ">gJ</a> </b>
-gJ                      连接 <code class="special">[count]</code> 行，但至少包含两行。不插入或删除任何空
-                        格。<code class="notvi">{Vi 无此功能}</code>。
+gJ                      連接 <code class="special">[count]</code> 行，但至少包含兩行。不插入或刪除任何空
+                        格。<code class="notvi">{Vi 無此功能}</code>。
 
                                                         <b class="vimtag"> <a name="v_gJ">v_gJ</a> </b>
-<code class="special">{Visual}</code>gJ              连接高亮行，但至少包含两行。不插入或删除任何空格。
-                        <code class="notvi">{Vi 无此功能}</code>。
+<code class="special">{Visual}</code>gJ              連接高亮行，但至少包含兩行。不插入或刪除任何空格。
+                        <code class="notvi">{Vi 無此功能}</code>。
 
                                                         <b class="vimtag"> <a name=":j">:j</a> </b> <b class="vimtag"> <a name=":join">:join</a> </b>
 <code class="special">[range]</code>j[oin][!] <code class="special">[flags]</code>
-                        连接 <code class="special">[range]</code> 范围的行。和 "J" 相同，但如有 [!] 时，连
-                        接不插入或删除任何空格。如果 <code class="special">[range]</code> 包括相同的开始和
-                        结束行，该命令不做任何事。缺省行为是连接当前行与下一
-                        行。<code class="notvi">{Vi: 没有 !}</code>
-                        <code class="special">[flags]</code> 部分可参见  <a href="cmdline.html#ex-flags">ex-flags</a> 。
+                        連接 <code class="special">[range]</code> 範圍的行。和 "J" 相同，但如有 [!] 時，連
+                        接不插入或刪除任何空格。如果 <code class="special">[range]</code> 包括相同的開始和
+                        結束行，該命令不做任何事。缺省行為是連接當前行與下一
+                        行。<code class="notvi">{Vi: 沒有 !}</code>
+                        <code class="special">[flags]</code> 部分可參見  <a href="cmdline.html#ex-flags">ex-flags</a> 。
 
 :<code class="special">[range]</code>j[oin][!] <code class="special">{count}</code> <code class="special">[flags]</code>
-                        连接 <code class="special">[range]</code> 开始的 <code class="special">{count}</code> 行 (缺省: 当前行
-                         <a href="cmdline.html#cmdline-ranges">cmdline-ranges</a> )。和 "J" 相同，但如有 [!] 时，连接不
-                        插入或删除任何空格。<code class="notvi">{Vi: 没有 !}</code>
-                        <code class="special">[flags]</code> 部分可参见  <a href="cmdline.html#ex-flags">ex-flags</a> 。
+                        連接 <code class="special">[range]</code> 開始的 <code class="special">{count}</code> 行 (缺省: 當前行
+                         <a href="cmdline.html#cmdline-ranges">cmdline-ranges</a> )。和 "J" 相同，但如有 [!] 時，連接不
+                        插入或刪除任何空格。<code class="notvi">{Vi: 沒有 !}</code>
+                        <code class="special">[flags]</code> 部分可參見  <a href="cmdline.html#ex-flags">ex-flags</a> 。
 
-这些命令删除行间的 <code class="special">&lt;EOL&gt;</code>，即换行符，从而实际上使多行连接成一行。除了  <a href="change.html#:j">:j</a>  之
-外，你可以重复这些命令或者撤销之。
+這些命令刪除行間的 <code class="special">&lt;EOL&gt;</code>，即換行符，從而實際上使多行連接成一行。除了  <a href="change.html#:j">:j</a>  之
+外，你可以重複這些命令或者撤銷之。
 
-这些命令，除了 "gJ" 以外，插入一个空格以代替 <code class="special">&lt;EOL&gt;</code>，除非当前行的结尾已经有空白
-或者下一行以 ')' 开始。这些命令，除了 "gJ" 之外，也删除下一行所有开头的空白。
-如果 <a href="options.html#'joinspaces'">'joinspaces'</a> 选项打开，这些命令在 '.'、'!' 或者 '?' 之后插入两个空格 (但
-如果 <a href="options.html#'cpoptions'">'cpoptions'</a> 包括 'j' 标志位，只有在 '.' 之后插入两个空格)。
-<a href="options.html#'formatoptions'">'formatoptions'</a> 里的 'B' 和 'M' 标志位改变在多字节字符之前或者之后插入空格的行
-为  <a href="change.html#fo-table">fo-table</a> 。
+這些命令，除了 "gJ" 以外，插入一個空格以代替 <code class="special">&lt;EOL&gt;</code>，除非當前行的結尾已經有空白
+或者下一行以 ')' 開始。這些命令，除了 "gJ" 之外，也刪除下一行所有開頭的空白。
+如果 <a href="options.html#'joinspaces'">'joinspaces'</a> 選項打開，這些命令在 '.'、'!' 或者 '?' 之後插入兩個空格 (但
+如果 <a href="options.html#'cpoptions'">'cpoptions'</a> 包括 'j' 標誌位，只有在 '.' 之後插入兩個空格)。
+<a href="options.html#'formatoptions'">'formatoptions'</a> 裡的 'B' 和 'M' 標誌位改變在多字節字符之前或者之後插入空格的行
+為  <a href="change.html#fo-table">fo-table</a> 。
 
-'[ 标记指向被连接的首行之原行尾处，'] 则指向合并后的行尾。
+'[ 標記指向被連接的首行之原行尾處，'] 則指向合併後的行尾。
 
 
 </pre><hr class="doubleline" /><pre>
-<h4>2. 删除并插入                                   <b class="vimtag"> <a name="delete-insert">delete-insert</a> </b> <b class="vimtag"> <a name="replacing">replacing</a> </b></h4>
+<h4>2. 刪除並插入                                   <b class="vimtag"> <a name="delete-insert">delete-insert</a> </b> <b class="vimtag"> <a name="replacing">replacing</a> </b></h4>
                                                         <b class="vimtag"> <a name="R">R</a> </b>
-R                       进入替换模式: 每个输入的字符替代一个现有的字符，从光标
-                        所在的位置开始。重复输入的文本 <code class="special">[count]</code> - 1 次。参见
-                         <a href="insert.html#Replace-mode">Replace-mode</a>  以了解相关详情。
+R                       進入替換模式: 每個輸入的字符替代一個現有的字符，從光標
+                        所在的位置開始。重複輸入的文本 <code class="special">[count]</code> - 1 次。參見
+                         <a href="insert.html#Replace-mode">Replace-mode</a>  以瞭解相關詳情。
 
                                                         <b class="vimtag"> <a name="gR">gR</a> </b>
-gR                      进入虚拟替换模式: 每个输入的字符替代屏幕位置一个现有的
-                        字符。因而，一个 <code class="special">&lt;Tab&gt;</code> 可以一次替换若干个字符。重复输
-                        入的文本 <code class="special">[count]</code>-1 次。参见  <a href="insert.html#Virtual-Replace-mode">Virtual-Replace-mode</a>  以
-                        了解相关详情。<code class="notvi">{仅当编译时加入  <a href="various.html#+vreplace">+vreplace</a>  特性有效}</code>
+gR                      進入虛擬替換模式: 每個輸入的字符替代屏幕位置一個現有的
+                        字符。因而，一個 <code class="special">&lt;Tab&gt;</code> 可以一次替換若干個字符。重複輸
+                        入的文本 <code class="special">[count]</code>-1 次。參見  <a href="insert.html#Virtual-Replace-mode">Virtual-Replace-mode</a>  以
+                        瞭解相關詳情。<code class="notvi">{僅當編譯時加入  <a href="various.html#+vreplace">+vreplace</a>  特性有效}</code>
 
                                                         <b class="vimtag"> <a name="c">c</a> </b>
-["x]c<code class="special">{motion}</code>           将 <code class="special">{motion}</code> 跨过的文本删除 [到寄存器 x 里] 并开始插
-                        入。如果 <a href="options.html#'cpoptions'">'cpoptions'</a> 包括 'E' 标志位并且没有任何文本实
-                        际需要删除时 (例如，"cTx" 而光标刚在 'x' 之后的时候)，
-                        报错并拒绝开始插入模式 (这与 Vi 兼容)。如果
-                        <a href="options.html#'cpoptions'">'cpoptions'</a> 没有 'E'，"c" 命令总是启动插入模式，即使没
-                        有文本要删除也是如此。
+["x]c<code class="special">{motion}</code>           將 <code class="special">{motion}</code> 跨過的文本刪除 [到寄存器 x 裡] 並開始插
+                        入。如果 <a href="options.html#'cpoptions'">'cpoptions'</a> 包括 'E' 標誌位並且沒有任何文本實
+                        際需要刪除時 (例如，"cTx" 而光標剛在 'x' 之後的時候)，
+                        報錯並拒絕開始插入模式 (這與 Vi 兼容)。如果
+                        <a href="options.html#'cpoptions'">'cpoptions'</a> 沒有 'E'，"c" 命令總是啟動插入模式，即使沒
+                        有文本要刪除也是如此。
 
                                                         <b class="vimtag"> <a name="cc">cc</a> </b>
-["x]cc                  删除 <code class="special">[count]</code> 行 [到寄存器 x 里] 并开始插入。
-                         <a href="motion.html#linewise">linewise</a>  行动作。如果置位 <a href="options.html#'autoindent'">'autoindent'</a>，保留首行的缩
-                        进。
+["x]cc                  刪除 <code class="special">[count]</code> 行 [到寄存器 x 裡] 並開始插入。
+                         <a href="motion.html#linewise">linewise</a>  行動作。如果置位 <a href="options.html#'autoindent'">'autoindent'</a>，保留首行的縮
+                        進。
 
                                                         <b class="vimtag"> <a name="C">C</a> </b>
-["x]C                   从当前光标位置删除到行尾，再删除 <code class="special">[count]</code>-1 行 [到寄存
-                        器 x 里]，并开始插入。和 c$ 等价 (非  <a href="motion.html#linewise">linewise</a>  行动
+["x]C                   從當前光標位置刪除到行尾，再刪除 <code class="special">[count]</code>-1 行 [到寄存
+                        器 x 裡]，並開始插入。和 c$ 等價 (非  <a href="motion.html#linewise">linewise</a>  行動
                         作)。
 
                                                         <b class="vimtag"> <a name="s">s</a> </b>
-["x]s                   删除 <code class="special">[count]</code> 个字符 [到寄存器 x 里]，并开始插入。(s 代
-                        表替代 (Substitute))。和 "cl" 等价 (非  <a href="motion.html#linewise">linewise</a>  行动
+["x]s                   刪除 <code class="special">[count]</code> 個字符 [到寄存器 x 裡]，並開始插入。(s 代
+                        表替代 (Substitute))。和 "cl" 等價 (非  <a href="motion.html#linewise">linewise</a>  行動
                         作)。
 
                                                         <b class="vimtag"> <a name="S">S</a> </b>
-["x]S                   删除 <code class="special">[count]</code> 行 [到寄存器 x 里] 并开始插入。和 "cc" 等
-                        价  <a href="motion.html#linewise">linewise</a>  行动作。
+["x]S                   刪除 <code class="special">[count]</code> 行 [到寄存器 x 裡] 並開始插入。和 "cc" 等
+                        價  <a href="motion.html#linewise">linewise</a>  行動作。
 
 <code class="special">{Visual}</code>["x]c   or                                      <b class="vimtag"> <a name="v_c">v_c</a> </b> <b class="vimtag"> <a name="v_s">v_s</a> </b>
-<code class="special">{Visual}</code>["x]s           删除高亮文本 [到寄存器 x 里]，并开始插入 (关于
-                        <code class="special">{Visual}</code> 参见  <a href="visual.html#Visual-mode">Visual-mode</a> )。<code class="notvi">{Vi 无此功能}</code>。
+<code class="special">{Visual}</code>["x]s           刪除高亮文本 [到寄存器 x 裡]，並開始插入 (關於
+                        <code class="special">{Visual}</code> 參見  <a href="visual.html#Visual-mode">Visual-mode</a> )。<code class="notvi">{Vi 無此功能}</code>。
 
                                                         <b class="vimtag"> <a name="v_r">v_r</a> </b>
-<code class="special">{Visual}</code>["x]r<code class="special">{char}</code>     把所有高亮的字符替换成 <code class="special">{char}</code>。
+<code class="special">{Visual}</code>["x]r<code class="special">{char}</code>     把所有高亮的字符替換成 <code class="special">{char}</code>。
 
                                                         <b class="vimtag"> <a name="v_C">v_C</a> </b>
-<code class="special">{Visual}</code>["x]C           删除高亮行 [到寄存器 x 里] 并开始插入。在可视列块模式
-                        下有所不同  <a href="visual.html#v_b_C">v_b_C</a> 。<code class="notvi">{Vi 无此功能}</code>。
+<code class="special">{Visual}</code>["x]C           刪除高亮行 [到寄存器 x 裡] 並開始插入。在可視列塊模式
+                        下有所不同  <a href="visual.html#v_b_C">v_b_C</a> 。<code class="notvi">{Vi 無此功能}</code>。
                                                         <b class="vimtag"> <a name="v_S">v_S</a> </b>
-<code class="special">{Visual}</code>["x]S           删除高亮行 [到寄存器 x 里] 并开始插入 (关于 <code class="special">{Visual}</code>
-                        参见  <a href="visual.html#Visual-mode">Visual-mode</a> )。<code class="notvi">{Vi 无此功能}</code>。
+<code class="special">{Visual}</code>["x]S           刪除高亮行 [到寄存器 x 裡] 並開始插入 (關於 <code class="special">{Visual}</code>
+                        參見  <a href="visual.html#Visual-mode">Visual-mode</a> )。<code class="notvi">{Vi 無此功能}</code>。
                                                         <b class="vimtag"> <a name="v_R">v_R</a> </b>
-<code class="special">{Visual}</code>["x]R           现在和 <code class="special">{Visual}</code>["x]S 相同。以后的版本可能会有所改变
-                        <code class="notvi">{Vi 无此功能}</code>。
+<code class="special">{Visual}</code>["x]R           現在和 <code class="special">{Visual}</code>["x]S 相同。以後的版本可能會有所改變
+                        <code class="notvi">{Vi 無此功能}</code>。
 
 <code class="note">注意</code>:
-- 你可以用 <code class="special">&lt;Esc&gt;</code> 退出插入和替换模式。
-- 参见 "插入和替换模式" 一节  <a href="insert.html#mode-ins-repl">mode-ins-repl</a>  以了解其他这些模式下的特殊字符。
-- <code class="special">[count]</code> 的效果只有在 Vim 退出插入或替换模式时才会体现。
-- 当 <a href="options.html#'cpoptions'">'cpoptions'</a> 选项包含 '$' 并且所做的修改在一行之内，Vim 继续显示被删除的文
-  本，并在最后一个被删除的字符之后加上一个 '$'。
+- 你可以用 <code class="special">&lt;Esc&gt;</code> 退出插入和替換模式。
+- 參見 "插入和替換模式" 一節  <a href="insert.html#mode-ins-repl">mode-ins-repl</a>  以瞭解其他這些模式下的特殊字符。
+- <code class="special">[count]</code> 的效果只有在 Vim 退出插入或替換模式時才會體現。
+- 當 <a href="options.html#'cpoptions'">'cpoptions'</a> 選項包含 '$' 並且所做的修改在一行之內，Vim 繼續顯示被刪除的文
+  本，並在最後一個被刪除的字符之後加上一個 '$'。
 
-关于寄存器的解释，参见  <a href="change.html#registers">registers</a> 。
+關於寄存器的解釋，參見  <a href="change.html#registers">registers</a> 。
 
-替换模式和插入模式类似，除了每输入一个字符同时删除一个字符以外。如果到达行尾，
-Vim 把其后的字符插入在行尾 (和插入模式相同)。在替换模式下，退格键恢复原来的文
-本 (如果有的话)。(参见 "插入和替换模式" 一节  <a href="insert.html#mode-ins-repl">mode-ins-repl</a> )。
+替換模式和插入模式類似，除了每輸入一個字符同時刪除一個字符以外。如果到達行尾，
+Vim 把其後的字符插入在行尾 (和插入模式相同)。在替換模式下，退格鍵恢復原來的文
+本 (如果有的話)。(參見 "插入和替換模式" 一節  <a href="insert.html#mode-ins-repl">mode-ins-repl</a> )。
 
                                                 <b class="vimtag"> <a name="cw">cw</a> </b> <b class="vimtag"> <a name="cW">cW</a> </b>
-特殊情况: 如果光标在单词内部，"cw" 和 "cW" 不包含单词后的空白而只修改到词尾。
-这是因为 Vim 把 "cw" 解释为 修改-单词，而单词并不包括其后的空白。
-{Vi: 在其后还有空白的空白字符上 "cw" 只修改第一个空白；这也许是一个漏洞，因为
-"dw" 删除所有空白；用 <a href="options.html#'cpoptions'">'cpoptions'</a> 里的 'w' 标志位来设置类似于 Vi 的工作方式}
+特殊情況: 如果光標在單詞內部，"cw" 和 "cW" 不包含單詞後的空白而只修改到詞尾。
+這是因為 Vim 把 "cw" 解釋為 修改-單詞，而單詞並不包括其後的空白。
+{Vi: 在其後還有空白的空白字符上 "cw" 只修改第一個空白；這也許是一個漏洞，因為
+"dw" 刪除所有空白；用 <a href="options.html#'cpoptions'">'cpoptions'</a> 裡的 'w' 標誌位來設置類似於 Vi 的工作方式}
 
-如果你希望 "cw" 包括单词之后的空格，使用如下的映射: 
+如果你希望 "cw" 包括單詞之後的空格，使用如下的映射: 
 <code class="example">        :map cw dwi</code>
-或者，用 "caw" (见  <a href="motion.html#aw">aw</a> )。
+或者，用 "caw" (見  <a href="motion.html#aw">aw</a> )。
 
                                                         <b class="vimtag"> <a name=":c">:c</a> </b> <b class="vimtag"> <a name=":ch">:ch</a> </b> <b class="vimtag"> <a name=":change">:change</a> </b>
-:<code class="special">{range}</code>c[hange][!]     用另外的文本替换若干文本行。输入只包含 "." 的行结束替
-                        换。如果没有 <code class="special">{range}</code>，该命令只置换当前行。
-                        加上 [!] 后，在本命令的执行期间切换 <a href="options.html#'autoindent'">'autoindent'</a>。
+:<code class="special">{range}</code>c[hange][!]     用另外的文本替換若干文本行。輸入只包含 "." 的行結束替
+                        換。如果沒有 <code class="special">{range}</code>，該命令只置換當前行。
+                        加上 [!] 後，在本命令的執行期間切換 <a href="options.html#'autoindent'">'autoindent'</a>。
 
 </pre><hr class="doubleline" /><pre>
-<h4>3. 简单修改                                             <b class="vimtag"> <a name="simple-change">simple-change</a> </b></h4>
+<h4>3. 簡單修改                                             <b class="vimtag"> <a name="simple-change">simple-change</a> </b></h4>
                                                         <b class="vimtag"> <a name="r">r</a> </b>
-r<code class="special">{char}</code>                 把光标下的字符换成 <code class="special">{char}</code>。如果 <code class="special">{char}</code> 是 <code class="special">&lt;CR&gt;</code> 或者
-                        <code class="special">&lt;NL&gt;</code>，则把该字符变成换行符。要换成一个真正的 <code class="special">&lt;CR&gt;</code>，使
-                        用 <code class="keystroke">CTRL-V</code> <code class="special">&lt;CR&gt;</code>。<code class="keystroke">CTRL-V</code> <code class="special">&lt;NL&gt;</code> 则换成 <code class="special">&lt;Nul&gt;</code>。
+r<code class="special">{char}</code>                 把光標下的字符換成 <code class="special">{char}</code>。如果 <code class="special">{char}</code> 是 <code class="special">&lt;CR&gt;</code> 或者
+                        <code class="special">&lt;NL&gt;</code>，則把該字符變成換行符。要換成一個真正的 <code class="special">&lt;CR&gt;</code>，使
+                        用 <code class="keystroke">CTRL-V</code> <code class="special">&lt;CR&gt;</code>。<code class="keystroke">CTRL-V</code> <code class="special">&lt;NL&gt;</code> 則換成 <code class="special">&lt;Nul&gt;</code>。
 
-                        <code class="notvi">{Vi: <code class="keystroke">CTRL-V</code> <code class="special">&lt;CR&gt;</code> 还是换成换行符。没有办法换成 <code class="special">&lt;CR&gt;</code>}</code>。
+                        <code class="notvi">{Vi: <code class="keystroke">CTRL-V</code> <code class="special">&lt;CR&gt;</code> 還是換成換行符。沒有辦法換成 <code class="special">&lt;CR&gt;</code>}</code>。
 
-                        若 <code class="special">{char}</code> 为 <code class="keystroke">CTRL-E</code> 或 <code class="keystroke">CTRL-Y</code>，使用下一行或上一行的
-                        字符来代替，就像  <a href="insert.html#i_CTRL-E">i_CTRL-E</a>  和  <a href="insert.html#i_CTRL-Y">i_CTRL-Y</a>  一样。这里
-                        计数也适用，所以  <code class="badlink">10r<code class="special">&lt;C-E&gt;</code></code>  从下一行复制 10 个字符。
+                        若 <code class="special">{char}</code> 為 <code class="keystroke">CTRL-E</code> 或 <code class="keystroke">CTRL-Y</code>，使用下一行或上一行的
+                        字符來代替，就像  <a href="insert.html#i_CTRL-E">i_CTRL-E</a>  和  <a href="insert.html#i_CTRL-Y">i_CTRL-Y</a>  一樣。這裡
+                        計數也適用，所以  <code class="badlink">10r<code class="special">&lt;C-E&gt;</code></code>  從下一行複製 10 個字符。
 
-                        如果你给出 <code class="special">[count]</code>，Vim 替换 <code class="special">[count]</code> 个字符为 <code class="special">[count]</code>
-                        个 <code class="special">{char}</code>。不过如果 <code class="special">{char}</code> 为 <code class="special">&lt;CR&gt;</code> 或者 <code class="special">&lt;NL&gt;</code>，Vim 只插
-                        入一个换行符: "5r<code class="special">&lt;CR&gt;</code>" 替换五个字符为一个换行符。
+                        如果你給出 <code class="special">[count]</code>，Vim 替換 <code class="special">[count]</code> 個字符為 <code class="special">[count]</code>
+                        個 <code class="special">{char}</code>。不過如果 <code class="special">{char}</code> 為 <code class="special">&lt;CR&gt;</code> 或者 <code class="special">&lt;NL&gt;</code>，Vim 只插
+                        入一個換行符: "5r<code class="special">&lt;CR&gt;</code>" 替換五個字符為一個換行符。
 
-                        当 <code class="special">{char}</code> 为 <code class="special">&lt;CR&gt;</code> 或者 <code class="special">&lt;NL&gt;</code>，Vim 会自动缩进。这和先执
-                        行删除要替换的字符在执行 "i<code class="special">&lt;CR&gt;</code><code class="special">&lt;Esc&gt;</code>" 类似。
+                        當 <code class="special">{char}</code> 為 <code class="special">&lt;CR&gt;</code> 或者 <code class="special">&lt;NL&gt;</code>，Vim 會自動縮進。這和先執
+                        行刪除要替換的字符在執行 "i<code class="special">&lt;CR&gt;</code><code class="special">&lt;Esc&gt;</code>" 類似。
 
-                        <code class="special">{char}</code> 可以输入二合字母  <a href="change.html#digraph-arg">digraph-arg</a> 。
+                        <code class="special">{char}</code> 可以輸入二合字母  <a href="change.html#digraph-arg">digraph-arg</a> 。
 
-                         <a href="map.html#:lmap">:lmap</a>  映射会应用在 <code class="special">{char}</code> 上。插入模式下的 <code class="keystroke">CTRL-^</code> 命
-                        令可以切换这一功能  <a href="insert.html#i_CTRL-^">i_CTRL-^</a> 。
+                         <a href="map.html#:lmap">:lmap</a>  映射會應用在 <code class="special">{char}</code> 上。插入模式下的 <code class="keystroke">CTRL-^</code> 命
+                        令可以切換這一功能  <a href="insert.html#i_CTRL-^">i_CTRL-^</a> 。
 
-                        参见  <a href="mbyte.html#utf-8-char-arg">utf-8-char-arg</a>  以了解在 <a href="options.html#'encoding'">'encoding'</a> 为 Unicode
-                        编码时如果使用合成用字符。
+                        參見  <a href="mbyte.html#utf-8-char-arg">utf-8-char-arg</a>  以瞭解在 <a href="options.html#'encoding'">'encoding'</a> 為 Unicode
+                        編碼時如果使用合成用字符。
 
                                                         <b class="vimtag"> <a name="gr">gr</a> </b>
-gr<code class="special">{char}</code>                替换光标下的虚拟字符。替换发生在屏幕位置而不是文件位置
-                        上。参见  <a href="change.html#gR">gR</a>  和  <a href="insert.html#Virtual-Replace-mode">Virtual-Replace-mode</a>  以了解相关详
-                        情。和  <a href="change.html#r">r</a>  一样，可以使用计数。<code class="special">{char}</code> 输入的方式也相同
-                        <code class="notvi">{仅当编译时加入  <a href="various.html#+vreplace">+vreplace</a>  特性有效}</code>。
+gr<code class="special">{char}</code>                替換光標下的虛擬字符。替換發生在屏幕位置而不是文件位置
+                        上。參見  <a href="change.html#gR">gR</a>  和  <a href="insert.html#Virtual-Replace-mode">Virtual-Replace-mode</a>  以瞭解相關詳
+                        情。和  <a href="change.html#r">r</a>  一樣，可以使用計數。<code class="special">{char}</code> 輸入的方式也相同
+                        <code class="notvi">{僅當編譯時加入  <a href="various.html#+vreplace">+vreplace</a>  特性有效}</code>。
 
                                                 <b class="vimtag"> <a name="digraph-arg">digraph-arg</a> </b>
-普通模式下的命令，像  <a href="change.html#r">r</a>  和  <a href="motion.html#t">t</a> ，需要一个单字符的参数。如果 <a href="options.html#'cpo'">'cpo'</a> 不包含 'D'
-标志位，该字符可以用  <a href="digraph.html#digraphs">digraphs</a>  那样的方式输入: 先键入 <code class="keystroke">CTRL-K</code> 然后输入二合字母
-的两个字符 <code class="notvi">{仅当编译时加入  <a href="various.html#+digraphs">+digraphs</a>  特性有效}</code>。
+普通模式下的命令，像  <a href="change.html#r">r</a>  和  <a href="motion.html#t">t</a> ，需要一個單字符的參數。如果 <a href="options.html#'cpo'">'cpo'</a> 不包含 'D'
+標誌位，該字符可以用  <a href="digraph.html#digraphs">digraphs</a>  那樣的方式輸入: 先鍵入 <code class="keystroke">CTRL-K</code> 然後輸入二合字母
+的兩個字符 <code class="notvi">{僅當編譯時加入  <a href="various.html#+digraphs">+digraphs</a>  特性有效}</code>。
 
                                                 <b class="vimtag"> <a name="case">case</a> </b>
-下面的命令根据当前的  <a href="mbyte.html#locale">locale</a>  改变字母的大小写。参见  <a href="mlang.html#:language">:language</a> 。这里会用到
+下面的命令根據當前的  <a href="mbyte.html#locale">locale</a>  改變字母的大小寫。參見  <a href="mlang.html#:language">:language</a> 。這裡會用到
 LC_CTYPE 的值。
 
                                                         <b class="vimtag"> <a name="%7E">~</a> </b>
-~                       <a href="options.html#'notildeop'">'notildeop'</a> 选项: 切换光标下字符的大小写，并把光标向右
-                        移。如果给出 <code class="special">[count]</code>，应用在那么多数目的字符上。
-                        <code class="notvi">{Vi: 没有 count}</code>
+~                       <a href="options.html#'notildeop'">'notildeop'</a> 選項: 切換光標下字符的大小寫，並把光標向右
+                        移。如果給出 <code class="special">[count]</code>，應用在那麼多數目的字符上。
+                        <code class="notvi">{Vi: 沒有 count}</code>
 
-~<code class="special">{motion}</code>               <a href="options.html#'tildeop'">'tildeop'</a> 选项: 切换 <code class="special">{motion}</code> 跨越的文本的大小写。
+~<code class="special">{motion}</code>               <a href="options.html#'tildeop'">'tildeop'</a> 選項: 切換 <code class="special">{motion}</code> 跨越的文本的大小寫。
                         <code class="notvi">{Vi: ~ 不能用作操作符}</code>
 
                                                         <b class="vimtag"> <a name="g%7E">g~</a> </b>
-g~<code class="special">{motion}</code>              切换 <code class="special">{motion}</code> 跨越的文本的大小写。<code class="notvi">{Vi 无此功能}</code>
+g~<code class="special">{motion}</code>              切換 <code class="special">{motion}</code> 跨越的文本的大小寫。<code class="notvi">{Vi 無此功能}</code>
 
 g~g~                                                    <b class="vimtag"> <a name="g%7Eg%7E">g~g~</a> </b> <b class="vimtag"> <a name="g%7E%7E">g~~</a> </b>
-g~~                     切换当前行的大小写。<code class="notvi">{Vi 无此功能}</code>
+g~~                     切換當前行的大小寫。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="v_%7E">v_~</a> </b>
-<code class="special">{Visual}</code>~               切换高亮文本的大小写 (关于 <code class="special">{Visual}</code> 见
-                         <a href="visual.html#Visual-mode">Visual-mode</a> )。<code class="notvi">{Vi 无此功能}</code>
+<code class="special">{Visual}</code>~               切換高亮文本的大小寫 (關於 <code class="special">{Visual}</code> 見
+                         <a href="visual.html#Visual-mode">Visual-mode</a> )。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="v_U">v_U</a> </b>
-<code class="special">{Visual}</code>U               使高亮文本成为大写 (关于 <code class="special">{Visual}</code> 见  <a href="visual.html#Visual-mode">Visual-mode</a> )。
-                        <code class="notvi">{Vi 无此功能}</code>
+<code class="special">{Visual}</code>U               使高亮文本成為大寫 (關於 <code class="special">{Visual}</code> 見  <a href="visual.html#Visual-mode">Visual-mode</a> )。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="gU">gU</a> </b> <b class="vimtag"> <a name="uppercase">uppercase</a> </b>
-gU<code class="special">{motion}</code>              使 <code class="special">{motion}</code> 跨越的文本成为大写。<code class="notvi">{Vi 无此功能}</code>
+gU<code class="special">{motion}</code>              使 <code class="special">{motion}</code> 跨越的文本成為大寫。<code class="notvi">{Vi 無此功能}</code>
                         例如: 
 <code class="example">                                :map! &lt;C-F&gt; &lt;Esc&gt;gUiw`]a</code>
-                        可以用在插入模式下: 按 <code class="keystroke">CTRL-F</code> 使光标之前的单词成为大
-                        写。这使得输入大写单词很方便，只要输入小写单词再一次转
-                        换就行了。
+                        可以用在插入模式下: 按 <code class="keystroke">CTRL-F</code> 使光標之前的單詞成為大
+                        寫。這使得輸入大寫單詞很方便，只要輸入小寫單詞再一次轉
+                        換就行了。
 
 
 gUgU                                                    <b class="vimtag"> <a name="gUgU">gUgU</a> </b> <b class="vimtag"> <a name="gUU">gUU</a> </b>
-gUU                     使得当前行成为大写。<code class="notvi">{Vi 无此功能}</code>
+gUU                     使得當前行成為大寫。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="v_u">v_u</a> </b>
-<code class="special">{Visual}</code>u               使高亮文本成为小写 (关于 <code class="special">{Visual}</code> 见  <a href="visual.html#Visual-mode">Visual-mode</a> )。
-                        <code class="notvi">{Vi 无此功能}</code>
+<code class="special">{Visual}</code>u               使高亮文本成為小寫 (關於 <code class="special">{Visual}</code> 見  <a href="visual.html#Visual-mode">Visual-mode</a> )。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="gu">gu</a> </b> <b class="vimtag"> <a name="lowercase">lowercase</a> </b>
-gu<code class="special">{motion}</code>              使 <code class="special">{motion}</code> 跨越的文本成为小写。<code class="notvi">{Vi 无此功能}</code>
+gu<code class="special">{motion}</code>              使 <code class="special">{motion}</code> 跨越的文本成為小寫。<code class="notvi">{Vi 無此功能}</code>
 
 gugu                                                    <b class="vimtag"> <a name="gugu">gugu</a> </b> <b class="vimtag"> <a name="guu">guu</a> </b>
-guu                     使得当前行成为小写。<code class="notvi">{Vi 无此功能}</code>
+guu                     使得當前行成為小寫。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="g?">g?</a> </b> <b class="vimtag"> <a name="rot13">rot13</a> </b>
-g?<code class="special">{motion}</code>              用 Rot13 对 <code class="special">{motion}</code> 跨越的文本进行编码。<code class="notvi">{Vi 无此功能}</code>
+g?<code class="special">{motion}</code>              用 Rot13 對 <code class="special">{motion}</code> 跨越的文本進行編碼。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="v_g?">v_g?</a> </b>
-<code class="special">{Visual}</code>g?              用 Rot13 对高亮文本进行编码 (关于 <code class="special">{Visual}</code> 见
-                         <a href="visual.html#Visual-mode">Visual-mode</a> )。<code class="notvi">{Vi 无此功能}</code>
+<code class="special">{Visual}</code>g?              用 Rot13 對高亮文本進行編碼 (關於 <code class="special">{Visual}</code> 見
+                         <a href="visual.html#Visual-mode">Visual-mode</a> )。<code class="notvi">{Vi 無此功能}</code>
 
 g?g?                                                    <b class="vimtag"> <a name="g?g?">g?g?</a> </b> <b class="vimtag"> <a name="g??">g??</a> </b>
-g??                     用 Rot13 对当前行进行编码。<code class="notvi">{Vi 无此功能}</code>
+g??                     用 Rot13 對當前行進行編碼。<code class="notvi">{Vi 無此功能}</code>
 
-要以标题大写 (title cap) 方式改写一行，亦即使每个单词的首字母大写: 
+要以標題大寫 (title cap) 方式改寫一行，亦即使每個單詞的首字母大寫: 
 <code class="example">        :s/\v&lt;(.)(\w*)/\u\1\L\2/g</code>
 <code class="example"></code>
 <code class="example"></code>
-<code class="section">递 增 与 递 减 </code>
+<code class="section">遞 增 與 遞 減 </code>
                                                         <b class="vimtag"> <a name="CTRL-A">CTRL-A</a> </b>
-<code class="keystroke">CTRL-A</code>                  把当前光标之上或之后的数值或者字母加上 <code class="special">[count]</code>。
-                        <code class="notvi">{Vi 无此功能}</code>
+<code class="keystroke">CTRL-A</code>                  把當前光標之上或之後的數值或者字母加上 <code class="special">[count]</code>。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="v_CTRL-A">v_CTRL-A</a> </b>
-<code class="special">{Visual}</code><code class="keystroke">CTRL-A</code>          给高亮文本内的数值或者字母加上 <code class="special">[count]</code>。
-                        <code class="notvi">{Vi 无此功能}</code>
+<code class="special">{Visual}</code><code class="keystroke">CTRL-A</code>          給高亮文本內的數值或者字母加上 <code class="special">[count]</code>。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="v_g_CTRL-A">v_g_CTRL-A</a> </b>
-<code class="special">{Visual}</code>g <code class="keystroke">CTRL-A</code>        给高亮文本内的数值或者字母加上 <code class="special">[count]</code>。如果高亮超过一
-                        行，每行会加上额外的 <code class="special">[count]</code> (即生成 <code class="special">[count]</code> 为增量的
-                        递增数列)。<code class="notvi">{Vi 无此功能}</code>
-                        例如，假定有如下数字的列表:
+<code class="special">{Visual}</code>g <code class="keystroke">CTRL-A</code>        給高亮文本內的數值或者字母加上 <code class="special">[count]</code>。如果高亮超過一
+                        行，每行會加上額外的 <code class="special">[count]</code> (即生成 <code class="special">[count]</code> 為增量的
+                        遞增數列)。<code class="notvi">{Vi 無此功能}</code>
+                        例如，假定有如下數字的列表:
 <code class="section">                                1. </code>
 <code class="section">                                1. </code>
 <code class="section">                                1. </code>
 <code class="section">                                1. </code>
-                        移动至第二个 "1."，可视地选择后三行，按 g <code class="keystroke">CTRL-A</code> 会生
+                        移動至第二個 "1."，可視地選擇後三行，按 g <code class="keystroke">CTRL-A</code> 會生
                         生成:
 <code class="section">                                1. </code>
 <code class="section">                                2. </code>
@@ -368,420 +368,420 @@ g??                     用 Rot13 对当前行进行编码。<code class="notvi"
 <code class="section">                                4. </code>
 
                                                         <b class="vimtag"> <a name="CTRL-X">CTRL-X</a> </b>
-<code class="keystroke">CTRL-X</code>                  把当前光标之上或之后的数值或者字母减去 <code class="special">[count]</code>。
-                        <code class="notvi">{Vi 无此功能}</code>
+<code class="keystroke">CTRL-X</code>                  把當前光標之上或之後的數值或者字母減去 <code class="special">[count]</code>。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="v_CTRL-X">v_CTRL-X</a> </b>
-<code class="special">{Visual}</code><code class="keystroke">CTRL-X</code>          给高亮文本内的数值或者字母减去 <code class="special">[count]</code>。
-                        <code class="notvi">{Vi 无此功能}</code>
+<code class="special">{Visual}</code><code class="keystroke">CTRL-X</code>          給高亮文本內的數值或者字母減去 <code class="special">[count]</code>。
+                        <code class="notvi">{Vi 無此功能}</code>
 
-                        MS-Windows 上，此键被映射到剪切可视文本
-                         <a href="os_dos.html#dos-standard-mappings">dos-standard-mappings</a> 。要屏蔽该映射，可用: 
+                        MS-Windows 上，此鍵被映射到剪切可視文本
+                         <a href="os_dos.html#dos-standard-mappings">dos-standard-mappings</a> 。要屏蔽該映射，可用: 
 <code class="example">                                silent! vunmap &lt;C-X&gt;</code>
 
                                                         <b class="vimtag"> <a name="v_g_CTRL-X">v_g_CTRL-X</a> </b>
-<code class="special">{Visual}</code>g <code class="keystroke">CTRL-X</code>        给高亮文本内的数值或者字母减去 <code class="special">[count]</code>。如果高亮超过一
-                        行，每行会减去额外的 <code class="special">[count]</code> (即生成 <code class="special">[count]</code> 为增量的
-                        递减数列)。
+<code class="special">{Visual}</code>g <code class="keystroke">CTRL-X</code>        給高亮文本內的數值或者字母減去 <code class="special">[count]</code>。如果高亮超過一
+                        行，每行會減去額外的 <code class="special">[count]</code> (即生成 <code class="special">[count]</code> 為增量的
+                        遞減數列)。
 
-<code class="keystroke">CTRL-A</code> 和 <code class="keystroke">CTRL-X</code> 命令可用于:
-- 带符号或无符号十进制数
-- 无符号二进制、八进制和十六进制数
+<code class="keystroke">CTRL-A</code> 和 <code class="keystroke">CTRL-X</code> 命令可用於:
+- 帶符號或無符號十進制數
+- 無符號二進制、八進制和十六進制數
 - 字母
 
-这取决于 <a href="options.html#'nrformats'">'nrformats'</a> 选项:
-- 当 <a href="options.html#'nrformats'">'nrformats'</a> 包括 "bin" 时，Vim 假设 <code class="badlink">'0b'</code> 或 <code class="badlink">'0B'</code> 开始的数值为二进制。
-- 当 <a href="options.html#'nrformats'">'nrformats'</a> 包括 "octal" 时，Vim 假设 '0' 开始的数值为八进制，除非该数值
-  里包含 '8' 或 '9'。其他的数值为十进制，并可以在开始带一个可选的负号。
-  如果光标已经在数值上，命令应用于该数值；否则，应用于光标右侧的数值。
-- 当 <a href="options.html#'nrformats'">'nrformats'</a> 包括 "alpha" 时，Vim 会改变光标之上或之后的字母。这可用于构造
-  字母编号的列表。
-- 当 <a href="options.html#'nrformats'">'nrformats'</a> 包括 "hex" 时，Vim 假设 <code class="badlink">'0x'</code> 或者 <code class="badlink">'0X'</code> 开始的数值为十六进制。
-  这个数值最右端的字母决定所产生十六进制数值的大小写。如果当前数值没有字母，
-  Vim 使用上一次检测到的大小写。
+這取決於 <a href="options.html#'nrformats'">'nrformats'</a> 選項:
+- 當 <a href="options.html#'nrformats'">'nrformats'</a> 包括 "bin" 時，Vim 假設 <code class="badlink">'0b'</code> 或 <code class="badlink">'0B'</code> 開始的數值為二進制。
+- 當 <a href="options.html#'nrformats'">'nrformats'</a> 包括 "octal" 時，Vim 假設 '0' 開始的數值為八進制，除非該數值
+  裡包含 '8' 或 '9'。其他的數值為十進制，並可以在開始帶一個可選的負號。
+  如果光標已經在數值上，命令應用於該數值；否則，應用於光標右側的數值。
+- 當 <a href="options.html#'nrformats'">'nrformats'</a> 包括 "alpha" 時，Vim 會改變光標之上或之後的字母。這可用於構造
+  字母編號的列表。
+- 當 <a href="options.html#'nrformats'">'nrformats'</a> 包括 "hex" 時，Vim 假設 <code class="badlink">'0x'</code> 或者 <code class="badlink">'0X'</code> 開始的數值為十六進制。
+  這個數值最右端的字母決定所產生十六進制數值的大小寫。如果當前數值沒有字母，
+  Vim 使用上一次檢測到的大小寫。
 
-增减操作会考虑十进制开始的负号。二进制、八进制和十六进制值则不会。要忽略正负
-号，可视地选择数值本身。然后再应用 <code class="keystroke">CTRL-A</code> 或 <code class="keystroke">CTRL-X</code>。
+增減操作會考慮十進制開始的負號。二進制、八進制和十六進制值則不會。要忽略正負
+號，可視地選擇數值本身。然後再應用 <code class="keystroke">CTRL-A</code> 或 <code class="keystroke">CTRL-X</code>。
 
-对零开头的数值 (包括八进制和十六进制的)，Vim 尽可能保留相同数量的字符。<code class="keystroke">CTRL-A</code>
-在 "0077" 上产生 "0100"，<code class="keystroke">CTRL-X</code> 在 "0x100" 上产生 "0x0ff"。
-有一个例外: 在发现某数值以零开始但不是八进制 (包含 '8' 或 '9')，而 <code class="badlink">'noformats'</code>
-却包含 "octal" 的时候，引导的零会被删除，以免结果被误认为八进制。
+對零開頭的數值 (包括八進制和十六進制的)，Vim 盡可能保留相同數量的字符。<code class="keystroke">CTRL-A</code>
+在 "0077" 上產生 "0100"，<code class="keystroke">CTRL-X</code> 在 "0x100" 上產生 "0x0ff"。
+有一個例外: 在發現某數值以零開始但不是八進制 (包含 '8' 或 '9')，而 <code class="badlink">'noformats'</code>
+卻包含 "octal" 的時候，引導的零會被刪除，以免結果被誤認為八進制。
 
-<code class="note">注意</code> 如果 <a href="options.html#'nrformats'">'nrformats'</a> 包括 "octal"，开头有零的十进制数会产生错误，因为会和八进
-制数产生混淆。
+<code class="note">注意</code> 如果 <a href="options.html#'nrformats'">'nrformats'</a> 包括 "octal"，開頭有零的十進制數會產生錯誤，因為會和八進
+制數產生混淆。
 
-同样类似的要 <code class="note">注意</code>，如果 <a href="options.html#'nrformats'">'nrformats'</a> 包括 "bin"，开头有 <code class="badlink">'0x'</code> 或 <code class="badlink">'0X'</code> 的二进制数
-被认作十六进制，因为 <code class="badlink">'0b'</code> 是合法的十六进制数字。
+同樣類似的要 <code class="note">注意</code>，如果 <a href="options.html#'nrformats'">'nrformats'</a> 包括 "bin"，開頭有 <code class="badlink">'0x'</code> 或 <code class="badlink">'0X'</code> 的二進制數
+被認作十六進制，因為 <code class="badlink">'0b'</code> 是合法的十六進制數字。
 
-<code class="keystroke">CTRL-A</code> 命令在宏命令里很有用。例如: 使用以下的步骤构造一个数字编号的列表。
+<code class="keystroke">CTRL-A</code> 命令在宏命令裡很有用。例如: 使用以下的步驟構造一個數字編號的列表。
 
-1. 建立第一个列表项。确保它以数字开始。
-2. qa        - 用寄存器 'a' 开始记录
-3. Y         - 抽出这个列表项
-4. p         - 把该项的一个副本放置在下一行上
-5. <code class="keystroke">CTRL-A</code>    - 增加计数
-6. q         - 停止记录
-7. <code class="special">&lt;count&gt;</code>@a - 重复抽出、放置和增加计数操作 <code class="special">&lt;count&gt;</code> 次
+1. 建立第一個列表項。確保它以數字開始。
+2. qa        - 用寄存器 'a' 開始記錄
+3. Y         - 抽出這個列表項
+4. p         - 把該項的一個副本放置在下一行上
+5. <code class="keystroke">CTRL-A</code>    - 增加計數
+6. q         - 停止記錄
+7. <code class="special">&lt;count&gt;</code>@a - 重複抽出、放置和增加計數操作 <code class="special">&lt;count&gt;</code> 次
 
 
-将 文 本 左 移 或 右 移                                 <b class="vimtag"> <a name="shift-left-right">shift-left-right</a> </b>
+將 文 本 左 移 或 右 移                                 <b class="vimtag"> <a name="shift-left-right">shift-left-right</a> </b>
 
                                                         <b class="vimtag"> <a name="%3C">&lt;</a> </b>
-&lt;<code class="special">{motion}</code>               将 <code class="special">{motion}</code> 跨越的行左移 <a href="options.html#'shiftwidth'">'shiftwidth'</a> 列。
+&lt;<code class="special">{motion}</code>               將 <code class="special">{motion}</code> 跨越的行左移 <a href="options.html#'shiftwidth'">'shiftwidth'</a> 列。
 
                                                         <b class="vimtag"> <a name="%3C%3C">&lt;&lt;</a> </b>
-&lt;&lt;                      将 <code class="special">[count]</code> 行左移 <a href="options.html#'shiftwidth'">'shiftwidth'</a> 列。
+&lt;&lt;                      將 <code class="special">[count]</code> 行左移 <a href="options.html#'shiftwidth'">'shiftwidth'</a> 列。
 
                                                         <b class="vimtag"> <a name="v_%3C">v_&lt;</a> </b>
-<code class="special">{Visual}</code><code class="special">[count]</code>&lt;        将高亮行左移 <code class="special">[count]</code> 个 <a href="options.html#'shiftwidth'">'shiftwidth'</a> 列 (关于 <code class="special">{Visual}</code>
-                        见  <a href="visual.html#Visual-mode">Visual-mode</a> )。<code class="notvi">{Vi 无此功能}</code>
+<code class="special">{Visual}</code><code class="special">[count]</code>&lt;        將高亮行左移 <code class="special">[count]</code> 個 <a href="options.html#'shiftwidth'">'shiftwidth'</a> 列 (關於 <code class="special">{Visual}</code>
+                        見  <a href="visual.html#Visual-mode">Visual-mode</a> )。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="%3E">&gt;</a> </b>
- &gt;<code class="special">{motion}</code>              将 <code class="special">{motion}</code> 跨越的行右移 <a href="options.html#'shiftwidth'">'shiftwidth'</a> 列。
+ &gt;<code class="special">{motion}</code>              將 <code class="special">{motion}</code> 跨越的行右移 <a href="options.html#'shiftwidth'">'shiftwidth'</a> 列。
 
                                                         <b class="vimtag"> <a name="%3E%3E">&gt;&gt;</a> </b>
- &gt;&gt;                     将 <code class="special">[count]</code> 行右移 <a href="options.html#'shiftwidth'">'shiftwidth'</a> 列。
+ &gt;&gt;                     將 <code class="special">[count]</code> 行右移 <a href="options.html#'shiftwidth'">'shiftwidth'</a> 列。
 
                                                         <b class="vimtag"> <a name="v_%3E">v_&gt;</a> </b>
-<code class="special">{Visual}</code><code class="special">[count]</code>&gt;        将高亮行右移 <code class="special">[count]</code> 个 <a href="options.html#'shiftwidth'">'shiftwidth'</a> 列 (关于 <code class="special">{Visual}</code>
-                        见  <a href="visual.html#Visual-mode">Visual-mode</a> )。<code class="notvi">{Vi 无此功能}</code>
+<code class="special">{Visual}</code><code class="special">[count]</code>&gt;        將高亮行右移 <code class="special">[count]</code> 個 <a href="options.html#'shiftwidth'">'shiftwidth'</a> 列 (關於 <code class="special">{Visual}</code>
+                        見  <a href="visual.html#Visual-mode">Visual-mode</a> )。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":%3C">:&lt;</a> </b>
-:<code class="special">[range]</code>&lt;               将 <code class="special">[range]</code> 指定的行左移 <a href="options.html#'shiftwidth'">'shiftwidth'</a> 列。多个 '&lt;' 左移
-                        多个 <a href="options.html#'shiftwidth'">'shiftwidth'</a> 列。
+:<code class="special">[range]</code>&lt;               將 <code class="special">[range]</code> 指定的行左移 <a href="options.html#'shiftwidth'">'shiftwidth'</a> 列。多個 '&lt;' 左移
+                        多個 <a href="options.html#'shiftwidth'">'shiftwidth'</a> 列。
 
-:<code class="special">[range]</code>&lt; <code class="special">{count}</code>       左移 <code class="special">[range]</code> 开始的 <code class="special">{count}</code> 行 <a href="options.html#'shiftwidth'">'shiftwidth'</a> 列 (缺省从
-                        当前行  <a href="cmdline.html#cmdline-ranges">cmdline-ranges</a> )。多个 '&lt;' 左移多个
+:<code class="special">[range]</code>&lt; <code class="special">{count}</code>       左移 <code class="special">[range]</code> 開始的 <code class="special">{count}</code> 行 <a href="options.html#'shiftwidth'">'shiftwidth'</a> 列 (缺省從
+                        當前行  <a href="cmdline.html#cmdline-ranges">cmdline-ranges</a> )。多個 '&lt;' 左移多個
                         <a href="options.html#'shiftwidth'">'shiftwidth'</a> 列。
 
-:<code class="special">[range]</code>le[ft] <code class="special">[indent]</code> 左对齐 <code class="special">[range]</code> 指定的行。设置缩进距离为 <code class="special">[indent]</code> (缺省
-                        为 0)。<code class="notvi">{Vi 无此功能}</code>
+:<code class="special">[range]</code>le[ft] <code class="special">[indent]</code> 左對齊 <code class="special">[range]</code> 指定的行。設置縮進距離為 <code class="special">[indent]</code> (缺省
+                        為 0)。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":%3E">:&gt;</a> </b>
-:<code class="special">[range]</code>&gt; <code class="special">[flags]</code>       将 <code class="special">[range]</code> 指定的行右移 <a href="options.html#'shiftwidth'">'shiftwidth'</a> 列。多个 '&gt;' 右移
-                        多个 <a href="options.html#'shiftwidth'">'shiftwidth'</a> 列。
-                        <code class="special">[flags]</code> 部分可参见  <a href="cmdline.html#ex-flags">ex-flags</a> 。
+:<code class="special">[range]</code>&gt; <code class="special">[flags]</code>       將 <code class="special">[range]</code> 指定的行右移 <a href="options.html#'shiftwidth'">'shiftwidth'</a> 列。多個 '&gt;' 右移
+                        多個 <a href="options.html#'shiftwidth'">'shiftwidth'</a> 列。
+                        <code class="special">[flags]</code> 部分可參見  <a href="cmdline.html#ex-flags">ex-flags</a> 。
 
 :<code class="special">[range]</code>&gt; <code class="special">{count}</code> <code class="special">[flags]</code>
-                        右移 <code class="special">[range]</code> 开始的 <code class="special">{count}</code> 行 <a href="options.html#'shiftwidth'">'shiftwidth'</a> 列 (缺省从
-                        当前行  <a href="cmdline.html#cmdline-ranges">cmdline-ranges</a>  开始)。多个 '&gt;' 右移多个
+                        右移 <code class="special">[range]</code> 開始的 <code class="special">{count}</code> 行 <a href="options.html#'shiftwidth'">'shiftwidth'</a> 列 (缺省從
+                        當前行  <a href="cmdline.html#cmdline-ranges">cmdline-ranges</a>  開始)。多個 '&gt;' 右移多個
                         <a href="options.html#'shiftwidth'">'shiftwidth'</a> 列。
-                        <code class="special">[flags]</code> 部分可参见  <a href="cmdline.html#ex-flags">ex-flags</a> 。
+                        <code class="special">[flags]</code> 部分可參見  <a href="cmdline.html#ex-flags">ex-flags</a> 。
 
-"&gt;" 和 "&lt;" 命令可以用来方便地调整程序的缩进。使用 <a href="options.html#'shiftwidth'">'shiftwidth'</a> 选项设置这些命
-令增加或者减少的空白的数量。通常，<a href="options.html#'shiftwidth'">'shiftwidth'</a> 选项是 8，但你也可以设置为，比
-如说，3，使得缩进更小些。如果已经没有缩进，左移命令会停止。另一方面，右移命令
-则不会影响空白行。
+"&gt;" 和 "&lt;" 命令可以用來方便地調整程序的縮進。使用 <a href="options.html#'shiftwidth'">'shiftwidth'</a> 選項設置這些命
+令增加或者減少的空白的數量。通常，<a href="options.html#'shiftwidth'">'shiftwidth'</a> 選項是 8，但你也可以設置為，比
+如說，3，使得縮進更小些。如果已經沒有縮進，左移命令會停止。另一方面，右移命令
+則不會影響空白行。
 
-如果 <a href="options.html#'shiftround'">'shiftround'</a> 选项打开，缩进距离被取整到 <a href="options.html#'shiftwidth'">'shiftwidth'</a> 的倍数。
+如果 <a href="options.html#'shiftround'">'shiftround'</a> 選項打開，縮進距離被取整到 <a href="options.html#'shiftwidth'">'shiftwidth'</a> 的倍數。
 
-如果 <a href="options.html#'smartindent'">'smartindent'</a> 选项打开，或者 <a href="options.html#'cindent'">'cindent'</a> 打开并且 <a href="options.html#'cinkeys'">'cinkeys'</a> 包含带零值的
-'#'，右移不影响 '#' 开始的行 (这些应该是 C 预处理行，它们应该保持在第一列)。
+如果 <a href="options.html#'smartindent'">'smartindent'</a> 選項打開，或者 <a href="options.html#'cindent'">'cindent'</a> 打開並且 <a href="options.html#'cinkeys'">'cinkeys'</a> 包含帶零值的
+'#'，右移不影響 '#' 開始的行 (這些應該是 C 預處理行，它們應該保持在第一列)。
 
-如果 <a href="options.html#'expandtab'">'expandtab'</a> 选项关闭 (这是缺省值)， Vim 尽可能使用 <code class="special">&lt;Tab&gt;</code> 来构成缩进。你可
-以用 "&gt;&gt;&lt;&lt;" 来把缩进尽可能从空格替换成同样缩进距离的 <code class="special">&lt;Tab&gt;</code> (如有需要，还有少量
-的空格)。如果 <a href="options.html#'expandtab'">'expandtab'</a> 选项打开，Vim 只使用空格。这样你可以使用 "&gt;&gt;&lt;&lt;" 把
-<code class="special">&lt;Tab&gt;</code> 替换成空格 (或者可以用  <a href="change.html#:retab!">:retab!</a> )。
+如果 <a href="options.html#'expandtab'">'expandtab'</a> 選項關閉 (這是缺省值)， Vim 盡可能使用 <code class="special">&lt;Tab&gt;</code> 來構成縮進。你可
+以用 "&gt;&gt;&lt;&lt;" 來把縮進盡可能從空格替換成同樣縮進距離的 <code class="special">&lt;Tab&gt;</code> (如有需要，還有少量
+的空格)。如果 <a href="options.html#'expandtab'">'expandtab'</a> 選項打開，Vim 只使用空格。這樣你可以使用 "&gt;&gt;&lt;&lt;" 把
+<code class="special">&lt;Tab&gt;</code> 替換成空格 (或者可以用  <a href="change.html#:retab!">:retab!</a> )。
 
-要移动一行多个 <a href="options.html#'shiftwidth'">'shiftwidth'</a> 列，使用可视模式或者  <a href="cmdline.html#:">:</a>  命令。例如: 
-<code class="example">        Vjj4&gt;           右移三行四个缩进位</code>
-<code class="example">        :&lt;&lt;&lt;            左移当前行三个缩进位</code>
-<code class="example">        :&gt;&gt; 5           右移五行两个缩进位</code>
-<code class="example">        :5&gt;&gt;            右移第五行两个缩进位</code>
+要移動一行多個 <a href="options.html#'shiftwidth'">'shiftwidth'</a> 列，使用可視模式或者  <a href="cmdline.html#:">:</a>  命令。例如: 
+<code class="example">        Vjj4&gt;           右移三行四個縮進位</code>
+<code class="example">        :&lt;&lt;&lt;            左移當前行三個縮進位</code>
+<code class="example">        :&gt;&gt; 5           右移五行兩個縮進位</code>
+<code class="example">        :5&gt;&gt;            右移第五行兩個縮進位</code>
 <code class="example"></code>
 </pre><hr class="doubleline" /><pre>
-<h4>4. 复杂修改                                             <b class="vimtag"> <a name="complex-change">complex-change</a> </b></h4>
-4.1 过滤命令                                            <b class="vimtag"> <a name="filter">filter</a> </b>
+<h4>4. 複雜修改                                             <b class="vimtag"> <a name="complex-change">complex-change</a> </b></h4>
+4.1 過濾命令                                            <b class="vimtag"> <a name="filter">filter</a> </b>
 
-过滤程序是一个接受文本作为标准输入，作某些修改，并把结果放到标准输出的程序。你
-可以用下面的命令把若干文本发送给过滤程序，然后用过滤的输出结果替换。一个过滤程
-序的例子是 "sort"，按字母顺序给行排序；还有 "indent"，排版 C 程序文件 (你需要
-一个能以过滤程序方式工作的版本，并非所有的版本都可以)。<a href="options.html#'shell'">'shell'</a> 选项指定 Vim 使
-用的外壳程序，用以执行过滤程序 (另见 <a href="options.html#'shelltype'">'shelltype'</a> 选项)。你可以用 "." 重复过滤
-命令。Vim 不会识别  <a href="various.html#:!">:!</a>  命令之后的注释 (用 '"' 开始)。
+過濾程序是一個接受文本作為標準輸入，作某些修改，並把結果放到標準輸出的程序。你
+可以用下面的命令把若干文本發送給過濾程序，然後用過濾的輸出結果替換。一個過濾程
+序的例子是 "sort"，按字母順序給行排序；還有 "indent"，排版 C 程序文件 (你需要
+一個能以過濾程序方式工作的版本，並非所有的版本都可以)。<a href="options.html#'shell'">'shell'</a> 選項指定 Vim 使
+用的外殼程序，用以執行過濾程序 (另見 <a href="options.html#'shelltype'">'shelltype'</a> 選項)。你可以用 "." 重複過濾
+命令。Vim 不會識別  <a href="various.html#:!">:!</a>  命令之後的註釋 (用 '"' 開始)。
 
                                                         <b class="vimtag"> <a name="!">!</a> </b>
-!<code class="special">{motion}</code><code class="special">{filter}</code>       将 <code class="special">{motion}</code> 跨越的行用外部程序 <code class="special">{filter}</code> 过滤。
+!<code class="special">{motion}</code><code class="special">{filter}</code>       將 <code class="special">{motion}</code> 跨越的行用外部程序 <code class="special">{filter}</code> 過濾。
 
                                                         <b class="vimtag"> <a name="!!">!!</a> </b>
-!!<code class="special">{filter}</code>              将 <code class="special">[count]</code> 行用外部程序 <code class="special">{filter}</code> 过滤。
+!!<code class="special">{filter}</code>              將 <code class="special">[count]</code> 行用外部程序 <code class="special">{filter}</code> 過濾。
 
                                                         <b class="vimtag"> <a name="v_!">v_!</a> </b>
-<code class="special">{Visual}</code>!<code class="special">{filter}</code>       将高亮行用外部程序 <code class="special">{filter}</code> 过滤。(关于 <code class="special">{Visual}</code>
-                        见  <a href="visual.html#Visual-mode">Visual-mode</a> )。<code class="notvi">{Vi 无此功能}</code>
+<code class="special">{Visual}</code>!<code class="special">{filter}</code>       將高亮行用外部程序 <code class="special">{filter}</code> 過濾。(關於 <code class="special">{Visual}</code>
+                        見  <a href="visual.html#Visual-mode">Visual-mode</a> )。<code class="notvi">{Vi 無此功能}</code>
 
 :<code class="special">{range}</code>![!]<code class="special">{filter}</code> [!]<code class="special">[arg]</code>                           <b class="vimtag"> <a name=":range!">:range!</a> </b>
-                        将 <code class="special">{range}</code> 指定的行用外部程序 <code class="special">{filter}</code> 过滤。Vim 把可
-                        选的感叹号替换成最后一次使用的命令，并附加上可选的参数
-                        <code class="special">[arg]</code>。Vim 把过滤命令的输出保存到临时文件，并把文
-                        件内容读到一个缓冲区里  <a href="change.html#tempfile">tempfile</a> 。Vim 使用
-                        <a href="options.html#'shellredir'">'shellredir'</a> 选项把过滤程序的结果重定向到临时文件。
-                        不过，如果关闭了 <a href="options.html#'shelltemp'">'shelltemp'</a> 选项且可以的话，使用管道
-                        机制 (Unix 上)。
-                        如果 <a href="options.html#'cpoptions'">'cpoptions'</a> 包含 'R' 标志位，过滤行里的位置标记被
-                        删除，除非使用了  <a href="motion.html#:keepmarks">:keepmarks</a>  命令。例如: 
+                        將 <code class="special">{range}</code> 指定的行用外部程序 <code class="special">{filter}</code> 過濾。Vim 把可
+                        選的感歎號替換成最後一次使用的命令，並附加上可選的參數
+                        <code class="special">[arg]</code>。Vim 把過濾命令的輸出保存到臨時文件，並把文
+                        件內容讀到一個緩衝區裡  <a href="change.html#tempfile">tempfile</a> 。Vim 使用
+                        <a href="options.html#'shellredir'">'shellredir'</a> 選項把過濾程序的結果重定向到臨時文件。
+                        不過，如果關閉了 <a href="options.html#'shelltemp'">'shelltemp'</a> 選項且可以的話，使用管道
+                        機制 (Unix 上)。
+                        如果 <a href="options.html#'cpoptions'">'cpoptions'</a> 包含 'R' 標誌位，過濾行裡的位置標記被
+                        刪除，除非使用了  <a href="motion.html#:keepmarks">:keepmarks</a>  命令。例如: 
 <code class="example">                                :keepmarks '&lt;,'&gt;!sort</code>
-                        如果过滤后的行数变少，删去的行里的位置标记无论如何不会
+                        如果過濾後的行數變少，刪去的行裡的位置標記無論如何不會
                         保存。
 
                                                         <b class="vimtag"> <a name="%20">=</a> </b>
-=<code class="special">{motion}</code>               把 <code class="special">{motion}</code> 跨越的行用 <a href="options.html#'equalprg'">'equalprg'</a> 选项指定的外部程序过
-                        滤。如果 <a href="options.html#'equalprg'">'equalprg'</a> 选项为空 (缺省)，使用内部的排版机
+=<code class="special">{motion}</code>               把 <code class="special">{motion}</code> 跨越的行用 <a href="options.html#'equalprg'">'equalprg'</a> 選項指定的外部程序過
+                        濾。如果 <a href="options.html#'equalprg'">'equalprg'</a> 選項為空 (缺省)，使用內部的排版機
                         制  <a href="indent.html#C-indenting">C-indenting</a>  和  <a href="options.html#'lisp'">'lisp'</a> ，除非 <a href="options.html#'indentexpr'">'indentexpr'</a> 非空，
-                        此时使用  <a href="indent.html#indent-expression">indent-expression</a>  机制来代替。反之，如果
-                        Vim 编译时没有包含内部排版机制，最后手段是使用外部的
+                        此時使用  <a href="indent.html#indent-expression">indent-expression</a>  機制來代替。反之，如果
+                        Vim 編譯時沒有包含內部排版機制，最後手段是使用外部的
                         "indent" 程序。
 
                                                         <b class="vimtag"> <a name="%20%20">==</a> </b>
-==                      和 =<code class="special">{motion}</code> 类似，过滤 <code class="special">[count]</code> 行。
+==                      和 =<code class="special">{motion}</code> 類似，過濾 <code class="special">[count]</code> 行。
 
                                                         <b class="vimtag"> <a name="v_%20">v_=</a> </b>
-<code class="special">{Visual}</code>=               和 =<code class="special">{motion}</code> 类似，过滤高亮行。<code class="notvi">{Vi 无此功能}</code>
+<code class="special">{Visual}</code>=               和 =<code class="special">{motion}</code> 類似，過濾高亮行。<code class="notvi">{Vi 無此功能}</code>
 
 
                                                 <b class="vimtag"> <a name="tempfile">tempfile</a> </b> <b class="vimtag"> <a name="setuid">setuid</a> </b>
-Vim 使用临时文件来处理过滤、执行比较和用于 tempname()。Unix 上，该文件会放在一
-个私人的目录里 (只能被当前用户访问)，以防堵安全上的漏洞 (例如，符号链接攻击或
-文件被其他用户读取等)。Vim 退出时，自动删除该目录及之下的所有文件。如果 Vim 本
-身设置了 setuid 位，这样或许会有问题。临时文件由 setuid 用户拥有，但过滤程序以
-原来用户的权限执行。
-MS-DOS 和 OS/2 上，使用以下目录中首个可用者: $TMP、$TEMP、c:\TMP、c:\TEMP。
-Unix 上，使用的目录依次为: $TMPDIR、/tmp、当前目录、$HOME。
-MS-Windows 上，使用 GetTempFileName() 系统函数。
-其它系统上使用 tmpnam() 库函数。
+Vim 使用臨時文件來處理過濾、執行比較和用於 tempname()。Unix 上，該文件會放在一
+個私人的目錄裡 (只能被當前用戶訪問)，以防堵安全上的漏洞 (例如，符號鏈接攻擊或
+文件被其他用戶讀取等)。Vim 退出時，自動刪除該目錄及之下的所有文件。如果 Vim 本
+身設置了 setuid 位，這樣或許會有問題。臨時文件由 setuid 用戶擁有，但過濾程序以
+原來用戶的權限執行。
+MS-DOS 和 OS/2 上，使用以下目錄中首個可用者: $TMP、$TEMP、c:\TMP、c:\TEMP。
+Unix 上，使用的目錄依次為: $TMPDIR、/tmp、當前目錄、$HOME。
+MS-Windows 上，使用 GetTempFileName() 系統函數。
+其它系統上使用 tmpnam() 庫函數。
 
 
 4.2 替代                                                <b class="vimtag"> <a name=":substitute">:substitute</a> </b>
                                                         <b class="vimtag"> <a name=":s">:s</a> </b> <b class="vimtag"> <a name=":su">:su</a> </b>
 :<code class="special">[range]</code>s[ubstitute]/<code class="special">{pattern}</code>/<code class="special">{string}</code>/[flags] <code class="special">[count]</code>
-                        对 <code class="special">[range]</code> 指定的行把 <code class="special">{pattern}</code> 的匹配替代成
+                        對 <code class="special">[range]</code> 指定的行把 <code class="special">{pattern}</code> 的匹配替代成
                         <code class="special">{string}</code>。
-                        关于 <code class="special">{pattern}</code>，参见  <a href="pattern.html#pattern">pattern</a> 。
-                        <code class="special">{string}</code> 可以是按本义出现的字符串，也可包含特殊字符。
-                        参见  <a href="change.html#sub-replace-special">sub-replace-special</a> 。
+                        關於 <code class="special">{pattern}</code>，參見  <a href="pattern.html#pattern">pattern</a> 。
+                        <code class="special">{string}</code> 可以是按本義出現的字符串，也可包含特殊字符。
+                        參見  <a href="change.html#sub-replace-special">sub-replace-special</a> 。
                                                         <b class="vimtag"> <a name="E939">E939</a> </b>
-                        如果不指定 <code class="special">[range]</code> 和 <code class="special">[count]</code>，仅在当前行进行替代。
-                        如果指定 <code class="special">[count]</code>，在 <code class="special">[range]</code> 最后一行开始的 <code class="special">[count]</code>
-                        行进行替代。如果不指定 <code class="special">[range]</code> ，则从当前行开始。
-                        <code class="special">[count]</code> 必须为正数。
-                        另见  <a href="cmdline.html#cmdline-ranges">cmdline-ranges</a> 。
+                        如果不指定 <code class="special">[range]</code> 和 <code class="special">[count]</code>，僅在當前行進行替代。
+                        如果指定 <code class="special">[count]</code>，在 <code class="special">[range]</code> 最後一行開始的 <code class="special">[count]</code>
+                        行進行替代。如果不指定 <code class="special">[range]</code> ，則從當前行開始。
+                        <code class="special">[count]</code> 必須為正數。
+                        另見  <a href="cmdline.html#cmdline-ranges">cmdline-ranges</a> 。
 
-                        关于 <code class="special">[flags]</code>，参见  <a href="change.html#:s_flags">:s_flags</a> 。
+                        關於 <code class="special">[flags]</code>，參見  <a href="change.html#:s_flags">:s_flags</a> 。
 
 :<code class="special">[range]</code>s[ubstitute] <code class="special">[flags]</code> <code class="special">[count]</code>
 :<code class="special">[range]</code>&amp;[&amp;][flags] <code class="special">[count]</code>                                     <b class="vimtag"> <a name=":&">:&amp;</a> </b>
-                        使用最后一次 :substitute 相同的模式和替代字符串，但不
-                        包括相同的标志位。你可以另加 <code class="special">[flags]</code> (见  <a href="change.html#:s_flags">:s_flags</a> )。
-                        <code class="note">注意</code> 在  <a href="change.html#:substitute">:substitute</a>  之后，不能使用 '&amp;' 标志位。它被
-                        认为是一个模式分隔符。
-                         <a href="change.html#:substitute">:substitute</a>  和 'c'、'g'、'i'、'I' 和 'r' 标志位之间
-                        的空格不是必需的，但在脚本里为了避免混淆起见，最好保留
+                        使用最後一次 :substitute 相同的模式和替代字符串，但不
+                        包括相同的標誌位。你可以另加 <code class="special">[flags]</code> (見  <a href="change.html#:s_flags">:s_flags</a> )。
+                        <code class="note">注意</code> 在  <a href="change.html#:substitute">:substitute</a>  之後，不能使用 '&amp;' 標誌位。它被
+                        認為是一個模式分隔符。
+                         <a href="change.html#:substitute">:substitute</a>  和 'c'、'g'、'i'、'I' 和 'r' 標誌位之間
+                        的空格不是必需的，但在腳本裡為了避免混淆起見，最好保留
                         它。
 
 :<code class="special">[range]</code>~[&amp;][flags] <code class="special">[count]</code>                                     <b class="vimtag"> <a name=":%7E">:~</a> </b>
-                        使用最后一次 :substitute 相同的替代字符串，但使用最近
-                        使用的搜索模式作为匹配模式。这类似于  <code class="badlink">:&amp;r</code> 。
-                        关于 <code class="special">[flags]</code>，参见  <a href="change.html#:s_flags">:s_flags</a> 。
+                        使用最後一次 :substitute 相同的替代字符串，但使用最近
+                        使用的搜索模式作為匹配模式。這類似於  <code class="badlink">:&amp;r</code> 。
+                        關於 <code class="special">[flags]</code>，參見  <a href="change.html#:s_flags">:s_flags</a> 。
 
                                                                 <b class="vimtag"> <a name="&">&amp;</a> </b>
-&amp;                       等价于  <a href="change.html#:s">:s</a>  (重复上次的 substitute)。<code class="note">注意</code> 这里不记住标
-                        志位，所以实际工作方式可能不尽相同。你可以用  <code class="badlink">:&amp;&amp;</code>  来
-                        保持相同的标志位。
+&amp;                       等價於  <a href="change.html#:s">:s</a>  (重複上次的 substitute)。<code class="note">注意</code> 這裡不記住標
+                        志位，所以實際工作方式可能不盡相同。你可以用  <code class="badlink">:&amp;&amp;</code>  來
+                        保持相同的標誌位。
 
                                                                 <b class="vimtag"> <a name="g&">g&amp;</a> </b>
-g&amp;                      等价于  <code class="badlink">:%s//~/&amp;</code>  (在所有行上重复上次的 substitute 并
-                        使用相同的标志位，但使用前次的匹配模式)。
-                        例如，如果先用了替代  <code class="badlink">:s/pattern/repl/flags</code>  然后
-                         <code class="badlink">/search</code>  搜索了其他模式， <code class="badlink">g&amp;</code>   会执行
+g&amp;                      等價於  <code class="badlink">:%s//~/&amp;</code>  (在所有行上重複上次的 substitute 並
+                        使用相同的標誌位，但使用前次的匹配模式)。
+                        例如，如果先用了替代  <code class="badlink">:s/pattern/repl/flags</code>  然後
+                         <code class="badlink">/search</code>  搜索了其他模式， <code class="badlink">g&amp;</code>   會執行
                          <code class="badlink">:%s/search/repl/flags</code> 。
-                        助记: 全局 (global) 替代 (substitute)。<code class="notvi">{Vi 无此功能}</code>
+                        助記: 全局 (global) 替代 (substitute)。<code class="notvi">{Vi 無此功能}</code>
 
                                                 <b class="vimtag"> <a name=":snomagic">:snomagic</a> </b> <b class="vimtag"> <a name=":sno">:sno</a> </b>
-:<code class="special">[range]</code>sno[magic] ...  和  <a href="change.html#:substitute">:substitute</a>  相同，但总使用 <a href="options.html#'nomagic'">'nomagic'</a>。
-                        <code class="notvi">{Vi 无此功能}</code>
+:<code class="special">[range]</code>sno[magic] ...  和  <a href="change.html#:substitute">:substitute</a>  相同，但總使用 <a href="options.html#'nomagic'">'nomagic'</a>。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                 <b class="vimtag"> <a name=":smagic">:smagic</a> </b> <b class="vimtag"> <a name=":sm">:sm</a> </b>
-:<code class="special">[range]</code>sm[agic] ...    和  <a href="change.html#:substitute">:substitute</a>  相同，但总使用 <a href="options.html#'magic'">'magic'</a>。
-                        <code class="notvi">{Vi 无此功能}</code>
+:<code class="special">[range]</code>sm[agic] ...    和  <a href="change.html#:substitute">:substitute</a>  相同，但總使用 <a href="options.html#'magic'">'magic'</a>。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":s_flags">:s_flags</a> </b>
-你可以在 substitute 命令里使用以下标志位:
+你可以在 substitute 命令裡使用以下標誌位:
 
                                                         <b class="vimtag"> <a name=":&&">:&amp;&amp;</a> </b>
-[&amp;]     必须是首个使用的标志位: 保留和上次 substitute 相同的标志位。例如: 
+[&amp;]     必須是首個使用的標誌位: 保留和上次 substitute 相同的標誌位。例如: 
 <code class="example">                :&amp;&amp;</code>
 <code class="example">                :s/this/that/&amp;</code>
-        <code class="note">注意</code>  <a href="change.html#:s">:s</a>  和  <code class="badlink">:&amp;</code>  不保留标志位。
-        <code class="notvi">{Vi 无此功能}</code>
+        <code class="note">注意</code>  <a href="change.html#:s">:s</a>  和  <code class="badlink">:&amp;</code>  不保留標誌位。
+        <code class="notvi">{Vi 無此功能}</code>
 
-[c]     确认每个替代。Vim 高亮匹配的字符串 (如果使用了  <a href="syntax.html#hl-IncSearch">hl-IncSearch</a> )。你可以
-        输入:                                           <b class="vimtag"> <a name=":s_c">:s_c</a> </b>
-            'y'     来替代这次匹配
-            'l'     来替代这次匹配并退出 (助记: "last"，最后)
-            'n'     来跳过这次匹配
-            <code class="special">&lt;Esc&gt;</code>   来退出替代过程
-            'a'     来替代这次和以后所有的匹配
-            'q'     来退出替代过程 <code class="notvi">{Vi 无此功能}</code>
-            <code class="keystroke">CTRL-E</code>  来上卷屏幕
-                        {Vi 无此功能，仅当编译时加入  <a href="various.html#+insert_expand">+insert_expand</a>  特性才有
+[c]     確認每個替代。Vim 高亮匹配的字符串 (如果使用了  <a href="syntax.html#hl-IncSearch">hl-IncSearch</a> )。你可以
+        輸入:                                           <b class="vimtag"> <a name=":s_c">:s_c</a> </b>
+            'y'     來替代這次匹配
+            'l'     來替代這次匹配並退出 (助記: "last"，最後)
+            'n'     來跳過這次匹配
+            <code class="special">&lt;Esc&gt;</code>   來退出替代過程
+            'a'     來替代這次和以後所有的匹配
+            'q'     來退出替代過程 <code class="notvi">{Vi 無此功能}</code>
+            <code class="keystroke">CTRL-E</code>  來上卷屏幕
+                        {Vi 無此功能，僅當編譯時加入  <a href="various.html#+insert_expand">+insert_expand</a>  特性才有
                         此功能}
-            <code class="keystroke">CTRL-Y</code>  来下卷屏幕
-                        {Vi 无此功能，仅当编译时加入  <a href="various.html#+insert_expand">+insert_expand</a>  特性才有
+            <code class="keystroke">CTRL-Y</code>  來下卷屏幕
+                        {Vi 無此功能，僅當編譯時加入  <a href="various.html#+insert_expand">+insert_expand</a>  特性才有
                         此功能}
-        如果 <a href="options.html#'edcompatible'">'edcompatible'</a> 选项打开，Vim 记住 <code class="special">[c]</code> 标志位并在每次使用它时切换
-        是否确认，但在给出一个新的匹配模式时复位。
-        <code class="notvi">{Vi 没有高亮匹配部分和除了 'y' 和 'n' 之外的选择}</code>
+        如果 <a href="options.html#'edcompatible'">'edcompatible'</a> 選項打開，Vim 記住 <code class="special">[c]</code> 標誌位並在每次使用它時切換
+        是否確認，但在給出一個新的匹配模式時復位。
+        <code class="notvi">{Vi 沒有高亮匹配部分和除了 'y' 和 'n' 之外的選擇}</code>
 
-[e]     如果模式搜索不成功，不给出错误信息。因为没产生错误，映射的过程得以继
-        续。这主要用来防止在映射执行过程的无匹配 ("No match") 错误中断映射。
-        不过，Vim 不会抑制以下的错误信息:
-                Regular expressions can't be delimited by letters (正规表达式
+[e]     如果模式搜索不成功，不給出錯誤信息。因為沒產生錯誤，映射的過程得以繼
+        續。這主要用來防止在映射執行過程的無匹配 ("No match") 錯誤中斷映射。
+        不過，Vim 不會抑制以下的錯誤信息:
+                Regular expressions can't be delimited by letters (正規表達式
                         不能以字母分隔)
-                \ should be followed by /, ? or &amp; (\ 必须后面跟 /、? 或者 &amp;)
-                No previous substitute regular expression (没有上次的替代正规
-                        表达式)
-                Trailing characters (结尾有多余的字符)
-                Interrupted (中断)
-        <code class="notvi">{Vi 无此功能}</code>
+                \ should be followed by /, ? or &amp; (\ 必須後面跟 /、? 或者 &amp;)
+                No previous substitute regular expression (沒有上次的替代正規
+                        表達式)
+                Trailing characters (結尾有多餘的字符)
+                Interrupted (中斷)
+        <code class="notvi">{Vi 無此功能}</code>
 
-[g]     对行内所有的匹配进行替代。如果没有这个参数，替代只对每行的第一个匹配进
-        行。如果 <a href="options.html#'edcompatible'">'edcompatible'</a> 选项打开，Vim 记住这个标志并在你每次使用该标志
-        时切换，但在给出一个新的匹配模式时复位。如果 <a href="options.html#'gdefault'">'gdefault'</a> 选项打开，这个
-        标志缺省打开，而 <code class="special">[g]</code> 参数关闭之。
+[g]     對行內所有的匹配進行替代。如果沒有這個參數，替代只對每行的第一個匹配進
+        行。如果 <a href="options.html#'edcompatible'">'edcompatible'</a> 選項打開，Vim 記住這個標誌並在你每次使用該標誌
+        時切換，但在給出一個新的匹配模式時復位。如果 <a href="options.html#'gdefault'">'gdefault'</a> 選項打開，這個
+        標誌缺省打開，而 <code class="special">[g]</code> 參數關閉之。
 
-[i]     忽略模式的大小写。不使用 <a href="options.html#'ignorecase'">'ignorecase'</a> 和 <a href="options.html#'smartcase'">'smartcase'</a> 选项。
-        <code class="notvi">{Vi 无此功能}</code>
+[i]     忽略模式的大小寫。不使用 <a href="options.html#'ignorecase'">'ignorecase'</a> 和 <a href="options.html#'smartcase'">'smartcase'</a> 選項。
+        <code class="notvi">{Vi 無此功能}</code>
 
-[I]     不忽略模式的大小写。不使用 <a href="options.html#'ignorecase'">'ignorecase'</a> 和 <a href="options.html#'smartcase'">'smartcase'</a> 选项。
-        <code class="notvi">{Vi 无此功能}</code>
+[I]     不忽略模式的大小寫。不使用 <a href="options.html#'ignorecase'">'ignorecase'</a> 和 <a href="options.html#'smartcase'">'smartcase'</a> 選項。
+        <code class="notvi">{Vi 無此功能}</code>
 
-[n]     报告匹配的次数，并不实际进行替代。忽略 <code class="special">[c]</code> 标志位。匹配报告的发生就像
-        <a href="options.html#'report'">'report'</a> 总是为零那样。可用于  <a href="tips.html#count-items">count-items</a> 。
-        如果使用 \=  <a href="change.html#sub-replace-expression">sub-replace-expression</a> ，该表达式对每一个匹配的执行都在
-         <a href="eval.html#sandbox">sandbox</a>  里进行。
+[n]     報告匹配的次數，並不實際進行替代。忽略 <code class="special">[c]</code> 標誌位。匹配報告的發生就像
+        <a href="options.html#'report'">'report'</a> 總是為零那樣。可用於  <a href="tips.html#count-items">count-items</a> 。
+        如果使用 \=  <a href="change.html#sub-replace-expression">sub-replace-expression</a> ，該表達式對每一個匹配的執行都在
+         <a href="eval.html#sandbox">sandbox</a>  裡進行。
 
-[p]     显示包含最后一次替代的行。
+[p]     顯示包含最後一次替代的行。
 
-[#]     类似 <code class="special">[p]</code>，且在前面加上行号。
+[#]     類似 <code class="special">[p]</code>，且在前面加上行號。
 
-[l]     类似 <code class="special">[p]</code>，但显示的方式类似于  <a href="various.html#:list">:list</a> 。
+[l]     類似 <code class="special">[p]</code>，但顯示的方式類似於  <a href="various.html#:list">:list</a> 。
 
-[r]     仅对于不带参数的  <code class="badlink">:&amp;</code>  和  <a href="change.html#:s">:s</a>  有用。 <code class="badlink">:&amp;r</code>  和  <a href="change.html#:%7E">:~</a>  工作的方式相同: 如果
-        匹配模式为空，使用上一次使用的搜索模式，而不是上一次的 substitute 或者
+[r]     僅對於不帶參數的  <code class="badlink">:&amp;</code>  和  <a href="change.html#:s">:s</a>  有用。 <code class="badlink">:&amp;r</code>  和  <a href="change.html#:%7E">:~</a>  工作的方式相同: 如果
+        匹配模式為空，使用上一次使用的搜索模式，而不是上一次的 substitute 或者
          <a href="repeat.html#:global">:global</a>  所使用的模式。如果最近一次使用搜索的命令就是 substitute 或者
-         <a href="repeat.html#:global">:global</a> ，那就没有区别了。如果最近的命令的是 "/" 那样的搜索命令，使用
-        那个命令的搜索模式。
-        带参数的  <a href="change.html#:s">:s</a> ，则不论如何，总是如此: 
+         <a href="repeat.html#:global">:global</a> ，那就沒有區別了。如果最近的命令的是 "/" 那樣的搜索命令，使用
+        那個命令的搜索模式。
+        帶參數的  <a href="change.html#:s">:s</a> ，則不論如何，總是如此: 
 <code class="example">                :s/blue/red/</code>
 <code class="example">                /green</code>
 <code class="example">                :s//red/   或  :~   或  :&amp;r</code>
-        最后的命令把 "green" 替代成 "red"。 
+        最後的命令把 "green" 替代成 "red"。 
 <code class="example">                :s/blue/red/</code>
 <code class="example">                /green</code>
 <code class="example">                :&amp;</code>
-        最后的命令把 "blue" 替代成 "red"。
-        <code class="notvi">{Vi 无此功能}</code>
+        最後的命令把 "blue" 替代成 "red"。
+        <code class="notvi">{Vi 無此功能}</code>
 
-<code class="note">注意</code>这里没有标志位可以改变模式的 "魔术性" (magicness)。你可以用别的命令或
- <a href="pattern.html#%2F\v">/\v</a>  之类。原因是标志位只能在跳过模式之后才能找到，而要跳过模式，必须先知道模
-式的 "魔术性"。第二十二条军规！
+<code class="note">注意</code>這裡沒有標誌位可以改變模式的 "魔術性" (magicness)。你可以用別的命令或
+ <a href="pattern.html#%2F\v">/\v</a>  之類。原因是標誌位只能在跳過模式之後才能找到，而要跳過模式，必須先知道模
+式的 "魔術性"。第二十二條軍規！
 
-如果 substitute 命令所用的 <code class="special">{pattern}</code> 为空，该命令使用上次的 substitute 或者
- <a href="repeat.html#:global">:global</a>  命令用过的模式。如果不存在，但有上次搜索模式，使用之。如果有 <code class="special">[r]</code> 标
-志位，该命令使用上次 substitute、  <a href="repeat.html#:global">:global</a>  或者搜索命令使用的模式。
+如果 substitute 命令所用的 <code class="special">{pattern}</code> 為空，該命令使用上次的 substitute 或者
+ <a href="repeat.html#:global">:global</a>  命令用過的模式。如果不存在，但有上次搜索模式，使用之。如果有 <code class="special">[r]</code> 標
+志位，該命令使用上次 substitute、  <a href="repeat.html#:global">:global</a>  或者搜索命令使用的模式。
 
-如果 <code class="special">{string}</code> 省略，替代命令假定它为空。这样就把匹配文本删除了。这时，
-<code class="special">{pattern}</code> 之后的分隔符也可省略。例如: 
+如果 <code class="special">{string}</code> 省略，替代命令假定它為空。這樣就把匹配文本刪除了。這時，
+<code class="special">{pattern}</code> 之後的分隔符也可省略。例如: 
 <code class="example">        :%s/TESTING</code>
-删除所有行上的 "TESTING"，但每行只删一个。
+刪除所有行上的 "TESTING"，但每行只刪一個。
 
-为了和 Vi 的兼容性，有两个例外:
-"\/<code class="special">{string}</code>/" 和 "\?<code class="special">{string}</code>?" 等同于 "//<code class="special">{string}</code>/r"。
-"\&amp;<code class="special">{string}</code>&amp;" 等同于 "//<code class="special">{string}</code>/"。
+為了和 Vi 的兼容性，有兩個例外:
+"\/<code class="special">{string}</code>/" 和 "\?<code class="special">{string}</code>?" 等同於 "//<code class="special">{string}</code>/r"。
+"\&amp;<code class="special">{string}</code>&amp;" 等同於 "//<code class="special">{string}</code>/"。
                                                         <b class="vimtag"> <a name="E146">E146</a> </b>
-除了用 '/' 来包围模式和替代字符串之外，你可以使用任何其他的单字节字符，除了
-字母、数字、'\'、'"' 或 '|' 之外。这可以用于 '/' 是搜索模式或替代字符串一部
-分的场合。例如: 
+除了用 '/' 來包圍模式和替代字符串之外，你可以使用任何其他的單字節字符，除了
+字母、數字、'\'、'"' 或 '|' 之外。這可以用於 '/' 是搜索模式或替代字符串一部
+分的場合。例如: 
 <code class="example">        :s+/+//+</code>
 <code class="example"></code>
-关于模式的定义，参见  <a href="pattern.html#pattern">pattern</a> 。在可视列块模式下，如果模式中使用了  <a href="pattern.html#%2F\%V">/\%V</a> ，那
-么替代只在列块内进行，否则它作用于整行。
+關於模式的定義，參見  <a href="pattern.html#pattern">pattern</a> 。在可視列塊模式下，如果模式中使用了  <a href="pattern.html#%2F\%V">/\%V</a> ，那
+麼替代只在列塊內進行，否則它作用於整行。
 
                                         <b class="vimtag"> <a name="sub-replace-special">sub-replace-special</a> </b> <b class="vimtag"> <a name=":s\%20">:s\=</a> </b>
-<code class="special">{string}</code> 以 "\=" 开始时，它被作为表达式来执行，参见  <a href="change.html#sub-replace-expression">sub-replace-expression</a> 。
-你可以用此功能实现复杂替换，也可用来使用特殊字符。
+<code class="special">{string}</code> 以 "\=" 開始時，它被作為表達式來執行，參見  <a href="change.html#sub-replace-expression">sub-replace-expression</a> 。
+你可以用此功能實現複雜替換，也可用來使用特殊字符。
 
-否则，<code class="special">{string}</code> 字符串里的字符有如下的特殊含义:
+否則，<code class="special">{string}</code> 字符串裡的字符有如下的特殊含義:
                                                                 <b class="vimtag"> <a name=":s%">:s%</a> </b>
-如果 <code class="special">{string}</code> 等于 "%"，且 <a href="options.html#'cpoptions'">'cpoptions'</a> 选项包含 '/'，重复使用上次替代命令的
-<code class="special">{string}</code>，见  <a href="options.html#cpo-%2F">cpo-/</a> 
+如果 <code class="special">{string}</code> 等於 "%"，且 <a href="options.html#'cpoptions'">'cpoptions'</a> 選項包含 '/'，重複使用上次替代命令的
+<code class="special">{string}</code>，見  <a href="options.html#cpo-%2F">cpo-/</a> 
 
-<code class="section">magic   nomagic   动作    </code>
-  &amp;       \&amp;      替代为完整的匹配                                   <b class="vimtag"> <a name="s%2F\&">s/\&amp;</a> </b>
- \&amp;        &amp;      替代为 &amp;
-      \0          替代为完整的匹配                                 <b class="vimtag"> <a name="\0">\0</a> </b> <b class="vimtag"> <a name="s%2F\0">s/\0</a> </b>
-      \1          替代为匹配的第一个 () 里面的内容                   <b class="vimtag"> <a name="s%2F\1">s/\1</a> </b>
-      \2          替代为匹配的第二个 () 里面的内容                   <b class="vimtag"> <a name="s%2F\2">s/\2</a> </b>
+<code class="section">magic   nomagic   動作    </code>
+  &amp;       \&amp;      替代為完整的匹配                                   <b class="vimtag"> <a name="s%2F\&">s/\&amp;</a> </b>
+ \&amp;        &amp;      替代為 &amp;
+      \0          替代為完整的匹配                                 <b class="vimtag"> <a name="\0">\0</a> </b> <b class="vimtag"> <a name="s%2F\0">s/\0</a> </b>
+      \1          替代為匹配的第一個 () 裡面的內容                   <b class="vimtag"> <a name="s%2F\1">s/\1</a> </b>
+      \2          替代為匹配的第二個 () 裡面的內容                   <b class="vimtag"> <a name="s%2F\2">s/\2</a> </b>
       ..          ..                                                 <b class="vimtag"> <a name="s%2F\3">s/\3</a> </b>
-      \9          替代为匹配的第九个 () 里面的内容                   <b class="vimtag"> <a name="s%2F\9">s/\9</a> </b>
-  ~       \~      替代为前一个 substitute 的替代字符串               <b class="vimtag"> <a name="s%7E">s~</a> </b>
- \~        ~      替代为 ~                                           <b class="vimtag"> <a name="s%2F\%7E">s/\~</a> </b>
-      \u          下一个字符成为大写                                 <b class="vimtag"> <a name="s%2F\u">s/\u</a> </b>
-      \U          其后字符成为大写，直到 \E 出现                     <b class="vimtag"> <a name="s%2F\U">s/\U</a> </b>
-      \l          下一个字符成为小写                                 <b class="vimtag"> <a name="s%2F\l">s/\l</a> </b>
-      \L          其后字符成为小写，直到 \E 出现                     <b class="vimtag"> <a name="s%2F\L">s/\L</a> </b>
-      \e          结束 \u、\U、\l 和 \L (<code class="note">注意</code>: 不是 <code class="special">&lt;Esc&gt;</code>!)          <b class="vimtag"> <a name="s%2F\e">s/\e</a> </b>
-      \E          结束 \u、\U、\l 和 \L                              <b class="vimtag"> <a name="s%2F\E">s/\E</a> </b>
-      <code class="special">&lt;CR&gt;</code>        把该行在此位置一分为二
-                  (<code class="special">&lt;CR&gt;</code> 以 <code class="keystroke">CTRL-V</code> <code class="special">&lt;Enter&gt;</code> 方式输入)                  <b class="vimtag"> <a name="s%3CCR%3E">s&lt;CR&gt;</a> </b>
+      \9          替代為匹配的第九個 () 裡面的內容                   <b class="vimtag"> <a name="s%2F\9">s/\9</a> </b>
+  ~       \~      替代為前一個 substitute 的替代字符串               <b class="vimtag"> <a name="s%7E">s~</a> </b>
+ \~        ~      替代為 ~                                           <b class="vimtag"> <a name="s%2F\%7E">s/\~</a> </b>
+      \u          下一個字符成為大寫                                 <b class="vimtag"> <a name="s%2F\u">s/\u</a> </b>
+      \U          其後字符成為大寫，直到 \E 出現                     <b class="vimtag"> <a name="s%2F\U">s/\U</a> </b>
+      \l          下一個字符成為小寫                                 <b class="vimtag"> <a name="s%2F\l">s/\l</a> </b>
+      \L          其後字符成為小寫，直到 \E 出現                     <b class="vimtag"> <a name="s%2F\L">s/\L</a> </b>
+      \e          結束 \u、\U、\l 和 \L (<code class="note">注意</code>: 不是 <code class="special">&lt;Esc&gt;</code>!)          <b class="vimtag"> <a name="s%2F\e">s/\e</a> </b>
+      \E          結束 \u、\U、\l 和 \L                              <b class="vimtag"> <a name="s%2F\E">s/\E</a> </b>
+      <code class="special">&lt;CR&gt;</code>        把該行在此位置一分為二
+                  (<code class="special">&lt;CR&gt;</code> 以 <code class="keystroke">CTRL-V</code> <code class="special">&lt;Enter&gt;</code> 方式輸入)                  <b class="vimtag"> <a name="s%3CCR%3E">s&lt;CR&gt;</a> </b>
       \r          同上                                               <b class="vimtag"> <a name="s%2F\r">s/\r</a> </b>
-      \<code class="special">&lt;CR&gt;</code>       插入一个回车 (<code class="keystroke">CTRL-M</code>)
-                  (<code class="special">&lt;CR&gt;</code> 以 <code class="keystroke">CTRL-V</code> <code class="special">&lt;Enter&gt;</code> 方式输入)                  <b class="vimtag"> <a name="s%2F\%3CCR%3E">s/\&lt;CR&gt;</a> </b>
-      \n          插入一个 <code class="special">&lt;NL&gt;</code> (文件里的 <code class="special">&lt;NUL&gt;</code>)
-                  (此处并不是换行)                                   <b class="vimtag"> <a name="s%2F\n">s/\n</a> </b>
-      \b          插入一个 <code class="special">&lt;BS&gt;</code>                                      <b class="vimtag"> <a name="s%2F\b">s/\b</a> </b>
-      \t          插入一个 <code class="special">&lt;Tab&gt;</code>                                     <b class="vimtag"> <a name="s%2F\t">s/\t</a> </b>
-      \\          插入单个反斜杠                                     <b class="vimtag"> <a name="s%2F\\">s/\\</a> </b>
-      \x          其中 x 是上面没提到的任何一个字符:
-                  保留作将来的扩展
+      \<code class="special">&lt;CR&gt;</code>       插入一個回車 (<code class="keystroke">CTRL-M</code>)
+                  (<code class="special">&lt;CR&gt;</code> 以 <code class="keystroke">CTRL-V</code> <code class="special">&lt;Enter&gt;</code> 方式輸入)                  <b class="vimtag"> <a name="s%2F\%3CCR%3E">s/\&lt;CR&gt;</a> </b>
+      \n          插入一個 <code class="special">&lt;NL&gt;</code> (文件裡的 <code class="special">&lt;NUL&gt;</code>)
+                  (此處並不是換行)                                   <b class="vimtag"> <a name="s%2F\n">s/\n</a> </b>
+      \b          插入一個 <code class="special">&lt;BS&gt;</code>                                      <b class="vimtag"> <a name="s%2F\b">s/\b</a> </b>
+      \t          插入一個 <code class="special">&lt;Tab&gt;</code>                                     <b class="vimtag"> <a name="s%2F\t">s/\t</a> </b>
+      \\          插入單個反斜槓                                     <b class="vimtag"> <a name="s%2F\\">s/\\</a> </b>
+      \x          其中 x 是上面沒提到的任何一個字符:
+                  保留作將來的擴展
 
-这里的特殊含义也用于  <a href="eval.html#substitute()">substitute()</a>  函数的第三个参数 <code class="special">{sub}</code>，除了若干例外:
-  - % 总是插入百分号，与 <a href="options.html#'cpoptions'">'cpoptions'</a> 无关。
-  - 总是假定有魔术性，与 <a href="options.html#'magic'">'magic'</a> 无关。
-  - ~ 总是插入波浪符。
-  - <code class="special">&lt;CR&gt;</code> 和 \r 插入回车 (<code class="keystroke">CTRL-M</code>)。
-  - \<code class="special">&lt;CR&gt;</code> 没有特殊意义，只是 \x 之一。
+這裡的特殊含義也用於  <a href="eval.html#substitute()">substitute()</a>  函數的第三個參數 <code class="special">{sub}</code>，除了若干例外:
+  - % 總是插入百分號，與 <a href="options.html#'cpoptions'">'cpoptions'</a> 無關。
+  - 總是假定有魔術性，與 <a href="options.html#'magic'">'magic'</a> 無關。
+  - ~ 總是插入波浪符。
+  - <code class="special">&lt;CR&gt;</code> 和 \r 插入回車 (<code class="keystroke">CTRL-M</code>)。
+  - \<code class="special">&lt;CR&gt;</code> 沒有特殊意義，只是 \x 之一。
 
 示例: 
-<code class="example">  :s/a\|b/xxx\0xxx/g             修改 "a b"      为 "xxxaxxx xxxbxxx"</code>
-<code class="example">  :s/\([abc]\)\([efg]\)/\2\1/g   修改 "af fa bg" 为 "fa fa gb"</code>
-<code class="example">  :s/abcde/abc^Mde/              修改 "abcde"    为 "abc"、"de" (两行)</code>
-<code class="example">  :s/$/\^M/                      修改 "abcde"    为 "abcde^M"</code>
-<code class="example">  :s/\w\+/\u\0/g                 修改 "bla bla"  为 "Bla Bla"</code>
-<code class="example">  :s/\w\+/\L\u\0/g               修改 "BLA bla"  为 "Bla Bla"</code>
+<code class="example">  :s/a\|b/xxx\0xxx/g             修改 "a b"      為 "xxxaxxx xxxbxxx"</code>
+<code class="example">  :s/\([abc]\)\([efg]\)/\2\1/g   修改 "af fa bg" 為 "fa fa gb"</code>
+<code class="example">  :s/abcde/abc^Mde/              修改 "abcde"    為 "abc"、"de" (兩行)</code>
+<code class="example">  :s/$/\^M/                      修改 "abcde"    為 "abcde^M"</code>
+<code class="example">  :s/\w\+/\u\0/g                 修改 "bla bla"  為 "Bla Bla"</code>
+<code class="example">  :s/\w\+/\L\u\0/g               修改 "BLA bla"  為 "Bla Bla"</code>
 <code class="example"></code>
-<code class="note">注意</code>: "\L\u" 可用于使单词的首个字母变大写。此行为和 Vi 以及旧版 Vim 不兼容，那
-里 "\u" 会抵消 "\L"。"\U\l" 亦然。
+<code class="note">注意</code>: "\L\u" 可用於使單詞的首個字母變大寫。此行為和 Vi 以及舊版 Vim 不兼容，那
+裡 "\u" 會抵消 "\L"。"\U\l" 亦然。
 
-<code class="note">注意</code>: 在以前的版本里，<code class="keystroke">CTRL-V</code> 以特殊的方式处理。因为和 Vi 不兼容，该功能已经被
-去掉了，现在用反斜杠来替代。
+<code class="note">注意</code>: 在以前的版本裡，<code class="keystroke">CTRL-V</code> 以特殊的方式處理。因為和 Vi 不兼容，該功能已經被
+去掉了，現在用反斜槓來替代。
 
-<code class="section">命令            文本    结果 </code>
+<code class="section">命令            文本    結果 </code>
 :s/aa/a^Ma/     aa      a<code class="special">&lt;line-break&gt;</code>a
 :s/aa/a\^Ma/    aa      a^Ma
 :s/aa/a\\^Ma/   aa      a\<code class="special">&lt;line-break&gt;</code>a
 
-(你需要输入 <code class="keystroke">CTRL-V</code> <code class="special">&lt;CR&gt;</code> 来得到这里的 ^M)
+(你需要輸入 <code class="keystroke">CTRL-V</code> <code class="special">&lt;CR&gt;</code> 來得到這裡的 ^M)
 
-"\1"，"\2" 等里的数字是基于模式里 "\(" 出现的顺序 (从左到右)。如果一个括号组匹
-配多次，最后一次的匹配被使用在 "\1"，"2" 等里。例如: 
-<code class="example">  :s/\(\(a[a-d] \)*\)/\2/      修改 "aa ab x" 为 "ab x"</code>
-"\2" 对应 "\(a[a-d] \)"。第一次匹配 "aa "，第二次匹配 "ab "。
+"\1"，"\2" 等裡的數字是基於模式裡 "\(" 出現的順序 (從左到右)。如果一個括號組匹
+配多次，最後一次的匹配被使用在 "\1"，"2" 等裡。例如: 
+<code class="example">  :s/\(\(a[a-d] \)*\)/\2/      修改 "aa ab x" 為 "ab x"</code>
+"\2" 對應 "\(a[a-d] \)"。第一次匹配 "aa "，第二次匹配 "ab "。
 
-如果括号和 '|' 组合使用，如 \([ab]\)\|\([cd]\)，两者有一个会不匹配，所以 \1 或
-者 \2 会为空。例如: 
-<code class="example">  :s/\([ab]\)\|\([cd]\)/\1x/g   修改 "a b c d" 为 "ax bx x x"</code>
+如果括號和 '|' 組合使用，如 \([ab]\)\|\([cd]\)，兩者有一個會不匹配，所以 \1 或
+者 \2 會為空。例如: 
+<code class="example">  :s/\([ab]\)\|\([cd]\)/\1x/g   修改 "a b c d" 為 "ax bx x x"</code>
 <code class="example"></code>
 
                 <b class="vimtag"> <a name=":sc">:sc</a> </b> <b class="vimtag"> <a name=":sce">:sce</a> </b> <b class="vimtag"> <a name=":scg">:scg</a> </b> <b class="vimtag"> <a name=":sci">:sci</a> </b> <b class="vimtag"> <a name=":scI">:scI</a> </b> <b class="vimtag"> <a name=":scl">:scl</a> </b> <b class="vimtag"> <a name=":scp">:scp</a> </b> <b class="vimtag"> <a name=":sg">:sg</a> </b> <b class="vimtag"> <a name=":sgc">:sgc</a> </b>
@@ -814,72 +814,72 @@ g&amp;                      等价于  <code class="badlink">:%s//~/&amp;</code>
      :sre  是   <a href="windows.html#:srewind">:srewind</a> 
 
 
-以表达式方式替代                                <b class="vimtag"> <a name="sub-replace-expression">sub-replace-expression</a> </b>
+以表達式方式替代                                <b class="vimtag"> <a name="sub-replace-expression">sub-replace-expression</a> </b>
                                                 <b class="vimtag"> <a name="sub-replace-\%20">sub-replace-\=</a> </b> <b class="vimtag"> <a name="s%2F\%20">s/\=</a> </b>
-当替代字符串以 "\=" 开始时，其余部分被解释为一个表达式。
+當替代字符串以 "\=" 開始時，其餘部分被解釋為一個表達式。
 
-除了 "<code class="special">&lt;CR&gt;</code>" 以外， <a href="change.html#sub-replace-special">sub-replace-special</a>  提到的字符的特殊含义这里不适用。<code class="special">&lt;NL&gt;</code>
-字符被用作换行符，双引号字符串 "\n" 也可以。在 <code class="special">&lt;NL&gt;</code> 之前加上反斜杠得到一个真正
-的 <code class="special">&lt;NL&gt;</code> 字符 (在文件里成为 NUL)。
+除了 "<code class="special">&lt;CR&gt;</code>" 以外， <a href="change.html#sub-replace-special">sub-replace-special</a>  提到的字符的特殊含義這裡不適用。<code class="special">&lt;NL&gt;</code>
+字符被用作換行符，雙引號字符串 "\n" 也可以。在 <code class="special">&lt;NL&gt;</code> 之前加上反斜槓得到一個真正
+的 <code class="special">&lt;NL&gt;</code> 字符 (在文件裡成為 NUL)。
 
-"\=" 记法也可用于  <a href="eval.html#substitute()">substitute()</a>  函数的第三个参数 <code class="special">{sub}</code> 之内，这时，
- <a href="change.html#sub-replace-special">sub-replace-special</a>  指出的特殊含义完全不适用。具体说，<code class="special">&lt;CR&gt;</code> 和 <code class="special">&lt;NL&gt;</code> 不用作换
-行，而分别是回车和新行。
+"\=" 記法也可用於  <a href="eval.html#substitute()">substitute()</a>  函數的第三個參數 <code class="special">{sub}</code> 之內，這時，
+ <a href="change.html#sub-replace-special">sub-replace-special</a>  指出的特殊含義完全不適用。具體說，<code class="special">&lt;CR&gt;</code> 和 <code class="special">&lt;NL&gt;</code> 不用作換
+行，而分別是回車和新行。
 
-如果结果是  <a href="eval.html#List">List</a> ，连接其中的项目并以换行符分隔。这样，每个项目单独成为一行，
-当然本身就包含换行符的除外。
+如果結果是  <a href="eval.html#List">List</a> ，連接其中的項目並以換行符分隔。這樣，每個項目單獨成為一行，
+當然本身就包含換行符的除外。
 
-完整的匹配可以用 "submatch(0)" 得到。首个括号里的匹配可以用 "submatch(1)"，余
-者类似。
+完整的匹配可以用 "submatch(0)" 得到。首個括號裡的匹配可以用 "submatch(1)"，余
+者類似。
 
-小心: 分隔符不能出现在表达式里！可以考虑使用 "@" 或者 ":" 那样的字符。执行结果
-里出现分隔符不成问题。
+小心: 分隔符不能出現在表達式裡！可以考慮使用 "@" 或者 ":" 那樣的字符。執行結果
+裡出現分隔符不成問題。
 
 例如: 
 <code class="example">        :s@\n@\="\r" . expand("$HOME") . "\r"@</code>
-把换行符替代为包含 $HOME 值的一个新行。 
+把換行符替代為包含 $HOME 值的一個新行。 
 <code class="example"></code>
 <code class="example">        s/E/\="\&lt;Char-0x20ac&gt;"/g</code>
-把所有的 'E' 字符替代为欧元符号。详见  <a href="map.html#%3CChar-%3E">&lt;Char-&gt;</a> 。
+把所有的 'E' 字符替代為歐元符號。詳見  <a href="map.html#%3CChar-%3E">&lt;Char-&gt;</a> 。
 
 
-4.3 搜索与替代                                          <b class="vimtag"> <a name="search-replace">search-replace</a> </b>
+4.3 搜索與替代                                          <b class="vimtag"> <a name="search-replace">search-replace</a> </b>
 
                                                         <b class="vimtag"> <a name=":pro">:pro</a> </b> <b class="vimtag"> <a name=":promptfind">:promptfind</a> </b>
 :promptf[ind] <code class="special">[string]</code>
-                        弹出搜索对话框。如果给出 <code class="special">[string]</code>，它被用作初始的搜索
+                        彈出搜索對話框。如果給出 <code class="special">[string]</code>，它被用作初始的搜索
                         字符串。
-                        <code class="notvi">{仅适用于 Win32、Motif 和 GTK GUI 环境}</code>
+                        <code class="notvi">{僅適用於 Win32、Motif 和 GTK GUI 環境}</code>
 
                                                 <b class="vimtag"> <a name=":promptr">:promptr</a> </b> <b class="vimtag"> <a name=":promptrepl">:promptrepl</a> </b>
 :promptr[epl] <code class="special">[string]</code>
-                        弹出搜索/替代对话框。如果给出 <code class="special">[string]</code>，它被用作初始的
+                        彈出搜索/替代對話框。如果給出 <code class="special">[string]</code>，它被用作初始的
                         搜索字符串。
-                        <code class="notvi">{仅适用于 Win32、Motif 和 GTK GUI 环境}</code>
+                        <code class="notvi">{僅適用於 Win32、Motif 和 GTK GUI 環境}</code>
 
-4.4 改变制表                                            <b class="vimtag"> <a name="change-tabs">change-tabs</a> </b>
+4.4 改變製表                                            <b class="vimtag"> <a name="change-tabs">change-tabs</a> </b>
                                                         <b class="vimtag"> <a name=":ret">:ret</a> </b> <b class="vimtag"> <a name=":retab">:retab</a> </b> <b class="vimtag"> <a name=":retab!">:retab!</a> </b>
 :<code class="special">[range]</code>ret[ab][!] <code class="special">[new_tabstop]</code>
-                        把所有包含 <code class="special">&lt;Tab&gt;</code> 的空白序列替代成由新的制表位
-                        <code class="special">[new_tabstop]</code> 确定的空白序列。如果你不指定新的制表位，
-                        或者它为 0，Vim 使用原来的制表位 <a href="options.html#'tabstop'">'tabstop'</a>。
-                        已有的 Tab 的宽度总是用 <a href="options.html#'tabstop'">'tabstop'</a> 的当前值来计算。
-                        如果有 !，Vim 也在合适的时候，把只包含正常空格的字符串
-                        换成 Tab。
-                        如果置位了 <a href="options.html#'expandtab'">'expandtab'</a>，Vim 把所有的 Tab 换成相当的空
+                        把所有包含 <code class="special">&lt;Tab&gt;</code> 的空白序列替代成由新的製表位
+                        <code class="special">[new_tabstop]</code> 確定的空白序列。如果你不指定新的製表位，
+                        或者它為 0，Vim 使用原來的製表位 <a href="options.html#'tabstop'">'tabstop'</a>。
+                        已有的 Tab 的寬度總是用 <a href="options.html#'tabstop'">'tabstop'</a> 的當前值來計算。
+                        如果有 !，Vim 也在合適的時候，把只包含正常空格的字符串
+                        換成 Tab。
+                        如果置位了 <a href="options.html#'expandtab'">'expandtab'</a>，Vim 把所有的 Tab 換成相當的空
                         格。
-                        该命令把 <a href="options.html#'tabstop'">'tabstop'</a> 设为新值。如果按照缺省的情况，在全
-                        文件上进行处理，视觉上应该不会有任何改变。
-                        小心: 该命令修改 C 程序中的字符串里的任何 <code class="special">&lt;Tab&gt;</code> 字符。
-                        要避免这一点，用 "\t" (无论如何，应该养成这个好的习
-                        惯)。
-                         <a href="change.html#:retab!">:retab!</a>  也把空格序列换成 <code class="special">&lt;Tab&gt;</code>，这可能会使 printf()
+                        該命令把 <a href="options.html#'tabstop'">'tabstop'</a> 設為新值。如果按照缺省的情況，在全
+                        文件上進行處理，視覺上應該不會有任何改變。
+                        小心: 該命令修改 C 程序中的字符串裡的任何 <code class="special">&lt;Tab&gt;</code> 字符。
+                        要避免這一點，用 "\t" (無論如何，應該養成這個好的習
+                        慣)。
+                         <a href="change.html#:retab!">:retab!</a>  也把空格序列換成 <code class="special">&lt;Tab&gt;</code>，這可能會使 printf()
                         引起混淆。
-                        <code class="notvi">{Vi 无此功能}</code>
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="retab-example">retab-example</a> </b>
-下面的例子使用自动命令和 ":retab" 来编辑使用制表位为 8 的文件，但在编辑时制表
-位设置为 4。警告: 字符串里的空格会被改变。另见 <a href="options.html#'softtabstop'">'softtabstop'</a> 选项。 
+下面的例子使用自動命令和 ":retab" 來編輯使用製表位為 8 的文件，但在編輯時製表
+位設置為 4。警告: 字符串裡的空格會被改變。另見 <a href="options.html#'softtabstop'">'softtabstop'</a> 選項。 
 <code class="example"></code>
 <code class="example">  :auto BufReadPost     *.xx    retab! 4</code>
 <code class="example">  :auto BufWritePre     *.xx    retab! 8</code>
@@ -887,673 +887,673 @@ g&amp;                      等价于  <code class="badlink">:%s//~/&amp;</code>
 <code class="example">  :auto BufNewFile      *.xx    set ts=4</code>
 <code class="example"></code>
 </pre><hr class="doubleline" /><pre>
-<h4>5. 复制并移动文本                                       <b class="vimtag"> <a name="copy-move">copy-move</a> </b></h4>
+<h4>5. 複製並移動文本                                       <b class="vimtag"> <a name="copy-move">copy-move</a> </b></h4>
                                                         <b class="vimtag"> <a name="quote">quote</a> </b>
-"{a-zA-Z0-9.%#:-"}      指定下次的删除、抽出和放置命令使用的寄存器
-                        {a-zA-Z0-9.%#:-"} (大写字符使得删除和抽出命令附加到该
-                        寄存器) (<code class="special">{.%#:}</code> 只能用于放置命令)。
+"{a-zA-Z0-9.%#:-"}      指定下次的刪除、抽出和放置命令使用的寄存器
+                        {a-zA-Z0-9.%#:-"} (大寫字符使得刪除和抽出命令附加到該
+                        寄存器) (<code class="special">{.%#:}</code> 只能用於放置命令)。
 
                                                         <b class="vimtag"> <a name=":reg">:reg</a> </b> <b class="vimtag"> <a name=":registers">:registers</a> </b>
-:reg[isters]            显示所有编号和命名寄存器的内容。但不列出用于  <a href="various.html#:redir">:redir</a> 
+:reg[isters]            顯示所有編號和命名寄存器的內容。但不列出用於  <a href="various.html#:redir">:redir</a> 
                         目的地的寄存器。
-                        <code class="notvi">{Vi 无此功能}</code>
+                        <code class="notvi">{Vi 無此功能}</code>
 
-:reg[isters] <code class="special">{arg}</code>      显示 <code class="special">{arg}</code> 里提到的编号和命名寄存器的内容。例如: 
+:reg[isters] <code class="special">{arg}</code>      顯示 <code class="special">{arg}</code> 裡提到的編號和命名寄存器的內容。例如: 
 <code class="example">                                :reg 1a</code>
-                        显示寄存器 '1' 和 'a'。<code class="special">{arg}</code> 里可以用空格。
-                        <code class="notvi">{Vi 无此功能}</code>
+                        顯示寄存器 '1' 和 'a'。<code class="special">{arg}</code> 裡可以用空格。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":di">:di</a> </b> <b class="vimtag"> <a name=":display">:display</a> </b>
-:di[splay] <code class="special">[arg]</code>        和 :registers 相同。<code class="notvi">{Vi 无此功能}</code>
+:di[splay] <code class="special">[arg]</code>        和 :registers 相同。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="y">y</a> </b> <b class="vimtag"> <a name="yank">yank</a> </b>
-["x]y<code class="special">{motion}</code>           抽出 <code class="special">{motion}</code> 跨越的文本 [到寄存器 x]。如果没有字符被
-                        抽出 (例如，在第一列执行 "y0") 并且 <a href="options.html#'cpoptions'">'cpoptions'</a> 里包括
-                        'E' 标志位，这是一个错误。
+["x]y<code class="special">{motion}</code>           抽出 <code class="special">{motion}</code> 跨越的文本 [到寄存器 x]。如果沒有字符被
+                        抽出 (例如，在第一列執行 "y0") 並且 <a href="options.html#'cpoptions'">'cpoptions'</a> 裡包括
+                        'E' 標誌位，這是一個錯誤。
 
                                                         <b class="vimtag"> <a name="yy">yy</a> </b>
-["x]yy                  抽出 <code class="special">[count]</code> 行 [到寄存器 x]  <a href="motion.html#linewise">linewise</a>  行动作。
+["x]yy                  抽出 <code class="special">[count]</code> 行 [到寄存器 x]  <a href="motion.html#linewise">linewise</a>  行動作。
 
                                                         <b class="vimtag"> <a name="Y">Y</a> </b>
-["x]Y                   抽出 <code class="special">[count]</code> 行 [到寄存器 x] (等同于 yy， <a href="motion.html#linewise">linewise</a>  行
-                        动作)。如果你想要 "Y" 执行从光标到行尾的操作 (更合乎逻
-                        辑，但是与 Vi 不兼容)，用 ":map Y y$"。
+["x]Y                   抽出 <code class="special">[count]</code> 行 [到寄存器 x] (等同於 yy， <a href="motion.html#linewise">linewise</a>  行
+                        動作)。如果你想要 "Y" 執行從光標到行尾的操作 (更合乎邏
+                        輯，但是與 Vi 不兼容)，用 ":map Y y$"。
 
                                                         <b class="vimtag"> <a name="v_y">v_y</a> </b>
-<code class="special">{Visual}</code>["x]y           抽出高亮文本 [到寄存器 x] (关于 <code class="special">{Visual}</code> 见
-                         <a href="visual.html#Visual-mode">Visual-mode</a> )。<code class="notvi">{Vi 无此功能}</code>
+<code class="special">{Visual}</code>["x]y           抽出高亮文本 [到寄存器 x] (關於 <code class="special">{Visual}</code> 見
+                         <a href="visual.html#Visual-mode">Visual-mode</a> )。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="v_Y">v_Y</a> </b>
-<code class="special">{Visual}</code>["x]Y           抽出高亮行 [到寄存器 x] (关于 <code class="special">{Visual}</code> 见
-                         <a href="visual.html#Visual-mode">Visual-mode</a> )。<code class="notvi">{Vi 无此功能}</code>
+<code class="special">{Visual}</code>["x]Y           抽出高亮行 [到寄存器 x] (關於 <code class="special">{Visual}</code> 見
+                         <a href="visual.html#Visual-mode">Visual-mode</a> )。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":y">:y</a> </b> <b class="vimtag"> <a name=":yank">:yank</a> </b> <b class="vimtag"> <a name="E850">E850</a> </b>
-:<code class="special">[range]</code>y[ank] <code class="special">[x]</code>      抽出 <code class="special">[range]</code> 所指定的行 [到寄存器 x]。仅当包含
-                         <a href="various.html#+clipboard">+clipboard</a>  特性时才可以抽出到 "* 或 "+ 寄存器。
+:<code class="special">[range]</code>y[ank] <code class="special">[x]</code>      抽出 <code class="special">[range]</code> 所指定的行 [到寄存器 x]。僅當包含
+                         <a href="various.html#+clipboard">+clipboard</a>  特性時才可以抽出到 "* 或 "+ 寄存器。
 
 :<code class="special">[range]</code>y[ank] <code class="special">[x]</code> <code class="special">{count}</code>
-                        从 <code class="special">[range]</code> 的最后一行开始 (缺省: 当前行
+                        從 <code class="special">[range]</code> 的最後一行開始 (缺省: 當前行
                          <a href="cmdline.html#cmdline-ranges">cmdline-ranges</a> ) 抽出 <code class="special">{count}</code> 行 [到寄存器 x]。
 
                                                         <b class="vimtag"> <a name="p">p</a> </b> <b class="vimtag"> <a name="put">put</a> </b> <b class="vimtag"> <a name="E353">E353</a> </b>
-["x]p                   放置文本 [从寄存器 x] 在光标之后 <code class="special">[count]</code> 次。
-                        <code class="notvi">{Vi: 没有计数}</code>
+["x]p                   放置文本 [從寄存器 x] 在光標之後 <code class="special">[count]</code> 次。
+                        <code class="notvi">{Vi: 沒有計數}</code>
 
                                                         <b class="vimtag"> <a name="P">P</a> </b>
-["x]P                   放置文本 [从寄存器 x] 在光标之前 <code class="special">[count]</code> 次。
-                        <code class="notvi">{Vi: 没有计数}</code>
+["x]P                   放置文本 [從寄存器 x] 在光標之前 <code class="special">[count]</code> 次。
+                        <code class="notvi">{Vi: 沒有計數}</code>
 
                                                         <b class="vimtag"> <a name="%3CMiddleMouse%3E">&lt;MiddleMouse&gt;</a> </b>
-["x]<code class="special">&lt;MiddleMouse&gt;</code>       从一个寄存器放置文本在光标之前 <code class="special">[count]</code> 次。除非另外指
-                        定，否则用 "* 寄存器。
-                        光标停留在新文本的尾部。
-                        只有在 <a href="options.html#'mouse'">'mouse'</a> 包含 'n' 或者 'a' 时鼠标才会工作。
-                        <code class="notvi">{Vi 无此功能}</code>
-                        如果你有滚轮鼠标而且经常不小心粘贴了文本，你可以使用以
-                        下映射来关闭鼠标中键粘贴的功能: 
+["x]<code class="special">&lt;MiddleMouse&gt;</code>       從一個寄存器放置文本在光標之前 <code class="special">[count]</code> 次。除非另外指
+                        定，否則用 "* 寄存器。
+                        光標停留在新文本的尾部。
+                        只有在 <a href="options.html#'mouse'">'mouse'</a> 包含 'n' 或者 'a' 時鼠標才會工作。
+                        <code class="notvi">{Vi 無此功能}</code>
+                        如果你有滾輪鼠標而且經常不小心粘貼了文本，你可以使用以
+                        下映射來關閉鼠標中鍵粘貼的功能: 
 <code class="example">                                :map &lt;MiddleMouse&gt; &lt;Nop&gt;</code>
 <code class="example">                                :imap &lt;MiddleMouse&gt; &lt;Nop&gt;</code>
-                        你也许还想要关闭多键击的功能。参见  <a href="term.html#double-click">double-click</a> 。
+                        你也許還想要關閉多鍵擊的功能。參見  <a href="term.html#double-click">double-click</a> 。
 
                                                         <b class="vimtag"> <a name="gp">gp</a> </b>
-["x]gp                  如同 "p"，但光标停留在新文本之后。<code class="notvi">{Vi 无此功能}</code>
+["x]gp                  如同 "p"，但光標停留在新文本之後。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="gP">gP</a> </b>
-["x]gP                  如同 "P"，但光标停留在新文本之后。<code class="notvi">{Vi 无此功能}</code>
+["x]gP                  如同 "P"，但光標停留在新文本之後。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":pu">:pu</a> </b> <b class="vimtag"> <a name=":put">:put</a> </b>
-:<code class="special">[line]</code>pu[t] <code class="special">[x]</code>        放置文本 [从寄存器 x] 在行号 <code class="special">[line]</code> (缺省为当前行) 之
-                        后。它总是  <a href="motion.html#linewise">linewise</a>  行动作，因而这个命令可以用来把抽
-                        出的块放置在新行上。
-                        如果未指定寄存器，则取决于 <a href="options.html#'cb'">'cb'</a> 选项: 如果 <a href="options.html#'cb'">'cb'</a> 包含
-                        "unnamedplus"，则从 + 寄存器  <a href="gui_x11.html#quoteplus">quoteplus</a>  取出，否则如
-                        果 <a href="options.html#'cb'">'cb'</a> 包含 "unnamed"，则从 * 寄存器  <a href="gui.html#quotestar">quotestar</a>  取
-                        出，否则，从无名寄存器  <a href="change.html#quote_quote">quote_quote</a>  取出。
-                        寄存器也可以是 '='，跟随一个可选的表达式。表达式继续到
-                        该命令结束为止。你需要在 '|' 和 '"' 字符前加上反斜杠不
-                        让它们终止你的命令行。例如: 
+:<code class="special">[line]</code>pu[t] <code class="special">[x]</code>        放置文本 [從寄存器 x] 在行號 <code class="special">[line]</code> (缺省為當前行) 之
+                        後。它總是  <a href="motion.html#linewise">linewise</a>  行動作，因而這個命令可以用來把抽
+                        出的塊放置在新行上。
+                        如果未指定寄存器，則取決於 <a href="options.html#'cb'">'cb'</a> 選項: 如果 <a href="options.html#'cb'">'cb'</a> 包含
+                        "unnamedplus"，則從 + 寄存器  <a href="gui_x11.html#quoteplus">quoteplus</a>  取出，否則如
+                        果 <a href="options.html#'cb'">'cb'</a> 包含 "unnamed"，則從 * 寄存器  <a href="gui.html#quotestar">quotestar</a>  取
+                        出，否則，從無名寄存器  <a href="change.html#quote_quote">quote_quote</a>  取出。
+                        寄存器也可以是 '='，跟隨一個可選的表達式。表達式繼續到
+                        該命令結束為止。你需要在 '|' 和 '"' 字符前加上反斜槓不
+                        讓它們終止你的命令行。例如: 
 <code class="example">                                :put ='path' . \",/test\"</code>
-                        如果 '=' 之后没有表达式，Vim 使用前一个表达式。用
+                        如果 '=' 之後沒有表達式，Vim 使用前一個表達式。用
                         ":dis =" 你可以看到它。
 
-:<code class="special">[line]</code>pu[t]! <code class="special">[x]</code>       放置文本 [从寄存器 x] 在行号 <code class="special">[line]</code> (缺省为当前行) 之
+:<code class="special">[line]</code>pu[t]! <code class="special">[x]</code>       放置文本 [從寄存器 x] 在行號 <code class="special">[line]</code> (缺省為當前行) 之
                         前。
 
 ["x]]p              或                                  <b class="vimtag"> <a name="]p">]p</a> </b> <b class="vimtag"> <a name="]%3CMiddleMouse%3E">]&lt;MiddleMouse&gt;</a> </b>
-["x]]<code class="special">&lt;MiddleMouse&gt;</code>      类似 "p"，但调整当前行的缩进。只有在 <a href="options.html#'mouse'">'mouse'</a> 包含 'n'
-                        或者 'a' 时鼠标才会工作。<code class="notvi">{Vi 无此功能}</code>
+["x]]<code class="special">&lt;MiddleMouse&gt;</code>      類似 "p"，但調整當前行的縮進。只有在 <a href="options.html#'mouse'">'mouse'</a> 包含 'n'
+                        或者 'a' 時鼠標才會工作。<code class="notvi">{Vi 無此功能}</code>
 
 ["x][P              或                                  <b class="vimtag"> <a name="[P">[P</a> </b>
 ["x]]P              或                                  <b class="vimtag"> <a name="]P">]P</a> </b>
 ["x][p              或                                  <b class="vimtag"> <a name="[p">[p</a> </b> <b class="vimtag"> <a name="[%3CMiddleMouse%3E">[&lt;MiddleMouse&gt;</a> </b>
-["x][<code class="special">&lt;MiddleMouse&gt;</code>      类似 "P"，但调整当前行的缩进。只有在 <a href="options.html#'mouse'">'mouse'</a> 包含 'n'
-                        或者 'a' 时鼠标才会工作。<code class="notvi">{Vi 无此功能}</code>
+["x][<code class="special">&lt;MiddleMouse&gt;</code>      類似 "P"，但調整當前行的縮進。只有在 <a href="options.html#'mouse'">'mouse'</a> 包含 'n'
+                        或者 'a' 時鼠標才會工作。<code class="notvi">{Vi 無此功能}</code>
 
-你可以用这些命令把文本从一个地方复制到另一个地方。首先，把文本用抽出、删除或者
-修改命令取到一个寄存器里，然后用放置命令把寄存器的内容插入。你可以用这些命令把
-文本从一个文件移动到另一个文件，因为 Vim 在切换缓冲区时保留所有的寄存器
-(<code class="keystroke">CTRL-^</code> 命令可用来快捷地切换文件)。
+你可以用這些命令把文本從一個地方複製到另一個地方。首先，把文本用抽出、刪除或者
+修改命令取到一個寄存器裡，然後用放置命令把寄存器的內容插入。你可以用這些命令把
+文本從一個文件移動到另一個文件，因為 Vim 在切換緩衝區時保留所有的寄存器
+(<code class="keystroke">CTRL-^</code> 命令可用來快捷地切換文件)。
 
                                 <b class="vimtag"> <a name="linewise-register">linewise-register</a> </b> <b class="vimtag"> <a name="characterwise-register">characterwise-register</a> </b>
-除了 :put 以外，你可以用 "." 重复放置命令，你也可以撤销它们。如果保存到寄存器
-文本的命令是  <a href="motion.html#linewise">linewise</a>  行动作，Vim 把文本插入在光标所在的行之下 ("p") 或之上
-("P")。不然，Vim 把文本插入在光标的之后 ("p") 或之前 ("P")。":put" 命令使得
-Vim 总是把文本放在下一行。你可以用命令序列 "xp" 来交换两个字母。你可以用 "ddp"
-命令序列来交换两行。你还可以用 "deep" 命令交换两个单词 (光标在第一个单词之前的
-空白上)。你更可以在放置命令之后用 "']" 或者 "`]" 命令把光标移动到插入文本之
-后，或者用 "'[" 或 "`[" 把光标移动到文本的开始处。
+除了 :put 以外，你可以用 "." 重複放置命令，你也可以撤銷它們。如果保存到寄存器
+文本的命令是  <a href="motion.html#linewise">linewise</a>  行動作，Vim 把文本插入在光標所在的行之下 ("p") 或之上
+("P")。不然，Vim 把文本插入在光標的之後 ("p") 或之前 ("P")。":put" 命令使得
+Vim 總是把文本放在下一行。你可以用命令序列 "xp" 來交換兩個字母。你可以用 "ddp"
+命令序列來交換兩行。你還可以用 "deep" 命令交換兩個單詞 (光標在第一個單詞之前的
+空白上)。你更可以在放置命令之後用 "']" 或者 "`]" 命令把光標移動到插入文本之
+後，或者用 "'[" 或 "`[" 把光標移動到文本的開始處。
 
                                                 <b class="vimtag"> <a name="put-Visual-mode">put-Visual-mode</a> </b> <b class="vimtag"> <a name="v_p">v_p</a> </b> <b class="vimtag"> <a name="v_P">v_P</a> </b>
-在可视模式下使用如  <a href="change.html#p">p</a>  或者  <a href="change.html#P">P</a>  之类的放置命令时，Vim 试图把选择的文本替换成寄
-存器的内容。是否工作如你所愿决定于选择的类型和寄存器里文本的类型。对于列块选择
-而言，它也决定于列块的大小，和头尾是否在已存在的字符上。(实现细节: 实际上，它
-先把寄存器的内容放到选择区之后，再删除选择区的内容。)
-前次选择的文本被放在无名寄存器中。如果希望把相同的文本重复放入可视选择区多次，
-请选用其它寄存器。例如，先抽出要复制的文本，再可视化选择要替换的文本，然后使用
-"0p。重复任意多次均可，而每次无名寄存器都会被改变。
+在可視模式下使用如  <a href="change.html#p">p</a>  或者  <a href="change.html#P">P</a>  之類的放置命令時，Vim 試圖把選擇的文本替換成寄
+存器的內容。是否工作如你所願決定於選擇的類型和寄存器裡文本的類型。對於列塊選擇
+而言，它也決定於列塊的大小，和頭尾是否在已存在的字符上。(實現細節: 實際上，它
+先把寄存器的內容放到選擇區之後，再刪除選擇區的內容。)
+前次選擇的文本被放在無名寄存器中。如果希望把相同的文本重複放入可視選擇區多次，
+請選用其它寄存器。例如，先抽出要複製的文本，再可視化選擇要替換的文本，然後使用
+"0p。重複任意多次均可，而每次無名寄存器都會被改變。
 
-应用面向列块的可视模式命令抽出单行到寄存器时，粘贴该寄存器到某一可视选择的区域
-会把该行复制到选择的每一行上 (也即，把选择的列块区域替代为被复制行的列块)。
+應用面向列塊的可視模式命令抽出單行到寄存器時，粘貼該寄存器到某一可視選擇的區域
+會把該行複製到選擇的每一行上 (也即，把選擇的列塊區域替代為被複製行的列塊)。
 
                                                         <b class="vimtag"> <a name="blockwise-register">blockwise-register</a> </b>
-如果你使用面向列块的可视模式命令把文本存到寄存器里，文本列块会被插入在当前和其
-后的行的当前列之前 ("P") 或之后 ("p")。Vim 使得整个文本列块从同一列开始。这
-样，插入的文本看上去和抽出或删除时看起来一样。为了使之可能，Vim 可能需要把一些
-<code class="special">&lt;Tab&gt;</code> 字符替换成空格。不过，如果列块的宽度不是 <code class="special">&lt;Tab&gt;</code> 宽度的整数倍并且插入列块
-之后文本里包含 <code class="special">&lt;Tab&gt;</code> 的时候，那些文本可能就不会那么整齐。
+如果你使用面向列塊的可視模式命令把文本存到寄存器裡，文本列塊會被插入在當前和其
+後的行的當前列之前 ("P") 或之後 ("p")。Vim 使得整個文本列塊從同一列開始。這
+樣，插入的文本看上去和抽出或刪除時看起來一樣。為了使之可能，Vim 可能需要把一些
+<code class="special">&lt;Tab&gt;</code> 字符替換成空格。不過，如果列塊的寬度不是 <code class="special">&lt;Tab&gt;</code> 寬度的整數倍並且插入列塊
+之後文本裡包含 <code class="special">&lt;Tab&gt;</code> 的時候，那些文本可能就不會那麼整齊。
 
-<code class="note">注意</code> 在一个面向字符的抽出命令之后，Vim 把光标停留在最接近缓冲区开头的第一个被
-抽出的字符之上。这意味着 "yl" 不会移动光标，但是 "yh" 把光标向左移一格。
-逻辑:           在 Vi 里 "y" 命令跟一个反向的动作有时不会把光标移动到第一个被
-                抽出的字符之上，因为屏幕没有刷新。Vim 符合 Posix 的规范，总是
-                把光标移动到第一个字符之上。
-在一个面向行的抽出命令之后，光标放在第一行上，但是列保持不变，所以不必然在第一
-个抽出的字符上。
+<code class="note">注意</code> 在一個面向字符的抽出命令之後，Vim 把光標停留在最接近緩衝區開頭的第一個被
+抽出的字符之上。這意味著 "yl" 不會移動光標，但是 "yh" 把光標向左移一格。
+邏輯:           在 Vi 裡 "y" 命令跟一個反向的動作有時不會把光標移動到第一個被
+                抽出的字符之上，因為屏幕沒有刷新。Vim 符合 Posix 的規範，總是
+                把光標移動到第一個字符之上。
+在一個面向行的抽出命令之後，光標放在第一行上，但是列保持不變，所以不必然在第一
+個抽出的字符上。
 
-共有十种类型的寄存器:                                   <b class="vimtag"> <a name="registers">registers</a> </b> <b class="vimtag"> <a name="E354">E354</a> </b>
-1. 无名寄存器 ""
-2. 10 个编号寄存器 "0 到 "9
-3. 行内删除寄存器 "-
-4. 26 个命名的寄存器 "a 到 "z 或者 "A 到 "Z
-5. 三个只读寄存器 ":、". 和 "%
-6. 轮换缓冲区寄存器 "#
-7. 表达式寄存器 "=
-8. 选择和拖放寄存器 "*、"+ 和 "~ 
+共有十種類型的寄存器:                                   <b class="vimtag"> <a name="registers">registers</a> </b> <b class="vimtag"> <a name="E354">E354</a> </b>
+1. 無名寄存器 ""
+2. 10 個編號寄存器 "0 到 "9
+3. 行內刪除寄存器 "-
+4. 26 個命名的寄存器 "a 到 "z 或者 "A 到 "Z
+5. 三個只讀寄存器 ":、". 和 "%
+6. 輪換緩衝區寄存器 "#
+7. 表達式寄存器 "=
+8. 選擇和拖放寄存器 "*、"+ 和 "~ 
 9. 黑洞寄存器寄存器 "_
 10. 最近搜索模式寄存器 "/
 
-1. 无名寄存器 ""                                <b class="vimtag"> <a name="quote_quote">quote_quote</a> </b> <b class="vimtag"> <a name="quotequote">quotequote</a> </b>
-用 "d"、"c"、"s"、"x" 等命令删除或者用 "y" 等抽出命令复制的文本都被 Vim 用来填
-充该寄存器，不管是否用到别的专门寄存器 (例如 "xdd)。这就好像无名寄存器是指向最
-近使用的那个寄存器的指针一样。使用大写寄存器进行添加时，无名寄存器包含和命名寄
-存器相同的文本。'_' 寄存器是一个特例。"_dd 不把删除的文本存在任何寄存器里。
-不指定寄存器的放置命令 (p 或 P) 使用无名寄存器的内容。你也可以用 '"' 作为名字
-来访问该寄存器。这意味着要输入两个连续的双引号。写入 "" 寄存器将实际写到寄存器
+1. 無名寄存器 ""                                <b class="vimtag"> <a name="quote_quote">quote_quote</a> </b> <b class="vimtag"> <a name="quotequote">quotequote</a> </b>
+用 "d"、"c"、"s"、"x" 等命令刪除或者用 "y" 等抽出命令複製的文本都被 Vim 用來填
+充該寄存器，不管是否用到別的專門寄存器 (例如 "xdd)。這就好像無名寄存器是指向最
+近使用的那個寄存器的指針一樣。使用大寫寄存器進行添加時，無名寄存器包含和命名寄
+存器相同的文本。'_' 寄存器是一個特例。"_dd 不把刪除的文本存在任何寄存器裡。
+不指定寄存器的放置命令 (p 或 P) 使用無名寄存器的內容。你也可以用 '"' 作為名字
+來訪問該寄存器。這意味著要輸入兩個連續的雙引號。寫入 "" 寄存器將實際寫到寄存器
 "0 上。
-<code class="notvi">{Vi: 寄存器内容在更换文件时丢失，没有 '"'}</code>
+<code class="notvi">{Vi: 寄存器內容在更換文件時丟失，沒有 '"'}</code>
 
-2. 编号寄存器 "0 到 "9                  <b class="vimtag"> <a name="quote_number">quote_number</a> </b> <b class="vimtag"> <a name="quote0">quote0</a> </b> <b class="vimtag"> <a name="quote1">quote1</a> </b>
+2. 編號寄存器 "0 到 "9                  <b class="vimtag"> <a name="quote_number">quote_number</a> </b> <b class="vimtag"> <a name="quote0">quote0</a> </b> <b class="vimtag"> <a name="quote1">quote1</a> </b>
                                         <b class="vimtag"> <a name="quote2">quote2</a> </b> <b class="vimtag"> <a name="quote3">quote3</a> </b> <b class="vimtag"> <a name="quote4">quote4</a> </b> <b class="vimtag"> <a name="quote9">quote9</a> </b>
-Vim 把抽出和删除命令的文本保存在这些寄存器里。
-   编号寄存器 0 包含最近抽出的文本，除非该命令用 ["x] 指定了别的寄存器。
-   编号寄存器 1 包含了最近删除或者修改的文本，除非该命令用 ["x] 指定了别的寄存
-器或者该文本小于一行 (该情况下使用行内删除寄存器)。以下移动命令在应用删除操作
-符时例外:  <a href="motion.html#%">%</a> 、 <a href="motion.html#(">(</a> 、  <a href="motion.html#)">)</a> 、 <a href="motion.html#`">`</a> 、 <a href="pattern.html#%2F">/</a> 、 <a href="pattern.html#?">?</a> 、 <a href="pattern.html#n">n</a> 、 <a href="pattern.html#N">N</a> 、 <a href="motion.html#{">{</a>  和  <a href="motion.html#}">}</a> 。它们总是使用寄
-存器 "1 (为了和 Vi 兼容)。如果文本小于一行，同时使用 "- 寄存器。
-<code class="note">注意</code> 这些字符可能会被映射。例如，matchit 插件会映射 % 字符。
-   每来一次新的删除和修改，Vim 把前一次的寄存器 1 的内容复制到寄存器 2，2 到
-3，依此类推。而寄存器 9 的内容就丢失了。
-<code class="notvi">{Vi: 编号寄存器的内容在更换文件时丢失；寄存器 0 不存在}</code>
+Vim 把抽出和刪除命令的文本保存在這些寄存器裡。
+   編號寄存器 0 包含最近抽出的文本，除非該命令用 ["x] 指定了別的寄存器。
+   編號寄存器 1 包含了最近刪除或者修改的文本，除非該命令用 ["x] 指定了別的寄存
+器或者該文本小於一行 (該情況下使用行內刪除寄存器)。以下移動命令在應用刪除操作
+符時例外:  <a href="motion.html#%">%</a> 、 <a href="motion.html#(">(</a> 、  <a href="motion.html#)">)</a> 、 <a href="motion.html#`">`</a> 、 <a href="pattern.html#%2F">/</a> 、 <a href="pattern.html#?">?</a> 、 <a href="pattern.html#n">n</a> 、 <a href="pattern.html#N">N</a> 、 <a href="motion.html#{">{</a>  和  <a href="motion.html#}">}</a> 。它們總是使用寄
+存器 "1 (為了和 Vi 兼容)。如果文本小於一行，同時使用 "- 寄存器。
+<code class="note">注意</code> 這些字符可能會被映射。例如，matchit 插件會映射 % 字符。
+   每來一次新的刪除和修改，Vim 把前一次的寄存器 1 的內容複製到寄存器 2，2 到
+3，依此類推。而寄存器 9 的內容就丟失了。
+<code class="notvi">{Vi: 編號寄存器的內容在更換文件時丟失；寄存器 0 不存在}</code>
 
-3. 行内删除寄存器 "-                                    <b class="vimtag"> <a name="quote_-">quote_-</a> </b> <b class="vimtag"> <a name="quote-">quote-</a> </b>
-该寄存器保存删除不到一行内容的命令的文本，除非该命令用 ["x] 指定了寄存器。
-<code class="notvi">{Vi 无此功能}</code>
+3. 行內刪除寄存器 "-                                    <b class="vimtag"> <a name="quote_-">quote_-</a> </b> <b class="vimtag"> <a name="quote-">quote-</a> </b>
+該寄存器保存刪除不到一行內容的命令的文本，除非該命令用 ["x] 指定了寄存器。
+<code class="notvi">{Vi 無此功能}</code>
 
 4. 命名寄存器 "a 到 "z 或者 "A 到 "Z                    <b class="vimtag"> <a name="quote_alpha">quote_alpha</a> </b> <b class="vimtag"> <a name="quotea">quotea</a> </b>
-Vim 只有在你指定的时候才使用这些寄存器。指定为小写字母时替换原来的内容，指定为
-大写字母时附加到原来的内容。如果 <a href="options.html#'cpoptions'">'cpoptions'</a> 里有 '&gt;' 标志位，在附加文本前插入
-一个换行符。
+Vim 只有在你指定的時候才使用這些寄存器。指定為小寫字母時替換原來的內容，指定為
+大寫字母時附加到原來的內容。如果 <a href="options.html#'cpoptions'">'cpoptions'</a> 裡有 '&gt;' 標誌位，在附加文本前插入
+一個換行符。
 
 
-5. 只读寄存器 ":、". 和 "%
-它们是 '%'、'#' (<code class="vim">译者注</code>: 原文如此)、':' 和 '.'。你只能在 "p"、"P"、":put" 命令
-和 <code class="keystroke">CTRL-R</code> 的时候使用它们。<code class="notvi">{Vi 无此功能}</code>
+5. 只讀寄存器 ":、". 和 "%
+它們是 '%'、'#' (<code class="vim">譯者注</code>: 原文如此)、':' 和 '.'。你只能在 "p"、"P"、":put" 命令
+和 <code class="keystroke">CTRL-R</code> 的時候使用它們。<code class="notvi">{Vi 無此功能}</code>
                                                 <b class="vimtag"> <a name="quote_.">quote_.</a> </b> <b class="vimtag"> <a name="quote.">quote.</a> </b> <b class="vimtag"> <a name="E29">E29</a> </b>
         ".      包含最近插入的文本 (和插入模式命令 <code class="keystroke">CTRL-A</code> 和 <code class="keystroke">CTRL-@</code> 插入的一
-                样)。<code class="note">注意</code>: 它不适用于 <code class="keystroke">CTRL-R</code> 在命令行上的操作。它的工作方式稍
-                有不同，例如，文本是被插入而不是放置的 (<a href="options.html#'textwidth'">'textwidth'</a> 和其它选项
-                影响插入的内容)。
+                樣)。<code class="note">注意</code>: 它不適用於 <code class="keystroke">CTRL-R</code> 在命令行上的操作。它的工作方式稍
+                有不同，例如，文本是被插入而不是放置的 (<a href="options.html#'textwidth'">'textwidth'</a> 和其它選項
+                影響插入的內容)。
                                                         <b class="vimtag"> <a name="quote_%">quote_%</a> </b> <b class="vimtag"> <a name="quote%">quote%</a> </b>
-        "%      包含当前文件名。
+        "%      包含當前文件名。
                                                 <b class="vimtag"> <a name="quote_:">quote_:</a> </b> <b class="vimtag"> <a name="quote:">quote:</a> </b> <b class="vimtag"> <a name="E30">E30</a> </b>
-        ":      包含最近执行过的命令行。例如: 用 "@:" 重复上次执行过的命令行命
-                令。只有当一个命令行中至少一个字符是键入的，该寄存器才会保存命
-                令行的内容。所以，如果命令行完全来自映射，该寄存器保持不变。
-                <code class="notvi">{仅当编译时加入  <a href="various.html#+cmdline_hist">+cmdline_hist</a>  特性才有效}</code>
+        ":      包含最近執行過的命令行。例如: 用 "@:" 重複上次執行過的命令行命
+                令。只有當一個命令行中至少一個字符是鍵入的，該寄存器才會保存命
+                令行的內容。所以，如果命令行完全來自映射，該寄存器保持不變。
+                <code class="notvi">{僅當編譯時加入  <a href="various.html#+cmdline_hist">+cmdline_hist</a>  特性才有效}</code>
                                                         <b class="vimtag"> <a name="quote_%23">quote_#</a> </b> <b class="vimtag"> <a name="quote%23">quote#</a> </b>
-6. 轮换文件寄存器 "#
-包含当前窗口轮换文件的名字。它影响 <code class="keystroke">CTRL-^</code> 的命令的工作方式。
-该寄存器是可写的，主要用来帮助插件在改变其值后恢复原值。接受缓冲区号: 
+6. 輪換文件寄存器 "#
+包含當前窗口輪換文件的名字。它影響 <code class="keystroke">CTRL-^</code> 的命令的工作方式。
+該寄存器是可寫的，主要用來幫助插件在改變其值後恢復原值。接受緩衝區號: 
 <code class="example">    let altbuf = bufnr(@#)</code>
 <code class="example">    ...</code>
 <code class="example">    let @# = altbuf</code>
-如果传递了不存在的缓冲区号，会报错  <a href="windows.html#E86">E86</a> 。
-也可接受现有缓冲区名的匹配: 
+如果傳遞了不存在的緩衝區號，會報錯  <a href="windows.html#E86">E86</a> 。
+也可接受現有緩衝區名的匹配: 
 <code class="example">    let @# = 'buffer_name'</code>
-如果有多于一个缓冲区匹配该名，报错  <a href="windows.html#E93">E93</a> ，如果没有缓冲区匹配该名，也会报错
+如果有多於一個緩衝區匹配該名，報錯  <a href="windows.html#E93">E93</a> ，如果沒有緩衝區匹配該名，也會報錯
  <a href="windows.html#E94">E94</a> 。
 
-7. 表达式寄存器 "=                              <b class="vimtag"> <a name="quote_%20">quote_=</a> </b> <b class="vimtag"> <a name="quote%20">quote=</a> </b> <b class="vimtag"> <a name="@%20">@=</a> </b>
-其实并没有这么一个寄存器可以储存文本，但是这是用来在使用寄存器的命令中使用表达
-式的一个方式。表达式寄存器是可读写的。
+7. 表達式寄存器 "=                              <b class="vimtag"> <a name="quote_%20">quote_=</a> </b> <b class="vimtag"> <a name="quote%20">quote=</a> </b> <b class="vimtag"> <a name="@%20">@=</a> </b>
+其實並沒有這麼一個寄存器可以儲存文本，但是這是用來在使用寄存器的命令中使用表達
+式的一個方式。表達式寄存器是可讀寫的。
 
-" 之后输入 '=' 或者输入 <code class="keystroke">CTRL-R</code> 时，光标移到命令行上，这时你可以输入任何的表达
-式 (见  <a href="eval.html#expression">expression</a> )。所有普通的命令行编辑命令都可以使用，还有一个表达式专门的
-历史表。当你按回车结束命令行时，Vim 计算表达式的结果。如果你用 <code class="special">&lt;Esc&gt;</code> 结束，Vim
-终止表达式。如果你不输入表达式，Vim 使用最近的表达式 (和 "/" 命令的处理相似)。
+" 之後輸入 '=' 或者輸入 <code class="keystroke">CTRL-R</code> 時，光標移到命令行上，這時你可以輸入任何的表達
+式 (見  <a href="eval.html#expression">expression</a> )。所有普通的命令行編輯命令都可以使用，還有一個表達式專門的
+歷史表。當你按回車結束命令行時，Vim 計算表達式的結果。如果你用 <code class="special">&lt;Esc&gt;</code> 結束，Vim
+終止表達式。如果你不輸入表達式，Vim 使用最近的表達式 (和 "/" 命令的處理相似)。
 
-表达式的计算结果必须是一个字符串。数值结果会自动转化为字符串。对 "p" 和 ":put"
-命令而言，浮点数结果也会被转化为字符串。如果结果为列表，每个成员被转成字符串，
-然后被单独放在一行上。字典、函数引用类型的结果则产生错误信息 (通过 string() 转
+表達式的計算結果必須是一個字符串。數值結果會自動轉化為字符串。對 "p" 和 ":put"
+命令而言，浮點數結果也會被轉化為字符串。如果結果為列表，每個成員被轉成字符串，
+然後被單獨放在一行上。字典、函數引用類型的結果則產生錯誤信息 (通過 string() 轉
 化)。
 
-如果 "= 寄存器被 "p" 命令使用，该字符串会在 <code class="special">&lt;NL&gt;</code> 字符处断开。如果该字符串以
-<code class="special">&lt;NL&gt;</code> 结尾，则它被视为一个面向行的寄存器。<code class="notvi">{Vi 无此功能}</code>
+如果 "= 寄存器被 "p" 命令使用，該字符串會在 <code class="special">&lt;NL&gt;</code> 字符處斷開。如果該字符串以
+<code class="special">&lt;NL&gt;</code> 結尾，則它被視為一個面向行的寄存器。<code class="notvi">{Vi 無此功能}</code>
 
-8. 选择和拖放寄存器 "*、"+ 和 "~ 
-用这些寄存器来保存和取得 GUI 界面选择的文本。参见  <a href="gui.html#quotestar">quotestar</a>  和  <a href="gui_x11.html#quoteplus">quoteplus</a> 。
-如果剪贴板不存在或者不工作，使用无名寄存器。Unix 上，仅当  <a href="various.html#+xterm_clipboard">+xterm_clipboard</a> 
-特性存在时剪贴板才可用。<code class="notvi">{Vi 无此功能}</code>
+8. 選擇和拖放寄存器 "*、"+ 和 "~ 
+用這些寄存器來保存和取得 GUI 界面選擇的文本。參見  <a href="gui.html#quotestar">quotestar</a>  和  <a href="gui_x11.html#quoteplus">quoteplus</a> 。
+如果剪貼板不存在或者不工作，使用無名寄存器。Unix 上，僅當  <a href="various.html#+xterm_clipboard">+xterm_clipboard</a> 
+特性存在時剪貼板才可用。<code class="notvi">{Vi 無此功能}</code>
 
-<code class="note">注意</code> "* 和 "+ 在 X11 系统上有分别。关于该差别的解释，参见  <a href="gui_x11.html#x11-selection">x11-selection</a> 。在
-MS-Windows 上，"* 和 "+ 的使用实际上是等价的，可见  <a href="gui_w32.html#gui-clipboard">gui-clipboard</a> 。
+<code class="note">注意</code> "* 和 "+ 在 X11 系統上有分別。關於該差別的解釋，參見  <a href="gui_x11.html#x11-selection">x11-selection</a> 。在
+MS-Windows 上，"* 和 "+ 的使用實際上是等價的，可見  <a href="gui_w32.html#gui-clipboard">gui-clipboard</a> 。
 
                                                 <b class="vimtag"> <a name="quote_%7E">quote_~</a> </b> <b class="vimtag"> <a name="quote%7E">quote~</a> </b> <b class="vimtag"> <a name="%3CDrop%3E">&lt;Drop&gt;</a> </b>
-只读的 "~ 寄存器保存最近一次拖放操作放下的文本。如果有什么东西被放到 Vim 上，
-"~ 寄存器被填充，<code class="special">&lt;Drop&gt;</code> 虚拟键被激活。如果你需要，你可以重定义该键的映射；缺省
-的动作 (适用于所有模式) 是把 "~ 寄存器的内容插入到当前光标位置。<code class="notvi">{Vi 无此功能}</code>
-<code class="notvi">{仅当编译时加入  <a href="various.html#+dnd">+dnd</a>  特性才有效，当前只适用于 GTK GUI 版本}</code>
+只讀的 "~ 寄存器保存最近一次拖放操作放下的文本。如果有什麼東西被放到 Vim 上，
+"~ 寄存器被填充，<code class="special">&lt;Drop&gt;</code> 虛擬鍵被激活。如果你需要，你可以重定義該鍵的映射；缺省
+的動作 (適用於所有模式) 是把 "~ 寄存器的內容插入到當前光標位置。<code class="notvi">{Vi 無此功能}</code>
+<code class="notvi">{僅當編譯時加入  <a href="various.html#+dnd">+dnd</a>  特性才有效，當前只適用於 GTK GUI 版本}</code>
 
-<code class="note">注意</code>: "~ 寄存器仅用于在 Vim 上拖放普通文本。拖放 URI 列表在内部处理。
+<code class="note">注意</code>: "~ 寄存器僅用於在 Vim 上拖放普通文本。拖放 URI 列表在內部處理。
 
 9. 黑洞寄存器 "_                                <b class="vimtag"> <a name="quote_">quote_</a> </b>
-当写到这个寄存器时，什么都不会发生。这可以用来删除文本，而不影响任何正常的寄存
-器。从该寄存器读时，什么都不会返回。<code class="notvi">{Vi 无此功能}</code>
+當寫到這個寄存器時，什麼都不會發生。這可以用來刪除文本，而不影響任何正常的寄存
+器。從該寄存器讀時，什麼都不會返回。<code class="notvi">{Vi 無此功能}</code>
 
 10. 最近搜索模式寄存器  "/                      <b class="vimtag"> <a name="quote_%2F">quote_/</a> </b> <b class="vimtag"> <a name="quote%2F">quote/</a> </b>
-含有最近搜索的模式。它被 "n" 和 <a href="options.html#'hlsearch'">'hlsearch'</a> 使用。可以用  <a href="eval.html#:let">:let</a>  来修改。你可以
-改变它使得 <a href="options.html#'hlsearch'">'hlsearch'</a> 不经过实际的搜索直接高亮某些匹配。你不能把抽出或者删除命
-令的内容放到该寄存器上。搜索方向则可从  <a href="eval.html#v:searchforward">v:searchforward</a>  得到。
-<code class="note">注意</code> 从函数返回时该值被复原  <a href="eval.html#function-search-undo">function-search-undo</a> 。
-<code class="notvi">{Vi 无此功能}</code>
+含有最近搜索的模式。它被 "n" 和 <a href="options.html#'hlsearch'">'hlsearch'</a> 使用。可以用  <a href="eval.html#:let">:let</a>  來修改。你可以
+改變它使得 <a href="options.html#'hlsearch'">'hlsearch'</a> 不經過實際的搜索直接高亮某些匹配。你不能把抽出或者刪除命
+令的內容放到該寄存器上。搜索方向則可從  <a href="eval.html#v:searchforward">v:searchforward</a>  得到。
+<code class="note">注意</code> 從函數返回時該值被復原  <a href="eval.html#function-search-undo">function-search-undo</a> 。
+<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="@%2F">@/</a> </b>
-你可以用  <a href="eval.html#:let">:let</a>  命令写到一个寄存器  <a href="eval.html#:let-@">:let-@</a> 。例如: 
+你可以用  <a href="eval.html#:let">:let</a>  命令寫到一個寄存器  <a href="eval.html#:let-@">:let-@</a> 。例如: 
 <code class="example">        :let @/ = "the"</code>
 <code class="example"></code>
-如果你用放置命令而不指定寄存器，Vim 使用上次填充的寄存器 (这也是无名寄存器的内
-容)。如果你弄糊涂了，用  <code class="badlink">:dis</code>  命令看看 Vim 会放置什么内容 (该命令显示所有的有
-名和无名的寄存器；无名寄存器被标为 '"')。
+如果你用放置命令而不指定寄存器，Vim 使用上次填充的寄存器 (這也是無名寄存器的內
+容)。如果你弄糊塗了，用  <code class="badlink">:dis</code>  命令看看 Vim 會放置什麼內容 (該命令顯示所有的有
+名和無名的寄存器；無名寄存器被標為 '"')。
 
-下面三个命令总是针对整行工作。
+下面三個命令總是針對整行工作。
 
 :<code class="special">[range]</code>co[py] <code class="special">{address}</code>                                <b class="vimtag"> <a name=":co">:co</a> </b> <b class="vimtag"> <a name=":copy">:copy</a> </b>
-                        把 <code class="special">[range]</code> 指定的行复制到 <code class="special">{address}</code> 给出的行之下。
+                        把 <code class="special">[range]</code> 指定的行複製到 <code class="special">{address}</code> 給出的行之下。
 
                                                         <b class="vimtag"> <a name=":t">:t</a> </b>
-:t                      和 :copy 等价。
+:t                      和 :copy 等價。
 
 :<code class="special">[range]</code>m[ove] <code class="special">{address}</code>                        <b class="vimtag"> <a name=":m">:m</a> </b> <b class="vimtag"> <a name=":mo">:mo</a> </b> <b class="vimtag"> <a name=":move">:move</a> </b> <b class="vimtag"> <a name="E134">E134</a> </b>
-                        把 <code class="special">[range]</code> 指定的行移动到 <code class="special">{address}</code> 给出的行之下。
+                        把 <code class="special">[range]</code> 指定的行移動到 <code class="special">{address}</code> 給出的行之下。
 
 </pre><hr class="doubleline" /><pre>
 <h4>6. 文本排版                                             <b class="vimtag"> <a name="formatting">formatting</a> </b></h4>
 :<code class="special">[range]</code>ce[nter] <code class="special">[width]</code>                                <b class="vimtag"> <a name=":ce">:ce</a> </b> <b class="vimtag"> <a name=":center">:center</a> </b>
-                        在 <code class="special">[range]</code> 指定范围的行和 <code class="special">[width]</code> 限定的列 (缺省为
-                        <a href="options.html#'textwidth'">'textwidth'</a>，如其为 0，则取 80) 范围内的文本居中对齐。
-                        <code class="notvi">{Vi 无此功能}</code>
+                        在 <code class="special">[range]</code> 指定範圍的行和 <code class="special">[width]</code> 限定的列 (缺省為
+                        <a href="options.html#'textwidth'">'textwidth'</a>，如其為 0，則取 80) 範圍內的文本居中對齊。
+                        <code class="notvi">{Vi 無此功能}</code>
 
 :<code class="special">[range]</code>ri[ght] <code class="special">[width]</code>                                 <b class="vimtag"> <a name=":ri">:ri</a> </b> <b class="vimtag"> <a name=":right">:right</a> </b>
-                        在 <code class="special">[range]</code> 指定范围的行和 <code class="special">[width]</code> 限定的列 (缺省为
-                        <a href="options.html#'textwidth'">'textwidth'</a>，如其为 0，则取 80) 范围内的文本靠右对齐。
-                        <code class="notvi">{Vi 无此功能}</code>
+                        在 <code class="special">[range]</code> 指定範圍的行和 <code class="special">[width]</code> 限定的列 (缺省為
+                        <a href="options.html#'textwidth'">'textwidth'</a>，如其為 0，則取 80) 範圍內的文本靠右對齊。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":le">:le</a> </b> <b class="vimtag"> <a name=":left">:left</a> </b>
 :<code class="special">[range]</code>le[ft] <code class="special">[indent]</code>
-                        在 <code class="special">[range]</code> 指定范围的行的文本靠左对齐。其缩进的距离可
-                        由 <code class="special">[indent]</code> 设置 (缺省为 0)。
-                        <code class="notvi">{Vi 无此功能}</code>
+                        在 <code class="special">[range]</code> 指定範圍的行的文本靠左對齊。其縮進的距離可
+                        由 <code class="special">[indent]</code> 設置 (缺省為 0)。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="gq">gq</a> </b>
-gq<code class="special">{motion}</code>              对 <code class="special">{motion}</code> 动作跨越的行进行排版。
-                        排版使用如下三种方式之一:
-                        1. 如果 <a href="options.html#'formatexpr'">'formatexpr'</a> 不为空，计算该表达式。每个缓冲区
+gq<code class="special">{motion}</code>              對 <code class="special">{motion}</code> 動作跨越的行進行排版。
+                        排版使用如下三種方式之一:
+                        1. 如果 <a href="options.html#'formatexpr'">'formatexpr'</a> 不為空，計算該表達式。每個緩衝區
                            的值可以不同。
-                        2. 如果 <a href="options.html#'formatprg'">'formatprg'</a> 不为空，使用外部程序。
-                        3. 否则，使用内部排版机制。
+                        2. 如果 <a href="options.html#'formatprg'">'formatprg'</a> 不為空，使用外部程序。
+                        3. 否則，使用內部排版機制。
 
-                        第三种方式使用 <a href="options.html#'textwidth'">'textwidth'</a> 选项控制所有待排版行的行宽
-                        (见下)。
-                        如果 <a href="options.html#'textwidth'">'textwidth'</a> 选项为 0，则排版行宽设为屏幕的宽度
-                        (但最大宽度不超过 79)。
-                        <a href="options.html#'formatoptions'">'formatoptions'</a> 选项控制排版的方式  <a href="change.html#fo-table">fo-table</a> 。
-                        光标停留在排版行末行的第一个非空白处。
-                        <code class="note">注意</code>: "Q" 命令以前执行此项功能。如果你还想继续用 "Q"
-                        来排版，执行如下映射命令: 
+                        第三種方式使用 <a href="options.html#'textwidth'">'textwidth'</a> 選項控制所有待排版行的行寬
+                        (見下)。
+                        如果 <a href="options.html#'textwidth'">'textwidth'</a> 選項為 0，則排版行寬設為屏幕的寬度
+                        (但最大寬度不超過 79)。
+                        <a href="options.html#'formatoptions'">'formatoptions'</a> 選項控制排版的方式  <a href="change.html#fo-table">fo-table</a> 。
+                        光標停留在排版行末行的第一個非空白處。
+                        <code class="note">注意</code>: "Q" 命令以前執行此項功能。如果你還想繼續用 "Q"
+                        來排版，執行如下映射命令: 
 <code class="example">                                :nnoremap Q gq</code>
 <code class="example"></code>
 gqgq                                                    <b class="vimtag"> <a name="gqgq">gqgq</a> </b> <b class="vimtag"> <a name="gqq">gqq</a> </b>
-gqq                     排版当前行。如带计数排版相应多行。<code class="notvi">{Vi 无此功能}</code>
+gqq                     排版當前行。如帶計數排版相應多行。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="v_gq">v_gq</a> </b>
-<code class="special">{Visual}</code>gq              排版高亮文本 (<code class="special">{Visual}</code> 的部分参见  <a href="visual.html#Visual-mode">Visual-mode</a> )。
-                        <code class="notvi">{Vi 无此功能}</code>
+<code class="special">{Visual}</code>gq              排版高亮文本 (<code class="special">{Visual}</code> 的部分參見  <a href="visual.html#Visual-mode">Visual-mode</a> )。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="gw">gw</a> </b>
-gw<code class="special">{motion}</code>              对 <code class="special">{motion}</code> 动作跨越的行进行排版。和  <a href="change.html#gq">gq</a>  类似，但排版
-                        后光标恢复原位。而且不使用 <a href="options.html#'formatprg'">'formatprg'</a> 和 <a href="options.html#'formatexpr'">'formatexpr'</a>
-                        选项。
-                        <code class="notvi">{Vi 无此功能}</code>
+gw<code class="special">{motion}</code>              對 <code class="special">{motion}</code> 動作跨越的行進行排版。和  <a href="change.html#gq">gq</a>  類似，但排版
+                        後光標恢復原位。而且不使用 <a href="options.html#'formatprg'">'formatprg'</a> 和 <a href="options.html#'formatexpr'">'formatexpr'</a>
+                        選項。
+                        <code class="notvi">{Vi 無此功能}</code>
 
 gwgw                                                    <b class="vimtag"> <a name="gwgw">gwgw</a> </b> <b class="vimtag"> <a name="gww">gww</a> </b>
-gww                     对当前行排版，其它和 "gw" 类同。<code class="notvi">{Vi 无此功能}</code>
+gww                     對當前行排版，其它和 "gw" 類同。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="v_gw">v_gw</a> </b>
-<code class="special">{Visual}</code>gw              排版高亮文本，其它和 "gw" 类同。(<code class="special">{Visual}</code> 可见
-                         <a href="visual.html#Visual-mode">Visual-mode</a> )。<code class="notvi">{Vi 无此功能}</code>
+<code class="special">{Visual}</code>gw              排版高亮文本，其它和 "gw" 類同。(<code class="special">{Visual}</code> 可見
+                         <a href="visual.html#Visual-mode">Visual-mode</a> )。<code class="notvi">{Vi 無此功能}</code>
 
-例如: 要排版当前段落，可用:                                     <b class="vimtag"> <a name="gqap">gqap</a> </b>  
+例如: 要排版當前段落，可用:                                     <b class="vimtag"> <a name="gqap">gqap</a> </b>  
 <code class="example">        gqap</code>
 <code class="example"></code>
-"gq" 命令后，光标随着指定的移动命令移动。这使得用 "." 进行连续排版成为可能。例
-如，"gqj" (对当前行和下一行排版) 和 "gq}" (排版到段落尾) 便可如此。<code class="note">注意</code>: 如果
-设置了 <a href="options.html#'formatprg'">'formatprg'</a>，"gq" 把光标留在排版后的首行 (如同过滤命令那般)。
+"gq" 命令後，光標隨著指定的移動命令移動。這使得用 "." 進行連續排版成為可能。例
+如，"gqj" (對當前行和下一行排版) 和 "gq}" (排版到段落尾) 便可如此。<code class="note">注意</code>: 如果
+設置了 <a href="options.html#'formatprg'">'formatprg'</a>，"gq" 把光標留在排版後的首行 (如同過濾命令那般)。
 
-如果你想对当前段落排版后留在原来的位置，可用: 
+如果你想對當前段落排版後留在原來的位置，可用: 
 <code class="example">        gwap</code>
-如果你想使段落自动排版，可以在 <a href="options.html#'formatoptions'">'formatoptions'</a> 里加入 'a' 标志位。参见
+如果你想使段落自動排版，可以在 <a href="options.html#'formatoptions'">'formatoptions'</a> 裡加入 'a' 標誌位。參見
  <a href="change.html#auto-format">auto-format</a> 。
 
-如果 <a href="options.html#'autoindent'">'autoindent'</a> 选项打开，Vim 用首行的缩进距离排版其后的所有行。
+如果 <a href="options.html#'autoindent'">'autoindent'</a> 選項打開，Vim 用首行的縮進距離排版其後的所有行。
 
-排版不会改变空行 (但会改变只有空白字符的行！)。
+排版不會改變空行 (但會改變只有空白字符的行！)。
 
-如果有连接行的操作，应用 <a href="options.html#'joinspaces'">'joinspaces'</a> 选项。
+如果有連接行的操作，應用 <a href="options.html#'joinspaces'">'joinspaces'</a> 選項。
 
-你可以设置 <a href="options.html#'formatexpr'">'formatexpr'</a> 选项为某表达式或设置 <a href="options.html#'formatprg'">'formatprg'</a> 选项为外部程序名，Vim
-会用之进行文本排版。<a href="options.html#'textwidth'">'textwidth'</a> 等选项对外部程序的排版不起作用。
+你可以設置 <a href="options.html#'formatexpr'">'formatexpr'</a> 選項為某表達式或設置 <a href="options.html#'formatprg'">'formatprg'</a> 選項為外部程序名，Vim
+會用之進行文本排版。<a href="options.html#'textwidth'">'textwidth'</a> 等選項對外部程序的排版不起作用。
 
                                                         <b class="vimtag"> <a name="right-justify">right-justify</a> </b>
-Vim 没有靠右控制对齐 (right justify) 文本的命令。你可以用 "par" 这样的外部命令
-来实现 (例如， "!}par" 对到段落尾的文本排版)，或者设置 <a href="options.html#'formatprg'">'formatprg'</a> 为 "par"。
+Vim 沒有靠右控制對齊 (right justify) 文本的命令。你可以用 "par" 這樣的外部命令
+來實現 (例如， "!}par" 對到段落尾的文本排版)，或者設置 <a href="options.html#'formatprg'">'formatprg'</a> 為 "par"。
 
                                                         <b class="vimtag"> <a name="format-comments">format-comments</a> </b>
-用户手册的  <a href="usr_30.html#30.6">30.6</a>  一节给出注释排版的总览。
+用戶手冊的  <a href="usr_30.html#30.6">30.6</a>  一節給出註釋排版的總覽。
 
-Vim 可以自动对注释的插入和排版进行特殊处理。Vim 把以特定字符串开头 (忽略空白)
-的行识别为注释。以下是三种不同类型的注释:
+Vim 可以自動對註釋的插入和排版進行特殊處理。Vim 把以特定字符串開頭 (忽略空白)
+的行識別為註釋。以下是三種不同類型的註釋:
 
-- 在每行的开头都出现的注释字符串。例如，外壳脚本使用的注释行都以 "#" 开头。
-- 只在首行出现的注释字符串。使用连字符 "-" 的本列表就是这样的一个例子，
-- 由三部分组成的注释，包括起始字符串，结尾字符串，和两者之间可选的行的起始字符
-  串。三种字符串可分别指定。如下 C 风格的注释就是如此:
+- 在每行的開頭都出現的註釋字符串。例如，外殼腳本使用的註釋行都以 "#" 開頭。
+- 只在首行出現的註釋字符串。使用連字符 "-" 的本列表就是這樣的一個例子，
+- 由三部分組成的註釋，包括起始字符串，結尾字符串，和兩者之間可選的行的起始字符
+  串。三種字符串可分別指定。如下 C 風格的註釋就是如此:
         /*
          * this is a C comment
          */
 
-<a href="options.html#'comments'">'comments'</a> 选项是一个由逗号分隔的列表。每个部分定义一种类型的注释字符串。每个
-部分的组成方式是:
+<a href="options.html#'comments'">'comments'</a> 選項是一個由逗號分隔的列表。每個部分定義一種類型的註釋字符串。每個
+部分的組成方式是:
         <code class="special">{flags}</code>:<code class="special">{string}</code>
 
-<code class="special">{string}</code> 是必须出现的字符串 (不作转义)。
+<code class="special">{string}</code> 是必須出現的字符串 (不作轉義)。
 
 <code class="special">{flags}</code>:
-  n     可嵌套的注释: 允许多个部分间的嵌套。例如，<a href="options.html#'comments'">'comments'</a> 为 "n:),n:&gt;"。则
-        以 "&gt; ) &gt;" 开始的行视为注释。
+  n     可嵌套的註釋: 允許多個部分間的嵌套。例如，<a href="options.html#'comments'">'comments'</a> 為 "n:),n:&gt;"。則
+        以 "&gt; ) &gt;" 開始的行視為註釋。
 
-  b     在 <code class="special">{string}</code> 之后必须有空白字符 (<code class="special">&lt;Space&gt;</code>、<code class="special">&lt;Tab&gt;</code> 或 <code class="special">&lt;EOL&gt;</code>)。
+  b     在 <code class="special">{string}</code> 之後必須有空白字符 (<code class="special">&lt;Space&gt;</code>、<code class="special">&lt;Tab&gt;</code> 或 <code class="special">&lt;EOL&gt;</code>)。
 
-  f     该注释字符串只在首行出现。下一行不重复注释，但保留相同的缩进 (例如，带
-        符号的列表 (bullet-list))。
+  f     該註釋字符串只在首行出現。下一行不重複註釋，但保留相同的縮進 (例如，帶
+        符號的列表 (bullet-list))。
 
-  s     三段式注释的起始字符串
+  s     三段式註釋的起始字符串
 
-  m     三段式注释的中间字符串
+  m     三段式註釋的中間字符串
 
-  e     三段式注释的结尾字符串
+  e     三段式註釋的結尾字符串
 
-  l     左对齐。和 's' 或 'e' 一起使用。起始或结尾字符串的最左字符和中间字符串
-        的最左字符对齐。
-        这是缺省值，可以省略。详情见下。
+  l     左對齊。和 's' 或 'e' 一起使用。起始或結尾字符串的最左字符和中間字符串
+        的最左字符對齊。
+        這是缺省值，可以省略。詳情見下。
 
-  r     右对齐。同上，不过不是最左字符而是最右字符。详情见下。
+  r     右對齊。同上，不過不是最左字符而是最右字符。詳情見下。
 
-  O     "O" 命令不把它当作注释。
+  O     "O" 命令不把它當作註釋。
 
-  x     允许三段式注释用以下方式结束: 在中间字符串自动提供的情况下，在新行第一
-        个动作是输入结尾字符串的最后一个字符。详情见下。
+  x     允許三段式註釋用以下方式結束: 在中間字符串自動提供的情況下，在新行第一
+        個動作是輸入結尾字符串的最後一個字符。詳情見下。
 
   <code class="special">{digits}</code>
-        在和 's' 或 'e' 一起使用时: 对自动插入的中间或结尾字符串增加 <code class="special">{digit}</code>
-        单位的位移。该位移以左对齐的位置为基准。详情见下。
+        在和 's' 或 'e' 一起使用時: 對自動插入的中間或結尾字符串增加 <code class="special">{digit}</code>
+        單位的位移。該位移以左對齊的位置為基準。詳情見下。
 
   -<code class="special">{digits}</code>
-        和 <code class="special">{digits}</code> 类似，但减少缩进。这只对开始或结尾部分至少有相当数量的缩进
-        时才有效。
+        和 <code class="special">{digits}</code> 類似，但減少縮進。這只對開始或結尾部分至少有相當數量的縮進
+        時才有效。
 
-如果一个字符串没有 'f'、's'、'm' 或 'e' 任何一个标志位，Vim 假设注释字符串在每
-行都重复出现。标志位部分可以为空。
+如果一個字符串沒有 'f'、's'、'm' 或 'e' 任何一個標誌位，Vim 假設註釋字符串在每
+行都重複出現。標誌位部分可以為空。
 
-在 <code class="special">{string}</code> 之前或之后的任何空白都是 <code class="special">{string}</code> 的一部分，所以不要随便留出开头或
-结尾的空白，除非空白的确是注释字符串的一部分。
+在 <code class="special">{string}</code> 之前或之後的任何空白都是 <code class="special">{string}</code> 的一部分，所以不要隨便留出開頭或
+結尾的空白，除非空白的確是註釋字符串的一部分。
 
-如果某个注释字符串是另一个字符串的一部分，先指定完整的，再指定部分的。例如，要
+如果某個註釋字符串是另一個字符串的一部分，先指定完整的，再指定部分的。例如，要
 包含 "-" 和 "-&gt;"，用 
 <code class="example">        :set comments=f:-&gt;,f:-</code>
 <code class="example"></code>
-三段式注释必须以开始、中间和结尾三部分给出，而且不能间杂其它的部分。一个三段式
-C 注释的例子是 
+三段式註釋必須以開始、中間和結尾三部分給出，而且不能間雜其它的部分。一個三段式
+C 註釋的例子是 
 <code class="example">        sr:/*,mb:*,ex:*/</code>
-为了避免形如 "*ptr" 的内容被识别为注释，这里的中间字符串包含了 'b' 标志位。对
-三段式注释而言，Vim 从开始和中间字符串之后查找结尾字符串。如果找到，注释就不会
-再从下一行继续。三段式注释必须要有一个中间字符串，不然 Vim 无法识别中间的那些
+為了避免形如 "*ptr" 的內容被識別為註釋，這裡的中間字符串包含了 'b' 標誌位。對
+三段式註釋而言，Vim 從開始和中間字符串之後查找結尾字符串。如果找到，註釋就不會
+再從下一行繼續。三段式註釋必須要有一個中間字符串，不然 Vim 無法識別中間的那些
 行。
 
-<code class="note">注意</code> 上述三段式注释定义里的 "x" 标志位。当你在一个 C-注释里按回车时，Vim 会自
-动在新行后插入中间字符串: " * "。要结束注释，你只需要在新行里首先键入 "/"。这
-样就把中间字符串替换成结尾字符串并应用指定的对齐方式，成为了 " */"。从而省却了
-先按退格键的麻烦。
+<code class="note">注意</code> 上述三段式註釋定義裡的 "x" 標誌位。當你在一個 C-註釋裡按回車時，Vim 會自
+動在新行後插入中間字符串: " * "。要結束註釋，你只需要在新行裡首先鍵入 "/"。這
+樣就把中間字符串替換成結尾字符串並應用指定的對齊方式，成為了 " */"。從而省卻了
+先按退格鍵的麻煩。
 
-如果同时匹配中间部分和结尾部分但结尾部分更长，使用结尾部分。这样 C 风格注释就
-不需要中间部分后加空格了。
+如果同時匹配中間部分和結尾部分但結尾部分更長，使用結尾部分。這樣 C 風格註釋就
+不需要中間部分後加空格了。
 
-这里是一个关于用于对齐的标志位的例子，使得注释看起来很突出 (也很像一个 1 字)。
-考虑注释字符串: 
+這裡是一個關於用於對齊的標誌位的例子，使得註釋看起來很突出 (也很像一個 1 字)。
+考慮註釋字符串: 
 <code class="example">        :set comments=sr:/***,m:**,ex-2:******/</code>
 
 <code class="section">                                   /*** </code>
-<code class="section">                                     **&lt;--右对齐，来自 "r" 标志位 </code>
+<code class="section">                                     **&lt;--右對齊，來自 "r" 標誌位 </code>
 <code class="section">                                     ** </code>
-<code class="section">  2 个单位的位移，来自 "2" 标志位---&gt;** </code>
+<code class="section">  2 個單位的位移，來自 "2" 標誌位---&gt;** </code>
 <code class="section">                                   ******/ </code>
-该例中，第一行注释是键入的，然后按回车四次，最后按 "/" 以结束注释。
+該例中，第一行註釋是鍵入的，然後按回車四次，最後按 "/" 以結束註釋。
 
-这里是三部分注释的一些细节。有三个时间点应用对齐和位移标志位: 输入起始字符串后
-开启新行、在结尾字符串前开启新行、三部分注释的自动结束。而结尾部分的对齐标志位
-要反过来看；这样，相同的对齐标志位在分别用于 "s" 和 "e" 时才会使起始和结尾部分
-有相同的缩进。每个注释部分只应用一种对齐方式，但位移优先于 "r" 和 "l" 标志位。
+這裡是三部分註釋的一些細節。有三個時間點應用對齊和位移標誌位: 輸入起始字符串後
+開啟新行、在結尾字符串前開啟新行、三部分註釋的自動結束。而結尾部分的對齊標誌位
+要反過來看；這樣，相同的對齊標誌位在分別用於 "s" 和 "e" 時才會使起始和結尾部分
+有相同的縮進。每個註釋部分只應用一種對齊方式，但位移優先於 "r" 和 "l" 標誌位。
 
-打开 <a href="options.html#'cindent'">'cindent'</a> 在很多情况下会覆盖对齐标志位。使用其它方法，如  <a href="change.html#gq">gq</a>  或  <a href="change.html#%20">=</a>  来重
-新缩进也不会参考对齐标志位。这些其它的排版选择可以定义类似的行为。一个担心是
-<a href="options.html#'cindent'">'cindent'</a> 虽然有众多附加的选项来对注释进行基于上下文的缩进，但不能再现三部分注
-释的缩进对齐。但 <a href="options.html#'indentexpr'">'indentexpr'</a> 应该有能力很好地处理三部分注释。
+打開 <a href="options.html#'cindent'">'cindent'</a> 在很多情況下會覆蓋對齊標誌位。使用其它方法，如  <a href="change.html#gq">gq</a>  或  <a href="change.html#%20">=</a>  來重
+新縮進也不會參考對齊標誌位。這些其它的排版選擇可以定義類似的行為。一個擔心是
+<a href="options.html#'cindent'">'cindent'</a> 雖然有眾多附加的選項來對註釋進行基於上下文的縮進，但不能再現三部分注
+釋的縮進對齊。但 <a href="options.html#'indentexpr'">'indentexpr'</a> 應該有能力很好地處理三部分註釋。
 
 其它示例: 
-<code class="example">   "b:*"        包含 "*" 开头的行，但 "*" 后面不是空白的除外。这样避免指针取值</code>
-<code class="example">                操作 "*str" 被识别为注释。</code>
-<code class="example">   "n:&gt;"        包含形如 "&gt;"、"&gt;&gt;"、"&gt;&gt;&gt;" 等开头的行。</code>
-<code class="example">   "fb:-"       包含 "- " 开头的列表，可用来自动排版。</code>
+<code class="example">   "b:*"        包含 "*" 開頭的行，但 "*" 後面不是空白的除外。這樣避免指針取值</code>
+<code class="example">                操作 "*str" 被識別為註釋。</code>
+<code class="example">   "n:&gt;"        包含形如 "&gt;"、"&gt;&gt;"、"&gt;&gt;&gt;" 等開頭的行。</code>
+<code class="example">   "fb:-"       包含 "- " 開頭的列表，可用來自動排版。</code>
 <code class="example"></code>
-该选项的缺省值是 "b:#"。这意味着 "#include" 开头的行不会被认为是注释，但
-"# define" 是。这是个不得不然的妥协。
+該選項的缺省值是 "b:#"。這意味著 "#include" 開頭的行不會被認為是註釋，但
+"# define" 是。這是個不得不然的妥協。
 
-<code class="notvi">{仅当编译时加入  <a href="various.html#+comments">+comments</a>  特性才有效}</code>
+<code class="notvi">{僅當編譯時加入  <a href="various.html#+comments">+comments</a>  特性才有效}</code>
 
                                                         <b class="vimtag"> <a name="fo-table">fo-table</a> </b>
-你可以使用 <a href="options.html#'formatoptions'">'formatoptions'</a> 选项来控制 Vim 如何对文本进行排版。<a href="options.html#'formatoptions'">'formatoptions'</a>
-是一个字符串，它可以包含下列字符。缺省设置是 "tcq"。为了提高可读性，你可以用逗
-号分隔选项字符。
+你可以使用 <a href="options.html#'formatoptions'">'formatoptions'</a> 選項來控制 Vim 如何對文本進行排版。<a href="options.html#'formatoptions'">'formatoptions'</a>
+是一個字符串，它可以包含下列字符。缺省設置是 "tcq"。為了提高可讀性，你可以用逗
+號分隔選項字符。
 
-<code class="section">字符     在 <a href="options.html#'formatoptions'">'formatoptions'</a> 里代表的含义   </code>
+<code class="section">字符     在 <a href="options.html#'formatoptions'">'formatoptions'</a> 裡代表的含義   </code>
 
-t       使用 <a href="options.html#'textwidth'">'textwidth'</a> 自动回绕文本
-c       使用 <a href="options.html#'textwidth'">'textwidth'</a> 自动回绕注释，自动插入当前注释前导符。
-r       在插入模式按回车时，自动插入当前注释前导符。
-o       在普通模式按 'o' 或者 'O' 时，自动插入当前注释前导符。
-q       允许 "gq" 排版时排版注释。
-        <code class="note">注意</code> 排版不会影响空行或者只有注释前导符的行。这样的行开启一个新段落，
-        注释前导符的改变也是如此。
-w       拖尾的空格指示下一行继续同一个段落。而以非空白字符结束的行结束一个段
+t       使用 <a href="options.html#'textwidth'">'textwidth'</a> 自動迴繞文本
+c       使用 <a href="options.html#'textwidth'">'textwidth'</a> 自動迴繞註釋，自動插入當前註釋前導符。
+r       在插入模式按回車時，自動插入當前註釋前導符。
+o       在普通模式按 'o' 或者 'O' 時，自動插入當前註釋前導符。
+q       允許 "gq" 排版時排版註釋。
+        <code class="note">注意</code> 排版不會影響空行或者只有註釋前導符的行。這樣的行開啟一個新段落，
+        註釋前導符的改變也是如此。
+w       拖尾的空格指示下一行繼續同一個段落。而以非空白字符結束的行結束一個段
         落。
-a       自动排版段落。每当文本被插入或者删除时，段落都会自动进行排版。参见
+a       自動排版段落。每當文本被插入或者刪除時，段落都會自動進行排版。參見
          <a href="change.html#auto-format">auto-format</a> 。
-        如果 'c' 标志位存在，该设置只对识别的注释有效。
-n       在对文本排版时，识别编号的列表。实际上，这里使用了 <a href="options.html#'formatlistpat'">'formatlistpat'</a> 选
-        项，所以可以使用任何类型的列表。出现在数字之后的文本缩进距离被应用到后
-        面的行。数字之后可以有可选的 '.'、 ':'、')'、']' 或者 '}'。
-        <code class="note">注意</code> <a href="options.html#'autoindent'">'autoindent'</a> 也必须置位。不要和 "2" 一起使用，效果不好。
+        如果 'c' 標誌位存在，該設置只對識別的註釋有效。
+n       在對文本排版時，識別編號的列表。實際上，這裡使用了 <a href="options.html#'formatlistpat'">'formatlistpat'</a> 選
+        項，所以可以使用任何類型的列表。出現在數字之後的文本縮進距離被應用到後
+        面的行。數字之後可以有可選的 '.'、 ':'、')'、']' 或者 '}'。
+        <code class="note">注意</code> <a href="options.html#'autoindent'">'autoindent'</a> 也必須置位。不要和 "2" 一起使用，效果不好。
         示例: 
-<code class="example">                1. 第一项</code>
-<code class="example">                   回绕文字</code>
-<code class="example">                2. 第二项</code>
-2       在对文本排版时，将段落第二行而非第一行的缩进距离应用到其后的行上。这适
-        用于第一行有特殊缩进需要的段落。<code class="note">注意</code> <a href="options.html#'autoindent'">'autoindent'</a> 也必须置位。
+<code class="example">                1. 第一項</code>
+<code class="example">                   迴繞文字</code>
+<code class="example">                2. 第二項</code>
+2       在對文本排版時，將段落第二行而非第一行的縮進距離應用到其後的行上。這適
+        用於第一行有特殊縮進需要的段落。<code class="note">注意</code> <a href="options.html#'autoindent'">'autoindent'</a> 也必須置位。
         示例: 
 <code class="example">                        first line of a paragraph</code>
 <code class="example">                second line of the same paragraph</code>
 <code class="example">                third line.</code>
-        也适用于注释内部，并忽略注释前导符。
-v       Vi-兼容的插入模式自动回绕: 只有在当前输入命令键入的空白上才会分行。
-        (<code class="note">注意</code>: 这并不能 100% Vi 兼容。Vi 在这方面有些 "意想不到的特性"，换而言
-        之，漏洞。它使用屏幕列而非实际的列。)
-b       和 'v' 类似，但只有在键入空白时还没抵达或者刚到回绕边界的时候才会自动
-        回绕。如果一行在开始插入之前已经超过 <a href="options.html#'textwidth'">'textwidth'</a> 指定的长度，或者在到
-        达 <a href="options.html#'textwidth'">'textwidth'</a> 之时没有输入过空白，Vim 不会自动回绕。
-l       插入模式不分行: 当一行已经超过 <a href="options.html#'textwidth'">'textwidth'</a> 时，插入命令不会自动排版。
-m       可以在任何值高于 255 的多字节字符上分行。这对亚洲文本尤其有用，因为每
-        个字符都是单独的单位。
-M       在连接行时，不要在多字节字符之前或之后插入空格。优先于 'B' 标志位。
-B       在连接行时，不要在两个多字节字符之间插入空格。有 'M' 标志位时无效。
-1       不要在单字母单词后分行。如有可能，在它之前分行。
-j       在合适的场合，连接行时删除注释前导符。例如，连接:
+        也適用於註釋內部，並忽略註釋前導符。
+v       Vi-兼容的插入模式自動迴繞: 只有在當前輸入命令鍵入的空白上才會分行。
+        (<code class="note">注意</code>: 這並不能 100% Vi 兼容。Vi 在這方面有些 "意想不到的特性"，換而言
+        之，漏洞。它使用屏幕列而非實際的列。)
+b       和 'v' 類似，但只有在鍵入空白時還沒抵達或者剛到迴繞邊界的時候才會自動
+        迴繞。如果一行在開始插入之前已經超過 <a href="options.html#'textwidth'">'textwidth'</a> 指定的長度，或者在到
+        達 <a href="options.html#'textwidth'">'textwidth'</a> 之時沒有輸入過空白，Vim 不會自動迴繞。
+l       插入模式不分行: 當一行已經超過 <a href="options.html#'textwidth'">'textwidth'</a> 時，插入命令不會自動排版。
+m       可以在任何值高於 255 的多字節字符上分行。這對亞洲文本尤其有用，因為每
+        個字符都是單獨的單位。
+M       在連接行時，不要在多字節字符之前或之後插入空格。優先於 'B' 標誌位。
+B       在連接行時，不要在兩個多字節字符之間插入空格。有 'M' 標誌位時無效。
+1       不要在單字母單詞後分行。如有可能，在它之前分行。
+j       在合適的場合，連接行時刪除註釋前導符。例如，連接:
 <code class="section">                int i;   // the index </code>
 <code class="section">                         // in the list </code>
-        结果是:
+        結果是:
 <code class="section">                int i;   // the index in the list </code>
 
 
-'t' 和 'c' 不同组合方式决定 Vim 何时进行自动回绕:
-<code class="section">值      行为    </code>
-""      没有自动排版 (你可以用 "gq" 进行手工排版)
-"t"     自动排版文本，不包括注释
-"c"     自动排版注释，不包括文本 (对 C 程序适用)
-"tc"    自动排版文本和注释
+'t' 和 'c' 不同組合方式決定 Vim 何時進行自動迴繞:
+<code class="section">值      行為    </code>
+""      沒有自動排版 (你可以用 "gq" 進行手工排版)
+"t"     自動排版文本，不包括註釋
+"c"     自動排版註釋，不包括文本 (對 C 程序適用)
+"tc"    自動排版文本和註釋
 
-<code class="note">注意</code> 如果 <a href="options.html#'textwidth'">'textwidth'</a> 为 0，Vim 不会做任何自动排版 (但是会根据 <a href="options.html#'comments'">'comments'</a> 选项
-自动插入注释前导符)。但 'a' 标志位存在时有例外。 <a href="change.html#auto-format">auto-format</a> 
+<code class="note">注意</code> 如果 <a href="options.html#'textwidth'">'textwidth'</a> 為 0，Vim 不會做任何自動排版 (但是會根據 <a href="options.html#'comments'">'comments'</a> 選項
+自動插入註釋前導符)。但 'a' 標誌位存在時有例外。 <a href="change.html#auto-format">auto-format</a> 
 
-<code class="note">注意</code> 如果 <a href="options.html#'paste'">'paste'</a> 打开，Vim 也不会做任何排版。
+<code class="note">注意</code> 如果 <a href="options.html#'paste'">'paste'</a> 打開，Vim 也不會做任何排版。
 
-<code class="note">注意</code> 即使 Vim 不做自动回绕，仍然可以把 <a href="options.html#'textwidth'">'textwidth'</a> 设为非零。<a href="options.html#'textwidth'">'textwidth'</a> 对
+<code class="note">注意</code> 即使 Vim 不做自動迴繞，仍然可以把 <a href="options.html#'textwidth'">'textwidth'</a> 設為非零。<a href="options.html#'textwidth'">'textwidth'</a> 對
 "gq" 的排版依然有用。
 
-如果 <a href="options.html#'comments'">'comments'</a> 选项包含 "/*"、"*" 和/或 "*/"，Vim 有一套处理这些注释更加聪明
-的内嵌方法。在 "/*" 或 "*/" 之前或之后开始一个新行 (在 <a href="options.html#'formatoptions'">'formatoptions'</a> 里有
-'r' 或者 'o' 的情况下)，会自动给出正确的开始部分。排版或者自动回绕也会有相同的
-处理。在以 "/*" 或者 "*" 开始并包含 "*/" 的行之后开启新行，就不会插入注释前导
-符，而且新行的缩进由注释起始行决定。
+如果 <a href="options.html#'comments'">'comments'</a> 選項包含 "/*"、"*" 和/或 "*/"，Vim 有一套處理這些註釋更加聰明
+的內嵌方法。在 "/*" 或 "*/" 之前或之後開始一個新行 (在 <a href="options.html#'formatoptions'">'formatoptions'</a> 裡有
+'r' 或者 'o' 的情況下)，會自動給出正確的開始部分。排版或者自動迴繞也會有相同的
+處理。在以 "/*" 或者 "*" 開始並包含 "*/" 的行之後開啟新行，就不會插入註釋前導
+符，而且新行的縮進由註釋起始行決定。
 例如: 
 <code class="example">    /* ~</code>
-<code class="example">     * 你的任何注释。</code>
+<code class="example">     * 你的任何註釋。</code>
 <code class="example">     */ ~</code>
-<code class="example">    该行的缩进和以上注释的起始行相同。</code>
+<code class="example">    該行的縮進和以上註釋的起始行相同。</code>
 <code class="example"></code>
-上述这些应该已经十分够用了，尤其在与新的 :autocmd 命令协同使用时，可以为不同文
-件类型提供不同的设置。
+上述這些應該已經十分夠用了，尤其在與新的 :autocmd 命令協同使用時，可以為不同文
+件類型提供不同的設置。
 
 一些例子:
-  适用于 C 代码 (只对注释排版): 
+  適用於 C 代碼 (只對註釋排版): 
 <code class="example">        :set fo=croq</code>
-  适用于邮件/新闻 (排版所有文本，"o" 命令不开始注释): 
+  適用於郵件/新聞 (排版所有文本，"o" 命令不開始註釋): 
 <code class="example">        :set fo=tcrq</code>
 
 
-自动排版                                        <b class="vimtag"> <a name="auto-format">auto-format</a> </b> <b class="vimtag"> <a name="autoformat">autoformat</a> </b>
+自動排版                                        <b class="vimtag"> <a name="auto-format">auto-format</a> </b> <b class="vimtag"> <a name="autoformat">autoformat</a> </b>
 
-如果 <a href="options.html#'formatoptions'">'formatoptions'</a> 里包含 'a' 标志位，在插入或者删除文本时会自动进行排版。这
-对编辑文本段落很好用。以下对如何使用这一功能提供一些提示:
+如果 <a href="options.html#'formatoptions'">'formatoptions'</a> 裡包含 'a' 標誌位，在插入或者刪除文本時會自動進行排版。這
+對編輯文本段落很好用。以下對如何使用這一功能提供一些提示:
 
-- 你需要正确定义何谓段落。最简单的方式是以空行分隔的为段落。如果没有分隔的空
-  行，考虑用 'w' 标志位并在段落中除了最后一行以外，每行结尾加上一个空格。
+- 你需要正確定義何謂段落。最簡單的方式是以空行分隔的為段落。如果沒有分隔的空
+  行，考慮用 'w' 標誌位並在段落中除了最後一行以外，每行結尾加上一個空格。
 
-- 你可以根据文件类型  <a href="filetype.html#filetype">filetype</a> ， 或者用  <a href="options.html#modeline">modeline</a>  指定特定文件的方式，设置不
+- 你可以根據文件類型  <a href="filetype.html#filetype">filetype</a> ， 或者用  <a href="options.html#modeline">modeline</a>  指定特定文件的方式，設置不
   同的 <a href="options.html#'formatoptions'">'formatoptions'</a>。
 
-- 将 <a href="options.html#'formatoptions'">'formatoptions'</a> 设为 "aw2tq" 使得文本以如下方式缩进:
+- 將 <a href="options.html#'formatoptions'">'formatoptions'</a> 設為 "aw2tq" 使得文本以如下方式縮進:
 
             bla bla foobar bla 
         bla foobar bla foobar bla
             bla bla foobar bla 
         bla foobar bla bla foobar
 
-- 如果只想自动排版注释，加上 'c' 标志位。可用于源代码。
+- 如果只想自動排版註釋，加上 'c' 標誌位。可用於源代碼。
 
-- 设置 <a href="options.html#'textwidth'">'textwidth'</a> 为你希望的宽度。如果为零，使用 79 或屏幕宽度中较小的那个。
+- 設置 <a href="options.html#'textwidth'">'textwidth'</a> 為你希望的寬度。如果為零，使用 79 或屏幕寬度中較小的那個。
 
-还有一些警告:
+還有一些警告:
 
-- 如果段落没有正确分隔，任何改变都会使得所有相连的文本自动排版。考虑 
+- 如果段落沒有正確分隔，任何改變都會使得所有相連的文本自動排版。考慮 
 <code class="example"></code>
 <code class="example">        :set fo-=a</code>
 <code class="example"></code>
-- 如果用 'w' 标志位 (行尾的空格意味着段落的继续) 并且用  <a href="change.html#dd">dd</a>  删除了段落的末
-  行，这段落自动和下一个段落合并为一个段落。
+- 如果用 'w' 標誌位 (行尾的空格意味著段落的繼續) 並且用  <a href="change.html#dd">dd</a>  刪除了段落的末
+  行，這段落自動和下一個段落合併為一個段落。
 
-- 改变的文本被保存以备可能的撤销之用。排版也是改变的一种。所以每次排版都会为撤
-  销保存文本。这会有相当的内存开销。
+- 改變的文本被保存以備可能的撤銷之用。排版也是改變的一種。所以每次排版都會為撤
+  銷保存文本。這會有相當的內存開銷。
 
-- 排版一个很长的段落和/或复杂的缩进也许会相当慢。
+- 排版一個很長的段落和/或複雜的縮進也許會相當慢。
 
 </pre><hr class="doubleline" /><pre>
 <h4>7. 文本排序                                             <b class="vimtag"> <a name="sorting">sorting</a> </b></h4>
-Vim 有排序函数和排序命令。排序函数可见:  <a href="eval.html#sort()">sort()</a> ， <a href="eval.html#uniq()">uniq()</a> 。
+Vim 有排序函數和排序命令。排序函數可見:  <a href="eval.html#sort()">sort()</a> ， <a href="eval.html#uniq()">uniq()</a> 。
 
                                                         <b class="vimtag"> <a name=":sor">:sor</a> </b> <b class="vimtag"> <a name=":sort">:sort</a> </b>
 :<code class="special">[range]</code>sor[t][!] <code class="special">[b]</code>[f][i][n][o][r][u][x] [/<code class="special">{pattern}</code>/]
-                        给 <code class="special">[range]</code> 里的行排序。如果没有给出行范围，给所有行排
+                        給 <code class="special">[range]</code> 裡的行排序。如果沒有給出行範圍，給所有行排
                         序。
 
-                        带 [!] 则反向排序。
+                        帶 [!] 則反向排序。
 
-                        带 <code class="special">[i]</code> 则忽略大小写。
+                        帶 <code class="special">[i]</code> 則忽略大小寫。
 
-                        选项 <code class="special">[n]</code>[f][x][o][b] 互斥。
+                        選項 <code class="special">[n]</code>[f][x][o][b] 互斥。
 
-                        带 <code class="special">[n]</code> 则排序基于每行的第一个十进制数 (在 <code class="special">{pattern}</code> 匹
-                        配之后或之内)。
-                        数值包含前导的 '-'。
+                        帶 <code class="special">[n]</code> 則排序基於每行的第一個十進制數 (在 <code class="special">{pattern}</code> 匹
+                        配之後或之內)。
+                        數值包含前導的 '-'。
 
-                        带 <code class="special">[f]</code> 则排序基于每行内的浮点数。浮点值相当于在文本
-                        (<code class="special">{pattern}</code> 匹配的之后或之内) 上调用 str2float() 函数的
-                        结果。仅当 Vim 编译时加入浮点数支持时该标志位才有效。
+                        帶 <code class="special">[f]</code> 則排序基於每行內的浮點數。浮點值相當於在文本
+                        (<code class="special">{pattern}</code> 匹配的之後或之內) 上調用 str2float() 函數的
+                        結果。僅當 Vim 編譯時加入浮點數支持時該標誌位才有效。
 
-                        带 <code class="special">[x]</code> 则排序基于每行的第一个十六进制数 (在 <code class="special">{pattern}</code>
-                        匹配之后或之内)。忽略引导的 "0x" 或 "0X"。
-                        数值包含前导的 '-'。
+                        帶 <code class="special">[x]</code> 則排序基於每行的第一個十六進制數 (在 <code class="special">{pattern}</code>
+                        匹配之後或之內)。忽略引導的 "0x" 或 "0X"。
+                        數值包含前導的 '-'。
 
-                        带 <code class="special">[o]</code> 则排序基于每行的第一个八进制数 (在 <code class="special">{pattern}</code> 匹
-                        配之后或之内)。
+                        帶 <code class="special">[o]</code> 則排序基於每行的第一個八進制數 (在 <code class="special">{pattern}</code> 匹
+                        配之後或之內)。
 
-                        带 <code class="special">[b]</code> 则排序基于每行的第一个二进制数 (在 <code class="special">{pattern}</code> 匹
-                        配之后或之内)。
+                        帶 <code class="special">[b]</code> 則排序基於每行的第一個二進制數 (在 <code class="special">{pattern}</code> 匹
+                        配之後或之內)。
 
-                        带 <code class="special">[u]</code> (u 代表 unique 唯一) 则只保留完全相同的行的第一
-                        行 (如果带 <code class="special">[i]</code>，忽略大小写的区别)。
-                        没有这个标志位，完全相同的行的序列会按照它们原来的顺序
-                        被保留下来。
-                        <code class="note">注意</code> 引导和拖尾的空白差异会导致不相同的行。
+                        帶 <code class="special">[u]</code> (u 代表 unique 唯一) 則只保留完全相同的行的第一
+                        行 (如果帶 <code class="special">[i]</code>，忽略大小寫的區別)。
+                        沒有這個標誌位，完全相同的行的序列會按照它們原來的順序
+                        被保留下來。
+                        <code class="note">注意</code> 引導和拖尾的空白差異會導致不相同的行。
 
-                        如果指定 /<code class="special">{pattern}</code>/ 并且没有 <code class="special">[r]</code> 标志位，跳过匹配
-                        <code class="special">{pattern}</code> 的文本，使得排序在匹配之后的内容上进行。
-                        除了斜杠以外，任何非字母的字符都可以。
-                        例如，要按第二个逗号分隔的字段排序: 
+                        如果指定 /<code class="special">{pattern}</code>/ 並且沒有 <code class="special">[r]</code> 標誌位，跳過匹配
+                        <code class="special">{pattern}</code> 的文本，使得排序在匹配之後的內容上進行。
+                        除了斜槓以外，任何非字母的字符都可以。
+                        例如，要按第二個逗號分隔的字段排序: 
 <code class="example">                                :sort /[^,]*,/</code>
-                        按虚拟第 10 列的文本排序 (从而忽略制表和空格的区别): 
+                        按虛擬第 10 列的文本排序 (從而忽略製表和空格的區別): 
 <code class="example">                                :sort /.*\%10v/</code>
-                        按每行的第一个数值排序，不管它前面有什么: 
+                        按每行的第一個數值排序，不管它前面有什麼: 
 <code class="example">                                :sort /.\{-}\ze\d/</code>
-                        (说明: ".\<code class="special">{-}</code>" 匹配任何文本，"\ze" 设置匹配结束位置，
-                        \d 匹配单个数位。)
-                        带 <code class="special">[r]</code> 则排序在匹配 <code class="special">{pattern}</code> 的文本上进行，而不是如上
-                        所述的用它之后的文本。
-                        例如，要按每行的前三个字母排序且只看这三个字母: 
+                        (說明: ".\<code class="special">{-}</code>" 匹配任何文本，"\ze" 設置匹配結束位置，
+                        \d 匹配單個數位。)
+                        帶 <code class="special">[r]</code> 則排序在匹配 <code class="special">{pattern}</code> 的文本上進行，而不是如上
+                        所述的用它之後的文本。
+                        例如，要按每行的前三個字母排序且只看這三個字母: 
 <code class="example">                                :sort /\a\a\a/ r</code>
 <code class="example"></code>
-                        如果使用 <code class="special">{pattern}</code>，不匹配 <code class="special">{pattern}</code> 的行按照它们原来
-                        的顺序被保留，但和匹配 <code class="special">{pattern}</code> 的行分开。如果反向排
-                        序，它们会以反向顺序出现，并在排序好的行之后。否则它们
-                        会以原有顺序出现，在排序好的行之前。
+                        如果使用 <code class="special">{pattern}</code>，不匹配 <code class="special">{pattern}</code> 的行按照它們原來
+                        的順序被保留，但和匹配 <code class="special">{pattern}</code> 的行分開。如果反向排
+                        序，它們會以反向順序出現，並在排序好的行之後。否則它們
+                        會以原有順序出現，在排序好的行之前。
 
-                        如果 <code class="special">{pattern}</code> 为空 (例如指定 //)，则使用最近使用的搜
-                        索模式。这样你可以先试好模式，然后在执行。
+                        如果 <code class="special">{pattern}</code> 為空 (例如指定 //)，則使用最近使用的搜
+                        索模式。這樣你可以先試好模式，然後在執行。
 
-<code class="note">注意</code>  <a href="change.html#:sort">:sort</a>  和  <a href="repeat.html#:global">:global</a>  一起使用并不能对匹配的行进行排序，这样做没有意义。
+<code class="note">注意</code>  <a href="change.html#:sort">:sort</a>  和  <a href="repeat.html#:global">:global</a>  一起使用並不能對匹配的行進行排序，這樣做沒有意義。
 
-排序的细节取决于使用的库函数。不能保证排序依赖于当前的 locale。你要自己试试才
-知道。Vim 保证 "稳定" 排序。
+排序的細節取決於使用的庫函數。不能保證排序依賴於當前的 locale。你要自己試試才
+知道。Vim 保證 "穩定" 排序。
 
-排序可以被中断，但在整个过程里如果中断得太晚，最后可能会出现重复的行。这取决于
-使用的系统库函数。
+排序可以被中斷，但在整個過程裡如果中斷得太晚，最後可能會出現重複的行。這取決於
+使用的系統庫函數。
 
  vim:tw=78:ts=8:ft=help:norl:
 </pre>

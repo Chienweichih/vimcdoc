@@ -1,17 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>VIM: filetype</title>
 <link rel="stylesheet" href="vim-stylesheet.css" type="text/css">
 </head>
 <body>
 <div id=banner>
-<a href="help.html">帮助总览</a> &middot;
-<a href="quickref.html">快速参考</a> &middot;
+<a href="help.html">幫助總覽</a> &middot;
+<a href="quickref.html">快速參考</a> &middot;
 <a href="index.html">命令索引</a> &middot;
-<a href="usr_toc.html">用户手册</a> &middot;
-<a href="help.html#reference_toc">参考手册</a>
+<a href="usr_toc.html">用戶手冊</a> &middot;
+<a href="help.html#reference_toc">參考手冊</a>
 </div>
 
 <div id=outer>
@@ -20,132 +20,132 @@
 <b class="vimtag"> <a name="filetype.txt">filetype.txt</a> </b>  For Vim version 8.0.  最近更新: 2017年7月
 
 
-                  <code class="vim">VIM 参考手册    by Bram Moolenaar</code>
-                                <code class="vim">译者</code>: Willis, tocer
+                  <code class="vim">VIM 參考手冊    by Bram Moolenaar</code>
+                                <code class="vim">譯者</code>: Willis, tocer
                                 http://vimcdoc.sf.net
 
 
-文件类型                                                <b class="vimtag"> <a name="filetype">filetype</a> </b> <b class="vimtag"> <a name="file-type">file-type</a> </b>
+文件類型                                                <b class="vimtag"> <a name="filetype">filetype</a> </b> <b class="vimtag"> <a name="file-type">file-type</a> </b>
 
-1. 文件类型                                      <a href="filetype.html#filetypes">filetypes</a> 
-2. 文件类型插件                                  <a href="filetype.html#filetype-plugins">filetype-plugins</a> 
-3. 缺省文件类型插件的文档                        <a href="filetype.html#ftplugin-docs">ftplugin-docs</a> 
+1. 文件類型                                      <a href="filetype.html#filetypes">filetypes</a> 
+2. 文件類型插件                                  <a href="filetype.html#filetype-plugins">filetype-plugins</a> 
+3. 缺省文件類型插件的文檔                        <a href="filetype.html#ftplugin-docs">ftplugin-docs</a> 
 
-另见  <a href="autocmd.html#autocmd.txt">autocmd.txt</a> 。
+另見  <a href="autocmd.html#autocmd.txt">autocmd.txt</a> 。
 
-<code class="notvi">{Vi 没有这些命令}</code>
+<code class="notvi">{Vi 沒有這些命令}</code>
 
 </pre><hr class="doubleline" /><pre>
-<h4>1. 文件类型                                     <b class="vimtag"> <a name="filetypes">filetypes</a> </b> <b class="vimtag"> <a name="file-types">file-types</a> </b></h4>
-Vim 可以检测要编辑的文件类型。这是通过检查文件名完成的，有的时候也检查文本里是
+<h4>1. 文件類型                                     <b class="vimtag"> <a name="filetypes">filetypes</a> </b> <b class="vimtag"> <a name="file-types">file-types</a> </b></h4>
+Vim 可以檢測要編輯的文件類型。這是通過檢查文件名完成的，有的時候也檢查文本裡是
 否包含特定的文本。
 
                                                         <b class="vimtag"> <a name=":filetype">:filetype</a> </b> <b class="vimtag"> <a name=":filet">:filet</a> </b>
-要打开文件类型的检测，在你的 vimrc 里加入以下命令: 
+要打開文件類型的檢測，在你的 vimrc 裡加入以下命令: 
 <code class="example">        :filetype on</code>
-每次一个新的或者已经存在的文件被编辑时，Vim 会试图识别文件的类型，并设置
-<a href="options.html#'filetype'">'filetype'</a> 选项。同时，也触发 FileType 事件。该事件可以设置语法高亮，特定选
-项，等等。
+每次一個新的或者已經存在的文件被編輯時，Vim 會試圖識別文件的類型，並設置
+<a href="options.html#'filetype'">'filetype'</a> 選項。同時，也觸發 FileType 事件。該事件可以設置語法高亮，特定選
+項，等等。
 
-<code class="note">注意</code>: 文件类型和 <code class="badlink">'compatibile'</code> 不能很好的一起工作。因为 Vi 兼容意味着所有的选
-项都是全局的。如果你还那么做，建议复位 <a href="options.html#'compatible'">'compatible'</a> 选项。
+<code class="note">注意</code>: 文件類型和 <code class="badlink">'compatibile'</code> 不能很好的一起工作。因為 Vi 兼容意味著所有的選
+項都是全局的。如果你還那麼做，建議復位 <a href="options.html#'compatible'">'compatible'</a> 選項。
 
-详情: ":filetype on" 命令会加载以下文件中的一个:
+詳情: ":filetype on" 命令會加載以下文件中的一個:
                 Amiga       $VIMRUNTIME/filetype.vim
                 Mac         $VIMRUNTIME:filetype.vim
                 MS-DOS      $VIMRUNTIME\filetype.vim
                 RiscOS      Vim:Filetype
                 Unix        $VIMRUNTIME/filetype.vim
                 VMS         $VIMRUNTIME/filetype.vim
-        该文件是一个 Vim 脚本，其中定义了 BufNewFile 和 BufRead 事件的自动命
-        令。如果根据文件名不能检测到文件类型，则使用 $VIMRUNTIME/scripts.vim
-        来根据文件内容检测之。
-        正在或即将启动 GUI 时，同时也会执行 menu.vim 脚本。如果不想要，参见
+        該文件是一個 Vim 腳本，其中定義了 BufNewFile 和 BufRead 事件的自動命
+        令。如果根據文件名不能檢測到文件類型，則使用 $VIMRUNTIME/scripts.vim
+        來根據文件內容檢測之。
+        正在或即將啟動 GUI 時，同時也會執行 menu.vim 腳本。如果不想要，參見
          <a href="options.html#'go-M'">'go-M'</a> 。
 
-要加入你自己的文件类型，见下面的  <a href="filetype.html#new-filetype">new-filetype</a> 。要查找一种文件类型的帮助，加
-上 "ft-" 前缀和可选的 "-syntax"、"-indent" 或者 "-plugin" 后缀。例如: 
+要加入你自己的文件類型，見下面的  <a href="filetype.html#new-filetype">new-filetype</a> 。要查找一種文件類型的幫助，加
+上 "ft-" 前綴和可選的 "-syntax"、"-indent" 或者 "-plugin" 後綴。例如: 
 <code class="example">        :help ft-vim-indent</code>
 <code class="example">        :help ft-vim-syntax</code>
 <code class="example">        :help ft-man-plugin</code>
 <code class="example"></code>
-如果文件类型没有被自动识别，或者找到的是错误的类型，你可以手动设置 <a href="options.html#'filetype'">'filetype'</a>
-选项，或者在文件里加入模式行。例如，对于 IDL 文件，可以使用 
+如果文件類型沒有被自動識別，或者找到的是錯誤的類型，你可以手動設置 <a href="options.html#'filetype'">'filetype'</a>
+選項，或者在文件裡加入模式行。例如，對於 IDL 文件，可以使用 
 <code class="example">        :set filetype=idl</code>
 <code class="example"></code>
 或者在文件中加入模式行  <a href="options.html#modeline">modeline</a> :
 <code class="section">        /* vim: set filetype=idl : */ </code>
 
                                                 <b class="vimtag"> <a name=":filetype-plugin-on">:filetype-plugin-on</a> </b>
-你可以为特定的文件类型允许插件文件的载入: 
+你可以為特定的文件類型允許插件文件的載入: 
 <code class="example">        :filetype plugin on</code>
-如果文件类型检测以前尚未打开，载入该文件后就被打开了。该命令实际上载入了
-<a href="options.html#'runtimepath'">'runtimepath'</a> 里的 "ftplugin.vim" 文件。其结果是，在文件编辑时，相应的插件文件
-也会载入 (如果文件类型能检测到)。 <a href="usr_43.html#filetype-plugin">filetype-plugin</a> 
+如果文件類型檢測以前尚未打開，載入該文件後就被打開了。該命令實際上載入了
+<a href="options.html#'runtimepath'">'runtimepath'</a> 裡的 "ftplugin.vim" 文件。其結果是，在文件編輯時，相應的插件文件
+也會載入 (如果文件類型能檢測到)。 <a href="usr_43.html#filetype-plugin">filetype-plugin</a> 
 
                                                 <b class="vimtag"> <a name=":filetype-plugin-off">:filetype-plugin-off</a> </b>
-你可以如此关闭之: 
+你可以如此關閉之: 
 <code class="example">        :filetype plugin off</code>
-文件类型检测此时没有关闭。但如果你关闭了，相应的插件就不会被自动载入。该命令实
-际上载入了 <a href="options.html#'runtimepath'">'runtimepath'</a> 里的 "ftplugof.vim" 文件。
+文件類型檢測此時沒有關閉。但如果你關閉了，相應的插件就不會被自動載入。該命令實
+際上載入了 <a href="options.html#'runtimepath'">'runtimepath'</a> 裡的 "ftplugof.vim" 文件。
 
                                                 <b class="vimtag"> <a name=":filetype-indent-on">:filetype-indent-on</a> </b>
-你可以为特定的文件类型载入缩进文件: 
+你可以為特定的文件類型載入縮進文件: 
 <code class="example">        :filetype indent on</code>
-如果文件类型检测以前尚未打开，载入该文件后就被打开了。该命令实际上载入了
-<a href="options.html#'runtimepath'">'runtimepath'</a> 里的 "indent.vim" 文件。其结果是，在文件编辑时，相应的缩进文件
-也会载入 (如果文件类型能检测到)。 <a href="indent.html#indent-expression">indent-expression</a> 
+如果文件類型檢測以前尚未打開，載入該文件後就被打開了。該命令實際上載入了
+<a href="options.html#'runtimepath'">'runtimepath'</a> 裡的 "indent.vim" 文件。其結果是，在文件編輯時，相應的縮進文件
+也會載入 (如果文件類型能檢測到)。 <a href="indent.html#indent-expression">indent-expression</a> 
 
                                                 <b class="vimtag"> <a name=":filetype-indent-off">:filetype-indent-off</a> </b>
-你可以如此关闭之: 
+你可以如此關閉之: 
 <code class="example">        :filetype indent off</code>
-文件类型检测此时没有关闭。但如果你关闭了，相应的缩进文件就不会被自动载入。该命
-令实际上载入了 <a href="options.html#'runtimepath'">'runtimepath'</a> 里的 "indoff.vim" 文件。
-这会关闭你后面所打开的文件中的自动缩进。在已经打开的文件中，自动缩进还依然有
-效。要在已打开的文件中关闭缩进，复位 <a href="options.html#'autoindent'">'autoindent'</a>、<a href="options.html#'cindent'">'cindent'</a>、<a href="options.html#'smartindent'">'smartindent'</a>
+文件類型檢測此時沒有關閉。但如果你關閉了，相應的縮進文件就不會被自動載入。該命
+令實際上載入了 <a href="options.html#'runtimepath'">'runtimepath'</a> 裡的 "indoff.vim" 文件。
+這會關閉你後面所打開的文件中的自動縮進。在已經打開的文件中，自動縮進還依然有
+效。要在已打開的文件中關閉縮進，復位 <a href="options.html#'autoindent'">'autoindent'</a>、<a href="options.html#'cindent'">'cindent'</a>、<a href="options.html#'smartindent'">'smartindent'</a>
 和/或 <a href="options.html#'indentexpr'">'indentexpr'</a>。
 
                                                 <b class="vimtag"> <a name=":filetype-off">:filetype-off</a> </b>
-要关闭文件类型检测，使用如下命令: 
+要關閉文件類型檢測，使用如下命令: 
 <code class="example">        :filetype off</code>
-"plugin" 和 "indent" 的标志位还会保持，但是因为没有文件类型被检测到，直到下次
-":filetype on" 为止，它们不会真的工作。
+"plugin" 和 "indent" 的標誌位還會保持，但是因為沒有文件類型被檢測到，直到下次
+":filetype on" 為止，它們不會真的工作。
 
 
-总览:                                           <b class="vimtag"> <a name=":filetype-overview">:filetype-overview</a> </b>
+總覽:                                           <b class="vimtag"> <a name=":filetype-overview">:filetype-overview</a> </b>
 
-<code class="section">命令                            检测    plugin  indent </code>
-:filetype on                    打开    未改变  未改变
-:filetype off                   关闭    未改变  未改变
-:filetype plugin on             打开    打开    未改变
-:filetype plugin off            未改变  关闭    未改变
-:filetype indent on             打开    未改变  打开
-:filetype indent off            未改变  未改变  关闭
-:filetype plugin indent on      打开    打开    打开
-:filetype plugin indent off     未改变  关闭    关闭
+<code class="section">命令                            檢測    plugin  indent </code>
+:filetype on                    打開    未改變  未改變
+:filetype off                   關閉    未改變  未改變
+:filetype plugin on             打開    打開    未改變
+:filetype plugin off            未改變  關閉    未改變
+:filetype indent on             打開    未改變  打開
+:filetype indent off            未改變  未改變  關閉
+:filetype plugin indent on      打開    打開    打開
+:filetype plugin indent off     未改變  關閉    關閉
 
-要查看当前的状态，只需输入: 
+要查看當前的狀態，只需輸入: 
 <code class="example">        :filetype</code>
-输出结果看起来大概如此: 
+輸出結果看起來大概如此: 
 <code class="example">        filetype detection:ON  plugin:ON  indent:OFF</code>
 <code class="example"></code>
-文件类型也用于语法高亮。如果使用 ":syntax on" 命令，文件类型检测也被安装。所
-以，没有必要在 ":syntax on" 之后再执行 ":filetype on"。
+文件類型也用於語法高亮。如果使用 ":syntax on" 命令，文件類型檢測也被安裝。所
+以，沒有必要在 ":syntax on" 之後再執行 ":filetype on"。
 
-要关闭某种文件类型，在你的文件类型文件里加入一行。见  <a href="filetype.html#remove-filetype">remove-filetype</a> 。
+要關閉某種文件類型，在你的文件類型文件裡加入一行。見  <a href="filetype.html#remove-filetype">remove-filetype</a> 。
 
                                                         <b class="vimtag"> <a name="filetype-detect">filetype-detect</a> </b>
-要再次检测文件类型: 
+要再次檢測文件類型: 
 <code class="example">        :filetype detect</code>
-使用这个命令可以使你先编辑一个空白文件，任何输入足够的文本，使得文件类型能够被
-识别。例如，你以此开始输入一个新的外壳脚本: "#!/bin/csh"。
-   如果文件类型检测被关闭，它会先被打开。就像用了 "on" 参数那样。
+使用這個命令可以使你先編輯一個空白文件，任何輸入足夠的文本，使得文件類型能夠被
+識別。例如，你以此開始輸入一個新的外殼腳本: "#!/bin/csh"。
+   如果文件類型檢測被關閉，它會先被打開。就像用了 "on" 參數那樣。
 
                                                         <b class="vimtag"> <a name="filetype-overrule">filetype-overrule</a> </b>
-如果两个不同的文件类型使用了相同的扩展名，Vim 试图猜测到底该文件属于哪个类型。
-这并不总行。一些全局变量可以用来为某些特定的扩展名决定具体的文件类型:
+如果兩個不同的文件類型使用了相同的擴展名，Vim 試圖猜測到底該文件屬於哪個類型。
+這並不總行。一些全局變量可以用來為某些特定的擴展名決定具體的文件類型:
 
-<code class="section">        文件名          变量 </code>
+<code class="section">        文件名          變量 </code>
         *.asa           g:filetype_asa   <a href="syntax.html#ft-aspvbs-syntax">ft-aspvbs-syntax</a>   <a href="syntax.html#ft-aspperl-syntax">ft-aspperl-syntax</a> 
         *.asp           g:filetype_asp   <a href="syntax.html#ft-aspvbs-syntax">ft-aspvbs-syntax</a>   <a href="syntax.html#ft-aspperl-syntax">ft-aspperl-syntax</a> 
         *.asm           g:asmsyntax      <a href="syntax.html#ft-asm-syntax">ft-asm-syntax</a> 
@@ -159,53 +159,53 @@ Vim 可以检测要编辑的文件类型。这是通过检查文件名完成的�
         *.tex           g:tex_flavor     <a href="filetype.html#ft-tex-plugin">ft-tex-plugin</a> 
 
                                                         <b class="vimtag"> <a name="filetype-ignore">filetype-ignore</a> </b>
-要避免检测某些文件，用 g:ft_ignore_pat 变量。缺省值是: 
+要避免檢測某些文件，用 g:ft_ignore_pat 變量。缺省值是: 
 <code class="example">        :let g:ft_ignore_pat = '\.\(Z\|gz\|bz2\|zip\|tgz\)$'</code>
-这意味着压缩文件的内容不会被检测。
+這意味著壓縮文件的內容不會被檢測。
 
                                                         <b class="vimtag"> <a name="new-filetype">new-filetype</a> </b>
-如果你想使用的文件没检测到文件类型，有四种方法。不管如何，最好不要修改
-$VIMRUNTIME/filetype.vim 文件。再安装新的 Vim 版本的时候它会被覆盖。
+如果你想使用的文件沒檢測到文件類型，有四種方法。不管如何，最好不要修改
+$VIMRUNTIME/filetype.vim 文件。再安裝新的 Vim 版本的時候它會被覆蓋。
 
-A. 如果你想否决所有的缺省文件类型检查。
-   这里，每种文件类型需要写一个文件。缺点就是，你需要很多文件。优点就是，你只
-   需要把文件放到合适的目录就可以了。
+A. 如果你想否決所有的缺省文件類型檢查。
+   這裡，每種文件類型需要寫一個文件。缺點就是，你需要很多文件。優點就是，你只
+   需要把文件放到合適的目錄就可以了。
                                                         <b class="vimtag"> <a name="ftdetect">ftdetect</a> </b>
-   1. 建立你自己的运行时目录。通常，你会用 <a href="options.html#'runtimepath'">'runtimepath'</a> 选项的第一项。然后，
-      在其中建立 "ftdetect" 目录。Unix 上的例子: 
+   1. 建立你自己的運行時目錄。通常，你會用 <a href="options.html#'runtimepath'">'runtimepath'</a> 選項的第一項。然後，
+      在其中建立 "ftdetect" 目錄。Unix 上的例子: 
 <code class="example">        :!mkdir ~/.vim</code>
 <code class="example">        :!mkdir ~/.vim/ftdetect</code>
 
-   2. 建立包含检测文件类型的自动命令的文件。例如: 
+   2. 建立包含檢測文件類型的自動命令的文件。例如: 
 <code class="example">        au BufRead,BufNewFile *.mine            set filetype=mine</code>
-      <code class="note">注意</code> 这里没有 "augroup" 命令。在执行你的文件的时候这点已经做好了。你可以
-      使用 "*" 模式，然后分析文件内容来检测其类型。
-      把该文件叫做 "mine.vim"，并把它放在用户运行时目录的 "ftdetect" 目录里。
+      <code class="note">注意</code> 這裡沒有 "augroup" 命令。在執行你的文件的時候這點已經做好了。你可以
+      使用 "*" 模式，然後分析文件內容來檢測其類型。
+      把該文件叫做 "mine.vim"，並把它放在用戶運行時目錄的 "ftdetect" 目錄裡。
       例如，在 Unix 上: 
 <code class="example">        :w ~/.vim/ftdetect/mine.vim</code>
 <code class="example"></code>
-   3. 要使用新的文件类型检测，你需要重新启动 Vim。
+   3. 要使用新的文件類型檢測，你需要重新啟動 Vim。
 
-   "ftdetect" 目录的文件在所有的缺省检查之后进行，这样它们就能否决之前进行的文
-   件类型检测。但是你还可以用  <a href="options.html#:setfiletype">:setfiletype</a>  保持前一个检测到的文件类型。
+   "ftdetect" 目錄的文件在所有的缺省檢查之後進行，這樣它們就能否決之前進行的文
+   件類型檢測。但是你還可以用  <a href="options.html#:setfiletype">:setfiletype</a>  保持前一個檢測到的文件類型。
 
-B. 如果你想在缺省文件类型检查之后检测自己的文件。
+B. 如果你想在缺省文件類型檢查之後檢測自己的文件。
 
-   和上述的 A 类似。但不是无条件的设置 <a href="options.html#'filetype'">'filetype'</a>，而是使用 ":setfiletype"。该
-   命令只有在没有文件类型被监测到的前提下才会设置 <a href="options.html#'filetype'">'filetype'</a>。例如: 
+   和上述的 A 類似。但不是無條件的設置 <a href="options.html#'filetype'">'filetype'</a>，而是使用 ":setfiletype"。該
+   命令只有在沒有文件類型被監測到的前提下才會設置 <a href="options.html#'filetype'">'filetype'</a>。例如: 
 <code class="example">        au BufRead,BufNewFile *.txt             setfiletype text</code>
 
-   在你的命令里，你可以使用已经检测到的文件类型。例如，在 "pascal" 类型已经被
-   检测到的前提下，要使用文件类型 "mypascal": 
+   在你的命令裡，你可以使用已經檢測到的文件類型。例如，在 "pascal" 類型已經被
+   檢測到的前提下，要使用文件類型 "mypascal": 
 <code class="example">        au BufRead,BufNewFile *         if &amp;ft == 'pascal' | set ft=mypascal</code>
 <code class="example">                                                                       | endif</code>
 <code class="example"></code>
-C. 如果你的文件类型可以通过文件名检测。
-   1. 建立你自己的运行时目录。通常，你会用 <a href="options.html#'runtimepath'">'runtimepath'</a> 选项的第一项。Unix 上
+C. 如果你的文件類型可以通過文件名檢測。
+   1. 建立你自己的運行時目錄。通常，你會用 <a href="options.html#'runtimepath'">'runtimepath'</a> 選項的第一項。Unix 上
       的例子: 
 <code class="example">        :!mkdir ~/.vim</code>
 
-   2. 创建包含自动命令的文件用于检测文件类型。示例: 
+   2. 創建包含自動命令的文件用於檢測文件類型。示例: 
 <code class="example">        " my filetype file</code>
 <code class="example">        if exists("did_load_filetypes")</code>
 <code class="example">          finish</code>
@@ -214,331 +214,331 @@ C. 如果你的文件类型可以通过文件名检测。
 <code class="example">          au! BufRead,BufNewFile *.mine         setfiletype mine</code>
 <code class="example">          au! BufRead,BufNewFile *.xyz          setfiletype drawing</code>
 <code class="example">        augroup END</code>
-      在用户运行时目录下，把该文件存为 "filetype.vim"。例如，在 Unix 上: 
+      在用戶運行時目錄下，把該文件存為 "filetype.vim"。例如，在 Unix 上: 
 <code class="example">        :w ~/.vim/filetype.vim</code>
 <code class="example"></code>
-   3. 要使用新的文件类型检测，你需要重新启动 Vim。
+   3. 要使用新的文件類型檢測，你需要重新啟動 Vim。
 
-   这里，你的 filetype.vim 会在缺省的 FileType 自动命令安装前被执行。所以，你
-   的自动命令会先被匹配，而 ":setfiletype" 命令的时候保证了其后没有其他的自动
-   命令会改变 <a href="options.html#'filetype'">'filetype'</a>。
+   這裡，你的 filetype.vim 會在缺省的 FileType 自動命令安裝前被執行。所以，你
+   的自動命令會先被匹配，而 ":setfiletype" 命令的時候保證了其後沒有其他的自動
+   命令會改變 <a href="options.html#'filetype'">'filetype'</a>。
                                                         <b class="vimtag"> <a name="new-filetype-scripts">new-filetype-scripts</a> </b>
-D. 如果你的文件类型只能通过分析文件内容来检测。
+D. 如果你的文件類型只能通過分析文件內容來檢測。
 
-   1. 建立你的用户运行时目录。通常，你会用 <a href="options.html#'runtimepath'">'runtimepath'</a> 选项的第一项。Unix 上
+   1. 建立你的用戶運行時目錄。通常，你會用 <a href="options.html#'runtimepath'">'runtimepath'</a> 選項的第一項。Unix 上
       的例子: 
 <code class="example">        :!mkdir ~/.vim</code>
 
-   2. 创立一个 vim 脚本，来实现需要的功能。示例: 
-<code class="example">        if did_filetype()       " filetype 已经设立..</code>
-<code class="example">          finish                " ..不需要这些检测</code>
+   2. 創立一個 vim 腳本，來實現需要的功能。示例: 
+<code class="example">        if did_filetype()       " filetype 已經設立..</code>
+<code class="example">          finish                " ..不需要這些檢測</code>
 <code class="example">        endif</code>
 <code class="example">        if getline(1) =~ '^#!.*\&lt;mine\&gt;'</code>
 <code class="example">          setfiletype mine</code>
 <code class="example">        elseif getline(1) =~? '\&lt;drawing\&gt;'</code>
 <code class="example">          setfiletype drawing</code>
 <code class="example">        endif</code>
-      更多的例子可以参见 $VIMRUNTIME/scripts.vim。
-      把该文件命名为 "scripts.vim"，并保存在你的用户运行时目录。例如，在 Unix
+      更多的例子可以參見 $VIMRUNTIME/scripts.vim。
+      把該文件命名為 "scripts.vim"，並保存在你的用戶運行時目錄。例如，在 Unix
       上: 
 <code class="example">        :w ~/.vim/scripts.vim</code>
 
-   3. 检测会立即生效，无须重新启动 Vim。
+   3. 檢測會立即生效，無須重新啟動 Vim。
 
-   你的 scripts.vim 在文件类型的缺省之前被载入，这意味着你的规则会覆盖
-   $VIMRUNTIME/scripts.vim 的缺省规则。
+   你的 scripts.vim 在文件類型的缺省之前被載入，這意味著你的規則會覆蓋
+   $VIMRUNTIME/scripts.vim 的缺省規則。
 
                                                 <b class="vimtag"> <a name="remove-filetype">remove-filetype</a> </b>
-如果某个文件类型检测有问题，安装一个 filetype.vim 或者 scripts.vim 去捕获这个
-问题 (见上)。你可以把 <a href="options.html#'filetype'">'filetype'</a> 设成一个不存在的名字，使得以后不会被设置: 
+如果某個文件類型檢測有問題，安裝一個 filetype.vim 或者 scripts.vim 去捕獲這個
+問題 (見上)。你可以把 <a href="options.html#'filetype'">'filetype'</a> 設成一個不存在的名字，使得以後不會被設置: 
 <code class="example">        :set filetype=ignored</code>
 <code class="example"></code>
-如果你为许多用户设置系统，而不想为每个用户分别增加/删除相同的为件类型，考虑把
-filetype.vim 和 scripts.vim 写到一个大家都能用的运行时目录里。查看
-<a href="options.html#'runtimepath'">'runtimepath'</a> 里有没有能用的目录。如果没有，在  <a href="starting.html#system-vimrc">system-vimrc</a>  里设置
-<a href="options.html#'runtimepath'">'runtimepath'</a>。切记要保存缺省的目录。
+如果你為許多用戶設置系統，而不想為每個用戶分別增加/刪除相同的為件類型，考慮把
+filetype.vim 和 scripts.vim 寫到一個大家都能用的運行時目錄裡。查看
+<a href="options.html#'runtimepath'">'runtimepath'</a> 裡有沒有能用的目錄。如果沒有，在  <a href="starting.html#system-vimrc">system-vimrc</a>  裡設置
+<a href="options.html#'runtimepath'">'runtimepath'</a>。切記要保存缺省的目錄。
 
 
                                                 <b class="vimtag"> <a name="autocmd-osfiletypes">autocmd-osfiletypes</a> </b>
-<code class="note">备注</code>: 现在此段代码已不再用，因为我们已移除了 RISC OS 实现。将来就用 <a href="options.html#'filetype'">'filetype'</a>
-选项便可。
+<code class="note">備註</code>: 現在此段代碼已不再用，因為我們已移除了 RISC OS 實現。將來就用 <a href="options.html#'filetype'">'filetype'</a>
+選項便可。
 
-如果操作系统支持在文件里存储文件类型，你可以指定某一文件类型专用的自动命令。
+如果操作系統支持在文件裡存儲文件類型，你可以指定某一文件類型專用的自動命令。
 
-实际的类型检查决定于你运行 Vim 所处的平台；详情参见你的系统文档。
+實際的類型檢查決定於你運行 Vim 所處的平台；詳情參見你的系統文檔。
 
-要在自动命令里使用 osfiletype 检查，你应该把待匹配类型的模式串用尖括号括起来，
-就像这样: 
+要在自動命令裡使用 osfiletype 檢查，你應該把待匹配類型的模式串用尖括號括起來，
+就像這樣: 
 <code class="example"></code>
 <code class="example">        :au BufRead *.html,&lt;&amp;faf;HTML&gt;  runtime! syntax/html.vim</code>
 <code class="example"></code>
-这会匹配:
+這會匹配:
 
-- 任何名字以 ".html" 结尾的文件
-- 任何类型为 "&amp;faf" 或者 "HTML" 的文件，这些类型的具体含义取决于你使用的 Vim
+- 任何名字以 ".html" 結尾的文件
+- 任何類型為 "&amp;faf" 或者 "HTML" 的文件，這些類型的具體含義取決於你使用的 Vim
   的版本。
-  未知的类型被认为是 <code class="emphasis">不</code> 匹配。
+  未知的類型被認為是 <code class="emphasis">不</code> 匹配。
 
-你可以同时自动指定类型和模式 (这时两者必须都匹配): 
+你可以同時自動指定類型和模式 (這時兩者必須都匹配): 
 <code class="example"></code>
 <code class="example">        :au BufRead &lt;&amp;fff&gt;diff*</code>
 <code class="example"></code>
-这个例子会匹配类型为 "&amp;fff" 而且文件名以 "diff" 开始的文件。
+這個例子會匹配類型為 "&amp;fff" 而且文件名以 "diff" 開始的文件。
 
 
                                                         <b class="vimtag"> <a name="plugin-details">plugin-details</a> </b>
-"plugin" 目录可以在 <a href="options.html#'runtimepath'">'runtimepath'</a> 选项里的任何一个目录里。所有这些目录都会被搜
-索，查找到的插件会被全部调入。例如，如果命令: 
+"plugin" 目錄可以在 <a href="options.html#'runtimepath'">'runtimepath'</a> 選項裡的任何一個目錄裡。所有這些目錄都會被搜
+索，查找到的插件會被全部調入。例如，如果命令: 
 <code class="example"></code>
 <code class="example">        set runtimepath</code>
 <code class="example"></code>
-产生这样的输出:
+產生這樣的輸出:
 
 <code class="section">        runtimepath=/etc/vim,~/.vim,/usr/local/share/vim/vim60 </code>
 
-那么 Vim 会调入以下目录及其下的所有插件:
+那麼 Vim 會調入以下目錄及其下的所有插件:
 
 <code class="section">        /etc/vim/plugin/ </code>
 <code class="section">        ~/.vim/plugin/ </code>
 <code class="section">        /usr/local/share/vim/vim60/plugin/ </code>
 
-<code class="note">注意</code> 最后一项是 $VIMRUNTIME 被扩展的值。
+<code class="note">注意</code> 最後一項是 $VIMRUNTIME 被擴展的值。
 
-有没有可能你的插件好像没有被调入呢？通过  <a href="starting.html#-V">-V</a>  参数，你可以看看 Vim 启动的时候
-发生了什么: 
+有沒有可能你的插件好像沒有被調入呢？通過  <a href="starting.html#-V">-V</a>  參數，你可以看看 Vim 啟動的時候
+發生了什麼: 
 <code class="example"></code>
 <code class="example">        vim -V2</code>
 <code class="example"></code>
-你会看到很多信息。其中有关于调入插件的一行注释。它这样开始:
+你會看到很多信息。其中有關於調入插件的一行註釋。它這樣開始:
 
 <code class="section">        Searching for "plugin/**/*.vim" in </code>
 
-这样，你就能看到 Vim 在哪里查找你的插件脚本了。
+這樣，你就能看到 Vim 在哪裡查找你的插件腳本了。
 
 </pre><hr class="doubleline" /><pre>
-<h4>2. 文件类型插件                                         <b class="vimtag"> <a name="filetype-plugins">filetype-plugins</a> </b></h4>
-如果允许载入文件类型插件  <a href="filetype.html#:filetype-plugin-on">:filetype-plugin-on</a> ，相应的选项会被设置，映射会被定
-义。它们都局部于缓冲区，不会影响其他的文件。
+<h4>2. 文件類型插件                                         <b class="vimtag"> <a name="filetype-plugins">filetype-plugins</a> </b></h4>
+如果允許載入文件類型插件  <a href="filetype.html#:filetype-plugin-on">:filetype-plugin-on</a> ，相應的選項會被設置，映射會被定
+義。它們都局部於緩衝區，不會影響其他的文件。
 
-定义文件类型的映射可能会影响你自己定义的映射。有一些方法可以避免这一点:
-1. 设置 "maplocalleader" 变量为你想映射开始的键序列。例如: 
+定義文件類型的映射可能會影響你自己定義的映射。有一些方法可以避免這一點:
+1. 設置 "maplocalleader" 變量為你想映射開始的鍵序列。例如: 
 <code class="example">        :let maplocalleader = ","</code>
-   所有的映射现在都以逗号开始，而不是缺省的反斜杠。另见  <a href="map.html#%3CLocalLeader%3E">&lt;LocalLeader&gt;</a> 。
+   所有的映射現在都以逗號開始，而不是缺省的反斜槓。另見  <a href="map.html#%3CLocalLeader%3E">&lt;LocalLeader&gt;</a> 。
 
-2. 定义你自己的映射。例如: 
+2. 定義你自己的映射。例如: 
 <code class="example">        :map ,p &lt;Plug&gt;MailQuote</code>
-   你需要检查下面给出的插件文件的描述，以了解它们的功能和映射到的字符串。
-   你需要在插件载入之前定义自己的映射。 (在编辑该类型的文件之前)。该插件就可以
-   跳过缺省映射的安装了。
+   你需要檢查下面給出的插件文件的描述，以瞭解它們的功能和映射到的字符串。
+   你需要在插件載入之前定義自己的映射。 (在編輯該類型的文件之前)。該插件就可以
+   跳過缺省映射的安裝了。
                                                 <b class="vimtag"> <a name="no_mail_maps">no_mail_maps</a> </b>
-3. 屏蔽特定文件类型的映射可以通过设置一个变量进行。该变量包含文件类型的名字。
-   对于 "mail" 文件类型它可能是: 
+3. 屏蔽特定文件類型的映射可以通過設置一個變量進行。該變量包含文件類型的名字。
+   對於 "mail" 文件類型它可能是: 
 <code class="example">        :let no_mail_maps = 1</code>
                                                 <b class="vimtag"> <a name="no_plugin_maps">no_plugin_maps</a> </b>
-4. 通过设置变量屏蔽所有文件类型的映射: 
+4. 通過設置變量屏蔽所有文件類型的映射: 
 <code class="example">        :let no_plugin_maps = 1</code>
 
 
                                                         <b class="vimtag"> <a name="ftplugin-overrule">ftplugin-overrule</a> </b>
-如果某个全局文件类型插件不完全符合你的期待，有三个办法可以改变:
+如果某個全局文件類型插件不完全符合你的期待，有三個辦法可以改變:
 
-1. 增加一些设置。
-   你必须在 <a href="options.html#'runtimepath'">'runtimepath'</a> 靠前的一个目录里建立一个新的文件类型插件。Unix 上，
-   你可以使用这个文件: 
+1. 增加一些設置。
+   你必須在 <a href="options.html#'runtimepath'">'runtimepath'</a> 靠前的一個目錄裡建立一個新的文件類型插件。Unix 上，
+   你可以使用這個文件: 
 <code class="example">        vim ~/.vim/ftplugin/fortran.vim</code>
-   你可以设置你希望有的选项和映射。<code class="note">注意</code>，全局插件会在其后进行。它可能会否决你
-   做的那些设置。如果发生了，你有以下两种方法。
+   你可以設置你希望有的選項和映射。<code class="note">注意</code>，全局插件會在其後進行。它可能會否決你
+   做的那些設置。如果發生了，你有以下兩種方法。
 
-2. 建立一个插件的备份，并改变之。
-   你需要把该备份放在 <a href="options.html#'runtimepath'">'runtimepath'</a> 靠前的位置。Unix 上，你可以这么做: 
+2. 建立一個插件的備份，並改變之。
+   你需要把該備份放在 <a href="options.html#'runtimepath'">'runtimepath'</a> 靠前的位置。Unix 上，你可以這麼做: 
 <code class="example">        cp $VIMRUNTIME/ftplugin/fortran.vim ~/.vim/ftplugin/fortran.vim</code>
-   这样你可以自由的编辑你的备份文件。因为 b:did_ftplugin 会被设置，全局的插件
-   就不会载入自身。这样做的一个缺点是，如果发行的插件版本更新，你需要重新复制
-   并再次进行修改。
+   這樣你可以自由的編輯你的備份文件。因為 b:did_ftplugin 會被設置，全局的插件
+   就不會載入自身。這樣做的一個缺點是，如果發行的插件版本更新，你需要重新複製
+   並再次進行修改。
 
-3. 在载入全局插件以后否决一些设置。
-   你需要在 <a href="options.html#'runtimepath'">'runtimepath'</a> 的尾部建立一个新的文件类型插件。Unix 上，你可以使用
-   这个文件: 
+3. 在載入全局插件以後否決一些設置。
+   你需要在 <a href="options.html#'runtimepath'">'runtimepath'</a> 的尾部建立一個新的文件類型插件。Unix 上，你可以使用
+   這個文件: 
 <code class="example">        vim ~/.vim/after/ftplugin/fortran.vim</code>
-   在这个文件里，你可以对需要的设置进行改变。
+   在這個文件裡，你可以對需要的設置進行改變。
 
 </pre><hr class="doubleline" /><pre>
-<h4>3.  缺省文件类型插件的文档                              <b class="vimtag"> <a name="ftplugin-docs">ftplugin-docs</a> </b></h4>
+<h4>3.  缺省文件類型插件的文檔                              <b class="vimtag"> <a name="ftplugin-docs">ftplugin-docs</a> </b></h4>
 
 CHANGELOG                                               <b class="vimtag"> <a name="ft-changelog-plugin">ft-changelog-plugin</a> </b>
 
-允许方便的输入 Changlog 文件的 Changelog 段 (entry)。有些命令，映射和变量值得
+允許方便的輸入 Changlog 文件的 Changelog 段 (entry)。有些命令，映射和變量值得
 探索一下:
 
-选项:
-<a href="options.html#'comments'">'comments'</a>              置为空，以免影响排版。
-<a href="options.html#'textwidth'">'textwidth'</a>             设为 78，这是标准。
-<a href="options.html#'formatoptions'">'formatoptions'</a>         增加 't' 标志位，使得插入文本时能进行回绕。
+選項:
+<a href="options.html#'comments'">'comments'</a>              置為空，以免影響排版。
+<a href="options.html#'textwidth'">'textwidth'</a>             設為 78，這是標準。
+<a href="options.html#'formatoptions'">'formatoptions'</a>         增加 't' 標誌位，使得插入文本時能進行迴繞。
 
 命令:
-NewChangelogEntry       智能地增加新的 Changelog 段 (见下)。
+NewChangelogEntry       智能地增加新的 Changelog 段 (見下)。
 
 局部映射:
-<code class="special">&lt;Leader&gt;</code>o               同样智能地开始一个新的 Changlog 段  (见下)。
+<code class="special">&lt;Leader&gt;</code>o               同樣智能地開始一個新的 Changlog 段  (見下)。
 
 全局映射:
-                        <code class="note">注意</code>: 全局设置是通过先执行 ftplugin/changelog.vim 文件
-                        设置的。例如在你的  <a href="starting.html#.vimrc">.vimrc</a>  里加上: 
+                        <code class="note">注意</code>: 全局設置是通過先執行 ftplugin/changelog.vim 文件
+                        設置的。例如在你的  <a href="starting.html#.vimrc">.vimrc</a>  裡加上: 
 <code class="example">                                runtime ftplugin/changelog.vim</code>
 
-<code class="special">&lt;Leader&gt;</code>o               切换到为当前目录打开的 ChangeLog 缓冲区。如果当前目录
-                        已存在该文件，在新的缓冲区打开之。然后执行上述局部
+<code class="special">&lt;Leader&gt;</code>o               切換到為當前目錄打開的 ChangeLog 緩衝區。如果當前目錄
+                        已存在該文件，在新的緩衝區打開之。然後執行上述局部
                         <code class="special">&lt;Leader&gt;</code>o 的功能。
 
-变量:
-g:changelog_timeformat  已废弃；请用 g:changelog_dateformat 代替。
-g:changelog_dateformat  Changelog 段使用的日期 (和时间) 格式。该格式和
-                         <a href="eval.html#strftime()">strftime()</a>  函数使用的语法相同。
-                        缺省值是 "%Y-%m-%d"，这是许多 ChangeLog 排版所使用的标
+變量:
+g:changelog_timeformat  已廢棄；請用 g:changelog_dateformat 代替。
+g:changelog_dateformat  Changelog 段使用的日期 (和時間) 格式。該格式和
+                         <a href="eval.html#strftime()">strftime()</a>  函數使用的語法相同。
+                        缺省值是 "%Y-%m-%d"，這是許多 ChangeLog 排版所使用的標
                         准格式。
-g:changelog_username    用户的名字和 email 地址。缺省值从环境变量和系统文件里
-                        推得。它先搜索当前用户 /etc/passwd 的注释部分。非正式
-                        地，该项在第一个分隔的逗号之前的部分包含了用户的实际名
-                        字。然后它再检查 $NAME 环境变量，最后运行 `whoami' 和
-                        `hostname' 来构造一个 email 地址。最终形式是 
+g:changelog_username    用戶的名字和 email 地址。缺省值從環境變量和系統文件裡
+                        推得。它先搜索當前用戶 /etc/passwd 的註釋部分。非正式
+                        地，該項在第一個分隔的逗號之前的部分包含了用戶的實際名
+                        字。然後它再檢查 $NAME 環境變量，最後運行 `whoami' 和
+                        `hostname' 來構造一個 email 地址。最終形式是 
 <code class="example">                                Full Name  &lt;user@host&gt;</code>
 
 g:changelog_new_date_format
-                        建立新的日期项目时所用的格式。下表描述字符串中的特殊记
-                        号:
-                                %%      插入单个 '%' 号
+                        建立新的日期項目時所用的格式。下表描述字符串中的特殊記
+                        號:
+                                %%      插入單個 '%' 號
                                 %d      插入上述的日期
-                                %u      插入上述的用户
+                                %u      插入上述的用戶
                                 %p      插入 b:changelog_entry_prefix 的值
-                                %c      完成时光标的位置
-                        缺省值是 "%d  %u\n\n\t* %p%c\n\n"，它会产生如下的结果
-                         (| 是光标键要到的位置，除非出现在行首。那里它就是意味
-                        着一行的开始) 
+                                %c      完成時光標的位置
+                        缺省值是 "%d  %u\n\n\t* %p%c\n\n"，它會產生如下的結果
+                         (| 是光標鍵要到的位置，除非出現在行首。那裡它就是意味
+                        著一行的開始) 
 <code class="example">                                |2003-01-14  Full Name  &lt;user@host&gt;</code>
 <code class="example">                                |</code>
 <code class="example">                                |        * prefix|</code>
 
 g:changelog_new_entry_format
-                        建立新段所用的格式。下表描述字符串里的特殊记号:
+                        建立新段所用的格式。下表描述字符串裡的特殊記號:
                                 %p      插入 b:changelog_entry_prefix 的值
-                                %c      完成时光标的位置
-                        缺省值是 "\t*%c"，产生的结果如下 
+                                %c      完成時光標的位置
+                        缺省值是 "\t*%c"，產生的結果如下 
 <code class="example">                                |        * prefix|</code>
 
 g:changelog_date_entry_search
-                        搜索日期项所用的搜索模式。
-                        g:changelog_new_date_format 所使用的特殊记号这里也可以
+                        搜索日期項所用的搜索模式。
+                        g:changelog_new_date_format 所使用的特殊記號這裡也可以
                         使用。
                         缺省值是 '^\s*%d\_s*%u'，它能找到匹配如下形式的行 
 <code class="example">                                |2003-01-14  Full Name  &lt;user@host&gt;</code>
-                        和一些类似的格式。
+                        和一些類似的格式。
 
 g:changelog_date_end_entry_search
-                        搜索日期项结尾所用的搜索模式。
-                        g:changelog_new_date_format 所使用的特殊记号这里也可以
+                        搜索日期項結尾所用的搜索模式。
+                        g:changelog_new_date_format 所使用的特殊記號這裡也可以
                         使用。
                         缺省值是 '^\s*$'，它匹配只包含空白或全空的行。
 
 b:changelog_name                                        <b class="vimtag"> <a name="b:changelog_name">b:changelog_name</a> </b>
-                        寻找的 ChangeLog 文件名。缺省是 <code class="badlink">'ChangeLog'</code>。
+                        尋找的 ChangeLog 文件名。缺省是 <code class="badlink">'ChangeLog'</code>。
 
 b:changelog_path
-                        当前缓冲区使用的 ChangeLog 路径。缺省为空，也就是寻找
-                        和当前缓冲区同一目录的名为  <a href="filetype.html#b:changelog_name">b:changelog_name</a>  的文件。
-                        如果没找到，搜索当前缓冲区的父目录，如此递归直到找到文
-                        件或者没有更多的父目录可供搜索。
+                        當前緩衝區使用的 ChangeLog 路徑。缺省為空，也就是尋找
+                        和當前緩衝區同一目錄的名為  <a href="filetype.html#b:changelog_name">b:changelog_name</a>  的文件。
+                        如果沒找到，搜索當前緩衝區的父目錄，如此遞歸直到找到文
+                        件或者沒有更多的父目錄可供搜索。
 
 b:changelog_entry_prefix
-                        函数名，用于生成新段的前缀。该函数没有参数，而应返回包
-                        含前缀的字符串。
-                        可以返回空前缀。
-                        缺省生成 ChangeLog 的路径名和当前缓冲区路径名两者的较
-                        短者。此变量将来应该可以使用其它变量上下文，例如 g:。
+                        函數名，用於生成新段的前綴。該函數沒有參數，而應返回包
+                        含前綴的字符串。
+                        可以返回空前綴。
+                        缺省生成 ChangeLog 的路徑名和當前緩衝區路徑名兩者的較
+                        短者。此變量將來應該可以使用其它變量上下文，例如 g:。
 
-Changelog 段插入时，只需要输入最少量的文本。在确定当前日期和用户后，在该文件里
-会搜索以当前日期和用户开头的一段，如果找到了，则在其后添加一个新项。如果没有，
-则从 Changelog 文件开始处添加新的段和项目 (item)。
+Changelog 段插入時，只需要輸入最少量的文本。在確定當前日期和用戶後，在該文件裡
+會搜索以當前日期和用戶開頭的一段，如果找到了，則在其後添加一個新項。如果沒有，
+則從 Changelog 文件開始處添加新的段和項目 (item)。
 
 
 FORTRAN                                                 <b class="vimtag"> <a name="ft-fortran-plugin">ft-fortran-plugin</a> </b>
 
-选项:
-<a href="options.html#'expandtab'">'expandtab'</a>     被打开，按照 Fortran 标准的要求，不应出现制表字符。用户在
-                .vimrc 文件里设置 fortran_have_tabs 除外。
-<a href="options.html#'textwidth'">'textwidth'</a>     按照 Fortrean 标准要求， 固定宽度源文件格式设为 72，自由格式的
-                源代码设为 80。
-<a href="options.html#'formatoptions'">'formatoptions'</a> 设为能断开代码和注释行，并保留长行。你可以用  <a href="change.html#gq">gq</a>  排版注释。
-更多的关于 fortran_have_tabs 和检测源代码格式的方法的讨论，可见
+選項:
+<a href="options.html#'expandtab'">'expandtab'</a>     被打開，按照 Fortran 標準的要求，不應出現製表字符。用戶在
+                .vimrc 文件裡設置 fortran_have_tabs 除外。
+<a href="options.html#'textwidth'">'textwidth'</a>     按照 Fortrean 標準要求， 固定寬度源文件格式設為 72，自由格式的
+                源代碼設為 80。
+<a href="options.html#'formatoptions'">'formatoptions'</a> 設為能斷開代碼和註釋行，並保留長行。你可以用  <a href="change.html#gq">gq</a>  排版註釋。
+更多的關於 fortran_have_tabs 和檢測源代碼格式的方法的討論，可見
  <a href="syntax.html#ft-fortran-syntax">ft-fortran-syntax</a> 。
 
 
 GIT COMMIT                                              <b class="vimtag"> <a name="ft-gitcommit-plugin">ft-gitcommit-plugin</a> </b>
 
-提供了一个命令 :DiffGitCached 来在预览窗口中显示当前提交的差异部分。等价于
-"git diff --cached" 加上此命令后面的参数。
+提供了一個命令 :DiffGitCached 來在預覽窗口中顯示當前提交的差異部分。等價於
+"git diff --cached" 加上此命令後面的參數。
 
 
 MAIL                                                    <b class="vimtag"> <a name="ft-mail-plugin">ft-mail-plugin</a> </b>
 
-选项:
-<a href="options.html#'modeline'">'modeline'</a>      被关闭，以防特洛伊木马。也防止含有 "Vim:" 字样的标题会引起错误
+選項:
+<a href="options.html#'modeline'">'modeline'</a>      被關閉，以防特洛伊木馬。也防止含有 "Vim:" 字樣的標題會引起錯誤
                 信息。
-<a href="options.html#'textwidth'">'textwidth'</a>     设为 72。这是 e-mail 推荐的格式。
-<a href="options.html#'formatoptions'">'formatoptions'</a> 设为能断开文本行，并且在新行里重复注释的前导符，这样引用开头的
-                "&gt;" 就可以重复了。你也可以用  <a href="change.html#gq">gq</a>  排版引用文本。
+<a href="options.html#'textwidth'">'textwidth'</a>     設為 72。這是 e-mail 推薦的格式。
+<a href="options.html#'formatoptions'">'formatoptions'</a> 設為能斷開文本行，並且在新行裡重複註釋的前導符，這樣引用開頭的
+                "&gt;" 就可以重複了。你也可以用  <a href="change.html#gq">gq</a>  排版引用文本。
 
 局部映射:
 <code class="special">&lt;LocalLeader&gt;</code>q   或者  \\MailQuote
-        引用可视模式下的选择文本，或者在普通模式下从光标位置到文件末的文本。这
-        意味着 "&gt; " 会插到每行的开始。
+        引用可視模式下的選擇文本，或者在普通模式下從光標位置到文件末的文本。這
+        意味著 "&gt; " 會插到每行的開始。
 
 MAN                                     <b class="vimtag"> <a name="ft-man-plugin">ft-man-plugin</a> </b> <b class="vimtag"> <a name=":Man">:Man</a> </b> <b class="vimtag"> <a name="man.vim">man.vim</a> </b>
 
-较好地显示手册页。另见用户手册中的  <a href="usr_12.html#find-manpage">find-manpage</a> 。
+較好地顯示手冊頁。另見用戶手冊中的  <a href="usr_12.html#find-manpage">find-manpage</a> 。
 
-要在调入任何手册页之前就能使用 ":Man" 命令，你需要在启动的 vimrc 文件里先执行
-以下脚本: 
+要在調入任何手冊頁之前就能使用 ":Man" 命令，你需要在啟動的 vimrc 文件裡先執行
+以下腳本: 
 <code class="example"></code>
 <code class="example">        runtime ftplugin/man.vim</code>
 <code class="example"></code>
-选项:
-<a href="options.html#'iskeyword'">'iskeyword'</a>     加入 '.' 字符，以便能在手册页名字上使用 <code class="keystroke">CTRL-]</code>。
+選項:
+<a href="options.html#'iskeyword'">'iskeyword'</a>     加入 '.' 字符，以便能在手冊頁名字上使用 <code class="keystroke">CTRL-]</code>。
 
 命令:
-Man <code class="special">{name}</code>      在窗口里显示 <code class="special">{name}</code> 的手册页
+Man <code class="special">{name}</code>      在窗口裡顯示 <code class="special">{name}</code> 的手冊頁
 Man <code class="special">{number}</code> <code class="special">{name}</code>
-                在第 <code class="special">{number}</code> 节里显示 <code class="special">{name}</code> 的手册页。
+                在第 <code class="special">{number}</code> 節裡顯示 <code class="special">{name}</code> 的手冊頁。
 
 全局映射:
-<code class="special">&lt;Leader&gt;</code>K       显示当前光标下的单词的相应手册页。
-<code class="special">&lt;Plug&gt;</code>ManPreGetPage  同上，可用于映射: 
+<code class="special">&lt;Leader&gt;</code>K       顯示當前光標下的單詞的相應手冊頁。
+<code class="special">&lt;Plug&gt;</code>ManPreGetPage  同上，可用於映射: 
 <code class="example">                        nmap &lt;F1&gt; &lt;Plug&gt;ManPreGetPage&lt;CR&gt;</code>
 <code class="example"></code>
 局部映射:
-<code class="keystroke">CTRL-]</code>          跳到当前光标下的单词的相应手册页。
-<code class="keystroke">CTRL-T</code>          跳回前一次的手册页。
+<code class="keystroke">CTRL-]</code>          跳到當前光標下的單詞的相應手冊頁。
+<code class="keystroke">CTRL-T</code>          跳回前一次的手冊頁。
 q               同 ":quit"
 
 要使用垂直映射而不是水平映射： 
 <code class="example">        let g:ft_man_open_mode = 'vert'</code>
-要用新标签页: 
+要用新標籤頁: 
 <code class="example">        let g:ft_man_open_mode = 'tab'</code>
 <code class="example"></code>
-要打开折叠: 
+要打開折疊: 
 <code class="example">        let g:ft_man_folding_enable = 1</code>
-如果不喜欢缺省的折叠方式，使用自动命令加入你喜欢和折叠风格。例如: 
+如果不喜歡缺省的折疊方式，使用自動命令加入你喜歡和折疊風格。例如: 
 <code class="example">        autocmd FileType man setlocal foldmethod=indent foldenable</code>
 <code class="example"></code>
-你可能还想设置 <a href="options.html#'keywordprg'">'keywordprg'</a>，使  <a href="various.html#K">K</a>  命令在 Vim 窗口打开手册页: 
+你可能還想設置 <a href="options.html#'keywordprg'">'keywordprg'</a>，使  <a href="various.html#K">K</a>  命令在 Vim 窗口打開手冊頁: 
 <code class="example">        set keywordprg=:Man</code>
 <code class="example"></code>
 <code class="example"></code>
 MANPAGER                                      <b class="vimtag"> <a name="manpager.vim">manpager.vim</a> </b>
 
-:Man 命令把 Vim 变成手册浏览器 (语法高亮手册页，按 <code class="keystroke">CTRL-]</code> 时点击相连的手册
-页)。
+:Man 命令把 Vim 變成手冊瀏覽器 (語法高亮手冊頁，按 <code class="keystroke">CTRL-]</code> 時點擊相連的手冊
+頁)。
 
-可用于:
+可用於:
 
   - Linux
   - Mac OS
@@ -546,78 +546,78 @@ MANPAGER                                      <b class="vimtag"> <a name="manpag
   - Cygwin
   - Win 10 的 Bash
 
-未经测试:
+未經測試:
 
   - Amiga OS
   - BeOS
   - OS/2
 
-对 bash、zsh、ksh 或 dash，加入对应的配置文件 (.bashrc、.zshrc、...)
+對 bash、zsh、ksh 或 dash，加入對應的配置文件 (.bashrc、.zshrc、...)
 
         export MANPAGER="env MAN_PN=1 vim -M +MANPAGER -"
 
-对 (t)csh，加入配置文件
+對 (t)csh，加入配置文件
 
         setenv MANPAGER "env MAN_PN=1 vim -M +MANPAGER -"
 
-对 fish，加入配置文件
+對 fish，加入配置文件
 
         set -x MANPAGER "env MAN_PN=1 vim -M +MANPAGER -"
 
-如果 man 设置了 $MAN_PN 环境变量，像 Linux 和 Mac OS 最常见的实现 man-db 那
-样，那么上述 "env MAN_PN=1 " 部分就是多余的。
+如果 man 設置了 $MAN_PN 環境變量，像 Linux 和 Mac OS 最常見的實現 man-db 那
+樣，那麼上述 "env MAN_PN=1 " 部分就是多餘的。
 
 PDF                                                     <b class="vimtag"> <a name="ft-pdf-plugin">ft-pdf-plugin</a> </b>
 
-提供两个映射， &lt;C-]&gt; 和 <code class="special">&lt;C-T&gt;</code>，来模拟用于 PDF 浏览的标签栈。以下内容视为标签:
+提供兩個映射， &lt;C-]&gt; 和 <code class="special">&lt;C-T&gt;</code>，來模擬用於 PDF 瀏覽的標籤棧。以下內容視為標籤:
 
-- "startxref" 后指向 xref 表的字节位移
-- 文件尾部中 /Prev 键后指向以前 xref 表的字节位移
+- "startxref" 後指向 xref 表的字節位移
+- 文件尾部中 /Prev 鍵後指向以前 xref 表的字節位移
 - xref 表中形如 "0123456789 00000 n" 的行
-- PDF 任意位置上形如 "1 0 R" 的对象引用
+- PDF 任意位置上形如 "1 0 R" 的對象引用
 
-可以关闭这些映射 
+可以關閉這些映射 
 <code class="example">        :let g:no_pdf_maps = 1</code>
 
 
 PYTHON                                          <b class="vimtag"> <a name="ft-python-plugin">ft-python-plugin</a> </b> <b class="vimtag"> <a name="PEP8">PEP8</a> </b>
 
-缺省设置以下选项，根据 PEPB: 
+缺省設置以下選項，根據 PEPB: 
 <code class="example"></code>
 <code class="example">        setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=8</code>
 <code class="example"></code>
-要关闭此行为，在 vimrc 里设置变量: 
+要關閉此行為，在 vimrc 裡設置變量: 
 <code class="example"></code>
 <code class="example">        let g:python_recommended_style = 0</code>
 <code class="example"></code>
 <code class="example"></code>
 RPM SPEC                                                <b class="vimtag"> <a name="ft-spec-plugin">ft-spec-plugin</a> </b>
 
-因为这个插件的文本相当长，它被单独列出:  <a href="pi_spec.html#pi_spec.txt">pi_spec.txt</a> 。
+因為這個插件的文本相當長，它被單獨列出:  <a href="pi_spec.html#pi_spec.txt">pi_spec.txt</a> 。
 
 
 RUST                                                    <b class="vimtag"> <a name="ft-rust">ft-rust</a> </b>
 
-因为这个插件的文本相当长，它被单独列出:  <a href="ft_rust.html#ft_rust.txt">ft_rust.txt</a> 。
+因為這個插件的文本相當長，它被單獨列出:  <a href="ft_rust.html#ft_rust.txt">ft_rust.txt</a> 。
 
 
 SQL                                                     <b class="vimtag"> <a name="ft-sql">ft-sql</a> </b>
 
-因为这个插件的文本相当长，它被单独列出:  <a href="ft_sql.html#ft_sql.txt">ft_sql.txt</a> 。
+因為這個插件的文本相當長，它被單獨列出:  <a href="ft_sql.html#ft_sql.txt">ft_sql.txt</a> 。
 
 
 TEX                                             <b class="vimtag"> <a name="ft-tex-plugin">ft-tex-plugin</a> </b> <b class="vimtag"> <a name="g:tex_flavor">g:tex_flavor</a> </b>
 
 如果 *.tex 文件的首行是如下的形式 
 <code class="example">        %&amp;&lt;format&gt;</code>
-那么它决定了文件类型:  plaintex (普通的 TeX)、context (ConTeXt)、或者 tex
-(LaTeX)。否则在文件里搜索关键字以判断是 context 还是 tex。如果找不到关键字，缺
-省是 plaintex。可以通过定义变量 g:tex_flavor 改变缺省值为最常用的格式 (不是文
-件类型)。使用下列选择之一: 
+那麼它決定了文件類型:  plaintex (普通的 TeX)、context (ConTeXt)、或者 tex
+(LaTeX)。否則在文件裡搜索關鍵字以判斷是 context 還是 tex。如果找不到關鍵字，缺
+省是 plaintex。可以通過定義變量 g:tex_flavor 改變缺省值為最常用的格式 (不是文
+件類型)。使用下列選擇之一: 
 <code class="example">        let g:tex_flavor = "plain"</code>
 <code class="example">        let g:tex_flavor = "context"</code>
 <code class="example">        let g:tex_flavor = "latex"</code>
-目前还不能识别其它格式。
+目前還不能識別其它格式。
 
 
  vim:tw=78:ts=8:ft=help:norl:

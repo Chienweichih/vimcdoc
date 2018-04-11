@@ -1,17 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>VIM: if_cscop</title>
 <link rel="stylesheet" href="vim-stylesheet.css" type="text/css">
 </head>
 <body>
 <div id=banner>
-<a href="help.html">帮助总览</a> &middot;
-<a href="quickref.html">快速参考</a> &middot;
+<a href="help.html">幫助總覽</a> &middot;
+<a href="quickref.html">快速參考</a> &middot;
 <a href="index.html">命令索引</a> &middot;
-<a href="usr_toc.html">用户手册</a> &middot;
-<a href="help.html#reference_toc">参考手册</a>
+<a href="usr_toc.html">用戶手冊</a> &middot;
+<a href="help.html#reference_toc">參考手冊</a>
 </div>
 
 <div id=outer>
@@ -20,95 +20,95 @@
 <b class="vimtag"> <a name="if_cscop.txt">if_cscop.txt</a> </b>  For Vim version 8.0.  最近更新: 2017年7月
 
 
-                  <code class="vim">VIM 参考手册    by Andy Kahn</code>
-                <code class="vim">译者</code>: lang2，tocer http://vimcdoc.sf.net
+                  <code class="vim">VIM 參考手冊    by Andy Kahn</code>
+                <code class="vim">譯者</code>: lang2，tocer http://vimcdoc.sf.net
 
                                                         <b class="vimtag"> <a name="cscope">cscope</a> </b> <b class="vimtag"> <a name="Cscope">Cscope</a> </b>
-本文档阐述如何使用 Vim 的 cscope 接口。
+本文檔闡述如何使用 Vim 的 cscope 接口。
 
-Cscope 是一个类似 ctags 的工具。 你可以把它想作是超过频的 ctags，因为它功能比
-ctags 强大很多。 在 Vim 里，通过 cscope 查询结果来跳转就像跳转到其他的标签完全
-一样；它被保存在标签栈里。这样你就可以像使用  <a href="tagsrch.html#tags">tags</a>  一样在函数等等之间便捷的跳
-转。
+Cscope 是一個類似 ctags 的工具。 你可以把它想作是超過頻的 ctags，因為它功能比
+ctags 強大很多。 在 Vim 裡，通過 cscope 查詢結果來跳轉就像跳轉到其他的標籤完全
+一樣；它被保存在標籤棧裡。這樣你就可以像使用  <a href="tagsrch.html#tags">tags</a>  一樣在函數等等之間便捷的跳
+轉。
 
-1. Cscope 简介                   <a href="if_cscop.html#cscope-intro">cscope-intro</a> 
-2. Cscope 相关命令               <a href="if_cscop.html#cscope-commands">cscope-commands</a> 
-3. Cscope 选项                   <a href="if_cscop.html#cscope-options">cscope-options</a> 
+1. Cscope 簡介                   <a href="if_cscop.html#cscope-intro">cscope-intro</a> 
+2. Cscope 相關命令               <a href="if_cscop.html#cscope-commands">cscope-commands</a> 
+3. Cscope 選項                   <a href="if_cscop.html#cscope-options">cscope-options</a> 
 4. 如何在 Vim 中使用 cscope      <a href="if_cscop.html#cscope-howtouse">cscope-howtouse</a> 
 5. 缺陷                          <a href="if_cscop.html#cscope-limitations">cscope-limitations</a> 
-6. 建议的使用方法                <a href="if_cscop.html#cscope-suggestions">cscope-suggestions</a> 
-7. 如何获取 cscope 等信息        <a href="if_cscop.html#cscope-info">cscope-info</a> 
+6. 建議的使用方法                <a href="if_cscop.html#cscope-suggestions">cscope-suggestions</a> 
+7. 如何獲取 cscope 等信息        <a href="if_cscop.html#cscope-info">cscope-info</a> 
 
-目前为止 cscope 接口仅在 Unix 及 Win32 平台上有效。
-<code class="notvi">{Vi 无此功能}</code>
+目前為止 cscope 接口僅在 Unix 及 Win32 平台上有效。
+<code class="notvi">{Vi 無此功能}</code>
 
 </pre><hr class="doubleline" /><pre>
-<h4>1. Cscope 简介                                          <b class="vimtag"> <a name="cscope-intro">cscope-intro</a> </b></h4>
-下面文本摘自 cscope 的手册页:
+<h4>1. Cscope 簡介                                          <b class="vimtag"> <a name="cscope-intro">cscope-intro</a> </b></h4>
+下面文本摘自 cscope 的手冊頁:
 
 </pre><hr class="singleline" /><pre>
 
-  Cscope 是一个交互式的屏幕下使用的工具，用来帮助你:
+  Cscope 是一個交互式的屏幕下使用的工具，用來幫助你:
 
-       无须在厚厚的程序清单中翻来翻去就可以认识一个 C 程序的工作原理。
+       無須在厚厚的程序清單中翻來翻去就可以認識一個 C 程序的工作原理。
 
-       无须熟悉整个程序就可以知道清楚程序 bug 所要修改的代码位置。
+       無須熟悉整個程序就可以知道清楚程序 bug 所要修改的代碼位置。
 
-       检查提议的改动 (如添加一个枚举值) 可能会产生的效果。
+       檢查提議的改動 (如添加一個枚舉值) 可能會產生的效果。
 
-       验证所有的源文件都已经作了需要的修改；例如给某一个现存的函数添加一个参
-       数。
+       驗證所有的源文件都已經作了需要的修改；例如給某一個現存的函數添加一個參
+       數。
 
-       在所有相关的源文件中对一个全局变量改名。
+       在所有相關的源文件中對一個全局變量改名。
 
-       在所有相关的位置将一个常数改为一个预处理符号。
+       在所有相關的位置將一個常數改為一個預處理符號。
 
-  它被设计用来回答以下的问题:
-       什么地方用到了这个符号？
-       这是在什么地方定义的？
-       这个变量在哪里被赋值？
-       这个全局符号的定义在哪里？
-       这个函数在源文件中的哪个地方？
-       哪些函数调用了这个函数？
-       这个函数调用了哪些函数？
-       信息 "out of space" 从哪来？
-       这个源文件在整个目录结构中处于什么位置？
-       哪些文件包含这个头文件？
+  它被設計用來回答以下的問題:
+       什麼地方用到了這個符號？
+       這是在什麼地方定義的？
+       這個變量在哪裡被賦值？
+       這個全局符號的定義在哪裡？
+       這個函數在源文件中的哪個地方？
+       哪些函數調用了這個函數？
+       這個函數調用了哪些函數？
+       信息 "out of space" 從哪來？
+       這個源文件在整個目錄結構中處於什麼位置？
+       哪些文件包含這個頭文件？
 
-  Cscope 在第一次被使用在指定的源文件时会建立一个符号的数据库。接下来调用时，
-  cscope 仅仅重建那些被改动或者和新文件相关的数据库。那些没有被改动的文件相关
-  的数据库会被直接复制使用。这使得重建数据库要比第一次运行快许多。
+  Cscope 在第一次被使用在指定的源文件時會建立一個符號的數據庫。接下來調用時，
+  cscope 僅僅重建那些被改動或者和新文件相關的數據庫。那些沒有被改動的文件相關
+  的數據庫會被直接複製使用。這使得重建數據庫要比第一次運行快許多。
 
 </pre><hr class="singleline" /><pre>
 
-当 cscope 正常调用时，你会得到一个全屏幕的选择窗口。你可以针对以上问题输入一个
-查询。然而，一旦找到一个匹配而你进入了一个文本编辑器来查看和编辑包含匹配的源文
-件时，你无法像在 vi 中使用 Ctrl-] 或 :tag 命令那样方便地跳转。
+當 cscope 正常調用時，你會得到一個全屏幕的選擇窗口。你可以針對以上問題輸入一個
+查詢。然而，一旦找到一個匹配而你進入了一個文本編輯器來查看和編輯包含匹配的源文
+件時，你無法像在 vi 中使用 Ctrl-] 或 :tag 命令那樣方便地跳轉。
 
-Vim 的 cscope 接口的工作原理是: 先调用 cscope 的命令行接口，然后分析其输出结果
-从而找到匹配处。最终结果是: cscope 查询结果就像一般的标签一样。你可以使用一般
-的标签命令 (Ctrl-］ 或 :tag) 然后再用 Ctrl-T 回跳。 (<code class="note">注意</code> 不过，其实你不能直接
-使用 Ctrl-] 或 :tag 跳转到标签。在那之前你必须重新定义映射或设定一些选项值。下
-面的几节会告诉你 cscope 接口如何工作，以及建议的使用方式。)
+Vim 的 cscope 接口的工作原理是: 先調用 cscope 的命令行接口，然後分析其輸出結果
+從而找到匹配處。最終結果是: cscope 查詢結果就像一般的標籤一樣。你可以使用一般
+的標籤命令 (Ctrl-〕 或 :tag) 然後再用 Ctrl-T 回跳。 (<code class="note">注意</code> 不過，其實你不能直接
+使用 Ctrl-] 或 :tag 跳轉到標籤。在那之前你必須重新定義映射或設定一些選項值。下
+面的幾節會告訴你 cscope 接口如何工作，以及建議的使用方式。)
 
 
 </pre><hr class="doubleline" /><pre>
-<h4>2. Cscope 相关命令                                      <b class="vimtag"> <a name="cscope-commands">cscope-commands</a> </b></h4>
+<h4>2. Cscope 相關命令                                      <b class="vimtag"> <a name="cscope-commands">cscope-commands</a> </b></h4>
                 <b class="vimtag"> <a name=":cscope">:cscope</a> </b> <b class="vimtag"> <a name=":cs">:cs</a> </b> <b class="vimtag"> <a name=":scs">:scs</a> </b> <b class="vimtag"> <a name=":scscope">:scscope</a> </b> <b class="vimtag"> <a name="E259">E259</a> </b> <b class="vimtag"> <a name="E262">E262</a> </b> <b class="vimtag"> <a name="E561">E561</a> </b> <b class="vimtag"> <a name="E560">E560</a> </b>
-所有命令都是通过主命令 ":cscope" 的子项完成的。主命令最短的缩写是 ":cs"。
-":scscope" 完成同样的功能的同时还可以分割窗口 (缩写: "scs")。
+所有命令都是通過主命令 ":cscope" 的子項完成的。主命令最短的縮寫是 ":cs"。
+":scscope" 完成同樣的功能的同時還可以分割窗口 (縮寫: "scs")。
 
 可用的子命令有:
 
                         <b class="vimtag"> <a name="E563">E563</a> </b> <b class="vimtag"> <a name="E564">E564</a> </b> <b class="vimtag"> <a name="E566">E566</a> </b> <b class="vimtag"> <a name="E568">E568</a> </b> <b class="vimtag"> <a name="E622">E622</a> </b> <b class="vimtag"> <a name="E623">E623</a> </b> <b class="vimtag"> <a name="E625">E625</a> </b>
                         <b class="vimtag"> <a name="E626">E626</a> </b> <b class="vimtag"> <a name="E609">E609</a> </b>
-    add   : 添加一个新的 cscope 数据库／连接。
+    add   : 添加一個新的 cscope 數據庫／連接。
 
         用法    :cs add {file|dir} [pre-path] <code class="special">[flags]</code>
 
-            [pre-path] 用来通知 cscope 使用 -P [pre-path] 选项。
+            [pre-path] 用來通知 cscope 使用 -P [pre-path] 選項。
 
-            <code class="special">[flags]</code> 可以用来给 cscope 传递额外的选项。
+            <code class="special">[flags]</code> 可以用來給 cscope 傳遞額外的選項。
 
         例子 
 <code class="example">            :cscope add /usr/local/cdb/cscope.out</code>
@@ -116,40 +116,40 @@ Vim 的 cscope 接口的工作原理是: 先调用 cscope 的命令行接口，�
 <code class="example">            :cscope add cscope.out /usr/local/vim -C</code>
 
                                       <b class="vimtag"> <a name="cscope-find">cscope-find</a> </b> <b class="vimtag"> <a name="cs-find">cs-find</a> </b> <b class="vimtag"> <a name="E567">E567</a> </b>
-    find  : 查询 cscope。除了第 5 个之外的所有 cscope 查询功能都可以使用。
-            第 5 个是 "Change this grep pattern"。
+    find  : 查詢 cscope。除了第 5 個之外的所有 cscope 查詢功能都可以使用。
+            第 5 個是 "Change this grep pattern"。
 
         用法    :cs find <code class="special">{querytype}</code> <code class="special">{name}</code>
 
-            <code class="special">{querytype}</code> 对应 cscope 控制台接口编号和 nvi 的缺省命令:
+            <code class="special">{querytype}</code> 對應 cscope 控制台接口編號和 nvi 的缺省命令:
 
-                0 或 s: 查找本 C 符号
-                1 或 g: 查找本定义
-                2 或 d: 查找本函数调用的函数
-                3 或 c: 查找调用本函数的函数
+                0 或 s: 查找本 C 符號
+                1 或 g: 查找本定義
+                2 或 d: 查找本函數調用的函數
+                3 或 c: 查找調用本函數的函數
                 4 或 t: 查找本字符串
                 6 或 e: 查找本 egrep 模式
                 7 或 f: 查找本文件
                 8 或 i: 查找包含本文件的文件
-                9 或 a: 查找此符号被赋值的位置
+                9 或 a: 查找此符號被賦值的位置
 
-        除了 4 和 6 之外的类型忽略 <code class="special">{name}</code> 之前的空格。4 和 6 在 <code class="special">{querytype}</code> 和
-        <code class="special">{name}</code> 之间只能有一个空格分隔。多余的空格是 <code class="special">{name}</code> 的一部分。
+        除了 4 和 6 之外的類型忽略 <code class="special">{name}</code> 之前的空格。4 和 6 在 <code class="special">{querytype}</code> 和
+        <code class="special">{name}</code> 之間只能有一個空格分隔。多餘的空格是 <code class="special">{name}</code> 的一部分。
 
         例如 
 <code class="example">            :cscope find c vim_free</code>
 <code class="example">            :cscope find 3  vim_free</code>
 
-            这两个例子执行同样的查询: 名为 "vim_free" 的函数。 
+            這兩個例子執行同樣的查詢: 名為 "vim_free" 的函數。 
 <code class="example"></code>
 <code class="example">            :cscope find t initOnce</code>
 <code class="example">            :cscope find t  initOnce</code>
 
-            前者查找文本 "initOnce"，后者查找 " initOnce"。 
+            前者查找文本 "initOnce"，後者查找 " initOnce"。 
 <code class="example"></code>
 <code class="example">            :cscope find 0 DEFAULT_TERM</code>
 
-            在 Vim 5.1 的源代码内执行以上的命令得到以下的结果:
+            在 Vim 5.1 的源代碼內執行以上的命令得到以下的結果:
 
             Cscope tag: DEFAULT_TERM
                #   line  filename / context / line
@@ -185,158 +185,158 @@ Vim 的 cscope 接口的工作原理是: 先调用 cscope 的命令行接口，�
                          p = find_builtin_term(DEFAULT_TERM);
             Enter nr of choice (<code class="special">&lt;CR&gt;</code> to abort):
 
-            这样的输出显示了几类信息:
-            1. 标签号码 (例子中有 15 个)。
-            2. 标签所在的行号。
-            3. 标签所在文件的文件名。
-            4. 标签的上下文 (如: 全局或函数名)。
-            5. 标签所在行的文本。
+            這樣的輸出顯示了幾類信息:
+            1. 標籤號碼 (例子中有 15 個)。
+            2. 標籤所在的行號。
+            3. 標籤所在文件的文件名。
+            4. 標籤的上下文 (如: 全局或函數名)。
+            5. 標籤所在行的文本。
 
-    help  : 显示一个简单的帮助。
+    help  : 顯示一個簡單的幫助。
 
             用法    :cs help
 
                                                         <b class="vimtag"> <a name="E261">E261</a> </b>
-    kill  : 终止一个 cscope 连接 (或终止所有 cscope 连接)。
+    kill  : 終止一個 cscope 連接 (或終止所有 cscope 連接)。
 
             用法   :cs kill {num|partial_name}
 
-            要终止一个连接，需要给出连接号或者部分的连接名称。部分名称可以
-            是数据库文件路径的任何一部分。所以要当心使用这个功能！
+            要終止一個連接，需要給出連接號或者部分的連接名稱。部分名稱可以
+            是數據庫文件路徑的任何一部分。所以要當心使用這個功能！
 
-            如果给定的连接号是 -1，那么 所 有 的 cscope 连接都会被终止。
+            如果給定的連接號是 -1，那麼 所 有 的 cscope 連接都會被終止。
 
-    reset : 重新初始化所有连接。
+    reset : 重新初始化所有連接。
 
             用法    :cs reset
 
-    show  : 显示当前的连接。
+    show  : 顯示當前的連接。
 
             用法    :cs show
 
                                                         <b class="vimtag"> <a name=":lcscope">:lcscope</a> </b> <b class="vimtag"> <a name=":lcs">:lcs</a> </b>
-此命令和 ":cscope" 命令相同，除了在置位选项 <a href="options.html#'cscopequickfix'">'cscopequickfix'</a> 的时候，使用当前
-窗口的位置列表而不是 quickfix 列表来显示 cscope 的结果。
+此命令和 ":cscope" 命令相同，除了在置位選項 <a href="options.html#'cscopequickfix'">'cscopequickfix'</a> 的時候，使用當前
+窗口的位置列表而不是 quickfix 列表來顯示 cscope 的結果。
 
                                                         <b class="vimtag"> <a name=":cstag">:cstag</a> </b> <b class="vimtag"> <a name="E257">E257</a> </b> <b class="vimtag"> <a name="E562">E562</a> </b>
-如果你同时使用 cscope 和 ctags， <a href="if_cscop.html#:cstag">:cstag</a>  允许你在跳转前对两者都进行查询。例
-如，你可以选择先查询 cscope 数据库，如果无法找到匹配，再查询标签文件。这种做法
-的次序可以通过  <a href="if_cscop.html#csto">csto</a>  的值来调整。参见  <a href="if_cscop.html#cscope-options">cscope-options</a> 。
+如果你同時使用 cscope 和 ctags， <a href="if_cscop.html#:cstag">:cstag</a>  允許你在跳轉前對兩者都進行查詢。例
+如，你可以選擇先查詢 cscope 數據庫，如果無法找到匹配，再查詢標籤文件。這種做法
+的次序可以通過  <a href="if_cscop.html#csto">csto</a>  的值來調整。參見  <a href="if_cscop.html#cscope-options">cscope-options</a> 。
 
- <a href="if_cscop.html#:cstag">:cstag</a>  在搜索 cscope 数据库时执行和 ":cs find g" 加上标识符一样的操作。
+ <a href="if_cscop.html#:cstag">:cstag</a>  在搜索 cscope 數據庫時執行和 ":cs find g" 加上標識符一樣的操作。
 
- <a href="if_cscop.html#:cstag">:cstag</a>  在搜索标签文件时执行和  <a href="tagsrch.html#:tjump">:tjump</a>  加上标识符一样的操作。
+ <a href="if_cscop.html#:cstag">:cstag</a>  在搜索標籤文件時執行和  <a href="tagsrch.html#:tjump">:tjump</a>  加上標識符一樣的操作。
 
 
 </pre><hr class="doubleline" /><pre>
-<h4>3. Cscope 选项                                          <b class="vimtag"> <a name="cscope-options">cscope-options</a> </b></h4>
-所有 cscope 有关的选项都可以用  <a href="options.html#:set">:set</a>  命令来设定。比较理想的做法是将这些设定添
-加到你的启动文件中 (如: .vimrc)。某些 cscope 选项仅仅在  <a href="starting.html#.vimrc">.vimrc</a>  文件内才有
-效。在 vim 启动之后再设定它们的值没有任何效果！
+<h4>3. Cscope 選項                                          <b class="vimtag"> <a name="cscope-options">cscope-options</a> </b></h4>
+所有 cscope 有關的選項都可以用  <a href="options.html#:set">:set</a>  命令來設定。比較理想的做法是將這些設定添
+加到你的啟動文件中 (如: .vimrc)。某些 cscope 選項僅僅在  <a href="starting.html#.vimrc">.vimrc</a>  文件內才有
+效。在 vim 啟動之後再設定它們的值沒有任何效果！
 
                                                         <b class="vimtag"> <a name="cscopeprg">cscopeprg</a> </b> <b class="vimtag"> <a name="csprg">csprg</a> </b>
-<a href="options.html#'cscopeprg'">'cscopeprg'</a> 指定用来执行 cscope 的命令。缺省值是 "cscope"。例如: 
+<a href="options.html#'cscopeprg'">'cscopeprg'</a> 指定用來執行 cscope 的命令。缺省值是 "cscope"。例如: 
 <code class="example">        :set csprg=/usr/local/bin/cscope</code>
 
                                             <b class="vimtag"> <a name="cscopequickfix">cscopequickfix</a> </b> <b class="vimtag"> <a name="csqf">csqf</a> </b> <b class="vimtag"> <a name="E469">E469</a> </b>
-<code class="notvi">{仅当编译时加入  <a href="various.html#+quickfix">+quickfix</a>  特性才有效}</code>
-<a href="options.html#'cscopequickfix'">'cscopequickfix'</a> 设定是否使用 quickfix 窗口来显示 cscope 结果。这是一组用逗号
-分隔的值。每个值可以代表一个  <a href="if_cscop.html#cscope-find">cscope-find</a>  命令 (s、g、d、c、t、e、f、i 或 a)
-加一个标志位 (+、- 或 0)。
-'+' 表示结果必须被添加到 quickfix 窗口中。'-' 表示清除上次的结果，'0' 或命令本
-身不存在表示不使用 quickfix。搜索从字符串首开始直到命令第一次出现时结束。缺省
-值是 "" (不使用 quickfix 窗口)。下面是个可能有用的值: 
+<code class="notvi">{僅當編譯時加入  <a href="various.html#+quickfix">+quickfix</a>  特性才有效}</code>
+<a href="options.html#'cscopequickfix'">'cscopequickfix'</a> 設定是否使用 quickfix 窗口來顯示 cscope 結果。這是一組用逗號
+分隔的值。每個值可以代表一個  <a href="if_cscop.html#cscope-find">cscope-find</a>  命令 (s、g、d、c、t、e、f、i 或 a)
+加一個標誌位 (+、- 或 0)。
+'+' 表示結果必須被添加到 quickfix 窗口中。'-' 表示清除上次的結果，'0' 或命令本
+身不存在表示不使用 quickfix。搜索從字符串首開始直到命令第一次出現時結束。缺省
+值是 "" (不使用 quickfix 窗口)。下面是個可能有用的值: 
 <code class="example">        :set cscopequickfix=s-,c-,d-,i-,t-,e-,a-</code>
 
                                                         <b class="vimtag"> <a name="cscopetag">cscopetag</a> </b> <b class="vimtag"> <a name="cst">cst</a> </b>
-若置位了 <a href="options.html#'cscopetag'">'cscopetag'</a> 选项，":tag" 命令，<code class="keystroke">CTRL-]</code> 以及 "vim -t" 都会使用  <a href="if_cscop.html#:cstag">:cstag</a> 
-而不是缺省的 :tag。也就是说，设定 <a href="options.html#'cst'">'cst'</a> 选项意味着你总同时搜索 cscope 数据库和
-标签文件。缺省值为关。例如: 
+若置位了 <a href="options.html#'cscopetag'">'cscopetag'</a> 選項，":tag" 命令，<code class="keystroke">CTRL-]</code> 以及 "vim -t" 都會使用  <a href="if_cscop.html#:cstag">:cstag</a> 
+而不是缺省的 :tag。也就是說，設定 <a href="options.html#'cst'">'cst'</a> 選項意味著你總同時搜索 cscope 數據庫和
+標籤文件。缺省值為關。例如: 
 <code class="example">        :set cst</code>
 <code class="example">        :set nocst</code>
 
                                                         <b class="vimtag"> <a name="cscoperelative">cscoperelative</a> </b> <b class="vimtag"> <a name="csre">csre</a> </b>
-若置位了 <a href="options.html#'cscoperelative'">'cscoperelative'</a>，而没有给 cscope 提供前缀 (即 cscope 的 -P 选项参
-数)，cscope.out 所在位置的目录名 (通常是项目的根目录) 用作前缀来构造绝对路径。
-缺省关闭此功能。<code class="note">注意</code>: 此选项仅当 cscope (cscopeprg) 启动时没有前缀路径 (-P) 时
-才适用。示例: 
+若置位了 <a href="options.html#'cscoperelative'">'cscoperelative'</a>，而沒有給 cscope 提供前綴 (即 cscope 的 -P 選項參
+數)，cscope.out 所在位置的目錄名 (通常是項目的根目錄) 用作前綴來構造絕對路徑。
+缺省關閉此功能。<code class="note">注意</code>: 此選項僅當 cscope (cscopeprg) 啟動時沒有前綴路徑 (-P) 時
+才適用。示例: 
 <code class="example">        :set csre</code>
 <code class="example">        :set nocsre</code>
 
                                                         <b class="vimtag"> <a name="cscopetagorder">cscopetagorder</a> </b> <b class="vimtag"> <a name="csto">csto</a> </b>
-<a href="options.html#'csto'">'csto'</a> 的值决定  <a href="if_cscop.html#:cstag">:cstag</a>  命令查找的次序。如果 <a href="options.html#'csto'">'csto'</a> 被设为 0，cscope 数据库先
-被搜索，搜索失败的情况下在搜索标签文件。如果 <a href="options.html#'csto'">'csto'</a> 被设为 1，标签文件会在
-cscope 数据库之前被搜索。缺省值为 0。
+<a href="options.html#'csto'">'csto'</a> 的值決定  <a href="if_cscop.html#:cstag">:cstag</a>  命令查找的次序。如果 <a href="options.html#'csto'">'csto'</a> 被設為 0，cscope 數據庫先
+被搜索，搜索失敗的情況下在搜索標籤文件。如果 <a href="options.html#'csto'">'csto'</a> 被設為 1，標籤文件會在
+cscope 數據庫之前被搜索。缺省值為 0。
 例: 
 <code class="example">        :set csto=0</code>
 <code class="example">        :set csto=1</code>
 
                                                 <b class="vimtag"> <a name="cscopeverbose">cscopeverbose</a> </b> <b class="vimtag"> <a name="csverb">csverb</a> </b>
-如果 <a href="options.html#'cscopeverbose'">'cscopeverbose'</a> 没有被设定 (缺省情况)，当添加一个数据库时，成功与否不会被
-显示。理想的情况是，你先在  <a href="starting.html#.vimrc">.vimrc</a>  文件中复位该选项，再添加 cscope 数据库，然
-后再置位。这样，如果你在使用 vim 当中动态添加数据库，你就会被 vim 告知结果。例
+如果 <a href="options.html#'cscopeverbose'">'cscopeverbose'</a> 沒有被設定 (缺省情況)，當添加一個數據庫時，成功與否不會被
+顯示。理想的情況是，你先在  <a href="starting.html#.vimrc">.vimrc</a>  文件中復位該選項，再添加 cscope 數據庫，然
+後再置位。這樣，如果你在使用 vim 當中動態添加數據庫，你就會被 vim 告知結果。例
 如: 
 <code class="example">        :set csverb</code>
 <code class="example">        :set nocsverb</code>
 
                                                       <b class="vimtag"> <a name="cscopepathcomp">cscopepathcomp</a> </b> <b class="vimtag"> <a name="cspc">cspc</a> </b>
-<a href="options.html#'cspc'">'cspc'</a> 的值决定显示文件路径的多少部分。在缺省值 0 的情况下整个路径都会被显示。
-1 只显示文件名，而不显示路径名。其它值会显示该值表示数目的部分。例如: 
+<a href="options.html#'cspc'">'cspc'</a> 的值決定顯示文件路徑的多少部分。在缺省值 0 的情況下整個路徑都會被顯示。
+1 只顯示文件名，而不顯示路徑名。其它值會顯示該值表示數目的部分。例如: 
 <code class="example">        :set cspc=3</code>
-会显示文件路径的最后 3 个部分，包括文件名本身。
+會顯示文件路徑的最後 3 個部分，包括文件名本身。
 
 </pre><hr class="doubleline" /><pre>
 <h4>4. 如何在 Vim 中使用 cscope                             <b class="vimtag"> <a name="cscope-howtouse">cscope-howtouse</a> </b></h4>
-首先你要做的是为你的源文件建立一个 cscope 数据库。最简单的做法是使用
-"cscope -b" 命令。更详细的说明请查阅 cscope 的手册页。
+首先你要做的是為你的源文件建立一個 cscope 數據庫。最簡單的做法是使用
+"cscope -b" 命令。更詳細的說明請查閱 cscope 的手冊頁。
 
-假定你已经建立了一个 cscope 数据库，你需要将其添加 "add" 到 Vim 中来。这会建立
-一个 cscope "连接" 给 Vim 来使用。你可以把这些加入到你的 .vimrc 文件里。也可以
-在 vim 启动之后手动完成。例如，要添加一个 cscope 数据库 "cscope.out"，你可以这
-样做: 
+假定你已經建立了一個 cscope 數據庫，你需要將其添加 "add" 到 Vim 中來。這會建立
+一個 cscope "連接" 給 Vim 來使用。你可以把這些加入到你的 .vimrc 文件裡。也可以
+在 vim 啟動之後手動完成。例如，要添加一個 cscope 數據庫 "cscope.out"，你可以這
+樣做: 
 <code class="example"></code>
 <code class="example">        :cs add cscope.out</code>
 
 
-你可以用 ":cs show" 命令来检查一下结果。该命令会产生类似下面的结果: 
+你可以用 ":cs show" 命令來檢查一下結果。該命令會產生類似下面的結果: 
 <code class="example"></code>
 <code class="example"> # pid    database name                       prepend path</code>
 <code class="example"> 0 28806  cscope.out                          &lt;none&gt;</code>
 
-<code class="note">备注</code>:
-因为 Microsoft RTL 的缺陷，Win32 版本只能显示 0 而不是真正的进程 ID。
+<code class="note">備註</code>:
+因為 Microsoft RTL 的缺陷，Win32 版本只能顯示 0 而不是真正的進程 ID。
 
-一旦建立了 cscope 连接，你就可以做各种查询并得到结果。查询所用的命令是
+一旦建立了 cscope 連接，你就可以做各種查詢並得到結果。查詢所用的命令是
 ":cs find"。例如: 
 <code class="example"></code>
 <code class="example">        :cs find g ALIGN_SIZE</code>
 
-这样要做很多的打字工作，所以有些麻烦。幸运的是，我们可以通过定义快捷键来避免过
-多的输入。参考  <a href="if_cscop.html#cscope-suggestions">cscope-suggestions</a>  可以得到一些使用的建议。
+這樣要做很多的打字工作，所以有些麻煩。幸運的是，我們可以通過定義快捷鍵來避免過
+多的輸入。參考  <a href="if_cscop.html#cscope-suggestions">cscope-suggestions</a>  可以得到一些使用的建議。
 
-如果匹配结果只有一个，你会被自动带到该处。如果匹配结果多于一个，Vim 会显示一个
-选择屏幕让你来选择一处匹配。在你跳转到新的位置后，简单地用 Ctrl-T 就可以跳回原
-处。
+如果匹配結果只有一個，你會被自動帶到該處。如果匹配結果多於一個，Vim 會顯示一個
+選擇屏幕讓你來選擇一處匹配。在你跳轉到新的位置後，簡單地用 Ctrl-T 就可以跳回原
+處。
 
 
 </pre><hr class="doubleline" /><pre>
 <h4>5. 缺陷                                                 <b class="vimtag"> <a name="cscope-limitations">cscope-limitations</a> </b></h4>
-Vim 对 cscope 的支持仅当所在系统支持以下四个系统调用时才可用: fork()，
-pipe()，execl()，waitpid()。这意味着它基本上仅限于 Unix 系统。
+Vim 對 cscope 的支持僅當所在系統支持以下四個系統調用時才可用: fork()，
+pipe()，execl()，waitpid()。這意味著它基本上僅限於 Unix 系統。
 
-另外 cscope 支持在 Win32 也可以使用。更多的信息以及一个 Win32 版本的 cscope 可
-以在这里找到:
+另外 cscope 支持在 Win32 也可以使用。更多的信息以及一個 Win32 版本的 cscope 可
+以在這裡找到:
 
         http://iamphet.nm.ru/cscope/index.html
 
-http://cscope.sourceforge.net 的 DJGPP 编译版本已知不能和 Vim 一起工作。
+http://cscope.sourceforge.net 的 DJGPP 編譯版本已知不能和 Vim 一起工作。
 
-硬性的限制: 在用  <a href="if_cscop.html#:cstag">:cstag</a>  搜索标签文件时要执行  <a href="tagsrch.html#:tjump">:tjump</a> ，这一点是无法配置的 (
-如: 你不能选择使用 tselect)。
+硬性的限制: 在用  <a href="if_cscop.html#:cstag">:cstag</a>  搜索標籤文件時要執行  <a href="tagsrch.html#:tjump">:tjump</a> ，這一點是無法配置的 (
+如: 你不能選擇使用 tselect)。
 
 </pre><hr class="doubleline" /><pre>
-<h4>6. 建议的使用方法                                       <b class="vimtag"> <a name="cscope-suggestions">cscope-suggestions</a> </b></h4>
-将下面的设定加入到你的 .vimrc 里 (根据你的情况调整文件路径): 
+<h4>6. 建議的使用方法                                       <b class="vimtag"> <a name="cscope-suggestions">cscope-suggestions</a> </b></h4>
+將下面的設定加入到你的 .vimrc 裡 (根據你的情況調整文件路徑): 
 <code class="example"></code>
 <code class="example">        if has("cscope")</code>
 <code class="example">                set csprg=/usr/local/bin/cscope</code>
@@ -353,25 +353,25 @@ http://cscope.sourceforge.net 的 DJGPP 编译版本已知不能和 Vim 一起�
 <code class="example">                set csverb</code>
 <code class="example">        endif</code>
 <code class="example"></code>
-我们设定了 <a href="options.html#'cscopetag'">'cscopetag'</a>，这样所有的 :tag 命令就会实际上调用 :cstag。这包括
-:tag、Ctrl-] 及 "vim -t"。结果是一般的 tag 命令不仅搜索由 ctags 产生的标签文
-件，同时也搜索 cscope 数据库。
+我們設定了 <a href="options.html#'cscopetag'">'cscopetag'</a>，這樣所有的 :tag 命令就會實際上調用 :cstag。這包括
+:tag、Ctrl-] 及 "vim -t"。結果是一般的 tag 命令不僅搜索由 ctags 產生的標籤文
+件，同時也搜索 cscope 數據庫。
 
-有些用户也许向保留原来的标签命令，而用另外一个快捷键来执行 :cstag 命令。例如，
-你可以用下面的命令将 Ctrl-_ (下划线) 映射到 :cstag: 
+有些用戶也許向保留原來的標籤命令，而用另外一個快捷鍵來執行 :cstag 命令。例如，
+你可以用下面的命令將 Ctrl-_ (下劃線) 映射到 :cstag: 
 <code class="example"></code>
 <code class="example">        map &lt;C-_&gt; :cstag &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;CR&gt;&lt;CR&gt;</code>
 <code class="example"></code>
-常用的 cscope 查询 (用 ":cs find") 包括寻找所有调用指定函数的函数以及寻找所有
-出现某个指定的 C 符号的地方。你可以参照以下的映射: 
+常用的 cscope 查詢 (用 ":cs find") 包括尋找所有調用指定函數的函數以及尋找所有
+出現某個指定的 C 符號的地方。你可以參照以下的映射: 
 <code class="example"></code>
 <code class="example">        map g&lt;C-]&gt; :cs find 3 &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;CR&gt;&lt;CR&gt;</code>
 <code class="example">        map g&lt;C-\&gt; :cs find 0 &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;CR&gt;&lt;CR&gt;</code>
 <code class="example"></code>
-这些对 Ctrl-] (右方括号) 和 Ctrl-\ (反斜杠) 的映射使你可以将光标移动到你想作查
-询的函数或 C 符号，然后快速地查询 cscope 数据库。
+這些對 Ctrl-] (右方括號) 和 Ctrl-\ (反斜槓) 的映射使你可以將光標移動到你想作查
+詢的函數或 C 符號，然後快速地查詢 cscope 數據庫。
 
-或者，你也可以使用下面的方式。这些映射借鉴了 Cscope 主页
+或者，你也可以使用下面的方式。這些映射借鑒了 Cscope 主頁
 (http://cscope.sourceforge.net/) 上的 Vim/Cscope 教程: 
 <code class="example"></code>
 <code class="example">        nmap &lt;C-_&gt;s :cs find s &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;CR&gt;&lt;CR&gt;</code>
@@ -419,42 +419,42 @@ http://cscope.sourceforge.net 的 DJGPP 编译版本已知不能和 Vim 一起�
 <code class="example">                \:vert scs find a &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;CR&gt;&lt;CR&gt;</code>
 <code class="example"></code>
 </pre><hr class="doubleline" /><pre>
-<h4>7. 如何获取 Cscope 等信息                               <b class="vimtag"> <a name="cscope-info">cscope-info</a> </b></h4>
-如果你还没有 cscope (你的编译器或 OS 发布不包括 cscope)，你可以从下面的地址免
-费下载:
+<h4>7. 如何獲取 Cscope 等信息                               <b class="vimtag"> <a name="cscope-info">cscope-info</a> </b></h4>
+如果你還沒有 cscope (你的編譯器或 OS 發佈不包括 cscope)，你可以從下面的地址免
+費下載:
         http://cscope.sourceforge.net/
-这是 SCO 以 BSD 许可发布的。
+這是 SCO 以 BSD 許可發佈的。
 
-如果你想要更新的版本，你可以购买它。根据 (旧的) nvi 文档:
+如果你想要更新的版本，你可以購買它。根據 (舊的) nvi 文檔:
 
-        你可以用 $400 从 AT&amp;T Software Solutions 购买无限制的许可的源码。致电
+        你可以用 $400 從 AT&amp;T Software Solutions 購買無限制的許可的源碼。致電
         +1-800-462-8146。
 
-你还可以从 World-Wide Exptools Open Sourcean 的网页下载 cscope 13.x 及
-mlcscope 14.x (多语言 cscope，支持 C、C++、Java、lex、yacc、breakpoint
-listing、Ingres 及 SDL)。网址如下:
+你還可以從 World-Wide Exptools Open Sourcean 的網頁下載 cscope 13.x 及
+mlcscope 14.x (多語言 cscope，支持 C、C++、Java、lex、yacc、breakpoint
+listing、Ingres 及 SDL)。網址如下:
         http://www.bell-labs.com/project/wwexptools/packages.html
 
-在 Solaris 2.x 上，如果你有 C 编译器的许可，你也就有 cscope。两者通常位于
+在 Solaris 2.x 上，如果你有 C 編譯器的許可，你也就有 cscope。兩者通常位於
 /opt/SUNWspro/bin。
 
-SGI 开发者也可以得到 cscope。在以下的地址搜索 cscope:
+SGI 開發者也可以得到 cscope。在以下的地址搜索 cscope:
         http://freeware.sgi.com/index-by-alpha.html
         https://toolbox.sgi.com/toolbox/utilities/cscope/
-第二个地址仅对那些拥有 SGI toolbox 密码的用户有效。
+第二個地址僅對那些擁有 SGI toolbox 密碼的用戶有效。
 
-网上还有一个旧版本的 cscope 的克隆 (叫 "cs") 。出于各种原因，Vim 不支持该程
+網上還有一個舊版本的 cscope 的克隆 (叫 "cs") 。出於各種原因，Vim 不支持該程
 序。
 
-Vim cscope 接口/支持的原作者是 Andy Kahn &lt;ackahn@netapp.com&gt;。原始的结构 (包括
-很少一部分代码) 来自 nvi 的 cscope 接口。如果你在使用 Vim cscope 接口时有任何
-问题，建议，patches 等等，请与他联系。
+Vim cscope 接口/支持的原作者是 Andy Kahn &lt;ackahn@netapp.com&gt;。原始的結構 (包括
+很少一部分代碼) 來自 nvi 的 cscope 接口。如果你在使用 Vim cscope 接口時有任何
+問題，建議，patches 等等，請與他聯繫。
                                                         <b class="vimtag"> <a name="cscope-win32">cscope-win32</a> </b>
-这里可以找到一个 Win32 版本的 cscope:
+這裡可以找到一個 Win32 版本的 cscope:
         http://code.google.com/p/cscope-win32/
 
 Win32 支持是 Sergey Khorev &lt;sergey.khorev@gmail.com&gt; 加入的。如果你有 Win32 相
-关的问题，请联系他。
+關的問題，請聯繫他。
 
  vim:tw=78:ts=8:ft=help:norl:
 </pre>

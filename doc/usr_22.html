@@ -1,17 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>VIM: usr_22</title>
 <link rel="stylesheet" href="vim-stylesheet.css" type="text/css">
 </head>
 <body>
 <div id=banner>
-<a href="help.html">帮助总览</a> &middot;
-<a href="quickref.html">快速参考</a> &middot;
+<a href="help.html">幫助總覽</a> &middot;
+<a href="quickref.html">快速參考</a> &middot;
 <a href="index.html">命令索引</a> &middot;
-<a href="usr_toc.html">用户手册</a> &middot;
-<a href="help.html#reference_toc">参考手册</a>
+<a href="usr_toc.html">用戶手冊</a> &middot;
+<a href="help.html#reference_toc">參考手冊</a>
 </div>
 
 <div id=outer>
@@ -19,33 +19,33 @@
 <pre>
 <b class="vimtag"> <a name="usr_22.txt">usr_22.txt</a> </b>    For Vim version 8.0.  最近更新: 2017年8月
 
-                     <code class="vim">VIM 用户手册 - by Bram Moolenaar</code>
-                     <code class="vim">译者</code>: Chimin Yen http://vimcdoc.sf.net
+                     <code class="vim">VIM 用戶手冊 - by Bram Moolenaar</code>
+                     <code class="vim">譯者</code>: Chimin Yen http://vimcdoc.sf.net
 
-                              寻找要编辑的文件
+                              尋找要編輯的文件
 
 
-到处都是文件，你怎么查找它们呢？Vim 为我们提供了在目录树间浏览的种种方法。还有
-若干命令让你从一个文件通过文件名跳转到一个文件。而且，Vim 还记着曾经编辑过哪些
+到處都是文件，你怎麼查找它們呢？Vim 為我們提供了在目錄樹間瀏覽的種種方法。還有
+若干命令讓你從一個文件通過文件名跳轉到一個文件。而且，Vim 還記著曾經編輯過哪些
 文件。
 
- <a href="usr_22.html#22.1">22.1</a>   文件浏览器
- <a href="usr_22.html#22.2">22.2</a>   当前目录
+ <a href="usr_22.html#22.1">22.1</a>   文件瀏覽器
+ <a href="usr_22.html#22.2">22.2</a>   當前目錄
  <a href="usr_22.html#22.3">22.3</a>   查找文件
- <a href="usr_22.html#22.4">22.4</a>   缓冲区列表
+ <a href="usr_22.html#22.4">22.4</a>   緩衝區列表
 
-       下一章:  <a href="usr_23.html#usr_23.txt">usr_23.txt</a>   编辑特殊文件
-       前一章:  <a href="usr_21.html#usr_21.txt">usr_21.txt</a>   离开和回来
-         目录:  <a href="usr_toc.html#usr_toc.txt">usr_toc.txt</a> 
+       下一章:  <a href="usr_23.html#usr_23.txt">usr_23.txt</a>   編輯特殊文件
+       前一章:  <a href="usr_21.html#usr_21.txt">usr_21.txt</a>   離開和回來
+         目錄:  <a href="usr_toc.html#usr_toc.txt">usr_toc.txt</a> 
 
 </pre><hr class="doubleline" /><pre>
-<h4><b class="vimtag"> <a name="22.1">22.1</a> </b>  文件浏览器</h4>
-Vim 有个插件可以用来编辑一个目录。试一下这个命令: 
+<h4><b class="vimtag"> <a name="22.1">22.1</a> </b>  文件瀏覽器</h4>
+Vim 有個插件可以用來編輯一個目錄。試一下這個命令: 
 <code class="example"></code>
 <code class="example">        :edit .</code>
 <code class="example"></code>
-借助魔术般的自动命令和 Vim 脚本功能，目录的内容被用来填充窗口。看起来就像这
-样:
+借助魔術般的自動命令和 Vim 腳本功能，目錄的內容被用來填充窗口。看起來就像這
+樣:
 
 <code class="section">" ============================================================================ </code>
 <code class="section">" Netrw Directory Listing                                        (netrw v109) </code>
@@ -63,27 +63,27 @@ Vim 有个插件可以用来编辑一个目录。试一下这个命令:
 <code class="section">filetype.txt~ </code>
 <code class="section">help.txt.info </code>
 
-你可以看到这样一些条目:
+你可以看到這樣一些條目:
 
-1.  浏览工具的名称和版本号
-2.  浏览目录名
-3.  排序方法 (可以是名字、时间或大小)
-4.  名字如何排序 (目录优先，然后是 *.h 文件、*.c 文件，等等)
-5.  如何得到帮助 (用 <code class="special">&lt;F1&gt;</code> 键)，然后是可用命令的概括列表
-6.  文件列表，包括 "../"，用户可以由此列出父目录。
+1.  瀏覽工具的名稱和版本號
+2.  瀏覽目錄名
+3.  排序方法 (可以是名字、時間或大小)
+4.  名字如何排序 (目錄優先，然後是 *.h 文件、*.c 文件，等等)
+5.  如何得到幫助 (用 <code class="special">&lt;F1&gt;</code> 鍵)，然後是可用命令的概括列表
+6.  文件列表，包括 "../"，用戶可以由此列出父目錄。
 
-如果你启用了语法高亮功能，那么，目录里不同部分就显示成不同颜色，让你比较容易辨
-认它们。
+如果你啟用了語法高亮功能，那麼，目錄裡不同部分就顯示成不同顏色，讓你比較容易辨
+認它們。
 
-你可以用普通模式下的 Vim 命令在文本内到处移动。例如，移动光标到一个文件名上并
-按下 <code class="special">&lt;Enter&gt;</code> 键。你就可以编辑那个文件了。要回到浏览器，再用一次 ":edit ." 或
+你可以用普通模式下的 Vim 命令在文本內到處移動。例如，移動光標到一個文件名上並
+按下 <code class="special">&lt;Enter&gt;</code> 鍵。你就可以編輯那個文件了。要回到瀏覽器，再用一次 ":edit ." 或
 ":Explore" 即可，按 <code class="keystroke">CTRL-O</code> 也行。
 
-试一下把光标移至某个目录名，按 <code class="special">&lt;Enter&gt;</code> 键。结果，浏览器就进了该目录，并把那里
-的条目显示出来。对准第一个目录 "../" 按 <code class="special">&lt;Enter&gt;</code> 键， 让你返回父目录。按 "-" 键
-可达到同样的目的，且无须先把光标移到 "../" 条目上。
+試一下把光標移至某個目錄名，按 <code class="special">&lt;Enter&gt;</code> 鍵。結果，瀏覽器就進了該目錄，並把那裡
+的條目顯示出來。對準第一個目錄 "../" 按 <code class="special">&lt;Enter&gt;</code> 鍵， 讓你返回父目錄。按 "-" 鍵
+可達到同樣的目的，且無須先把光標移到 "../" 條目上。
 
-你可以按 <code class="special">&lt;F1&gt;</code> 键获取关于 netrw 文件浏览器功能的帮助。帮助文字如下: 
+你可以按 <code class="special">&lt;F1&gt;</code> 鍵獲取關於 netrw 文件瀏覽器功能的幫助。幫助文字如下: 
 <code class="example"></code>
 <code class="example">    9. Directory Browsing        netrw-browse   netrw-dir   netrw-list   netrw-help</code>
 <code class="example"></code>
@@ -108,69 +108,69 @@ Vim 有个插件可以用来编辑一个目录。试一下这个命令:
 <code class="example">         r................Reversing Sorting Order....................|netrw-r|</code>
         (等等)
 
-<code class="special">&lt;F1&gt;</code> 键把你带到 netrw 目录浏览内容的帮助页面。这是一个常规的帮助页面，同样常规
-的  <a href="tagsrch.html#CTRL-]">CTRL-]</a>  跳转到带标签的帮助项目，而  <a href="motion.html#CTRL-O">CTRL-O</a>  则返回。
+<code class="special">&lt;F1&gt;</code> 鍵把你帶到 netrw 目錄瀏覽內容的幫助頁面。這是一個常規的幫助頁面，同樣常規
+的  <a href="tagsrch.html#CTRL-]">CTRL-]</a>  跳轉到帶標籤的幫助項目，而  <a href="motion.html#CTRL-O">CTRL-O</a>  則返回。
 
-要选择显示和编辑的文件: (光标在某文件名上)
+要選擇顯示和編輯的文件: (光標在某文件名上)
 
-        <code class="special">&lt;enter&gt;</code>         在当前窗口打开文件                          <a href="pi_netrw.html#netrw-cr">netrw-cr</a> 
-        o               横向分割窗口并显示文件                      <a href="pi_netrw.html#netrw-o">netrw-o</a> 
-        v               竖向分割窗口并显示文件                      <a href="pi_netrw.html#netrw-v">netrw-v</a> 
+        <code class="special">&lt;enter&gt;</code>         在當前窗口打開文件                          <a href="pi_netrw.html#netrw-cr">netrw-cr</a> 
+        o               橫向分割窗口並顯示文件                      <a href="pi_netrw.html#netrw-o">netrw-o</a> 
+        v               豎向分割窗口並顯示文件                      <a href="pi_netrw.html#netrw-v">netrw-v</a> 
         p               使用  <a href="windows.html#preview-window">preview-window</a>                        <a href="pi_netrw.html#netrw-p">netrw-p</a> 
-        P               在上次的窗口中编辑                          <a href="pi_netrw.html#netrw-P">netrw-P</a> 
-        t               在新标签页中打开文件                        <a href="pi_netrw.html#netrw-t">netrw-t</a> 
+        P               在上次的窗口中編輯                          <a href="pi_netrw.html#netrw-P">netrw-P</a> 
+        t               在新標籤頁中打開文件                        <a href="pi_netrw.html#netrw-t">netrw-t</a> 
 
-接下来的普通模式命令用来控制浏览器显示:
+接下來的普通模式命令用來控制瀏覽器顯示:
 
-        i               控制列表风格 (瘦、长、宽和树形)。长列表包含文件大小和
+        i               控制列表風格 (瘦、長、寬和樹形)。長列表包含文件大小和
                         日期信息。
-        s               反复按 s 会改变文件排序的方式；可以按照名字、修改日期
+        s               反覆按 s 會改變文件排序的方式；可以按照名字、修改日期
                         或文件大小排序。
-        r               逆转排列顺序。
+        r               逆轉排列順序。
 
-略举数例其它的普通模式命令:
+略舉數例其它的普通模式命令:
 
-        c               把当前目录改成显示在窗口中的那个目录。(见
-                         <a href="pi_netrw.html#g:netrw_keepdir">g:netrw_keepdir</a> ，它也控制此行为)
-        R               为光标下文件改名。Vim 将提示你提供新文件名。
-        D               删除光标下文件。Vim 将提示你确认删除动作。
-        mb gb           建立书签/转到书签
+        c               把當前目錄改成顯示在窗口中的那個目錄。(見
+                         <a href="pi_netrw.html#g:netrw_keepdir">g:netrw_keepdir</a> ，它也控制此行為)
+        R               為光標下文件改名。Vim 將提示你提供新文件名。
+        D               刪除光標下文件。Vim 將提示你確認刪除動作。
+        mb gb           建立書籤/轉到書籤
 
 
-还有命令模式；还是一样，只举数例:
+還有命令模式；還是一樣，只舉數例:
 
-        :Explore <code class="special">[directory]</code>    浏览指定/当前目录
-        :NetrwSettings          当前 netrw 设置的综合列表，带有帮助链接。
+        :Explore <code class="special">[directory]</code>    瀏覽指定/當前目錄
+        :NetrwSettings          當前 netrw 設置的綜合列表，帶有幫助鏈接。
 
-netrw 浏览器不限于你的本地机器；也可使用 url，如下:    (拖尾的 / 是必需的)
+netrw 瀏覽器不限於你的本地機器；也可使用 url，如下:    (拖尾的 / 是必需的)
 
         :Explore ftp://somehost/path/to/dir/
         :e scp://somehost/path/to/dir/
 
-详见  <a href="pi_netrw.html#netrw-browse">netrw-browse</a> 。
+詳見  <a href="pi_netrw.html#netrw-browse">netrw-browse</a> 。
 
 </pre><hr class="doubleline" /><pre>
-<h4><b class="vimtag"> <a name="22.2">22.2</a> </b>  当前目录</h4>
-正如外壳一样，Vim 也有当前目录的概念。假设你在主目录，并要编辑几个储存在目录
-"VeryLongFileName" 下的文件。你可以这样做: 
+<h4><b class="vimtag"> <a name="22.2">22.2</a> </b>  當前目錄</h4>
+正如外殼一樣，Vim 也有當前目錄的概念。假設你在主目錄，並要編輯幾個儲存在目錄
+"VeryLongFileName" 下的文件。你可以這樣做: 
 <code class="example"></code>
 <code class="example">        :edit VeryLongFileName/file1.txt</code>
 <code class="example">        :edit VeryLongFileName/file2.txt</code>
 <code class="example">        :edit VeryLongFileName/file3.txt</code>
 <code class="example"></code>
-为了避免太多的键击，你可以这样做: 
+為了避免太多的鍵擊，你可以這樣做: 
 <code class="example"></code>
 <code class="example">        :cd VeryLongFileName</code>
 <code class="example">        :edit file1.txt</code>
 <code class="example">        :edit file2.txt</code>
 <code class="example">        :edit file3.txt</code>
 <code class="example"></code>
-":cd" 命令可以用来改变当前目录。你可以用 ":pwd" 命令来查看当前目录使什么: 
+":cd" 命令可以用來改變當前目錄。你可以用 ":pwd" 命令來查看當前目錄使什麼: 
 <code class="example"></code>
 <code class="example">        :pwd</code>
 <code class="example">        /home/Bram/VeryLongFileName</code>
 <code class="example"></code>
-Vim 记得最近访问过的那个目录。你可以用 "cd -" 命令回去那儿。例如:
+Vim 記得最近訪問過的那個目錄。你可以用 "cd -" 命令回去那兒。例如:
  
 <code class="example">        :pwd</code>
 <code class="example">        /home/Bram/VeryLongFileName</code>
@@ -185,11 +185,11 @@ Vim 记得最近访问过的那个目录。你可以用 "cd -" 命令回去那�
 <code class="example">        /etc</code>
 <code class="example"></code>
 <code class="example"></code>
-窗 口 本 地 目 录
+窗 口 本 地 目 錄
 
-当你把窗口一分为二以后，两个窗口的当前目录是一样的。而当你要在新窗口内编辑几个
-存放在当前目录以外某处的文件时，你可以让新窗口采用不同的当前目录，同时保持原窗
-口当前目录不变。新窗口采用的当前目录称为本地目录。 
+當你把窗口一分為二以後，兩個窗口的當前目錄是一樣的。而當你要在新窗口內編輯幾個
+存放在當前目錄以外某處的文件時，你可以讓新窗口採用不同的當前目錄，同時保持原窗
+口當前目錄不變。新窗口採用的當前目錄稱為本地目錄。 
 <code class="example"></code>
 <code class="example">        :pwd</code>
 <code class="example">        /home/Bram/VeryLongFileName</code>
@@ -201,180 +201,180 @@ Vim 记得最近访问过的那个目录。你可以用 "cd -" 命令回去那�
 <code class="example">        :pwd</code>
 <code class="example">        /home/Bram/VeryLongFileName</code>
 <code class="example"></code>
-只要你不发出 ":lcd" 命令，所有窗口共享同一个当前目录。在一个窗口执行一次 ":cd"
-命令，也同时改变其它窗口的当前目录。
-   执行过 ":lcd" 命令的窗口记得它特有的当前目录。在其它窗口执行 ":cd" 或
-":lcd" 命令对它毫无影响。
-   在一个采用特有当前目录的窗口执行 ":cd" 命令以后，该窗口就回过头来又采用共享
-的当前目录了。
+只要你不發出 ":lcd" 命令，所有窗口共享同一個當前目錄。在一個窗口執行一次 ":cd"
+命令，也同時改變其它窗口的當前目錄。
+   執行過 ":lcd" 命令的窗口記得它特有的當前目錄。在其它窗口執行 ":cd" 或
+":lcd" 命令對它毫無影響。
+   在一個採用特有當前目錄的窗口執行 ":cd" 命令以後，該窗口就回過頭來又採用共享
+的當前目錄了。
 
 </pre><hr class="doubleline" /><pre>
 <h4><b class="vimtag"> <a name="22.3">22.3</a> </b>  查找文件</h4>
-假定现在你在编辑一个 C 程序，该程序有这样一行:
+假定現在你在編輯一個 C 程序，該程序有這樣一行:
 
 <code class="section">        #include "inits.h" </code>
 
-你想要查看文件 "inits.h" 里有些什么。把光标移到该文件名上，并键入: 
+你想要查看文件 "inits.h" 裡有些什麼。把光標移到該文件名上，並鍵入: 
 <code class="example"></code>
 <code class="example">        gf</code>
 <code class="example"></code>
-Vim 就会找到并打开这个文件。
-   那么，如果该文件不在当前目录里怎么办？Vim 将利用 <a href="options.html#'path'">'path'</a> 选项来寻找这个文
-件。该选项是一系列目录名，Vim 会在其中为你寻找文件。
-   假设你把你的头文件存放在目录 "c:/prog/include" 里。下面这个命令把该目录加入
-<a href="options.html#'path'">'path'</a> 选项: 
+Vim 就會找到並打開這個文件。
+   那麼，如果該文件不在當前目錄裡怎麼辦？Vim 將利用 <a href="options.html#'path'">'path'</a> 選項來尋找這個文
+件。該選項是一系列目錄名，Vim 會在其中為你尋找文件。
+   假設你把你的頭文件存放在目錄 "c:/prog/include" 裡。下面這個命令把該目錄加入
+<a href="options.html#'path'">'path'</a> 選項: 
 <code class="example"></code>
 <code class="example">        :set path+=c:/prog/include</code>
 <code class="example"></code>
-这个目录名是一绝对路径。不管你在哪儿，它都指向同一目录。如果你已经知道要编辑的
-文件位于当前文件所在目录下某个子目录里，你该怎么办呢？那样的话，你可以指定一个
-相对路径。相对路径以 "." 开始:
+這個目錄名是一絕對路徑。不管你在哪兒，它都指向同一目錄。如果你已經知道要編輯的
+文件位於當前文件所在目錄下某個子目錄裡，你該怎麼辦呢？那樣的話，你可以指定一個
+相對路徑。相對路徑以 "." 開始:
 
 <code class="example">        :set path+=./proto</code>
 <code class="example"></code>
-这个命令告诉 Vim 到目录 "proto" 里找文件，而 "proto" 则位于你在其中用了 "gf"
-命令的文件所在的目录下面。如此一来，对 "inits.h" 用 "gf" 命令，就让 Vim 以当前
-文件所在目录为起点，寻找 "proto/inits.h"。
-   如果不加 "./"，只用 "proto"，Vim 就会进入当前目录下的 "proto" 目录寻找。然
-而当前目录可能不是你在编辑的这个当前文件所在的目录。
+這個命令告訴 Vim 到目錄 "proto" 裡找文件，而 "proto" 則位於你在其中用了 "gf"
+命令的文件所在的目錄下面。如此一來，對 "inits.h" 用 "gf" 命令，就讓 Vim 以當前
+文件所在目錄為起點，尋找 "proto/inits.h"。
+   如果不加 "./"，只用 "proto"，Vim 就會進入當前目錄下的 "proto" 目錄尋找。然
+而當前目錄可能不是你在編輯的這個當前文件所在的目錄。
 
-<a href="options.html#'path'">'path'</a> 选项还允许你用其它许多方法来指定在其中寻找文件的目录。参见关于 <a href="options.html#'path'">'path'</a>
-选项的帮助。
-   <a href="options.html#'isfname'">'isfname'</a> 选项用来决定哪些字符可用于文件名，以及哪些不可以 (如上例中的双引
-号 " 字符)。
+<a href="options.html#'path'">'path'</a> 選項還允許你用其它許多方法來指定在其中尋找文件的目錄。參見關於 <a href="options.html#'path'">'path'</a>
+選項的幫助。
+   <a href="options.html#'isfname'">'isfname'</a> 選項用來決定哪些字符可用於文件名，以及哪些不可以 (如上例中的雙引
+號 " 字符)。
 
-当你要找的文件名没出现在你编辑的文件里时，你可以键入这个文件名: 
+當你要找的文件名沒出現在你編輯的文件裡時，你可以鍵入這個文件名: 
 <code class="example"></code>
 <code class="example">        :find inits.h</code>
 <code class="example"></code>
-然后 Vim 就利用 <a href="options.html#'path'">'path'</a> 选项来确定该文件的位置。这就跟 ":edit" 命令一样，只不过
-":edit" 命令不用 <a href="options.html#'path'">'path'</a> 选项。
+然後 Vim 就利用 <a href="options.html#'path'">'path'</a> 選項來確定該文件的位置。這就跟 ":edit" 命令一樣，只不過
+":edit" 命令不用 <a href="options.html#'path'">'path'</a> 選項。
 
-要在新窗口内打开那个已经找到的文件，用 <code class="keystroke">CTRL-W</code> f，而不是 "gf"，或用 ":sfind" 而
+要在新窗口內打開那個已經找到的文件，用 <code class="keystroke">CTRL-W</code> f，而不是 "gf"，或用 ":sfind" 而
 不是 ":find"。
 
-有个好办法可以直接启动 Vim 来编辑 <a href="options.html#'path'">'path'</a> 中的某个文件: 
+有個好辦法可以直接啟動 Vim 來編輯 <a href="options.html#'path'">'path'</a> 中的某個文件: 
 <code class="example"></code>
 <code class="example">        vim "+find stdio.h"</code>
 <code class="example"></code>
-这会在你的 <a href="options.html#'path'">'path'</a> 中查找 "stdio.h"。双引号是必需的，用来把括起来的当做一个参数
+這會在你的 <a href="options.html#'path'">'path'</a> 中查找 "stdio.h"。雙引號是必需的，用來把括起來的當做一個參數
  <a href="starting.html#-+c">-+c</a> 。
 
 </pre><hr class="doubleline" /><pre>
-<h4><b class="vimtag"> <a name="22.4">22.4</a> </b>  缓冲区列表</h4>
-Vim 编辑器使用术语 "缓冲区" 来描述编辑当中的文件。实际上，缓冲区是你编辑的文件
-的副本。你修改完缓冲区，就把缓冲区的内容写进文件。缓冲区不仅存放文件内容，而且
-还存放着全部标记，设定，以及其它跟被编辑文件相关的东西。
+<h4><b class="vimtag"> <a name="22.4">22.4</a> </b>  緩衝區列表</h4>
+Vim 編輯器使用術語 "緩衝區" 來描述編輯當中的文件。實際上，緩衝區是你編輯的文件
+的副本。你修改完緩衝區，就把緩衝區的內容寫進文件。緩衝區不僅存放文件內容，而且
+還存放著全部標記，設定，以及其它跟被編輯文件相關的東西。
 
 
-隐 藏 的 缓 冲 区
+隱 藏 的 緩 沖 區
 
-假设你在编辑文件 one.txt，同时又要编辑文件 two.txt。你本来可以简单地用 ":edit
-two.txt" 来办到，但由于你已经修改了 one.txt，那样做就没用了。而你又不想在此时
-就把 one.txt 存盘。Vim 可以为你解决这个问题: 
+假設你在編輯文件 one.txt，同時又要編輯文件 two.txt。你本來可以簡單地用 ":edit
+two.txt" 來辦到，但由於你已經修改了 one.txt，那樣做就沒用了。而你又不想在此時
+就把 one.txt 存盤。Vim 可以為你解決這個問題: 
 <code class="example"></code>
 <code class="example">        :hide edit two.txt</code>
 <code class="example"></code>
-缓冲区 "one.txt" 从屏幕消失，但 Vim 仍然知道你在编辑这个缓冲区，因而保留着它修
-改过的文本。这样的缓冲区称为隐藏的缓冲区: 缓冲区存放着文本，但你看不见它。
-   ":hide" 命令参数是另一个命令。":hide" 使得那个命令表现得就像 <a href="options.html#'hidden'">'hidden'</a> 选项
-已被设定。你也可以不用 ":hide" 命令而设定 <a href="options.html#'hidden'">'hidden'</a> 选项。其作用是当离开任何缓
-冲区时，该缓冲区变成隐藏。
-   小心！当你的隐藏的缓冲区已经改动，千万不要在所有缓冲区存盘之前就退出 Vim。
+緩衝區 "one.txt" 從屏幕消失，但 Vim 仍然知道你在編輯這個緩衝區，因而保留著它修
+改過的文本。這樣的緩衝區稱為隱藏的緩衝區: 緩衝區存放著文本，但你看不見它。
+   ":hide" 命令參數是另一個命令。":hide" 使得那個命令表現得就像 <a href="options.html#'hidden'">'hidden'</a> 選項
+已被設定。你也可以不用 ":hide" 命令而設定 <a href="options.html#'hidden'">'hidden'</a> 選項。其作用是當離開任何緩
+沖區時，該緩衝區變成隱藏。
+   小心！當你的隱藏的緩衝區已經改動，千萬不要在所有緩衝區存盤之前就退出 Vim。
 
 
-非 激 活 缓 冲 区
+非 激 活 緩 沖 區
 
-   一个缓冲区一经使用，Vim 就记住了一些有关该缓冲区的信息。即使它既不显示在窗
-口内，又非隐藏缓冲区，它也仍然在缓冲区列表上。这样的缓冲区称为非激活缓冲区。一
+   一個緩衝區一經使用，Vim 就記住了一些有關該緩衝區的信息。即使它既不顯示在窗
+口內，又非隱藏緩衝區，它也仍然在緩衝區列表上。這樣的緩衝區稱為非激活緩衝區。一
 般而言，
 
-   激活         显示在窗口内，并加载文本
-   隐藏         不显示在窗口内，但加载文本
-   非激活       不显示在窗口内，不加载文本
+   激活         顯示在窗口內，並加載文本
+   隱藏         不顯示在窗口內，但加載文本
+   非激活       不顯示在窗口內，不加載文本
 
-非激活缓冲区不会被遗忘，因为 Vim 保存着关于它们的信息，如标记等。而且记住文件
-名有个好处，你可以调阅你编辑过的文件名，再次编辑它们。
+非激活緩衝區不會被遺忘，因為 Vim 保存著關於它們的信息，如標記等。而且記住文件
+名有個好處，你可以調閱你編輯過的文件名，再次編輯它們。
 
 
-缓 冲 区 列 表
+緩 沖 區 列 表
 
-你可以用这个命令查看缓冲区列表:
+你可以用這個命令查看緩衝區列表:
 
         :buffers
 
-另一个作用相当的命令，虽然意思不那么明白，但键入时省事多了: 
+另一個作用相當的命令，雖然意思不那麼明白，但鍵入時省事多了: 
 <code class="example"></code>
 <code class="example">        :ls</code>
 <code class="example"></code>
-其输出可能像这样:
+其輸出可能像這樣:
 
 <code class="section">  1 #h   "help.txt"                     line 62 </code>
 <code class="section">  2 %a + "usr_21.txt"                   line 1 </code>
 <code class="section">  3      "usr_toc.txt"                  line 1 </code>
 
-第一栏存放缓冲区号。你可以利用它来编辑文件，而不用键入文件名，参见下文。
-   紧随缓冲区号的是些标志位。然后是文件名，以及光标最后一次停留的行号。
-   可能出现的标志位有以下这些 (自左至右):
+第一欄存放緩衝區號。你可以利用它來編輯文件，而不用鍵入文件名，參見下文。
+   緊隨緩衝區號的是些標誌位。然後是文件名，以及光標最後一次停留的行號。
+   可能出現的標誌位有以下這些 (自左至右):
 
-        u       列表外缓冲区  <a href="windows.html#unlisted-buffer">unlisted-buffer</a> 。
-         %      当前缓冲区。
-         #      轮换缓冲区。
-          a     激活缓冲区，缓冲区被加载且显示。
-          h     隐藏缓冲区，缓冲区被加载但不显示。
-           =    只读缓冲区。
-           -    不可改缓冲区， <a href="options.html#'modifiable'">'modifiable'</a> 选项不置位。
-            +   已修改缓冲区。
+        u       列表外緩衝區  <a href="windows.html#unlisted-buffer">unlisted-buffer</a> 。
+         %      當前緩衝區。
+         #      輪換緩衝區。
+          a     激活緩衝區，緩衝區被加載且顯示。
+          h     隱藏緩衝區，緩衝區被加載但不顯示。
+           =    只讀緩衝區。
+           -    不可改緩衝區， <a href="options.html#'modifiable'">'modifiable'</a> 選項不置位。
+            +   已修改緩衝區。
 
 
-编 辑 缓 冲 区
+編 輯 緩 沖 區
 
-你可以通过指定其缓冲区号来编辑一个缓冲区，而不必键入文件名: 
+你可以通過指定其緩衝區號來編輯一個緩衝區，而不必鍵入文件名: 
 <code class="example"></code>
 <code class="example">        :buffer 2</code>
 <code class="example"></code>
-但获知缓冲区号的唯一途径是查阅缓冲区列表。如果不用缓冲区号，你可以用文件名，或
+但獲知緩衝區號的唯一途徑是查閱緩衝區列表。如果不用緩衝區號，你可以用文件名，或
 其部分:
 
         :buffer help
 
-Vim 将为你键入的文件名找到最佳匹配。如果只有一个缓冲区与之匹配，该缓冲区就被选
-用。在这个例子中，被选中的就是 "help.txt"。
-   要在新窗口中打开一个缓冲区:
+Vim 將為你鍵入的文件名找到最佳匹配。如果只有一個緩衝區與之匹配，該緩衝區就被選
+用。在這個例子中，被選中的就是 "help.txt"。
+   要在新窗口中打開一個緩衝區:
 
         :sbuffer 3
 
-这方法也适用于文件名。
+這方法也適用於文件名。
 
 
-使 用 缓 冲 区 列 表
+使 用 緩 沖 區 列 表
 
-你可以用这些命令在缓冲区列表间移动:
+你可以用這些命令在緩衝區列表間移動:
 
-        :bnext          编辑下一个缓冲区
-        :bprevious      编辑前一个缓冲区
-        :bfirst         编辑第一个缓冲区
-        :blast          编辑最后一个缓冲区
+        :bnext          編輯下一個緩衝區
+        :bprevious      編輯前一個緩衝區
+        :bfirst         編輯第一個緩衝區
+        :blast          編輯最後一個緩衝區
 
-要从缓冲区列表上删除一个缓冲区，用这个命令:
+要從緩衝區列表上刪除一個緩衝區，用這個命令:
 
         :bdelete 3
 
-同样，这命令也适用文件名。
-   如果你删除了一个激活的缓冲区 (显示在窗口中的缓冲区)，你也就关闭了该窗口。如
-果你删除了当前缓冲区，你也就关闭了当前窗口。如果它是最后一个窗口，Vim 将找一个
-缓冲区来编辑。你无法什么也不编辑！
+同樣，這命令也適用文件名。
+   如果你刪除了一個激活的緩衝區 (顯示在窗口中的緩衝區)，你也就關閉了該窗口。如
+果你刪除了當前緩衝區，你也就關閉了當前窗口。如果它是最後一個窗口，Vim 將找一個
+緩衝區來編輯。你無法什麼也不編輯！
 
-        <code class="note">备注</code>:
-        即使用 ":bdelete" 命令删除了缓冲区以后，Vim 依然记得它。这个缓冲区实际
-        上成了 "列表外" 缓冲区，它不再出现在 ":buffers" 命令所报告的列表中。不
-        过 ":buffers!" 命令仍会列出 "列表外" 缓冲区 (没错，Vim 无所不能)。要让
-        Vim 彻底忘记一个缓冲区，用 ":bwipe" 命令。另见 <a href="options.html#'buflisted'">'buflisted'</a> 选项。
+        <code class="note">備註</code>:
+        即使用 ":bdelete" 命令刪除了緩衝區以後，Vim 依然記得它。這個緩衝區實際
+        上成了 "列表外" 緩衝區，它不再出現在 ":buffers" 命令所報告的列表中。不
+        過 ":buffers!" 命令仍會列出 "列表外" 緩衝區 (沒錯，Vim 無所不能)。要讓
+        Vim 徹底忘記一個緩衝區，用 ":bwipe" 命令。另見 <a href="options.html#'buflisted'">'buflisted'</a> 選項。
 
 </pre><hr class="doubleline" /><pre>
-<h4></h4>下一章:  <a href="usr_23.html#usr_23.txt">usr_23.txt</a>   编辑其它文件
+<h4></h4>下一章:  <a href="usr_23.html#usr_23.txt">usr_23.txt</a>   編輯其它文件
 
-版权: 参见  <a href="usr_01.html#manual-copyright">manual-copyright</a>   vim:tw=78:ts=8:ft=help:norl:
+版權: 參見  <a href="usr_01.html#manual-copyright">manual-copyright</a>   vim:tw=78:ts=8:ft=help:norl:
 </pre>
 <p><i>Generated by vim2html</i></p>
 </div>

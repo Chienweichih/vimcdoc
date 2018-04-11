@@ -1,17 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>VIM: workshop</title>
 <link rel="stylesheet" href="vim-stylesheet.css" type="text/css">
 </head>
 <body>
 <div id=banner>
-<a href="help.html">帮助总览</a> &middot;
-<a href="quickref.html">快速参考</a> &middot;
+<a href="help.html">幫助總覽</a> &middot;
+<a href="quickref.html">快速參考</a> &middot;
 <a href="index.html">命令索引</a> &middot;
-<a href="usr_toc.html">用户手册</a> &middot;
-<a href="help.html#reference_toc">参考手册</a>
+<a href="usr_toc.html">用戶手冊</a> &middot;
+<a href="help.html#reference_toc">參考手冊</a>
 </div>
 
 <div id=outer>
@@ -20,84 +20,84 @@
 <b class="vimtag"> <a name="workshop.txt">workshop.txt</a> </b>  For Vim version 8.0.  最近更新: 2010年7月
 
 
-                  <code class="vim">VIM 参考手册    by Bram Moolenaar</code>
-                                <code class="vim">译者</code>: Willis
+                  <code class="vim">VIM 參考手冊    by Bram Moolenaar</code>
+                                <code class="vim">譯者</code>: Willis
                                 http://vimcdoc.sf.net
 
 
 Sun Visual WorkShop 特性                        <b class="vimtag"> <a name="workshop">workshop</a> </b> <b class="vimtag"> <a name="workshop-support">workshop-support</a> </b>
 
-1. 简介                                                  <a href="workshop.html#workshop-intro">workshop-intro</a> 
+1. 簡介                                                  <a href="workshop.html#workshop-intro">workshop-intro</a> 
 2. 命令                                                  <a href="workshop.html#workshop-commands">workshop-commands</a> 
-3. 编译 vim/gvim 以加入 WorkShop 支持                    <a href="workshop.html#workshop-compiling">workshop-compiling</a> 
-4. 为 Workshop 发布树配置 gvim                           <a href="workshop.html#workshop-configure">workshop-configure</a> 
-5. 获得最新版本的 XPM 库                                 <a href="workshop.html#workshop-xpm">workshop-xpm</a> 
+3. 編譯 vim/gvim 以加入 WorkShop 支持                    <a href="workshop.html#workshop-compiling">workshop-compiling</a> 
+4. 為 Workshop 發佈樹配置 gvim                           <a href="workshop.html#workshop-configure">workshop-configure</a> 
+5. 獲得最新版本的 XPM 庫                                 <a href="workshop.html#workshop-xpm">workshop-xpm</a> 
 
-<code class="notvi">{Vi 无此功能}</code>
-<code class="notvi">{仅在编译时加入  <a href="various.html#+sun_workshop">+sun_workshop</a>  特性时才可用}</code>
+<code class="notvi">{Vi 無此功能}</code>
+<code class="notvi">{僅在編譯時加入  <a href="various.html#+sun_workshop">+sun_workshop</a>  特性時才可用}</code>
 
 </pre><hr class="doubleline" /><pre>
-<h4>1. 简介                                                 <b class="vimtag"> <a name="workshop-intro">workshop-intro</a> </b></h4>
-Sun Visual Workshop 有一个 "供选择的编辑器" 功能，以便用户挑选他们喜欢的编辑器
-调试程序。在 6.0 发布版本中，我们加入了 gvim 支持。 一个 workshop 调试会话包含
-调试窗口和编辑窗口 (可能还有其他)。用户可以在编辑窗口执行众多调试指令，从而尽
-量减少在窗口间切换的需要。
+<h4>1. 簡介                                                 <b class="vimtag"> <a name="workshop-intro">workshop-intro</a> </b></h4>
+Sun Visual Workshop 有一個 "供選擇的編輯器" 功能，以便用戶挑選他們喜歡的編輯器
+調試程序。在 6.0 發佈版本中，我們加入了 gvim 支持。 一個 workshop 調試會話包含
+調試窗口和編輯窗口 (可能還有其他)。用戶可以在編輯窗口執行眾多調試指令，從而盡
+量減少在窗口間切換的需要。
 
-Sun Visual Workshop 6 (也被称为 Forte Developer 6) 自带的 Vim 版本是 Vim 5.3。
-我们这个版本的功能比 Visual Workshop 所带的 vim/gvim 更可靠。希望用 Vim 作为编
-辑器的 VWS 用户应该自己编译这些源代码，并安装到自己的 workshop 发布树中。
+Sun Visual Workshop 6 (也被稱為 Forte Developer 6) 自帶的 Vim 版本是 Vim 5.3。
+我們這個版本的功能比 Visual Workshop 所帶的 vim/gvim 更可靠。希望用 Vim 作為編
+輯器的 VWS 用戶應該自己編譯這些源代碼，並安裝到自己的 workshop 發佈樹中。
 
 </pre><hr class="doubleline" /><pre>
 <h4>2. 命令                                                 <b class="vimtag"> <a name="workshop-commands">workshop-commands</a> </b></h4>
                                                 <b class="vimtag"> <a name=":ws">:ws</a> </b> <b class="vimtag"> <a name=":wsverb">:wsverb</a> </b>
-:ws[verb] verb                  把 verb 传到 verb 执行程序。
+:ws[verb] verb                  把 verb 傳到 verb 執行程序。
 
-把 verb 传到一个 workshop 函数，它收集参数并把该 verb 和相关数据通过 IPC 连接
-发送给 workshop。
-
-</pre><hr class="doubleline" /><pre>
-<h4>3. 编译 vim/gvim 以加入 Workshop 支持                   <b class="vimtag"> <a name="workshop-compiling">workshop-compiling</a> </b></h4>
-编译 vim 时，加入 FEAT_SUN_WORKSHOP 就可以打开所有必需的编译时选项，使 vim 可
-以和 Visual WorkShop 协同使用。VMS 需要的功能用 VWS 发布版本提供的 Sun 编译器
-编译通过并经过测试。这不是说这些功能不能用 gcc 编译或者运行，只不过我们不能保
-证这一点。
+把 verb 傳到一個 workshop 函數，它收集參數並把該 verb 和相關數據通過 IPC 連接
+發送給 workshop。
 
 </pre><hr class="doubleline" /><pre>
-<h4>4. 为 Workshop 发布树配置 gvim                          <b class="vimtag"> <a name="workshop-configure">workshop-configure</a> </b></h4>
-要使得支持 Sun Visual Workshop 6 的 gvim 能够编译，需要满足若干要求。
+<h4>3. 編譯 vim/gvim 以加入 Workshop 支持                   <b class="vimtag"> <a name="workshop-compiling">workshop-compiling</a> </b></h4>
+編譯 vim 時，加入 FEAT_SUN_WORKSHOP 就可以打開所有必需的編譯時選項，使 vim 可
+以和 Visual WorkShop 協同使用。VMS 需要的功能用 VWS 發佈版本提供的 Sun 編譯器
+編譯通過並經過測試。這不是說這些功能不能用 gcc 編譯或者運行，只不過我們不能保
+證這一點。
 
-    o 应该用 VWS 的编译器而不是 gcc。我们既没有用 gcc 编译更没有测试过，因此不
-      能保证它能正常工作。
+</pre><hr class="doubleline" /><pre>
+<h4>4. 為 Workshop 發佈樹配置 gvim                          <b class="vimtag"> <a name="workshop-configure">workshop-configure</a> </b></h4>
+要使得支持 Sun Visual Workshop 6 的 gvim 能夠編譯，需要滿足若干要求。
 
-    o 必须提供自己的 XPM 库。下面  <a href="workshop.html#workshop-xpm">workshop-xpm</a>  一节详述如何得到最新版 XPM。
+    o 應該用 VWS 的編譯器而不是 gcc。我們既沒有用 gcc 編譯更沒有測試過，因此不
+      能保證它能正常工作。
 
-    o 编辑 src 目录的 Makefile，删除 Sun Visual Workshop 行的注释。通过查找字
-      符串 FEAT_SUN_WORKSHOP，它们很容易找到。
+    o 必須提供自己的 XPM 庫。下面  <a href="workshop.html#workshop-xpm">workshop-xpm</a>  一節詳述如何得到最新版 XPM。
 
-    o 我们同时建议 gui 使用 Motif。这样 gvim 就会和 Sun Visual WorkShop 其他部
-      分有着相同的外观。
+    o 編輯 src 目錄的 Makefile，刪除 Sun Visual Workshop 行的註釋。通過查找字
+      符串 FEAT_SUN_WORKSHOP，它們很容易找到。
 
-可用下面的配置行来 configure 带 Sun Visual WorkShop 支持的 vim:
+    o 我們同時建議 gui 使用 Motif。這樣 gvim 就會和 Sun Visual WorkShop 其他部
+      分有著相同的外觀。
+
+可用下面的配置行來 configure 帶 Sun Visual WorkShop 支持的 vim:
 
     $ CC=cc configure --enable-workshop --enable-gui=motif \
         -prefix=<code class="special">&lt;VWS-install-dir&gt;</code>/contrib/contrib6/<code class="special">&lt;vim-version&gt;</code>
 
-VWS-install-dir 是 Sun Visual WorkShop 安装位置的主目录。缺省值是
-/opt/SUNWspro。vim 发布版本的安装一般要有 root 权限。然后，你还需要修改符号链
-接 <code class="special">&lt;VWS-installdir&gt;</code>/bin/gvim，使之指向新安装目录里的 vim。<code class="special">&lt;vim-version&gt;</code> 应是唯
-一的版本字符串。我用的是 "vim" 加上等价于 version.h 中的 VIM_VERSION_SHORT 的
+VWS-install-dir 是 Sun Visual WorkShop 安裝位置的主目錄。缺省值是
+/opt/SUNWspro。vim 發佈版本的安裝一般要有 root 權限。然後，你還需要修改符號鏈
+接 <code class="special">&lt;VWS-installdir&gt;</code>/bin/gvim，使之指向新安裝目錄裡的 vim。<code class="special">&lt;vim-version&gt;</code> 應是唯
+一的版本字符串。我用的是 "vim" 加上等價於 version.h 中的 VIM_VERSION_SHORT 的
 字符串。
 
 </pre><hr class="doubleline" /><pre>
-<h4>5. 获得最新的 XPM 库                                    <b class="vimtag"> <a name="workshop-xpm">workshop-xpm</a> </b></h4>
-支持 Motif 或 Athena 的 Vim 要显示图像，XPM 库是必需的。没有它，工具栏和标号
-(sign) 特性会被关闭。
+<h4>5. 獲得最新的 XPM 庫                                    <b class="vimtag"> <a name="workshop-xpm">workshop-xpm</a> </b></h4>
+支持 Motif 或 Athena 的 Vim 要顯示圖像，XPM 庫是必需的。沒有它，工具欄和標號
+(sign) 特性會被關閉。
 
-XPM 库由法国国立计算机科学与控制研究学院的 Arnaud Le Hors 提供，它可在
-http://cgit.freedesktop.org/xorg/lib/libXpm 下载。撰写此文时，它的最新版本是
-xpm-3.4k-solaris.tgz，这是一个 gzip 压缩的 tar 文件。如果你建立目录
-/usr/local/xpm 然后在那里解包，就可以直接使用 Makefile 里去掉注释的行而无须修
-改。如果安装在别的目录，请修改 src/Makefile 里的 XPM_DIR。
+XPM 庫由法國國立計算機科學與控制研究學院的 Arnaud Le Hors 提供，它可在
+http://cgit.freedesktop.org/xorg/lib/libXpm 下載。撰寫此文時，它的最新版本是
+xpm-3.4k-solaris.tgz，這是一個 gzip 壓縮的 tar 文件。如果你建立目錄
+/usr/local/xpm 然後在那裡解包，就可以直接使用 Makefile 裡去掉註釋的行而無須修
+改。如果安裝在別的目錄，請修改 src/Makefile 裡的 XPM_DIR。
 
  vim:tw=78:ts=8:ft=help:norl:
 </pre>

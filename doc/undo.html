@@ -1,17 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>VIM: undo</title>
 <link rel="stylesheet" href="vim-stylesheet.css" type="text/css">
 </head>
 <body>
 <div id=banner>
-<a href="help.html">帮助总览</a> &middot;
-<a href="quickref.html">快速参考</a> &middot;
+<a href="help.html">幫助總覽</a> &middot;
+<a href="quickref.html">快速參考</a> &middot;
 <a href="index.html">命令索引</a> &middot;
-<a href="usr_toc.html">用户手册</a> &middot;
-<a href="help.html#reference_toc">参考手册</a>
+<a href="usr_toc.html">用戶手冊</a> &middot;
+<a href="help.html#reference_toc">參考手冊</a>
 </div>
 
 <div id=outer>
@@ -20,242 +20,242 @@
 <b class="vimtag"> <a name="undo.txt">undo.txt</a> </b>      For Vim version 8.0.  最近更新: 2017年8月
 
 
-                  <code class="vim">VIM 参考手册    by Bram Moolenaar</code>
-                        <code class="vim">译者</code>: jwdu, tocer http://vimcdoc.sf.net
+                  <code class="vim">VIM 參考手冊    by Bram Moolenaar</code>
+                        <code class="vim">譯者</code>: jwdu, tocer http://vimcdoc.sf.net
 
-撤销和重做                                                      <b class="vimtag"> <a name="undo-redo">undo-redo</a> </b>
+撤銷和重做                                                      <b class="vimtag"> <a name="undo-redo">undo-redo</a> </b>
 
-在用户手册的  <a href="usr_02.html#02.5">02.5</a>  节对它们的基本操作有解释。
+在用戶手冊的  <a href="usr_02.html#02.5">02.5</a>  節對它們的基本操作有解釋。
 
-1. 撤销和重做操作的命令          <a href="undo.html#undo-commands">undo-commands</a> 
-2. 撤销操作的两种方法            <a href="undo.html#undo-two-ways">undo-two-ways</a> 
-3. 撤销块                        <a href="undo.html#undo-blocks">undo-blocks</a> 
-4. 撤销分支                      <a href="undo.html#undo-branches">undo-branches</a> 
-5. 撤销的持久性                  <a href="undo.html#undo-persistence">undo-persistence</a> 
-6. 撤销操作的解释                <a href="undo.html#undo-remarks">undo-remarks</a> 
+1. 撤銷和重做操作的命令          <a href="undo.html#undo-commands">undo-commands</a> 
+2. 撤銷操作的兩種方法            <a href="undo.html#undo-two-ways">undo-two-ways</a> 
+3. 撤銷塊                        <a href="undo.html#undo-blocks">undo-blocks</a> 
+4. 撤銷分支                      <a href="undo.html#undo-branches">undo-branches</a> 
+5. 撤銷的持久性                  <a href="undo.html#undo-persistence">undo-persistence</a> 
+6. 撤銷操作的解釋                <a href="undo.html#undo-remarks">undo-remarks</a> 
 
 </pre><hr class="doubleline" /><pre>
-<h4>1. 撤销和重做命令                                       <b class="vimtag"> <a name="undo-commands">undo-commands</a> </b></h4>
+<h4>1. 撤銷和重做命令                                       <b class="vimtag"> <a name="undo-commands">undo-commands</a> </b></h4>
 <code class="special">&lt;Undo&gt;</code>          或                                      <b class="vimtag"> <a name="undo">undo</a> </b> <b class="vimtag"> <a name="%3CUndo%3E">&lt;Undo&gt;</a> </b> <b class="vimtag"> <a name="u">u</a> </b>
-u                       撤销 <code class="special">[count]</code> 次更改。           <code class="notvi">{Vi: 仅有一级}</code>
+u                       撤銷 <code class="special">[count]</code> 次更改。           <code class="notvi">{Vi: 僅有一級}</code>
 
                                                         <b class="vimtag"> <a name=":u">:u</a> </b> <b class="vimtag"> <a name=":un">:un</a> </b> <b class="vimtag"> <a name=":undo">:undo</a> </b>
-:u[ndo]                 撤销一次更改。                  <code class="notvi">{Vi: 仅有一级}</code>
+:u[ndo]                 撤銷一次更改。                  <code class="notvi">{Vi: 僅有一級}</code>
 
                                                                 <b class="vimtag"> <a name="E830">E830</a> </b>
-:u[ndo] <code class="special">{N}</code>             转到改变号 <code class="special">{N}</code> 之后。<code class="special">{N}</code> 的含义参见  <a href="undo.html#undo-branches">undo-branches</a> 。
-                        <code class="notvi">{Vi 无此功能}</code>
+:u[ndo] <code class="special">{N}</code>             轉到改變號 <code class="special">{N}</code> 之後。<code class="special">{N}</code> 的含義參見  <a href="undo.html#undo-branches">undo-branches</a> 。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="CTRL-R">CTRL-R</a> </b>
-<code class="keystroke">CTRL-R</code>                  重做 <code class="special">[count]</code> 次被撤销的更改。   <code class="notvi">{Vi: 刷新屏幕}</code>
+<code class="keystroke">CTRL-R</code>                  重做 <code class="special">[count]</code> 次被撤銷的更改。   <code class="notvi">{Vi: 刷新屏幕}</code>
 
                                                         <b class="vimtag"> <a name=":red">:red</a> </b> <b class="vimtag"> <a name=":redo">:redo</a> </b> <b class="vimtag"> <a name="redo">redo</a> </b>
-:red[o]                 重做一个被撤销的更改。          <code class="notvi">{Vi: 没有 redo}</code>
+:red[o]                 重做一個被撤銷的更改。          <code class="notvi">{Vi: 沒有 redo}</code>
 
                                                         <b class="vimtag"> <a name="U">U</a> </b>
-U                       撤销最近对特定行所作的一系列更改，也就是最近作改变的
-                        那行。 <a href="undo.html#U">U</a>  自己也算一次改变，因此  <a href="undo.html#U">U</a>  会撤销之前的
+U                       撤銷最近對特定行所作的一系列更改，也就是最近作改變的
+                        那行。 <a href="undo.html#U">U</a>  自己也算一次改變，因此  <a href="undo.html#U">U</a>  會撤銷之前的
                          <a href="undo.html#U">U</a> 。
-                        <code class="notvi">{Vi: 仅当这些修改不超出最近作改变那行的范围}</code>
+                        <code class="notvi">{Vi: 僅當這些修改不超出最近作改變那行的範圍}</code>
 
-由于最近所作的更改是被记住的，因此，你可以应用上面的撤销和重做命令把文件倒转到
-你所作每次更改以前的状态。当然，你也可以重新应用这些修改，把文件重做到执行撤销
-操作以前的状态。
+由於最近所作的更改是被記住的，因此，你可以應用上面的撤銷和重做命令把文件倒轉到
+你所作每次更改以前的狀態。當然，你也可以重新應用這些修改，把文件重做到執行撤銷
+操作以前的狀態。
 
-对于撤销/重做 (undo/redo) 来说，"U" 命令和其他命令是同等对待的。所以 "u" 可以
-撤销一个 "U" 命令、'<code class="keystroke">CTRL-R</code>' 也可以重做对 "U" 命令的撤销。当 "U"、"u" 和
-'<code class="keystroke">CTRL-R</code>' 三个命令混合使用时，你将<code class="note">注意</code>到 "U" 命令决意将被该行还原到前一个 "U"
-命令之前的状态。这或许会令你困惑。多试试，你会习惯的。
-"U" 命令总是把缓冲区标记为已改变。即使它把修改过的缓冲区重做到未改变的状态也是
-如此。为此，只有使用 "u" 命令，才能令缓冲区正确地回复到未改变的标记。
+對於撤銷/重做 (undo/redo) 來說，"U" 命令和其他命令是同等對待的。所以 "u" 可以
+撤銷一個 "U" 命令、'<code class="keystroke">CTRL-R</code>' 也可以重做對 "U" 命令的撤銷。當 "U"、"u" 和
+'<code class="keystroke">CTRL-R</code>' 三個命令混合使用時，你將<code class="note">注意</code>到 "U" 命令決意將被該行還原到前一個 "U"
+命令之前的狀態。這或許會令你困惑。多試試，你會習慣的。
+"U" 命令總是把緩衝區標記為已改變。即使它把修改過的緩衝區重做到未改變的狀態也是
+如此。為此，只有使用 "u" 命令，才能令緩衝區正確地回復到未改變的標記。
 
 </pre><hr class="doubleline" /><pre>
-<h4>2. 撤销操作的两种方法                                   <b class="vimtag"> <a name="undo-two-ways">undo-two-ways</a> </b></h4>
-撤销和重做的工作模式依赖于 <a href="options.html#'cpoptions'">'cpoptions'</a> 中 'u' 标志位。这里有两种模式，Vim 模式
-(不包含 'u') 和 Vi-兼容模式 (包含 'u')。在 Vim 模式下，"uu" 命令撤销两次改变，
-在 Vi-兼容模式下，"uu" 命令什么也不做 (撤销第一次撤销)。
+<h4>2. 撤銷操作的兩種方法                                   <b class="vimtag"> <a name="undo-two-ways">undo-two-ways</a> </b></h4>
+撤銷和重做的工作模式依賴於 <a href="options.html#'cpoptions'">'cpoptions'</a> 中 'u' 標誌位。這裡有兩種模式，Vim 模式
+(不包含 'u') 和 Vi-兼容模式 (包含 'u')。在 Vim 模式下，"uu" 命令撤銷兩次改變，
+在 Vi-兼容模式下，"uu" 命令什麼也不做 (撤銷第一次撤銷)。
 
 不包含 'u' 的 Vim 模式:
-及时的撤销命令可以回到先前的状态。你也可以使用重做命令再次前进。不过，如果在撤
-销命令后你做了一个新的改变，重做上次的撤销便不再可能。
+及時的撤銷命令可以回到先前的狀態。你也可以使用重做命令再次前進。不過，如果在撤
+銷命令後你做了一個新的改變，重做上次的撤銷便不再可能。
 
 包含 'u' 的 Vi-兼容模式:
-撤销命令撤销包含以前的撤销命令在内的任何更改。重做命令重复前一个撤销命令。但它
- <code class="emphasis">不</code> 用来重复改变命令。为此请用 "." 命令。
+撤銷命令撤銷包含以前的撤銷命令在內的任何更改。重做命令重複前一個撤銷命令。但它
+ <code class="emphasis">不</code> 用來重複改變命令。為此請用 "." 命令。
 
-<code class="section">举例            Vim 模式                Vi-兼容模式     </code>
-"uu"            两次撤销                空操作
-"u <code class="keystroke">CTRL-R</code>"      空操作                  两次撤销
+<code class="section">舉例            Vim 模式                Vi-兼容模式     </code>
+"uu"            兩次撤銷                空操作
+"u <code class="keystroke">CTRL-R</code>"      空操作                  兩次撤銷
 
-原理:   Nvi 使用 "." 命令而不是 <code class="keystroke">CTRL-R</code>。不幸的是，这不是 Vi 兼容的。例如
-        "dwdwu." 命令，在 Vi 中删除两个词，但在 Nvi 中，它什么也不做。
+原理:   Nvi 使用 "." 命令而不是 <code class="keystroke">CTRL-R</code>。不幸的是，這不是 Vi 兼容的。例如
+        "dwdwu." 命令，在 Vi 中刪除兩個詞，但在 Nvi 中，它什麼也不做。
 
 </pre><hr class="doubleline" /><pre>
-<h4>3. 撤销块                                               <b class="vimtag"> <a name="undo-blocks">undo-blocks</a> </b></h4>
-单个 undo 命令通常撤掉一个输入的命令，不论这个命令造成多少改变。这个可以撤销的
-改变序列构成了一个撤销块。所以如果键入的命令调用一个函数，那么在这个函数中的所
-有命令全部被撤销。
+<h4>3. 撤銷塊                                               <b class="vimtag"> <a name="undo-blocks">undo-blocks</a> </b></h4>
+單個 undo 命令通常撤掉一個輸入的命令，不論這個命令造成多少改變。這個可以撤銷的
+改變序列構成了一個撤銷塊。所以如果鍵入的命令調用一個函數，那麼在這個函數中的所
+有命令全部被撤銷。
 
-如果你想编写一个函数或脚本，它不包含新的可撤销之改变，而合并到之前的改变中，用
+如果你想編寫一個函數或腳本，它不包含新的可撤銷之改變，而合併到之前的改變中，用
 以下命令:
 
                                                 <b class="vimtag"> <a name=":undoj">:undoj</a> </b> <b class="vimtag"> <a name=":undojoin">:undojoin</a> </b> <b class="vimtag"> <a name="E790">E790</a> </b>
-:undoj[oin]             把其后的改变和以前的撤销块进行合并。
-                        警告: 小心使用。它会阻止用户合理地撤销改变。不要在撤销
-                        或重做后使用。
-                        <code class="notvi">{Vi 无此功能}</code>
+:undoj[oin]             把其後的改變和以前的撤銷塊進行合併。
+                        警告: 小心使用。它會阻止用戶合理地撤銷改變。不要在撤銷
+                        或重做後使用。
+                        <code class="notvi">{Vi 無此功能}</code>
 
-这最适用于在改变的过程中需要提示用户的场合。例如调用  <a href="eval.html#getchar()">getchar()</a>  的函数。确保
-在这之前有一个相关的必须与之合并的改变。
+這最適用於在改變的過程中需要提示用戶的場合。例如調用  <a href="eval.html#getchar()">getchar()</a>  的函數。確保
+在這之前有一個相關的必須與之合併的改變。
 
-这条命令不能单独工作，因为下一个键击会再次造成新改变。但你可以这么做: 
+這條命令不能單獨工作，因為下一個鍵擊會再次造成新改變。但你可以這麼做: 
 <code class="example"></code>
 <code class="example">        :undojoin | delete</code>
 <code class="example"></code>
-在此之后，"u" 命令会同时撤销 delete 命令和前一次改变。
+在此之後，"u" 命令會同時撤銷 delete 命令和前一次改變。
 
-要反过来，把一个改动分成两个撤销块，在插入模式下用 <code class="keystroke">CTRL-G</code> u。可用于使某个插入
-命令部分可撤销。譬如可分拆到每个句子。 <a href="insert.html#i_CTRL-G_u">i_CTRL-G_u</a> 
-设置 <a href="options.html#'undolevels'">'undolevels'</a> 的值也会打断撤销。即使新值和旧值相同。
+要反過來，把一個改動分成兩個撤銷塊，在插入模式下用 <code class="keystroke">CTRL-G</code> u。可用於使某個插入
+命令部分可撤銷。譬如可分拆到每個句子。 <a href="insert.html#i_CTRL-G_u">i_CTRL-G_u</a> 
+設置 <a href="options.html#'undolevels'">'undolevels'</a> 的值也會打斷撤銷。即使新值和舊值相同。
 
 </pre><hr class="doubleline" /><pre>
-<h4>4. 撤销分支                                     <b class="vimtag"> <a name="undo-branches">undo-branches</a> </b> <b class="vimtag"> <a name="undo-tree">undo-tree</a> </b></h4>
-上面我们只讨论了单线的撤销/重做。但你也可以进行分支。考虑你先撤销了若干改变，
-然后又进行了一些其它的改变。此时，被撤销的改变就成为一个分支。下面的命令使你能
-够到达那个分支。
+<h4>4. 撤銷分支                                     <b class="vimtag"> <a name="undo-branches">undo-branches</a> </b> <b class="vimtag"> <a name="undo-tree">undo-tree</a> </b></h4>
+上面我們只討論了單線的撤銷/重做。但你也可以進行分支。考慮你先撤銷了若干改變，
+然後又進行了一些其它的改變。此時，被撤銷的改變就成為一個分支。下面的命令使你能
+夠到達那個分支。
 
-这在用户手册中有解释:  <a href="usr_32.html#usr_32.txt">usr_32.txt</a> 。
+這在用戶手冊中有解釋:  <a href="usr_32.html#usr_32.txt">usr_32.txt</a> 。
 
                                                         <b class="vimtag"> <a name=":undol">:undol</a> </b> <b class="vimtag"> <a name=":undolist">:undolist</a> </b>
-:undol[ist]             列出改变树的所有叶结点。例如:
+:undol[ist]             列出改變樹的所有葉結點。例如:
 <code class="section">                           number changes  when               saved </code>
                                88      88  2010/01/04 14:25:53
                               108     107  08/07 12:47:51
                               136      46  13:33:01             7
                               166     164  3 seconds ago
 
-                        "number" 列是改变号。这个编号持续增加，用于标识特定可
-                        撤销的改变，参见  <a href="undo.html#:undo">:undo</a> 。
-                        "changes" 列是树的根结点到此叶结点所需的改变数目。
-                        "when" 列是此改变发生的日期时间。四种可能的格式是:
+                        "number" 列是改變號。這個編號持續增加，用於標識特定可
+                        撤銷的改變，參見  <a href="undo.html#:undo">:undo</a> 。
+                        "changes" 列是樹的根結點到此葉結點所需的改變數目。
+                        "when" 列是此改變發生的日期時間。四種可能的格式是:
                             N seconds ago
-                            HH:MM:SS             时分秒
-                            MM/DD HH:MM:SS       同上，还有月日
-                            YYYY/MM/DD HH:MM:SS  同上，还有年
-                        "save" 列给出此改变是否已写入硬盘和第几次写入文件。可
-                        用于  <a href="undo.html#:later">:later</a>  和  <a href="undo.html#:earlier">:earlier</a>  命令。
-                        要更详细的信息可用  <a href="eval.html#undotree()">undotree()</a>  函数。
+                            HH:MM:SS             時分秒
+                            MM/DD HH:MM:SS       同上，還有月日
+                            YYYY/MM/DD HH:MM:SS  同上，還有年
+                        "save" 列給出此改變是否已寫入硬盤和第幾次寫入文件。可
+                        用於  <a href="undo.html#:later">:later</a>  和  <a href="undo.html#:earlier">:earlier</a>  命令。
+                        要更詳細的信息可用  <a href="eval.html#undotree()">undotree()</a>  函數。
 
                                                         <b class="vimtag"> <a name="g-">g-</a> </b>
-g-                      转到较早的文本状态。如果带计数，重复那么多次。
-                        <code class="notvi">{Vi 无此功能}</code>
+g-                      轉到較早的文本狀態。如果帶計數，重複那麼多次。
+                        <code class="notvi">{Vi 無此功能}</code>
                                                         <b class="vimtag"> <a name=":ea">:ea</a> </b> <b class="vimtag"> <a name=":earlier">:earlier</a> </b>
-:earlier <code class="special">{count}</code>        转到 <code class="special">{count}</code> 次较早的文本状态。
-:earlier <code class="special">{N}</code>s           转到大约 <code class="special">{N}</code> 秒钟之前的较早的文本状态。
-:earlier <code class="special">{N}</code>m           转到大约 <code class="special">{N}</code> 分钟之前的较早的文本状态。
-:earlier <code class="special">{N}</code>h           转到大约 <code class="special">{N}</code> 小时之前的较早的文本状态。
-:earlier <code class="special">{N}</code>d           转到大约 <code class="special">{N}</code> 天之前的较早的文本状态。
+:earlier <code class="special">{count}</code>        轉到 <code class="special">{count}</code> 次較早的文本狀態。
+:earlier <code class="special">{N}</code>s           轉到大約 <code class="special">{N}</code> 秒鐘之前的較早的文本狀態。
+:earlier <code class="special">{N}</code>m           轉到大約 <code class="special">{N}</code> 分鐘之前的較早的文本狀態。
+:earlier <code class="special">{N}</code>h           轉到大約 <code class="special">{N}</code> 小時之前的較早的文本狀態。
+:earlier <code class="special">{N}</code>d           轉到大約 <code class="special">{N}</code> 天之前的較早的文本狀態。
 
-:earlier <code class="special">{N}</code>f           转到 <code class="special">{N}</code> 次文件写入之前的较早的文本状态。
-                        如果上次写入之后有改动，":earlier 1f" 会恢复文本到上次
-                        写入时的状态。否则会转到再上一次写入时的状态。
-                        如果在第一次文件写入的状态，甚至于从未写入过文件，
-                        ":earlier 1f" 会转到首次改变之前的状态。
+:earlier <code class="special">{N}</code>f           轉到 <code class="special">{N}</code> 次文件寫入之前的較早的文本狀態。
+                        如果上次寫入之後有改動，":earlier 1f" 會恢復文本到上次
+                        寫入時的狀態。否則會轉到再上一次寫入時的狀態。
+                        如果在第一次文件寫入的狀態，甚至於從未寫入過文件，
+                        ":earlier 1f" 會轉到首次改變之前的狀態。
 
                                                         <b class="vimtag"> <a name="g+">g+</a> </b>
-g+                      转到较新的文本状态。如果带计数，重复那么多次。
-                        <code class="notvi">{Vi 无此功能}</code>
+g+                      轉到較新的文本狀態。如果帶計數，重複那麼多次。
+                        <code class="notvi">{Vi 無此功能}</code>
                                                         <b class="vimtag"> <a name=":lat">:lat</a> </b> <b class="vimtag"> <a name=":later">:later</a> </b>
-:later <code class="special">{count}</code>  转到 <code class="special">{count}</code> 次较新的文本状态。
-:later <code class="special">{N}</code>s             转到大约 <code class="special">{N}</code> 秒钟之后的较新的文本状态。
-:later <code class="special">{N}</code>m             转到大约 <code class="special">{N}</code> 分钟之后的较新的文本状态。
-:later <code class="special">{N}</code>h             转到大约 <code class="special">{N}</code> 小时之后的较新的文本状态。
-:later <code class="special">{N}</code>d             转到大约 <code class="special">{N}</code> 天之后的较新的文本状态。
+:later <code class="special">{count}</code>  轉到 <code class="special">{count}</code> 次較新的文本狀態。
+:later <code class="special">{N}</code>s             轉到大約 <code class="special">{N}</code> 秒鐘之後的較新的文本狀態。
+:later <code class="special">{N}</code>m             轉到大約 <code class="special">{N}</code> 分鐘之後的較新的文本狀態。
+:later <code class="special">{N}</code>h             轉到大約 <code class="special">{N}</code> 小時之後的較新的文本狀態。
+:later <code class="special">{N}</code>d             轉到大約 <code class="special">{N}</code> 天之後的較新的文本狀態。
 
-:later <code class="special">{N}</code>f             转到 <code class="special">{N}</code> 次文件写入之后较新的文本状态。
-                        若在在最后一次文件写入的状态，":later 1f" 会转到最新的
-                        文本状态。
+:later <code class="special">{N}</code>f             轉到 <code class="special">{N}</code> 次文件寫入之後較新的文本狀態。
+                        若在在最後一次文件寫入的狀態，":later 1f" 會轉到最新的
+                        文本狀態。
 
-<code class="note">注意</code> 如果由于 <a href="options.html#'undolevels'">'undolevels'</a> 选项，撤销信息被清空，那么文本状态将无法访问。
+<code class="note">注意</code> 如果由於 <a href="options.html#'undolevels'">'undolevels'</a> 選項，撤銷信息被清空，那麼文本狀態將無法訪問。
 
-在不同时间点上移动的时候，不要奇怪一个时间点会同时发生多个改变。通过撤销树跳转
-然后又做了新的改变后就会发生这种情况。
+在不同時間點上移動的時候，不要奇怪一個時間點會同時發生多個改變。通過撤銷樹跳轉
+然後又做了新的改變後就會發生這種情況。
 
 示 例
 
-从这一行开始:
+從這一行開始:
 <code class="section">        one two three </code>
 
-按三次 "x" 删除第一个单词:
+按三次 "x" 刪除第一個單詞:
 <code class="section">        ne two three </code>
 <code class="section">        e two three </code>
 <code class="section">         two three </code>
 
-现在按 "u" 三次撤销:
+現在按 "u" 三次撤銷:
 <code class="section">        e two three </code>
 <code class="section">        ne two three </code>
 <code class="section">        one two three </code>
 
-按三次 "x" 删除第二个单词:
+按三次 "x" 刪除第二個單詞:
 <code class="section">        one wo three </code>
 <code class="section">        one o three </code>
 <code class="section">        one  three </code>
 
-现在按 "g-" 三次撤销:
+現在按 "g-" 三次撤銷:
 <code class="section">        one o three </code>
 <code class="section">        one wo three </code>
 <code class="section">         two three </code>
 
-现在，回到第一个撤销分支，也就是在删除 "one" 之后。重复 "g-" 会回到原始文本:
+現在，回到第一個撤銷分支，也就是在刪除 "one" 之後。重複 "g-" 會回到原始文本:
 <code class="section">        e two three </code>
 <code class="section">        ne two three </code>
 <code class="section">        one two three </code>
 
-使用 ":later 1h" 跳到最后一次改变:
+使用 ":later 1h" 跳到最後一次改變:
 <code class="section">        one  three </code>
 
-使用 ":earlier 1h" 再次回到开始:
+使用 ":earlier 1h" 再次回到開始:
 <code class="section">        one two three </code>
 
 
-<code class="note">注意</code> 使用 "u" 和 <code class="keystroke">CTRL-R</code> 无法得到全部可能的文本状态，但是重复 "g-" 和 "g+" 却可
+<code class="note">注意</code> 使用 "u" 和 <code class="keystroke">CTRL-R</code> 無法得到全部可能的文本狀態，但是重複 "g-" 和 "g+" 卻可
 以。
 
 </pre><hr class="doubleline" /><pre>
-<h4>5. 撤销的持久性                 <b class="vimtag"> <a name="undo-persistence">undo-persistence</a> </b> <b class="vimtag"> <a name="persistent-undo">persistent-undo</a> </b></h4>
-卸载缓冲区时，Vim 通常会删除该缓冲区建立的撤销树。通过设置 <a href="options.html#'undofile'">'undofile'</a> 选项，
-Vim 会在写入文件时自动保存撤销历史，而重新编辑文件时，恢复撤销历史。
+<h4>5. 撤銷的持久性                 <b class="vimtag"> <a name="undo-persistence">undo-persistence</a> </b> <b class="vimtag"> <a name="persistent-undo">persistent-undo</a> </b></h4>
+卸載緩衝區時，Vim 通常會刪除該緩衝區建立的撤銷樹。通過設置 <a href="options.html#'undofile'">'undofile'</a> 選項，
+Vim 會在寫入文件時自動保存撤銷歷史，而重新編輯文件時，恢復撤銷歷史。
 
-<a href="options.html#'undofile'">'undofile'</a> 选项在写入文件之后检查，而发生在 BufWritePost 自动命令之前。要控制
-哪些文件需要保存撤销信息，可以使用 BufWritePre 自动命令: 
+<a href="options.html#'undofile'">'undofile'</a> 選項在寫入文件之後檢查，而發生在 BufWritePost 自動命令之前。要控制
+哪些文件需要保存撤銷信息，可以使用 BufWritePre 自動命令: 
 <code class="example">        au BufWritePre /tmp/* setlocal noundofile</code>
 <code class="example"></code>
-Vim 把撤销树保存在一个独立的撤销文件里，每个编辑的文件对应一个，使用一个简单的
-方案来对应文件系统的路径到撤销文件名。Vim 会检测是否某个撤销文件不再和写它时的
-那个文件同步 (使用文件内容的哈希值)，如果文件内容在撤销文件写入后有改动，忽略
-撤销文件，以防止文件遭破坏。如果撤销文件的拥有者和正在编辑文件的不同，也忽略
-之，除非撤销文件的拥有者是当前用户。设置 <a href="options.html#'verbose'">'verbose'</a> 可获取关于打开文件的消息。
+Vim 把撤銷樹保存在一個獨立的撤銷文件裡，每個編輯的文件對應一個，使用一個簡單的
+方案來對應文件系統的路徑到撤銷文件名。Vim 會檢測是否某個撤銷文件不再和寫它時的
+那個文件同步 (使用文件內容的哈希值)，如果文件內容在撤銷文件寫入後有改動，忽略
+撤銷文件，以防止文件遭破壞。如果撤銷文件的擁有者和正在編輯文件的不同，也忽略
+之，除非撤銷文件的擁有者是當前用戶。設置 <a href="options.html#'verbose'">'verbose'</a> 可獲取關於打開文件的消息。
 
-撤销文件通常保存在文件本身相同的目录里。这可以用 <a href="options.html#'undodir'">'undodir'</a> 选项改变。
+撤銷文件通常保存在文件本身相同的目錄裡。這可以用 <a href="options.html#'undodir'">'undodir'</a> 選項改變。
 
-如果文件被加密，撤销文件的文件也会加密。使用相同的密钥和方法。 <a href="editing.html#encryption">encryption</a> 
+如果文件被加密，撤銷文件的文件也會加密。使用相同的密鑰和方法。 <a href="editing.html#encryption">encryption</a> 
 
-你也可以用 ":wundo" 和 ":rundo" 来相应地保存和恢复撤销历史:
+你也可以用 ":wundo" 和 ":rundo" 來相應地保存和恢復撤銷歷史:
                                                         <b class="vimtag"> <a name=":wundo">:wundo</a> </b> <b class="vimtag"> <a name=":rundo">:rundo</a> </b>
 :wundo[!] <code class="special">{file}</code>
-                把撤销历史写入 <code class="special">{file}</code>。
-                如果 <code class="special">{file}</code> 已存在而看起来不像撤销文件 (文件头部的魔术数字不
-                符)，此命令失败。除非加上 !。
-                如果文件存在且看起来像撤销文件，覆盖之。如果没有撤销历史，不
-                写入任何东西。
-                实现细节: 覆盖操作如此执行，先删除已有的文件，然后建立同名的
-                文件。所以，不能在写保护目录里覆盖已有的撤销文件。
-                <code class="notvi">{Vi 无此功能}</code>
+                把撤銷歷史寫入 <code class="special">{file}</code>。
+                如果 <code class="special">{file}</code> 已存在而看起來不像撤銷文件 (文件頭部的魔術數字不
+                符)，此命令失敗。除非加上 !。
+                如果文件存在且看起來像撤銷文件，覆蓋之。如果沒有撤銷歷史，不
+                寫入任何東西。
+                實現細節: 覆蓋操作如此執行，先刪除已有的文件，然後建立同名的
+                文件。所以，不能在寫保護目錄裡覆蓋已有的撤銷文件。
+                <code class="notvi">{Vi 無此功能}</code>
 
-:rundo <code class="special">{file}</code>   从 <code class="special">{file}</code> 读出撤销历史。
-                <code class="notvi">{Vi 无此功能}</code>
+:rundo <code class="special">{file}</code>   從 <code class="special">{file}</code> 讀出撤銷歷史。
+                <code class="notvi">{Vi 無此功能}</code>
 
-你可以在自动命令中用这些命令来显式指定历史文件名。例如: 
+你可以在自動命令中用這些命令來顯式指定歷史文件名。例如: 
 <code class="example"></code>
 <code class="example">        au BufReadPost * call ReadUndo()</code>
 <code class="example">        au BufWritePost * call WriteUndo()</code>
@@ -272,87 +272,87 @@ Vim 把撤销树保存在一个独立的撤销文件里，每个编辑的文件�
 <code class="example">          wundo %:h/UNDO/%:t</code>
 <code class="example">        endfunc</code>
 <code class="example"></code>
-此时，应该关闭 <a href="options.html#'undofile'">'undofile'</a>，否则每次写入文件时会有两个撤销文件。
+此時，應該關閉 <a href="options.html#'undofile'">'undofile'</a>，否則每次寫入文件時會有兩個撤銷文件。
 
-可以用  <a href="eval.html#undofile()">undofile()</a>  函数来确定 Vim 会使用的文件名。
+可以用  <a href="eval.html#undofile()">undofile()</a>  函數來確定 Vim 會使用的文件名。
 
-<code class="note">注意</code>: 读写文件时，如果设置了 <a href="options.html#'undofile'">'undofile'</a>，大部分的错误信息会被屏蔽，除非设置了
-<a href="options.html#'verbose'">'verbose'</a>。而 :wundo 和 :rundo 会得到更到的错误信息，如文件不能读或写等。
+<code class="note">注意</code>: 讀寫文件時，如果設置了 <a href="options.html#'undofile'">'undofile'</a>，大部分的錯誤信息會被屏蔽，除非設置了
+<a href="options.html#'verbose'">'verbose'</a>。而 :wundo 和 :rundo 會得到更到的錯誤信息，如文件不能讀或寫等。
 
-<code class="note">注意</code>: Vim 从不删除撤销文件。你需要自己进行清除。
+<code class="note">注意</code>: Vim 從不刪除撤銷文件。你需要自己進行清除。
 
-读出已经存在的撤销文件可能会有以下的失败原因:
-<b class="vimtag"> <a name="E822">E822</a> </b>  不能打开，文件许可权限不许可。
-<b class="vimtag"> <a name="E823">E823</a> </b>  文件头的魔术数字不符。通常这意味着这不是一个撤销文件。
-<b class="vimtag"> <a name="E824">E824</a> </b>  撤销文件的版本号说明它是由更新的 Vim 版本写入的。需要更新的版本来读。
-        如果你想保留该文件中的撤销信息，不要写入缓冲区。
+讀出已經存在的撤銷文件可能會有以下的失敗原因:
+<b class="vimtag"> <a name="E822">E822</a> </b>  不能打開，文件許可權限不許可。
+<b class="vimtag"> <a name="E823">E823</a> </b>  文件頭的魔術數字不符。通常這意味著這不是一個撤銷文件。
+<b class="vimtag"> <a name="E824">E824</a> </b>  撤銷文件的版本號說明它是由更新的 Vim 版本寫入的。需要更新的版本來讀。
+        如果你想保留該文件中的撤銷信息，不要寫入緩衝區。
 "File contents changed, cannot use undo info"
-        文件文本和撤销文件写入时的不同。这意味着不再能使用该撤销文件，否则会破
-        坏文本。这也可能是因为 <a href="options.html#'encoding'">'encoding'</a> 和撤销文件写入时的不同。
-<b class="vimtag"> <a name="E825">E825</a> </b>  撤销文件没有合法的内容，不能使用。
-<b class="vimtag"> <a name="E826">E826</a> </b>  撤销文件经过加密而解密失败。
-<b class="vimtag"> <a name="E827">E827</a> </b>  撤销文件经过加密而此版本的 Vim 不支持加密。用别的 Vim 打开该文件。
-<b class="vimtag"> <a name="E832">E832</a> </b>  撤销文件经过加密而 <a href="options.html#'key'">'key'</a> 没有设置，文本文件本身没有加密。这可能是因为
-        文本文件本来是由 Vim 用加密方式写入的，后来又用非加密方式进行了覆盖。
-        最好删除该撤销文件。
+        文件文本和撤銷文件寫入時的不同。這意味著不再能使用該撤銷文件，否則會破
+        壞文本。這也可能是因為 <a href="options.html#'encoding'">'encoding'</a> 和撤銷文件寫入時的不同。
+<b class="vimtag"> <a name="E825">E825</a> </b>  撤銷文件沒有合法的內容，不能使用。
+<b class="vimtag"> <a name="E826">E826</a> </b>  撤銷文件經過加密而解密失敗。
+<b class="vimtag"> <a name="E827">E827</a> </b>  撤銷文件經過加密而此版本的 Vim 不支持加密。用別的 Vim 打開該文件。
+<b class="vimtag"> <a name="E832">E832</a> </b>  撤銷文件經過加密而 <a href="options.html#'key'">'key'</a> 沒有設置，文本文件本身沒有加密。這可能是因為
+        文本文件本來是由 Vim 用加密方式寫入的，後來又用非加密方式進行了覆蓋。
+        最好刪除該撤銷文件。
 "Not reading undo file, owner differs"
-        撤销文件的拥有者和文本文件的拥有者不同。因为安全原因，不使用该撤销文
+        撤銷文件的擁有者和文本文件的擁有者不同。因為安全原因，不使用該撤銷文
         件。
 
-写入撤销文件可能会有以下的失败原因:
-<b class="vimtag"> <a name="E828">E828</a> </b>  待写入的文件不能建立。可能你没有该目录的写入权限。
+寫入撤銷文件可能會有以下的失敗原因:
+<b class="vimtag"> <a name="E828">E828</a> </b>  待寫入的文件不能建立。可能你沒有該目錄的寫入權限。
 "Cannot write undo file in any directory in <a href="options.html#'undodir'">'undodir'</a>"
-        <a href="options.html#'undodir'">'undodir'</a> 里没有一个可用的目录。
+        <a href="options.html#'undodir'">'undodir'</a> 裡沒有一個可用的目錄。
 "Will not overwrite with undo file, cannot read"
-        待写入的撤销文件已经存在，但不能读回。你需要先删除或改名。
+        待寫入的撤銷文件已經存在，但不能讀回。你需要先刪除或改名。
 "Will not overwrite, this is not an undo file"
-        待写入的撤销文件已经存在，但开头没有正确的魔术数字。你需要先删除或改
+        待寫入的撤銷文件已經存在，但開頭沒有正確的魔術數字。你需要先刪除或改
         名。
 "Skipping undo file write, nothing to undo"
-        没有可写的撤销信息，没有任何改变，或者 <a href="options.html#'undolevels'">'undolevels'</a> 为负。
-<b class="vimtag"> <a name="E829">E829</a> </b>  写入撤销文件时有错。可以多试几次。
+        沒有可寫的撤銷信息，沒有任何改變，或者 <a href="options.html#'undolevels'">'undolevels'</a> 為負。
+<b class="vimtag"> <a name="E829">E829</a> </b>  寫入撤銷文件時有錯。可以多試幾次。
 
 </pre><hr class="doubleline" /><pre>
-<h4>6. 撤销操作的解释                                       <b class="vimtag"> <a name="undo-remarks">undo-remarks</a> </b></h4>
-能记忆的最大改变次数由 <a href="options.html#'undolevels'">'undolevels'</a> 选项决定。如果它的值是零，我们总是运行在
-Vi-兼容模式。如果它的值是负的，任何撤销都是不可能的。这只有在内存紧张的时候适
+<h4>6. 撤銷操作的解釋                                       <b class="vimtag"> <a name="undo-remarks">undo-remarks</a> </b></h4>
+能記憶的最大改變次數由 <a href="options.html#'undolevels'">'undolevels'</a> 選項決定。如果它的值是零，我們總是運行在
+Vi-兼容模式。如果它的值是負的，任何撤銷都是不可能的。這只有在內存緊張的時候適
 用。
 
                                                         <b class="vimtag"> <a name="clear-undo">clear-undo</a> </b>
-如果设置 <a href="options.html#'undolevels'">'undolevels'</a> 为 -1，撤销信息不会立即清除。当有新改变时才会。要强迫清
-除撤销信息，可以用: 
+如果設置 <a href="options.html#'undolevels'">'undolevels'</a> 為 -1，撤銷信息不會立即清除。當有新改變時才會。要強迫清
+除撤銷信息，可以用: 
 <code class="example">        :let old_undolevels = &amp;undolevels</code>
 <code class="example">        :set undolevels=-1</code>
 <code class="example">        :exe "normal a \&lt;BS&gt;\&lt;Esc&gt;"</code>
 <code class="example">        :let &amp;undolevels = old_undolevels</code>
 <code class="example">        :unlet old_undolevels</code>
 <code class="example"></code>
-当前缓冲区的位置标记 ('a 至 'z) 随文本一起被保存和复原。<code class="notvi">{Vi 的做法稍有不同}</code>
+當前緩衝區的位置標記 ('a 至 'z) 隨文本一起被保存和復原。<code class="notvi">{Vi 的做法稍有不同}</code>
 
-当所有的改变都被撤销时，缓冲区被标记为未改变。这时可以使用 ":q" 而不一定是
-":q!" 退出 Vim 。<code class="notvi">{Vi 并非如此}</code> <code class="note">注意</code>未改变是相对文件的最后写入而言的。在写入
-":w" 后紧跟的撤销 "u"，实际上改变了被写入以后缓冲区的状态。因此，此时缓冲区应
-被视为已改变。
+當所有的改變都被撤銷時，緩衝區被標記為未改變。這時可以使用 ":q" 而不一定是
+":q!" 退出 Vim 。<code class="notvi">{Vi 並非如此}</code> <code class="note">注意</code>未改變是相對文件的最後寫入而言的。在寫入
+":w" 後緊跟的撤銷 "u"，實際上改變了被寫入以後緩衝區的狀態。因此，此時緩衝區應
+被視為已改變。
 
-当使用手动  <a href="fold.html#folding">folding</a>  时，折叠不会被保存和复原。只有完全发生折叠内部的改变才不
-会影响该折叠，因为它开头和最后一行没有改变。
+當使用手動  <a href="fold.html#folding">folding</a>  時，折疊不會被保存和復原。只有完全發生折疊內部的改變才不
+會影響該折疊，因為它開頭和最後一行沒有改變。
 
-数字编号的寄存器也可以被用作撤销删除操作。你每一次删除文本，该文本被放在 "1 寄
-存器中。同样的，"1 寄存器的内容被移到 "2 寄存器，依次类推。"9 寄存器的内容则会
-丢失。现在，你可以通过命令 '"1P' 得到最近删除的文本。(如果被删除的内容来自最近
-的删除或复制操作，'P' 或 'p' 同样也可得到你要的结果，因为他们会复制未命名寄存
-器的内容)。使用 '"3P' 可以得到三个删除操作之前的文本。
+數字編號的寄存器也可以被用作撤銷刪除操作。你每一次刪除文本，該文本被放在 "1 寄
+存器中。同樣的，"1 寄存器的內容被移到 "2 寄存器，依次類推。"9 寄存器的內容則會
+丟失。現在，你可以通過命令 '"1P' 得到最近刪除的文本。(如果被刪除的內容來自最近
+的刪除或複製操作，'P' 或 'p' 同樣也可得到你要的結果，因為他們會複製未命名寄存
+器的內容)。使用 '"3P' 可以得到三個刪除操作之前的文本。
 
                                                         <b class="vimtag"> <a name="redo-register">redo-register</a> </b>
-如果你想得到多于一处被删除文本的内容，你可以使用重复命令 "." 一个特殊的特性:
-它会递增所使用寄存器内的序号。所以，你如果先使用 ""1P" ，那么接下来的 "." 就意
-味着 '"2P 。重复这样的操作，所有编号的寄存器都会被插入。
+如果你想得到多於一處被刪除文本的內容，你可以使用重複命令 "." 一個特殊的特性:
+它會遞增所使用寄存器內的序號。所以，你如果先使用 ""1P" ，那麼接下來的 "." 就意
+味著 '"2P 。重複這樣的操作，所有編號的寄存器都會被插入。
 
-例如: 如果你用 'dd....' 删除了内容 (五行文本)，那么用 '"1P....' 可以恢复之。
+例如: 如果你用 'dd....' 刪除了內容 (五行文本)，那麼用 '"1P....' 可以恢復之。
 
-如果你不知道被删除的内容在哪一个寄存器，你可以用  <a href="change.html#:display">:display</a>  命令。还有一个方法
-就是先试第一个寄存器 '"1P' ，如果不对，用 'u.' 命令。这将会移走第一次放进的内
-容，然后在第二个寄存器上重复 put 命令。重复使用 'u.' 直到你得到想要的内容为
+如果你不知道被刪除的內容在哪一個寄存器，你可以用  <a href="change.html#:display">:display</a>  命令。還有一個方法
+就是先試第一個寄存器 '"1P' ，如果不對，用 'u.' 命令。這將會移走第一次放進的內
+容，然後在第二個寄存器上重複 put 命令。重複使用 'u.' 直到你得到想要的內容為
 止。
 
  vim:tw=78:ts=8:ft=help:norl:

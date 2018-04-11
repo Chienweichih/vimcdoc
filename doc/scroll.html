@@ -1,17 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>VIM: scroll</title>
 <link rel="stylesheet" href="vim-stylesheet.css" type="text/css">
 </head>
 <body>
 <div id=banner>
-<a href="help.html">帮助总览</a> &middot;
-<a href="quickref.html">快速参考</a> &middot;
+<a href="help.html">幫助總覽</a> &middot;
+<a href="quickref.html">快速參考</a> &middot;
 <a href="index.html">命令索引</a> &middot;
-<a href="usr_toc.html">用户手册</a> &middot;
-<a href="help.html#reference_toc">参考手册</a>
+<a href="usr_toc.html">用戶手冊</a> &middot;
+<a href="help.html#reference_toc">參考手冊</a>
 </div>
 
 <div id=outer>
@@ -20,267 +20,267 @@
 <b class="vimtag"> <a name="scroll.txt">scroll.txt</a> </b>    For Vim version 8.0.  最近更新: 2017年8月
 
 
-                  <code class="vim">VIM 参考手册    by Bram Moolenaar</code>
-           <code class="vim">译者</code>: iCrazy &lt;icrazy@ustc.edu&gt;，tocer  http://vimcdoc.sf.net
+                  <code class="vim">VIM 參考手冊    by Bram Moolenaar</code>
+           <code class="vim">譯者</code>: iCrazy &lt;icrazy@ustc.edu&gt;，tocer  http://vimcdoc.sf.net
 
 
-滚屏                                            <b class="vimtag"> <a name="scrolling">scrolling</a> </b>
+滾屏                                            <b class="vimtag"> <a name="scrolling">scrolling</a> </b>
 
-这些命令是用来移动窗口中的内容的。如果光标的位置移出了窗口，那么它会带动窗口的
-内容移动几行 (行数由 <a href="options.html#'scrolloff'">'scrolloff'</a> 选项指定)，使光标回到窗口里。这里，我们定义一
-页为窗口的行数减 2。下面这些命令的助记符甚易混淆。请记住这些命令所指的是视窗
-(缓冲区中您可以看到的那一部分) 在缓冲区里向上移动还是向下移动。当窗口在缓冲区
-里向上移动的时候，窗口中的文字朝您屏幕的下方移动。
+這些命令是用來移動窗口中的內容的。如果光標的位置移出了窗口，那麼它會帶動窗口的
+內容移動幾行 (行數由 <a href="options.html#'scrolloff'">'scrolloff'</a> 選項指定)，使光標回到窗口裡。這裡，我們定義一
+頁為窗口的行數減 2。下面這些命令的助記符甚易混淆。請記住這些命令所指的是視窗
+(緩衝區中您可以看到的那一部分) 在緩衝區裡向上移動還是向下移動。當窗口在緩衝區
+裡向上移動的時候，窗口中的文字朝您屏幕的下方移動。
 
-请参阅用户手册的第  <a href="usr_03.html#03.7">03.7</a>  节，那里有一些介绍。
+請參閱用戶手冊的第  <a href="usr_03.html#03.7">03.7</a>  節，那裡有一些介紹。
 
-1. 向下滚屏                      <a href="scroll.html#scroll-down">scroll-down</a> 
-2. 向上滚屏                      <a href="scroll.html#scroll-up">scroll-up</a> 
-3. 相对于光标滚屏                <a href="scroll.html#scroll-cursor">scroll-cursor</a> 
-4. 水平滚动                      <a href="scroll.html#scroll-horizontal">scroll-horizontal</a> 
-5. 同步滚屏                      <a href="scroll.html#scroll-binding">scroll-binding</a> 
-6. 用鼠标滚轮滚屏                <a href="scroll.html#scroll-mouse-wheel">scroll-mouse-wheel</a> 
+1. 向下滾屏                      <a href="scroll.html#scroll-down">scroll-down</a> 
+2. 向上滾屏                      <a href="scroll.html#scroll-up">scroll-up</a> 
+3. 相對於光標滾屏                <a href="scroll.html#scroll-cursor">scroll-cursor</a> 
+4. 水平滾動                      <a href="scroll.html#scroll-horizontal">scroll-horizontal</a> 
+5. 同步滾屏                      <a href="scroll.html#scroll-binding">scroll-binding</a> 
+6. 用鼠標滾輪滾屏                <a href="scroll.html#scroll-mouse-wheel">scroll-mouse-wheel</a> 
 
 </pre><hr class="doubleline" /><pre>
-<h4>1. 向下滚屏                                     <b class="vimtag"> <a name="scroll-down">scroll-down</a> </b></h4>
-下面的这些命令使编辑视窗 (缓冲区中您可以看到的那一部分) 向下移动 (这样您就可以
-看到缓冲区更多下方的文本行):
+<h4>1. 向下滾屏                                     <b class="vimtag"> <a name="scroll-down">scroll-down</a> </b></h4>
+下面的這些命令使編輯視窗 (緩衝區中您可以看到的那一部分) 向下移動 (這樣您就可以
+看到緩衝區更多下方的文本行):
 
                                                         <b class="vimtag"> <a name="CTRL-E">CTRL-E</a> </b>
-<code class="keystroke">CTRL-E</code>                  使窗口在缓冲区中向下滚动 <code class="special">[count]</code> 行。
-                        助记: 额外 (Extra) 的行。
+<code class="keystroke">CTRL-E</code>                  使窗口在緩衝區中向下滾動 <code class="special">[count]</code> 行。
+                        助記: 額外 (Extra) 的行。
 
                                                         <b class="vimtag"> <a name="CTRL-D">CTRL-D</a> </b>
-<code class="keystroke">CTRL-D</code>                  使窗口在缓冲区中向下滚动。滚动的行数由 <a href="options.html#'scroll'">'scroll'</a> 选项指
-                        定 (默认设置为半个屏幕)。如果指定了 <code class="special">[count]</code>，则会先把
-                        <a href="options.html#'scroll'">'scroll'</a> 选项设为 <code class="special">[count]</code>。同时，光标试图在文件中向下
-                        移动相同的行数 (有行回绕或者碰到文件结束时行数会有差
-                        异) 。当光标处于缓冲区最后一行时，这个命令无效，并且系
-                        统会发出一声蜂鸣。
-                        参看 <a href="options.html#'startofline'">'startofline'</a> 选项。
-                        助记: Downwards。
-                        {Vi: Vim 滚动 <a href="options.html#'scroll'">'scroll'</a> 屏幕行，而不是文件行；有行回绕
-                        时两者会有差异}
+<code class="keystroke">CTRL-D</code>                  使窗口在緩衝區中向下滾動。滾動的行數由 <a href="options.html#'scroll'">'scroll'</a> 選項指
+                        定 (默認設置為半個屏幕)。如果指定了 <code class="special">[count]</code>，則會先把
+                        <a href="options.html#'scroll'">'scroll'</a> 選項設為 <code class="special">[count]</code>。同時，光標試圖在文件中向下
+                        移動相同的行數 (有行迴繞或者碰到文件結束時行數會有差
+                        異) 。當光標處於緩衝區最後一行時，這個命令無效，並且系
+                        統會發出一聲蜂鳴。
+                        參看 <a href="options.html#'startofline'">'startofline'</a> 選項。
+                        助記: Downwards。
+                        {Vi: Vim 滾動 <a href="options.html#'scroll'">'scroll'</a> 屏幕行，而不是文件行；有行迴繞
+                        時兩者會有差異}
 
 <code class="special">&lt;S-Down&gt;</code>        或                              <b class="vimtag"> <a name="%3CS-Down%3E">&lt;S-Down&gt;</a> </b> <b class="vimtag"> <a name="%3CkPageDown%3E">&lt;kPageDown&gt;</a> </b>
 <code class="special">&lt;PageDown&gt;</code>      或                              <b class="vimtag"> <a name="%3CPageDown%3E">&lt;PageDown&gt;</a> </b> <b class="vimtag"> <a name="CTRL-F">CTRL-F</a> </b>
-<code class="keystroke">CTRL-F</code>                  使窗口在缓冲区中向下滚动 <code class="special">[count]</code> 页。
-                        参看 <a href="options.html#'startofline'">'startofline'</a> 选项。
-                        如果只有一个窗口，可能使用 <a href="options.html#'window'">'window'</a> 选项的值。
-                        助记: Forwards。
+<code class="keystroke">CTRL-F</code>                  使窗口在緩衝區中向下滾動 <code class="special">[count]</code> 頁。
+                        參看 <a href="options.html#'startofline'">'startofline'</a> 選項。
+                        如果只有一個窗口，可能使用 <a href="options.html#'window'">'window'</a> 選項的值。
+                        助記: Forwards。
 
                                                         <b class="vimtag"> <a name="z+">z+</a> </b>
-z+                      不指定 <code class="special">[count]</code>: 重绘，在窗口中显示下一页的内容 (使当前
-                        窗口之下的一行显示在窗口最上方)。同时把光标放在那一行
-                        第一个非空白字符上。
-                        指定 <code class="special">[count]</code>: 和 "z<code class="special">&lt;CR&gt;</code>" 一样。
+z+                      不指定 <code class="special">[count]</code>: 重繪，在窗口中顯示下一頁的內容 (使當前
+                        窗口之下的一行顯示在窗口最上方)。同時把光標放在那一行
+                        第一個非空白字符上。
+                        指定 <code class="special">[count]</code>: 和 "z<code class="special">&lt;CR&gt;</code>" 一樣。
 
 </pre><hr class="doubleline" /><pre>
-<h4>2. 向上滚屏                                     <b class="vimtag"> <a name="scroll-up">scroll-up</a> </b></h4>
-下面的这些命令使编辑视窗 (缓冲区中您可以看到的那一部分) 向上移动 (这样您就可以
-看到缓冲区更多上方的文本行):
+<h4>2. 向上滾屏                                     <b class="vimtag"> <a name="scroll-up">scroll-up</a> </b></h4>
+下面的這些命令使編輯視窗 (緩衝區中您可以看到的那一部分) 向上移動 (這樣您就可以
+看到緩衝區更多上方的文本行):
 
                                                         <b class="vimtag"> <a name="CTRL-Y">CTRL-Y</a> </b>
-<code class="keystroke">CTRL-Y</code>                  使窗口在缓冲区中向上滚动 <code class="special">[count]</code> 行。
-                        <code class="note">备注</code>: 如果您使用 MS-Windows，组合键 <code class="keystroke">CTRL-Y</code> 会被重新映
-                        射为重做功能。
+<code class="keystroke">CTRL-Y</code>                  使窗口在緩衝區中向上滾動 <code class="special">[count]</code> 行。
+                        <code class="note">備註</code>: 如果您使用 MS-Windows，組合鍵 <code class="keystroke">CTRL-Y</code> 會被重新映
+                        射為重做功能。
 
                                                         <b class="vimtag"> <a name="CTRL-U">CTRL-U</a> </b>
-<code class="keystroke">CTRL-U</code>                  使窗口在缓冲区中向上滚动。滚动的行数由 <a href="options.html#'scroll'">'scroll'</a> 选项指
-                        定 (默认设置为半个屏幕)。如果指定了 <code class="special">[count]</code>，则会先把
-                        <a href="options.html#'scroll'">'scroll'</a> 选项设为 <code class="special">[count]</code>。同时，光标试图在文件中向上
-                        移动相同的行数 (有行回绕或者碰到文件结束时 (<code class="vim">译者注</code>: 当
-                        为文件开始之误) 行数会有差异) 。当光标处于缓冲区第一行
-                        时，这个命令无效，并且系统会发出一声蜂鸣。
-                        参看 <a href="options.html#'startofline'">'startofline'</a> 选项。
-                        助记: Upwards。
-                        {Vi: Vim 滚动 <a href="options.html#'scroll'">'scroll'</a> 屏幕行，而不是文件行；有行回绕
-                        时两者会有差异}
+<code class="keystroke">CTRL-U</code>                  使窗口在緩衝區中向上滾動。滾動的行數由 <a href="options.html#'scroll'">'scroll'</a> 選項指
+                        定 (默認設置為半個屏幕)。如果指定了 <code class="special">[count]</code>，則會先把
+                        <a href="options.html#'scroll'">'scroll'</a> 選項設為 <code class="special">[count]</code>。同時，光標試圖在文件中向上
+                        移動相同的行數 (有行迴繞或者碰到文件結束時 (<code class="vim">譯者注</code>: 當
+                        為文件開始之誤) 行數會有差異) 。當光標處於緩衝區第一行
+                        時，這個命令無效，並且系統會發出一聲蜂鳴。
+                        參看 <a href="options.html#'startofline'">'startofline'</a> 選項。
+                        助記: Upwards。
+                        {Vi: Vim 滾動 <a href="options.html#'scroll'">'scroll'</a> 屏幕行，而不是文件行；有行迴繞
+                        時兩者會有差異}
 
 <code class="special">&lt;S-Up&gt;</code>          或                                      <b class="vimtag"> <a name="%3CS-Up%3E">&lt;S-Up&gt;</a> </b> <b class="vimtag"> <a name="%3CkPageUp%3E">&lt;kPageUp&gt;</a> </b>
 <code class="special">&lt;PageUp&gt;</code>        或                                      <b class="vimtag"> <a name="%3CPageUp%3E">&lt;PageUp&gt;</a> </b> <b class="vimtag"> <a name="CTRL-B">CTRL-B</a> </b>
-<code class="keystroke">CTRL-B</code>                  使窗口在缓冲区中向上滚动 <code class="special">[count]</code> 页。
-                        参看 <a href="options.html#'startofline'">'startofline'</a> 选项。
-                        如果只有一个窗口，可能使用 <a href="options.html#'window'">'window'</a> 选项的值。
-                        助记: Backwards。
+<code class="keystroke">CTRL-B</code>                  使窗口在緩衝區中向上滾動 <code class="special">[count]</code> 頁。
+                        參看 <a href="options.html#'startofline'">'startofline'</a> 選項。
+                        如果只有一個窗口，可能使用 <a href="options.html#'window'">'window'</a> 選項的值。
+                        助記: Backwards。
 
                                                         <b class="vimtag"> <a name="z^">z^</a> </b>
-z^                      不指定 <code class="special">[count]</code>: 重绘，在窗口中显示上一页的内容 (使当前
-                        窗口之上的一行显示在窗口最下方)。同时把光标放在那一行
-                        第一个非空白字符上。
-                        指定 <code class="special">[count]</code>: 先滚动文本，使得缓冲区第 <code class="special">[count]</code> 行显示
-                        在窗口底部，然后重绘，使得当时处于窗口顶端的文本显示在
-                        窗口的底部。同时把光标放在那一行第一个非空白字符上。
+z^                      不指定 <code class="special">[count]</code>: 重繪，在窗口中顯示上一頁的內容 (使當前
+                        窗口之上的一行顯示在窗口最下方)。同時把光標放在那一行
+                        第一個非空白字符上。
+                        指定 <code class="special">[count]</code>: 先滾動文本，使得緩衝區第 <code class="special">[count]</code> 行顯示
+                        在窗口底部，然後重繪，使得當時處於窗口頂端的文本顯示在
+                        窗口的底部。同時把光標放在那一行第一個非空白字符上。
 
 </pre><hr class="doubleline" /><pre>
-<h4>3. 相对于光标滚屏                               <b class="vimtag"> <a name="scroll-cursor">scroll-cursor</a> </b></h4>
-以下的命令重新定位编辑视窗 (缓冲区中您可以看到的那一部分)，但仍维持光标留在当
-前行。<code class="note">注意</code> <a href="options.html#'scrolloff'">'scrolloff'</a> 选项可用使得上下文行在光标上下显示。
+<h4>3. 相對於光標滾屏                               <b class="vimtag"> <a name="scroll-cursor">scroll-cursor</a> </b></h4>
+以下的命令重新定位編輯視窗 (緩衝區中您可以看到的那一部分)，但仍維持光標留在當
+前行。<code class="note">注意</code> <a href="options.html#'scrolloff'">'scrolloff'</a> 選項可用使得上下文行在光標上下顯示。
 
                                                         <b class="vimtag"> <a name="z%3CCR%3E">z&lt;CR&gt;</a> </b>
-z<code class="special">&lt;CR&gt;</code>                   重绘，使第 <code class="special">[count]</code> 行显示在窗口顶端 (默认为光标所在的
-                        行)。光标停留在那一行第一个非空白字符上。
+z<code class="special">&lt;CR&gt;</code>                   重繪，使第 <code class="special">[count]</code> 行顯示在窗口頂端 (默認為光標所在的
+                        行)。光標停留在那一行第一個非空白字符上。
 
                                                         <b class="vimtag"> <a name="zt">zt</a> </b>
-zt                      类似 "z<code class="special">&lt;CR&gt;</code>"，不过光标停留在相同的列上。<code class="notvi">{Vi 无此功能}</code>
+zt                      類似 "z<code class="special">&lt;CR&gt;</code>"，不過光標停留在相同的列上。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="zN%3CCR%3E">zN&lt;CR&gt;</a> </b>
-z<code class="special">{height}</code><code class="special">&lt;CR&gt;</code>           重绘，使得窗口有 <code class="special">{height}</code> 行高。当屏幕刷新速度很慢的时
-                        候，这对减少行数很有用。不能使窗口的高度超过屏幕的实际
+z<code class="special">{height}</code><code class="special">&lt;CR&gt;</code>           重繪，使得窗口有 <code class="special">{height}</code> 行高。當屏幕刷新速度很慢的時
+                        候，這對減少行數很有用。不能使窗口的高度超過屏幕的實際
                         高度。
 
                                                         <b class="vimtag"> <a name="z.">z.</a> </b>
-z.                      重绘，使第 <code class="special">[count]</code> 行显示在窗口中部 (默认为光标所在的
-                        行)。光标停留在那一行第一个非空白字符上。
+z.                      重繪，使第 <code class="special">[count]</code> 行顯示在窗口中部 (默認為光標所在的
+                        行)。光標停留在那一行第一個非空白字符上。
 
                                                         <b class="vimtag"> <a name="zz">zz</a> </b>
-zz                      类似 "z."，不过光标停留在相同的列上。<code class="note">注意</code>: 如果打开了
-                        caps-lock，这个命令就变成了 "ZZ": 写缓冲区并退出！
-                        <code class="notvi">{Vi 无此功能}</code>
+zz                      類似 "z."，不過光標停留在相同的列上。<code class="note">注意</code>: 如果打開了
+                        caps-lock，這個命令就變成了 "ZZ": 寫緩衝區並退出！
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="z-">z-</a> </b>
-z-                      重绘，使第 <code class="special">[count]</code> 行显示在窗口底部 (默认为光标所在的
-                        行)。光标停留在那一行第一个非空白字符上。
+z-                      重繪，使第 <code class="special">[count]</code> 行顯示在窗口底部 (默認為光標所在的
+                        行)。光標停留在那一行第一個非空白字符上。
 
                                                         <b class="vimtag"> <a name="zb">zb</a> </b>
-zb                      类似 "z-"，不过光标停留在相同的列上。<code class="notvi">{Vi 无此功能}</code>
+zb                      類似 "z-"，不過光標停留在相同的列上。<code class="notvi">{Vi 無此功能}</code>
 
 </pre><hr class="doubleline" /><pre>
-<h4>4. 水平滚动                             <b class="vimtag"> <a name="scroll-horizontal">scroll-horizontal</a> </b></h4>
-使用以下四个命令时，鼠标会跟随屏幕而移动。如果光标移出了屏幕，它就会落在屏幕中
-距它最近的那个字符上。忽略 <a href="options.html#'sidescroll'">'sidescroll'</a> 选项的值。
+<h4>4. 水平滾動                             <b class="vimtag"> <a name="scroll-horizontal">scroll-horizontal</a> </b></h4>
+使用以下四個命令時，鼠標會跟隨屏幕而移動。如果光標移出了屏幕，它就會落在屏幕中
+距它最近的那個字符上。忽略 <a href="options.html#'sidescroll'">'sidescroll'</a> 選項的值。
 
 z<code class="special">&lt;Right&gt;</code>    或                                          <b class="vimtag"> <a name="zl">zl</a> </b> <b class="vimtag"> <a name="z%3CRight%3E">z&lt;Right&gt;</a> </b>
-zl                      使文本视图向右移动 <code class="special">[count]</code> 个字符，也就是使文本向左滚
-                        动 <code class="special">[count]</code> 个字符。仅当 <a href="options.html#'wrap'">'wrap'</a> 为关时有效。
-                        <code class="notvi">{Vi 无此功能}</code>
+zl                      使文本視圖向右移動 <code class="special">[count]</code> 個字符，也就是使文本向左滾
+                        動 <code class="special">[count]</code> 個字符。僅當 <a href="options.html#'wrap'">'wrap'</a> 為關時有效。
+                        <code class="notvi">{Vi 無此功能}</code>
 
 z<code class="special">&lt;Left&gt;</code>      或                                         <b class="vimtag"> <a name="zh">zh</a> </b> <b class="vimtag"> <a name="z%3CLeft%3E">z&lt;Left&gt;</a> </b>
-zh                      使文本视图向左移动 <code class="special">[count]</code> 个字符，也就是使文本向右滚
-                        动 <code class="special">[count]</code> 个字符。仅当 <a href="options.html#'wrap'">'wrap'</a> 为关时有效。
-                        <code class="notvi">{Vi 无此功能}</code>
+zh                      使文本視圖向左移動 <code class="special">[count]</code> 個字符，也就是使文本向右滾
+                        動 <code class="special">[count]</code> 個字符。僅當 <a href="options.html#'wrap'">'wrap'</a> 為關時有效。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="zL">zL</a> </b>
-zL                      使文本视图向右移动半个屏幕宽度，也就是使文本向左滚动半
-                        个屏幕宽度。仅当 <a href="options.html#'wrap'">'wrap'</a> 为关时有效。<code class="notvi">{Vi 无此功能}</code>
+zL                      使文本視圖向右移動半個屏幕寬度，也就是使文本向左滾動半
+                        個屏幕寬度。僅當 <a href="options.html#'wrap'">'wrap'</a> 為關時有效。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="zH">zH</a> </b>
-zH                      使文本视图向左移动半个屏幕宽度，也就是使文本向右滚动半
-                        个屏幕宽度。仅当 <a href="options.html#'wrap'">'wrap'</a> 为关时有效。<code class="notvi">{Vi 无此功能}</code>
+zH                      使文本視圖向左移動半個屏幕寬度，也就是使文本向右滾動半
+                        個屏幕寬度。僅當 <a href="options.html#'wrap'">'wrap'</a> 為關時有效。<code class="notvi">{Vi 無此功能}</code>
 
-以下两个命令仅仅在屏幕上滚动文本，光标不会移动。
+以下兩個命令僅僅在屏幕上滾動文本，光標不會移動。
 
                                                         <b class="vimtag"> <a name="zs">zs</a> </b>
-zs                      水平滚动文本，使光标置于屏幕的开始处 (最左侧)。仅当
-                        <a href="options.html#'wrap'">'wrap'</a> 为关时有效。<code class="notvi">{Vi 无此功能}</code>
+zs                      水平滾動文本，使光標置於屏幕的開始處 (最左側)。僅當
+                        <a href="options.html#'wrap'">'wrap'</a> 為關時有效。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="ze">ze</a> </b>
-ze                      水平滚动文本，使光标置于屏幕的结束处 (最右侧)。仅当
-                        <a href="options.html#'wrap'">'wrap'</a> 为关时有效。<code class="notvi">{Vi 无此功能}</code>
+ze                      水平滾動文本，使光標置於屏幕的結束處 (最右側)。僅當
+                        <a href="options.html#'wrap'">'wrap'</a> 為關時有效。<code class="notvi">{Vi 無此功能}</code>
 
 </pre><hr class="doubleline" /><pre>
-<h4>5. 同步滚屏                             <b class="vimtag"> <a name="scroll-binding">scroll-binding</a> </b></h4>
-有时候，我们希望将两个或多个窗口绑在一起，这样，在一个窗口滚屏时，其他的窗口都
-会跟着一起滚屏。在 Vim 中，可以通过设置针对不同窗口的 <a href="options.html#'scrollbind'">'scrollbind'</a> 选项来达到
-这个目的。当一个置位 <a href="options.html#'scrollbind'">'scrollbind'</a> 选项的窗口滚屏时，其它置位 <a href="options.html#'scrollbind'">'scrollbind'</a> 选项
-的窗口会同步滚屏 (如果可能的话)。选项 <a href="options.html#'scrollbind'">'scrollbind'</a> 的行为通过 <a href="options.html#'scrollopt'">'scrollopt'</a> 选项
+<h4>5. 同步滾屏                             <b class="vimtag"> <a name="scroll-binding">scroll-binding</a> </b></h4>
+有時候，我們希望將兩個或多個窗口綁在一起，這樣，在一個窗口滾屏時，其他的窗口都
+會跟著一起滾屏。在 Vim 中，可以通過設置針對不同窗口的 <a href="options.html#'scrollbind'">'scrollbind'</a> 選項來達到
+這個目的。當一個置位 <a href="options.html#'scrollbind'">'scrollbind'</a> 選項的窗口滾屏時，其它置位 <a href="options.html#'scrollbind'">'scrollbind'</a> 選項
+的窗口會同步滾屏 (如果可能的話)。選項 <a href="options.html#'scrollbind'">'scrollbind'</a> 的行為通過 <a href="options.html#'scrollopt'">'scrollopt'</a> 選項
 可以修改。
 
-使用滚动条时进行滚动时，只有带焦点的窗口 (光标所在的窗口) 才会执行绑定。因而，
-不用复位选项，您也可以在一段时间内避免滚动绑定的发生。
+使用滾動條時進行滾動時，只有帶焦點的窗口 (光標所在的窗口) 才會執行綁定。因而，
+不用復位選項，您也可以在一段時間內避免滾動綁定的發生。
 
-如果一个窗口还置位了 <a href="options.html#'diff'">'diff'</a> 选项，则滚屏绑定利用 2 个缓冲区中的差异来精确同步
-它们的位置。否则，将会使用下面的方式:
+如果一個窗口還置位了 <a href="options.html#'diff'">'diff'</a> 選項，則滾屏綁定利用 2 個緩衝區中的差異來精確同步
+它們的位置。否則，將會使用下面的方式:
 
                                                         <b class="vimtag"> <a name="scrollbind-relative">scrollbind-relative</a> </b>
-每一个置位了 <a href="options.html#'scrollbind'">'scrollbind'</a> 的窗口都会记录它的 "相对偏移"，可以把它看作当前窗口
-和另一个窗口垂直滚屏位置上的差异。当一个置位了 <a href="options.html#'scrollbind'">'scrollbind'</a> 的窗口被要求进行超
-越其文本的开始和结束极限的滚屏时，这个窗口不再继续滚屏，但是它会记住超过极限的
-数量。窗口记住了这些信息是为了将来能维持同样的相对偏移，不管是否曾经被要求过进
-行超过其极限的滚屏。
+每一個置位了 <a href="options.html#'scrollbind'">'scrollbind'</a> 的窗口都會記錄它的 "相對偏移"，可以把它看作當前窗口
+和另一個窗口垂直滾屏位置上的差異。當一個置位了 <a href="options.html#'scrollbind'">'scrollbind'</a> 的窗口被要求進行超
+越其文本的開始和結束極限的滾屏時，這個窗口不再繼續滾屏，但是它會記住超過極限的
+數量。窗口記住了這些信息是為了將來能維持同樣的相對偏移，不管是否曾經被要求過進
+行超過其極限的滾屏。
 
-但是，当一个置位了 <a href="options.html#'scrollbind'">'scrollbind'</a> 且具有一个超过其缓冲区极限的相对偏移的窗口获得
-了光标焦点的时候，其他置位了 <a href="options.html#'scrollbind'">'scrollbind'</a> 的窗口就必须根据当前窗口的相对偏移，
-跳转到相应的位置。这种行为可以通过清除 <a href="options.html#'scrollopt'">'scrollopt'</a> 选项中的 "jump" 标志位来改
-变。
+但是，當一個置位了 <a href="options.html#'scrollbind'">'scrollbind'</a> 且具有一個超過其緩衝區極限的相對偏移的窗口獲得
+了光標焦點的時候，其他置位了 <a href="options.html#'scrollbind'">'scrollbind'</a> 的窗口就必須根據當前窗口的相對偏移，
+跳轉到相應的位置。這種行為可以通過清除 <a href="options.html#'scrollopt'">'scrollopt'</a> 選項中的 "jump" 標誌位來改
+變。
 
                                                 <b class="vimtag"> <a name="syncbind">syncbind</a> </b> <b class="vimtag"> <a name=":syncbind">:syncbind</a> </b> <b class="vimtag"> <a name=":sync">:sync</a> </b>
-:syncbind               强制所有 <a href="options.html#'scrollbind'">'scrollbind'</a> 窗口具有相同的相对偏移。即: 当
-                        一个窗口滚屏到了它缓冲区的顶部时，所有的 <a href="options.html#'scrollbind'">'scrollbind'</a>
-                        窗口都会滚屏到它们缓冲区的顶部。
+:syncbind               強制所有 <a href="options.html#'scrollbind'">'scrollbind'</a> 窗口具有相同的相對偏移。即: 當
+                        一個窗口滾屏到了它緩衝區的頂部時，所有的 <a href="options.html#'scrollbind'">'scrollbind'</a>
+                        窗口都會滾屏到它們緩衝區的頂部。
 
                                                         <b class="vimtag"> <a name="scrollbind-quickadj">scrollbind-quickadj</a> </b>
-当使用键盘命令来垂直的滚动一个窗口，或用垂直滚动条来滚动一个具有光标焦点的窗口
-时， <a href="options.html#'scrollbind'">'scrollbind'</a> 标志是起作用的。但是，当用垂直滚动条来滚动一个不具有光标焦点
-的窗口时，<a href="options.html#'scrollbind'">'scrollbind'</a> 标志被忽略。这样就可以对 <a href="options.html#'scrollbind'">'scrollbind'</a> 窗口的相对偏移量
-进行快速的调整。
+當使用鍵盤命令來垂直的滾動一個窗口，或用垂直滾動條來滾動一個具有光標焦點的窗口
+時， <a href="options.html#'scrollbind'">'scrollbind'</a> 標誌是起作用的。但是，當用垂直滾動條來滾動一個不具有光標焦點
+的窗口時，<a href="options.html#'scrollbind'">'scrollbind'</a> 標誌被忽略。這樣就可以對 <a href="options.html#'scrollbind'">'scrollbind'</a> 窗口的相對偏移量
+進行快速的調整。
 
 </pre><hr class="doubleline" /><pre>
-<h4>6. 用鼠标滚轮滚屏                               <b class="vimtag"> <a name="scroll-mouse-wheel">scroll-mouse-wheel</a> </b></h4>
-当您的鼠标有一个滚轮时，它在 GUI 方式下的 Vim 中应该可以正常工作。它怎么工作取
-决于您的系统。它在 xterm 中也可能可以工作，参见:  <a href="scroll.html#xterm-mouse-wheel">xterm-mouse-wheel</a> 。缺省只支
-持垂直滚轮，但有些 GUI 也支持横向滚轮。
+<h4>6. 用鼠標滾輪滾屏                               <b class="vimtag"> <a name="scroll-mouse-wheel">scroll-mouse-wheel</a> </b></h4>
+當您的鼠標有一個滾輪時，它在 GUI 方式下的 Vim 中應該可以正常工作。它怎麼工作取
+決於您的系統。它在 xterm 中也可能可以工作，參見:  <a href="scroll.html#xterm-mouse-wheel">xterm-mouse-wheel</a> 。缺省只支
+持垂直滾輪，但有些 GUI 也支持橫向滾輪。
 
-Win32 GUI 的滚动功能是通过硬编码实现的。它的效果就像在拖曳当前窗口的滚动条。具
-体滚多少行取决于您的鼠标驱动程序。如果滚屏功能造成了输入焦点的问题，请看:
+Win32 GUI 的滾動功能是通過硬編碼實現的。它的效果就像在拖曳當前窗口的滾動條。具
+體滾多少行取決於您的鼠標驅動程序。如果滾屏功能造成了輸入焦點的問題，請看:
  <a href="gui_w32.html#intellimouse-wheel-problems">intellimouse-wheel-problems</a> 。
 
-而对 X11 GUI (Motif、Athena 和 GTK) 而言，滚动滚轮产生 <code class="special">&lt;ScrollWheelDown&gt;</code>、
-<code class="special">&lt;ScrollWheelUp&gt;</code>、<code class="special">&lt;ScrollWheelLeft&gt;</code> 和 <code class="special">&lt;ScrollWheelRight&gt;</code> 的按键动作。这些键的
-默认行为如下:
-    <code class="special">&lt;ScrollWheelUp&gt;</code>         向上滚动三行        <b class="vimtag"> <a name="%3CScrollWheelUp%3E">&lt;ScrollWheelUp&gt;</a> </b>
-    <code class="special">&lt;S-ScrollWheelUp&gt;</code>       向上滚动一页        <b class="vimtag"> <a name="%3CS-ScrollWheelUp%3E">&lt;S-ScrollWheelUp&gt;</a> </b>
-    <code class="special">&lt;C-ScrollWheelUp&gt;</code>       向上滚动一页        <b class="vimtag"> <a name="%3CC-ScrollWheelUp%3E">&lt;C-ScrollWheelUp&gt;</a> </b>
-    <code class="special">&lt;ScrollWheelDown&gt;</code>       向下滚动三行        <b class="vimtag"> <a name="%3CScrollWheelDown%3E">&lt;ScrollWheelDown&gt;</a> </b>
-    <code class="special">&lt;S-ScrollWheelDown&gt;</code>     向下滚动一页        <b class="vimtag"> <a name="%3CS-ScrollWheelDown%3E">&lt;S-ScrollWheelDown&gt;</a> </b>
-    <code class="special">&lt;C-ScrollWheelDown&gt;</code>     向下滚动一页        <b class="vimtag"> <a name="%3CC-ScrollWheelDown%3E">&lt;C-ScrollWheelDown&gt;</a> </b>
-    <code class="special">&lt;ScrollWheelLeft&gt;</code>       向左滚动六列        <b class="vimtag"> <a name="%3CScrollWheelLeft%3E">&lt;ScrollWheelLeft&gt;</a> </b>
-    <code class="special">&lt;S-ScrollWheelLeft&gt;</code>     向左滚动一页        <b class="vimtag"> <a name="%3CS-ScrollWheelLeft%3E">&lt;S-ScrollWheelLeft&gt;</a> </b>
-    <code class="special">&lt;C-ScrollWheelLeft&gt;</code>     向左滚动一页        <b class="vimtag"> <a name="%3CC-ScrollWheelLeft%3E">&lt;C-ScrollWheelLeft&gt;</a> </b>
-    <code class="special">&lt;ScrollWheelRight&gt;</code>      向右滚动六列        <b class="vimtag"> <a name="%3CScrollWheelRight%3E">&lt;ScrollWheelRight&gt;</a> </b>
-    <code class="special">&lt;S-ScrollWheelRight&gt;</code>    向右滚动一页        <b class="vimtag"> <a name="%3CS-ScrollWheelRight%3E">&lt;S-ScrollWheelRight&gt;</a> </b>
-    <code class="special">&lt;C-ScrollWheelRight&gt;</code>    向右滚动一页        <b class="vimtag"> <a name="%3CC-ScrollWheelRight%3E">&lt;C-ScrollWheelRight&gt;</a> </b>
-它们应该适用于所有模式，编辑命令行时除外。
+而對 X11 GUI (Motif、Athena 和 GTK) 而言，滾動滾輪產生 <code class="special">&lt;ScrollWheelDown&gt;</code>、
+<code class="special">&lt;ScrollWheelUp&gt;</code>、<code class="special">&lt;ScrollWheelLeft&gt;</code> 和 <code class="special">&lt;ScrollWheelRight&gt;</code> 的按鍵動作。這些鍵的
+默認行為如下:
+    <code class="special">&lt;ScrollWheelUp&gt;</code>         向上滾動三行        <b class="vimtag"> <a name="%3CScrollWheelUp%3E">&lt;ScrollWheelUp&gt;</a> </b>
+    <code class="special">&lt;S-ScrollWheelUp&gt;</code>       向上滾動一頁        <b class="vimtag"> <a name="%3CS-ScrollWheelUp%3E">&lt;S-ScrollWheelUp&gt;</a> </b>
+    <code class="special">&lt;C-ScrollWheelUp&gt;</code>       向上滾動一頁        <b class="vimtag"> <a name="%3CC-ScrollWheelUp%3E">&lt;C-ScrollWheelUp&gt;</a> </b>
+    <code class="special">&lt;ScrollWheelDown&gt;</code>       向下滾動三行        <b class="vimtag"> <a name="%3CScrollWheelDown%3E">&lt;ScrollWheelDown&gt;</a> </b>
+    <code class="special">&lt;S-ScrollWheelDown&gt;</code>     向下滾動一頁        <b class="vimtag"> <a name="%3CS-ScrollWheelDown%3E">&lt;S-ScrollWheelDown&gt;</a> </b>
+    <code class="special">&lt;C-ScrollWheelDown&gt;</code>     向下滾動一頁        <b class="vimtag"> <a name="%3CC-ScrollWheelDown%3E">&lt;C-ScrollWheelDown&gt;</a> </b>
+    <code class="special">&lt;ScrollWheelLeft&gt;</code>       向左滾動六列        <b class="vimtag"> <a name="%3CScrollWheelLeft%3E">&lt;ScrollWheelLeft&gt;</a> </b>
+    <code class="special">&lt;S-ScrollWheelLeft&gt;</code>     向左滾動一頁        <b class="vimtag"> <a name="%3CS-ScrollWheelLeft%3E">&lt;S-ScrollWheelLeft&gt;</a> </b>
+    <code class="special">&lt;C-ScrollWheelLeft&gt;</code>     向左滾動一頁        <b class="vimtag"> <a name="%3CC-ScrollWheelLeft%3E">&lt;C-ScrollWheelLeft&gt;</a> </b>
+    <code class="special">&lt;ScrollWheelRight&gt;</code>      向右滾動六列        <b class="vimtag"> <a name="%3CScrollWheelRight%3E">&lt;ScrollWheelRight&gt;</a> </b>
+    <code class="special">&lt;S-ScrollWheelRight&gt;</code>    向右滾動一頁        <b class="vimtag"> <a name="%3CS-ScrollWheelRight%3E">&lt;S-ScrollWheelRight&gt;</a> </b>
+    <code class="special">&lt;C-ScrollWheelRight&gt;</code>    向右滾動一頁        <b class="vimtag"> <a name="%3CC-ScrollWheelRight%3E">&lt;C-ScrollWheelRight&gt;</a> </b>
+它們應該適用於所有模式，編輯命令行時除外。
 
-<code class="note">注意</code> 仅当 <a href="options.html#'nowrap'">'nowrap'</a> 置位时横向滚动可用。此外，除非 <a href="options.html#'guioptions'">'guioptions'</a> 设置了 "h" 标志
-位，如果光标行将要滚动到屏幕之外，移动光标到最长的可见行 (和横向滚动条的工作方
-式类似)。
+<code class="note">注意</code> 僅當 <a href="options.html#'nowrap'">'nowrap'</a> 置位時橫向滾動可用。此外，除非 <a href="options.html#'guioptions'">'guioptions'</a> 設置了 "h" 標誌
+位，如果光標行將要滾動到屏幕之外，移動光標到最長的可見行 (和橫向滾動條的工作方
+式類似)。
 
-您可以通过键盘映射来改变缺省行为。例如，要使得普通模式下滚轮一次滚动一行或半
-页: 
+您可以通過鍵盤映射來改變缺省行為。例如，要使得普通模式下滾輪一次滾動一行或半
+頁: 
 <code class="example">   :map &lt;ScrollWheelUp&gt; &lt;C-Y&gt;</code>
 <code class="example">   :map &lt;S-ScrollWheelUp&gt; &lt;C-U&gt;</code>
 <code class="example">   :map &lt;ScrollWheelDown&gt; &lt;C-E&gt;</code>
 <code class="example">   :map &lt;S-ScrollWheelDown&gt; &lt;C-D&gt;</code>
-您也可以使用 Alt 和 Ctrl 修饰符。
+您也可以使用 Alt 和 Ctrl 修飾符。
 
-自然，这些功能仅在 Vim 可以获取滚动事件时才可以使用。您可以使用 "xev" 程序来确
-定这些是否功能有效。
+自然，這些功能僅在 Vim 可以獲取滾動事件時才可以使用。您可以使用 "xev" 程序來確
+定這些是否功能有效。
 
-当您使用 XFree86 时，文件 /etc/XF86Config 中必须有匹配您使用的鼠标的正确条目。
-就 FreeBSD 来说，这个条目适用于一款罗技滚轮鼠标: 
+當您使用 XFree86 時，文件 /etc/XF86Config 中必須有匹配您使用的鼠標的正確條目。
+就 FreeBSD 來說，這個條目適用於一款羅技滾輪鼠標: 
 <code class="example">    Protocol     "MouseMan"</code>
 <code class="example">    Device       "/dev/psm0"</code>
 <code class="example">    ZAxisMapping 4 5</code>
-欲了解更多的信息，请看 XFree86 的文档。
+欲瞭解更多的信息，請看 XFree86 的文檔。
 
                                                 <b class="vimtag"> <a name="%3CMouseDown%3E">&lt;MouseDown&gt;</a> </b> <b class="vimtag"> <a name="%3CMouseUp%3E">&lt;MouseUp&gt;</a> </b>
-<code class="special">&lt;MouseDown&gt;</code> 和 <code class="special">&lt;MouseUp&gt;</code> 键已废弃。用 <code class="special">&lt;ScrollWheelUp&gt;</code> 来代替 <code class="special">&lt;MouseDown&gt;</code>，
-<code class="special">&lt;ScrollWheelDown&gt;</code> 来代替 <code class="special">&lt;MouseUp&gt;</code>。
+<code class="special">&lt;MouseDown&gt;</code> 和 <code class="special">&lt;MouseUp&gt;</code> 鍵已廢棄。用 <code class="special">&lt;ScrollWheelUp&gt;</code> 來代替 <code class="special">&lt;MouseDown&gt;</code>，
+<code class="special">&lt;ScrollWheelDown&gt;</code> 來代替 <code class="special">&lt;MouseUp&gt;</code>。
 
                                                         <b class="vimtag"> <a name="xterm-mouse-wheel">xterm-mouse-wheel</a> </b>
-如前所述，您仅需要使滚轮鼠标在您的 Xserver 上工作正常，它就可以在一个新的
+如前所述，您僅需要使滾輪鼠標在您的 Xserver 上工作正常，它就可以在一個新的
 xterm 中工作。
 
-为了在一个老的 xterm 中使用您的滚轮，您需要做以下工作:
+為了在一個老的 xterm 中使用您的滾輪，您需要做以下工作:
 1. 如前所述，使它在您的 Xserver 上工作正常。
-2. 给 xterm 添加转换，使得 xterm 可以用转义序列 (escape sequence) 来传递一个滚
+2. 給 xterm 添加轉換，使得 xterm 可以用轉義序列 (escape sequence) 來傳遞一個滾
    屏事件。
-3. 给 Vim 添加映射，来把这些转义序列解释为 <code class="special">&lt;ScrollWheelDown&gt;</code>、<code class="special">&lt;ScrollWheelUp&gt;</code>
-   键。
+3. 給 Vim 添加映射，來把這些轉義序列解釋為 <code class="special">&lt;ScrollWheelDown&gt;</code>、<code class="special">&lt;ScrollWheelUp&gt;</code>
+   鍵。
 
-把以下代码添加到您的 ~.Xdefaults 文件 (或者其他保存您 X 资源的文件) 中来进行转
-换: 
+把以下代碼添加到您的 ~.Xdefaults 文件 (或者其他保存您 X 資源的文件) 中來進行轉
+換: 
 <code class="example"></code>
 <code class="example">  XTerm*VT100.Translations:             #override \n\</code>
 <code class="example">                s&lt;Btn4Down&gt;: string("0x9b") string("[64~") \n\</code>
@@ -290,7 +290,7 @@ xterm 中工作。
 <code class="example">                &lt;Btn4Up&gt;: \n\</code>
 <code class="example">                &lt;Btn5Up&gt;:</code>
 <code class="example"></code>
-把这些映射加到您的 vimrc 文件: 
+把這些映射加到您的 vimrc 文件: 
 <code class="example">        :map &lt;M-Esc&gt;[62~ &lt;ScrollWheelUp&gt;</code>
 <code class="example">        :map! &lt;M-Esc&gt;[62~ &lt;ScrollWheelUp&gt;</code>
 <code class="example">        :map &lt;M-Esc&gt;[63~ &lt;ScrollWheelDown&gt;</code>

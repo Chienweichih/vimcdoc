@@ -1,17 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>VIM: howto</title>
 <link rel="stylesheet" href="vim-stylesheet.css" type="text/css">
 </head>
 <body>
 <div id=banner>
-<a href="help.html">帮助总览</a> &middot;
-<a href="quickref.html">快速参考</a> &middot;
+<a href="help.html">幫助總覽</a> &middot;
+<a href="quickref.html">快速參考</a> &middot;
 <a href="index.html">命令索引</a> &middot;
-<a href="usr_toc.html">用户手册</a> &middot;
-<a href="help.html#reference_toc">参考手册</a>
+<a href="usr_toc.html">用戶手冊</a> &middot;
+<a href="help.html#reference_toc">參考手冊</a>
 </div>
 
 <div id=outer>
@@ -20,95 +20,95 @@
 <b class="vimtag"> <a name="howto.txt">howto.txt</a> </b>     For Vim version 8.0.  最近更新: 2006年5月
 
 
-                  <code class="vim">VIM 参考手册    by Bram Moolenaar</code>
-           <code class="vim">译者</code>: iCrazy &lt;icrazy@ustc.edu&gt;  http://vimcdoc.sf.net
+                  <code class="vim">VIM 參考手冊    by Bram Moolenaar</code>
+           <code class="vim">譯者</code>: iCrazy &lt;icrazy@ustc.edu&gt;  http://vimcdoc.sf.net
 
 
 如何……                                        <b class="vimtag"> <a name="howdoi">howdoi</a> </b> <b class="vimtag"> <a name="how-do-i">how-do-i</a> </b> <b class="vimtag"> <a name="howto">howto</a> </b> <b class="vimtag"> <a name="how-to">how-to</a> </b>
 
- <a href="usr_01.html#tutor">tutor</a>                  入门
- <a href="editing.html#:quit">:quit</a>                  退出？我被困住了，请帮帮我！
+ <a href="usr_01.html#tutor">tutor</a>                  入門
+ <a href="editing.html#:quit">:quit</a>                  退出？我被困住了，請幫幫我！
  <a href="starting.html#initialization">initialization</a>         初始化 Vim
- <a href="usr_05.html#vimrc-intro">vimrc-intro</a>            写一个 Vim 脚本文件 (vimrc)
- <a href="starting.html#suspend">suspend</a>                挂起 Vim
- <a href="usr_11.html#usr_11.txt">usr_11.txt</a>             在一次崩溃后恢复
- <a href="usr_07.html#07.4">07.4</a>                   在覆盖我的文件时保留一个备份
+ <a href="usr_05.html#vimrc-intro">vimrc-intro</a>            寫一個 Vim 腳本文件 (vimrc)
+ <a href="starting.html#suspend">suspend</a>                掛起 Vim
+ <a href="usr_11.html#usr_11.txt">usr_11.txt</a>             在一次崩潰後恢復
+ <a href="usr_07.html#07.4">07.4</a>                   在覆蓋我的文件時保留一個備份
 
- <a href="usr_07.html#usr_07.txt">usr_07.txt</a>             编辑文件
- <a href="usr_23.html#23.4">23.4</a>                   编辑二进制文件
+ <a href="usr_07.html#usr_07.txt">usr_07.txt</a>             編輯文件
+ <a href="usr_23.html#23.4">23.4</a>                   編輯二進制文件
  <a href="usr_24.html#usr_24.txt">usr_24.txt</a>             插入文本
- <a href="change.html#deleting">deleting</a>               删除文本
- <a href="usr_04.html#usr_04.txt">usr_04.txt</a>             改变文本
- <a href="usr_04.html#04.5">04.5</a>                   复制和移动文本
- <a href="usr_25.html#usr_25.txt">usr_25.txt</a>             给文本排版
- <a href="usr_30.html#30.6">30.6</a>                   给注释排版
- <a href="usr_30.html#30.2">30.2</a>                   缩进 C 程序
- <a href="usr_25.html#25.3">25.3</a>                   自动设置缩进
+ <a href="change.html#deleting">deleting</a>               刪除文本
+ <a href="usr_04.html#usr_04.txt">usr_04.txt</a>             改變文本
+ <a href="usr_04.html#04.5">04.5</a>                   複製和移動文本
+ <a href="usr_25.html#usr_25.txt">usr_25.txt</a>             給文本排版
+ <a href="usr_30.html#30.6">30.6</a>                   給註釋排版
+ <a href="usr_30.html#30.2">30.2</a>                   縮進 C 程序
+ <a href="usr_25.html#25.3">25.3</a>                   自動設置縮進
 
- <a href="usr_26.html#usr_26.txt">usr_26.txt</a>             重复执行命令
- <a href="usr_02.html#02.5">02.5</a>                   撤销和重做
+ <a href="usr_26.html#usr_26.txt">usr_26.txt</a>             重複執行命令
+ <a href="usr_02.html#02.5">02.5</a>                   撤銷和重做
 
- <a href="usr_03.html#usr_03.txt">usr_03.txt</a>             在文本中移动
- <a href="motion.html#word-motions">word-motions</a>           基于单词的移动
- <a href="motion.html#left-right-motions">left-right-motions</a>     左右移动
- <a href="motion.html#up-down-motions">up-down-motions</a>        上下移动
- <a href="motion.html#object-motions">object-motions</a>         基于文本对象的移动
- <a href="motion.html#various-motions">various-motions</a>        其它移动方式
- <a href="motion.html#object-select">object-select</a>          基于文本对象的选择
- <a href="options.html#'whichwrap'">'whichwrap'</a>            移动时跳过换行符
- <a href="options.html#'virtualedit'">'virtualedit'</a>          移动到没有文本的地方
+ <a href="usr_03.html#usr_03.txt">usr_03.txt</a>             在文本中移動
+ <a href="motion.html#word-motions">word-motions</a>           基於單詞的移動
+ <a href="motion.html#left-right-motions">left-right-motions</a>     左右移動
+ <a href="motion.html#up-down-motions">up-down-motions</a>        上下移動
+ <a href="motion.html#object-motions">object-motions</a>         基於文本對象的移動
+ <a href="motion.html#various-motions">various-motions</a>        其它移動方式
+ <a href="motion.html#object-select">object-select</a>          基於文本對象的選擇
+ <a href="options.html#'whichwrap'">'whichwrap'</a>            移動時跳過換行符
+ <a href="options.html#'virtualedit'">'virtualedit'</a>          移動到沒有文本的地方
  <a href="usr_27.html#usr_27.txt">usr_27.txt</a>             指定查找的模式
- <a href="tagsrch.html#tags-and-searches">tags-and-searches</a>      进行标签和特殊查找
- <a href="usr_29.html#29.4">29.4</a>                   在包含文件中查找变量、函数或宏
- <a href="various.html#K">K</a>                      查找光标处关键词的手册页
+ <a href="tagsrch.html#tags-and-searches">tags-and-searches</a>      進行標籤和特殊查找
+ <a href="usr_29.html#29.4">29.4</a>                   在包含文件中查找變量、函數或宏
+ <a href="various.html#K">K</a>                      查找光標處關鍵詞的手冊頁
 
- <a href="usr_03.html#03.7">03.7</a>                   滚屏
- <a href="options.html#'sidescroll'">'sidescroll'</a>           水平/竖直方向滚屏
- <a href="options.html#'scrolloff'">'scrolloff'</a>            设置可见的上下文行数
+ <a href="usr_03.html#03.7">03.7</a>                   滾屏
+ <a href="options.html#'sidescroll'">'sidescroll'</a>           水平/豎直方向滾屏
+ <a href="options.html#'scrolloff'">'scrolloff'</a>            設置可見的上下文行數
 
- <a href="intro.html#mode-switching">mode-switching</a>         切换模式
- <a href="usr_04.html#04.4">04.4</a>                   使用可视模式
- <a href="options.html#'insertmode'">'insertmode'</a>           以插入模式启动 Vim
+ <a href="intro.html#mode-switching">mode-switching</a>         切換模式
+ <a href="usr_04.html#04.4">04.4</a>                   使用可視模式
+ <a href="options.html#'insertmode'">'insertmode'</a>           以插入模式啟動 Vim
 
- <a href="usr_40.html#40.1">40.1</a>                   映射热键
- <a href="usr_24.html#24.7">24.7</a>                   创建缩写
+ <a href="usr_40.html#40.1">40.1</a>                   映射熱鍵
+ <a href="usr_24.html#24.7">24.7</a>                   創建縮寫
 
- <a href="insert.html#ins-expandtab">ins-expandtab</a>          在插入模式下用空格扩展制表符
- <a href="insert.html#i_CTRL-R">i_CTRL-R</a>               在插入模式下插入寄存器的内容
- <a href="usr_24.html#24.3">24.3</a>                   在插入模式下自动补全单词
- <a href="usr_25.html#25.1">25.1</a>                   断开过长的行
+ <a href="insert.html#ins-expandtab">ins-expandtab</a>          在插入模式下用空格擴展製表符
+ <a href="insert.html#i_CTRL-R">i_CTRL-R</a>               在插入模式下插入寄存器的內容
+ <a href="usr_24.html#24.3">24.3</a>                   在插入模式下自動補全單詞
+ <a href="usr_25.html#25.1">25.1</a>                   斷開過長的行
 
- <a href="usr_20.html#20.1">20.1</a>                   编辑命令行
- <a href="usr_20.html#20.3">20.3</a>                   命令行自动补全
+ <a href="usr_20.html#20.1">20.1</a>                   編輯命令行
+ <a href="usr_20.html#20.3">20.3</a>                   命令行自動補全
  <a href="options.html#'cmdheight'">'cmdheight'</a>            增加命令行的高度
- <a href="usr_10.html#10.3">10.3</a>                   指定命令行范围
- <a href="usr_40.html#40.3">40.3</a>                   指定在 读/写 或 进入/离开 缓冲区/窗口 之前/之后
-                        自动执行命令
+ <a href="usr_10.html#10.3">10.3</a>                   指定命令行範圍
+ <a href="usr_40.html#40.3">40.3</a>                   指定在 讀/寫 或 進入/離開 緩衝區/窗口 之前/之後
+                        自動執行命令
 
- <a href="options.html#'autowrite'">'autowrite'</a>            自动存盘
- <a href="usr_30.html#30.1">30.1</a>                   加速 编辑-编译-编辑 循环，在 Vim 里面编译和修正错误
+ <a href="options.html#'autowrite'">'autowrite'</a>            自動存盤
+ <a href="usr_30.html#30.1">30.1</a>                   加速 編輯-編譯-編輯 循環，在 Vim 裡面編譯和修正錯誤
 
- <a href="options.html#options">options</a>                设置选项
- <a href="options.html#auto-setting">auto-setting</a>           自动设置选项
- <a href="term.html#term-dependent-settings">term-dependent-settings</a>  设置依赖于终端名称的选项
- <a href="starting.html#save-settings">save-settings</a>          保存设置
- <a href="cmdline.html#:quote">:quote</a>                 对我的 .vim 文件进行注释
- <a href="options.html#'helpheight'">'helpheight'</a>           调整默认的帮助高度
- <a href="options.html#'highlight'">'highlight'</a>            设置各种高亮模式
- <a href="options.html#'title'">'title'</a>                设置窗口标题
- <a href="options.html#'icon'">'icon'</a>                 设置窗口图标标题
- <a href="options.html#'report'">'report'</a>               避免看到每一行上的改变信息
- <a href="options.html#'shortmess'">'shortmess'</a>            避免按回车  <a href="message.html#hit-enter">hit-enter</a>  提示
+ <a href="options.html#options">options</a>                設置選項
+ <a href="options.html#auto-setting">auto-setting</a>           自動設置選項
+ <a href="term.html#term-dependent-settings">term-dependent-settings</a>  設置依賴於終端名稱的選項
+ <a href="starting.html#save-settings">save-settings</a>          保存設置
+ <a href="cmdline.html#:quote">:quote</a>                 對我的 .vim 文件進行註釋
+ <a href="options.html#'helpheight'">'helpheight'</a>           調整默認的幫助高度
+ <a href="options.html#'highlight'">'highlight'</a>            設置各種高亮模式
+ <a href="options.html#'title'">'title'</a>                設置窗口標題
+ <a href="options.html#'icon'">'icon'</a>                 設置窗口圖標標題
+ <a href="options.html#'report'">'report'</a>               避免看到每一行上的改變信息
+ <a href="options.html#'shortmess'">'shortmess'</a>            避免按回車  <a href="message.html#hit-enter">hit-enter</a>  提示
 
- <a href="term.html#mouse-using">mouse-using</a>            在 Vim 中使用鼠标
- <a href="usr_08.html#usr_08.txt">usr_08.txt</a>             管理多窗口和缓冲区
+ <a href="term.html#mouse-using">mouse-using</a>            在 Vim 中使用鼠標
+ <a href="usr_08.html#usr_08.txt">usr_08.txt</a>             管理多窗口和緩衝區
  <a href="gui.html#gui.txt">gui.txt</a>                使用 GUI
 
-|您 (还) 不能！|        用 Vim 洗盘子 :)
+|您 (還) 不能！|        用 Vim 洗盤子 :)
 
- <a href="usr_06.html#usr_06.txt">usr_06.txt</a>             打开语法高亮
- <a href="syntax.html#2html.vim">2html.vim</a>              把一个彩色的文件转换成 HTML
- <a href="various.html#less">less</a>                   用 Vim 模拟 less 或 more，但带有语法高亮
+ <a href="usr_06.html#usr_06.txt">usr_06.txt</a>             打開語法高亮
+ <a href="syntax.html#2html.vim">2html.vim</a>              把一個彩色的文件轉換成 HTML
+ <a href="various.html#less">less</a>                   用 Vim 模擬 less 或 more，但帶有語法高亮
 
  vim:tw=78:ts=8:ft=help:norl:
 </pre>

@@ -1,17 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>VIM: editing</title>
 <link rel="stylesheet" href="vim-stylesheet.css" type="text/css">
 </head>
 <body>
 <div id=banner>
-<a href="help.html">帮助总览</a> &middot;
-<a href="quickref.html">快速参考</a> &middot;
+<a href="help.html">幫助總覽</a> &middot;
+<a href="quickref.html">快速參考</a> &middot;
 <a href="index.html">命令索引</a> &middot;
-<a href="usr_toc.html">用户手册</a> &middot;
-<a href="help.html#reference_toc">参考手册</a>
+<a href="usr_toc.html">用戶手冊</a> &middot;
+<a href="help.html#reference_toc">參考手冊</a>
 </div>
 
 <div id=outer>
@@ -20,216 +20,216 @@
 <b class="vimtag"> <a name="editing.txt">editing.txt</a> </b>   For Vim version 8.0.  最近更新: 2017年7月
 
 
-                  <code class="vim">VIM 参考手册    by Bram Moolenaar</code>
-                                <code class="vim">译者</code>: Willis
+                  <code class="vim">VIM 參考手冊    by Bram Moolenaar</code>
+                                <code class="vim">譯者</code>: Willis
                                 http://vimcdoc.sf.net
 
 
-编辑文件                                                <b class="vimtag"> <a name="edit-files">edit-files</a> </b>
+編輯文件                                                <b class="vimtag"> <a name="edit-files">edit-files</a> </b>
 
-1.  简介                         <a href="editing.html#edit-intro">edit-intro</a> 
-2.  编辑单个文件                 <a href="editing.html#edit-a-file">edit-a-file</a> 
-3.  参数列表                     <a href="editing.html#argument-list">argument-list</a> 
-4.  写入                         <a href="editing.html#writing">writing</a> 
-5.  写入并退出                   <a href="editing.html#write-quit">write-quit</a> 
-6.  对话框                       <a href="editing.html#edit-dialogs">edit-dialogs</a> 
-7.  当前目录                     <a href="editing.html#current-directory">current-directory</a> 
-8.  编辑二进制文件               <a href="editing.html#edit-binary">edit-binary</a> 
+1.  簡介                         <a href="editing.html#edit-intro">edit-intro</a> 
+2.  編輯單個文件                 <a href="editing.html#edit-a-file">edit-a-file</a> 
+3.  參數列表                     <a href="editing.html#argument-list">argument-list</a> 
+4.  寫入                         <a href="editing.html#writing">writing</a> 
+5.  寫入並退出                   <a href="editing.html#write-quit">write-quit</a> 
+6.  對話框                       <a href="editing.html#edit-dialogs">edit-dialogs</a> 
+7.  當前目錄                     <a href="editing.html#current-directory">current-directory</a> 
+8.  編輯二進制文件               <a href="editing.html#edit-binary">edit-binary</a> 
 9.  加密                         <a href="editing.html#encryption">encryption</a> 
-10. 修改时间                     <a href="editing.html#timestamps">timestamps</a> 
+10. 修改時間                     <a href="editing.html#timestamps">timestamps</a> 
 11. 文件搜索                     <a href="editing.html#file-searching">file-searching</a> 
 
 </pre><hr class="doubleline" /><pre>
-<h4>1. 简介                                                 <b class="vimtag"> <a name="edit-intro">edit-intro</a> </b></h4>
-用 Vim 编辑一个文件意味着:
+<h4>1. 簡介                                                 <b class="vimtag"> <a name="edit-intro">edit-intro</a> </b></h4>
+用 Vim 編輯一個文件意味著:
 
-1. 把该文件读到缓冲区
-2. 用编辑器命令修改缓冲区
-3. 把缓冲区内容写回文件
+1. 把該文件讀到緩衝區
+2. 用編輯器命令修改緩衝區
+3. 把緩衝區內容寫回文件
 
                                                         <b class="vimtag"> <a name="current-file">current-file</a> </b>
-只要你不保存缓冲区，原来的文件保持不变。如果你开始编辑一个文件 (把它的内容读到
-缓冲区里)，该文件名被认作 "当前文件名"，或者说当前缓冲区的名字。命令行上，可以
-用 "%" 来引用它  <a href="cmdline.html#:_%">:_%</a> 。
+只要你不保存緩衝區，原來的文件保持不變。如果你開始編輯一個文件 (把它的內容讀到
+緩衝區裡)，該文件名被認作 "當前文件名"，或者說當前緩衝區的名字。命令行上，可以
+用 "%" 來引用它  <a href="cmdline.html#:_%">:_%</a> 。
 
                                                         <b class="vimtag"> <a name="alternate-file">alternate-file</a> </b>
-如果已经有了另外一个当前文件名，它会成为轮换文件名。命令行上，可以用 "#" 引用
-它  <a href="cmdline.html#:_%23">:_#</a> 。你还可以用  <a href="editing.html#CTRL-^">CTRL-^</a>  命令在当前和轮换文件之间切换。不过，轮换文件名在
-使用  <a href="editing.html#:keepalt">:keepalt</a>  期间不予改变。
-每个窗口分别记住自己的轮换文件名。
+如果已經有了另外一個當前文件名，它會成為輪換文件名。命令行上，可以用 "#" 引用
+它  <a href="cmdline.html#:_%23">:_#</a> 。你還可以用  <a href="editing.html#CTRL-^">CTRL-^</a>  命令在當前和輪換文件之間切換。不過，輪換文件名在
+使用  <a href="editing.html#:keepalt">:keepalt</a>  期間不予改變。
+每個窗口分別記住自己的輪換文件名。
 
                                                         <b class="vimtag"> <a name=":keepalt">:keepalt</a> </b> <b class="vimtag"> <a name=":keepa">:keepa</a> </b>
-:keepalt <code class="special">{cmd}</code>          执行 <code class="special">{cmd}</code>，在此期间保持当前轮换文件名不变。<code class="note">注意</code> 间接
-                        调用的命令 (比如通过函数) 仍然可以设置轮换文件名。
-                        <code class="notvi">{Vi 无此功能}</code>
+:keepalt <code class="special">{cmd}</code>          執行 <code class="special">{cmd}</code>，在此期間保持當前輪換文件名不變。<code class="note">注意</code> 間接
+                        調用的命令 (比如通過函數) 仍然可以設置輪換文件名。
+                        <code class="notvi">{Vi 無此功能}</code>
 
-所有文件名都会被记录在缓冲区列表里。在你输入文件名以便编辑 (例如，用 ":e 文件
-名") 或者写回 (例如，用 ":w 文件名") 时，此文件名被加入该列表。你可以用缓冲区
-列表来记住编辑过什么文件并用 <code class="keystroke">CTRL-^</code> 命令快速的从一个文件切换到另一个 (例如，以
-便复制文本)。先敲入文件的编号再敲入 <code class="keystroke">CTRL-^</code>。<code class="notvi">{Vi: 只有一个轮换文件名}</code>
+所有文件名都會被記錄在緩衝區列表裡。在你輸入文件名以便編輯 (例如，用 ":e 文件
+名") 或者寫回 (例如，用 ":w 文件名") 時，此文件名被加入該列表。你可以用緩衝區
+列表來記住編輯過什麼文件並用 <code class="keystroke">CTRL-^</code> 命令快速的從一個文件切換到另一個 (例如，以
+便複製文本)。先敲入文件的編號再敲入 <code class="keystroke">CTRL-^</code>。<code class="notvi">{Vi: 只有一個輪換文件名}</code>
 
 <code class="keystroke">CTRL-G</code>          或                              <b class="vimtag"> <a name="CTRL-G">CTRL-G</a> </b> <b class="vimtag"> <a name=":f">:f</a> </b> <b class="vimtag"> <a name=":fi">:fi</a> </b> <b class="vimtag"> <a name=":file">:file</a> </b>
-:f[ile]                 显示当前文件名 (如同输入的那样，除非使用过 ":cd")、光
-                        标位置 (除非置位了 <a href="options.html#'ruler'">'ruler'</a> 选项) 和文件状态 (只读、已
-                        修改、读入错误、新文件)。参见 <a href="options.html#'shortmess'">'shortmess'</a> 选项，了解如
-                        何可以简化该消息。 <code class="notvi">{Vi 不包括列号}</code>
+:f[ile]                 顯示當前文件名 (如同輸入的那樣，除非使用過 ":cd")、光
+                        標位置 (除非置位了 <a href="options.html#'ruler'">'ruler'</a> 選項) 和文件狀態 (只讀、已
+                        修改、讀入錯誤、新文件)。參見 <a href="options.html#'shortmess'">'shortmess'</a> 選項，瞭解如
+                        何可以簡化該消息。 <code class="notvi">{Vi 不包括列號}</code>
 
-:f[ile]!                和  <a href="editing.html#:file">:file</a>  类似，但即使 <a href="options.html#'shortmess'">'shortmess'</a> 要求截短文件名，也
-                        不这么做。
+:f[ile]!                和  <a href="editing.html#:file">:file</a>  類似，但即使 <a href="options.html#'shortmess'">'shortmess'</a> 要求截短文件名，也
+                        不這麼做。
 
-<code class="special">{count}</code><code class="keystroke">CTRL-G</code>           和 <code class="keystroke">CTRL-G</code> 类似，但显示当前文件名的完整路径。如果计数大
-                        于 1，则同时给出当前缓冲区号。<code class="notvi">{Vi 无此功能}</code>
+<code class="special">{count}</code><code class="keystroke">CTRL-G</code>           和 <code class="keystroke">CTRL-G</code> 類似，但顯示當前文件名的完整路徑。如果計數大
+                        於 1，則同時給出當前緩衝區號。<code class="notvi">{Vi 無此功能}</code>
 
                                         <b class="vimtag"> <a name="g_CTRL-G">g_CTRL-G</a> </b> <b class="vimtag"> <a name="word-count">word-count</a> </b> <b class="vimtag"> <a name="byte-count">byte-count</a> </b>
-g <code class="keystroke">CTRL-G</code>                显示当前光标位置，以五种方式表达: 列、行、单词、字符和
-                        字节计数。如果字符数和字节数相同，省略字符位置。
-                        如果当前行有字符占据多于一个位置 (<code class="special">&lt;Tab&gt;</code> 或其他特殊字
-                        符)，"实际" 列和屏幕列同时显示，以连字号分隔。参见
-                        <a href="options.html#'ruler'">'ruler'</a> 选项和  <a href="eval.html#wordcount()">wordcount()</a>  函数。
-                        <code class="notvi">{Vi 无此功能}</code>
+g <code class="keystroke">CTRL-G</code>                顯示當前光標位置，以五種方式表達: 列、行、單詞、字符和
+                        字節計數。如果字符數和字節數相同，省略字符位置。
+                        如果當前行有字符佔據多於一個位置 (<code class="special">&lt;Tab&gt;</code> 或其他特殊字
+                        符)，"實際" 列和屏幕列同時顯示，以連字號分隔。參見
+                        <a href="options.html#'ruler'">'ruler'</a> 選項和  <a href="eval.html#wordcount()">wordcount()</a>  函數。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="v_g_CTRL-G">v_g_CTRL-G</a> </b>
-<code class="special">{Visual}</code>g <code class="keystroke">CTRL-G</code>        和 "g <code class="keystroke">CTRL-G</code>" 类似，但显示可视选择区域的单词、字符、行
-                        和字节计数。在面向列块模式里，列数也同时显示。(关于
-                        <code class="special">{Visual}</code> 见  <a href="visual.html#Visual-mode">Visual-mode</a> 。) <code class="notvi">{Vi 无此功能}</code>
+<code class="special">{Visual}</code>g <code class="keystroke">CTRL-G</code>        和 "g <code class="keystroke">CTRL-G</code>" 類似，但顯示可視選擇區域的單詞、字符、行
+                        和字節計數。在面向列塊模式裡，列數也同時顯示。(關於
+                        <code class="special">{Visual}</code> 見  <a href="visual.html#Visual-mode">Visual-mode</a> 。) <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":file_f">:file_f</a> </b>
-:f[ile][!] <code class="special">{name}</code>       设置当前文件名为 <code class="special">{name}</code>。可选的 ! 避免截短消息，就像
-                         <a href="editing.html#:file">:file</a>  那样。
-                        如果缓冲区已有名字，该名字成为  <a href="editing.html#alternate-file">alternate-file</a>  轮换
-                        文件名。新建一个列表外缓冲区来记住这个旧名字。
+:f[ile][!] <code class="special">{name}</code>       設置當前文件名為 <code class="special">{name}</code>。可選的 ! 避免截短消息，就像
+                         <a href="editing.html#:file">:file</a>  那樣。
+                        如果緩衝區已有名字，該名字成為  <a href="editing.html#alternate-file">alternate-file</a>  輪換
+                        文件名。新建一個列表外緩衝區來記住這個舊名字。
                                                         <b class="vimtag"> <a name=":0file">:0file</a> </b>
-:0f[ile][!]             删除当前缓冲区的名字。可选的 ! 避免截短消息，就像
-                         <a href="editing.html#:file">:file</a>  那样。<code class="notvi">{Vi 无此功能}</code>
+:0f[ile][!]             刪除當前緩衝區的名字。可選的 ! 避免截短消息，就像
+                         <a href="editing.html#:file">:file</a>  那樣。<code class="notvi">{Vi 無此功能}</code>
 
 :buffers
 :files
-:ls                     列出当前已知的文件名。见 'windows.txt'  <a href="windows.html#:files">:files</a> 
-                         <a href="windows.html#:buffers">:buffers</a>   <a href="windows.html#:ls">:ls</a> 。<code class="notvi">{Vi 无此功能}</code>
+:ls                     列出當前已知的文件名。見 'windows.txt'  <a href="windows.html#:files">:files</a> 
+                         <a href="windows.html#:buffers">:buffers</a>   <a href="windows.html#:ls">:ls</a> 。<code class="notvi">{Vi 無此功能}</code>
 
-vim 会记住你输入文件名的完整路径。大多数情况下，文件名只以你输入的方式显示。但
-":cd" 命令  <a href="editing.html#:cd">:cd</a>  使用后，就会看到完整路径名。
+vim 會記住你輸入文件名的完整路徑。大多數情況下，文件名只以你輸入的方式顯示。但
+":cd" 命令  <a href="editing.html#:cd">:cd</a>  使用後，就會看到完整路徑名。
 
                                                         <b class="vimtag"> <a name="home-replace">home-replace</a> </b>
-如果设置了环境变量 $HOME，而文件名以该字符串开始，它的显示会把 HOME 替换成
-"~"。这么做是为了使文件名的显示较为简洁。在读写文件时仍然使用完整路径名，"~"
-只供显示文件名用。如果要替换名字实质上只有 "~" 的文件，会使用 "~/" (为了避免
-设为 $HOME 的选项和设为 '~' 时的 <a href="options.html#'backupext'">'backupext'</a> 混淆)。
+如果設置了環境變量 $HOME，而文件名以該字符串開始，它的顯示會把 HOME 替換成
+"~"。這麼做是為了使文件名的顯示較為簡潔。在讀寫文件時仍然使用完整路徑名，"~"
+只供顯示文件名用。如果要替換名字實質上只有 "~" 的文件，會使用 "~/" (為了避免
+設為 $HOME 的選項和設為 '~' 時的 <a href="options.html#'backupext'">'backupext'</a> 混淆)。
 
-保存缓冲区时，缺省使用当前文件名。这样，如果你给出 "ZZ" 或者 ":wq" 命令，原有
-的文件被覆盖。如果你不想如此，给 ":write" 命令给出一个文件名参数，你可以把缓冲
-区写到另外一个文件里。例如: 
+保存緩衝區時，缺省使用當前文件名。這樣，如果你給出 "ZZ" 或者 ":wq" 命令，原有
+的文件被覆蓋。如果你不想如此，給 ":write" 命令給出一個文件名參數，你可以把緩衝
+區寫到另外一個文件裡。例如: 
 <code class="example"></code>
 <code class="example">        vim testfile</code>
-<code class="example">        [用编辑器命令修改缓冲区]</code>
+<code class="example">        [用編輯器命令修改緩衝區]</code>
 <code class="example">        :w newfile</code>
 <code class="example">        :q</code>
 <code class="example"></code>
-这会建立文件 "newfile"，它是 "testfile" 经过修改的版本。"testfile" 文件保持不
-变。无论如何，如果置位 <a href="options.html#'backup'">'backup'</a> 选项，Vim 会在原来的文件被覆盖之前改名或复制。
-如果你以后发现你需要原来的版本，你可以用这个备份文件。也可参见 <a href="options.html#'patchmode'">'patchmode'</a> 选
-项。备份文件名通常是原来的文件加上 <a href="options.html#'backupext'">'backupext'</a> 后缀。缺省的 "~" 比较奇特，目的
-是为了防止意外覆盖现存的文件。如果你喜欢 ".bak"，修改 <a href="options.html#'backupext'">'backupext'</a> 选项。在
-MS-DOS 机器上，当 Vim 检测到正在使用的是 MS-DOS 或类似的文件系统 (例如，
-messydos 或者 crossdos) 或者打开了 <a href="options.html#'shortname'">'shortname'</a> 选项，多余的点号被替换成 '_'。
-通过设置 <a href="options.html#'backupdir'">'backupdir'</a>，备份文件也可存在别的目录下。
+這會建立文件 "newfile"，它是 "testfile" 經過修改的版本。"testfile" 文件保持不
+變。無論如何，如果置位 <a href="options.html#'backup'">'backup'</a> 選項，Vim 會在原來的文件被覆蓋之前改名或複製。
+如果你以後發現你需要原來的版本，你可以用這個備份文件。也可參見 <a href="options.html#'patchmode'">'patchmode'</a> 選
+項。備份文件名通常是原來的文件加上 <a href="options.html#'backupext'">'backupext'</a> 後綴。缺省的 "~" 比較奇特，目的
+是為了防止意外覆蓋現存的文件。如果你喜歡 ".bak"，修改 <a href="options.html#'backupext'">'backupext'</a> 選項。在
+MS-DOS 機器上，當 Vim 檢測到正在使用的是 MS-DOS 或類似的文件系統 (例如，
+messydos 或者 crossdos) 或者打開了 <a href="options.html#'shortname'">'shortname'</a> 選項，多餘的點號被替換成 '_'。
+通過設置 <a href="options.html#'backupdir'">'backupdir'</a>，備份文件也可存在別的目錄下。
 
                                                         <b class="vimtag"> <a name="auto-shortname">auto-shortname</a> </b>
-技术上: 在 Amiga 上文件名可以长达 30 个字符。但在 MS-DOS 兼容的文件系统上只能
-        用 8+3 个字符。Vim 试图在创建 .swp 文件的时候检测文件系统的类型。如果
-        怀疑是一个类似 MS-DOS 的文件系统，则置位一个标志位，它和设置
-        <a href="options.html#'shortname'">'shortname'</a> 选项有相同的效果。一旦你开始编辑一个新文件，该标志位被复
-        位。在根据当前文件名创建 ".swp" 和 ".~" 文件时，该标志位起作用。但如果
-        你在一个正常的文件系统上编辑文件，而写到一个类似于 MS-DOS 的文件系统，
-        该标志位不会被置位。这种情况下，创建 ".~" 文件可能会失败，你会得到一个
-        错误消息。这种情况下，用 <a href="options.html#'shortname'">'shortname'</a> 选项。
+技術上: 在 Amiga 上文件名可以長達 30 個字符。但在 MS-DOS 兼容的文件系統上只能
+        用 8+3 個字符。Vim 試圖在創建 .swp 文件的時候檢測文件系統的類型。如果
+        懷疑是一個類似 MS-DOS 的文件系統，則置位一個標誌位，它和設置
+        <a href="options.html#'shortname'">'shortname'</a> 選項有相同的效果。一旦你開始編輯一個新文件，該標誌位被復
+        位。在根據當前文件名創建 ".swp" 和 ".~" 文件時，該標誌位起作用。但如果
+        你在一個正常的文件系統上編輯文件，而寫到一個類似於 MS-DOS 的文件系統，
+        該標誌位不會被置位。這種情況下，創建 ".~" 文件可能會失敗，你會得到一個
+        錯誤消息。這種情況下，用 <a href="options.html#'shortname'">'shortname'</a> 選項。
 
-当你开始编辑而不给出文件名，会给出 "No File" 消息。如果 ":write" 命令带一个文
-件名参数，当前文件名被设为那个名字。这只有在 <a href="options.html#'cpoptions'">'cpoptions'</a> 里带 'F' 标志位 (缺省
-的确是如此) 时才会发生  <a href="options.html#cpo-F">cpo-F</a> 。这对在空缓冲区里编辑文本后写入到文件有用。如果
-<a href="options.html#'cpoptions'">'cpoptions'</a> 里包含 'f' 标志位 (缺省 <code class="emphasis">不</code> 包含)  <a href="options.html#cpo-f">cpo-f</a> ，在执行 ":read file" 时，
-文件名被设置。这可用来先不带参数启动 Vim 再用 ":read file" 编辑文件。
-如果设置了文件名而 <a href="options.html#'filetype'">'filetype'</a> 为空，激活文件类型检测的自动事件。
+當你開始編輯而不給出文件名，會給出 "No File" 消息。如果 ":write" 命令帶一個文
+件名參數，當前文件名被設為那個名字。這只有在 <a href="options.html#'cpoptions'">'cpoptions'</a> 裡帶 'F' 標誌位 (缺省
+的確是如此) 時才會發生  <a href="options.html#cpo-F">cpo-F</a> 。這對在空緩衝區裡編輯文本後寫入到文件有用。如果
+<a href="options.html#'cpoptions'">'cpoptions'</a> 裡包含 'f' 標誌位 (缺省 <code class="emphasis">不</code> 包含)  <a href="options.html#cpo-f">cpo-f</a> ，在執行 ":read file" 時，
+文件名被設置。這可用來先不帶參數啟動 Vim 再用 ":read file" 編輯文件。
+如果設置了文件名而 <a href="options.html#'filetype'">'filetype'</a> 為空，激活文件類型檢測的自動事件。
                                                         <b class="vimtag"> <a name="not-edited">not-edited</a> </b>
-因为设置文件名并不是真正编辑该文件，你不会覆盖它。这可由设置 "notedited" 标志
-位来完成。你可由 <code class="keystroke">CTRL-O</code> 或 ":file" 命令看到该标志位是否设置。如果 "notedited"
-标志位已设置，它会包括 "[Not edited]"。当将缓冲区写回当前文件名 (用 ":w!")
-时，"notedited" 标志位被重设。
+因為設置文件名並不是真正編輯該文件，你不會覆蓋它。這可由設置 "notedited" 標誌
+位來完成。你可由 <code class="keystroke">CTRL-O</code> 或 ":file" 命令看到該標誌位是否設置。如果 "notedited"
+標誌位已設置，它會包括 "[Not edited]"。當將緩衝區寫回當前文件名 (用 ":w!")
+時，"notedited" 標誌位被重設。
 
                                                         <b class="vimtag"> <a name="abandon">abandon</a> </b>
-Vim 记住你是否修改了缓冲区。你所作的修改不会不小心丢失。如果试图不写回而退出，
-或开始编辑别的文件，Vim 会拒绝。要绕过这重保护，在命令后加上 '!'。这样，修改就
-会丢失。例如: ":q" 在缓冲区修改后不会工作，但 ":q!" 会。要知道缓冲区是否修改，
-用 "<code class="keystroke">CTRL-G</code>" 命令。如果缓冲区被修改，消息里会有字符串 "[Modified]" 或者 "+"，
-后者如果 <a href="options.html#'shortmess'">'shortmess'</a> 有 'm' 标志位。
+Vim 記住你是否修改了緩衝區。你所作的修改不會不小心丟失。如果試圖不寫回而退出，
+或開始編輯別的文件，Vim 會拒絕。要繞過這重保護，在命令後加上 '!'。這樣，修改就
+會丟失。例如: ":q" 在緩衝區修改後不會工作，但 ":q!" 會。要知道緩衝區是否修改，
+用 "<code class="keystroke">CTRL-G</code>" 命令。如果緩衝區被修改，消息裡會有字符串 "[Modified]" 或者 "+"，
+後者如果 <a href="options.html#'shortmess'">'shortmess'</a> 有 'm' 標誌位。
 
-如果你想不经提示而自动写回改动，打开 <a href="options.html#'autowriteall'">'autowriteall'</a> 选项。<a href="options.html#'autowrite'">'autowrite'</a> 是相关的
-Vi-兼容选项，它并非对所有命令有效。
+如果你想不經提示而自動寫回改動，打開 <a href="options.html#'autowriteall'">'autowriteall'</a> 選項。<a href="options.html#'autowrite'">'autowrite'</a> 是相關的
+Vi-兼容選項，它並非對所有命令有效。
 
-如果想保留修改了的缓冲区但不写回，打开 <a href="options.html#'hidden'">'hidden'</a> 选项。参见  <a href="windows.html#hidden-buffer">hidden-buffer</a> 。有
-些命令即便 <a href="options.html#'hidden'">'hidden'</a> 没有置位也会如此，具体须参见各个命令的帮助。
+如果想保留修改了的緩衝區但不寫回，打開 <a href="options.html#'hidden'">'hidden'</a> 選項。參見  <a href="windows.html#hidden-buffer">hidden-buffer</a> 。有
+些命令即便 <a href="options.html#'hidden'">'hidden'</a> 沒有置位也會如此，具體須參見各個命令的幫助。
 
 </pre><hr class="doubleline" /><pre>
-<h4>2. 编辑单个文件                                         <b class="vimtag"> <a name="edit-a-file">edit-a-file</a> </b></h4>
+<h4>2. 編輯單個文件                                         <b class="vimtag"> <a name="edit-a-file">edit-a-file</a> </b></h4>
                                                         <b class="vimtag"> <a name=":e">:e</a> </b> <b class="vimtag"> <a name=":edit">:edit</a> </b> <b class="vimtag"> <a name="reload">reload</a> </b>
-:e[dit] <code class="special">[++opt]</code> <code class="special">[+cmd]</code>  编辑当前文件。可用于在它被 Vim 之外的程序所改变的时候
-                        重新编辑当前文件。 如果当前缓冲区已经被修改而且没有置
-                        位 <a href="options.html#'autowriteall'">'autowriteall'</a>，或者文件不能被写入，本命令失败。
-                        另见  <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。
-                        <code class="notvi">{Vi: 无 ++opt}</code>
+:e[dit] <code class="special">[++opt]</code> <code class="special">[+cmd]</code>  編輯當前文件。可用於在它被 Vim 之外的程序所改變的時候
+                        重新編輯當前文件。 如果當前緩衝區已經被修改而且沒有置
+                        位 <a href="options.html#'autowriteall'">'autowriteall'</a>，或者文件不能被寫入，本命令失敗。
+                        另見  <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。
+                        <code class="notvi">{Vi: 無 ++opt}</code>
 
                                                         <b class="vimtag"> <a name=":edit!">:edit!</a> </b> <b class="vimtag"> <a name="discard">discard</a> </b>
 :e[dit]! <code class="special">[++opt]</code> <code class="special">[+cmd]</code>
-                        总是编辑当前文件。放弃当前缓冲区任何已有的改变。如果你
-                        想从头来过，这就会很有用。
-                        另见  <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。
-                        <code class="notvi">{Vi: 无 ++opt}</code>
+                        總是編輯當前文件。放棄當前緩衝區任何已有的改變。如果你
+                        想從頭來過，這就會很有用。
+                        另見  <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。
+                        <code class="notvi">{Vi: 無 ++opt}</code>
 
                                                         <b class="vimtag"> <a name=":edit_f">:edit_f</a> </b>
 :e[dit] <code class="special">[++opt]</code> <code class="special">[+cmd]</code> <code class="special">{file}</code>
-                        编辑文件 <code class="special">{file}</code>。
-                        如果当前缓冲区已被修改，这会失败，除非置位了 <a href="options.html#'hidden'">'hidden'</a>
-                        或者 <a href="options.html#'autowriteall'">'autowriteall'</a> 并且文件能够写入。
-                        另见  <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。
-                        <code class="notvi">{Vi: 无 ++opt}</code>
+                        編輯文件 <code class="special">{file}</code>。
+                        如果當前緩衝區已被修改，這會失敗，除非置位了 <a href="options.html#'hidden'">'hidden'</a>
+                        或者 <a href="options.html#'autowriteall'">'autowriteall'</a> 並且文件能夠寫入。
+                        另見  <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。
+                        <code class="notvi">{Vi: 無 ++opt}</code>
 
                                                         <b class="vimtag"> <a name=":edit!_f">:edit!_f</a> </b>
 :e[dit]! <code class="special">[++opt]</code> <code class="special">[+cmd]</code> <code class="special">{file}</code>
-                        总是编辑文件 <code class="special">{file}</code>。放弃当前缓冲区任何已有的改变。
-                        另见  <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。
-                        <code class="notvi">{Vi: 无 ++opt}</code>
+                        總是編輯文件 <code class="special">{file}</code>。放棄當前緩衝區任何已有的改變。
+                        另見  <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。
+                        <code class="notvi">{Vi: 無 ++opt}</code>
 
 :e[dit] <code class="special">[++opt]</code> <code class="special">[+cmd]</code> #<code class="special">[count]</code>
-                        编辑第 <code class="special">[count]</code> 个缓冲区 (根据 :files 显示的结果)。
-                        该命令和 <code class="special">[count]</code> <code class="keystroke">CTRL-^</code> 一样，但是 ":e #" 在轮换缓冲区
-                        没有文件名时不能工作，而 <code class="keystroke">CTRL-^</code> 则可以。
-                        另见  <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。
-                        <code class="notvi">{Vi: 无 ++opt}</code>
+                        編輯第 <code class="special">[count]</code> 個緩衝區 (根據 :files 顯示的結果)。
+                        該命令和 <code class="special">[count]</code> <code class="keystroke">CTRL-^</code> 一樣，但是 ":e #" 在輪換緩衝區
+                        沒有文件名時不能工作，而 <code class="keystroke">CTRL-^</code> 則可以。
+                        另見  <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。
+                        <code class="notvi">{Vi: 無 ++opt}</code>
 
                                                         <b class="vimtag"> <a name=":ene">:ene</a> </b> <b class="vimtag"> <a name=":enew">:enew</a> </b>
-:ene[w]                 编辑一个新的无名缓冲区。如果当前缓冲区已被修改，这会失
-                        败，除非置位了 <a href="options.html#'hidden'">'hidden'</a> 或者 <a href="options.html#'autowriteall'">'autowriteall'</a> 并且文件能
-                        够写入。
-                        如果 <a href="options.html#'fileformats'">'fileformats'</a> 非空，其给出的第一个格式将用于新的
-                        缓冲区上。如果 <a href="options.html#'fileformats'">'fileformats'</a> 为空，则使用当前缓冲区的
+:ene[w]                 編輯一個新的無名緩衝區。如果當前緩衝區已被修改，這會失
+                        敗，除非置位了 <a href="options.html#'hidden'">'hidden'</a> 或者 <a href="options.html#'autowriteall'">'autowriteall'</a> 並且文件能
+                        夠寫入。
+                        如果 <a href="options.html#'fileformats'">'fileformats'</a> 非空，其給出的第一個格式將用於新的
+                        緩衝區上。如果 <a href="options.html#'fileformats'">'fileformats'</a> 為空，則使用當前緩衝區的
                         <a href="options.html#'fileformat'">'fileformat'</a>。
-                        <code class="notvi">{Vi 无此功能}</code>
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":ene!">:ene!</a> </b> <b class="vimtag"> <a name=":enew!">:enew!</a> </b>
-:ene[w]!                编辑新的无名缓冲区。放弃当前缓冲区任何已有的改变。
-                        <a href="options.html#'fileformat'">'fileformat'</a> 的设置类似于  <a href="editing.html#:enew">:enew</a> 。
-                        <code class="notvi">{Vi 无此功能}</code>
+:ene[w]!                編輯新的無名緩衝區。放棄當前緩衝區任何已有的改變。
+                        <a href="options.html#'fileformat'">'fileformat'</a> 的設置類似於  <a href="editing.html#:enew">:enew</a> 。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":fin">:fin</a> </b> <b class="vimtag"> <a name=":find">:find</a> </b>
 :fin[d][!] <code class="special">[++opt]</code> <code class="special">[+cmd]</code> <code class="special">{file}</code>
-                        在 <a href="options.html#'path'">'path'</a> 里找到 <code class="special">{file}</code>，然后编辑  <a href="editing.html#:edit">:edit</a>  它。
-                        <code class="notvi">{Vi 无此功能}</code>
-                        <code class="notvi">{仅当编译时加入  <a href="various.html#+file_in_path">+file_in_path</a>  特性才有效}</code>
+                        在 <a href="options.html#'path'">'path'</a> 裡找到 <code class="special">{file}</code>，然後編輯  <a href="editing.html#:edit">:edit</a>  它。
+                        <code class="notvi">{Vi 無此功能}</code>
+                        <code class="notvi">{僅當編譯時加入  <a href="various.html#+file_in_path">+file_in_path</a>  特性才有效}</code>
 
 :<code class="special">{count}</code>fin[d][!] <code class="special">[++opt]</code> <code class="special">[+cmd]</code> <code class="special">{file}</code>
-                        和 ":find" 类似，但使用 <a href="options.html#'path'">'path'</a> 的第 <code class="special">{count}</code> 个匹配。这
-                        样，":2find file" 会找到 <a href="options.html#'path'">'path'</a> 里的第二个 "file"。如
-                        果 <a href="options.html#'path'">'path'</a> 里文件的匹配不足所需之数，你会得到一个错误消
+                        和 ":find" 類似，但使用 <a href="options.html#'path'">'path'</a> 的第 <code class="special">{count}</code> 個匹配。這
+                        樣，":2find file" 會找到 <a href="options.html#'path'">'path'</a> 裡的第二個 "file"。如
+                        果 <a href="options.html#'path'">'path'</a> 裡文件的匹配不足所需之數，你會得到一個錯誤消
                         息。
 
                                                         <b class="vimtag"> <a name=":ex">:ex</a> </b>
@@ -238,71 +238,71 @@ Vi-兼容选项，它并非对所有命令有效。
 
                                                         <b class="vimtag"> <a name=":vi">:vi</a> </b> <b class="vimtag"> <a name=":visual">:visual</a> </b>
 :vi[sual][!] <code class="special">[++opt]</code> <code class="special">[+cmd]</code> <code class="special">[file]</code>
-                        用于 Ex 模式时: 退出  <a href="intro.html#Ex-mode">Ex-mode</a> ，回到普通模式。否则和
+                        用於 Ex 模式時: 退出  <a href="intro.html#Ex-mode">Ex-mode</a> ，回到普通模式。否則和
                          <a href="editing.html#:edit">:edit</a>  相同。
 
                                                         <b class="vimtag"> <a name=":vie">:vie</a> </b> <b class="vimtag"> <a name=":view">:view</a> </b>
 :vie[w][!] <code class="special">[++opt]</code> <code class="special">[+cmd]</code> file
-                        用于 Ex 模式时: 退出  <a href="intro.html#Ex-mode">Ex-mode</a> ，回到普通模式。否则和
-                         <a href="editing.html#:edit">:edit</a>  相同，但为本缓冲区置位 <a href="options.html#'readonly'">'readonly'</a> 选项。
-                        <code class="notvi">{Vi 无此功能}</code>
+                        用於 Ex 模式時: 退出  <a href="intro.html#Ex-mode">Ex-mode</a> ，回到普通模式。否則和
+                         <a href="editing.html#:edit">:edit</a>  相同，但為本緩衝區置位 <a href="options.html#'readonly'">'readonly'</a> 選項。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="CTRL-^">CTRL-^</a> </b> <b class="vimtag"> <a name="CTRL-6">CTRL-6</a> </b>
-<code class="keystroke">CTRL-^</code>                  编辑轮换文件。
-                        多数情况下，轮换文件就是上次编辑的文件。这是切换两个文
-                        件的一个快速方法。这和 ":e #" 等价，但也能用在没有文件
-                        名的情况。
+<code class="keystroke">CTRL-^</code>                  編輯輪換文件。
+                        多數情況下，輪換文件就是上次編輯的文件。這是切換兩個文
+                        件的一個快速方法。這和 ":e #" 等價，但也能用在沒有文件
+                        名的情況。
 
-                        如果 <a href="options.html#'autowrite'">'autowrite'</a> 或 <a href="options.html#'autowriteall'">'autowriteall'</a> 选项打开并且缓冲区
-                        被修改，则写入文件。
-                        大多数情况下，^ 字符在键 6 之上，同时按 CTRL 和 6 会给
-                        出我们叫 <code class="keystroke">CTRL-^</code> 的键码。但在有的非-US 的键盘上 <code class="keystroke">CTRL-^</code>
-                        须以不同的方式生成。
+                        如果 <a href="options.html#'autowrite'">'autowrite'</a> 或 <a href="options.html#'autowriteall'">'autowriteall'</a> 選項打開並且緩衝區
+                        被修改，則寫入文件。
+                        大多數情況下，^ 字符在鍵 6 之上，同時按 CTRL 和 6 會給
+                        出我們叫 <code class="keystroke">CTRL-^</code> 的鍵碼。但在有的非-US 的鍵盤上 <code class="keystroke">CTRL-^</code>
+                        須以不同的方式生成。
 
-<code class="special">[count]</code><code class="keystroke">CTRL-^</code>           编辑缓冲区列表里第 <code class="special">[count]</code> 个文件 (和 ":e #<code class="special">[count]</code>" 等
-                        价)。这是切换文件的一个快速方法。
-                        详情见上面  <a href="editing.html#CTRL-^">CTRL-^</a> 。
-                        <code class="notvi">{Vi 无此功能}</code>
+<code class="special">[count]</code><code class="keystroke">CTRL-^</code>           編輯緩衝區列表裡第 <code class="special">[count]</code> 個文件 (和 ":e #<code class="special">[count]</code>" 等
+                        價)。這是切換文件的一個快速方法。
+                        詳情見上面  <a href="editing.html#CTRL-^">CTRL-^</a> 。
+                        <code class="notvi">{Vi 無此功能}</code>
 
 <code class="special">[count]</code>]f                                               <b class="vimtag"> <a name="]f">]f</a> </b> <b class="vimtag"> <a name="[f">[f</a> </b>
-<code class="special">[count]</code>[f               和 "gf" 一样。它本身已被淘汰。
+<code class="special">[count]</code>[f               和 "gf" 一樣。它本身已被淘汰。
 
                                                         <b class="vimtag"> <a name="gf">gf</a> </b> <b class="vimtag"> <a name="E446">E446</a> </b> <b class="vimtag"> <a name="E447">E447</a> </b>
-<code class="special">[count]</code>gf               编辑光标之上或之后的文件名。助记: "goto file"。
-                        使用 <a href="options.html#'isfname'">'isfname'</a> 选项来决定组成文件名的字符。拖尾的标点
-                        符号 ".,:;!" 被忽略。空格的转义 "\ " 缩为一个空格。
-                        在 <a href="options.html#'path'">'path'</a> 选项组成的目录名列表查找文件。关于相对路径和
-                        通配符，可见 <a href="options.html#'path'">'path'</a> 选项。
-                        设置 <a href="options.html#'suffixesadd'">'suffixesadd'</a> 选项可以用来查找文件所要附加的后
-                        缀。如果文件找不到，用 <a href="options.html#'includeexpr'">'includeexpr'</a> 来修改名字，然后
-                        再试一次。
-                        如果给出 <code class="special">[count]</code>，<a href="options.html#'path'">'path'</a> 里找到的第 count 个文件被编
-                        辑。
-                        如果 Vim 拒绝放弃  <a href="editing.html#abandon">abandon</a>  当前文件，该命令失败。
-                        如果你想在新窗口里编辑文件，用  <a href="windows.html#CTRL-W_CTRL-F">CTRL-W_CTRL-F</a> 。
-                        如果你想编辑新文件，用: 
+<code class="special">[count]</code>gf               編輯光標之上或之後的文件名。助記: "goto file"。
+                        使用 <a href="options.html#'isfname'">'isfname'</a> 選項來決定組成文件名的字符。拖尾的標點
+                        符號 ".,:;!" 被忽略。空格的轉義 "\ " 縮為一個空格。
+                        在 <a href="options.html#'path'">'path'</a> 選項組成的目錄名列表查找文件。關於相對路徑和
+                        通配符，可見 <a href="options.html#'path'">'path'</a> 選項。
+                        設置 <a href="options.html#'suffixesadd'">'suffixesadd'</a> 選項可以用來查找文件所要附加的後
+                        綴。如果文件找不到，用 <a href="options.html#'includeexpr'">'includeexpr'</a> 來修改名字，然後
+                        再試一次。
+                        如果給出 <code class="special">[count]</code>，<a href="options.html#'path'">'path'</a> 裡找到的第 count 個文件被編
+                        輯。
+                        如果 Vim 拒絕放棄  <a href="editing.html#abandon">abandon</a>  當前文件，該命令失敗。
+                        如果你想在新窗口裡編輯文件，用  <a href="windows.html#CTRL-W_CTRL-F">CTRL-W_CTRL-F</a> 。
+                        如果你想編輯新文件，用: 
 <code class="example">                                :e &lt;cfile&gt;</code>
-                        想使得 gf 总是如此工作，可以如此: 
+                        想使得 gf 總是如此工作，可以如此: 
 <code class="example">                                :map gf :e &lt;cfile&gt;&lt;CR&gt;</code>
-                        如果名字是一个超文本链接，也就是看来像
-                        "type://machine/path" 这样的，你需要  <a href="pi_netrw.html#netrw">netrw</a>  插件。
-                        对 Unix 而言，'~' 字符被扩展，比如在 "~user/file" 的场
-                        合。环境变量也得到扩展  <a href="options.html#expand-env">expand-env</a> 。
-                        <code class="notvi">{Vi 无此功能}</code>
-                        <code class="notvi">{仅在编译时加入  <a href="various.html#+file_in_path">+file_in_path</a>  特性才有效}</code>
+                        如果名字是一個超文本鏈接，也就是看來像
+                        "type://machine/path" 這樣的，你需要  <a href="pi_netrw.html#netrw">netrw</a>  插件。
+                        對 Unix 而言，'~' 字符被擴展，比如在 "~user/file" 的場
+                        合。環境變量也得到擴展  <a href="options.html#expand-env">expand-env</a> 。
+                        <code class="notvi">{Vi 無此功能}</code>
+                        <code class="notvi">{僅在編譯時加入  <a href="various.html#+file_in_path">+file_in_path</a>  特性才有效}</code>
 
                                                         <b class="vimtag"> <a name="v_gf">v_gf</a> </b>
-<code class="special">{Visual}</code><code class="special">[count]</code>gf       和 "gf" 相同，但是高亮文本被用来作为要编辑的文件名。
-                        <a href="options.html#'isfname'">'isfname'</a> 被忽略。开头的空白被忽略，除此以外，所有的空
-                        白和特殊字符被包括在文件名里。
-                        (<code class="special">{Visual}</code> 可参见  <a href="visual.html#Visual-mode">Visual-mode</a> 。)
-                        <code class="notvi">{Vi 无此功能}</code>
+<code class="special">{Visual}</code><code class="special">[count]</code>gf       和 "gf" 相同，但是高亮文本被用來作為要編輯的文件名。
+                        <a href="options.html#'isfname'">'isfname'</a> 被忽略。開頭的空白被忽略，除此以外，所有的空
+                        白和特殊字符被包括在文件名裡。
+                        (<code class="special">{Visual}</code> 可參見  <a href="visual.html#Visual-mode">Visual-mode</a> 。)
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="gF">gF</a> </b>
-<code class="special">[count]</code>gF               和 "gf" 相同，但如果文件名后面跟随着数值，那么光标将定
-                        位在该文件名的该行上。文件名和数值之间必须以一个非文件
-                        名 (见 <a href="options.html#'isfname'">'isfname'</a>) 和非数字字符分隔。文件名、分隔符和数
-                        值之间的空白被忽略。
+<code class="special">[count]</code>gF               和 "gf" 相同，但如果文件名後面跟隨著數值，那麼光標將定
+                        位在該文件名的該行上。文件名和數值之間必須以一個非文件
+                        名 (見 <a href="options.html#'isfname'">'isfname'</a>) 和非數字字符分隔。文件名、分隔符和數
+                        值之間的空白被忽略。
                         例如:
 <code class="section">                                eval.c:10 </code>
 <code class="section">                                eval.c @ 20 </code>
@@ -312,84 +312,84 @@ Vi-兼容选项，它并非对所有命令有效。
                                                         <b class="vimtag"> <a name="v_gF">v_gF</a> </b>
 <code class="special">{Visual}</code><code class="special">[count]</code>gF       和 "v_gf" 相同。
 
-这些命令用来开始编辑单独一个文件。这意味着该文件被读入缓冲区里并设置当前文件
-名。打开哪个文件和当前目录有关，见  <a href="editing.html#:cd">:cd</a> 。
+這些命令用來開始編輯單獨一個文件。這意味著該文件被讀入緩衝區裡並設置當前文件
+名。打開哪個文件和當前目錄有關，見  <a href="editing.html#:cd">:cd</a> 。
 
-关于文件读入以后给出的消息，参见  <a href="insert.html#read-messages">read-messages</a> 。
+關於文件讀入以後給出的消息，參見  <a href="insert.html#read-messages">read-messages</a> 。
 
-如果你把缓冲区内容弄乱了想从头开始编辑，你可以用 ":e!" 命令。":e" 命令只有在你
-改变当前文件名的时候有用。
+如果你把緩衝區內容弄亂了想從頭開始編輯，你可以用 ":e!" 命令。":e" 命令只有在你
+改變當前文件名的時候有用。
 
                                                         <b class="vimtag"> <a name=":filename">:filename</a> </b> <b class="vimtag"> <a name="{file}">{file}</a> </b>
-除了这里说明的事项以外， <a href="cmdline.html#cmdline-special">cmdline-special</a>  也提到更多特殊项目，它们在期待文件名
-时可用。
+除了這裡說明的事項以外， <a href="cmdline.html#cmdline-special">cmdline-special</a>  也提到更多特殊項目，它們在期待文件名
+時可用。
 
-<code class="note">注意</code> 除了 Unix 以外的系统: 在使用接受单个文件名的名字时 (如 ":edit file")，文
-件名里可以有空格，但是拖尾的空格被忽略。这可用于允许文件名有内含的空格的系统
-(如 MS-Windows 和 Amiga)。示例: 命令 ":e   Long File Name " 会编辑文件 "Long
-File Name"。在使用能接受多于一个文件名的命令时 (如 ":next file1 file2")，内含
-的空格必须以反斜杠转义。
+<code class="note">注意</code> 除了 Unix 以外的系統: 在使用接受單個文件名的名字時 (如 ":edit file")，文
+件名裡可以有空格，但是拖尾的空格被忽略。這可用於允許文件名有內含的空格的系統
+(如 MS-Windows 和 Amiga)。示例: 命令 ":e   Long File Name " 會編輯文件 "Long
+File Name"。在使用能接受多於一個文件名的命令時 (如 ":next file1 file2")，內含
+的空格必須以反斜槓轉義。
 
                                                 <b class="vimtag"> <a name="wildcard">wildcard</a> </b> <b class="vimtag"> <a name="wildcards">wildcards</a> </b>
-<code class="special">{file}</code> 里的通配符被扩展，但和文件补全一样，也适用 <a href="options.html#'wildignore'">'wildignore'</a> 和 <a href="options.html#'suffixes'">'suffixes'</a>。
-具体支持什么通配符由系统决定。以下是一些通用的字符:
-        ?       匹配一个字符
-        *       匹配任何东西，包括什么都没有
-        **      匹配任何东西，包括什么都没有，递归进入目录
+<code class="special">{file}</code> 裡的通配符被擴展，但和文件補全一樣，也適用 <a href="options.html#'wildignore'">'wildignore'</a> 和 <a href="options.html#'suffixes'">'suffixes'</a>。
+具體支持什麼通配符由系統決定。以下是一些通用的字符:
+        ?       匹配一個字符
+        *       匹配任何東西，包括什麼都沒有
+        **      匹配任何東西，包括什麼都沒有，遞歸進入目錄
         <code class="special">[abc]</code>   匹配 'a'、'b' 或 'c'
 
-要避免通配符的特殊含义，在前面加上反斜杠。不过，在 MS-Windows 上，反斜杠是路径
-分隔符，"path\[abc]" 在 <a href="options.html#'isfname'">'isfname'</a> 选项里有 "[" 的时候还是被看作通配符。一个简
-单避免该问题的方法是用 "path\[[]abc]"。这样这匹配文件名 "path[abc]"。
+要避免通配符的特殊含義，在前面加上反斜槓。不過，在 MS-Windows 上，反斜槓是路徑
+分隔符，"path\[abc]" 在 <a href="options.html#'isfname'">'isfname'</a> 選項裡有 "[" 的時候還是被看作通配符。一個簡
+單避免該問題的方法是用 "path\[[]abc]"。這樣這匹配文件名 "path[abc]"。
 
                                         <b class="vimtag"> <a name="starstar-wildcard">starstar-wildcard</a> </b>
-在 Unix、Win32、Mac OS/X 和一些其它系统上，可以扩展 "**"。它允许你在目录树里搜
-索。最大深度可以到 100 层目录。
-<code class="note">注意</code> 有些命令的工作方式略有不同。见  <a href="editing.html#file-searching">file-searching</a> 。
+在 Unix、Win32、Mac OS/X 和一些其它系統上，可以擴展 "**"。它允許你在目錄樹裡搜
+索。最大深度可以到 100 層目錄。
+<code class="note">注意</code> 有些命令的工作方式略有不同。見  <a href="editing.html#file-searching">file-searching</a> 。
 例如: 
 <code class="example">        :n **/*.txt</code>
 找到文件:
 <code class="section">        aaa.txt </code>
 <code class="section">        subdir/bbb.txt </code>
 <code class="section">        a/b/c/d/ccc.txt </code>
-紧接着 "**" 之前或之后使用的非通配字符，只匹配第一层目录，而不用于匹配树结构其
-下的目录。例如: 
+緊接著 "**" 之前或之後使用的非通配字符，只匹配第一層目錄，而不用於匹配樹結構其
+下的目錄。例如: 
 <code class="example">        :n /usr/inc**/types.h</code>
 找到文件:
 <code class="section">        /usr/include/types.h </code>
 <code class="section">        /usr/include/sys/types.h </code>
 <code class="section">        /usr/inc/old/types.h </code>
-<code class="note">注意</code> 之所以带 "/sys" 的路径，是因为那一层的名字不需要匹配 "/inc"。也就是说，
-这相当于匹配 "/usr/inc*/*/*..."，而不是 "/usr/inc*/inc*/inc*"。
+<code class="note">注意</code> 之所以帶 "/sys" 的路徑，是因為那一層的名字不需要匹配 "/inc"。也就是說，
+這相當於匹配 "/usr/inc*/*/*..."，而不是 "/usr/inc*/inc*/inc*"。
 
                                         <b class="vimtag"> <a name="backtick-expansion">backtick-expansion</a> </b> <b class="vimtag"> <a name="`-expansion">`-expansion</a> </b>
-在 Unix 和一些其它系统上你可以用反引号代替文件名参数。例如: 
+在 Unix 和一些其它系統上你可以用反引號代替文件名參數。例如: 
 <code class="example">        :next `find . -name ver\\*.c -print`</code>
 <code class="example">        :view `ls -t *.patch  \| head -n1`</code>
-星号之前需要有反斜杠，以防 "ver*.c" 在执行 find 程序之前被外壳先扩展。在外壳管
-道符号 "|" 之前的反斜杠使 Vim 不会把它解析为命令的终止。
-该功能对于多数其他系统也使用，但要求反引号必须包围整个项目。你不能在第一个之前
-和最后一个反引号之后有别的文本。
+星號之前需要有反斜槓，以防 "ver*.c" 在執行 find 程序之前被外殼先擴展。在外殼管
+道符號 "|" 之前的反斜槓使 Vim 不會把它解析為命令的終止。
+該功能對於多數其他系統也使用，但要求反引號必須包圍整個項目。你不能在第一個之前
+和最後一個反引號之後有別的文本。
 
                                                         <b class="vimtag"> <a name="`%20">`=</a> </b>
-在第一个反引号之后紧跟等号，可以使得反引号用来作 Vim 表达式，而非外部命令来扩
+在第一個反引號之後緊跟等號，可以使得反引號用來作 Vim 表達式，而非外部命令來擴
 展。例如 
 <code class="example">        :e `=tempname()`</code>
-该表达式里可以包含任何东西，因而可以用来避免 '"'、'|'、'%' 和 '#' 的特殊含义。
-不过，和其它通配符一样，<a href="options.html#'wildignore'">'wildignore'</a> 也适用。
+該表達式裡可以包含任何東西，因而可以用來避免 '"'、'|'、'%' 和 '#' 的特殊含義。
+不過，和其它通配符一樣，<a href="options.html#'wildignore'">'wildignore'</a> 也適用。
 
-表达式里的环境变量在执行表达式前先扩展，所以可以这样: 
+表達式裡的環境變量在執行表達式前先擴展，所以可以這樣: 
 <code class="example">        :e `=$HOME . '/.vimrc'`</code>
-此处 $HOME 如果在字符串里，会被按本义使用，所以不能这样: 
+此處 $HOME 如果在字符串裡，會被按本義使用，所以不能這樣: 
 <code class="example">        :e `='$HOME' . '/.vimrc'`</code>
 <code class="example"></code>
-如果表达式结果为字符串，名字以换行符分隔。如果结果是  <a href="eval.html#List">List</a> ，每个项目用作一个
-名字。换行符也分隔名字。
-<code class="note">注意</code> 这样的表达式只有在 Ex 命令期待文件名参数的地方才有效。
+如果表達式結果為字符串，名字以換行符分隔。如果結果是  <a href="eval.html#List">List</a> ，每個項目用作一個
+名字。換行符也分隔名字。
+<code class="note">注意</code> 這樣的表達式只有在 Ex 命令期待文件名參數的地方才有效。
 
                                                         <b class="vimtag"> <a name="++opt">++opt</a> </b> <b class="vimtag"> <a name="[++opt]">[++opt]</a> </b>
-<code class="special">[++opt]</code> 参数可以用来为某个命令强制指定 <a href="options.html#'fileformat'">'fileformat'</a>、<a href="options.html#'fileencoding'">'fileencoding'</a> 或
-<a href="options.html#'binary'">'binary'</a> 的值，并指定遇到坏字符的行为。其形式是: 
+<code class="special">[++opt]</code> 參數可以用來為某個命令強制指定 <a href="options.html#'fileformat'">'fileformat'</a>、<a href="options.html#'fileencoding'">'fileencoding'</a> 或
+<a href="options.html#'binary'">'binary'</a> 的值，並指定遇到壞字符的行為。其形式是: 
 <code class="example">        ++{optname}</code>
 或: 
 <code class="example">        ++{optname}={value}</code>
@@ -398,212 +398,212 @@ File Name"。在使用能接受多于一个文件名的命令时 (如 ":next fil
     ff     或  fileformat   超越 <a href="options.html#'fileformat'">'fileformat'</a> 之值
     enc    或  encoding     超越 <a href="options.html#'fileencoding'">'fileencoding'</a> 之值
     bin    或  binary       置位 <a href="options.html#'binary'">'binary'</a>
-    nobin  或  nobinary     复位 <a href="options.html#'binary'">'binary'</a>
-    bad                     指定坏字符的行为
-    edit                    只用于  <a href="insert.html#:read">:read</a> : 保持选项的值，就像编辑文件那样
+    nobin  或  nobinary     復位 <a href="options.html#'binary'">'binary'</a>
+    bad                     指定壞字符的行為
+    edit                    只用於  <a href="insert.html#:read">:read</a> : 保持選項的值，就像編輯文件那樣
 
-<code class="special">{value}</code> 不能包含空白。它可以是这些选项任何可取之值。例如: 
+<code class="special">{value}</code> 不能包含空白。它可以是這些選項任何可取之值。例如: 
 <code class="example">        :e ++ff=unix</code>
-再次编辑相同的文件，但指定 <a href="options.html#'fileformat'">'fileformat'</a> 为 "unix"。 
+再次編輯相同的文件，但指定 <a href="options.html#'fileformat'">'fileformat'</a> 為 "unix"。 
 <code class="example"></code>
 <code class="example">        :w ++enc=latin1 newfile</code>
-把当前缓冲区写入到 "newfile"，以 latin1 编码。
+把當前緩衝區寫入到 "newfile"，以 latin1 編碼。
 
-可以用多个 ++opt 参数，以空格分隔。它们都必须在任何  <a href="editing.html#+cmd">+cmd</a>  参数之前。
+可以用多個 ++opt 參數，以空格分隔。它們都必須在任何  <a href="editing.html#+cmd">+cmd</a>  參數之前。
 
                                                                 <b class="vimtag"> <a name="++bad">++bad</a> </b>
-参数 "++bad=" 指定遇到不能转化或者包含非法字节的字符时的行为。它可以是以下三种
+參數 "++bad=" 指定遇到不能轉化或者包含非法字節的字符時的行為。它可以是以下三種
 形式之一:
-    ++bad=X      单字节的字符，替代每个坏字符。
-    ++bad=keep   保留坏字符，不予转化。<code class="note">注意</code> 这可能使得你的文本里出现非法字节！
-    ++bad=drop   删除坏字符。
+    ++bad=X      單字節的字符，替代每個壞字符。
+    ++bad=keep   保留壞字符，不予轉化。<code class="note">注意</code> 這可能使得你的文本裡出現非法字節！
+    ++bad=drop   刪除壞字符。
 
-缺省就像用了 "++bad=?" 一样: 每个坏字符被问号代替。有些地方会使用一个倒转的问
-号 (0xBF)。
+缺省就像用了 "++bad=?" 一樣: 每個壞字符被問號代替。有些地方會使用一個倒轉的問
+號 (0xBF)。
 
-<code class="note">注意</code> 不是所有的命令都接受 ++bad 参数，但也不会报错，例如  <a href="editing.html#:write">:write</a> 。
+<code class="note">注意</code> 不是所有的命令都接受 ++bad 參數，但也不會報錯，例如  <a href="editing.html#:write">:write</a> 。
 
-<code class="note">注意</code> 在读入文件时，<a href="options.html#'fileformat'">'fileformat'</a> 和 <a href="options.html#'fileencoding'">'fileencoding'</a> 选项会被设为实际所用的格式。
-在写回时，这不会发生。因此下一次写会使用选项的旧值。<a href="options.html#'binary'">'binary'</a> 选项也同样如此。
+<code class="note">注意</code> 在讀入文件時，<a href="options.html#'fileformat'">'fileformat'</a> 和 <a href="options.html#'fileencoding'">'fileencoding'</a> 選項會被設為實際所用的格式。
+在寫回時，這不會發生。因此下一次寫會使用選項的舊值。<a href="options.html#'binary'">'binary'</a> 選項也同樣如此。
 
                                                         <b class="vimtag"> <a name="+cmd">+cmd</a> </b> <b class="vimtag"> <a name="[+cmd]">[+cmd]</a> </b>
-<code class="special">[+cmd]</code> 参数可以用来在新打开的文件定位光标或执行任何其他命令:
-        +               从最后一行开始。
-        +<code class="special">{num}</code>          从第 <code class="special">{num}</code> 行开始。
-        +/<code class="special">{pat}</code>         从匹配 <code class="special">{pat}</code> 的第一行开始。
-        +<code class="special">{command}</code>      打开新文件以后执行 <code class="special">{command}</code>。
+<code class="special">[+cmd]</code> 參數可以用來在新打開的文件定位光標或執行任何其他命令:
+        +               從最後一行開始。
+        +<code class="special">{num}</code>          從第 <code class="special">{num}</code> 行開始。
+        +/<code class="special">{pat}</code>         從匹配 <code class="special">{pat}</code> 的第一行開始。
+        +<code class="special">{command}</code>      打開新文件以後執行 <code class="special">{command}</code>。
                         <code class="special">{command}</code> 可以是任何 Ex 命令。
-要在 <code class="special">{pat}</code> 或 <code class="special">{command}</code> 里包含空白，在它之前加上反斜杠。反斜杠本身则要加倍。 
+要在 <code class="special">{pat}</code> 或 <code class="special">{command}</code> 裡包含空白，在它之前加上反斜槓。反斜槓本身則要加倍。 
 <code class="example">        :edit  +/The\ book           file</code>
 <code class="example">        :edit  +/dir\ dirname\\      file</code>
 <code class="example">        :edit  +set\ dir=c:\\\\temp  file</code>
-<code class="note">注意</code> 最后一个例子里反斜杠减半两次: 一次用于 "+cmd" 参数，一次用于 ":set" 命
+<code class="note">注意</code> 最後一個例子裡反斜槓減半兩次: 一次用於 "+cmd" 參數，一次用於 ":set" 命
 令。
 
                                                         <b class="vimtag"> <a name="file-formats">file-formats</a> </b>
-<a href="options.html#'fileformat'">'fileformat'</a> 选项指定文件里的换行符 (<code class="special">&lt;EOL&gt;</code>) 风格:
+<a href="options.html#'fileformat'">'fileformat'</a> 選項指定文件裡的換行符 (<code class="special">&lt;EOL&gt;</code>) 風格:
 <code class="section"><a href="options.html#'fileformat'">'fileformat'</a>    字符               名字                         </code>
   "dos"         <code class="special">&lt;CR&gt;</code><code class="special">&lt;NL&gt;</code> 或 <code class="special">&lt;NL&gt;</code>   DOS 格式             <b class="vimtag"> <a name="DOS-format">DOS-format</a> </b>
   "unix"        <code class="special">&lt;NL&gt;</code>               Unix 格式            <b class="vimtag"> <a name="Unix-format">Unix-format</a> </b>
   "mac"         <code class="special">&lt;CR&gt;</code>               Mac 格式             <b class="vimtag"> <a name="Mac-format">Mac-format</a> </b>
-以前还使用 <a href="options.html#'textmode'">'textmode'</a> 。现在已经废弃了。
+以前還使用 <a href="options.html#'textmode'">'textmode'</a> 。現在已經廢棄了。
 
-在读入文件时，以上列出的字符被解释为换行符。DOS 格式 (MS-DOS、OS/2 和 Win32 缺
-省值) 把 <code class="special">&lt;CR&gt;</code><code class="special">&lt;NL&gt;</code> 和 <code class="special">&lt;NL&gt;</code> 都解释为换行符。 <code class="note">注意</code> 在以 DOS 格式写入文件时，
-会在每个单独的 <code class="special">&lt;NL&gt;</code> 之后加上 <code class="special">&lt;CR&gt;</code> 字符。另见  <a href="insert.html#file-read">file-read</a> 。
+在讀入文件時，以上列出的字符被解釋為換行符。DOS 格式 (MS-DOS、OS/2 和 Win32 缺
+省值) 把 <code class="special">&lt;CR&gt;</code><code class="special">&lt;NL&gt;</code> 和 <code class="special">&lt;NL&gt;</code> 都解釋為換行符。 <code class="note">注意</code> 在以 DOS 格式寫入文件時，
+會在每個單獨的 <code class="special">&lt;NL&gt;</code> 之後加上 <code class="special">&lt;CR&gt;</code> 字符。另見  <a href="insert.html#file-read">file-read</a> 。
 
-当写入文件时，换行符用以上列出的字符写入。DOS 格式使用 <code class="special">&lt;CR&gt;</code><code class="special">&lt;NL&gt;</code>。另见
+當寫入文件時，換行符用以上列出的字符寫入。DOS 格式使用 <code class="special">&lt;CR&gt;</code><code class="special">&lt;NL&gt;</code>。另見
  <a href="editing.html#DOS-format-write">DOS-format-write</a> 。
 
-你可以从 DOS 格式读入文件再以 Unix 格式写回。这样所有的 <code class="special">&lt;CR&gt;</code><code class="special">&lt;NL&gt;</code> 对会被换成
-<code class="special">&lt;NL&gt;</code> (假设 <a href="options.html#'fileformats'">'fileformats'</a> 包括 "dos"): 
+你可以從 DOS 格式讀入文件再以 Unix 格式寫回。這樣所有的 <code class="special">&lt;CR&gt;</code><code class="special">&lt;NL&gt;</code> 對會被換成
+<code class="special">&lt;NL&gt;</code> (假設 <a href="options.html#'fileformats'">'fileformats'</a> 包括 "dos"): 
 <code class="example">        :e file</code>
 <code class="example">        :set fileformat=unix</code>
 <code class="example">        :w</code>
-反之，如果你从 Unix 格式读入文件再以 DOS 格式写回。所有的 <code class="special">&lt;NL&gt;</code> 字符会被换成
-<code class="special">&lt;CR&gt;</code><code class="special">&lt;NL&gt;</code> (假设 <a href="options.html#'fileformats'">'fileformats'</a> 包括 "unix"): 
+反之，如果你從 Unix 格式讀入文件再以 DOS 格式寫回。所有的 <code class="special">&lt;NL&gt;</code> 字符會被換成
+<code class="special">&lt;CR&gt;</code><code class="special">&lt;NL&gt;</code> (假設 <a href="options.html#'fileformats'">'fileformats'</a> 包括 "unix"): 
 <code class="example">        :e file</code>
 <code class="example">        :set fileformat=dos</code>
 <code class="example">        :w</code>
-如果你开始编辑新文件而 <a href="options.html#'fileformats'">'fileformats'</a> 选顶非空 (缺省)，Vim 会测试文件以何种格式
-分隔行。如果设为 "unix,dos"，Vim 会检查每行是带 <code class="special">&lt;NL&gt;</code> (Unix 和 Amiga) 还是带
-<code class="special">&lt;CR&gt;</code><code class="special">&lt;NL&gt;</code> 对 (MS-DOS)。只有当 <code class="emphasis">所有</code> 行都以 <code class="special">&lt;CR&gt;</code><code class="special">&lt;NL&gt;</code> 结尾，<a href="options.html#'fileformat'">'fileformat'</a> 才被设为
-"dos"，否则，它被设为 "unix"。如果 <a href="options.html#'fileformats'">'fileformats'</a> 包含 "mac" 而且文件不含 <code class="special">&lt;NL&gt;</code>
-字符，<a href="options.html#'fileformat'">'fileformat'</a> 设为 "mac"。
+如果你開始編輯新文件而 <a href="options.html#'fileformats'">'fileformats'</a> 選頂非空 (缺省)，Vim 會測試文件以何種格式
+分隔行。如果設為 "unix,dos"，Vim 會檢查每行是帶 <code class="special">&lt;NL&gt;</code> (Unix 和 Amiga) 還是帶
+<code class="special">&lt;CR&gt;</code><code class="special">&lt;NL&gt;</code> 對 (MS-DOS)。只有當 <code class="emphasis">所有</code> 行都以 <code class="special">&lt;CR&gt;</code><code class="special">&lt;NL&gt;</code> 結尾，<a href="options.html#'fileformat'">'fileformat'</a> 才被設為
+"dos"，否則，它被設為 "unix"。如果 <a href="options.html#'fileformats'">'fileformats'</a> 包含 "mac" 而且文件不含 <code class="special">&lt;NL&gt;</code>
+字符，<a href="options.html#'fileformat'">'fileformat'</a> 設為 "mac"。
 
-如果 <a href="options.html#'fileformat'">'fileformat'</a> 选项在非 MS-DOS 的系统上设为 "dos"，消息 "[dos format]" 会提
-示你发生了不同寻常的事情。 在 MS-DOS 系统上，如果 <a href="options.html#'fileformat'">'fileformat'</a> 设为 "unix"，你
-也会得到消息 "[unix format]"。除了 Macintosh 以外的所有的系统中，如果
-<a href="options.html#'fileformat'">'fileformat'</a> 设为 "mac"，你会得到消息 "[mac format]"。
+如果 <a href="options.html#'fileformat'">'fileformat'</a> 選項在非 MS-DOS 的系統上設為 "dos"，消息 "[dos format]" 會提
+示你發生了不同尋常的事情。 在 MS-DOS 系統上，如果 <a href="options.html#'fileformat'">'fileformat'</a> 設為 "unix"，你
+也會得到消息 "[unix format]"。除了 Macintosh 以外的所有的系統中，如果
+<a href="options.html#'fileformat'">'fileformat'</a> 設為 "mac"，你會得到消息 "[mac format]"。
 
-如果 <a href="options.html#'fileformats'">'fileformats'</a> 选项为空而使用了 DOS 格式，但是在读入文件时发现某些行不以
-<code class="special">&lt;CR&gt;</code><code class="special">&lt;NL&gt;</code> 结尾，"[CR missing]" 会在文件消息里列出。
-如果 <a href="options.html#'fileformats'">'fileformats'</a> 选项为空而使用了 Mac 格式，但是在读入文件时发现某些行有
-<code class="special">&lt;NL&gt;</code>，"[NL missing]" 会在文件消息里列出。
+如果 <a href="options.html#'fileformats'">'fileformats'</a> 選項為空而使用了 DOS 格式，但是在讀入文件時發現某些行不以
+<code class="special">&lt;CR&gt;</code><code class="special">&lt;NL&gt;</code> 結尾，"[CR missing]" 會在文件消息裡列出。
+如果 <a href="options.html#'fileformats'">'fileformats'</a> 選項為空而使用了 Mac 格式，但是在讀入文件時發現某些行有
+<code class="special">&lt;NL&gt;</code>，"[NL missing]" 會在文件消息裡列出。
 
-如果新文件不存在，则当 <a href="options.html#'fileformats'">'fileformats'</a> 为空时使用当前缓冲区的 <a href="options.html#'fileformat'">'fileformat'</a>，否则
-使用 <a href="options.html#'fileformats'">'fileformats'</a> 的第一个格式。
+如果新文件不存在，則當 <a href="options.html#'fileformats'">'fileformats'</a> 為空時使用當前緩衝區的 <a href="options.html#'fileformat'">'fileformat'</a>，否則
+使用 <a href="options.html#'fileformats'">'fileformats'</a> 的第一個格式。
 
-在开始编辑二进制、可执行或 Vim 脚本文件时，你应该置位 <a href="options.html#'binary'">'binary'</a> 选项。一个简单
-的方式是以 "-b" 选项启动 Vim。该选项可以避免使用 <a href="options.html#'fileformat'">'fileformat'</a>。如果不设，你会
-有单个 <code class="special">&lt;NL&gt;</code> 字符被莫名其妙地换成 <code class="special">&lt;CR&gt;</code><code class="special">&lt;NL&gt;</code> 的风险。
+在開始編輯二進制、可執行或 Vim 腳本文件時，你應該置位 <a href="options.html#'binary'">'binary'</a> 選項。一個簡單
+的方式是以 "-b" 選項啟動 Vim。該選項可以避免使用 <a href="options.html#'fileformat'">'fileformat'</a>。如果不設，你會
+有單個 <code class="special">&lt;NL&gt;</code> 字符被莫名其妙地換成 <code class="special">&lt;CR&gt;</code><code class="special">&lt;NL&gt;</code> 的風險。
 
-你可以用 <a href="options.html#'key'">'key'</a> 选项在写回时给文件加密。它提供了相当安全性，防止别人读到你的文
+你可以用 <a href="options.html#'key'">'key'</a> 選項在寫回時給文件加密。它提供了相當安全性，防止別人讀到你的文
 件。 <a href="editing.html#encryption">encryption</a> 
 
 
 </pre><hr class="doubleline" /><pre>
-<h4>3. 参数列表                                     <b class="vimtag"> <a name="argument-list">argument-list</a> </b> <b class="vimtag"> <a name="arglist">arglist</a> </b></h4>
-如果你在启动 Vim 的时候给出多个文件名，这些文件将被记住，即参数列表。你可以跳
-转到该列表里的任何一个文件。
+<h4>3. 參數列表                                     <b class="vimtag"> <a name="argument-list">argument-list</a> </b> <b class="vimtag"> <a name="arglist">arglist</a> </b></h4>
+如果你在啟動 Vim 的時候給出多個文件名，這些文件將被記住，即參數列表。你可以跳
+轉到該列表裡的任何一個文件。
 
-不要把它和  <a href="windows.html#:buffers">:buffers</a>  命令里的缓冲区列表混淆。参数列表在 Vi 里已经存在，但
-缓冲区列表是 Vim 新加入的。参数列表里的文件名也会在缓冲区列表里存在 (除非你用
- <a href="windows.html#:bdel">:bdel</a>  或  <a href="windows.html#:bwipe">:bwipe</a>  将其删除)，但不在参数列表而出现在缓冲区列表的名字很常见。
+不要把它和  <a href="windows.html#:buffers">:buffers</a>  命令裡的緩衝區列表混淆。參數列表在 Vi 裡已經存在，但
+緩衝區列表是 Vim 新加入的。參數列表裡的文件名也會在緩衝區列表裡存在 (除非你用
+ <a href="windows.html#:bdel">:bdel</a>  或  <a href="windows.html#:bwipe">:bwipe</a>  將其刪除)，但不在參數列表而出現在緩衝區列表的名字很常見。
 
-该主题在用户手册的  <a href="usr_07.html#07.2">07.2</a>  一节已有介绍。
+該主題在用戶手冊的  <a href="usr_07.html#07.2">07.2</a>  一節已有介紹。
 
-只有一个全局参数列表，所有窗口缺省都使用它。但可以创建局部于窗口的新参数列表，
-见  <a href="editing.html#:arglocal">:arglocal</a> 。
+只有一個全局參數列表，所有窗口缺省都使用它。但可以創建局部於窗口的新參數列表，
+見  <a href="editing.html#:arglocal">:arglocal</a> 。
 
-下面的命令使用参数列表，还有表达式函数  <a href="eval.html#argc()">argc()</a>  和  <a href="eval.html#argv()">argv()</a> 。他们均作用于当前
-窗口的参数列表。
+下面的命令使用參數列表，還有表達式函數  <a href="eval.html#argc()">argc()</a>  和  <a href="eval.html#argv()">argv()</a> 。他們均作用於當前
+窗口的參數列表。
 
                                                         <b class="vimtag"> <a name=":ar">:ar</a> </b> <b class="vimtag"> <a name=":args">:args</a> </b>
-:ar[gs]                 显示参数列表，当前文件以方括号表示。
+:ar[gs]                 顯示參數列表，當前文件以方括號表示。
 
 :ar[gs] <code class="special">[++opt]</code> <code class="special">[+cmd]</code> <code class="special">{arglist}</code>                        <b class="vimtag"> <a name=":args_f">:args_f</a> </b>
-                        定义 <code class="special">{arglist}</code> 为新的参数列表并编辑其中的第一个。如果
-                        已经作了修改而 vim 不能放弃  <a href="editing.html#abandon">abandon</a>  当前的缓冲区，该
-                        命令失败。
-                        另见  <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。
-                        <code class="notvi">{Vi: 无 ++opt}</code>
+                        定義 <code class="special">{arglist}</code> 為新的參數列表並編輯其中的第一個。如果
+                        已經作了修改而 vim 不能放棄  <a href="editing.html#abandon">abandon</a>  當前的緩衝區，該
+                        命令失敗。
+                        另見  <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。
+                        <code class="notvi">{Vi: 無 ++opt}</code>
 
 :ar[gs]! <code class="special">[++opt]</code> <code class="special">[+cmd]</code> <code class="special">{arglist}</code>                       <b class="vimtag"> <a name=":args_f!">:args_f!</a> </b>
-                        定义 <code class="special">{arglist}</code> 为新的参数列表并编辑其中的第一个。忽略
-                        任何对当前缓冲区的改动。
-                        另见  <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。
-                        <code class="notvi">{Vi: 无 ++opt}</code>
+                        定義 <code class="special">{arglist}</code> 為新的參數列表並編輯其中的第一個。忽略
+                        任何對當前緩衝區的改動。
+                        另見  <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。
+                        <code class="notvi">{Vi: 無 ++opt}</code>
 
 :<code class="special">[count]</code>arge[dit][!] <code class="special">[++opt]</code> <code class="special">[+cmd]</code> <code class="special">{name}</code>              <b class="vimtag"> <a name=":arge">:arge</a> </b> <b class="vimtag"> <a name=":argedit">:argedit</a> </b>
-                        将 <code class="special">{name}</code> 加到参数列表里，并编辑之。
-                        如果 <code class="special">{name}</code> 已经在参数列表里存在，只编辑之。
-                        这和用  <a href="editing.html#:argadd">:argadd</a>  然后  <a href="editing.html#:edit">:edit</a>  类似。
-                        <code class="note">注意</code> 这里只允许单个文件名，文件名里的空格是允许的，就
-                        像  <a href="editing.html#:edit">:edit</a>  一样。
-                        <code class="special">[count]</code> 的用法和  <a href="editing.html#:argadd">:argadd</a>  一样。
-                        如果当前文件不能被放弃  <a href="editing.html#abandon">abandon</a> ，[!] 是必需的。
-                        另见  <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。
-                        <code class="notvi">{Vi: 无 ++opt}</code>
+                        將 <code class="special">{name}</code> 加到參數列表裡，並編輯之。
+                        如果 <code class="special">{name}</code> 已經在參數列表裡存在，只編輯之。
+                        這和用  <a href="editing.html#:argadd">:argadd</a>  然後  <a href="editing.html#:edit">:edit</a>  類似。
+                        <code class="note">注意</code> 這裡只允許單個文件名，文件名裡的空格是允許的，就
+                        像  <a href="editing.html#:edit">:edit</a>  一樣。
+                        <code class="special">[count]</code> 的用法和  <a href="editing.html#:argadd">:argadd</a>  一樣。
+                        如果當前文件不能被放棄  <a href="editing.html#abandon">abandon</a> ，[!] 是必需的。
+                        另見  <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。
+                        <code class="notvi">{Vi: 無 ++opt}</code>
 
 :<code class="special">[count]</code>arga[dd] <code class="special">{name}</code> ..                      <b class="vimtag"> <a name=":arga">:arga</a> </b> <b class="vimtag"> <a name=":argadd">:argadd</a> </b> <b class="vimtag"> <a name="E479">E479</a> </b>
 :<code class="special">[count]</code>arga[dd]
-                        将若干文件名 <code class="special">{name}</code> 等加到参数列表里。如果 <code class="special">{name}</code> 省
-                        略，把当前缓冲区名字加入参数列表。
-                        如果忽略 <code class="special">[count]</code>， <code class="special">{name}</code> 等加入到参数列表的当前项之
-                        后。不然，加到第 <code class="special">[count]</code> 个文件之后。如果参数列表是
-                        "a b c"，而 "b" 是当前参数，那么以下命令会导致:
-<code class="section">                                命令            新的参数列表 </code>
+                        將若干文件名 <code class="special">{name}</code> 等加到參數列表裡。如果 <code class="special">{name}</code> 省
+                        略，把當前緩衝區名字加入參數列表。
+                        如果忽略 <code class="special">[count]</code>， <code class="special">{name}</code> 等加入到參數列表的當前項之
+                        後。不然，加到第 <code class="special">[count]</code> 個文件之後。如果參數列表是
+                        "a b c"，而 "b" 是當前參數，那麼以下命令會導致:
+<code class="section">                                命令            新的參數列表 </code>
                                 :argadd x       a b x c
                                 :0argadd x      x a b c
                                 :1argadd x      a x b c
                                 :$argadd x      a b c x
-                        在末项之后:
+                        在末項之後:
                                 :+2argadd y     a b c x y
-                        这里不会检查重复项，因此一个文件可能加入参数列表两次。
-                        不改变当前编辑的文件。
-                        <code class="notvi">{Vi 无此功能}</code> <code class="notvi">{仅当编译时加入  <a href="various.html#+listcmds">+listcmds</a>  特性才有效}</code>
-                        <code class="note">注意</code>: 你也可以使用这个方法: 
+                        這裡不會檢查重複項，因此一個文件可能加入參數列表兩次。
+                        不改變當前編輯的文件。
+                        <code class="notvi">{Vi 無此功能}</code> <code class="notvi">{僅當編譯時加入  <a href="various.html#+listcmds">+listcmds</a>  特性才有效}</code>
+                        <code class="note">注意</code>: 你也可以使用這個方法: 
 <code class="example">                                :args ## x</code>
-                        这会加入 "x" 项并对新的列表排序。
+                        這會加入 "x" 項並對新的列表排序。
 
 :argd[elete] <code class="special">{pattern}</code> ..                       <b class="vimtag"> <a name=":argd">:argd</a> </b> <b class="vimtag"> <a name=":argdelete">:argdelete</a> </b> <b class="vimtag"> <a name="E480">E480</a> </b>
-                        从参数列表里删除匹配 <code class="special">{pattern}</code> (可有多个) 的文件。
-                        <code class="special">{pattern}</code> 为文件模式，见  <a href="autocmd.html#file-pattern">file-pattern</a> 。"%" 可以用来
-                        删除当前入口项。
-                        即使该命令从参数列表里删除了当前编辑文件，该文件保持被
-                        编辑。
+                        從參數列表裡刪除匹配 <code class="special">{pattern}</code> (可有多個) 的文件。
+                        <code class="special">{pattern}</code> 為文件模式，見  <a href="autocmd.html#file-pattern">file-pattern</a> 。"%" 可以用來
+                        刪除當前入口項。
+                        即使該命令從參數列表裡刪除了當前編輯文件，該文件保持被
+                        編輯。
                         例如: 
 <code class="example">                                :argdel *.obj</code>
-                        <code class="notvi">{Vi 无此功能}</code> <code class="notvi">{仅当编译时加入  <a href="various.html#+listcmds">+listcmds</a>  特性才有效}</code>
+                        <code class="notvi">{Vi 無此功能}</code> <code class="notvi">{僅當編譯時加入  <a href="various.html#+listcmds">+listcmds</a>  特性才有效}</code>
 
-:<code class="special">[range]</code>argd[elete]     从参数列表里删除 <code class="special">[range]</code> 范围里的文件。
+:<code class="special">[range]</code>argd[elete]     從參數列表裡刪除 <code class="special">[range]</code> 範圍裡的文件。
                         例如: 
 <code class="example">                                :10,$argdel</code>
-                        删除第 10 个和其后的参数，保留 1-9。 
+                        刪除第 10 個和其後的參數，保留 1-9。 
 <code class="example">                                :$argd</code>
-                        只删除最后一个。 
+                        只刪除最後一個。 
 <code class="example">                                :argd</code>
 <code class="example">                                :.argd</code>
-                        删除当前参数。 
+                        刪除當前參數。 
 <code class="example">                                :%argd</code>
-                        删除参数列表里所有文件。
-                        如果该范围的最后一个数字过大，删除直到最后一个参数为
+                        刪除參數列表裡所有文件。
+                        如果該範圍的最後一個數字過大，刪除直到最後一個參數為
                         止。
-                        <code class="notvi">{Vi 无此功能}</code> <code class="notvi">{仅当编译时加入  <a href="various.html#+listcmds">+listcmds</a>  特性才有效}</code>
+                        <code class="notvi">{Vi 無此功能}</code> <code class="notvi">{僅當編譯時加入  <a href="various.html#+listcmds">+listcmds</a>  特性才有效}</code>
 
                                                         <b class="vimtag"> <a name=":argu">:argu</a> </b> <b class="vimtag"> <a name=":argument">:argument</a> </b>
 :<code class="special">[count]</code>argu[ment] <code class="special">[count]</code> <code class="special">[++opt]</code> <code class="special">[+cmd]</code>
-                        编辑参数列表里的第 <code class="special">[count]</code> 个文件。在忽略 <code class="special">[count]</code> 的时
-                        候，编辑当前入口项。如果已经作了修改而 vim 不能放弃
-                         <a href="editing.html#abandon">abandon</a>  当前的缓冲区，该命令失败。
-                        另见  <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。
-                        <code class="notvi">{Vi 无此功能}</code> <code class="notvi">{仅当编译时加入  <a href="various.html#+listcmds">+listcmds</a>  特性才有效}</code>
+                        編輯參數列表裡的第 <code class="special">[count]</code> 個文件。在忽略 <code class="special">[count]</code> 的時
+                        候，編輯當前入口項。如果已經作了修改而 vim 不能放棄
+                         <a href="editing.html#abandon">abandon</a>  當前的緩衝區，該命令失敗。
+                        另見  <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。
+                        <code class="notvi">{Vi 無此功能}</code> <code class="notvi">{僅當編譯時加入  <a href="various.html#+listcmds">+listcmds</a>  特性才有效}</code>
 
 :<code class="special">[count]</code>argu[ment]! <code class="special">[count]</code> <code class="special">[++opt]</code> <code class="special">[+cmd]</code>
-                        编辑参数列表里的第 <code class="special">[count]</code> 个文件。忽略任何对当前缓冲
-                        区的已有修改。在忽略 <code class="special">[count]</code> 的时候，编辑当前入口项。
-                        另见  <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。
-                        <code class="notvi">{Vi 无此功能}</code> <code class="notvi">{仅当编译时加入  <a href="various.html#+listcmds">+listcmds</a>  特性才有效}</code>
+                        編輯參數列表裡的第 <code class="special">[count]</code> 個文件。忽略任何對當前緩衝
+                        區的已有修改。在忽略 <code class="special">[count]</code> 的時候，編輯當前入口項。
+                        另見  <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。
+                        <code class="notvi">{Vi 無此功能}</code> <code class="notvi">{僅當編譯時加入  <a href="various.html#+listcmds">+listcmds</a>  特性才有效}</code>
 
 :<code class="special">[count]</code>n[ext] <code class="special">[++opt]</code> <code class="special">[+cmd]</code>                   <b class="vimtag"> <a name=":n">:n</a> </b> <b class="vimtag"> <a name=":ne">:ne</a> </b> <b class="vimtag"> <a name=":next">:next</a> </b> <b class="vimtag"> <a name="E165">E165</a> </b> <b class="vimtag"> <a name="E163">E163</a> </b>
-                        编辑向后第 <code class="special">[count]</code> 个文件。如果已经作了修改而 vim 不能
-                        放弃  <a href="editing.html#abandon">abandon</a>  当前的缓冲区，该命令失败。另见  <a href="editing.html#++opt">++opt</a> 
-                        和  <a href="editing.html#+cmd">+cmd</a> 。<code class="notvi">{Vi 没有 count 和 ++opt}</code>
+                        編輯向後第 <code class="special">[count]</code> 個文件。如果已經作了修改而 vim 不能
+                        放棄  <a href="editing.html#abandon">abandon</a>  當前的緩衝區，該命令失敗。另見  <a href="editing.html#++opt">++opt</a> 
+                        和  <a href="editing.html#+cmd">+cmd</a> 。<code class="notvi">{Vi 沒有 count 和 ++opt}</code>
 
 :<code class="special">[count]</code>n[ext]! <code class="special">[++opt]</code> <code class="special">[+cmd]</code>
-                        编辑向后第 <code class="special">[count]</code> 个文件。忽略任何对当前缓冲区的已有
-                        修改。另见  <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。<code class="notvi">{Vi 没有 count 和 ++opt}</code>
+                        編輯向後第 <code class="special">[count]</code> 個文件。忽略任何對當前緩衝區的已有
+                        修改。另見  <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。<code class="notvi">{Vi 沒有 count 和 ++opt}</code>
 
 :n[ext] <code class="special">[++opt]</code> <code class="special">[+cmd]</code> <code class="special">{arglist}</code>                        <b class="vimtag"> <a name=":next_f">:next_f</a> </b>
                         和  <a href="editing.html#:args_f">:args_f</a>  相同。
@@ -612,317 +612,317 @@ File Name"。在使用能接受多于一个文件名的命令时 (如 ":next fil
                         和  <a href="editing.html#:args_f!">:args_f!</a>  相同。
 
 :<code class="special">[count]</code>N[ext] <code class="special">[count]</code> <code class="special">[++opt]</code> <code class="special">[+cmd]</code>                   <b class="vimtag"> <a name=":Next">:Next</a> </b> <b class="vimtag"> <a name=":N">:N</a> </b> <b class="vimtag"> <a name="E164">E164</a> </b>
-                        编辑向前第 <code class="special">[count]</code> 个文件。如果已经作了修改而 vim 不能
-                        放弃  <a href="editing.html#abandon">abandon</a>  当前的缓冲区，该命令失败。另见  <a href="editing.html#++opt">++opt</a> 
-                        和  <a href="editing.html#+cmd">+cmd</a> 。<code class="notvi">{Vi 没有 count 和 ++opt}</code>
+                        編輯向前第 <code class="special">[count]</code> 個文件。如果已經作了修改而 vim 不能
+                        放棄  <a href="editing.html#abandon">abandon</a>  當前的緩衝區，該命令失敗。另見  <a href="editing.html#++opt">++opt</a> 
+                        和  <a href="editing.html#+cmd">+cmd</a> 。<code class="notvi">{Vi 沒有 count 和 ++opt}</code>
 
 :<code class="special">[count]</code>N[ext]! <code class="special">[count]</code> <code class="special">[++opt]</code> <code class="special">[+cmd]</code>
-                        编辑向前第 <code class="special">[count]</code> 个文件。忽略任何对当前缓冲区的已有
-                        修改。另见  <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。<code class="notvi">{Vi 没有 count 和 ++opt}</code>
+                        編輯向前第 <code class="special">[count]</code> 個文件。忽略任何對當前緩衝區的已有
+                        修改。另見  <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。<code class="notvi">{Vi 沒有 count 和 ++opt}</code>
 
 :<code class="special">[count]</code>prev[ious] <code class="special">[count]</code> <code class="special">[++opt]</code> <code class="special">[+cmd]</code>               <b class="vimtag"> <a name=":prev">:prev</a> </b> <b class="vimtag"> <a name=":previous">:previous</a> </b>
-                        和 :Next 相同。另见  <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。
+                        和 :Next 相同。另見  <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。
                         <code class="notvi">{Vi: 只有在某些版本存在}</code>
 
                                                         <b class="vimtag"> <a name=":rew">:rew</a> </b> <b class="vimtag"> <a name=":rewind">:rewind</a> </b>
 :rew[ind] <code class="special">[++opt]</code> <code class="special">[+cmd]</code>
-                        开始编辑参数列表的第一个文件。如果已经作了修改而 vim
-                        不能放弃  <a href="editing.html#abandon">abandon</a>  当前的缓冲区，该命令失败。另见
-                         <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。<code class="notvi">{Vi 没有 ++opt}</code>
+                        開始編輯參數列表的第一個文件。如果已經作了修改而 vim
+                        不能放棄  <a href="editing.html#abandon">abandon</a>  當前的緩衝區，該命令失敗。另見
+                         <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。<code class="notvi">{Vi 沒有 ++opt}</code>
 
 :rew[ind]! <code class="special">[++opt]</code> <code class="special">[+cmd]</code>
-                        开始编辑参数列表的第一个文件。忽略任何对当前缓冲区的已
-                        有修改。另见  <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。<code class="notvi">{Vi 没有 ++opt}</code>
+                        開始編輯參數列表的第一個文件。忽略任何對當前緩衝區的已
+                        有修改。另見  <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。<code class="notvi">{Vi 沒有 ++opt}</code>
 
                                                         <b class="vimtag"> <a name=":fir">:fir</a> </b> <b class="vimtag"> <a name=":first">:first</a> </b>
 :fir[st][!] <code class="special">[++opt]</code> <code class="special">[+cmd]</code>
-                        ":rewind" 的别名。<code class="notvi">{Vi 无此功能}</code>
+                        ":rewind" 的別名。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":la">:la</a> </b> <b class="vimtag"> <a name=":last">:last</a> </b>
 :la[st] <code class="special">[++opt]</code> <code class="special">[+cmd]</code>
-                        开始编辑参数列表的最后一个文件。如果已经作了修改而 vim
-                        不能放弃  <a href="editing.html#abandon">abandon</a>  当前的缓冲区，该命令失败。另见
-                         <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。<code class="notvi">{Vi 无此功能}</code>
+                        開始編輯參數列表的最後一個文件。如果已經作了修改而 vim
+                        不能放棄  <a href="editing.html#abandon">abandon</a>  當前的緩衝區，該命令失敗。另見
+                         <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。<code class="notvi">{Vi 無此功能}</code>
 
 :la[st]! <code class="special">[++opt]</code> <code class="special">[+cmd]</code>
-                        开始编辑参数列表的最后一个文件。忽略任何对当前缓冲区的
-                        已有修改。另见  <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。<code class="notvi">{Vi 无此功能}</code>
+                        開始編輯參數列表的最後一個文件。忽略任何對當前緩衝區的
+                        已有修改。另見  <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":wn">:wn</a> </b> <b class="vimtag"> <a name=":wnext">:wnext</a> </b>
 :<code class="special">[count]</code>wn[ext] <code class="special">[++opt]</code>
-                        写回当前文件并开始编辑向后第 <code class="special">[count]</code> 个文件。另见
-                         <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。<code class="notvi">{Vi 无此功能}</code>
+                        寫回當前文件並開始編輯向後第 <code class="special">[count]</code> 個文件。另見
+                         <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。<code class="notvi">{Vi 無此功能}</code>
 
 :<code class="special">[count]</code>wn[ext] <code class="special">[++opt]</code> <code class="special">{file}</code>
-                        写入当前文件到 <code class="special">{file}</code> 并开始编辑向后第 <code class="special">[count]</code> 个文
-                        件，除非 <code class="special">{file}</code> 已经存在并且 <a href="options.html#'writeany'">'writeany'</a> 选项被关闭。另
-                        见  <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。<code class="notvi">{Vi 无此功能}</code>
+                        寫入當前文件到 <code class="special">{file}</code> 並開始編輯向後第 <code class="special">[count]</code> 個文
+                        件，除非 <code class="special">{file}</code> 已經存在並且 <a href="options.html#'writeany'">'writeany'</a> 選項被關閉。另
+                        見  <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。<code class="notvi">{Vi 無此功能}</code>
 
 :<code class="special">[count]</code>wn[ext]! <code class="special">[++opt]</code> <code class="special">{file}</code>
-                        写入当前文件到 <code class="special">{file}</code> 并开始编辑向后第 <code class="special">[count]</code> 个文
-                        件。另见  <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。<code class="notvi">{Vi 无此功能}</code>
+                        寫入當前文件到 <code class="special">{file}</code> 並開始編輯向後第 <code class="special">[count]</code> 個文
+                        件。另見  <a href="editing.html#++opt">++opt</a>  和  <a href="editing.html#+cmd">+cmd</a> 。<code class="notvi">{Vi 無此功能}</code>
 
 :<code class="special">[count]</code>wN[ext][!] <code class="special">[++opt]</code> <code class="special">[file]</code>               <b class="vimtag"> <a name=":wN">:wN</a> </b> <b class="vimtag"> <a name=":wNext">:wNext</a> </b>
 :<code class="special">[count]</code>wp[revious][!] <code class="special">[++opt]</code> <code class="special">[file]</code>           <b class="vimtag"> <a name=":wp">:wp</a> </b> <b class="vimtag"> <a name=":wprevious">:wprevious</a> </b>
-                        和 :wnext 相同，向前编辑而不是向后。<code class="notvi">{Vi 无此功能}</code>
+                        和 :wnext 相同，向前編輯而不是向後。<code class="notvi">{Vi 無此功能}</code>
 
-以上命令的 <code class="special">[count]</code> 缺省为一。对有些命令可以使用两个计数。后者 (右面那个) 被使
+以上命令的 <code class="special">[count]</code> 缺省為一。對有些命令可以使用兩個計數。後者 (右面那個) 被使
 用。
 
-如果没有给出 <code class="special">[+cmd]</code> 参数，光标定位于文件最后一个已知的位置。如果置位了
-<a href="options.html#'startofline'">'startofline'</a>，光标会定位于该行第一个非空白字符，不然，则使用最后一个已知列。
-如果没有最后已知的光标位置，光标会定位在第一行 (Ex 模式下则是最后一行)。
+如果沒有給出 <code class="special">[+cmd]</code> 參數，光標定位於文件最後一個已知的位置。如果置位了
+<a href="options.html#'startofline'">'startofline'</a>，光標會定位於該行第一個非空白字符，不然，則使用最後一個已知列。
+如果沒有最後已知的光標位置，光標會定位在第一行 (Ex 模式下則是最後一行)。
 
                                                         <b class="vimtag"> <a name="{arglist}">{arglist}</a> </b>
-参数列表里的通配符会扩展，文件名会排序。这样你可以用命令 "vim *.c" 编辑所有的
-C 文件。在 Vim 里面，":n *.c" 命令会做同样的事。
+參數列表裡的通配符會擴展，文件名會排序。這樣你可以用命令 "vim *.c" 編輯所有的
+C 文件。在 Vim 裡面，":n *.c" 命令會做同樣的事。
 
-空白用来分隔文件名。在空格或制表前加上反斜杠可以在文件名里使用它们。例如，要编
-辑单个文件 "foo bar": 
+空白用來分隔文件名。在空格或製表前加上反斜槓可以在文件名裡使用它們。例如，要編
+輯單個文件 "foo bar": 
 <code class="example">        :next foo\ bar</code>
 <code class="example"></code>
-在 Unix 和一些其它系统上你还可以使用反引号，例如: 
+在 Unix 和一些其它系統上你還可以使用反引號，例如: 
 <code class="example">        :next `find . -name \\*.c -print`</code>
-星号之前的反斜杠是必要的，它用来防止 "*.c" 在执行 find 程序之前被外壳扩展。
+星號之前的反斜槓是必要的，它用來防止 "*.c" 在執行 find 程序之前被外殼擴展。
 
                                                         <b class="vimtag"> <a name="arglist-position">arglist-position</a> </b>
-如果有参数列表，你可以在窗口的标题上看到正在编辑哪个文件 (如果有一个窗口，而且
-<a href="options.html#'title'">'title'</a> 被置位)，或者通过 "<code class="keystroke">CTRL-G</code>" 命令，在文件消息里看到。你会看到类似于
+如果有參數列表，你可以在窗口的標題上看到正在編輯哪個文件 (如果有一個窗口，而且
+<a href="options.html#'title'">'title'</a> 被置位)，或者通過 "<code class="keystroke">CTRL-G</code>" 命令，在文件消息裡看到。你會看到類似於
         (file 4 of 11)
-的东西。如果 <a href="options.html#'shortmess'">'shortmess'</a> 包含 'f'，它会成为
+的東西。如果 <a href="options.html#'shortmess'">'shortmess'</a> 包含 'f'，它會成為
         (4 of 11)
-如果你还没有编辑参数列表当前位置的文件，它会是
+如果你還沒有編輯參數列表當前位置的文件，它會是
         (file (4) of 11)
-这表示你在参数列表的第四个位置，不过还没有开始编辑之。这发生于你刚做 ":e file"
-的时候。
+這表示你在參數列表的第四個位置，不過還沒有開始編輯之。這發生於你剛做 ":e file"
+的時候。
 
 
-局 部 参 数 列 表
+局 部 參 數 列 表
 
-<code class="notvi">{Vi 无此功能}</code>
-<code class="notvi">{仅在编译时加入  <a href="various.html#+windows">+windows</a>  和  <a href="various.html#+listcmds">+listcmds</a>  特性时才有效}</code>
+<code class="notvi">{Vi 無此功能}</code>
+<code class="notvi">{僅在編譯時加入  <a href="various.html#+windows">+windows</a>  和  <a href="various.html#+listcmds">+listcmds</a>  特性時才有效}</code>
 
                                                         <b class="vimtag"> <a name=":arglocal">:arglocal</a> </b>
-:argl[ocal]             复制一个全局参数列表的局部备份。并不开始编辑另外一个文
+:argl[ocal]             複製一個全局參數列表的局部備份。並不開始編輯另外一個文
                         件。
 
 :argl[ocal][!] <code class="special">[++opt]</code> <code class="special">[+cmd]</code> <code class="special">{arglist}</code>
-                        定义一个新的局部于当前窗口的参数列表。除此以外，和
+                        定義一個新的局部於當前窗口的參數列表。除此以外，和
                          <a href="editing.html#:args_f">:args_f</a>  列表。
 
                                                         <b class="vimtag"> <a name=":argglobal">:argglobal</a> </b>
-:argg[lobal]            当前窗口使用全局参数列表。并不开始编辑另外一个文件。
+:argg[lobal]            當前窗口使用全局參數列表。並不開始編輯另外一個文件。
 
 :argg[lobal][!] <code class="special">[++opt]</code> <code class="special">[+cmd]</code> <code class="special">{arglist}</code>
-                        当前窗口使用全局参数列表。和  <a href="editing.html#:args_f">:args_f</a>  一样，定义一个
-                        新的全局参数列表。所有使用全局参数列表的窗口都会看到这
-                        个新的列表。
+                        當前窗口使用全局參數列表。和  <a href="editing.html#:args_f">:args_f</a>  一樣，定義一個
+                        新的全局參數列表。所有使用全局參數列表的窗口都會看到這
+                        個新的列表。
 
-可以有多个参数列表。他们可以在窗口之间共享。如果他们共享，在其中一个窗口修改参
-数列表就会改变另一个窗口的列表。
+可以有多個參數列表。他們可以在窗口之間共享。如果他們共享，在其中一個窗口修改參
+數列表就會改變另一個窗口的列表。
 
-如果一个窗口被分割，新的窗口从原来的窗口继承参数列表。两个窗口因而共享该列表，
-直到其中一个窗口使用  <a href="editing.html#:arglocal">:arglocal</a>  或  <a href="editing.html#:argglobal">:argglobal</a>  来使用另外一个参数列表。
+如果一個窗口被分割，新的窗口從原來的窗口繼承參數列表。兩個窗口因而共享該列表，
+直到其中一個窗口使用  <a href="editing.html#:arglocal">:arglocal</a>  或  <a href="editing.html#:argglobal">:argglobal</a>  來使用另外一個參數列表。
 
 
-使 用 参 数 列 表
+使 用 參 數 列 表
 
                                                 <b class="vimtag"> <a name=":argdo">:argdo</a> </b>
-:<code class="special">[range]</code>argdo[!] <code class="special">{cmd}</code>  对参数列表里的每个文件执行 <code class="special">{cmd}</code>。如果给出 <code class="special">[range]</code>，只
-                        对给出范围内的参数执行。
+:<code class="special">[range]</code>argdo[!] <code class="special">{cmd}</code>  對參數列表裡的每個文件執行 <code class="special">{cmd}</code>。如果給出 <code class="special">[range]</code>，只
+                        對給出範圍內的參數執行。
                         它的工作方式大致如下: 
 <code class="example">                                :rewind</code>
 <code class="example">                                :{cmd}</code>
 <code class="example">                                :next</code>
 <code class="example">                                :{cmd}</code>
 <code class="example">                                等等</code>
-                        如果当前文件不能被放弃  <a href="editing.html#abandon">abandon</a>  而且不存在 [!]，该命
-                        令失败。
-                        如果一个文件检测到错误，参数列表里的其余文件将不再被操
+                        如果當前文件不能被放棄  <a href="editing.html#abandon">abandon</a>  而且不存在 [!]，該命
+                        令失敗。
+                        如果一個文件檢測到錯誤，參數列表裡的其餘文件將不再被操
                         作。
-                        参数列表里的最后一个文件 (或发生错误的那个) 成为当前文
+                        參數列表裡的最後一個文件 (或發生錯誤的那個) 成為當前文
                         件。
-                        <code class="special">{cmd}</code> 可以包含 '|'，从而连接多个命令。
-                        <code class="special">{cmd}</code> 不可修改参数列表。
-                        <code class="note">注意</code>: 当命令执行时，Syntax 自动命令事件被加到
-                        <a href="options.html#'eventignore'">'eventignore'</a> 里，从而被屏蔽。这样显著提高了编辑每个文
+                        <code class="special">{cmd}</code> 可以包含 '|'，從而連接多個命令。
+                        <code class="special">{cmd}</code> 不可修改參數列表。
+                        <code class="note">注意</code>: 當命令執行時，Syntax 自動命令事件被加到
+                        <a href="options.html#'eventignore'">'eventignore'</a> 裡，從而被屏蔽。這樣顯著提高了編輯每個文
                         件的速度。
-                        <code class="notvi">{Vi 无此功能}</code> <code class="notvi">{仅当编译时加入  <a href="various.html#+listcmds">+listcmds</a>  特性才有效}</code>
-                        另见  <a href="windows.html#:windo">:windo</a> 、 <a href="tabpage.html#:tabdo">:tabdo</a> 、 <a href="windows.html#:bufdo">:bufdo</a> 、 <a href="quickfix.html#:cdo">:cdo</a> 、 <a href="quickfix.html#:ldo">:ldo</a> 、
+                        <code class="notvi">{Vi 無此功能}</code> <code class="notvi">{僅當編譯時加入  <a href="various.html#+listcmds">+listcmds</a>  特性才有效}</code>
+                        另見  <a href="windows.html#:windo">:windo</a> 、 <a href="tabpage.html#:tabdo">:tabdo</a> 、 <a href="windows.html#:bufdo">:bufdo</a> 、 <a href="quickfix.html#:cdo">:cdo</a> 、 <a href="quickfix.html#:ldo">:ldo</a> 、
                          <a href="quickfix.html#:cfdo">:cfdo</a>  和  <a href="quickfix.html#:lfdo">:lfdo</a> 
 
 示例: 
 <code class="example">        :args *.c</code>
 <code class="example">        :argdo set ff=unix | update</code>
-它把 <a href="options.html#'fileformat'">'fileformat'</a> 选项设为 "unix"，并写回现在已改变的所有的 *.c 文件。
+它把 <a href="options.html#'fileformat'">'fileformat'</a> 選項設為 "unix"，並寫回現在已改變的所有的 *.c 文件。
 
 示例: 
 <code class="example">        :args *.[ch]</code>
 <code class="example">        :argdo %s/\&lt;my_foo\&gt;/My_Foo/ge | update</code>
-它把所有 *.c 和 *.h 文件里的单词 "my_foo" 换成 "My_Foo"。"e" 标志位使得
-":substitute" 命令对没有使用 "my_foo" 的文件不提示错误。":update" 只有在发生改
-变的时候才写入文件。
+它把所有 *.c 和 *.h 文件裡的單詞 "my_foo" 換成 "My_Foo"。"e" 標誌位使得
+":substitute" 命令對沒有使用 "my_foo" 的文件不提示錯誤。":update" 只有在發生改
+變的時候才寫入文件。
 
 </pre><hr class="doubleline" /><pre>
-<h4>4. 写入                                         <b class="vimtag"> <a name="writing">writing</a> </b> <b class="vimtag"> <a name="save-file">save-file</a> </b></h4>
-<code class="note">注意</code>: 如果 <a href="options.html#'write'">'write'</a> 选项关闭，你不能写入任何文件。
+<h4>4. 寫入                                         <b class="vimtag"> <a name="writing">writing</a> </b> <b class="vimtag"> <a name="save-file">save-file</a> </b></h4>
+<code class="note">注意</code>: 如果 <a href="options.html#'write'">'write'</a> 選項關閉，你不能寫入任何文件。
 
                                                         <b class="vimtag"> <a name=":w">:w</a> </b> <b class="vimtag"> <a name=":write">:write</a> </b>
                                                 <b class="vimtag"> <a name="E502">E502</a> </b> <b class="vimtag"> <a name="E503">E503</a> </b> <b class="vimtag"> <a name="E504">E504</a> </b> <b class="vimtag"> <a name="E505">E505</a> </b>
                                                 <b class="vimtag"> <a name="E512">E512</a> </b> <b class="vimtag"> <a name="E514">E514</a> </b> <b class="vimtag"> <a name="E667">E667</a> </b> <b class="vimtag"> <a name="E796">E796</a> </b>
-:w[rite] <code class="special">[++opt]</code>        将整个缓冲区写入当前文件。这是保存文件更动最普通的方
-                        式。如果置位了 <a href="options.html#'readonly'">'readonly'</a> 选项或者其他原因不能写入文
-                        件，它会失败。
-                        关于 ++opt 可见  <a href="editing.html#++opt">++opt</a> ，但只有 ++bin、++nobin、++ff
+:w[rite] <code class="special">[++opt]</code>        將整個緩衝區寫入當前文件。這是保存文件更動最普通的方
+                        式。如果置位了 <a href="options.html#'readonly'">'readonly'</a> 選項或者其他原因不能寫入文
+                        件，它會失敗。
+                        關於 ++opt 可見  <a href="editing.html#++opt">++opt</a> ，但只有 ++bin、++nobin、++ff
                         和 ++enc 有效。
 
-:w[rite]! <code class="special">[++opt]</code>       和 ":write" 类似，但即使 <a href="options.html#'readonly'">'readonly'</a> 已置位或者有其他原
-                        因写入被拒绝，还是强制写入。
-                        <code class="note">注意</code>: 这可能会改变文件的权限和所有者，或者破坏 (符号)
-                        连接。在 <a href="options.html#'cpoptions'">'cpoptions'</a> 里加上 'W' 标志位可以避免这一点。
+:w[rite]! <code class="special">[++opt]</code>       和 ":write" 類似，但即使 <a href="options.html#'readonly'">'readonly'</a> 已置位或者有其他原
+                        因寫入被拒絕，還是強制寫入。
+                        <code class="note">注意</code>: 這可能會改變文件的權限和所有者，或者破壞 (符號)
+                        連接。在 <a href="options.html#'cpoptions'">'cpoptions'</a> 裡加上 'W' 標誌位可以避免這一點。
 
 :<code class="special">[range]</code>w[rite][!] <code class="special">[++opt]</code>
-                        将指定行写入当前文件。这是很特别的，因为文件里将不会包
-                        含缓冲区的所有行。
+                        將指定行寫入當前文件。這是很特別的，因為文件裡將不會包
+                        含緩衝區的所有行。
 
                                                         <b class="vimtag"> <a name=":w_f">:w_f</a> </b> <b class="vimtag"> <a name=":write_f">:write_f</a> </b>
 :<code class="special">[range]</code>w[rite] <code class="special">[++opt]</code> <code class="special">{file}</code>
-                        将指定行写入文件 <code class="special">{file}</code>，除非该文件已存在并且未置位
-                        <a href="options.html#'writeany'">'writeany'</a> 选项。
+                        將指定行寫入文件 <code class="special">{file}</code>，除非該文件已存在並且未置位
+                        <a href="options.html#'writeany'">'writeany'</a> 選項。
 
                                                         <b class="vimtag"> <a name=":w!">:w!</a> </b>
 :<code class="special">[range]</code>w[rite]! <code class="special">[++opt]</code> <code class="special">{file}</code>
-                        将指定行写入文件 <code class="special">{file}</code>。覆盖已存在的文件。
+                        將指定行寫入文件 <code class="special">{file}</code>。覆蓋已存在的文件。
 
                                                 <b class="vimtag"> <a name=":w_a">:w_a</a> </b> <b class="vimtag"> <a name=":write_a">:write_a</a> </b> <b class="vimtag"> <a name="E494">E494</a> </b>
 :<code class="special">[range]</code>w[rite][!] <code class="special">[++opt]</code> &gt;&gt;
-                        将指定行附加到当前文件后。
+                        將指定行附加到當前文件後。
 
 :<code class="special">[range]</code>w[rite][!] <code class="special">[++opt]</code> &gt;&gt; <code class="special">{file}</code>
-                        将指定行附加到文件 <code class="special">{file}</code> 之后。'!' 强制写入，即使该文
-                        件还不存在。
+                        將指定行附加到文件 <code class="special">{file}</code> 之後。'!' 強制寫入，即使該文
+                        件還不存在。
 
                                                         <b class="vimtag"> <a name=":w_c">:w_c</a> </b> <b class="vimtag"> <a name=":write_c">:write_c</a> </b>
 :<code class="special">[range]</code>w[rite] <code class="special">[++opt]</code> !<code class="special">{cmd}</code>
-                        执行命令 <code class="special">{cmd}</code>，以 <code class="special">[range]</code> 指定的行作为它的标准输入。
-                        (<code class="note">注意</code> ! 之前的空格)。<code class="special">{cmd}</code> 以 ":!<code class="special">{cmd}</code>" 类似的方式被执
-                        行，任何 '!' 被替换成前一个命令  <a href="various.html#:!">:!</a> 。
+                        執行命令 <code class="special">{cmd}</code>，以 <code class="special">[range]</code> 指定的行作為它的標準輸入。
+                        (<code class="note">注意</code> ! 之前的空格)。<code class="special">{cmd}</code> 以 ":!<code class="special">{cmd}</code>" 類似的方式被執
+                        行，任何 '!' 被替換成前一個命令  <a href="various.html#:!">:!</a> 。
 
-":w" 命令缺省的 <code class="special">[range]</code> 是整个缓冲区 (1,$)。如果写回整个缓冲区，缓冲区不再被认
-为已改变。用 ":w somefile" 写到别的文件的情形则取决于 <a href="options.html#'cpoptions'">'cpoptions'</a> 的 "+" 标志
-位。如果包含，即便缓冲区本身和其关联的文件可能已不同，该写命令还是复位
-"modified" 标志位。
+":w" 命令缺省的 <code class="special">[range]</code> 是整個緩衝區 (1,$)。如果寫回整個緩衝區，緩衝區不再被認
+為已改變。用 ":w somefile" 寫到別的文件的情形則取決於 <a href="options.html#'cpoptions'">'cpoptions'</a> 的 "+" 標誌
+位。如果包含，即便緩衝區本身和其關聯的文件可能已不同，該寫命令還是復位
+"modified" 標誌位。
 
-如果 ":w" 给出一个文件名，它成为轮换文件。这可以用来，比如说，当写入失败而你想
-再迟些再试一次: ":w #"。该功能可以通过从 <a href="options.html#'cpoptions'">'cpoptions'</a> 选项里去掉 'A' 标志位来关
-闭。
+如果 ":w" 給出一個文件名，它成為輪換文件。這可以用來，比如說，當寫入失敗而你想
+再遲些再試一次: ":w #"。該功能可以通過從 <a href="options.html#'cpoptions'">'cpoptions'</a> 選項裡去掉 'A' 標誌位來關
+閉。
 
                                                         <b class="vimtag"> <a name=":sav">:sav</a> </b> <b class="vimtag"> <a name=":saveas">:saveas</a> </b>
 :sav[eas][!] <code class="special">[++opt]</code> <code class="special">{file}</code>
-                        用文件名 <code class="special">{file}</code> 保存当前缓冲区，并设置当前缓冲区的文件
-                        名为 <code class="special">{file}</code>。前一个名字用作轮换文件名。[!] 用以覆盖已
+                        用文件名 <code class="special">{file}</code> 保存當前緩衝區，並設置當前緩衝區的文件
+                        名為 <code class="special">{file}</code>。前一個名字用作輪換文件名。[!] 用以覆蓋已
                         存在的文件。
-                        如果 <a href="options.html#'filetype'">'filetype'</a> 为空，在写入文件前用新名字进行文件类型
-                        检测。
-                        如果写操作成功，复位 <a href="options.html#'readonly'">'readonly'</a>。
-                        <code class="notvi">{Vi 无此功能}</code>
+                        如果 <a href="options.html#'filetype'">'filetype'</a> 為空，在寫入文件前用新名字進行文件類型
+                        檢測。
+                        如果寫操作成功，復位 <a href="options.html#'readonly'">'readonly'</a>。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":up">:up</a> </b> <b class="vimtag"> <a name=":update">:update</a> </b>
 :<code class="special">[range]</code>up[date][!] <code class="special">[++opt]</code> [&gt;&gt;] <code class="special">[file]</code>
-                        和 ":write" 类似，但只有在缓冲区已修改的时候才写入。
-                        <code class="notvi">{Vi 无此功能}</code>
+                        和 ":write" 類似，但只有在緩衝區已修改的時候才寫入。
+                        <code class="notvi">{Vi 無此功能}</code>
 
 
-写 入 多 个 缓 冲 区                                    <b class="vimtag"> <a name="buffer-write">buffer-write</a> </b>
+寫 入 多 個 緩 沖 區                                    <b class="vimtag"> <a name="buffer-write">buffer-write</a> </b>
 
                                                         <b class="vimtag"> <a name=":wa">:wa</a> </b> <b class="vimtag"> <a name=":wall">:wall</a> </b>
-:wa[ll]                 保存所有已修改的缓冲区。没有文件名的缓冲区会报错。只读
-                        的缓冲区不会被写入。<code class="notvi">{Vi 无此功能}</code>
+:wa[ll]                 保存所有已修改的緩衝區。沒有文件名的緩衝區會報錯。只讀
+                        的緩衝區不會被寫入。<code class="notvi">{Vi 無此功能}</code>
 
-:wa[ll]!                保存所有已修改的缓冲区，包括只读的。没有文件名的缓冲区
-                        不会写入并报错。<code class="notvi">{Vi 无此功能}</code>
+:wa[ll]!                保存所有已修改的緩衝區，包括只讀的。沒有文件名的緩衝區
+                        不會寫入並報錯。<code class="notvi">{Vi 無此功能}</code>
 
 
-如果你试图覆盖在别的地方修改的文件，Vim 会警告你。参见  <a href="editing.html#timestamp">timestamp</a> 。
+如果你試圖覆蓋在別的地方修改的文件，Vim 會警告你。參見  <a href="editing.html#timestamp">timestamp</a> 。
 
                             <b class="vimtag"> <a name="backup">backup</a> </b> <b class="vimtag"> <a name="E207">E207</a> </b> <b class="vimtag"> <a name="E506">E506</a> </b> <b class="vimtag"> <a name="E507">E507</a> </b> <b class="vimtag"> <a name="E508">E508</a> </b> <b class="vimtag"> <a name="E509">E509</a> </b> <b class="vimtag"> <a name="E510">E510</a> </b>
-如果你写入已存在的文件 (但非附加) 而打开了 <a href="options.html#'backup'">'backup'</a>、<a href="options.html#'writebackup'">'writebackup'</a> 或者
-<a href="options.html#'patchmode'">'patchmode'</a> 选项，原来文件的一个备份会被建立。该文件或者由复制，或者由换名得
-到 (见 <a href="options.html#'backupcopy'">'backupcopy'</a>)。在文件被成功写入后，当置位 <a href="options.html#'writebackup'">'writebackup'</a> 选项而没有置位
-<a href="options.html#'backup'">'backup'</a> 时，该备份文件被删除。当 <a href="options.html#'patchmode'">'patchmode'</a> 选项打开时，备份文件可能被改名。
+如果你寫入已存在的文件 (但非附加) 而打開了 <a href="options.html#'backup'">'backup'</a>、<a href="options.html#'writebackup'">'writebackup'</a> 或者
+<a href="options.html#'patchmode'">'patchmode'</a> 選項，原來文件的一個備份會被建立。該文件或者由複製，或者由換名得
+到 (見 <a href="options.html#'backupcopy'">'backupcopy'</a>)。在文件被成功寫入後，當置位 <a href="options.html#'writebackup'">'writebackup'</a> 選項而沒有置位
+<a href="options.html#'backup'">'backup'</a> 時，該備份文件被刪除。當 <a href="options.html#'patchmode'">'patchmode'</a> 選項打開時，備份文件可能被改名。
 
                                                         <b class="vimtag"> <a name="backup-table">backup-table</a> </b>
-<code class="section"><a href="options.html#'backup'">'backup'</a> <a href="options.html#'writebackup'">'writebackup'</a>  动作    </code>
-   关        关         没有备份
-   关        开         备份当前文件，写入后删除 (缺省)
-   开        关         删除旧的备份，备份当前文件
-   开        开         删除旧的备份，备份当前文件
+<code class="section"><a href="options.html#'backup'">'backup'</a> <a href="options.html#'writebackup'">'writebackup'</a>  動作    </code>
+   關        關         沒有備份
+   關        開         備份當前文件，寫入後刪除 (缺省)
+   開        關         刪除舊的備份，備份當前文件
+   開        開         刪除舊的備份，備份當前文件
 
-当 <a href="options.html#'backupskip'">'backupskip'</a> 模式匹配被写入的文件名，备份文件不会被创建。此时，<a href="options.html#'backup'">'backup'</a> 和
+當 <a href="options.html#'backupskip'">'backupskip'</a> 模式匹配被寫入的文件名，備份文件不會被創建。此時，<a href="options.html#'backup'">'backup'</a> 和
 <a href="options.html#'writebackup'">'writebackup'</a> 被忽略。
 
-如果 <a href="options.html#'backup'">'backup'</a> 选项置位，旧的备份文件 (与新的备份文件同名) 被删除。如果没有置位
-<a href="options.html#'backup'">'backup'</a> 但置位了 <a href="options.html#'writebackup'">'writebackup'</a>，已有的备份文件不会被删除。文件写入时使用的是
-另外一个文件名。
+如果 <a href="options.html#'backup'">'backup'</a> 選項置位，舊的備份文件 (與新的備份文件同名) 被刪除。如果沒有置位
+<a href="options.html#'backup'">'backup'</a> 但置位了 <a href="options.html#'writebackup'">'writebackup'</a>，已有的備份文件不會被刪除。文件寫入時使用的是
+另外一個文件名。
 
-有些文件系统的崩溃可能导致备份文件和新写入的文件同时丢失 (可能还在但包含不正确
-数据)。这种情况下可以尝试修复功能  <a href="recover.html#:recover">:recover</a> ，因为交换文件在盘上保持一个同步的
-备份，可能还有用。
+有些文件系統的崩潰可能導致備份文件和新寫入的文件同時丟失 (可能還在但包含不正確
+數據)。這種情況下可以嘗試修復功能  <a href="recover.html#:recover">:recover</a> ，因為交換文件在盤上保持一個同步的
+備份，可能還有用。
 
-<a href="options.html#'backupdir'">'backupdir'</a> 选项给出的目录用于存放备份文件 (缺省在写入文件的相同目录)。
+<a href="options.html#'backupdir'">'backupdir'</a> 選項給出的目錄用於存放備份文件 (缺省在寫入文件的相同目錄)。
 
-不管备份文件是否新建，它是否原始文件复制还是换名得来由 <a href="options.html#'backupcopy'">'backupcopy'</a> 选项决定。
-该选项的描述解释了何时使用复制，何时使用换名。
+不管備份文件是否新建，它是否原始文件複製還是換名得來由 <a href="options.html#'backupcopy'">'backupcopy'</a> 選項決定。
+該選項的描述解釋了何時使用複製，何時使用換名。
 
-如果备份文件创建失败，写入不会进行。除非命令中加上 '!'。
+如果備份文件創建失敗，寫入不會進行。除非命令中加上 '!'。
 
                                                         <b class="vimtag"> <a name="write-permissions">write-permissions</a> </b>
-写入新文件时其权限设为可读写。unix 上的掩码是 0666 外加 umask。写入已经读入的
-文件时，Vim 保留原有权限，但清除 s 位。
+寫入新文件時其權限設為可讀寫。unix 上的掩碼是 0666 外加 umask。寫入已經讀入的
+文件時，Vim 保留原有權限，但清除 s 位。
 
                                                         <b class="vimtag"> <a name="write-readonly">write-readonly</a> </b>
-如果 <a href="options.html#'cpoptions'">'cpoptions'</a> 选项里包含 'W'，Vim 拒绝覆盖只读文件。如果没有该标志位，":w!"
-可以用来覆盖只读文件， 如果系统支持的话 (目录本身必须是可写的)。
+如果 <a href="options.html#'cpoptions'">'cpoptions'</a> 選項裡包含 'W'，Vim 拒絕覆蓋只讀文件。如果沒有該標誌位，":w!"
+可以用來覆蓋只讀文件， 如果系統支持的話 (目錄本身必須是可寫的)。
 
                                                         <b class="vimtag"> <a name="write-fail">write-fail</a> </b>
-如果新文件写入失败，要小心不要同时丢失了你的修改内容 <code class="emphasis">和</code> 原始的文件。如果没有
-备份文件而写入新文件失败的话，原始的文件已经没有了！除 非 你 写 了 文 件，不
-要 退 出 VIM！如果创建了备份，它保存了原始文件的内容 (如果可能的话)。如果你退
-出 Vim 并丢失了修改的部分，原始的文件很有可能还在。如果原始文件的保存也失败的
-话，你会得到一个错误信息，提示丢失了原始文件。
+如果新文件寫入失敗，要小心不要同時丟失了你的修改內容 <code class="emphasis">和</code> 原始的文件。如果沒有
+備份文件而寫入新文件失敗的話，原始的文件已經沒有了！除 非 你 寫 了 文 件，不
+要 退 出 VIM！如果創建了備份，它保存了原始文件的內容 (如果可能的話)。如果你退
+出 Vim 並丟失了修改的部分，原始的文件很有可能還在。如果原始文件的保存也失敗的
+話，你會得到一個錯誤信息，提示丟失了原始文件。
 
                                                 <b class="vimtag"> <a name="DOS-format-write">DOS-format-write</a> </b>
-如果 <a href="options.html#'fileformat'">'fileformat'</a> 为 "dos"，<code class="special">&lt;CR&gt;</code><code class="special">&lt;NL&gt;</code> 用作换行符 <code class="special">&lt;EOL&gt;</code>。这是 MS-DOS，Win32 和
-OS/2 的缺省行为。在其他系统中，"[dos format]" 信息会提示你使用了不同寻常的
+如果 <a href="options.html#'fileformat'">'fileformat'</a> 為 "dos"，<code class="special">&lt;CR&gt;</code><code class="special">&lt;NL&gt;</code> 用作換行符 <code class="special">&lt;EOL&gt;</code>。這是 MS-DOS，Win32 和
+OS/2 的缺省行為。在其他系統中，"[dos format]" 信息會提示你使用了不同尋常的
 <code class="special">&lt;EOL&gt;</code>。
                                                 <b class="vimtag"> <a name="Unix-format-write">Unix-format-write</a> </b>
-如果 <a href="options.html#'fileformat'">'fileformat'</a> 为 "unix"，<code class="special">&lt;NL&gt;</code> 用作换行符 <code class="special">&lt;EOL&gt;</code>。在 MS-DOS，Win32 和 OS/2
-上会显示 "[unix format]"。
+如果 <a href="options.html#'fileformat'">'fileformat'</a> 為 "unix"，<code class="special">&lt;NL&gt;</code> 用作換行符 <code class="special">&lt;EOL&gt;</code>。在 MS-DOS，Win32 和 OS/2
+上會顯示 "[unix format]"。
                                                 <b class="vimtag"> <a name="Mac-format-write">Mac-format-write</a> </b>
-如果 <a href="options.html#'fileformat'">'fileformat'</a> 为 "mac"，<code class="special">&lt;CR&gt;</code> 用作换行符 <code class="special">&lt;EOL&gt;</code>。在非 Mac 的系统上会显示
+如果 <a href="options.html#'fileformat'">'fileformat'</a> 為 "mac"，<code class="special">&lt;CR&gt;</code> 用作換行符 <code class="special">&lt;EOL&gt;</code>。在非 Mac 的系統上會顯示
 "[mac format]" 消息。
 
-另见  <a href="editing.html#file-formats">file-formats</a>  和 <a href="options.html#'fileformat'">'fileformat'</a> 以及 <a href="options.html#'fileformats'">'fileformats'</a> 选项。
+另見  <a href="editing.html#file-formats">file-formats</a>  和 <a href="options.html#'fileformat'">'fileformat'</a> 以及 <a href="options.html#'fileformats'">'fileformats'</a> 選項。
 
                                                 <b class="vimtag"> <a name="ACL">ACL</a> </b>
-ACL 代表访问控制表 (Access Control List)。这是控制文件访问权限一个高级方法。在
-新的 MS-Windows 和 Unix 系统上，如果有文件系统的支持，可以使用之。
-   Vim 试图在写入文件时保留 ACL 信息。备份文件会用和原始文件相同的 ACL 信息。
-   ACL 信息也用来检查文件是否只读 (在打开文件时)。
+ACL 代表訪問控制表 (Access Control List)。這是控制文件訪問權限一個高級方法。在
+新的 MS-Windows 和 Unix 系統上，如果有文件系統的支持，可以使用之。
+   Vim 試圖在寫入文件時保留 ACL 信息。備份文件會用和原始文件相同的 ACL 信息。
+   ACL 信息也用來檢查文件是否只讀 (在打開文件時)。
 
                                                 <b class="vimtag"> <a name="read-only-share">read-only-share</a> </b>
-当 MS-Windows 共享网络驱动器时，可以指定其为只读。这意味着即使文件本身没有只读
-属性，你也不能写入该文件。Win32 平台上的 Vim 会检测只读的网络驱动器，并标记其
-上的文件为只读。你不能用  <a href="editing.html#:write">:write</a>  修改。
+當 MS-Windows 共享網絡驅動器時，可以指定其為只讀。這意味著即使文件本身沒有只讀
+屬性，你也不能寫入該文件。Win32 平台上的 Vim 會檢測只讀的網絡驅動器，並標記其
+上的文件為只讀。你不能用  <a href="editing.html#:write">:write</a>  修改。
 
                                                 <b class="vimtag"> <a name="write-device">write-device</a> </b>
-如果文件名其实是设备名，Vim 不会建立备份 (这也不可能)。你需要使用 "!"，因为设
-备已经存在。Unix 上的示例: 
+如果文件名其實是設備名，Vim 不會建立備份 (這也不可能)。你需要使用 "!"，因為設
+備已經存在。Unix 上的示例: 
 <code class="example">        :w! /dev/lpt0</code>
 MS-DOS 或 MS-Windows 上: 
 <code class="example">        :w! lpt0</code>
-Unix 上当文件名不引用一个普通文件或者目录时，检测为设备。fifo 和命令管道对 Vim
-而言视同设备。MS-DOS 和 MS-Windows 上以下名字检测为设备:
+Unix 上當文件名不引用一個普通文件或者目錄時，檢測為設備。fifo 和命令管道對 Vim
+而言視同設備。MS-DOS 和 MS-Windows 上以下名字檢測為設備:
         AUX
         CON
         CLOCK$
@@ -930,119 +930,119 @@ Unix 上当文件名不引用一个普通文件或者目录时，检测为设备
         PRN
         COMn    n=1,2,3... 等
         LPTn    n=1,2,3... 等
-名字大小写均可。
+名字大小寫均可。
 
 </pre><hr class="doubleline" /><pre>
-<h4>5. 写入并退出                                           <b class="vimtag"> <a name="write-quit">write-quit</a> </b></h4>
+<h4>5. 寫入並退出                                           <b class="vimtag"> <a name="write-quit">write-quit</a> </b></h4>
                                                         <b class="vimtag"> <a name=":q">:q</a> </b> <b class="vimtag"> <a name=":quit">:quit</a> </b>
-:q[uit]                 退出当前窗口。如果是最后的一个，退出 Vim。如果已经有
-                        修改而且 Vim 拒绝放弃  <a href="editing.html#abandon">abandon</a>  当前的缓冲区，或者
-                        如果参数列表的最后一个文件还没有被编辑，该操作失败。
-                        如果有其它标签页，并且退出的是当前标签页的最后一个窗
-                        口，关闭当前标签页  <a href="tabpage.html#tab-page">tab-page</a> 。
-                        激活  <a href="autocmd.html#QuitPre">QuitPre</a>  自动命令事件。
+:q[uit]                 退出當前窗口。如果是最後的一個，退出 Vim。如果已經有
+                        修改而且 Vim 拒絕放棄  <a href="editing.html#abandon">abandon</a>  當前的緩衝區，或者
+                        如果參數列表的最後一個文件還沒有被編輯，該操作失敗。
+                        如果有其它標籤頁，並且退出的是當前標籤頁的最後一個窗
+                        口，關閉當前標籤頁  <a href="tabpage.html#tab-page">tab-page</a> 。
+                        激活  <a href="autocmd.html#QuitPre">QuitPre</a>  自動命令事件。
 
-:conf[irm] q[uit]       退出，但如果已经有修改或者参数列表的最后一个文件还未被
-                        编辑，给出提示。参见  <a href="editing.html#:confirm">:confirm</a>  和 <a href="options.html#'confirm'">'confirm'</a>。
-                        <code class="notvi">{Vi 无此功能}</code>
+:conf[irm] q[uit]       退出，但如果已經有修改或者參數列表的最後一個文件還未被
+                        編輯，給出提示。參見  <a href="editing.html#:confirm">:confirm</a>  和 <a href="options.html#'confirm'">'confirm'</a>。
+                        <code class="notvi">{Vi 無此功能}</code>
 
-:q[uit]!                退出不保存，即使当前缓冲区发生了修改也是。缓冲区被卸
-                        载，包括置位 <a href="options.html#'hidden'">'hidden'</a> 了的。
-                        如果是最后一个窗口并有修改过的隐藏缓冲区，放弃当前缓冲
-                        区，第一个修改过的隐藏缓冲区成为当前缓冲区。
-                        为了保证总能退出，用 ":qall!"。
+:q[uit]!                退出不保存，即使當前緩衝區發生了修改也是。緩衝區被卸
+                        載，包括置位 <a href="options.html#'hidden'">'hidden'</a> 了的。
+                        如果是最後一個窗口並有修改過的隱藏緩衝區，放棄當前緩衝
+                        區，第一個修改過的隱藏緩衝區成為當前緩衝區。
+                        為了保證總能退出，用 ":qall!"。
 
-:cq[uit]                在任何情形下，退出不保存，并返回一个错误代码。参见
-                         <a href="quickfix.html#:cq">:cq</a> 。此功能可用于 Manx 的 QuickFix 模式 (参见
-                         <a href="quickfix.html#quickfix">quickfix</a> )。  <code class="notvi">{Vi 无此功能}</code>
+:cq[uit]                在任何情形下，退出不保存，並返回一個錯誤代碼。參見
+                         <a href="quickfix.html#:cq">:cq</a> 。此功能可用於 Manx 的 QuickFix 模式 (參見
+                         <a href="quickfix.html#quickfix">quickfix</a> )。  <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":wq">:wq</a> </b>
-:wq <code class="special">[++opt]</code>             写回当前的文件并且退出。如果文件只读或者该缓冲区无名，
-                        写回操作将失败。如果参数列表的最后一个文件还没有编辑，
-                        那么退出操作将会失败。
+:wq <code class="special">[++opt]</code>             寫回當前的文件並且退出。如果文件只讀或者該緩衝區無名，
+                        寫回操作將失敗。如果參數列表的最後一個文件還沒有編輯，
+                        那麼退出操作將會失敗。
 
-:wq! <code class="special">[++opt]</code>            写回当前的文件并且退出。如果当前缓冲区无名，则写回操作
-                        将失败。
+:wq! <code class="special">[++opt]</code>            寫回當前的文件並且退出。如果當前緩衝區無名，則寫回操作
+                        將失敗。
 
-:wq <code class="special">[++opt]</code> <code class="special">{file}</code>      写入到 <code class="special">{file}</code> 并且退出。 如果参数列表的最后一个文件还
-                        没有编辑， 那么退出操作将会失败。
+:wq <code class="special">[++opt]</code> <code class="special">{file}</code>      寫入到 <code class="special">{file}</code> 並且退出。 如果參數列表的最後一個文件還
+                        沒有編輯， 那麼退出操作將會失敗。
 
-:wq! <code class="special">[++opt]</code> <code class="special">{file}</code>     写入到 <code class="special">{file}</code> 并且退出。
+:wq! <code class="special">[++opt]</code> <code class="special">{file}</code>     寫入到 <code class="special">{file}</code> 並且退出。
 
 :<code class="special">[range]</code>wq[!] <code class="special">[++opt]</code> <code class="special">[file]</code>
-                        同上，但只写入 <code class="special">[range]</code> 界定的那些行。
+                        同上，但只寫入 <code class="special">[range]</code> 界定的那些行。
 
                                                         <b class="vimtag"> <a name=":x">:x</a> </b> <b class="vimtag"> <a name=":xit">:xit</a> </b>
 :<code class="special">[range]</code>x[it][!] <code class="special">[++opt]</code> <code class="special">[file]</code>
-                        和 ":wq" 类似， 但只有文件已修改时写入才会实际进行。
-                        如果 <a href="options.html#'hidden'">'hidden'</a> 被设置并且还有其他窗口，当前缓冲区会在
-                        写入后被隐藏。
+                        和 ":wq" 類似， 但只有文件已修改時寫入才會實際進行。
+                        如果 <a href="options.html#'hidden'">'hidden'</a> 被設置並且還有其他窗口，當前緩衝區會在
+                        寫入後被隱藏。
 
                                                         <b class="vimtag"> <a name=":exi">:exi</a> </b> <b class="vimtag"> <a name=":exit">:exit</a> </b>
 :<code class="special">[range]</code>exi[t][!] <code class="special">[++opt]</code> <code class="special">[file]</code>
                         同 :xit。
 
                                                         <b class="vimtag"> <a name="ZZ">ZZ</a> </b>
-ZZ                      如果文件被修改，写回当前文件。然后退出。(和 :x 相
-                        同)。(<code class="note">注意</code>: 如果有当前文件有多个窗口，该文件在被修改
-                        时会被写回，当前窗口会被关闭)。
+ZZ                      如果文件被修改，寫回當前文件。然後退出。(和 :x 相
+                        同)。(<code class="note">注意</code>: 如果有當前文件有多個窗口，該文件在被修改
+                        時會被寫回，當前窗口會被關閉)。
 
                                                         <b class="vimtag"> <a name="ZQ">ZQ</a> </b>
-ZQ                      退出，不检查是否发生了修改 (等同于 ":q!")。
-                        <code class="notvi">{Vi 无此功能}</code>
+ZQ                      退出，不檢查是否發生了修改 (等同於 ":q!")。
+                        <code class="notvi">{Vi 無此功能}</code>
 
-多 个 窗 口 和 缓 冲 区                                 <b class="vimtag"> <a name="window-exit">window-exit</a> </b>
+多 個 窗 口 和 緩 沖 區                                 <b class="vimtag"> <a name="window-exit">window-exit</a> </b>
 
                                                         <b class="vimtag"> <a name=":qa">:qa</a> </b> <b class="vimtag"> <a name=":qall">:qall</a> </b>
-:qa[ll]         退出 Vim，除非存在修改过的缓冲区。(可以使用 ":bmod" 跳转
-                到下一个修改过的缓冲区)。如果置位了 <a href="options.html#'autowriteall'">'autowriteall'</a>，所有
-                被修改的缓冲区将被保存，一如调用了  <a href="editing.html#:wqall">:wqall</a> 。<code class="notvi">{Vi 无此功能}</code>
+:qa[ll]         退出 Vim，除非存在修改過的緩衝區。(可以使用 ":bmod" 跳轉
+                到下一個修改過的緩衝區)。如果置位了 <a href="options.html#'autowriteall'">'autowriteall'</a>，所有
+                被修改的緩衝區將被保存，一如調用了  <a href="editing.html#:wqall">:wqall</a> 。<code class="notvi">{Vi 無此功能}</code>
 
 :conf[irm] qa[ll]
-                退出 Vim。如果存在修改过的缓冲区，给出提示。参见  <a href="editing.html#:confirm">:confirm</a> 。
-                <code class="notvi">{Vi 无此功能}</code>
+                退出 Vim。如果存在修改過的緩衝區，給出提示。參見  <a href="editing.html#:confirm">:confirm</a> 。
+                <code class="notvi">{Vi 無此功能}</code>
 
-:qa[ll]!        退出 Vim，不会保存任何的修改。 <code class="notvi">{Vi 无此功能}</code>
-                另见  <a href="quickfix.html#:cquit">:cquit</a> ，功能相同但使用非零的退出值。
+:qa[ll]!        退出 Vim，不會保存任何的修改。 <code class="notvi">{Vi 無此功能}</code>
+                另見  <a href="quickfix.html#:cquit">:cquit</a> ，功能相同但使用非零的退出值。
 
                                                         <b class="vimtag"> <a name=":quita">:quita</a> </b> <b class="vimtag"> <a name=":quitall">:quitall</a> </b>
-:quita[ll][!]   等同于 ":qall"。<code class="notvi">{Vi 无此功能}</code>
+:quita[ll][!]   等同於 ":qall"。<code class="notvi">{Vi 無此功能}</code>
 
 :wqa[ll] <code class="special">[++opt]</code>                                <b class="vimtag"> <a name=":wqa">:wqa</a> </b> <b class="vimtag"> <a name=":wqall">:wqall</a> </b> <b class="vimtag"> <a name=":xa">:xa</a> </b> <b class="vimtag"> <a name=":xall">:xall</a> </b>
-:xa[ll]         保存所有修改过的缓冲区并退出 Vim。如果其中有无名的、只读的、
-                或者其他原因写入失败的缓冲区，Vim 不会退出。<code class="notvi">{Vi 无此功能}</code>
+:xa[ll]         保存所有修改過的緩衝區並退出 Vim。如果其中有無名的、只讀的、
+                或者其他原因寫入失敗的緩衝區，Vim 不會退出。<code class="notvi">{Vi 無此功能}</code>
 
 :conf[irm] wqa[ll] <code class="special">[++opt]</code>
 :conf[irm] xa[ll]
-                保存所有修改过的缓冲区并退出 Vim。如果其中有只读或者其他原因
-                写入失败的缓冲区，给出提示。参看  <a href="editing.html#:confirm">:confirm</a> 。<code class="notvi">{Vi 无此功能}</code>
+                保存所有修改過的緩衝區並退出 Vim。如果其中有只讀或者其他原因
+                寫入失敗的緩衝區，給出提示。參看  <a href="editing.html#:confirm">:confirm</a> 。<code class="notvi">{Vi 無此功能}</code>
 
 :wqa[ll]! <code class="special">[++opt]</code>
-:xa[ll]!        保存所有修改过的缓冲区，甚至包括只读的，然后退出 Vim。不过，
-                如果有无名或者其他原因写入失败的缓冲区，Vim 仍然不会退出。
-                <code class="notvi">{Vi 无此功能}</code>
+:xa[ll]!        保存所有修改過的緩衝區，甚至包括只讀的，然後退出 Vim。不過，
+                如果有無名或者其他原因寫入失敗的緩衝區，Vim 仍然不會退出。
+                <code class="notvi">{Vi 無此功能}</code>
 
 </pre><hr class="doubleline" /><pre>
-<h4>6. 对话框                                               <b class="vimtag"> <a name="edit-dialogs">edit-dialogs</a> </b></h4>
+<h4>6. 對話框                                               <b class="vimtag"> <a name="edit-dialogs">edit-dialogs</a> </b></h4>
                                                         <b class="vimtag"> <a name=":confirm">:confirm</a> </b> <b class="vimtag"> <a name=":conf">:conf</a> </b>
-:conf[irm] <code class="special">{command}</code>    执行 <code class="special">{command}</code>，如果有操作需要确认，显示对话框。可用于
-                        ":q"、":qa" 和 ":w" 命令 (后者用于超越只读的设定)，和
-                        其他会以类似方式失败的命令，如  <a href="windows.html#:only">:only</a> 、 <a href="windows.html#:buffer">:buffer</a> 、
+:conf[irm] <code class="special">{command}</code>    執行 <code class="special">{command}</code>，如果有操作需要確認，顯示對話框。可用於
+                        ":q"、":qa" 和 ":w" 命令 (後者用於超越只讀的設定)，和
+                        其他會以類似方式失敗的命令，如  <a href="windows.html#:only">:only</a> 、 <a href="windows.html#:buffer">:buffer</a> 、
                          <a href="windows.html#:bdelete">:bdelete</a>  等。
 
 示例: 
 <code class="example">  :confirm w foo</code>
-        如果 "foo" 存在请求确认。 
+        如果 "foo" 存在請求確認。 
 <code class="example">  :confirm q</code>
-        如果有改变请求确认。 
+        如果有改變請求確認。 
 <code class="example">  :confirm qa</code>
-        如果有任何修改过的未保存的缓冲区存在，对其中的每个缓冲区提示是保存还是
-        放弃。还可以选择 "save all" (保存所有) 或 "abandon all" (放弃所有)。
+        如果有任何修改過的未保存的緩衝區存在，對其中的每個緩衝區提示是保存還是
+        放棄。還可以選擇 "save all" (保存所有) 或 "abandon all" (放棄所有)。
 
-如果你希望总是用 ":confirm"，置位 <a href="options.html#'confirm'">'confirm'</a> 选项。
+如果你希望總是用 ":confirm"，置位 <a href="options.html#'confirm'">'confirm'</a> 選項。
 
                         <b class="vimtag"> <a name=":browse">:browse</a> </b> <b class="vimtag"> <a name=":bro">:bro</a> </b> <b class="vimtag"> <a name="E338">E338</a> </b> <b class="vimtag"> <a name="E614">E614</a> </b> <b class="vimtag"> <a name="E615">E615</a> </b> <b class="vimtag"> <a name="E616">E616</a> </b>
-:bro[wse] <code class="special">{command}</code>     为 <code class="special">{command}</code> 的参数显示文件选择对话框。目前这可用于
+:bro[wse] <code class="special">{command}</code>     為 <code class="special">{command}</code> 的參數顯示文件選擇對話框。目前這可用於
                          <a href="editing.html#:e">:e</a> 、 <a href="editing.html#:w">:w</a> 、 <a href="editing.html#:wall">:wall</a> 、 <a href="editing.html#:wq">:wq</a> 、 <a href="editing.html#:wqall">:wqall</a> 、 <a href="editing.html#:x">:x</a> 、 <a href="editing.html#:xall">:xall</a> 、
                          <a href="editing.html#:exit">:exit</a> 、  <a href="editing.html#:view">:view</a> 、 <a href="windows.html#:sview">:sview</a> 、 <a href="insert.html#:r">:r</a> 、 <a href="editing.html#:saveas">:saveas</a> 、 <a href="windows.html#:sp">:sp</a> 、
                          <a href="starting.html#:mkexrc">:mkexrc</a> 、 <a href="starting.html#:mkvimrc">:mkvimrc</a> 、 <a href="starting.html#:mksession">:mksession</a> 、 <a href="starting.html#:mkview">:mkview</a> 、
@@ -1050,338 +1050,338 @@ ZQ                      退出，不检查是否发生了修改 (等同于 ":q!"
                          <a href="quickfix.html#:cgetfile">:cgetfile</a> 、 <a href="quickfix.html#:caddfile">:caddfile</a> 、 <a href="quickfix.html#:lfile">:lfile</a> 、 <a href="quickfix.html#:lgetfile">:lgetfile</a> 、
                          <a href="quickfix.html#:laddfile">:laddfile</a> 、 <a href="diff.html#:diffsplit">:diffsplit</a> 、 <a href="diff.html#:diffpatch">:diffpatch</a> 、 <a href="vi_diff.html#:open">:open</a> 、
                          <a href="windows.html#:pedit">:pedit</a> 、 <a href="various.html#:redir">:redir</a> 、 <a href="repeat.html#:source">:source</a> 、 <a href="editing.html#:update">:update</a> 、 <a href="editing.html#:visual">:visual</a> 、
-                         <a href="windows.html#:vsplit">:vsplit</a> ，还有如果置位 <a href="options.html#'confirm'">'confirm'</a> 的话， <a href="editing.html#:qall">:qall</a> 。
+                         <a href="windows.html#:vsplit">:vsplit</a> ，還有如果置位 <a href="options.html#'confirm'">'confirm'</a> 的話， <a href="editing.html#:qall">:qall</a> 。
 
-                        <code class="notvi">{仅对 Win32、Athena、Motif、GTK 和 Mac GUI 有效}</code>
-                        如果不可用 ":browse"，你会得到错误消息。如果  <a href="various.html#+browse">+browse</a> 
-                        特性不存在或者 <code class="special">{command}</code> 不支持该 (浏览) 功能，不显示
-                        对话框，如常执行 <code class="special">{command}</code>。
-                        ":browse set" 和  <a href="options.html#:options">:options</a>  类同。
-                        关于 ":browse oldfiles"，另见  <a href="starting.html#:oldfiles">:oldfiles</a> 。
+                        <code class="notvi">{僅對 Win32、Athena、Motif、GTK 和 Mac GUI 有效}</code>
+                        如果不可用 ":browse"，你會得到錯誤消息。如果  <a href="various.html#+browse">+browse</a> 
+                        特性不存在或者 <code class="special">{command}</code> 不支持該 (瀏覽) 功能，不顯示
+                        對話框，如常執行 <code class="special">{command}</code>。
+                        ":browse set" 和  <a href="options.html#:options">:options</a>  類同。
+                        關於 ":browse oldfiles"，另見  <a href="starting.html#:oldfiles">:oldfiles</a> 。
 
-该语法最好通过若干范例说明之: 
+該語法最好通過若干範例說明之: 
 <code class="example">        :browse e $vim/foo</code>
-                在 $vim/foo 目录里打开浏览器并编辑选择的文件。 
+                在 $vim/foo 目錄裡打開瀏覽器並編輯選擇的文件。 
 <code class="example">        :browse e</code>
-                在 <a href="options.html#'browsedir'">'browsedir'</a> 指定的目录里打开浏览器并编辑选择的文件。 
+                在 <a href="options.html#'browsedir'">'browsedir'</a> 指定的目錄裡打開瀏覽器並編輯選擇的文件。 
 <code class="example">        :browse w</code>
-                在当前缓冲区所在的目录里打开浏览器。缺省使用当前缓冲区的文件
-                名。把缓冲区写入到指定的文件。 
+                在當前緩衝區所在的目錄裡打開瀏覽器。缺省使用當前緩衝區的文件
+                名。把緩衝區寫入到指定的文件。 
 <code class="example">        :browse w C:/bar</code>
-                在 C:/bar 目录里打开浏览器，缺省使用当前缓冲区的文件名，把缓冲
-                区写入到指定的文件。
-另见  <a href="options.html#'browsedir'">'browsedir'</a>  选项。
-如果所用的 Vim 版本不支持浏览，该命令照原样执行。
+                在 C:/bar 目錄裡打開瀏覽器，缺省使用當前緩衝區的文件名，把緩衝
+                區寫入到指定的文件。
+另見  <a href="options.html#'browsedir'">'browsedir'</a>  選項。
+如果所用的 Vim 版本不支持瀏覽，該命令照原樣執行。
 
                                                         <b class="vimtag"> <a name="browsefilter">browsefilter</a> </b>
-对 MS Windows 和 GTK 而言，你可以修改浏览对话框的过滤 (filter)。设置
-g:browsefilter 或 b:browsefilter 变量，你可以修改全局或局部于缓冲区的过滤设
-置。该变量应设为符合如下格式的字符串 "<code class="special">{过滤标签}</code>\t<code class="special">{pattern}</code>;<code class="special">{pattern}</code>\n"，其中
-的 <code class="special">{过滤标签}</code> 是出现 "Files of Type" 组合框里应出现的文字，而 <code class="special">{pattern}</code> 是过滤
-文件名的模式。可以给出多个模式，以 ";" 分隔。
+對 MS Windows 和 GTK 而言，你可以修改瀏覽對話框的過濾 (filter)。設置
+g:browsefilter 或 b:browsefilter 變量，你可以修改全局或局部於緩衝區的過濾設
+置。該變量應設為符合如下格式的字符串 "<code class="special">{過濾標籤}</code>\t<code class="special">{pattern}</code>;<code class="special">{pattern}</code>\n"，其中
+的 <code class="special">{過濾標籤}</code> 是出現 "Files of Type" 組合框裡應出現的文字，而 <code class="special">{pattern}</code> 是過濾
+文件名的模式。可以給出多個模式，以 ";" 分隔。
 
-Motif 使用相同的格式，但只使用第一个模式 (Motif 只提供一个模式，但可以编辑)。
+Motif 使用相同的格式，但只使用第一個模式 (Motif 只提供一個模式，但可以編輯)。
 
-例如，要使得对话框里只显示 Vim 文件，你可以用以下命令: 
+例如，要使得對話框裡只顯示 Vim 文件，你可以用以下命令: 
 <code class="example"></code>
 <code class="example">     let g:browsefilter = "Vim Scripts\t*.vim\nVim Startup Files\t*vimrc\n"</code>
 <code class="example"></code>
-你可以通过在某个缓冲区上设置 b:browsefilter 变量超越全局过滤的设置。最有可能的
-情况是在文件类型插件里设置 b:browsefilter，以便浏览对话框只显示和当前编辑的文
-件所属类型相关的项目。缺点是: 无法编辑一个新的不同类型的文件。要克服这一点，你
-可以加上 "All Files\t*.*\n" 作为最后的过滤。用户从而拥有访问任何类型文件的选
-择。
+你可以通過在某個緩衝區上設置 b:browsefilter 變量超越全局過濾的設置。最有可能的
+情況是在文件類型插件裡設置 b:browsefilter，以便瀏覽對話框只顯示和當前編輯的文
+件所屬類型相關的項目。缺點是: 無法編輯一個新的不同類型的文件。要克服這一點，你
+可以加上 "All Files\t*.*\n" 作為最後的過濾。用戶從而擁有訪問任何類型文件的選
+擇。
 
-如果 Vim 不能实际支持时不想设置 browsefilter，可以测试 has("browsefilter"): 
+如果 Vim 不能實際支持時不想設置 browsefilter，可以測試 has("browsefilter"): 
 <code class="example"></code>
 <code class="example">        if has("browsefilter")</code>
 <code class="example">           let g:browsefilter = "你要的值"</code>
 <code class="example">        endif</code>
 <code class="example"></code>
 </pre><hr class="doubleline" /><pre>
-<h4>7. 当前目录                                             <b class="vimtag"> <a name="current-directory">current-directory</a> </b></h4>
-你也可以用  <a href="editing.html#:cd">:cd</a>  和  <a href="editing.html#:lcd">:lcd</a>  命令换到别的目录，所以你可以不用总是在文件名前输入
-目录名。这也影响到外部命令的执行，例如 ":!ls"。
+<h4>7. 當前目錄                                             <b class="vimtag"> <a name="current-directory">current-directory</a> </b></h4>
+你也可以用  <a href="editing.html#:cd">:cd</a>  和  <a href="editing.html#:lcd">:lcd</a>  命令換到別的目錄，所以你可以不用總是在文件名前輸入
+目錄名。這也影響到外部命令的執行，例如 ":!ls"。
 
-如果当前缓冲区被修改、<a href="options.html#'cpoptions'">'cpoptions'</a> 里有 '.' 标志位而命令又不使用 "!"，那么改变
-目录会失败。
+如果當前緩衝區被修改、<a href="options.html#'cpoptions'">'cpoptions'</a> 裡有 '.' 標誌位而命令又不使用 "!"，那麼改變
+目錄會失敗。
 
                                                         <b class="vimtag"> <a name=":cd">:cd</a> </b> <b class="vimtag"> <a name="E747">E747</a> </b> <b class="vimtag"> <a name="E472">E472</a> </b>
-:cd[!]                  在非 Unix 系统上: 显示当前目录名。在 Unix 系统上: 改变
-                        当前目录到主 (home) 目录。在所有的系统上，用  <a href="editing.html#:pwd">:pwd</a>  可
-                        以显示当前目录。
+:cd[!]                  在非 Unix 系統上: 顯示當前目錄名。在 Unix 系統上: 改變
+                        當前目錄到主 (home) 目錄。在所有的系統上，用  <a href="editing.html#:pwd">:pwd</a>  可
+                        以顯示當前目錄。
 
-:cd[!] <code class="special">{path}</code>           切换当前目录为 <code class="special">{path}</code>。如果 <code class="special">{path}</code> 是相对路径，则在
-                         <a href="options.html#'cdpath'">'cdpath'</a>  列出的目录搜索之。
-                        这不会改变已经打开的文件，因为记住的是它们的完整路径。
-                        但  <a href="editing.html#arglist">arglist</a>  里的文件则可能会改变！
-                        MS-DOS 上这会同时改变当前的驱动器。
-                        要改变到当前文件的目录: 
+:cd[!] <code class="special">{path}</code>           切換當前目錄為 <code class="special">{path}</code>。如果 <code class="special">{path}</code> 是相對路徑，則在
+                         <a href="options.html#'cdpath'">'cdpath'</a>  列出的目錄搜索之。
+                        這不會改變已經打開的文件，因為記住的是它們的完整路徑。
+                        但  <a href="editing.html#arglist">arglist</a>  裡的文件則可能會改變！
+                        MS-DOS 上這會同時改變當前的驅動器。
+                        要改變到當前文件的目錄: 
 <code class="example">                                :cd %:h</code>
 
                                                         <b class="vimtag"> <a name=":cd-">:cd-</a> </b> <b class="vimtag"> <a name="E186">E186</a> </b>
-:cd[!] -                切换到上一个当前目录 (在上个 ":cd <code class="special">{path}</code>" 命令之前)。
-                        <code class="notvi">{Vi 无此功能}</code>
+:cd[!] -                切換到上一個當前目錄 (在上個 ":cd <code class="special">{path}</code>" 命令之前)。
+                        <code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":chd">:chd</a> </b> <b class="vimtag"> <a name=":chdir">:chdir</a> </b>
 :chd[ir][!] <code class="special">[path]</code>      和  <a href="editing.html#:cd">:cd</a>  相同。
 
                                                         <b class="vimtag"> <a name=":lc">:lc</a> </b> <b class="vimtag"> <a name=":lcd">:lcd</a> </b>
-:lc[d][!] <code class="special">{path}</code>        和  <a href="editing.html#:cd">:cd</a>  类似，但只设置当前窗口的当前目录。别的窗口的
-                        当前目录保持不变。<code class="notvi">{Vi 无此功能}</code>
+:lc[d][!] <code class="special">{path}</code>        和  <a href="editing.html#:cd">:cd</a>  類似，但只設置當前窗口的當前目錄。別的窗口的
+                        當前目錄保持不變。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":lch">:lch</a> </b> <b class="vimtag"> <a name=":lchdir">:lchdir</a> </b>
-:lch[dir][!]            和  <a href="editing.html#:lcd">:lcd</a>  相同。<code class="notvi">{Vi 无此功能}</code>
+:lch[dir][!]            和  <a href="editing.html#:lcd">:lcd</a>  相同。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":pw">:pw</a> </b> <b class="vimtag"> <a name=":pwd">:pwd</a> </b> <b class="vimtag"> <a name="E187">E187</a> </b>
-:pw[d]                  显示当前目录名。<code class="notvi">{Vi: 没有 pwd}</code>
-                        另见  <a href="eval.html#getcwd()">getcwd()</a> 。
+:pw[d]                  顯示當前目錄名。<code class="notvi">{Vi: 沒有 pwd}</code>
+                        另見  <a href="eval.html#getcwd()">getcwd()</a> 。
 
-只要没有用过  <a href="editing.html#:lcd">:lcd</a>  命令，所有窗口共享同一个当前目录。切换到别的窗口的命令因此
-不会改变当前目录。
-当某个窗口用了  <a href="editing.html#:lcd">:lcd</a>  命令，所指定的目录成为该窗口的当前目录。没用过  <a href="editing.html#:lcd">:lcd</a>  的
-窗口还是和全局的当前目录同步。跳转到另一个窗口时，当前目录成为上次指定的本地当
-前目录。如果没有指定过，则使用全局当前目录。
-如果使用  <a href="editing.html#:cd">:cd</a>  命令，当前窗口会丢失他的本地当前目录，并从此以后使用全局当前目
-录。
+只要沒有用過  <a href="editing.html#:lcd">:lcd</a>  命令，所有窗口共享同一個當前目錄。切換到別的窗口的命令因此
+不會改變當前目錄。
+當某個窗口用了  <a href="editing.html#:lcd">:lcd</a>  命令，所指定的目錄成為該窗口的當前目錄。沒用過  <a href="editing.html#:lcd">:lcd</a>  的
+窗口還是和全局的當前目錄同步。跳轉到另一個窗口時，當前目錄成為上次指定的本地當
+前目錄。如果沒有指定過，則使用全局當前目錄。
+如果使用  <a href="editing.html#:cd">:cd</a>  命令，當前窗口會丟失他的本地當前目錄，並從此以後使用全局當前目
+錄。
 
- <a href="editing.html#:cd">:cd</a>  的完整路径名用于其后的文件读写。在某些网络文件系统中，这可能会引起麻烦。
-使用完整路径名的结果是当前使用的文件名还是指向相同的文件。例如: 如果你有文件
-a:test 和 目录 a:vim。命令 ":e test" ":cd vim" ":w" 会覆盖文件 a:test 而不是
-a:vim/test。但如果你使用 ":w test" 文件 a:vim/test 会被覆盖，因为你给出一个新
-的文件名，因而与 ":cd" 之前所指向的文件业已不同。
+ <a href="editing.html#:cd">:cd</a>  的完整路徑名用於其後的文件讀寫。在某些網絡文件系統中，這可能會引起麻煩。
+使用完整路徑名的結果是當前使用的文件名還是指向相同的文件。例如: 如果你有文件
+a:test 和 目錄 a:vim。命令 ":e test" ":cd vim" ":w" 會覆蓋文件 a:test 而不是
+a:vim/test。但如果你使用 ":w test" 文件 a:vim/test 會被覆蓋，因為你給出一個新
+的文件名，因而與 ":cd" 之前所指向的文件業已不同。
 
 </pre><hr class="doubleline" /><pre>
-<h4>8. 编辑二进制文件                                       <b class="vimtag"> <a name="edit-binary">edit-binary</a> </b></h4>
-尽管 Vim 是用来编辑文本文件的，它也可用来编辑二进制文件。Vim 的  <a href="starting.html#-b">-b</a>  参数 (b
-代表二进制 (binary)) 使 Vim 以二进制模式进行文件读写操作，并设置二进制文件编辑
-相关的一些选项 (<a href="options.html#'binary'">'binary'</a> 打开，<a href="options.html#'textwidth'">'textwidth'</a> 为 0，<a href="options.html#'modeline'">'modeline'</a> 关闭，<a href="options.html#'expandtab'">'expandtab'</a>
-关闭)。置位 <a href="options.html#'binary'">'binary'</a> 选项效果相同。不要忘记应在读入文件之前进行该操作。
+<h4>8. 編輯二進制文件                                       <b class="vimtag"> <a name="edit-binary">edit-binary</a> </b></h4>
+儘管 Vim 是用來編輯文本文件的，它也可用來編輯二進制文件。Vim 的  <a href="starting.html#-b">-b</a>  參數 (b
+代表二進制 (binary)) 使 Vim 以二進制模式進行文件讀寫操作，並設置二進制文件編輯
+相關的一些選項 (<a href="options.html#'binary'">'binary'</a> 打開，<a href="options.html#'textwidth'">'textwidth'</a> 為 0，<a href="options.html#'modeline'">'modeline'</a> 關閉，<a href="options.html#'expandtab'">'expandtab'</a>
+關閉)。置位 <a href="options.html#'binary'">'binary'</a> 選項效果相同。不要忘記應在讀入文件之前進行該操作。
 
-编辑二进制文件时要<code class="note">注意</code>以下几点:
-- 在编辑可执行文件时，不要修改字符数。只用 "R" 或 "r" 命令来修改文本。不要用
-  "x" 或退格键删除字符。
-- 设置 <a href="options.html#'textwidth'">'textwidth'</a> 选项为 0。不然，行会被意外的截为两段。
-- 如果 <code class="special">&lt;EOL&gt;</code> 符不多，行会很长。如果你希望编辑屏幕显示不下的行，重设 <a href="options.html#'wrap'">'wrap'</a> 选
-  项，使用横向滚动。如果一行过长 (Amiga 上超过 32767 个字符，32 位系统中则大得
-  多，见  <a href="vi_diff.html#limits">limits</a> )，你不能编辑该行。该行在读入时会被截断。也可能读入发生 "out
-  of memory" 错误。
-- 确保在读入文件 <code class="emphasis">前</code> 置位 <a href="options.html#'binary'">'binary'</a> 选项。不然，<code class="special">&lt;CR&gt;</code><code class="special">&lt;NL&gt;</code> 和 <code class="special">&lt;NL&gt;</code> 都被认为行尾，
-  从而在写回时，<code class="special">&lt;NL&gt;</code> 会被 <code class="special">&lt;CR&gt;</code><code class="special">&lt;NL&gt;</code> 取代。
-- <code class="special">&lt;Nul&gt;</code> 字符会在屏幕上显示为 ^@。你可以用 "<code class="keystroke">CTRL-V</code> <code class="keystroke">CTRL-@</code>" 或 "<code class="keystroke">CTRL-V</code> 000" 输入
-  之 <code class="notvi">{Vi 不能处理文件里的 <code class="special">&lt;Nul&gt;</code> 字符}</code>
-- 插入 <code class="special">&lt;NL&gt;</code> 字符会截断一行。在将缓冲区写入到文件时，<code class="special">&lt;NL&gt;</code> 会作为 <code class="special">&lt;EOL&gt;</code> 被写入。
-- 如果文件尾没有 <code class="special">&lt;EOL&gt;</code>，Vim 通常会自己加上。置位 <a href="options.html#'binary'">'binary'</a> 选项会禁止这一行
-  为。你也可以读取该选项的值来知道最后一行是否有 <code class="special">&lt;EOL&gt;</code> (文本上你是看不到的)。
+編輯二進制文件時要<code class="note">注意</code>以下幾點:
+- 在編輯可執行文件時，不要修改字符數。只用 "R" 或 "r" 命令來修改文本。不要用
+  "x" 或退格鍵刪除字符。
+- 設置 <a href="options.html#'textwidth'">'textwidth'</a> 選項為 0。不然，行會被意外的截為兩段。
+- 如果 <code class="special">&lt;EOL&gt;</code> 符不多，行會很長。如果你希望編輯屏幕顯示不下的行，重設 <a href="options.html#'wrap'">'wrap'</a> 選
+  項，使用橫向滾動。如果一行過長 (Amiga 上超過 32767 個字符，32 位系統中則大得
+  多，見  <a href="vi_diff.html#limits">limits</a> )，你不能編輯該行。該行在讀入時會被截斷。也可能讀入發生 "out
+  of memory" 錯誤。
+- 確保在讀入文件 <code class="emphasis">前</code> 置位 <a href="options.html#'binary'">'binary'</a> 選項。不然，<code class="special">&lt;CR&gt;</code><code class="special">&lt;NL&gt;</code> 和 <code class="special">&lt;NL&gt;</code> 都被認為行尾，
+  從而在寫回時，<code class="special">&lt;NL&gt;</code> 會被 <code class="special">&lt;CR&gt;</code><code class="special">&lt;NL&gt;</code> 取代。
+- <code class="special">&lt;Nul&gt;</code> 字符會在屏幕上顯示為 ^@。你可以用 "<code class="keystroke">CTRL-V</code> <code class="keystroke">CTRL-@</code>" 或 "<code class="keystroke">CTRL-V</code> 000" 輸入
+  之 <code class="notvi">{Vi 不能處理文件裡的 <code class="special">&lt;Nul&gt;</code> 字符}</code>
+- 插入 <code class="special">&lt;NL&gt;</code> 字符會截斷一行。在將緩衝區寫入到文件時，<code class="special">&lt;NL&gt;</code> 會作為 <code class="special">&lt;EOL&gt;</code> 被寫入。
+- 如果文件尾沒有 <code class="special">&lt;EOL&gt;</code>，Vim 通常會自己加上。置位 <a href="options.html#'binary'">'binary'</a> 選項會禁止這一行
+  為。你也可以讀取該選項的值來知道最後一行是否有 <code class="special">&lt;EOL&gt;</code> (文本上你是看不到的)。
 
 </pre><hr class="doubleline" /><pre>
 <h4>9. 加密                                                 <b class="vimtag"> <a name="encryption">encryption</a> </b></h4>
-Vim 可用加密的方式写入文件并读回。没有正确的密钥，加密文本不能被读取。
-<code class="notvi">{仅当编译时加入  <a href="various.html#+cryptv">+cryptv</a>  功能才有效}</code>  <b class="vimtag"> <a name="E833">E833</a> </b>
+Vim 可用加密的方式寫入文件並讀回。沒有正確的密鑰，加密文本不能被讀取。
+<code class="notvi">{僅當編譯時加入  <a href="various.html#+cryptv">+cryptv</a>  功能才有效}</code>  <b class="vimtag"> <a name="E833">E833</a> </b>
 
-交换文件和撤销文件的文本也被加密。 <b class="vimtag"> <a name="E843">E843</a> </b>
-不过，这是分块进行的，这样可能缩短破解密钥的时间。可以关闭交换文件，但任何崩溃
-会丢失你之前的成果。关闭撤销文件但没有什么大损失。 
+交換文件和撤銷文件的文本也被加密。 <b class="vimtag"> <a name="E843">E843</a> </b>
+不過，這是分塊進行的，這樣可能縮短破解密鑰的時間。可以關閉交換文件，但任何崩潰
+會丟失你之前的成果。關閉撤銷文件但沒有什麼大損失。 
 <code class="example">        :set noundofile</code>
 <code class="example">        :noswapfile edit secrets</code>
 <code class="example"></code>
-<code class="note">注意</code>: 内存里的文本是不加密的。系统管理员因此可以在你编辑时看到你的文本。用
-":!filter" 或者 ":w !command" 过滤的文本也是不加密的，这些都可能造成文本泄露。
+<code class="note">注意</code>: 內存裡的文本是不加密的。系統管理員因此可以在你編輯時看到你的文本。用
+":!filter" 或者 ":w !command" 過濾的文本也是不加密的，這些都可能造成文本洩露。
 <a href="options.html#'viminfo'">'viminfo'</a> 文件也不加密。
 
-要编辑极度机密的文本: 
+要編輯極度機密的文本: 
 <code class="example">        :set noundofile viminfo=</code>
 <code class="example">        :noswapfile edit secrets.txt</code>
-牢记没有交换文件意味着你冒崩溃、停电等事件时丢失工作成果的风险。
+牢記沒有交換文件意味著你冒崩潰、停電等事件時丟失工作成果的風險。
 
- <code class="emphasis">警告</code> : 如果在输入密钥时发生错误而且写入文件后退出，这些文本就永远丢失了。
+ <code class="emphasis">警告</code> : 如果在輸入密鑰時發生錯誤而且寫入文件後退出，這些文本就永遠丟失了。
 
-使用加密的通常方法是用 ":X" 命令，它会提示你输入一个密钥。其后的一个写入命令会
-使用该密钥加密文件。如果你以后编辑该文件，Vim 会要求你输入密钥。如果你的输入正
-确，文件是可读的，不然，文本会显示为乱码。
+使用加密的通常方法是用 ":X" 命令，它會提示你輸入一個密鑰。其後的一個寫入命令會
+使用該密鑰加密文件。如果你以後編輯該文件，Vim 會要求你輸入密鑰。如果你的輸入正
+確，文件是可讀的，不然，文本會顯示為亂碼。
 
                                                         <b class="vimtag"> <a name=":X">:X</a> </b>
-:X      提示加密密钥。输入时不会反显输入的内容。别人即使看到屏幕，也不能看见你
-        的密钥。输入的字符保存在 <a href="options.html#'key'">'key'</a> 选项里，它的值用来在写入文件时加密该文
-        件。在写入之前，该文件保持不变。另见  <a href="starting.html#-x">-x</a> 。
+:X      提示加密密鑰。輸入時不會反顯輸入的內容。別人即使看到屏幕，也不能看見你
+        的密鑰。輸入的字符保存在 <a href="options.html#'key'">'key'</a> 選項裡，它的值用來在寫入文件時加密該文
+        件。在寫入之前，該文件保持不變。另見  <a href="starting.html#-x">-x</a> 。
 
-<a href="options.html#'key'">'key'</a> 选项里的值在文件写入时使用。如果该选项非空，写入的文件会用它的值作为密钥
-加密。加密过的文件的头部有个魔术数字，使得 Vim 可以识别这是加密文件。
+<a href="options.html#'key'">'key'</a> 選項裡的值在文件寫入時使用。如果該選項非空，寫入的文件會用它的值作為密鑰
+加密。加密過的文件的頭部有個魔術數字，使得 Vim 可以識別這是加密文件。
 
-要关闭加密，复位 <a href="options.html#'key'">'key'</a> 选项为空值: 
+要關閉加密，復位 <a href="options.html#'key'">'key'</a> 選項為空值: 
 <code class="example">        :set key=</code>
 <code class="example"></code>
-使用 <a href="options.html#'cryptmethod'">'cryptmethod'</a> 选项来选择加密方法为以下之一: 
-<code class="example">        :setlocal cm=zip        " 较弱的加密方法，后向兼容</code>
+使用 <a href="options.html#'cryptmethod'">'cryptmethod'</a> 選項來選擇加密方法為以下之一: 
+<code class="example">        :setlocal cm=zip        " 較弱的加密方法，後向兼容</code>
 <code class="example">        :setlocal cm=blowfish   " 有漏洞的方法</code>
-<code class="example">        :setlocal cm=blowfish2  " 中等强度的方法</code>
+<code class="example">        :setlocal cm=blowfish2  " 中等強度的方法</code>
 <code class="example"></code>
-必须在写入文件前进行。读入加密文件时，自动设置该选项为文件写入时选择的方法。写
-入前改变 <a href="options.html#'cryptmethod'">'cryptmethod'</a> 就可以改变使用的加密方法。
+必須在寫入文件前進行。讀入加密文件時，自動設置該選項為文件寫入時選擇的方法。寫
+入前改變 <a href="options.html#'cryptmethod'">'cryptmethod'</a> 就可以改變使用的加密方法。
 
-要设置用于新文件的缺省方法，在  <a href="starting.html#vimrc">vimrc</a>  文件中放入: 
+要設置用於新文件的缺省方法，在  <a href="starting.html#vimrc">vimrc</a>  文件中放入: 
 <code class="example">        set cm=blowfish2</code>
-强烈推荐使用 "blowfish2"。只有在不支持它的旧版本的 Vim 上才用其它方法。
+強烈推薦使用 "blowfish2"。只有在不支持它的舊版本的 Vim 上才用其它方法。
 
-读写文件给出的信息会显示 "[crypted]" 对应 zip，"[blowfish]" 对应 blowfish，等
+讀寫文件給出的信息會顯示 "[crypted]" 對應 zip，"[blowfish]" 對應 blowfish，等
 等。
 
-写入撤销文件时，撤销文件的文本使用相同的密钥和方法。 <a href="undo.html#persistent-undo">persistent-undo</a> 。
+寫入撤銷文件時，撤銷文件的文本使用相同的密鑰和方法。 <a href="undo.html#persistent-undo">persistent-undo</a> 。
 
-要测试有无 blowfish 支持，使用以下条件: 
+要測試有無 blowfish 支持，使用以下條件: 
 <code class="example">        has('crypt-blowfish')</code>
 <code class="example">        has('crypt-blowfish2')</code>
-尽管更早时就有 blowfish 支持，这只可用于 Vim 7.4.1099 开始的版本。所以此条件的
-失败不意味着不支持 blowfish。可以这么测试 blowfish: 
+儘管更早時就有 blowfish 支持，這只可用於 Vim 7.4.1099 開始的版本。所以此條件的
+失敗不意味著不支持 blowfish。可以這麼測試 blowfish: 
 <code class="example">        v:version &gt;= 703</code>
-对 blowfish2 则可以用: 
+對 blowfish2 則可以用: 
 <code class="example">        v:version &gt; 704 || (v:version == 704 &amp;&amp; has('patch401'))</code>
-如果确信你的 Vim 包含了 patch 7.4.237，更简单的检查是: 
+如果確信你的 Vim 包含了 patch 7.4.237，更簡單的檢查是: 
 <code class="example">        has('patch-7.4.401')</code>
 
                                                 <b class="vimtag"> <a name="E817">E817</a> </b> <b class="vimtag"> <a name="E818">E818</a> </b> <b class="vimtag"> <a name="E819">E819</a> </b> <b class="vimtag"> <a name="E820">E820</a> </b>
-如果加密过程有错，文本可以写到文件里，但再不能正确读回来了。为此准备了一项测试
-以确定加密顺利完成。如果看到这些错误其中之一，不要以加密方式写入文件！要修正
-之，你需要重新编译 Vim 程序。
+如果加密過程有錯，文本可以寫到文件裡，但再不能正確讀回來了。為此準備了一項測試
+以確定加密順利完成。如果看到這些錯誤其中之一，不要以加密方式寫入文件！要修正
+之，你需要重新編譯 Vim 程序。
 
-<b class="vimtag"> <a name="E831">E831</a> </b> 这是一个内部错误，"不应该发生"。如果你能重现该错误，请向开发者报告。
+<b class="vimtag"> <a name="E831">E831</a> </b> 這是一個內部錯誤，"不應該發生"。如果你能重現該錯誤，請向開發者報告。
 
-读入加密文件时如果 <a href="options.html#'key'">'key'</a> 选项非空，它被用作解密的密钥。如果该值为空，你会得到
-提示，输入密钥。如果你不输密钥或者密钥不符，该文件以未解密的形式被编辑。使用错
-误的密钥不会有警告 (以增加暴力破解密钥的难度)。
+讀入加密文件時如果 <a href="options.html#'key'">'key'</a> 選項非空，它被用作解密的密鑰。如果該值為空，你會得到
+提示，輸入密鑰。如果你不輸密鑰或者密鑰不符，該文件以未解密的形式被編輯。使用錯
+誤的密鑰不會有警告 (以增加暴力破解密鑰的難度)。
 
-如果要以不同的密钥读入别的文件，设置 <a href="options.html#'key'">'key'</a> 选项为空串，从而让 Vim 给出提示输入
-新值。不要用 ":set" 命令输入该值，否则别人在你身后就能看到了。
+如果要以不同的密鑰讀入別的文件，設置 <a href="options.html#'key'">'key'</a> 選項為空串，從而讓 Vim 給出提示輸入
+新值。不要用 ":set" 命令輸入該值，否則別人在你身後就能看到了。
 
-因为 <a href="options.html#'key'">'key'</a> 选项的值应该是个秘密，永远不要看它的值，也不要在 vimrc 文件里设置。
+因為 <a href="options.html#'key'">'key'</a> 選項的值應該是個秘密，永遠不要看它的值，也不要在 vimrc 文件裡設置。
 
-如果你把如下诸行加到 "/etc/magic"、"/usr/share/misc/magic" 或者你系统支持的
-"magic" 文件里，你的加密文件可以被 "file" 命令识别: 
+如果你把如下諸行加到 "/etc/magic"、"/usr/share/misc/magic" 或者你系統支持的
+"magic" 文件裡，你的加密文件可以被 "file" 命令識別: 
 <code class="example">     0  string  VimCrypt~       Vim encrypted file</code>
 <code class="example">     &gt;9 string  01      - "zip" cryptmethod</code>
 <code class="example">     &gt;9 string  02      - "blowfish" cryptmethod</code>
 <code class="example">     &gt;9 string  03      - "blowfish2" cryptmethod</code>
 <code class="example"></code>
 <code class="note">注意</code>:
-- 如果用 <a href="options.html#'charconvert'">'charconvert'</a> 转换，不能实施加密。
-- 你复制或者删除的文本保存在编号的寄存器中。寄存器可以保存在 .viminfo 文件里，
-  从而可以读到。修改你的 <a href="options.html#'viminfo'">'viminfo'</a> 选项以确保安全。
-- 如果你走开一会儿，别入可能在 Vim 里输入命令，他不可能得到你的密钥。
-- 如果你输入密钥时发生错误，你就无法取回你的文本了！
-- 如果你用 ":set key=value" 命令输入密钥，它会保存在历史里，从而在 viminfo 文
-  件里显示 <a href="options.html#'key'">'key'</a> 的值。
-- 没有 100% 的安全。Vim 的加密算法没有经过健壮性的严格测试。
-- 用于 <a href="options.html#'cryptmethod'">'cryptmethod'</a> 的 "zip" 算法是可以破解的。一个 4 字符的密钥需要大概一个
-  小时，6 字符的密钥需要一天 (在一台 Pentinum 133 PC 上)。这需要你知道文件里一
-  定会出现的若干文本。
-  专家可以依此方法破解任何密钥，如果文本已经被解密，则密钥可以被推算出，而其他
-  以相同密钥加密的文件也能被解出。
-- Pkzip 使用和 <a href="options.html#'cryptmethod'">'cryptmethod'</a> 的 "zip" 相同的加密方法，美国政府对其出口不持异
-  议。Pkzip 的公共文件 APPNOTE.TXT 详细描述了这一算法。
-- <a href="options.html#'cryptmethod'">'cryptmethod'</a> 的 "blowfish" 实现有漏洞。可以破解文件的前 64 个字节，在有些情
-  况下，甚至更多。不推荐，但 Vim 7.3 和 7.4 里还是最强的方法。"zip" 方法更弱。
-- Vim 起源于荷兰。这是源代码的出处。因此，加密代码并非从美国出口。
+- 如果用 <a href="options.html#'charconvert'">'charconvert'</a> 轉換，不能實施加密。
+- 你複製或者刪除的文本保存在編號的寄存器中。寄存器可以保存在 .viminfo 文件裡，
+  從而可以讀到。修改你的 <a href="options.html#'viminfo'">'viminfo'</a> 選項以確保安全。
+- 如果你走開一會兒，別入可能在 Vim 裡輸入命令，他不可能得到你的密鑰。
+- 如果你輸入密鑰時發生錯誤，你就無法取回你的文本了！
+- 如果你用 ":set key=value" 命令輸入密鑰，它會保存在歷史裡，從而在 viminfo 文
+  件裡顯示 <a href="options.html#'key'">'key'</a> 的值。
+- 沒有 100% 的安全。Vim 的加密算法沒有經過健壯性的嚴格測試。
+- 用於 <a href="options.html#'cryptmethod'">'cryptmethod'</a> 的 "zip" 算法是可以破解的。一個 4 字符的密鑰需要大概一個
+  小時，6 字符的密鑰需要一天 (在一台 Pentinum 133 PC 上)。這需要你知道文件裡一
+  定會出現的若干文本。
+  專家可以依此方法破解任何密鑰，如果文本已經被解密，則密鑰可以被推算出，而其他
+  以相同密鑰加密的文件也能被解出。
+- Pkzip 使用和 <a href="options.html#'cryptmethod'">'cryptmethod'</a> 的 "zip" 相同的加密方法，美國政府對其出口不持異
+  議。Pkzip 的公共文件 APPNOTE.TXT 詳細描述了這一算法。
+- <a href="options.html#'cryptmethod'">'cryptmethod'</a> 的 "blowfish" 實現有漏洞。可以破解文件的前 64 個字節，在有些情
+  況下，甚至更多。不推薦，但 Vim 7.3 和 7.4 裡還是最強的方法。"zip" 方法更弱。
+- Vim 起源於荷蘭。這是源代碼的出處。因此，加密代碼並非從美國出口。
 
 </pre><hr class="doubleline" /><pre>
-<h4>10. 修改时间                                    <b class="vimtag"> <a name="timestamp">timestamp</a> </b> <b class="vimtag"> <a name="timestamps">timestamps</a> </b></h4>
-Vim 记住文件开始编辑时的修改时间、模式和大小。这用来防止 (在你自己知道之前) 你
-有同一个文件的不同版本。
+<h4>10. 修改時間                                    <b class="vimtag"> <a name="timestamp">timestamp</a> </b> <b class="vimtag"> <a name="timestamps">timestamps</a> </b></h4>
+Vim 記住文件開始編輯時的修改時間、模式和大小。這用來防止 (在你自己知道之前) 你
+有同一個文件的不同版本。
 
-在执行了外壳命令 ( <a href="various.html#:!cmd">:!cmd</a>   <a href="starting.html#suspend">suspend</a>   <a href="insert.html#:read!">:read!</a>   <a href="various.html#K">K</a> ) 以后，Vim 会对窗口里的所有缓
-冲区的修改时间、模式和大小进行比较。Vim 会对在此期间被修改的文件执行相关的
- <a href="autocmd.html#FileChangedShell">FileChangedShell</a>  自动命令或者显示警告。GUI 上，在 Vim 取回输入焦点的时候也会
-发生。
+在執行了外殼命令 ( <a href="various.html#:!cmd">:!cmd</a>   <a href="starting.html#suspend">suspend</a>   <a href="insert.html#:read!">:read!</a>   <a href="various.html#K">K</a> ) 以後，Vim 會對窗口裡的所有緩
+沖區的修改時間、模式和大小進行比較。Vim 會對在此期間被修改的文件執行相關的
+ <a href="autocmd.html#FileChangedShell">FileChangedShell</a>  自動命令或者顯示警告。GUI 上，在 Vim 取回輸入焦點的時候也會
+發生。
 
                                                         <b class="vimtag"> <a name="E321">E321</a> </b> <b class="vimtag"> <a name="E462">E462</a> </b>
-如果你想自动重新载入在 Vim 之外被修改的文件的新内容，置位 <a href="options.html#'autoread'">'autoread'</a> 选项。如
-果你已经在 Vim 里修改过这个文件，这不会工作。
+如果你想自動重新載入在 Vim 之外被修改的文件的新內容，置位 <a href="options.html#'autoread'">'autoread'</a> 選項。如
+果你已經在 Vim 裡修改過這個文件，這不會工作。
 
-如果你不想被询问，也不想自动载入文件，可以这样: 
+如果你不想被詢問，也不想自動載入文件，可以這樣: 
 <code class="example">        set buftype=nofile</code>
 <code class="example"></code>
-或者，从外壳启动 gvim: 
+或者，從外殼啟動 gvim: 
 <code class="example">        gvim file.log -c "set buftype=nofile"</code>
 <code class="example"></code>
-<code class="note">注意</code> 如果定义了 FileChangedShell 自动命令，你不会得到警告信息或者提示。该自动
-命令应负责处理。
+<code class="note">注意</code> 如果定義了 FileChangedShell 自動命令，你不會得到警告信息或者提示。該自動
+命令應負責處理。
 
-对目录的修改也不会有警告 (例如用  <a href="pi_netrw.html#netrw-browse">netrw-browse</a> )，除非你开始编辑一个新文件，但
-它在外部被建立为一个目录。
+對目錄的修改也不會有警告 (例如用  <a href="pi_netrw.html#netrw-browse">netrw-browse</a> )，除非你開始編輯一個新文件，但
+它在外部被建立為一個目錄。
 
-当 Vim <code class="note">注意</code>到一个文件的修改时间被修改并且该文件正在缓冲区里等待编辑但还未经修
-改，会先检查文件内容是否相同，这是通过再次读入该文件 (到一个隐藏缓冲区，该缓冲
-区事后被立即删除)，并比较两个缓冲区的文本完成的。如果相同，你不会得到警告。
+當 Vim <code class="note">注意</code>到一個文件的修改時間被修改並且該文件正在緩衝區裡等待編輯但還未經修
+改，會先檢查文件內容是否相同，這是通過再次讀入該文件 (到一個隱藏緩衝區，該緩衝
+區事後被立即刪除)，並比較兩個緩衝區的文本完成的。如果相同，你不會得到警告。
 
-如果你觉得警告不够及时或不够充分，你可以使用如下命令。
+如果你覺得警告不夠及時或不夠充分，你可以使用如下命令。
 
                                                         <b class="vimtag"> <a name=":checkt">:checkt</a> </b> <b class="vimtag"> <a name=":checktime">:checktime</a> </b>
-:checkt[ime]            检查是否有缓冲区在 Vim 之外被改变。 该命令检查你是否有
-                        文件的两个版本并给出警告。
-                        如果它在自动命令、":global" 命令或者任何非键盘输入中调
-                        用，实际的检查会延迟，直到副作用 (重新读入文件) 不会有
-                        任何问题。
-                        每个已读入的缓冲区会检查相关的文件是否被改变。如果是，
-                        则 Vim 会采取行动。如果缓冲区没有修改过而且置位了
-                        <a href="options.html#'autoread'">'autoread'</a>，缓冲区被重新读入。否则，你会被询问是否重新
-                        读入文件。如果文件被删除，你会得到一个错误信息。如果文
-                        件过去不存在但现在已经存在，你会得到一个警告。
-                        一旦检查过某个文件，他的修改时间被重置。因而，你不会被
-                        重复警告。
+:checkt[ime]            檢查是否有緩衝區在 Vim 之外被改變。 該命令檢查你是否有
+                        文件的兩個版本並給出警告。
+                        如果它在自動命令、":global" 命令或者任何非鍵盤輸入中調
+                        用，實際的檢查會延遲，直到副作用 (重新讀入文件) 不會有
+                        任何問題。
+                        每個已讀入的緩衝區會檢查相關的文件是否被改變。如果是，
+                        則 Vim 會採取行動。如果緩衝區沒有修改過而且置位了
+                        <a href="options.html#'autoread'">'autoread'</a>，緩衝區被重新讀入。否則，你會被詢問是否重新
+                        讀入文件。如果文件被刪除，你會得到一個錯誤信息。如果文
+                        件過去不存在但現在已經存在，你會得到一個警告。
+                        一旦檢查過某個文件，他的修改時間被重置。因而，你不會被
+                        重複警告。
 
 :[N]checkt[ime] <code class="special">{filename}</code>
 :[N]checkt[ime] <code class="special">[N]</code>
-                        检查某个特定缓冲区的修改时间。该缓冲区可以用名字、编号
+                        檢查某個特定緩衝區的修改時間。該緩衝區可以用名字、編號
                         或者模式指定。
 
 
                                                         <b class="vimtag"> <a name="E813">E813</a> </b> <b class="vimtag"> <a name="E814">E814</a> </b>
-如果你指定 Vim 重载缓冲区，如果某可见窗口包含了该缓冲区，重载会在该窗口的上下
-文中进行。否则，会使用一个特殊窗口，这使得大多数的自动命令可以执行。你不能关闭
-这个窗口，还有一些其它特殊的限制。最好不要涉及到本缓冲区之外的对象。例如，设置
-局部于窗口的选项可能会选错窗口。分割窗口来做一些操作，然后关闭新分割的窗口应该
-没问题 (假定其它自动命令没有副作用)。但关闭不相关的窗口和缓冲区就不好了。
+如果你指定 Vim 重載緩衝區，如果某可見窗口包含了該緩衝區，重載會在該窗口的上下
+文中進行。否則，會使用一個特殊窗口，這使得大多數的自動命令可以執行。你不能關閉
+這個窗口，還有一些其它特殊的限制。最好不要涉及到本緩衝區之外的對象。例如，設置
+局部於窗口的選項可能會選錯窗口。分割窗口來做一些操作，然後關閉新分割的窗口應該
+沒問題 (假定其它自動命令沒有副作用)。但關閉不相關的窗口和緩衝區就不好了。
 
-在你写入文件的时候，修改时间被检查。如果发生了改变，Vim 会提示你是否要真的覆盖
-该文件:
+在你寫入文件的時候，修改時間被檢查。如果發生了改變，Vim 會提示你是否要真的覆蓋
+該文件:
 
         WARNING: The file has been changed since reading it!!!
         Do you really want to write to it (y/n)?
 
-如果你按 'y'，Vim 会继续写入文件。如果你按 'n'，写入操作被取消。如果你用 ":wq"
-或者 "ZZ"，Vim 因而不会退出。从而你还有机会写入文件。
+如果你按 'y'，Vim 會繼續寫入文件。如果你按 'n'，寫入操作被取消。如果你用 ":wq"
+或者 "ZZ"，Vim 因而不會退出。從而你還有機會寫入文件。
 
-通常，该消息意味着有人在编辑会话开始后，写入到该文件里。这可能是别人，这时你可
-能想检查你的修改和别人的修改是否可以合并。将文件写到别的名字然后比较两者的差
-异 (可以用 "diff" 程序)。
+通常，該消息意味著有人在編輯會話開始後，寫入到該文件裡。這可能是別人，這時你可
+能想檢查你的修改和別人的修改是否可以合併。將文件寫到別的名字然後比較兩者的差
+異 (可以用 "diff" 程序)。
 
-当然也有可能你自己在另外一个编辑会话中或者用别的命令 (例如一个过滤命令) 修改了
-该文件。这样，你自己知道希望保留文件的哪个版本。
+當然也有可能你自己在另外一個編輯會話中或者用別的命令 (例如一個過濾命令) 修改了
+該文件。這樣，你自己知道希望保留文件的哪個版本。
 
-有一个情况即使在没有任何错误的时候也会得到消息: Win32 系统在夏令时开始的时候。
-Win32 库的一些细节使得 Vim 对小时的变化有些混淆。第二天问题就没有了。
+有一個情況即使在沒有任何錯誤的時候也會得到消息: Win32 系統在夏令時開始的時候。
+Win32 庫的一些細節使得 Vim 對小時的變化有些混淆。第二天問題就沒有了。
 
 </pre><hr class="doubleline" /><pre>
 <h4>11. 文件搜索                                            <b class="vimtag"> <a name="file-searching">file-searching</a> </b></h4>
-<code class="notvi">{仅当编译时加入  <a href="various.html#+path_extra">+path_extra</a>  特性才有效}</code>
+<code class="notvi">{僅當編譯時加入  <a href="various.html#+path_extra">+path_extra</a>  特性才有效}</code>
 
-文件搜索目前用于 <a href="options.html#'path'">'path'</a>、<a href="options.html#'cdpath'">'cdpath'</a> 和 <a href="options.html#'tags'">'tags'</a> 选项和  <a href="eval.html#finddir()">finddir()</a>  和
- <a href="eval.html#findfile()">findfile()</a> 。其他命令使用  <a href="editing.html#wildcards">wildcards</a> ，则略有不同。
+文件搜索目前用於 <a href="options.html#'path'">'path'</a>、<a href="options.html#'cdpath'">'cdpath'</a> 和 <a href="options.html#'tags'">'tags'</a> 選項和  <a href="eval.html#finddir()">finddir()</a>  和
+ <a href="eval.html#findfile()">findfile()</a> 。其他命令使用  <a href="editing.html#wildcards">wildcards</a> ，則略有不同。
 
-有三种不同类型的搜索:
+有三種不同類型的搜索:
 
 1) 向下搜索:                                            <b class="vimtag"> <a name="starstar">starstar</a> </b>
-   向下搜索使用 '*'、'**' 或其他操作系统支持的通配符。'*' 和 '**' 是由 Vim 内
-   部处理的，以适用于所有操作系统。<code class="note">注意</code> "**" 只在文件名开始处才被当作特殊的通
+   向下搜索使用 '*'、'**' 或其他操作系統支持的通配符。'*' 和 '**' 是由 Vim 內
+   部處理的，以適用於所有操作系統。<code class="note">注意</code> "**" 只在文件名開始處才被當作特殊的通
    配符。
 
-   '*' 的使用很简单: 匹配 0 个或更多字符。如果用搜索模式，应该是 ".*"。但<code class="note">注意</code>
+   '*' 的使用很簡單: 匹配 0 個或更多字符。如果用搜索模式，應該是 ".*"。但<code class="note">注意</code>
    文件搜索不使用 "." 元字符。
 
-   '**' 则复杂的多:
-      -  <code class="emphasis">只</code> 匹配目录。
-      - 匹配缺省最多可达 30 层的目录。所以你可以用它整个目录树里查找
-      - 最大匹配的层数可以通过在 '**' 之后给出数字限定。
-        这样，'/usr/**2' 可以匹配: 
+   '**' 則複雜的多:
+      -  <code class="emphasis">只</code> 匹配目錄。
+      - 匹配缺省最多可達 30 層的目錄。所以你可以用它整個目錄樹裡查找
+      - 最大匹配的層數可以通過在 '**' 之後給出數字限定。
+        這樣，'/usr/**2' 可以匹配: 
 <code class="example">                /usr</code>
 <code class="example">                /usr/include</code>
 <code class="example">                /usr/include/sys</code>
@@ -1389,60 +1389,60 @@ Win32 库的一些细节使得 Vim 对小时的变化有些混淆。第二天问
 <code class="example">                /usr/lib</code>
 <code class="example">                /usr/lib/X11</code>
 <code class="example">                ....</code>
-        它 <code class="emphasis">不</code> 匹配 '/usr/include/g++/std'，因为这已到了第三层。
-        允许的数字范围是 0 ('**0' 被直接去掉) 到 100。如果给定的数字小于 0，则
-        缺省为 30。如果大于 100，则使用 100。系统本身还有路径长度的上限，通常
-        是 256 或 1024 字节。
-      - '**' 只能用于路径的尾部，或者后面紧跟一个路径分隔符，或者后面紧跟一个
-        数字加一个路径分隔符。
+        它 <code class="emphasis">不</code> 匹配 '/usr/include/g++/std'，因為這已到了第三層。
+        允許的數字範圍是 0 ('**0' 被直接去掉) 到 100。如果給定的數字小於 0，則
+        缺省為 30。如果大於 100，則使用 100。系統本身還有路徑長度的上限，通常
+        是 256 或 1024 字節。
+      - '**' 只能用於路徑的尾部，或者後面緊跟一個路徑分隔符，或者後面緊跟一個
+        數字加一個路徑分隔符。
 
-   你可以用任何顺序混合 '*' 和 '**': 
+   你可以用任何順序混合 '*' 和 '**': 
 <code class="example">        /usr/*/sys/**</code>
 <code class="example">        /usr/*tory/sys/**</code>
 <code class="example">        /usr/**2/sys/*</code>
 <code class="example"></code>
 2) 向上搜索:
-   这里，你可以给出一个目录，然后沿着目录树向上搜索一个文件。你可以给出若干终
-   止目录来限制搜索的范围。终止目录附加于路径 (对 <a href="options.html#'path'">'path'</a> 选项而言) 或文件名
-   (对 <a href="options.html#'tags'">'tags'</a> 选项而言) 之后，中间以 ";" 分隔。如果需要多个终止目录，一一列
-   出，以 ';' 分隔。如果你不想要终止目录 (搜索直到根目录)，只要用 ";"。 
+   這裡，你可以給出一個目錄，然後沿著目錄樹向上搜索一個文件。你可以給出若干終
+   止目錄來限制搜索的範圍。終止目錄附加於路徑 (對 <a href="options.html#'path'">'path'</a> 選項而言) 或文件名
+   (對 <a href="options.html#'tags'">'tags'</a> 選項而言) 之後，中間以 ";" 分隔。如果需要多個終止目錄，一一列
+   出，以 ';' 分隔。如果你不想要終止目錄 (搜索直到根目錄)，只要用 ";"。 
 <code class="example">        /usr/include/sys;/usr</code>
-    会在以下位置搜索: 
+    會在以下位置搜索: 
 <code class="example">           /usr/include/sys</code>
 <code class="example">           /usr/include</code>
 <code class="example">           /usr</code>
 
-   如果你用相对路径，则向上搜索始于 Vim 的当前目录或当前文件的目录 (如果相对路
-   径始于 "./" 并且 <a href="options.html#'cpoptions'">'cpoptions'</a> 里不含 'd' 的话)。
+   如果你用相對路徑，則向上搜索始於 Vim 的當前目錄或當前文件的目錄 (如果相對路
+   徑始於 "./" 並且 <a href="options.html#'cpoptions'">'cpoptions'</a> 裡不含 'd' 的話)。
 
-   如果 Vim 的当前路径是 /u/user_x/work/release 而你用 
+   如果 Vim 的當前路徑是 /u/user_x/work/release 而你用 
 <code class="example">        :set path=include;/u/user_x</code>
-   然后用  <a href="editing.html#gf">gf</a>  搜索文件，则文件在如下位置搜索: 
+   然後用  <a href="editing.html#gf">gf</a>  搜索文件，則文件在如下位置搜索: 
 <code class="example">        /u/user_x/work/release/include</code>
 <code class="example">        /u/user_x/work/include</code>
 <code class="example">        /u/user_x/include</code>
 <code class="example"></code>
 3) 混合向上/向下搜索
-   如果 Vim 当前路径是 /u/user_x/work/release 而你用 
+   如果 Vim 當前路徑是 /u/user_x/work/release 而你用 
 <code class="example">        set path=**;/u/user_x</code>
-   然后用  <a href="editing.html#gf">gf</a>  搜索文件，则文件在如下位置搜索: 
+   然後用  <a href="editing.html#gf">gf</a>  搜索文件，則文件在如下位置搜索: 
 <code class="example">        /u/user_x/work/release/**</code>
 <code class="example">        /u/user_x/work/**</code>
 <code class="example">        /u/user_x/**</code>
 
-    <code class="emphasis">要小心</code> ！这会消耗大量时间，因为对 '/u/user_x/**' 的搜索包括
+    <code class="emphasis">要小心</code> ！這會消耗大量時間，因為對 '/u/user_x/**' 的搜索包括
    '/u/user_x/work/**' 和 '/u/user_x/work/release/**'。因此
-   '/u/user_x/work/release/**' 被搜索三遍而 '/u/user_x/work/**' 被搜索两遍。
+   '/u/user_x/work/release/**' 被搜索三遍而 '/u/user_x/work/**' 被搜索兩遍。
 
-   因而，在上例中你可能想如此设置 path: 
+   因而，在上例中你可能想如此設置 path: 
 <code class="example">        :set path=**,/u/user_x/**</code>
-    这会搜索:
+    這會搜索:
 <code class="section">        /u/user_x/work/release/** </code>
 <code class="section">        /u/user_x/** </code>
-    它会搜索相同的目录群，但顺序不同。
+    它會搜索相同的目錄群，但順序不同。
 
-    <code class="note">注意</code> ":find"、":sfind" 和 ":tabfind" 命令的补全目前不接受包含 url、使用带
-    深度限定的双星记号 (/usr/**2) 或向上搜索 (;) 记号的 <a href="options.html#'path'">'path'</a> 项目。
+    <code class="note">注意</code> ":find"、":sfind" 和 ":tabfind" 命令的補全目前不接受包含 url、使用帶
+    深度限定的雙星記號 (/usr/**2) 或向上搜索 (;) 記號的 <a href="options.html#'path'">'path'</a> 項目。
 
  vim:tw=78:ts=8:ft=help:norl:
 </pre>

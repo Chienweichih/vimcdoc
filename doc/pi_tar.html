@@ -1,17 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>VIM: pi_tar</title>
 <link rel="stylesheet" href="vim-stylesheet.css" type="text/css">
 </head>
 <body>
 <div id=banner>
-<a href="help.html">帮助总览</a> &middot;
-<a href="quickref.html">快速参考</a> &middot;
+<a href="help.html">幫助總覽</a> &middot;
+<a href="quickref.html">快速參考</a> &middot;
 <a href="index.html">命令索引</a> &middot;
-<a href="usr_toc.html">用户手册</a> &middot;
-<a href="help.html#reference_toc">参考手册</a>
+<a href="usr_toc.html">用戶手冊</a> &middot;
+<a href="help.html#reference_toc">參考手冊</a>
 </div>
 
 <div id=outer>
@@ -22,7 +22,7 @@
                        +====================+
                        |    Tar 文件接口    |
                        +====================+
-                                <code class="vim">译者</code>: Willis
+                                <code class="vim">譯者</code>: Willis
                                 http://vimcdoc.sf.net
 
 Author:  Charles E. Campbell  &lt;NdrOchip@ScampbellPfamily.AbizM&gt;
@@ -39,76 +39,76 @@ Copyright 2005-2012:                                    <b class="vimtag"> <a na
         damages resulting from the use of this software. Use at your own risk!
 
 </pre><hr class="doubleline" /><pre>
-<h4>1. 内容                                         <b class="vimtag"> <a name="tar">tar</a> </b> <b class="vimtag"> <a name="tar-contents">tar-contents</a> </b></h4>   1. 内容...................................................... <a href="pi_tar.html#tar-contents">tar-contents</a> 
+<h4>1. 內容                                         <b class="vimtag"> <a name="tar">tar</a> </b> <b class="vimtag"> <a name="tar-contents">tar-contents</a> </b></h4>   1. 內容...................................................... <a href="pi_tar.html#tar-contents">tar-contents</a> 
    2. 用法...................................................... <a href="pi_tar.html#tar-usage">tar-usage</a> 
-   3. 选项...................................................... <a href="pi_tar.html#tar-options">tar-options</a> 
-   4. 历史...................................................... <a href="pi_tar.html#tar-history">tar-history</a> 
+   3. 選項...................................................... <a href="pi_tar.html#tar-options">tar-options</a> 
+   4. 歷史...................................................... <a href="pi_tar.html#tar-history">tar-history</a> 
 
 </pre><hr class="doubleline" /><pre>
 <h4>2. 用法                                         <b class="vimtag"> <a name="tar-usage">tar-usage</a> </b> <b class="vimtag"> <a name="tar-manual">tar-manual</a> </b></h4>
-   编辑 *.tar 文件时，此插件进行处理，显示内容页面。移动光标到文件上，然后按
-   <code class="special">&lt;return&gt;</code> 键，就可以选择该文件进行编辑。编辑后，可以写回该文件。目前，不能用
-   该插件建立新的 tar 归档文件。
+   編輯 *.tar 文件時，此插件進行處理，顯示內容頁面。移動光標到文件上，然後按
+   <code class="special">&lt;return&gt;</code> 鍵，就可以選擇該文件進行編輯。編輯後，可以寫回該文件。目前，不能用
+   該插件建立新的 tar 歸檔文件。
 
                                                 <b class="vimtag"> <a name=":Vimuntar">:Vimuntar</a> </b>
 <code class="section">   VIMUNTAR</code>
 
    :Vimuntar <code class="special">[vimhome]</code>
 
-        本命令，如有需要，把 tar 包文件复制到以下目录中的 .vim 或 vimfiles 目
-        录: 若 <code class="special">[vimhome]</code> 未指定， <a href="options.html#'runtimepath'">'runtimepath'</a> 的第一个可写目录。不然，
-        <code class="special">[vimhome]</code> 参数允许用户自定义该目录。
+        本命令，如有需要，把 tar 包文件複製到以下目錄中的 .vim 或 vimfiles 目
+        錄: 若 <code class="special">[vimhome]</code> 未指定， <a href="options.html#'runtimepath'">'runtimepath'</a> 的第一個可寫目錄。不然，
+        <code class="special">[vimhome]</code> 參數允許用戶自定義該目錄。
 
-        复制动作使用 <b class="vimtag"> <a name="g:tar_copycmd">g:tar_copycmd</a> </b>  定义的命令，即 
-<code class="example">                cp   用于 cygwin、unix、macunix</code>
-<code class="example">                copy 用于 windows (32、95、64、16)</code>
-        提取动作使用 <b class="vimtag"> <a name="g:tar_extractcmd">g:tar_extractcmd</a> </b> 定义的命令，缺省是 
+        複製動作使用 <b class="vimtag"> <a name="g:tar_copycmd">g:tar_copycmd</a> </b>  定義的命令，即 
+<code class="example">                cp   用於 cygwin、unix、macunix</code>
+<code class="example">                copy 用於 windows (32、95、64、16)</code>
+        提取動作使用 <b class="vimtag"> <a name="g:tar_extractcmd">g:tar_extractcmd</a> </b> 定義的命令，缺省是 
 <code class="example">                "tar -xf"</code>
 
                                                 <b class="vimtag"> <a name=":TarDiff">:TarDiff</a> </b>
-   支 持 比 较
+   支 持 比 較
 
    :TarDiff <code class="special">[filename]</code>
 
-        本命令会试图比较文件的 tar 包版本和系统上相对应的文件。为了找到系统上
-        的对应文件，脚本会用到 tar 包中的文件相关联的路径。如果当前目录下没有
-        该路径，:TarDiff 就无法找到相关的文件。
+        本命令會試圖比較文件的 tar 包版本和系統上相對應的文件。為了找到系統上
+        的對應文件，腳本會用到 tar 包中的文件相關聯的路徑。如果當前目錄下沒有
+        該路徑，:TarDiff 就無法找到相關的文件。
 
-        如果给出 <code class="special">[filename]</code>，该文件名 (和其路径) 会被用来指定相关文件。
+        如果給出 <code class="special">[filename]</code>，該文件名 (和其路徑) 會被用來指定相關文件。
 
 
-<code class="section">   禁 止 载 入</code>
+<code class="section">   禁 止 載 入</code>
 
-   如果由于某种原因你不想 vim 检查 tar 文件，在 &lt;.vimrc&gt; 中定义两个变量就可以
-   不载入 tar 插件: 
+   如果由於某種原因你不想 vim 檢查 tar 文件，在 &lt;.vimrc&gt; 中定義兩個變量就可以
+   不載入 tar 插件: 
 <code class="example"></code>
 <code class="example">        let g:loaded_tarPlugin= 1</code>
 <code class="example">        let g:loaded_tar      = 1</code>
 
 
 </pre><hr class="doubleline" /><pre>
-<h4>3. 选项                                                 <b class="vimtag"> <a name="tar-options">tar-options</a> </b></h4>
-   以下是用户可以改变的变量，通常在 &lt;.vimrc&gt; 文件里设置。
-<code class="section">    变量                  缺省值  解释 </code>
-   <b class="vimtag"> <a name="g:tar_browseoptions">g:tar_browseoptions</a> </b>  "Ptf"   用于得到内容列表
-   <b class="vimtag"> <a name="g:tar_readoptions">g:tar_readoptions</a> </b>    "OPxf"  用于从 tar 包里提取文件
+<h4>3. 選項                                                 <b class="vimtag"> <a name="tar-options">tar-options</a> </b></h4>
+   以下是用戶可以改變的變量，通常在 &lt;.vimrc&gt; 文件裡設置。
+<code class="section">    變量                  缺省值  解釋 </code>
+   <b class="vimtag"> <a name="g:tar_browseoptions">g:tar_browseoptions</a> </b>  "Ptf"   用於得到內容列表
+   <b class="vimtag"> <a name="g:tar_readoptions">g:tar_readoptions</a> </b>    "OPxf"  用於從 tar 包裡提取文件
    <b class="vimtag"> <a name="g:tar_cmd">g:tar_cmd</a> </b>            "tar"   tar 程序名
-   <b class="vimtag"> <a name="g:tar_nomax">g:tar_nomax</a> </b>            0     如果为真，不最大化文件窗口
-   <b class="vimtag"> <a name="g:tar_secure">g:tar_secure</a> </b>         未定义  如果存在:
-                                        使用 "--" 来避免 tar 命令行上不想要的
-                                        选项扩展。
-                                        请确定你用的 tar 命令接受 "--"；Posix
+   <b class="vimtag"> <a name="g:tar_nomax">g:tar_nomax</a> </b>            0     如果為真，不最大化文件窗口
+   <b class="vimtag"> <a name="g:tar_secure">g:tar_secure</a> </b>         未定義  如果存在:
+                                        使用 "--" 來避免 tar 命令行上不想要的
+                                        選項擴展。
+                                        請確定你用的 tar 命令接受 "--"；Posix
                                         兼容的 tar 工具都接受。
                                   如果不存在:
-                                        tar 插件拒绝接受任何 "-" 开头的 tar 文
-                                        件或成员文件。
-                                  不是所有的 tar 都支持 "--"，所以这不是缺省行
-                                  为。
-   <b class="vimtag"> <a name="g:tar_writeoptions">g:tar_writeoptions</a> </b>   "uf"    用于更新/替换文件
+                                        tar 插件拒絕接受任何 "-" 開頭的 tar 文
+                                        件或成員文件。
+                                  不是所有的 tar 都支持 "--"，所以這不是缺省行
+                                  為。
+   <b class="vimtag"> <a name="g:tar_writeoptions">g:tar_writeoptions</a> </b>   "uf"    用於更新/替換文件
 
 
 </pre><hr class="doubleline" /><pre>
-<h4>4. 历史 (英文)                                          <b class="vimtag"> <a name="tar-history">tar-history</a> </b></h4>
+<h4>4. 歷史 (英文)                                          <b class="vimtag"> <a name="tar-history">tar-history</a> </b></h4>
    v28 Jun 23, 2011 * a few more decompression options (tbz tb2 txz)
    v27 May 31, 2011 * moved cygwin detection before g:tar_copycmd handling
                     * inserted additional  <a href="motion.html#:keepj">:keepj</a>  modifiers

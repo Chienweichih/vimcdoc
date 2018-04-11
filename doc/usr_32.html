@@ -1,17 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>VIM: usr_32</title>
 <link rel="stylesheet" href="vim-stylesheet.css" type="text/css">
 </head>
 <body>
 <div id=banner>
-<a href="help.html">帮助总览</a> &middot;
-<a href="quickref.html">快速参考</a> &middot;
+<a href="help.html">幫助總覽</a> &middot;
+<a href="quickref.html">快速參考</a> &middot;
 <a href="index.html">命令索引</a> &middot;
-<a href="usr_toc.html">用户手册</a> &middot;
-<a href="help.html#reference_toc">参考手册</a>
+<a href="usr_toc.html">用戶手冊</a> &middot;
+<a href="help.html#reference_toc">參考手冊</a>
 </div>
 
 <div id=outer>
@@ -19,170 +19,170 @@
 <pre>
 <b class="vimtag"> <a name="usr_32.txt">usr_32.txt</a> </b>    For Vim version 8.0.  最近更新: 2010年7月
 
-                     <code class="vim">VIM 用户手册 - by Bram Moolenaar</code>
-                     <code class="vim">译者</code>: Willis http://vimcdoc.sf.net
+                     <code class="vim">VIM 用戶手冊 - by Bram Moolenaar</code>
+                     <code class="vim">譯者</code>: Willis http://vimcdoc.sf.net
 
-                              撤销树
+                              撤銷樹
 
 
-Vim 提供了多层撤销功能。如果你撤销了一些改变然后又进行了一些新的改变，你就在撤
-销树里建立了一个分支。本文本讨论如何在分支间来回移动。
+Vim 提供了多層撤銷功能。如果你撤銷了一些改變然後又進行了一些新的改變，你就在撤
+銷樹裡建立了一個分支。本文本討論如何在分支間來回移動。
 
- <a href="usr_32.html#32.1">32.1</a>   撤销到文件写入时的状态
- <a href="usr_32.html#32.2">32.2</a>   为每次改变进行编号
- <a href="usr_32.html#32.3">32.3</a>   撤销树内任意跳转
- <a href="usr_32.html#32.4">32.4</a>   时间旅行
+ <a href="usr_32.html#32.1">32.1</a>   撤銷到文件寫入時的狀態
+ <a href="usr_32.html#32.2">32.2</a>   為每次改變進行編號
+ <a href="usr_32.html#32.3">32.3</a>   撤銷樹內任意跳轉
+ <a href="usr_32.html#32.4">32.4</a>   時間旅行
 
-           后一章:  <a href="usr_40.html#usr_40.txt">usr_40.txt</a>   创建新的命令
+           後一章:  <a href="usr_40.html#usr_40.txt">usr_40.txt</a>   創建新的命令
            前一章:  <a href="usr_31.html#usr_31.txt">usr_31.txt</a>   利用 GUI
-             目录:  <a href="usr_toc.html#usr_toc.txt">usr_toc.txt</a> 
+             目錄:  <a href="usr_toc.html#usr_toc.txt">usr_toc.txt</a> 
 
 </pre><hr class="doubleline" /><pre>
-<h4><b class="vimtag"> <a name="32.1">32.1</a> </b>  撤销到文件写入时的状态</h4>
-有时你做了一些改变，然后发现还是想恢复到最近写入文件时的状态。没问题，用下面的
+<h4><b class="vimtag"> <a name="32.1">32.1</a> </b>  撤銷到文件寫入時的狀態</h4>
+有時你做了一些改變，然後發現還是想恢復到最近寫入文件時的狀態。沒問題，用下面的
 命令就可以: 
 <code class="example"></code>
 <code class="example">        :earlier 1f</code>
 <code class="example"></code>
-这里，"f" 代表 "file" (文件)。
+這裡，"f" 代表 "file" (文件)。
 
-可以重复此命令，回到更遥远的过去。使用不同于 1 的计数值可以回去得快一些。
+可以重複此命令，回到更遙遠的過去。使用不同於 1 的計數值可以回去得快一些。
 
-如果回去太久了，可以这样往前: 
+如果回去太久了，可以這樣往前: 
 <code class="example"></code>
 <code class="example">        :later 1f</code>
 <code class="example"></code>
-<code class="note">注意</code> 这些命令真的是依据时间序列进行的。如果你在撤销一些改变后又进行过改变，这
-一点很有区别。下一节有所解释。
+<code class="note">注意</code> 這些命令真的是依據時間序列進行的。如果你在撤銷一些改變後又進行過改變，這
+一點很有區別。下一節有所解釋。
 
-另外也请 <code class="note">注意</code> 我们说的是文本写入。要把撤销信息写入文件见  <a href="undo.html#undo-persistence">undo-persistence</a> 。
+另外也請 <code class="note">注意</code> 我們說的是文本寫入。要把撤銷信息寫入文件見  <a href="undo.html#undo-persistence">undo-persistence</a> 。
 
 </pre><hr class="doubleline" /><pre>
-<h4><b class="vimtag"> <a name="32.2">32.2</a> </b>  为每次改变进行编号</h4>
- <a href="usr_02.html#02.5">02.5</a>  一节，我们只讨论了单线的撤销/重做。其实，可以出现分支。当你撤销了一些改
-变，又进行了一些新的改变，新的改变构成了撤销树的一个分支。
+<h4><b class="vimtag"> <a name="32.2">32.2</a> </b>  為每次改變進行編號</h4>
+ <a href="usr_02.html#02.5">02.5</a>  一節，我們只討論了單線的撤銷/重做。其實，可以出現分支。當你撤銷了一些改
+變，又進行了一些新的改變，新的改變構成了撤銷樹的一個分支。
 
-让我们从文本 "one" 开始。第一个要做的改变是附加 " too"。然后移动到第一个 'o'
-上并修改为 'w'。这时我们有了两个改变，分别编号为 1 和 2，而文本有三个状态:
+讓我們從文本 "one" 開始。第一個要做的改變是附加 " too"。然後移動到第一個 'o'
+上並修改為 'w'。這時我們有了兩個改變，分別編號為 1 和 2，而文本有三個狀態:
 
 <code class="section">                one </code>
                  |
-              改变 1
+              改變 1
                  |
 <code class="section">              one too </code>
                  |
-              改变 2
+              改變 2
                  |
 <code class="section">              one two </code>
 
-如果我们撤销一次改变，回到 "one too"，然后把 "one" 换成 "me"，我们就在撤销树里
-建立了一个分支:
+如果我們撤銷一次改變，回到 "one too"，然後把 "one" 換成 "me"，我們就在撤銷樹裡
+建立了一個分支:
 
 <code class="section">                one </code>
                  |
-              改变 1
+              改變 1
                  |
 <code class="section">              one too </code>
               /     \
-         改变 2    改变 3
+         改變 2    改變 3
             |         |
 <code class="section">         one two    me too </code>
 
-现在你可以用  <a href="undo.html#u">u</a>  命令来撤销。如果你做两次，你得到的是 "one"。用  <a href="undo.html#CTRL-R">CTRL-R</a>  来重
-做，你会到达 "one too"。多做一次  <a href="undo.html#CTRL-R">CTRL-R</a>  又把你带到 "me too"。现在我们看到，
-撤销/重做使用最近使用的分支，在树内上下移动。
+現在你可以用  <a href="undo.html#u">u</a>  命令來撤銷。如果你做兩次，你得到的是 "one"。用  <a href="undo.html#CTRL-R">CTRL-R</a>  來重
+做，你會到達 "one too"。多做一次  <a href="undo.html#CTRL-R">CTRL-R</a>  又把你帶到 "me too"。現在我們看到，
+撤銷/重做使用最近使用的分支，在樹內上下移動。
 
-这里重要的是改变发生的顺序。这里说的改变不考虑撤销和重做。每次改变后，你会得到
-一个新的文本状态。
+這裡重要的是改變發生的順序。這裡說的改變不考慮撤銷和重做。每次改變後，你會得到
+一個新的文本狀態。
 
-<code class="note">注意</code> 只有改变被编号，上面显示的文本没有标识符。通常，通过它上方的改变号来引用
-它。但有时也通过他下方的某个改变之一来引用。特别是在树内往上移动的时候，这样你
-可以知道哪个改变刚刚被撤销掉。
+<code class="note">注意</code> 只有改變被編號，上面顯示的文本沒有標識符。通常，通過它上方的改變號來引用
+它。但有時也通過他下方的某個改變之一來引用。特別是在樹內往上移動的時候，這樣你
+可以知道哪個改變剛剛被撤銷掉。
 
 </pre><hr class="doubleline" /><pre>
-<h4><b class="vimtag"> <a name="32.3">32.3</a> </b>  撤销树内任意跳转</h4>
-那么你现在怎么能到 "one two" 呢？你可以用这个命令: 
+<h4><b class="vimtag"> <a name="32.3">32.3</a> </b>  撤銷樹內任意跳轉</h4>
+那麼你現在怎麼能到 "one two" 呢？你可以用這個命令: 
 <code class="example"></code>
 <code class="example">        :undo 2</code>
 <code class="example"></code>
-文本现在成为了 "one two"，因为它在改变号 2 之下。用  <a href="undo.html#:undo">:undo</a>  命令可以跳转到树内
-任何改变之下的文本。
+文本現在成為了 "one two"，因為它在改變號 2 之下。用  <a href="undo.html#:undo">:undo</a>  命令可以跳轉到樹內
+任何改變之下的文本。
 
-现在再进行一项改变: 把 "one" 改成 "not":
+現在再進行一項改變: 把 "one" 改成 "not":
 
 <code class="section">                one </code>
                  |
-              改变 1
+              改變 1
                  |
 <code class="section">              one too </code>
               /     \
-         改变 2    改变 3
+         改變 2    改變 3
             |         |
 <code class="section">         one two    me too </code>
             |
-         改变 4
+         改變 4
             |
 <code class="section">         not two </code>
 
-现在你又改了主意想回到 "me too" 了。用  <a href="undo.html#g-">g-</a>  命令。它在时间点上往后退，也就是
-说，它不是在树内上下移动，而是回到之前所在的改变。
+現在你又改了主意想回到 "me too" 了。用  <a href="undo.html#g-">g-</a>  命令。它在時間點上往後退，也就是
+說，它不是在樹內上下移動，而是回到之前所在的改變。
 
-你可以重复  <a href="undo.html#g-">g-</a> ，这样你会看到文本的变化过程:
+你可以重複  <a href="undo.html#g-">g-</a> ，這樣你會看到文本的變化過程:
 <code class="section">        me too </code>
 <code class="section">        one two </code>
 <code class="section">        one too </code>
 <code class="section">        one </code>
 
-用  <a href="undo.html#g+">g+</a>  时间点上往前进:
+用  <a href="undo.html#g+">g+</a>  時間點上往前進:
 <code class="section">        one </code>
 <code class="section">        one too </code>
 <code class="section">        one two </code>
 <code class="section">        me too </code>
 <code class="section">        not two </code>
 
- <a href="undo.html#:undo">:undo</a>  用于你知道你要跳转到哪个改变的场合。 <a href="undo.html#g-">g-</a>  和  <a href="undo.html#g+">g+</a>  用于你不知道具体要到
-达的改变号的情况。
+ <a href="undo.html#:undo">:undo</a>  用於你知道你要跳轉到哪個改變的場合。 <a href="undo.html#g-">g-</a>  和  <a href="undo.html#g+">g+</a>  用於你不知道具體要到
+達的改變號的情況。
 
-你可以在  <a href="undo.html#g-">g-</a>  和  <a href="undo.html#g+">g+</a>  之前加上计数来重复执行。
+你可以在  <a href="undo.html#g-">g-</a>  和  <a href="undo.html#g+">g+</a>  之前加上計數來重複執行。
 
 </pre><hr class="doubleline" /><pre>
-<h4><b class="vimtag"> <a name="32.4">32.4</a> </b>  时间旅行</h4>
-如果你在文本上工作了一段时间，撤销树变得相当大。这时你可能想回到几分钟之前的文
+<h4><b class="vimtag"> <a name="32.4">32.4</a> </b>  時間旅行</h4>
+如果你在文本上工作了一段時間，撤銷樹變得相當大。這時你可能想回到幾分鐘之前的文
 本上。
 
-要看撤销树里有什么分支，用: 
+要看撤銷樹裡有什麼分支，用: 
 <code class="example"></code>
 <code class="example">        :undolist</code>
 <code class="section">        number changes  time </code>
              3       2  16 seconds ago
              4       3  5 seconds ago
 
-这里你可以看到每个分支上叶结点的编号，还有改变发生的时间。假定我们在改变号 4
-下方的 "not two" 那里，你可以这样回到十秒前: 
+這裡你可以看到每個分支上葉結點的編號，還有改變發生的時間。假定我們在改變號 4
+下方的 "not two" 那裡，你可以這樣回到十秒前: 
 <code class="example"></code>
 <code class="example">        :earlier 10s</code>
 <code class="example"></code>
-取决于改变发生了多长时间，你回到达树内的某个位置。 <a href="undo.html#:earlier">:earlier</a>  命令参数可以用
-"m" 代表分钟，"h" 代表小时，"d" 代表天。用一个很大的数，你可以一路回到很久以
+取決於改變發生了多長時間，你回到達樹內的某個位置。 <a href="undo.html#:earlier">:earlier</a>  命令參數可以用
+"m" 代表分鐘，"h" 代表小時，"d" 代表天。用一個很大的數，你可以一路回到很久以
 前: 
 <code class="example"></code>
 <code class="example">        :earlier 100d</code>
 <code class="example"></code>
-要 (再次) 进入未来世界，用  <a href="undo.html#:later">:later</a>  命令: 
+要 (再次) 進入未來世界，用  <a href="undo.html#:later">:later</a>  命令: 
 <code class="example"></code>
 <code class="example">        :later 1m</code>
 <code class="example"></code>
-参数可以用 "s"、"m" 和 "h"，和  <a href="undo.html#:earlier">:earlier</a>  完全类似。
+參數可以用 "s"、"m" 和 "h"，和  <a href="undo.html#:earlier">:earlier</a>  完全類似。
 
-要看到更多的细节，或者要对信息进行操作，可以用  <a href="eval.html#undotree()">undotree()</a>  函数。要看看它返回
-什么: 
+要看到更多的細節，或者要對信息進行操作，可以用  <a href="eval.html#undotree()">undotree()</a>  函數。要看看它返回
+什麼: 
 <code class="example"></code>
 <code class="example">        :echo undotree()</code>
 <code class="example"></code>
 </pre><hr class="doubleline" /><pre>
-<h4></h4>下一章:  <a href="usr_40.html#usr_40.txt">usr_40.txt</a>   创建新的命令
+<h4></h4>下一章:  <a href="usr_40.html#usr_40.txt">usr_40.txt</a>   創建新的命令
 
-版权: 参见  <a href="usr_01.html#manual-copyright">manual-copyright</a>   vim:tw=78:ts=8:ft=help:norl:
+版權: 參見  <a href="usr_01.html#manual-copyright">manual-copyright</a>   vim:tw=78:ts=8:ft=help:norl:
 </pre>
 <p><i>Generated by vim2html</i></p>
 </div>

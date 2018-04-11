@@ -1,17 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>VIM: map</title>
 <link rel="stylesheet" href="vim-stylesheet.css" type="text/css">
 </head>
 <body>
 <div id=banner>
-<a href="help.html">帮助总览</a> &middot;
-<a href="quickref.html">快速参考</a> &middot;
+<a href="help.html">幫助總覽</a> &middot;
+<a href="quickref.html">快速參考</a> &middot;
 <a href="index.html">命令索引</a> &middot;
-<a href="usr_toc.html">用户手册</a> &middot;
-<a href="help.html#reference_toc">参考手册</a>
+<a href="usr_toc.html">用戶手冊</a> &middot;
+<a href="help.html#reference_toc">參考手冊</a>
 </div>
 
 <div id=outer>
@@ -20,47 +20,47 @@
 <b class="vimtag"> <a name="map.txt">map.txt</a> </b>       For Vim version 8.0.  最近更新: 2017年8月
 
 
-                  <code class="vim">VIM 参考手册    by Bram Moolenaar</code>
-                                  <code class="vim">译者</code>:  con&lt;con@netease.com&gt;
+                  <code class="vim">VIM 參考手冊    by Bram Moolenaar</code>
+                                  <code class="vim">譯者</code>:  con&lt;con@netease.com&gt;
                                   http://vimcdoc.sf.net
 
 
-键映射、缩写和用户定义的命令。
+鍵映射、縮寫和用戶定義的命令。
 
-本主题在用户手册  <a href="usr_05.html#05.3">05.3</a> ， <a href="usr_24.html#24.7">24.7</a>  和  <a href="usr_40.html#40.1">40.1</a>  中有过介绍。
+本主題在用戶手冊  <a href="usr_05.html#05.3">05.3</a> ， <a href="usr_24.html#24.7">24.7</a>  和  <a href="usr_40.html#40.1">40.1</a>  中有過介紹。
 
-1. 键映射                        <a href="map.html#key-mapping">key-mapping</a> 
+1. 鍵映射                        <a href="map.html#key-mapping">key-mapping</a> 
    1.1 映 射 命 令                       <a href="map.html#:map-commands">:map-commands</a> 
-   1.2 特殊参数                          <a href="map.html#:map-arguments">:map-arguments</a> 
-   1.3 映射与运行模式                    <a href="map.html#:map-modes">:map-modes</a> 
+   1.2 特殊參數                          <a href="map.html#:map-arguments">:map-arguments</a> 
+   1.3 映射與運行模式                    <a href="map.html#:map-modes">:map-modes</a> 
    1.4 列出映射                          <a href="map.html#map-listing">map-listing</a> 
-   1.5 映射特殊键                        <a href="map.html#:map-special-keys">:map-special-keys</a> 
+   1.5 映射特殊鍵                        <a href="map.html#:map-special-keys">:map-special-keys</a> 
    1.6 特殊字符                          <a href="map.html#:map-special-chars">:map-special-chars</a> 
-   1.7 映射哪些键                        <a href="map.html#map-which-keys">map-which-keys</a> 
+   1.7 映射哪些鍵                        <a href="map.html#map-which-keys">map-which-keys</a> 
    1.8 示例                              <a href="map.html#map-examples">map-examples</a> 
    1.9 使用映射                          <a href="map.html#map-typing">map-typing</a> 
-   1.10 映射 ALT 键                      <a href="map.html#:map-alt-keys">:map-alt-keys</a> 
+   1.10 映射 ALT 鍵                      <a href="map.html#:map-alt-keys">:map-alt-keys</a> 
    1.11 映射操作符                       <a href="map.html#:map-operator">:map-operator</a> 
-2. 缩写                          <a href="map.html#abbreviations">abbreviations</a> 
-3. 局部映射和函数                <a href="map.html#script-local">script-local</a> 
-4. 用户定义的命令                <a href="map.html#user-commands">user-commands</a> 
+2. 縮寫                          <a href="map.html#abbreviations">abbreviations</a> 
+3. 局部映射和函數                <a href="map.html#script-local">script-local</a> 
+4. 用戶定義的命令                <a href="map.html#user-commands">user-commands</a> 
 
 </pre><hr class="doubleline" /><pre>
-<h4>1. 键映射                               <b class="vimtag"> <a name="key-mapping">key-mapping</a> </b> <b class="vimtag"> <a name="mapping">mapping</a> </b> <b class="vimtag"> <a name="macro">macro</a> </b></h4>
-键映射用于改变输入键的含义。最常见的用途是把功能键定义为一系列的命令。比如: 
+<h4>1. 鍵映射                               <b class="vimtag"> <a name="key-mapping">key-mapping</a> </b> <b class="vimtag"> <a name="mapping">mapping</a> </b> <b class="vimtag"> <a name="macro">macro</a> </b></h4>
+鍵映射用於改變輸入鍵的含義。最常見的用途是把功能鍵定義為一系列的命令。比如: 
 <code class="example"></code>
 <code class="example">        :map &lt;F2&gt; a&lt;C-R&gt;=strftime("%c")&lt;CR&gt;&lt;Esc&gt;</code>
 <code class="example"></code>
-这个映射会在光标之后追加当前的日期和时间 (用 <code class="special">&lt;&gt;</code> 记法  <a href="intro.html#%3C%3E">&lt;&gt;</a> )。
+這個映射會在光標之後追加當前的日期和時間 (用 <code class="special">&lt;&gt;</code> 記法  <a href="intro.html#%3C%3E">&lt;&gt;</a> )。
 
 
 1.1 映 射 命 令                                         <b class="vimtag"> <a name=":map-commands">:map-commands</a> </b>
 
-有很多命令用于定义新的映射，删除映射和列出当前的映射。可以从  <a href="map.html#map-overview">map-overview</a>  参
-考 "映射" 命令的不同形式及其与模式的关系。
+有很多命令用於定義新的映射，刪除映射和列出當前的映射。可以從  <a href="map.html#map-overview">map-overview</a>  參
+考 "映射" 命令的不同形式及其與模式的關係。
 
-<code class="special">{lhs}</code>   表示左手边      <b class="vimtag"> <a name="{lhs}">{lhs}</a> </b>
-<code class="special">{rhs}</code>   表示右手边      <b class="vimtag"> <a name="{rhs}">{rhs}</a> </b>
+<code class="special">{lhs}</code>   表示左手邊      <b class="vimtag"> <a name="{lhs}">{lhs}</a> </b>
+<code class="special">{rhs}</code>   表示右手邊      <b class="vimtag"> <a name="{rhs}">{rhs}</a> </b>
 
 :map    <code class="special">{lhs}</code> <code class="special">{rhs}</code>              <a href="map.html#mapmode-nvo">mapmode-nvo</a>            <b class="vimtag"> <a name=":map">:map</a> </b>
 :nm[ap] <code class="special">{lhs}</code> <code class="special">{rhs}</code>              <a href="map.html#mapmode-n">mapmode-n</a>              <b class="vimtag"> <a name=":nm">:nm</a> </b> <b class="vimtag"> <a name=":nmap">:nmap</a> </b>
@@ -72,9 +72,9 @@
 :im[ap] <code class="special">{lhs}</code> <code class="special">{rhs}</code>              <a href="map.html#mapmode-i">mapmode-i</a>              <b class="vimtag"> <a name=":im">:im</a> </b> <b class="vimtag"> <a name=":imap">:imap</a> </b>
 :lm[ap] <code class="special">{lhs}</code> <code class="special">{rhs}</code>              <a href="map.html#mapmode-l">mapmode-l</a>              <b class="vimtag"> <a name=":lm">:lm</a> </b> <b class="vimtag"> <a name=":lmap">:lmap</a> </b>
 :cm[ap] <code class="special">{lhs}</code> <code class="special">{rhs}</code>              <a href="map.html#mapmode-c">mapmode-c</a>              <b class="vimtag"> <a name=":cm">:cm</a> </b> <b class="vimtag"> <a name=":cmap">:cmap</a> </b>
-                        在映射命令作用的模式中把键系列 <code class="special">{lhs}</code> 映射为 <code class="special">{rhs}</code>。并
-                        且映射后的 <code class="special">{rhs}</code> 也被进行映射扫描。这个特性可以用来进
-                        行映射的嵌套和递归。
+                        在映射命令作用的模式中把鍵系列 <code class="special">{lhs}</code> 映射為 <code class="special">{rhs}</code>。並
+                        且映射後的 <code class="special">{rhs}</code> 也被進行映射掃瞄。這個特性可以用來進
+                        行映射的嵌套和遞歸。
 
 
                                                 <b class="vimtag"> <a name=":nore">:nore</a> </b> <b class="vimtag"> <a name=":norem">:norem</a> </b>
@@ -88,9 +88,9 @@
 :ino[remap] <code class="special">{lhs}</code> <code class="special">{rhs}</code>          <a href="map.html#mapmode-i">mapmode-i</a>      <b class="vimtag"> <a name=":ino">:ino</a> </b> <b class="vimtag"> <a name=":inoremap">:inoremap</a> </b>
 :ln[oremap] <code class="special">{lhs}</code> <code class="special">{rhs}</code>          <a href="map.html#mapmode-l">mapmode-l</a>      <b class="vimtag"> <a name=":ln">:ln</a> </b>  <b class="vimtag"> <a name=":lnoremap">:lnoremap</a> </b>
 :cno[remap] <code class="special">{lhs}</code> <code class="special">{rhs}</code>          <a href="map.html#mapmode-c">mapmode-c</a>      <b class="vimtag"> <a name=":cno">:cno</a> </b> <b class="vimtag"> <a name=":cnoremap">:cnoremap</a> </b>
-                        在映射命令作用的模式中把键序列 <code class="special">{lhs}</code> 映射为 <code class="special">{rhs}</code> 。禁
-                        止对映射后的 <code class="special">{rhs}</code> 进行映射扫描。这个特性可以避免映射
-                        的嵌套和递归。通常用于重定义一个命令。<code class="notvi">{Vi 无此功能}</code>
+                        在映射命令作用的模式中把鍵序列 <code class="special">{lhs}</code> 映射為 <code class="special">{rhs}</code> 。禁
+                        止對映射後的 <code class="special">{rhs}</code> 進行映射掃瞄。這個特性可以避免映射
+                        的嵌套和遞歸。通常用於重定義一個命令。<code class="notvi">{Vi 無此功能}</code>
 
 :unm[ap]  <code class="special">{lhs}</code>                  <a href="map.html#mapmode-nvo">mapmode-nvo</a>            <b class="vimtag"> <a name=":unm">:unm</a> </b>  <b class="vimtag"> <a name=":unmap">:unmap</a> </b>
 :nun[map] <code class="special">{lhs}</code>                  <a href="map.html#mapmode-n">mapmode-n</a>              <b class="vimtag"> <a name=":nun">:nun</a> </b>  <b class="vimtag"> <a name=":nunmap">:nunmap</a> </b>
@@ -102,9 +102,9 @@
 :iu[nmap] <code class="special">{lhs}</code>                  <a href="map.html#mapmode-i">mapmode-i</a>              <b class="vimtag"> <a name=":iu">:iu</a> </b>   <b class="vimtag"> <a name=":iunmap">:iunmap</a> </b>
 :lu[nmap] <code class="special">{lhs}</code>                  <a href="map.html#mapmode-l">mapmode-l</a>              <b class="vimtag"> <a name=":lu">:lu</a> </b>   <b class="vimtag"> <a name=":lunmap">:lunmap</a> </b>
 :cu[nmap] <code class="special">{lhs}</code>                  <a href="map.html#mapmode-c">mapmode-c</a>              <b class="vimtag"> <a name=":cu">:cu</a> </b>   <b class="vimtag"> <a name=":cunmap">:cunmap</a> </b>
-                        在映射命令作用的模式中删除 <code class="special">{lhs}</code> 的映射。该映射仍然可
-                        以在其它模式中保留其定义。
-                        <code class="note">备注</code>: <code class="special">{lhs}</code> 包含末尾的空格。该映射取消操作 <code class="emphasis">不会</code> 生效:
+                        在映射命令作用的模式中刪除 <code class="special">{lhs}</code> 的映射。該映射仍然可
+                        以在其它模式中保留其定義。
+                        <code class="note">備註</code>: <code class="special">{lhs}</code> 包含末尾的空格。該映射取消操作 <code class="emphasis">不會</code> 生效:
                                 :map @@ foo
                                 :unmap @@ | print
 
@@ -118,10 +118,10 @@
 :imapc[lear]                     <a href="map.html#mapmode-i">mapmode-i</a>              <b class="vimtag"> <a name=":imapc">:imapc</a> </b>  <b class="vimtag"> <a name=":imapclear">:imapclear</a> </b>
 :lmapc[lear]                     <a href="map.html#mapmode-l">mapmode-l</a>              <b class="vimtag"> <a name=":lmapc">:lmapc</a> </b>  <b class="vimtag"> <a name=":lmapclear">:lmapclear</a> </b>
 :cmapc[lear]                     <a href="map.html#mapmode-c">mapmode-c</a>              <b class="vimtag"> <a name=":cmapc">:cmapc</a> </b>  <b class="vimtag"> <a name=":cmapclear">:cmapclear</a> </b>
-                        在映射命令作用的模式中删除 <code class="emphasis">所有</code> 的映射。<code class="notvi">{Vi 无此功能}</code>
-                        <code class="special">&lt;buffer&gt;</code> 参数可用来删除所的有缓冲区局部映射
+                        在映射命令作用的模式中刪除 <code class="emphasis">所有</code> 的映射。<code class="notvi">{Vi 無此功能}</code>
+                        <code class="special">&lt;buffer&gt;</code> 參數可用來刪除所的有緩衝區局部映射
                          <a href="map.html#:map-%3Cbuffer%3E">:map-&lt;buffer&gt;</a> 
-                        警告: 同时也会删除缺省的映射。
+                        警告: 同時也會刪除缺省的映射。
 
 :map                             <a href="map.html#mapmode-nvo">mapmode-nvo</a> 
 :nm[ap]                          <a href="map.html#mapmode-n">mapmode-n</a> 
@@ -133,8 +133,8 @@
 :im[ap]                          <a href="map.html#mapmode-i">mapmode-i</a> 
 :lm[ap]                          <a href="map.html#mapmode-l">mapmode-l</a> 
 :cm[ap]                          <a href="map.html#mapmode-c">mapmode-c</a> 
-                        在映射命令作用的模式中列出所有的键映射。<code class="note">注意</code> ":map" 和
-                        ":map!" 是最常用的，因为它们包括其它模式。
+                        在映射命令作用的模式中列出所有的鍵映射。<code class="note">注意</code> ":map" 和
+                        ":map!" 是最常用的，因為它們包括其它模式。
 
 :map    <code class="special">{lhs}</code>                    <a href="map.html#mapmode-nvo">mapmode-nvo</a>            <b class="vimtag"> <a name=":map_l">:map_l</a> </b>
 :nm[ap] <code class="special">{lhs}</code>                    <a href="map.html#mapmode-n">mapmode-n</a>              <b class="vimtag"> <a name=":nmap_l">:nmap_l</a> </b>
@@ -146,108 +146,108 @@
 :im[ap] <code class="special">{lhs}</code>                    <a href="map.html#mapmode-i">mapmode-i</a>              <b class="vimtag"> <a name=":imap_l">:imap_l</a> </b>
 :lm[ap] <code class="special">{lhs}</code>                    <a href="map.html#mapmode-l">mapmode-l</a>              <b class="vimtag"> <a name=":lmap_l">:lmap_l</a> </b>
 :cm[ap] <code class="special">{lhs}</code>                    <a href="map.html#mapmode-c">mapmode-c</a>              <b class="vimtag"> <a name=":cmap_l">:cmap_l</a> </b>
-                        在映射命令作用的模式中列出以 <code class="special">{lhs}</code> 开头的键映射的键系
-                        列。 <code class="notvi">{Vi 无此功能}</code>
+                        在映射命令作用的模式中列出以 <code class="special">{lhs}</code> 開頭的鍵映射的鍵系
+                        列。 <code class="notvi">{Vi 無此功能}</code>
 
-这些命令用于把一个键或键系列映射成一个字符串。可以用来在功能键里放置一系列命
-令，把一个键转换成另一个，等等。如何保存和恢复当前映射可以参考  <a href="starting.html#:mkexrc">:mkexrc</a> 。
+這些命令用於把一個鍵或鍵系列映射成一個字符串。可以用來在功能鍵裡放置一系列命
+令，把一個鍵轉換成另一個，等等。如何保存和恢復當前映射可以參考  <a href="starting.html#:mkexrc">:mkexrc</a> 。
 
                                                         <b class="vimtag"> <a name="map-ambiguous">map-ambiguous</a> </b>
-当两个映射以相同的字符顺序开始，它们是有二义性的。例如: 
+當兩個映射以相同的字符順序開始，它們是有二義性的。例如: 
 <code class="example">        :imap aa foo</code>
 <code class="example">        :imap aaa bar</code>
-当 Vim 读入 "aa" 后，它需要取得另外一个字符才能决定应该映射 "aa" 还是 "aaa"。
-这意味着输入 "aa" 后映射还不会展开，Vim 还在等待另一个字符。如果你接着输入一个
-空格，那么将插入 "foo" 加上空格。如果你输入一个 "a"，那么将插入 "bar"。
-<code class="notvi">{Vi 不允许有二义性的映射}</code>
+當 Vim 讀入 "aa" 後，它需要取得另外一個字符才能決定應該映射 "aa" 還是 "aaa"。
+這意味著輸入 "aa" 後映射還不會展開，Vim 還在等待另一個字符。如果你接著輸入一個
+空格，那麼將插入 "foo" 加上空格。如果你輸入一個 "a"，那麼將插入 "bar"。
+<code class="notvi">{Vi 不允許有二義性的映射}</code>
 
 
-1.2 特 殊 参 数                                         <b class="vimtag"> <a name=":map-arguments">:map-arguments</a> </b>
+1.2 特 殊 參 數                                         <b class="vimtag"> <a name=":map-arguments">:map-arguments</a> </b>
 
 "<code class="special">&lt;buffer&gt;</code>"，"<code class="special">&lt;nowait&gt;</code>"，"<code class="special">&lt;silent&gt;</code>"，"<code class="special">&lt;special&gt;</code>"、"<code class="special">&lt;script&gt;</code>"、"<code class="special">&lt;expr&gt;</code>" 和
-"<code class="special">&lt;unique&gt;</code>" 可以按任意顺序使用。它们必须紧跟在命令的后边，而在其它任何参数的前
-边。
+"<code class="special">&lt;unique&gt;</code>" 可以按任意順序使用。它們必須緊跟在命令的後邊，而在其它任何參數的前
+邊。
 
                                 <b class="vimtag"> <a name=":map-local">:map-local</a> </b> <b class="vimtag"> <a name=":map-%3Cbuffer%3E">:map-&lt;buffer&gt;</a> </b> <b class="vimtag"> <a name="E224">E224</a> </b> <b class="vimtag"> <a name="E225">E225</a> </b>
-如果这些命令的第一个参数是 "<code class="special">&lt;buffer&gt;</code>"，映射将只局限于当前的缓冲区内。例如: 
+如果這些命令的第一個參數是 "<code class="special">&lt;buffer&gt;</code>"，映射將只局限於當前的緩衝區內。例如: 
 <code class="example">        :map &lt;buffer&gt;  ,w  /[.,;]&lt;CR&gt;</code>
-然后你可以在另一个缓冲区内把 ",w" 作另外的映射: 
+然後你可以在另一個緩衝區內把 ",w" 作另外的映射: 
 <code class="example">        :map &lt;buffer&gt;  ,w  /[#&amp;!]&lt;CR&gt;</code>
-局部缓冲区映射在全局映射之前被应用。下面介绍的 <code class="special">&lt;nowait&gt;</code> 可以使一个较短的局部
-映射在较长的全局映射存在时不起作用 (<code class="vim">译者注</code>: 此处或有误)。
-"<code class="special">&lt;buffer&gt;</code>" 参数也可以用于清除映射: 
+局部緩衝區映射在全局映射之前被應用。下面介紹的 <code class="special">&lt;nowait&gt;</code> 可以使一個較短的局部
+映射在較長的全局映射存在時不起作用 (<code class="vim">譯者注</code>: 此處或有誤)。
+"<code class="special">&lt;buffer&gt;</code>" 參數也可以用於清除映射: 
 <code class="example">        :unmap &lt;buffer&gt; ,w</code>
 <code class="example">        :mapclear &lt;buffer&gt;</code>
-当一个缓冲区被删除时局部映射也会被清除，但是在它被卸载时不会。就像局部选项值的
-情况一样。
-另见  <a href="map.html#map-precedence">map-precedence</a> 。
+當一個緩衝區被刪除時局部映射也會被清除，但是在它被卸載時不會。就像局部選項值的
+情況一樣。
+另見  <a href="map.html#map-precedence">map-precedence</a> 。
 
                                                 <b class="vimtag"> <a name=":map-%3Cnowait%3E">:map-&lt;nowait&gt;</a> </b> <b class="vimtag"> <a name=":map-nowait">:map-nowait</a> </b>
-定义局部于缓冲区的映射 "," 时，可能有另一个全局映射也以 "," 开始。这时你需要
-键入另一个字符，Vim 才能知道是用 "," 映射还是更长的那个。要避免这个问题，加入
-<code class="special">&lt;nowait&gt;</code> 参数。这样映射一旦匹配就会被使用，Vim 不会等待更多字符的输入。但如果
-那些字符已经输入了，还是会使用的。
+定義局部於緩衝區的映射 "," 時，可能有另一個全局映射也以 "," 開始。這時你需要
+鍵入另一個字符，Vim 才能知道是用 "," 映射還是更長的那個。要避免這個問題，加入
+<code class="special">&lt;nowait&gt;</code> 參數。這樣映射一旦匹配就會被使用，Vim 不會等待更多字符的輸入。但如果
+那些字符已經輸入了，還是會使用的。
 
                                                 <b class="vimtag"> <a name=":map-%3Csilent%3E">:map-&lt;silent&gt;</a> </b> <b class="vimtag"> <a name=":map-silent">:map-silent</a> </b>
-要在定义一个映射时不在命令行上回显该映射，可以使用 "<code class="special">&lt;silent&gt;</code>" 作为第一个参数，
+要在定義一個映射時不在命令行上回顯該映射，可以使用 "<code class="special">&lt;silent&gt;</code>" 作為第一個參數，
 例如: 
 <code class="example">        :map &lt;silent&gt; ,h /Header&lt;CR&gt;</code>
-在使用这个映射时搜索字串将不回显。不过被执行命令的信息仍然会。要把它也关掉，可
-以在执行的命令里加入一个 ":silent": 
+在使用這個映射時搜索字串將不回顯。不過被執行命令的信息仍然會。要把它也關掉，可
+以在執行的命令裡加入一個 ":silent": 
 <code class="example">        :map &lt;silent&gt; ,h :exe ":silent normal /Header\r"&lt;CR&gt;</code>
-仍然会给出提示，比如使用 inputdialog() 的时候。
-在缩写上使用 "<code class="special">&lt;silent&gt;</code>" 是可以的，但它的作用是使命令行不进行重绘。
+仍然會給出提示，比如使用 inputdialog() 的時候。
+在縮寫上使用 "<code class="special">&lt;silent&gt;</code>" 是可以的，但它的作用是使命令行不進行重繪。
 
                                                 <b class="vimtag"> <a name=":map-%3Cspecial%3E">:map-&lt;special&gt;</a> </b> <b class="vimtag"> <a name=":map-special">:map-special</a> </b>
-定义映射时，特殊键可用 <code class="special">&lt;&gt;</code> 记法，即使 <a href="options.html#'cpoptions'">'cpoptions'</a> 包含了 "&lt;" 标志位也没问题。这
-可用于不希望看到设置 <a href="options.html#'cpoptions'">'cpoptions'</a> 时出现的副作用的场合。例如: 
+定義映射時，特殊鍵可用 <code class="special">&lt;&gt;</code> 記法，即使 <a href="options.html#'cpoptions'">'cpoptions'</a> 包含了 "&lt;" 標誌位也沒問題。這
+可用於不希望看到設置 <a href="options.html#'cpoptions'">'cpoptions'</a> 時出現的副作用的場合。例如: 
 <code class="example">        :map &lt;special&gt; &lt;F12&gt; /Header&lt;CR&gt;</code>
 
                                                 <b class="vimtag"> <a name=":map-%3Cscript%3E">:map-&lt;script&gt;</a> </b> <b class="vimtag"> <a name=":map-script">:map-script</a> </b>
-如果给用于定义新映射或缩写的命令的第一个参数是 "<code class="special">&lt;script&gt;</code>"，该映射只使用通过以
-"<code class="special">&lt;SID&gt;</code>" 开头来定义的的脚本局部映射来重映射 <code class="special">{rhs}</code> 中的字符。这可以用于避免来自
-外部的脚本的干扰 (举例来说，在 mswin.vim 中 <code class="keystroke">CTRL-V</code> 被重新映射的时候就是如此)，
-但是又需要使用该脚本中定义的其它映射的情形。
-<code class="note">备注</code>: ":map <code class="special">&lt;script&gt;</code>" 和 ":noremap <code class="special">&lt;script&gt;</code>" 做同样的事情。这里 "<code class="special">&lt;script&gt;</code>" 超
-越命令名。不过，更推荐使用 ":noremap <code class="special">&lt;script&gt;</code>"，因为它更清晰地表示了重映射已被
-(大多数时候) 禁止。
+如果給用於定義新映射或縮寫的命令的第一個參數是 "<code class="special">&lt;script&gt;</code>"，該映射只使用通過以
+"<code class="special">&lt;SID&gt;</code>" 開頭來定義的的腳本局部映射來重映射 <code class="special">{rhs}</code> 中的字符。這可以用於避免來自
+外部的腳本的干擾 (舉例來說，在 mswin.vim 中 <code class="keystroke">CTRL-V</code> 被重新映射的時候就是如此)，
+但是又需要使用該腳本中定義的其它映射的情形。
+<code class="note">備註</code>: ":map <code class="special">&lt;script&gt;</code>" 和 ":noremap <code class="special">&lt;script&gt;</code>" 做同樣的事情。這裡 "<code class="special">&lt;script&gt;</code>" 超
+越命令名。不過，更推薦使用 ":noremap <code class="special">&lt;script&gt;</code>"，因為它更清晰地表示了重映射已被
+(大多數時候) 禁止。
 
                                                 <b class="vimtag"> <a name=":map-%3Cunique%3E">:map-&lt;unique&gt;</a> </b> <b class="vimtag"> <a name="E226">E226</a> </b> <b class="vimtag"> <a name="E227">E227</a> </b>
-如果给用于定义新映射或缩写的命令的第一个参数是 "<code class="special">&lt;unique&gt;</code>" 并且它该映射或缩写已
-经存在，则该命令会失败。例如: 
+如果給用於定義新映射或縮寫的命令的第一個參數是 "<code class="special">&lt;unique&gt;</code>" 並且它該映射或縮寫已
+經存在，則該命令會失敗。例如: 
 <code class="example">        :map &lt;unique&gt; ,w  /[#&amp;!]&lt;CR&gt;</code>
-定义一个局部映射时，同时也会检查是否已存在了一个相同的全局映射。
-这个例子将失败: 
+定義一個局部映射時，同時也會檢查是否已存在了一個相同的全局映射。
+這個例子將失敗: 
 <code class="example">        :map ,w  /[#&amp;!]&lt;CR&gt;</code>
 <code class="example">        :map &lt;buffer&gt; &lt;unique&gt; ,w  /[.,;]&lt;CR&gt;</code>
-如果你想给键进行映射，但同时又想执行原来映射的内容，参见  <a href="eval.html#maparg()">maparg()</a> 。
+如果你想給鍵進行映射，但同時又想執行原來映射的內容，參見  <a href="eval.html#maparg()">maparg()</a> 。
 
                                                 <b class="vimtag"> <a name=":map-%3Cexpr%3E">:map-&lt;expr&gt;</a> </b> <b class="vimtag"> <a name=":map-expression">:map-expression</a> </b>
-如果给用于定义新映射或缩写的命令的第一个参数是 "<code class="special">&lt;expr&gt;</code>"，那么参数会作为表达式
-来进行计算，结果作为实际使用的 <code class="special">{rhs}</code>。例如: 
+如果給用於定義新映射或縮寫的命令的第一個參數是 "<code class="special">&lt;expr&gt;</code>"，那麼參數會作為表達式
+來進行計算，結果作為實際使用的 <code class="special">{rhs}</code>。例如: 
 <code class="example">        :inoremap &lt;expr&gt; . InsertDot()</code>
-会插入 InsertDot() 函数的返回值。这可以用来检查光标之前的文本并在一定条件下启
-动全能 (omni) 补全。
+會插入 InsertDot() 函數的返回值。這可以用來檢查光標之前的文本並在一定條件下啟
+動全能 (omni) 補全。
 
-对于缩写， <a href="eval.html#v:char">v:char</a>  设为激活缩写的那个输入字符。你可以用它来决定如何扩展
+對於縮寫， <a href="eval.html#v:char">v:char</a>  設為激活縮寫的那個輸入字符。你可以用它來決定如何擴展
 <code class="special">{lhs}</code>。不能修改或插入 v:char。
 
-要非常小心副作用！计算表达式的同时正在获取字符，因此很有可能你使得该命令不再可
-用。为此原因禁止以下行为:
-- 改变缓冲区文本  <a href="eval.html#textlock">textlock</a> 
-- 编辑其它缓冲区
+要非常小心副作用！計算表達式的同時正在獲取字符，因此很有可能你使得該命令不再可
+用。為此原因禁止以下行為:
+- 改變緩衝區文本  <a href="eval.html#textlock">textlock</a> 
+- 編輯其它緩衝區
 -  <a href="various.html#:normal">:normal</a>  命令
-- 可以移动光标，但事后光标会被恢复
-如果你希望通过映射来完成这些操作，让返回的字符做这些事情。
+- 可以移動光標，但事後光標會被恢復
+如果你希望通過映射來完成這些操作，讓返回的字符做這些事情。
 
-你可以使用 getchar()，丢弃可能有的预输入。例如，如果有以下的映射: 
+你可以使用 getchar()，丟棄可能有的預輸入。例如，如果有以下的映射: 
 <code class="example">  inoremap &lt;expr&gt; &lt;C-L&gt; nr2char(getchar())</code>
 <code class="example">  inoremap &lt;expr&gt; &lt;C-L&gt;x "foo"</code>
-此时你如果输入 <code class="keystroke">CTRL-L</code>，什么都不会发生。Vim 需要下一个字符来决定采用哪个映射。
-如果键入 'x'，采用第二个映射，插入 "foo"。如果键入其他字符，采用第一个映射，
-getchar() 得到键入的字符并返回之。
+此時你如果輸入 <code class="keystroke">CTRL-L</code>，什麼都不會發生。Vim 需要下一個字符來決定採用哪個映射。
+如果鍵入 'x'，採用第二個映射，插入 "foo"。如果鍵入其他字符，採用第一個映射，
+getchar() 得到鍵入的字符並返回之。
 
-这里是插入递增的列表编号的例子: 
+這裡是插入遞增的列表編號的例子: 
 <code class="example">        let counter = 0</code>
 <code class="example">        inoremap &lt;expr&gt; &lt;C-L&gt; ListItem()</code>
 <code class="example">        inoremap &lt;expr&gt; &lt;C-R&gt; ListReset()</code>
@@ -262,67 +262,67 @@ getchar() 得到键入的字符并返回之。
 <code class="example">          return ''</code>
 <code class="example">        endfunc</code>
 <code class="example"></code>
-<code class="keystroke">CTRL-L</code> 插入下一个数值，<code class="keystroke">CTRL-R</code> 复位计数且返回空字符串，这样就不会插入任何内容。
+<code class="keystroke">CTRL-L</code> 插入下一個數值，<code class="keystroke">CTRL-R</code> 復位計數且返回空字符串，這樣就不會插入任何內容。
 
-<code class="note">注意</code> 要使特殊键工作并转义文本中的 CSI 字节需要一些特殊处理。 <a href="map.html#:map">:map</a>  命令已经做
-好了，所以你应该避免做重复的操作。这样不行: 
+<code class="note">注意</code> 要使特殊鍵工作並轉義文本中的 CSI 字節需要一些特殊處理。 <a href="map.html#:map">:map</a>  命令已經做
+好了，所以你應該避免做重複的操作。這樣不行: 
 <code class="example">        :imap &lt;expr&gt; &lt;F3&gt; "&lt;Char-0x611B&gt;"</code>
-因为 &lt;Char- 序列作为  <a href="map.html#:imap">:imap</a>  的参数被转义，而 <code class="special">&lt;expr&gt;</code> 又做一次。这样就可以: 
+因為 &lt;Char- 序列作為  <a href="map.html#:imap">:imap</a>  的參數被轉義，而 <code class="special">&lt;expr&gt;</code> 又做一次。這樣就可以: 
 <code class="example">        :imap &lt;expr&gt; &lt;F3&gt; "\u611B"</code>
-在其它文本之前使用单个字节出现的 0x80 是不行的。它会被看作一个特殊键。
+在其它文本之前使用單個字節出現的 0x80 是不行的。它會被看作一個特殊鍵。
 
 
-1.3 映 射 与 运 行 模 式                                <b class="vimtag"> <a name=":map-modes">:map-modes</a> </b>
+1.3 映 射 與 運 行 模 式                                <b class="vimtag"> <a name=":map-modes">:map-modes</a> </b>
                         <b class="vimtag"> <a name="mapmode-nvo">mapmode-nvo</a> </b> <b class="vimtag"> <a name="mapmode-n">mapmode-n</a> </b> <b class="vimtag"> <a name="mapmode-v">mapmode-v</a> </b> <b class="vimtag"> <a name="mapmode-o">mapmode-o</a> </b>
 
-有六种映射存在
-- 用于普通模式: 输入命令时。
-- 用于可视模式: 可视区域高亮并输入命令时。
-- 用于选择模式: 类似于可视模式，但键入的字符对选择区进行替换。
-- 用于操作符等待模式: 操作符等待中 ("d"，"y"，"c" 等等之后)。
-  见下:  <a href="map.html#omap-info">omap-info</a> 。
-- 用于插入模式: 也用于替换模式。
-- 用于命令行模式: 输入 ":" 或 "/" 命令时。
+有六種映射存在
+- 用於普通模式: 輸入命令時。
+- 用於可視模式: 可視區域高亮並輸入命令時。
+- 用於選擇模式: 類似於可視模式，但鍵入的字符對選擇區進行替換。
+- 用於操作符等待模式: 操作符等待中 ("d"，"y"，"c" 等等之後)。
+  見下:  <a href="map.html#omap-info">omap-info</a> 。
+- 用於插入模式: 也用於替換模式。
+- 用於命令行模式: 輸入 ":" 或 "/" 命令時。
 
-特殊情况: 当在普通模式里为一个命令输入一个计数时，对 0 的映射会被禁用。这样在
-输入一个带有 0 的计数时不会受到对 0 键映射的干扰。
+特殊情況: 當在普通模式裡為一個命令輸入一個計數時，對 0 的映射會被禁用。這樣在
+輸入一個帶有 0 的計數時不會受到對 0 鍵映射的干擾。
 
                                                 <b class="vimtag"> <a name="map-overview">map-overview</a> </b> <b class="vimtag"> <a name="map-modes">map-modes</a> </b>
-关于每个映射命令对应的工作模式的概况。详情见下。
+關於每個映射命令對應的工作模式的概況。詳情見下。
 <code class="section">     命 令                       模 式 </code>
-:map   :noremap  :unmap     普通、可视、选择、操作符等待
+:map   :noremap  :unmap     普通、可視、選擇、操作符等待
 :nmap  :nnoremap :nunmap    普通
-:vmap  :vnoremap :vunmap    可视与选择
-:smap  :snoremap :sunmap    选择
-:xmap  :xnoremap :xunmap    可视
+:vmap  :vnoremap :vunmap    可視與選擇
+:smap  :snoremap :sunmap    選擇
+:xmap  :xnoremap :xunmap    可視
 :omap  :onoremap :ounmap    操作符等待
-:map!  :noremap! :unmap!    插入与命令行
+:map!  :noremap! :unmap!    插入與命令行
 :imap  :inoremap :iunmap    插入
 :lmap  :lnoremap :lunmap    插入、命令行、Lang-Arg
 :cmap  :cnoremap :cunmap    命令行
 
 <code class="section">    命 令                                     模 式 </code>
-<code class="section">                                        普通    可视+选择       操作符等待 </code>
+<code class="section">                                        普通    可視+選擇       操作符等待 </code>
 :map   :noremap   :unmap   :mapclear    是      是              是
 :nmap  :nnoremap  :nunmap  :nmapclear   是      -               -
 :vmap  :vnoremap  :vunmap  :vmapclear   -       是              -
 :omap  :onoremap  :ounmap  :omapclear   -       -               是
 
-修道院之外也有 :nunmap (<code class="vim">译者注</code>: nun，修女)。
+修道院之外也有 :nunmap (<code class="vim">譯者注</code>: nun，修女)。
                                                 <b class="vimtag"> <a name="mapmode-x">mapmode-x</a> </b> <b class="vimtag"> <a name="mapmode-s">mapmode-s</a> </b>
-有的命令能同时用于可视和选择模式，有的只能用于其中一个。<code class="note">注意</code> 很常见的情况是提
-到 "可视" 的时候实际同时适用可视和选择两种模式。 <a href="visual.html#Select-mode-mapping">Select-mode-mapping</a> 
-<code class="note">备注</code>: 在选择模式映射可显示字符容易引起用户的混淆。最好直接用 :xmap 和 :smap 来
-映射可显示字符。或者在定义映射后使用 :sunmap。
+有的命令能同時用於可視和選擇模式，有的只能用於其中一個。<code class="note">注意</code> 很常見的情況是提
+到 "可視" 的時候實際同時適用可視和選擇兩種模式。 <a href="visual.html#Select-mode-mapping">Select-mode-mapping</a> 
+<code class="note">備註</code>: 在選擇模式映射可顯示字符容易引起用戶的混淆。最好直接用 :xmap 和 :smap 來
+映射可顯示字符。或者在定義映射後使用 :sunmap。
 
 <code class="section">    命 令                                     模 式 </code>
-<code class="section">                                        可视    选择 </code>
+<code class="section">                                        可視    選擇 </code>
 :vmap  :vnoremap  :vunmap  :vmapclear   是      是
 :xmap  :xnoremap  :xunmap  :xmapclear   是      -
 :smap  :snoremap  :sunmap  :smapclear   -       是
 
                         <b class="vimtag"> <a name="mapmode-ic">mapmode-ic</a> </b> <b class="vimtag"> <a name="mapmode-i">mapmode-i</a> </b> <b class="vimtag"> <a name="mapmode-c">mapmode-c</a> </b> <b class="vimtag"> <a name="mapmode-l">mapmode-l</a> </b>
-有的命令同时支持插入模式和命令行模式，有的不是:
+有的命令同時支持插入模式和命令行模式，有的不是:
 
 <code class="section">    命 令                                     模 式 </code>
 <code class="section">                                        插入    命令行  Lang-Arg </code>
@@ -331,362 +331,362 @@ getchar() 得到键入的字符并返回之。
 :cmap  :cnoremap  :cunmap  :cmapclear   -       是      -
 :lmap  :lnoremap  :lunmap  :lmapclear   是*     是*     是*
 
-原来的 Vi 没有针对普通/可视/操作符等待模式和针对插入/命令行模式的独立映射。因
-此 ":map" 和 ":map!" 命令为多个模式定义和回显映射。在 Vim 中你可以使用
-":nmap"、":vmap"、:omap"、":cmap" 和 ":imap" 命令来对每个不同的模式分别定义映
+原來的 Vi 沒有針對普通/可視/操作符等待模式和針對插入/命令行模式的獨立映射。因
+此 ":map" 和 ":map!" 命令為多個模式定義和回顯映射。在 Vim 中你可以使用
+":nmap"、":vmap"、:omap"、":cmap" 和 ":imap" 命令來對每個不同的模式分別定義映
 射。
 
                                                         <b class="vimtag"> <a name="omap-info">omap-info</a> </b>
-操作符等待映射可以用来定义和任何操作符一起使用的移动命令。简单例子:
-":omap { w" 会使 "y{" 等同于 "yw"，"d{" 也等同于 "dw"。
+操作符等待映射可以用來定義和任何操作符一起使用的移動命令。簡單例子:
+":omap { w" 會使 "y{" 等同於 "yw"，"d{" 也等同於 "dw"。
 
-要忽略光标原来所在的位置并选择另外的文本，你可以使 omap 进入可视模式来选择要操
-作的文本。例如，要在位于当前行的函数名上操作: 
+要忽略光標原來所在的位置並選擇另外的文本，你可以使 omap 進入可視模式來選擇要操
+作的文本。例如，要在位於當前行的函數名上操作: 
 <code class="example">        onoremap &lt;silent&gt; F :&lt;C-U&gt;normal! 0f(hviw&lt;CR&gt;</code>
-<code class="keystroke">CTRL-U</code> (<code class="special">&lt;C-U&gt;</code>) 用于删除命令行上 Vim 可能插入的范围。普通模式命令寻找第一个 '('
-字符并选择之前的第一个单词。通常那就是函数名了。
+<code class="keystroke">CTRL-U</code> (<code class="special">&lt;C-U&gt;</code>) 用於刪除命令行上 Vim 可能插入的範圍。普通模式命令尋找第一個 '('
+字符並選擇之前的第一個單詞。通常那就是函數名了。
 
-要为普通和可视模式但不包括操作符等待模式输入一个映射，首先在所有的三个模式中定
-义该映射，然后在操作符等待模式中取消该映射: 
+要為普通和可視模式但不包括操作符等待模式輸入一個映射，首先在所有的三個模式中定
+義該映射，然後在操作符等待模式中取消該映射: 
 <code class="example">        :map    xx something-difficult</code>
 <code class="example">        :ounmap xx</code>
-对于一个同时用于可视和操作符等待模式、或同时用于普通和操作符等待模式的映射也可
-照此办理。
+對於一個同時用於可視和操作符等待模式、或同時用於普通和操作符等待模式的映射也可
+照此辦理。
 
                                                 <b class="vimtag"> <a name="language-mapping">language-mapping</a> </b>
-":lmap" 定义一个应用于以下情况的映射:
+":lmap" 定義一個應用於以下情況的映射:
 - 插入模式
 - 命令行模式
-- 输入一个搜索模式时
-- 接受一个文本字符作为参数的命令，比如 "r" 和 "f"
-- 对于 input() 行
-更一般地: 任何输入的字符是缓冲区文本的一部分而非一个 Vim 命令字符的时候。
-"Lang-Arg" 不是真正的另外一个模式，它仅用来表示这些情况的存在。
-   载入一个相关语言映射集合的最简单的方法是通过使用 <a href="options.html#'keymap'">'keymap'</a> 选项。
-参考  <a href="usr_45.html#45.5">45.5</a> 。
-   在插入模式和命令行模式中可用 <code class="keystroke">CTRL-^</code> 命令来关闭映射  <a href="insert.html#i_CTRL-^">i_CTRL-^</a>   <a href="cmdline.html#c_CTRL-^">c_CTRL-^</a> 。
-这些命令改变 <a href="options.html#'iminsert'">'iminsert'</a> 选项的值。普通命令行 (非模式搜索) 开始输入时，映射被关
-闭直到输入 <code class="keystroke">CTRL-^</code> 为止。而插入模式和模式搜索却会分别记住上次使用的状态。需要输
-入一个字符作为参数的命令，如 "f" 或 "t" 之类，也使用插入模式的状态。
-   语言映射永远不能应用于已经映射的字符上。它们仅用于键入的字符上。这意味着输
-入映射时，语言映射已经完成。
+- 輸入一個搜索模式時
+- 接受一個文本字符作為參數的命令，比如 "r" 和 "f"
+- 對於 input() 行
+更一般地: 任何輸入的字符是緩衝區文本的一部分而非一個 Vim 命令字符的時候。
+"Lang-Arg" 不是真正的另外一個模式，它僅用來表示這些情況的存在。
+   載入一個相關語言映射集合的最簡單的方法是通過使用 <a href="options.html#'keymap'">'keymap'</a> 選項。
+參考  <a href="usr_45.html#45.5">45.5</a> 。
+   在插入模式和命令行模式中可用 <code class="keystroke">CTRL-^</code> 命令來關閉映射  <a href="insert.html#i_CTRL-^">i_CTRL-^</a>   <a href="cmdline.html#c_CTRL-^">c_CTRL-^</a> 。
+這些命令改變 <a href="options.html#'iminsert'">'iminsert'</a> 選項的值。普通命令行 (非模式搜索) 開始輸入時，映射被關
+閉直到輸入 <code class="keystroke">CTRL-^</code> 為止。而插入模式和模式搜索卻會分別記住上次使用的狀態。需要輸
+入一個字符作為參數的命令，如 "f" 或 "t" 之類，也使用插入模式的狀態。
+   語言映射永遠不能應用於已經映射的字符上。它們僅用於鍵入的字符上。這意味著輸
+入映射時，語言映射已經完成。
 
 
 1.4 列 出 映 射                                         <b class="vimtag"> <a name="map-listing">map-listing</a> </b>
 
-当列出映射时，前面两栏的字符表示 (可有多个):
+當列出映射時，前面兩欄的字符表示 (可有多個):
 
 <code class="section">      字 符     模 式   </code>
-     <code class="special">&lt;Space&gt;</code>    普通、可视、选择和操作符等待
+     <code class="special">&lt;Space&gt;</code>    普通、可視、選擇和操作符等待
         n       普通
-        v       可视和选择
-        s       选择
-        x       可视
+        v       可視和選擇
+        s       選擇
+        x       可視
         o       操作符等待
         !       插入和命令行
         i       插入
         l       插入、命令行和 Lang-Arg 模式的 ":lmap" 映射
         c       命令行
 
-<code class="special">{rhs}</code> 之前可能显示一个特殊字符:
+<code class="special">{rhs}</code> 之前可能顯示一個特殊字符:
         *       表示它不可重映射
-        &amp;       表示仅脚本的局部映射可以被重映射
-        @       表示缓冲区的局部映射
+        &amp;       表示僅腳本的局部映射可以被重映射
+        @       表示緩衝區的局部映射
 
-从 <code class="special">{lhs}</code> 以后的第一个非空字符到行的末尾 (或 '|') 都被认为是 <code class="special">{rhs}</code> 的一部分。这
-允许 <code class="special">{rhs}</code> 以一个空格结尾。
+從 <code class="special">{lhs}</code> 以後的第一個非空字符到行的末尾 (或 '|') 都被認為是 <code class="special">{rhs}</code> 的一部分。這
+允許 <code class="special">{rhs}</code> 以一個空格結尾。
 
-<code class="note">注意</code>: 在可视模式里使用映射时，你可以使用 "'&lt;" 位置标记，它表示当前缓冲区中最后
-被选中的可视区域的开始  <a href="motion.html#'%3C">'&lt;</a> 。
+<code class="note">注意</code>: 在可視模式裡使用映射時，你可以使用 "'&lt;" 位置標記，它表示當前緩衝區中最後
+被選中的可視區域的開始  <a href="motion.html#'%3C">'&lt;</a> 。
 
- <a href="various.html#:filter">:filter</a>  命令可用于选择列出哪种映射。模式匹配 <code class="special">{lhs}</code> 和 <code class="special">{rhs}</code> 原始文本。
+ <a href="various.html#:filter">:filter</a>  命令可用於選擇列出哪種映射。模式匹配 <code class="special">{lhs}</code> 和 <code class="special">{rhs}</code> 原始文本。
 
                                                         <b class="vimtag"> <a name=":map-verbose">:map-verbose</a> </b>
-如果 <a href="options.html#'verbose'">'verbose'</a> 非零，列出键映射的同时可以显示它在哪里定义。例如: 
+如果 <a href="options.html#'verbose'">'verbose'</a> 非零，列出鍵映射的同時可以顯示它在哪裡定義。例如: 
 <code class="example"></code>
 <code class="example">        :verbose map &lt;C-W&gt;*</code>
 <code class="example">        n  &lt;C-W&gt;*      * &lt;C-W&gt;&lt;C-S&gt;*</code>
 <code class="example">                Last set from /home/abcd/.vimrc</code>
 <code class="example"></code>
- <a href="various.html#:verbose-cmd">:verbose-cmd</a>  说明详情。
+ <a href="various.html#:verbose-cmd">:verbose-cmd</a>  說明詳情。
 
 
-1.5 映 射 特 殊 键                                      <b class="vimtag"> <a name=":map-special-keys">:map-special-keys</a> </b>
+1.5 映 射 特 殊 鍵                                      <b class="vimtag"> <a name=":map-special-keys">:map-special-keys</a> </b>
 
-有三种方法来映射一个特殊键:
-1. Vi 兼容的方法: 对键码进行映射。通常这是一个以 <code class="special">&lt;Esc&gt;</code> 开头的序列。要输入一个
-   这样的映射先输入 ":map " 然后再敲入功能键之前得先输入一个 <code class="keystroke">CTRL-V</code>。<code class="note">注意</code>如果
-   键码在 termcap (t_ 开头的选项) 里，它会被自动转换到内码并变成映射的第二种方
-   法 (除非 <a href="options.html#'cpoptions'">'cpoptions'</a> 里包括了 'k' 标志位)。
-2. 第二种方法是使用功能键的内码。要输入这样的映射输入 <code class="keystroke">CTRL-K</code> 并敲要映射的功能
-   键，或者使用 "#1"、"#2"、.. "#9"、"#0"、"<code class="special">&lt;Up&gt;</code>"、"<code class="special">&lt;S-Down&gt;</code>"、"<code class="special">&lt;S-F7&gt;</code>" 等等的
-   形式 (参考键表  <a href="intro.html#key-notation">key-notation</a> ，所有从 <code class="special">&lt;Up&gt;</code> 开始的键都可以使用)。头十个功能
-   键能以两种方式被定义: 仅用数字，比如 "#2"；或者使用 "<code class="special">&lt;F&gt;</code>"，如 "<code class="special">&lt;F2&gt;</code>"。两种
-   都代表功能键 F2。"#0" 表示功能键 F10，由选项 <code class="badlink">'t_f10'</code> 定义，它在某些键盘上可
-   能是 F0。<code class="special">&lt;&gt;</code> 的形式在 <a href="options.html#'cpoptions'">'cpoptions'</a> 包含 '&lt;' 标志位时不能使用。
-3. 使用 termcap 条目，以 <code class="special">&lt;t_xx&gt;</code> 的形式出现，这里 "xx" 是 termcap 条目的名字。
-   可以使用任何字符串条目。例如: 
+有三種方法來映射一個特殊鍵:
+1. Vi 兼容的方法: 對鍵碼進行映射。通常這是一個以 <code class="special">&lt;Esc&gt;</code> 開頭的序列。要輸入一個
+   這樣的映射先輸入 ":map " 然後再敲入功能鍵之前得先輸入一個 <code class="keystroke">CTRL-V</code>。<code class="note">注意</code>如果
+   鍵碼在 termcap (t_ 開頭的選項) 裡，它會被自動轉換到內碼並變成映射的第二種方
+   法 (除非 <a href="options.html#'cpoptions'">'cpoptions'</a> 裡包括了 'k' 標誌位)。
+2. 第二種方法是使用功能鍵的內碼。要輸入這樣的映射輸入 <code class="keystroke">CTRL-K</code> 並敲要映射的功能
+   鍵，或者使用 "#1"、"#2"、.. "#9"、"#0"、"<code class="special">&lt;Up&gt;</code>"、"<code class="special">&lt;S-Down&gt;</code>"、"<code class="special">&lt;S-F7&gt;</code>" 等等的
+   形式 (參考鍵表  <a href="intro.html#key-notation">key-notation</a> ，所有從 <code class="special">&lt;Up&gt;</code> 開始的鍵都可以使用)。頭十個功能
+   鍵能以兩種方式被定義: 僅用數字，比如 "#2"；或者使用 "<code class="special">&lt;F&gt;</code>"，如 "<code class="special">&lt;F2&gt;</code>"。兩種
+   都代表功能鍵 F2。"#0" 表示功能鍵 F10，由選項 <code class="badlink">'t_f10'</code> 定義，它在某些鍵盤上可
+   能是 F0。<code class="special">&lt;&gt;</code> 的形式在 <a href="options.html#'cpoptions'">'cpoptions'</a> 包含 '&lt;' 標誌位時不能使用。
+3. 使用 termcap 條目，以 <code class="special">&lt;t_xx&gt;</code> 的形式出現，這裡 "xx" 是 termcap 條目的名字。
+   可以使用任何字符串條目。例如: 
 <code class="example">     :map &lt;t_F3&gt; G</code>
-   把功能键 13 映射成 "G"。<a href="options.html#'cpoptions'">'cpoptions'</a> 包括 '&lt;' 标志位时不能使用这种方式。
+   把功能鍵 13 映射成 "G"。<a href="options.html#'cpoptions'">'cpoptions'</a> 包括 '&lt;' 標誌位時不能使用這種方式。
 
-第二种和第三种方法的优点是不加修改就可以在不同的终端上使用 (功能键会被转换成相
-同的内码或实际的键码，不论使用何种终端都是如此。termcap 必须正确才能正常工作，
-并且必须使用相同的映射)。
+第二種和第三種方法的優點是不加修改就可以在不同的終端上使用 (功能鍵會被轉換成相
+同的內碼或實際的鍵碼，不論使用何種終端都是如此。termcap 必須正確才能正常工作，
+並且必須使用相同的映射)。
 
-细 节: Vim 首先检查是否从键盘输入的序列是否已被映射。否的话将试图使用终端键码
-(参考  <a href="term.html#terminal-options">terminal-options</a> )。如果找到终端编码，它会被替换成内码。然后再次检查一
-个映射是否已完成 (因此你也能把一个内码映射成其它东西)。在脚本文件中写入什么东
-西取决于何者被识别。如果终端键码被识别为映射，写入键码本身；如果它被识别为一个
-终端编码，则在脚本中写入内码。
+細 節: Vim 首先檢查是否從鍵盤輸入的序列是否已被映射。否的話將試圖使用終端鍵碼
+(參考  <a href="term.html#terminal-options">terminal-options</a> )。如果找到終端編碼，它會被替換成內碼。然後再次檢查一
+個映射是否已完成 (因此你也能把一個內碼映射成其它東西)。在腳本文件中寫入什麼東
+西取決於何者被識別。如果終端鍵碼被識別為映射，寫入鍵碼本身；如果它被識別為一個
+終端編碼，則在腳本中寫入內碼。
 
 
 1.6 特 殊 字 符                                         <b class="vimtag"> <a name=":map-special-chars">:map-special-chars</a> </b>
                                                 <b class="vimtag"> <a name="map_backslash">map_backslash</a> </b> <b class="vimtag"> <a name="map-backslash">map-backslash</a> </b>
-<code class="note">注意</code>这里仅提及 <code class="keystroke">CTRL-V</code> 可以作为用于映射和缩写的特殊字符。当 <a href="options.html#'cpoptions'">'cpoptions'</a> 不包含
-'B' 时，反斜杠也可起到 <code class="keystroke">CTRL-V</code> 一样的作用，这时可以完全地使用 <code class="special">&lt;&gt;</code> 记法  <a href="intro.html#%3C%3E">&lt;&gt;</a> 。但
-你不能期望 "<code class="special">&lt;C-V&gt;</code>" 像 <code class="keystroke">CTRL-V</code> 那样转换后来者的特殊含义。
+<code class="note">注意</code>這裡僅提及 <code class="keystroke">CTRL-V</code> 可以作為用於映射和縮寫的特殊字符。當 <a href="options.html#'cpoptions'">'cpoptions'</a> 不包含
+'B' 時，反斜槓也可起到 <code class="keystroke">CTRL-V</code> 一樣的作用，這時可以完全地使用 <code class="special">&lt;&gt;</code> 記法  <a href="intro.html#%3C%3E">&lt;&gt;</a> 。但
+你不能期望 "<code class="special">&lt;C-V&gt;</code>" 像 <code class="keystroke">CTRL-V</code> 那樣轉換後來者的特殊含義。
 
-要映射反斜杠，或者在 <code class="special">{rhs}</code> 中使用按本义出现的反斜杠，可以使用特殊字符序列
-"<code class="special">&lt;Bslash&gt;</code>" 。这可以避免在使用嵌套映射时使用双反斜杠的需要。
+要映射反斜槓，或者在 <code class="special">{rhs}</code> 中使用按本義出現的反斜槓，可以使用特殊字符序列
+"<code class="special">&lt;Bslash&gt;</code>" 。這可以避免在使用嵌套映射時使用雙反斜槓的需要。
 
                                                 <b class="vimtag"> <a name="map_CTRL-C">map_CTRL-C</a> </b> <b class="vimtag"> <a name="map-CTRL-C">map-CTRL-C</a> </b>
-<code class="special">{lhs}</code> 里可以使用 <code class="keystroke">CTRL-C</code>，但只有在 Vim 等待输入键时才可以，Vim 忙着做别的事情的
-时候不行。如果 Vim 在忙，<code class="keystroke">CTRL-C</code> 总是中断/打断该命令。
-使用 MS-Windows 上的 GUI 版本时 <code class="keystroke">CTRL-C</code> 能被映射以允许复制到剪贴板的命令。使用
-<code class="keystroke">CTRL-Break</code> 来中断 Vim。
+<code class="special">{lhs}</code> 裡可以使用 <code class="keystroke">CTRL-C</code>，但只有在 Vim 等待輸入鍵時才可以，Vim 忙著做別的事情的
+時候不行。如果 Vim 在忙，<code class="keystroke">CTRL-C</code> 總是中斷/打斷該命令。
+使用 MS-Windows 上的 GUI 版本時 <code class="keystroke">CTRL-C</code> 能被映射以允許複製到剪貼板的命令。使用
+<code class="keystroke">CTRL-Break</code> 來中斷 Vim。
 
                                         <b class="vimtag"> <a name="map_space_in_lhs">map_space_in_lhs</a> </b> <b class="vimtag"> <a name="map-space_in_lhs">map-space_in_lhs</a> </b>
-要在 <code class="special">{lhs}</code> 中包含一个空格，在前面输入一个 <code class="keystroke">CTRL-V</code> (每个空格之前实际要输入两个
+要在 <code class="special">{lhs}</code> 中包含一個空格，在前面輸入一個 <code class="keystroke">CTRL-V</code> (每個空格之前實際要輸入兩個
 <code class="keystroke">CTRL-V</code>)。
                                         <b class="vimtag"> <a name="map_space_in_rhs">map_space_in_rhs</a> </b> <b class="vimtag"> <a name="map-space_in_rhs">map-space_in_rhs</a> </b>
-如果你需要 <code class="special">{rhs}</code> 以空格开头，使用 "<code class="special">&lt;Space&gt;</code>"。要与 Vi 完全兼容 (但不可读)，不要
-使用  <a href="intro.html#%3C%3E">&lt;&gt;</a>  记法，在 <code class="special">{rhs}</code> 前面先输入一个单独的 <code class="keystroke">CTRL-V</code> (你必须输入 <code class="keystroke">CTRL-V</code> 两
+如果你需要 <code class="special">{rhs}</code> 以空格開頭，使用 "<code class="special">&lt;Space&gt;</code>"。要與 Vi 完全兼容 (但不可讀)，不要
+使用  <a href="intro.html#%3C%3E">&lt;&gt;</a>  記法，在 <code class="special">{rhs}</code> 前面先輸入一個單獨的 <code class="keystroke">CTRL-V</code> (你必須輸入 <code class="keystroke">CTRL-V</code> 兩
 次)。
                                                 <b class="vimtag"> <a name="map_empty_rhs">map_empty_rhs</a> </b> <b class="vimtag"> <a name="map-empty-rhs">map-empty-rhs</a> </b>
-你可以通过在一个单独的 <code class="keystroke">CTRL-V</code> (你必须输入 <code class="keystroke">CTRL-V</code> 两次) 后面什么也不输入来建立
-一个空的 <code class="special">{rhs}</code>。不幸的是在 vimrc 文件中你不能使用这种方式。
+你可以通過在一個單獨的 <code class="keystroke">CTRL-V</code> (你必須輸入 <code class="keystroke">CTRL-V</code> 兩次) 後面什麼也不輸入來建立
+一個空的 <code class="special">{rhs}</code>。不幸的是在 vimrc 文件中你不能使用這種方式。
 
                                                         <b class="vimtag"> <a name="%3CNop%3E">&lt;Nop&gt;</a> </b>
-得到什么都不做的映射的更容易的方法是在 <code class="special">{rhs}</code> 中使用 "<code class="special">&lt;Nop&gt;</code>"。仅当  <a href="intro.html#%3C%3E">&lt;&gt;</a>  记法允
-许时这种方法才生效。例如确保功能键 F8 什么事情都不做:
+得到什麼都不做的映射的更容易的方法是在 <code class="special">{rhs}</code> 中使用 "<code class="special">&lt;Nop&gt;</code>"。僅當  <a href="intro.html#%3C%3E">&lt;&gt;</a>  記法允
+許時這種方法才生效。例如確保功能鍵 F8 什麼事情都不做:
         :map  <code class="special">&lt;F8&gt;</code>  <code class="special">&lt;Nop&gt;</code>
         :map! <code class="special">&lt;F8&gt;</code>  <code class="special">&lt;Nop&gt;</code>
 
                                                         <b class="vimtag"> <a name="map-multibyte">map-multibyte</a> </b>
-可以对多字节字符映射，但只能是整个字符。不能仅映射第一个字节。这是为了避免下面
-场景中的问题:
+可以對多字節字符映射，但只能是整個字符。不能僅映射第一個字節。這是為了避免下面
+場景中的問題:
         :set encoding=latin1
         :imap <code class="special">&lt;M-C&gt;</code> foo
         :set encoding=utf-8
-<code class="special">&lt;M-C&gt;</code> 的映射是在 latin1 编码中被定义的，结果是一个 0xc3 字节。如果你在 UTF-8
-解码中输入 á (0xe1 <code class="special">&lt;M-a&gt;</code>) 它是双字节 0xc3 0xa1。这个时候你不希望 0xc3 字节被映
-射，否则的话将不能输入 á 字符了。
+<code class="special">&lt;M-C&gt;</code> 的映射是在 latin1 編碼中被定義的，結果是一個 0xc3 字節。如果你在 UTF-8
+解碼中輸入 a (0xe1 <code class="special">&lt;M-a&gt;</code>) 它是雙字節 0xc3 0xa1。這個時候你不希望 0xc3 字節被映
+射，否則的話將不能輸入 a 字符了。
 
                                         <b class="vimtag"> <a name="%3CLeader%3E">&lt;Leader&gt;</a> </b> <b class="vimtag"> <a name="mapleader">mapleader</a> </b>
-要定义一个使用 "mapleader" 变量的映射，可以使用特殊字串 "<code class="special">&lt;Leader&gt;</code>"。它会被
-"mapleader" 的字串值所替换。如果 "mapleader" 未设置或为空，则用反斜杠代替，例
+要定義一個使用 "mapleader" 變量的映射，可以使用特殊字串 "<code class="special">&lt;Leader&gt;</code>"。它會被
+"mapleader" 的字串值所替換。如果 "mapleader" 未設置或為空，則用反斜槓代替，例
 如:
         :map <code class="special">&lt;Leader&gt;</code>A  oanother line<code class="special">&lt;Esc&gt;</code>
-和下面一样: 
+和下面一樣: 
 <code class="example">        :map \A  oanother line&lt;Esc&gt;</code>
-但是当: 
+但是當: 
 <code class="example">        :let mapleader = ","</code>
-时，又相当于: 
+時，又相當於: 
 <code class="example">        :map ,A  oanother line&lt;Esc&gt;</code>
 <code class="example"></code>
-<code class="note">注意</code> "mapleader" 的值仅当定义映射时被使用。后来改变的 "mapleader" 不会影响已定
-义的映射。
+<code class="note">注意</code> "mapleader" 的值僅當定義映射時被使用。後來改變的 "mapleader" 不會影響已定
+義的映射。
 
                                         <b class="vimtag"> <a name="%3CLocalLeader%3E">&lt;LocalLeader&gt;</a> </b> <b class="vimtag"> <a name="maplocalleader">maplocalleader</a> </b>
-<code class="special">&lt;LocalLeader&gt;</code> 和 <code class="special">&lt;Leader&gt;</code> 类似，除了它使用 "maplocalleader" 而非 "mapleader"
-以外。<code class="special">&lt;LocalLeader&gt;</code> 用于局部于缓冲区的映射，例如: 
+<code class="special">&lt;LocalLeader&gt;</code> 和 <code class="special">&lt;Leader&gt;</code> 類似，除了它使用 "maplocalleader" 而非 "mapleader"
+以外。<code class="special">&lt;LocalLeader&gt;</code> 用於局部於緩衝區的映射，例如: 
 <code class="example">      :map &lt;buffer&gt; &lt;LocalLeader&gt;A  oanother line&lt;Esc&gt;</code>
 
-在一个全局插件里应该使用 <code class="special">&lt;Leader&gt;</code> 而在一个文件类型插件里应该用 <code class="special">&lt;LocalLeader&gt;</code>。
-"mapleader" 和 "maplocalleader" 可以是相同的。尽管如此，如果你把它们设为不同，
-全局插件和文件类型插件的映射冲突的机会是不是会小一点呢？例如，你可以保持把
-"mapleader" 设置为缺省的反斜杠，而设置 "maplocalleader" 为下划线。
+在一個全局插件裡應該使用 <code class="special">&lt;Leader&gt;</code> 而在一個文件類型插件裡應該用 <code class="special">&lt;LocalLeader&gt;</code>。
+"mapleader" 和 "maplocalleader" 可以是相同的。儘管如此，如果你把它們設為不同，
+全局插件和文件類型插件的映射衝突的機會是不是會小一點呢？例如，你可以保持把
+"mapleader" 設置為缺省的反斜槓，而設置 "maplocalleader" 為下劃線。
 
                                                         <b class="vimtag"> <a name="map-%3CSID%3E">map-&lt;SID&gt;</a> </b>
-在一个脚本中有一个特殊关键字叫 "<code class="special">&lt;SID&gt;</code>" 能被用来定义一个局部于脚本中的映射。
-具体细节请参考  <a href="map.html#%3CSID%3E">&lt;SID&gt;</a> 。
+在一個腳本中有一個特殊關鍵字叫 "<code class="special">&lt;SID&gt;</code>" 能被用來定義一個局部於腳本中的映射。
+具體細節請參考  <a href="map.html#%3CSID%3E">&lt;SID&gt;</a> 。
 
                                                         <b class="vimtag"> <a name="%3CPlug%3E">&lt;Plug&gt;</a> </b>
-叫做 "<code class="special">&lt;Plug&gt;</code>" 的特殊关键字可以用于一个内部映射，它不与任何键的序列匹配。这在插
+叫做 "<code class="special">&lt;Plug&gt;</code>" 的特殊關鍵字可以用於一個內部映射，它不與任何鍵的序列匹配。這在插
 件中有用  <a href="usr_41.html#using-%3CPlug%3E">using-&lt;Plug&gt;</a> 。
 
                                                         <b class="vimtag"> <a name="%3CChar%3E">&lt;Char&gt;</a> </b> <b class="vimtag"> <a name="%3CChar-%3E">&lt;Char-&gt;</a> </b>
-要根据一个字符的十进制，八进制或十六进制数字形式进行映射，可以使用 <code class="special">&lt;Char&gt;</code> 来构
+要根據一個字符的十進制，八進制或十六進制數字形式進行映射，可以使用 <code class="special">&lt;Char&gt;</code> 來構
 造:
         <code class="special">&lt;Char-123&gt;</code>      字符 123
         <code class="special">&lt;Char-033&gt;</code>      字符 27
         <code class="special">&lt;Char-0x7f&gt;</code>     字符 127
         <code class="special">&lt;S-Char-114&gt;</code>    字符 114 ('r') 加上 Shift ('R')
-它可以用来在一个 <a href="options.html#'keymap'">'keymap'</a> 文件里指定一个 (多字节) 字符。大小写的区别此处不计。
+它可以用來在一個 <a href="options.html#'keymap'">'keymap'</a> 文件裡指定一個 (多字節) 字符。大小寫的區別此處不計。
 
                                                         <b class="vimtag"> <a name="map-comments">map-comments</a> </b>
-在这些命令的后面不可能放置注释，因为 '"' 字符被认为是 <code class="special">{lhs}</code> 或 <code class="special">{rhs}</code> 的一部
-分。不过，你可以用 |"，它开启了带注释的新空白命令。
+在這些命令的後面不可能放置註釋，因為 '"' 字符被認為是 <code class="special">{lhs}</code> 或 <code class="special">{rhs}</code> 的一部
+分。不過，你可以用 |"，它開啟了帶註釋的新空白命令。
 
                                                         <b class="vimtag"> <a name="map_bar">map_bar</a> </b> <b class="vimtag"> <a name="map-bar">map-bar</a> </b>
-因为字符 '|' 用来分隔映射命令和后面的命令，所以包括 '|' 的 <code class="special">{rhs}</code> 要做一些特殊
-的处理，有三种方法:
-<code class="section">   使用      可用于                        示例 </code>
-   <code class="special">&lt;Bar&gt;</code>     '&lt;' 不在 <a href="options.html#'cpoptions'">'cpoptions'</a> 里       :map _l :!ls <code class="special">&lt;Bar&gt;</code> more^M
-   \|        'b' 不在 <a href="options.html#'cpoptions'">'cpoptions'</a> 里       :map _l :!ls \| more^M
-   ^V|       总可以，Vim 和 Vi 都行        :map _l :!ls ^V| more^M
+因為字符 '|' 用來分隔映射命令和後面的命令，所以包括 '|' 的 <code class="special">{rhs}</code> 要做一些特殊
+的處理，有三種方法:
+<code class="section">   使用      可用於                        示例 </code>
+   <code class="special">&lt;Bar&gt;</code>     '&lt;' 不在 <a href="options.html#'cpoptions'">'cpoptions'</a> 裡       :map _l :!ls <code class="special">&lt;Bar&gt;</code> more^M
+   \|        'b' 不在 <a href="options.html#'cpoptions'">'cpoptions'</a> 裡       :map _l :!ls \| more^M
+   ^V|       總可以，Vim 和 Vi 都行        :map _l :!ls ^V| more^M
 
-(这里 ^V 表示 <code class="keystroke">CTRL-V</code>；要输入一个 <code class="keystroke">CTRL-V</code> 你必须按键两次；在这里不能使用 <code class="special">&lt;&gt;</code> 记法
+(這裡 ^V 表示 <code class="keystroke">CTRL-V</code>；要輸入一個 <code class="keystroke">CTRL-V</code> 你必須按鍵兩次；在這裡不能使用 <code class="special">&lt;&gt;</code> 記法
 "<code class="special">&lt;C-V&gt;</code>")。
 
-当你使用 <a href="options.html#'cpoptions'">'cpoptions'</a> 的缺省设置时三种方式都可以正常工作。
+當你使用 <a href="options.html#'cpoptions'">'cpoptions'</a> 的缺省設置時三種方式都可以正常工作。
 
-当 'b' 出现在 <a href="options.html#'cpoptions'">'cpoptions'</a> 中时，"\|" 会被认为是一个映射的结束，后面的是另一个
-命令。这是为了和 Vi 兼容，但是和其它命令比较时有点不合常理。
+當 'b' 出現在 <a href="options.html#'cpoptions'">'cpoptions'</a> 中時，"\|" 會被認為是一個映射的結束，後面的是另一個
+命令。這是為了和 Vi 兼容，但是和其它命令比較時有點不合常理。
 
                                                 <b class="vimtag"> <a name="map_return">map_return</a> </b> <b class="vimtag"> <a name="map-return">map-return</a> </b>
-当你的映射包含 Ex 命令时，你需要在其后放置行终结符才能让它执行。在这里推荐使用
-<code class="special">&lt;CR&gt;</code>  (参考  <a href="intro.html#%3C%3E">&lt;&gt;</a> )。例如: 
+當你的映射包含 Ex 命令時，你需要在其後放置行終結符才能讓它執行。在這裡推薦使用
+<code class="special">&lt;CR&gt;</code>  (參考  <a href="intro.html#%3C%3E">&lt;&gt;</a> )。例如: 
 <code class="example">   :map  _ls  :!ls -l %:S&lt;CR&gt;:echo "the end"&lt;CR&gt;</code>
 <code class="example"></code>
-在插入或命令行模式中输入时要避免字符被映射，可以先输入一个 <code class="keystroke">CTRL-V</code>。在插入模式
-中如果 <a href="options.html#'paste'">'paste'</a> 选项被打开的话，映射也会被禁止。
+在插入或命令行模式中輸入時要避免字符被映射，可以先輸入一個 <code class="keystroke">CTRL-V</code>。在插入模式
+中如果 <a href="options.html#'paste'">'paste'</a> 選項被打開的話，映射也會被禁止。
 
                                                         <b class="vimtag"> <a name="map-error">map-error</a> </b>
-<code class="note">注意</code> 当遇到错误时 (会导致一个错误信息或蜂鸣) 剩下的映射将不会被执行。这是为了
+<code class="note">注意</code> 當遇到錯誤時 (會導致一個錯誤信息或蜂鳴) 剩下的映射將不會被執行。這是為了
 保持和 Vi 兼容。
 
-<code class="note">注意</code> @zZtTfF[]rm'`"v 和 <code class="keystroke">CTRL-X</code> 命令的第二个字符 (参数) 不被映射。这样做是为了
-能够使用所有的命名寄存器和位置标记，即使同名的命令被映射时也是如此。
+<code class="note">注意</code> @zZtTfF[]rm'`"v 和 <code class="keystroke">CTRL-X</code> 命令的第二個字符 (參數) 不被映射。這樣做是為了
+能夠使用所有的命名寄存器和位置標記，即使同名的命令被映射時也是如此。
 
 
-1.7 映 射 哪 些 键                                      <b class="vimtag"> <a name="map-which-keys">map-which-keys</a> </b>
+1.7 映 射 哪 些 鍵                                      <b class="vimtag"> <a name="map-which-keys">map-which-keys</a> </b>
 
-如果你要做一些映射，你得选择在 <code class="special">{lhs}</code> 中要用哪些键。你应该避免使用 Vim 命令所使
-用的那些键。否则你将不能再使用这些命令了。下面是一些建议:
-- 功能键 <code class="special">&lt;F2&gt;</code>、<code class="special">&lt;F3&gt;</code> 等；Shift 加功能键 <code class="special">&lt;S-F1&gt;</code>、<code class="special">&lt;S-F2&gt;</code> 等等。<code class="note">注意</code> <code class="special">&lt;F1&gt;</code> 已经用作
-  帮助命令。
-- 带 Meta 的键 (和 ALT 键一起按下)。取决于你的键盘，也可以用带重音的字符。
+如果你要做一些映射，你得選擇在 <code class="special">{lhs}</code> 中要用哪些鍵。你應該避免使用 Vim 命令所使
+用的那些鍵。否則你將不能再使用這些命令了。下面是一些建議:
+- 功能鍵 <code class="special">&lt;F2&gt;</code>、<code class="special">&lt;F3&gt;</code> 等；Shift 加功能鍵 <code class="special">&lt;S-F1&gt;</code>、<code class="special">&lt;S-F2&gt;</code> 等等。<code class="note">注意</code> <code class="special">&lt;F1&gt;</code> 已經用作
+  幫助命令。
+- 帶 Meta 的鍵 (和 ALT 鍵一起按下)。取決於你的鍵盤，也可以用帶重音的字符。
    <a href="map.html#:map-alt-keys">:map-alt-keys</a> 
-- 使用 '_' 或 ',' 字符然后加上任何其它的字符。"_" 和 "," 命令在 Vim 中是存在
-  的 (参考  <a href="motion.html#_">_</a>  和  <a href="motion.html#,">,</a> )，但你也许永远不会用到它们。
-- 使用和其它命令的同义的热键。例如: <code class="keystroke">CTRL-P</code> 和 <code class="keystroke">CTRL-N</code>。使用一个附加的字符可以定
-  义更多的映射。
-- <code class="special">&lt;Leader&gt;</code> 定义的键加上一到多个其它键。尤其对脚本有用。 <a href="map.html#mapleader">mapleader</a> 
+- 使用 '_' 或 ',' 字符然後加上任何其它的字符。"_" 和 "," 命令在 Vim 中是存在
+  的 (參考  <a href="motion.html#_">_</a>  和  <a href="motion.html#,">,</a> )，但你也許永遠不會用到它們。
+- 使用和其它命令的同義的熱鍵。例如: <code class="keystroke">CTRL-P</code> 和 <code class="keystroke">CTRL-N</code>。使用一個附加的字符可以定
+  義更多的映射。
+- <code class="special">&lt;Leader&gt;</code> 定義的鍵加上一到多個其它鍵。尤其對腳本有用。 <a href="map.html#mapleader">mapleader</a> 
 
-参考文件 "index" 可以知道哪些键没有被使用，从而使映射不会覆盖任何内建的功能。
-也可使用 ":help <code class="special">{key}</code>^D" 来找出是否一个键已经用于某些命令。 (<code class="special">{key}</code> 用于指定你
-要寻找的键，^D 是 <code class="keystroke">CTRL-D</code>)。
+參考文件 "index" 可以知道哪些鍵沒有被使用，從而使映射不會覆蓋任何內建的功能。
+也可使用 ":help <code class="special">{key}</code>^D" 來找出是否一個鍵已經用於某些命令。 (<code class="special">{key}</code> 用於指定你
+要尋找的鍵，^D 是 <code class="keystroke">CTRL-D</code>)。
 
 
 1.8 示 例                                               <b class="vimtag"> <a name="map-examples">map-examples</a> </b>
 
-以下是一些例子 (照字面输入，如 "<code class="special">&lt;CR&gt;</code>" 需要输入四个字符；为此 <a href="options.html#'cpoptions'">'cpoptions'</a> 中不
-应出现 '&lt;' 标志位)。 
+以下是一些例子 (照字面輸入，如 "<code class="special">&lt;CR&gt;</code>" 需要輸入四個字符；為此 <a href="options.html#'cpoptions'">'cpoptions'</a> 中不
+應出現 '&lt;' 標誌位)。 
 <code class="example"></code>
 <code class="example">   :map &lt;F3&gt;  o#include</code>
 <code class="example">   :map &lt;M-g&gt; /foo&lt;CR&gt;cwbar&lt;Esc&gt;</code>
 <code class="example">   :map _x    d/END/e&lt;CR&gt;</code>
 <code class="example">   :map! qq   quadrillion questions</code>
 <code class="example"></code>
-计数相乘
+計數相乘
 
-如果你在激活映射前输入计数，实际效果就像是该计数在 <code class="special">{lhs}</code> (<code class="vim">译者注</code>: 疑为 <code class="special">{rhs}</code>)
-之前输入一样。例如，对下面的映射: 
+如果你在激活映射前輸入計數，實際效果就像是該計數在 <code class="special">{lhs}</code> (<code class="vim">譯者注</code>: 疑為 <code class="special">{rhs}</code>)
+之前輸入一樣。例如，對下面的映射: 
 <code class="example">   :map &lt;F4&gt;  3w</code>
-输入 2<code class="special">&lt;F4&gt;</code> 会得到 "23w"。不是移动 2 * 3 个单词，而是 23 个单词。
-如果你希望得到计数相乘的效果，可使用表达式寄存器: 
+輸入 2<code class="special">&lt;F4&gt;</code> 會得到 "23w"。不是移動 2 * 3 個單詞，而是 23 個單詞。
+如果你希望得到計數相乘的效果，可使用表達式寄存器: 
 <code class="example">   :map &lt;F4&gt;  @='3w'&lt;CR&gt;</code>
-引号之间的部分是待执行的表达式。  <a href="change.html#@%20">@=</a> 
+引號之間的部分是待執行的表達式。  <a href="change.html#@%20">@=</a> 
 
 
 1.9 使 用 映 射                                         <b class="vimtag"> <a name="map-typing">map-typing</a> </b>
 
-当你输入一个被映射序列的头部时 Vim 开始比较你的输入。如果匹配尚不完全，它会等
-待更多的字符输入直到可以确定是否匹配。例如: 如果你映射了 map! "qq"，然后你输入
-的第一个 'q' 将不会显示在屏幕上，直到你输入另一个 'q' 或其它字符。如果打开了
-<a href="options.html#'timeout'">'timeout'</a> 选项 (这是缺省选项) Vim 仅会等待一秒钟 (或任何 <a href="options.html#'timeoutlen'">'timeoutlen'</a> 指定的时
-间)。之后，它假定 'q' 已经不会再被输入。如果你的输入很慢，或者你的系统很慢，复
-位 <a href="options.html#'timeout'">'timeout'</a> 选项。这时，你可能还需要是否置位 <a href="options.html#'ttimeout'">'ttimeout'</a> 选项。
+當你輸入一個被映射序列的頭部時 Vim 開始比較你的輸入。如果匹配尚不完全，它會等
+待更多的字符輸入直到可以確定是否匹配。例如: 如果你映射了 map! "qq"，然後你輸入
+的第一個 'q' 將不會顯示在屏幕上，直到你輸入另一個 'q' 或其它字符。如果打開了
+<a href="options.html#'timeout'">'timeout'</a> 選項 (這是缺省選項) Vim 僅會等待一秒鐘 (或任何 <a href="options.html#'timeoutlen'">'timeoutlen'</a> 指定的時
+間)。之後，它假定 'q' 已經不會再被輸入。如果你的輸入很慢，或者你的系統很慢，復
+位 <a href="options.html#'timeout'">'timeout'</a> 選項。這時，你可能還需要是否置位 <a href="options.html#'ttimeout'">'ttimeout'</a> 選項。
 
                                                         <b class="vimtag"> <a name="map-precedence">map-precedence</a> </b>
-缓冲区局部映射 ( <a href="map.html#:map-%3Cbuffer%3E">:map-&lt;buffer&gt;</a>  所定义的) 优先于全局映射。如果缓冲区局部映射和
-全局映射完全相同，Vim 使用缓冲区局部映射。另外如果映射以 <code class="special">&lt;nowait&gt;</code> 定义的话，
-Vim 立即使用完整出现的映射，即便有一个更长的映射使用相同的前缀。例如，给定以下
+緩衝區局部映射 ( <a href="map.html#:map-%3Cbuffer%3E">:map-&lt;buffer&gt;</a>  所定義的) 優先於全局映射。如果緩衝區局部映射和
+全局映射完全相同，Vim 使用緩衝區局部映射。另外如果映射以 <code class="special">&lt;nowait&gt;</code> 定義的話，
+Vim 立即使用完整出現的映射，即便有一個更長的映射使用相同的前綴。例如，給定以下
 的映射: 
 <code class="example">    :map &lt;buffer&gt; &lt;nowait&gt; \a   :echo "Local \a"&lt;CR&gt;</code>
 <code class="example">    :map                   \abc :echo "Global \abc"&lt;CR&gt;</code>
-键入 \a 后会立即使用那个缓冲区局部映射。Vim 不再等待更多的字符来判断用户是否想
-输入 \abc。
+鍵入 \a 後會立即使用那個緩衝區局部映射。Vim 不再等待更多的字符來判斷用戶是否想
+輸入 \abc。
 
                                                         <b class="vimtag"> <a name="map-keys-fails">map-keys-fails</a> </b>
-有若干情况键码可能不被识别:
-- Vim 仅能读取部分的键码。通常仅仅是第一个字符。在某些 Unix 版本的 xterm 上有
-  这种情况。
-- 键码在已经映射的字符之后。举例来说，"<code class="special">&lt;F1&gt;</code><code class="special">&lt;F1&gt;</code>" 或 "g<code class="special">&lt;F1&gt;</code>"。
+有若干情況鍵碼可能不被識別:
+- Vim 僅能讀取部分的鍵碼。通常僅僅是第一個字符。在某些 Unix 版本的 xterm 上有
+  這種情況。
+- 鍵碼在已經映射的字符之後。舉例來說，"<code class="special">&lt;F1&gt;</code><code class="special">&lt;F1&gt;</code>" 或 "g<code class="special">&lt;F1&gt;</code>"。
 
-其结果是在这种情况下键码不会被识别，所以映射失败。有两种方法可以避免此问题:
+其結果是在這種情況下鍵碼不會被識別，所以映射失敗。有兩種方法可以避免此問題:
 
-- 从 <a href="options.html#'cpoptions'">'cpoptions'</a> 中删除 'K' 标志位。这会使 Vim 等待功能键的其余部分。
-- 使用 <code class="special">&lt;F1&gt;</code> 到 <code class="special">&lt;F4&gt;</code> 时，实际产生的键码可能是 <code class="special">&lt;xF1&gt;</code> 到 <code class="special">&lt;xF4&gt;</code>。存在 <code class="special">&lt;xF1&gt;</code> 到
-  <code class="special">&lt;F1&gt;</code>，<code class="special">&lt;xF2&gt;</code> 到 <code class="special">&lt;F2&gt;</code> 的映射等，但是在映射的后一半的那些依然不会被识别。确认从
-  <code class="special">&lt;F1&gt;</code> 到 <code class="special">&lt;F4&gt;</code> 的键码是正确的: 
+- 從 <a href="options.html#'cpoptions'">'cpoptions'</a> 中刪除 'K' 標誌位。這會使 Vim 等待功能鍵的其餘部分。
+- 使用 <code class="special">&lt;F1&gt;</code> 到 <code class="special">&lt;F4&gt;</code> 時，實際產生的鍵碼可能是 <code class="special">&lt;xF1&gt;</code> 到 <code class="special">&lt;xF4&gt;</code>。存在 <code class="special">&lt;xF1&gt;</code> 到
+  <code class="special">&lt;F1&gt;</code>，<code class="special">&lt;xF2&gt;</code> 到 <code class="special">&lt;F2&gt;</code> 的映射等，但是在映射的後一半的那些依然不會被識別。確認從
+  <code class="special">&lt;F1&gt;</code> 到 <code class="special">&lt;F4&gt;</code> 的鍵碼是正確的: 
 <code class="example">        :set &lt;F1&gt;=&lt;type CTRL-V&gt;&lt;type F1&gt;</code>
-  以四个字符输入 <code class="special">&lt;F1&gt;</code>。"=" 号后面的部分必须输入实际的字符而不是字面的文本。
-另一种解决方法是在映射中为第二个特殊键使用实际的键码: 
+  以四個字符輸入 <code class="special">&lt;F1&gt;</code>。"=" 號後面的部分必須輸入實際的字符而不是字面的文本。
+另一種解決方法是在映射中為第二個特殊鍵使用實際的鍵碼: 
 <code class="example">        :map &lt;F1&gt;&lt;Esc&gt;OP :echo "yes"&lt;CR&gt;</code>
-不要输入一个真正的 <code class="special">&lt;Esc&gt;</code>，总之 Vim 将识别键码并把它替换为 <code class="special">&lt;F1&gt;</code>。
+不要輸入一個真正的 <code class="special">&lt;Esc&gt;</code>，總之 Vim 將識別鍵碼並把它替換為 <code class="special">&lt;F1&gt;</code>。
 
-另一个问题可能是保持 ALT 或 Meta 的时候，终端在前面附加 ESC 而不是给第 8 位置
-位。见  <a href="map.html#:map-alt-keys">:map-alt-keys</a> 。
+另一個問題可能是保持 ALT 或 Meta 的時候，終端在前面附加 ESC 而不是給第 8 位置
+位。見  <a href="map.html#:map-alt-keys">:map-alt-keys</a> 。
 
                                                 <b class="vimtag"> <a name="recursive_mapping">recursive_mapping</a> </b>
-如果 <code class="special">{rhs}</code> 中包括了 <code class="special">{lhs}</code>，那么你定义了一个递归映射。当 <code class="special">{lhs}</code> 被输入，它会被替
-换成 <code class="special">{rhs}</code>。当遇到 <code class="special">{rhs}</code> 中包含的 <code class="special">{lhs}</code> 又会被替换成 <code class="special">{rhs}</code>，依此类推。
-这可用来使一个命令重复无数次。这种情况唯一的问题是出错是停止它的唯一方法。解决
-迷宫的宏会用到这个，去那里找找例子吧。有一个例外: 如果 <code class="special">{rhs}</code> 以 <code class="special">{lhs}</code> 开始，第
-一个字符不会被再次映射 (这与 Vi 兼容)。
+如果 <code class="special">{rhs}</code> 中包括了 <code class="special">{lhs}</code>，那麼你定義了一個遞歸映射。當 <code class="special">{lhs}</code> 被輸入，它會被替
+換成 <code class="special">{rhs}</code>。當遇到 <code class="special">{rhs}</code> 中包含的 <code class="special">{lhs}</code> 又會被替換成 <code class="special">{rhs}</code>，依此類推。
+這可用來使一個命令重複無數次。這種情況唯一的問題是出錯是停止它的唯一方法。解決
+迷宮的宏會用到這個，去那裡找找例子吧。有一個例外: 如果 <code class="special">{rhs}</code> 以 <code class="special">{lhs}</code> 開始，第
+一個字符不會被再次映射 (這與 Vi 兼容)。
 例如: 
 <code class="example">   :map ab abcd</code>
-将执行 "a" 命令并且在文本中插入 "bcd"。<code class="special">{rhs}</code> 中的 "ab" 不会被再次映射。
+將執行 "a" 命令並且在文本中插入 "bcd"。<code class="special">{rhs}</code> 中的 "ab" 不會被再次映射。
 
-如果你要交换两个键的含义，应该使用 :noremap 命令。例如: 
+如果你要交換兩個鍵的含義，應該使用 :noremap 命令。例如: 
 <code class="example">   :noremap k j</code>
 <code class="example">   :noremap j k</code>
-这会交换光标上移和光标下移命令。
+這會交換光標上移和光標下移命令。
 
-如果使用普通 :map 命令，并且 <a href="options.html#'remap'">'remap'</a> 选项被打开，映射一直进行直到文本不再是某
-个 <code class="special">{lhs}</code> 的一部分。例如，如果你用: 
+如果使用普通 :map 命令，並且 <a href="options.html#'remap'">'remap'</a> 選項被打開，映射一直進行直到文本不再是某
+個 <code class="special">{lhs}</code> 的一部分。例如，如果你用: 
 <code class="example">   :map x y</code>
 <code class="example">   :map y x</code>
-Vim 将把 x 替换成 y，并把 y 替换成 x，等等。这种情况会发生 <a href="options.html#'maxmapdepth'">'maxmapdepth'</a> 次
-(缺省为 1000)，然后 Vim 会给出错误信息 "recursive mapping" (递归映射)。
+Vim 將把 x 替換成 y，並把 y 替換成 x，等等。這種情況會發生 <a href="options.html#'maxmapdepth'">'maxmapdepth'</a> 次
+(缺省為 1000)，然後 Vim 會給出錯誤信息 "recursive mapping" (遞歸映射)。
 
                                                         <b class="vimtag"> <a name=":map-undo">:map-undo</a> </b>
-如果你在一个被映射的序列中包含了一个 undo 命令，将会把文本带回宏执行前的状态。
-这和原始的 Vi 是兼容的，只要被映射的序列仅包含一个 undo 命令 (原始的 Vi 中被映
-射的序列有两个 undo 命令是无意义的，你会得到第一个 undo 之前的文本)。
+如果你在一個被映射的序列中包含了一個 undo 命令，將會把文本帶回宏執行前的狀態。
+這和原始的 Vi 是兼容的，只要被映射的序列僅包含一個 undo 命令 (原始的 Vi 中被映
+射的序列有兩個 undo 命令是無意義的，你會得到第一個 undo 之前的文本)。
 
 
-1.10 映 射 ALT 键                                       <b class="vimtag"> <a name=":map-alt-keys">:map-alt-keys</a> </b>
+1.10 映 射 ALT 鍵                                       <b class="vimtag"> <a name=":map-alt-keys">:map-alt-keys</a> </b>
 
-GUI 上，Vim 自己处理 Alt 键，所以用 ALT 键的映射应该总没有问题。但在终端上，
-Vim 得到字节的序列，它必须自己判断是不是按了 ALT 键。
+GUI 上，Vim 自己處理 Alt 鍵，所以用 ALT 鍵的映射應該總沒有問題。但在終端上，
+Vim 得到字節的序列，它必須自己判斷是不是按了 ALT 鍵。
 
-Vim 缺省假设按下 ALT 键等于置位输入字符的第 8 位。多数正常的终端如此工作，包括
-xterm、aterm 和 rxvt。假如你的 <code class="special">&lt;A-k&gt;</code> 映射不能工作，可能的原因是你的终端用在字
-符前加上 ESC 前缀的方法。但是你本来也可能在字符前输入 ESC，这时 Vim 就不知道到
-底发生了什么 (只能检查字符间的延迟，但这并不可靠)。
+Vim 缺省假設按下 ALT 鍵等於置位輸入字符的第 8 位。多數正常的終端如此工作，包括
+xterm、aterm 和 rxvt。假如你的 <code class="special">&lt;A-k&gt;</code> 映射不能工作，可能的原因是你的終端用在字
+符前加上 ESC 前綴的方法。但是你本來也可能在字符前輸入 ESC，這時 Vim 就不知道到
+底發生了什麼 (只能檢查字符間的延遲，但這並不可靠)。
 
-在此文写作时，有些主流的终端，如 gnome-terminal 和 konsole，使用 ESC 前缀。没
-有办法让它们用置位第 8 位来代替。Xterm 缺省应该没有问题。Aterm 和 rxvt 启动时
-如果使用 "--meta8" 参数也可以如此。你也可以修改资源来达到目的:
+在此文寫作時，有些主流的終端，如 gnome-terminal 和 konsole，使用 ESC 前綴。沒
+有辦法讓它們用置位第 8 位來代替。Xterm 缺省應該沒有問題。Aterm 和 rxvt 啟動時
+如果使用 "--meta8" 參數也可以如此。你也可以修改資源來達到目的:
 "metaSendsEscape"、"eightBitInput" 和 "eightBitOutput"。
 
-Linux 控制台上，可以用 "setmetamode" 命令切换此行为。记住不使用 ESC 前缀可能和
-其它程序发生冲突。确保你的 bash 把 "convert-meta" 选项设为 "on"，确保 Meta 键
-盘绑定仍然工作 (这是缺省的 readline 行为，除非你的系统配置专门作了改变)。为
-此，你需要加入这行: 
+Linux 控制台上，可以用 "setmetamode" 命令切換此行為。記住不使用 ESC 前綴可能和
+其它程序發生衝突。確保你的 bash 把 "convert-meta" 選項設為 "on"，確保 Meta 鍵
+盤綁定仍然工作 (這是缺省的 readline 行為，除非你的系統配置專門作了改變)。為
+此，你需要加入這行: 
 <code class="example"></code>
 <code class="example">        set convert-meta on</code>
 <code class="example"></code>
@@ -694,35 +694,35 @@ Linux 控制台上，可以用 "setmetamode" 命令切换此行为。记住不�
 <code class="example"></code>
 <code class="example">        $include /etc/inputrc</code>
 <code class="example"></code>
-放在第一行，如果此文件在你的系统中存在的话。这样可以保持全局的选项设置。不过，
-这可能会使 umlaut 这样的特殊字符的输入有问题。这时，输入字符前用 <code class="keystroke">CTRL-V</code> 前导。
+放在第一行，如果此文件在你的系統中存在的話。這樣可以保持全局的選項設置。不過，
+這可能會使 umlaut 這樣的特殊字符的輸入有問題。這時，輸入字符前用 <code class="keystroke">CTRL-V</code> 前導。
 
-要知道有报告说 convert-meta 使得 UTF-8 locale 的使用有问题。在 xterm 这样的终
-端里，可以在 "Main Options" 菜单里随时切换 "metaSendsEscape" 资源，或者终端上
-按 Ctrl-LeftClick 也可以；如果你需要给 Vim 之外的其它应用程序发送 ESC，这是最
-后应急的方法。
+要知道有報告說 convert-meta 使得 UTF-8 locale 的使用有問題。在 xterm 這樣的終
+端裡，可以在 "Main Options" 菜單裡隨時切換 "metaSendsEscape" 資源，或者終端上
+按 Ctrl-LeftClick 也可以；如果你需要給 Vim 之外的其它應用程序發送 ESC，這是最
+後應急的方法。
 
 
 1.11 映 射 操 作 符                                     <b class="vimtag"> <a name=":map-operator">:map-operator</a> </b>
 
-操作符应用于 <code class="special">{motion}</code> 命令之前。要定义你自己的操作符，你需要先创建映射来设置
-<a href="options.html#'operatorfunc'">'operatorfunc'</a> 选项，然后调用  <a href="map.html#g@">g@</a>  操作符。这样用户输入 <code class="special">{motion}</code> 命令后，会调
-用指定的函数。
+操作符應用於 <code class="special">{motion}</code> 命令之前。要定義你自己的操作符，你需要先創建映射來設置
+<a href="options.html#'operatorfunc'">'operatorfunc'</a> 選項，然後調用  <a href="map.html#g@">g@</a>  操作符。這樣用戶輸入 <code class="special">{motion}</code> 命令後，會調
+用指定的函數。
 
                                                         <b class="vimtag"> <a name="g@">g@</a> </b> <b class="vimtag"> <a name="E774">E774</a> </b> <b class="vimtag"> <a name="E775">E775</a> </b>
-g@<code class="special">{motion}</code>              调用 <a href="options.html#'operatorfunc'">'operatorfunc'</a> 选项设置的函数。
-                        '[ 位置标记定位在 <code class="special">{motino}</code> 跨越的文本的开始处，而 ']
-                        位置标记在此文本的结束处。
-                        函数调用时，带一个字符串参数:
-                              参数               如果
+g@<code class="special">{motion}</code>              調用 <a href="options.html#'operatorfunc'">'operatorfunc'</a> 選項設置的函數。
+                        '[ 位置標記定位在 <code class="special">{motino}</code> 跨越的文本的開始處，而 ']
+                        位置標記在此文本的結束處。
+                        函數調用時，帶一個字符串參數:
+                              參數               如果
                             "line"      <code class="special">{motion}</code> 本是  <a href="motion.html#linewise">linewise</a> 
                             "char"      <code class="special">{motion}</code> 本是  <a href="motion.html#characterwise">characterwise</a> 
                             "block"     <code class="special">{motion}</code> 本是  <a href="visual.html#blockwise-visual">blockwise-visual</a> 
-                        不过，"block" 很少出现，因为它只能来自可视模式，那里
+                        不過，"block" 很少出現，因為它只能來自可視模式，那裡
                         "g@" 不是很有用。
-                        <code class="notvi">{仅当编译时加入  <a href="various.html#+eval">+eval</a>  特性才有效}</code>
+                        <code class="notvi">{僅當編譯時加入  <a href="various.html#+eval">+eval</a>  特性才有效}</code>
 
-这里是一例，<code class="special">&lt;F4&gt;</code> 来计算空格数目: 
+這裡是一例，<code class="special">&lt;F4&gt;</code> 來計算空格數目: 
 <code class="example"></code>
 <code class="example">        nmap &lt;silent&gt; &lt;F4&gt; :set opfunc=CountSpaces&lt;CR&gt;g@</code>
 <code class="example">        vmap &lt;silent&gt; &lt;F4&gt; :&lt;C-U&gt;call CountSpaces(visualmode(), 1)&lt;CR&gt;</code>
@@ -732,7 +732,7 @@ g@<code class="special">{motion}</code>              调用 <a href="options.htm
 <code class="example">          let &amp;selection = "inclusive"</code>
 <code class="example">          let reg_save = @@</code>
 <code class="example"></code>
-<code class="example">          if a:0  " 在可视模式里调用，使用 gv 命令。</code>
+<code class="example">          if a:0  " 在可視模式裡調用，使用 gv 命令。</code>
 <code class="example">            silent exe "normal! gvy"</code>
 <code class="example">          elseif a:type == 'line'</code>
 <code class="example">            silent exe "normal! '[V']y"</code>
@@ -746,332 +746,332 @@ g@<code class="special">{motion}</code>              调用 <a href="options.htm
 <code class="example">          let @@ = reg_save</code>
 <code class="example">        endfunction</code>
 
-<code class="note">注意</code> <a href="options.html#'selection'">'selection'</a> 选项暂时设为 "inclusive"，以便可视模式下用 '[ 到 '] 位置标记
-可以抽出正确的文本。
+<code class="note">注意</code> <a href="options.html#'selection'">'selection'</a> 選項暫時設為 "inclusive"，以便可視模式下用 '[ 到 '] 位置標記
+可以抽出正確的文本。
 
-也要 <code class="note">注意</code> 这里为可视模式提供了专用的映射。它先删除 ":" 在可视模式里插入的
-"'&lt;,'&gt;" 范围，然后调用函数，调用时使用了 visualmode() 和一个额外的参数。
+也要 <code class="note">注意</code> 這裡為可視模式提供了專用的映射。它先刪除 ":" 在可視模式裡插入的
+"'&lt;,'&gt;" 範圍，然後調用函數，調用時使用了 visualmode() 和一個額外的參數。
 
 </pre><hr class="doubleline" /><pre>
-<h4>2. 缩写                 <b class="vimtag"> <a name="abbreviations">abbreviations</a> </b> <b class="vimtag"> <a name="Abbreviations">Abbreviations</a> </b></h4>
-缩写在插入，替换和命令行模式中使用。如果你输入一个是缩写的单词，它会被替换成所
-表示的东西。这可以在经常输入的长单词时节省键击。并且能用它来自动更正经常犯的拼
-写错误。例如:
+<h4>2. 縮寫                 <b class="vimtag"> <a name="abbreviations">abbreviations</a> </b> <b class="vimtag"> <a name="Abbreviations">Abbreviations</a> </b></h4>
+縮寫在插入，替換和命令行模式中使用。如果你輸入一個是縮寫的單詞，它會被替換成所
+表示的東西。這可以在經常輸入的長單詞時節省鍵擊。並且能用它來自動更正經常犯的拼
+寫錯誤。例如:
 
         :iab ms Microsoft
         :iab tihs this
 
-有三种类型的缩写:
+有三種類型的縮寫:
 
-full-id   "full-id" 类型完全由关键字字符组成 (字母和 <a href="options.html#'iskeyword'">'iskeyword'</a> 选项的字符)。
-          这是最普通的缩写。
+full-id   "full-id" 類型完全由關鍵字字符組成 (字母和 <a href="options.html#'iskeyword'">'iskeyword'</a> 選項的字符)。
+          這是最普通的縮寫。
 
           例如: "foo"，"g3"，"-1"
 
-end-id    "end-id" 类型以一个关键字字符结尾，但所有其它字符都不是关键字字符。
+end-id    "end-id" 類型以一個關鍵字字符結尾，但所有其它字符都不是關鍵字字符。
 
           例如: "#i"，"..f"，"$/7"
 
-non-id    "non-id" 类型以一个非关键字字符结尾，其它字符可以是任意类型，除了空
-          格和制表。<code class="notvi">{Vi 不支持这种类型}</code>
+non-id    "non-id" 類型以一個非關鍵字字符結尾，其它字符可以是任意類型，除了空
+          格和製表。<code class="notvi">{Vi 不支持這種類型}</code>
 
           例如: "def#"，"4/7$"
 
-不能被缩写的字串例子: "a.b"，"#def"，"a b"，"_$r"
+不能被縮寫的字串例子: "a.b"，"#def"，"a b"，"_$r"
 
-仅当你输入一个非关键字字符时缩写才会被识别，这也包括用 <code class="special">&lt;Esc&gt;</code> 退出插入模式或用
-<code class="special">&lt;CR&gt;</code> 结束一个命令的情形。结束缩写的非关键字字符被插入到缩写的扩展后面。一个例
-外是字符 &lt;C-]&gt;，它用来扩展一个缩写，但不插入任何附加字符。
+僅當你輸入一個非關鍵字字符時縮寫才會被識別，這也包括用 <code class="special">&lt;Esc&gt;</code> 退出插入模式或用
+<code class="special">&lt;CR&gt;</code> 結束一個命令的情形。結束縮寫的非關鍵字字符被插入到縮寫的擴展後面。一個例
+外是字符 &lt;C-]&gt;，它用來擴展一個縮寫，但不插入任何附加字符。
 
 例如: 
 <code class="example">   :ab hh       hello</code>
-            "hh<code class="special">&lt;Space&gt;</code>" 被扩展为 "hello<code class="special">&lt;Space&gt;</code>"
-            "hh&lt;C-]&gt;" 被扩展为 "hello"
+            "hh<code class="special">&lt;Space&gt;</code>" 被擴展為 "hello<code class="special">&lt;Space&gt;</code>"
+            "hh&lt;C-]&gt;" 被擴展為 "hello"
 
-光标前的字符必需和缩写匹配。每种类型还有附加规则:
+光標前的字符必需和縮寫匹配。每種類型還有附加規則:
 
-full-id   匹配的前面是一个非关键字字符，或者是在行或插入的开始。例外: 当缩写仅
-          有一个字符时，如果它前面有一个非关键字字符则不会被识别，除非那是空格
-          和制表。
+full-id   匹配的前面是一個非關鍵字字符，或者是在行或插入的開始。例外: 當縮寫僅
+          有一個字符時，如果它前面有一個非關鍵字字符則不會被識別，除非那是空格
+          和製表。
 
-end-id    匹配的前面是一个关键字字符，或者空格或制表，或者行或插入的开始。
+end-id    匹配的前面是一個關鍵字字符，或者空格或製表，或者行或插入的開始。
 
-non-id    匹配的前面是一个空格、制表或者行或插入的开始。
+non-id    匹配的前面是一個空格、製表或者行或插入的開始。
 
-例如: (<code class="special">{CURSOR}</code> 是你输入一个非关键字字符的地方) 
+例如: (<code class="special">{CURSOR}</code> 是你輸入一個非關鍵字字符的地方) 
 <code class="example">   :ab foo   four old otters</code>
-                " foo<code class="special">{CURSOR}</code>"    被扩展为 " four old otters"
-                " foobar<code class="special">{CURSOR}</code>" 不被扩展
-                "barfoo<code class="special">{CURSOR}</code>"  不被扩展
+                " foo<code class="special">{CURSOR}</code>"    被擴展為 " four old otters"
+                " foobar<code class="special">{CURSOR}</code>" 不被擴展
+                "barfoo<code class="special">{CURSOR}</code>"  不被擴展
 
 <code class="example">   :ab #i #include</code>
-                "#i<code class="special">{CURSOR}</code>"      被扩展为 "#include"
-                "&gt;#i<code class="special">{CURSOR}</code>"     不被扩展
+                "#i<code class="special">{CURSOR}</code>"      被擴展為 "#include"
+                "&gt;#i<code class="special">{CURSOR}</code>"     不被擴展
 
 <code class="example">   :ab ;; &lt;endofline&gt;</code>
-                "test;;"          不被扩展
-                "test ;;"         被扩展为 "test <code class="special">&lt;endofline&gt;</code>"
+                "test;;"          不被擴展
+                "test ;;"         被擴展為 "test <code class="special">&lt;endofline&gt;</code>"
 
-要在插入模式中避免缩写: 在会启动缩写的的字符之前面输入 <code class="keystroke">CTRL-V</code>，例如 <code class="keystroke">CTRL-V</code>
-<code class="special">&lt;Space&gt;</code>。或者先输入缩写的部分，以 <code class="special">&lt;Esc&gt;</code> 退出插入模式，再用 'a' 重新进入插入模
-式并输入剩下的部分。
+要在插入模式中避免縮寫: 在會啟動縮寫的的字符之前面輸入 <code class="keystroke">CTRL-V</code>，例如 <code class="keystroke">CTRL-V</code>
+<code class="special">&lt;Space&gt;</code>。或者先輸入縮寫的部分，以 <code class="special">&lt;Esc&gt;</code> 退出插入模式，再用 'a' 重新進入插入模
+式並輸入剩下的部分。
 
-要在命令行模式中避免缩写: 在缩写的某处输入 <code class="keystroke">CTRL-V</code> 两次来避免它被替换。不然，一
-个普通字符前面的 <code class="keystroke">CTRL-V</code> 通常会被忽略。
+要在命令行模式中避免縮寫: 在縮寫的某處輸入 <code class="keystroke">CTRL-V</code> 兩次來避免它被替換。不然，一
+個普通字符前面的 <code class="keystroke">CTRL-V</code> 通常會被忽略。
 
-缩写进行之后移动光标是可能的: 
+縮寫進行之後移動光標是可能的: 
 <code class="example">   :iab if if ()&lt;Left&gt;</code>
-如果 <a href="options.html#'cpoptions'">'cpoptions'</a> 里面包含 '&lt;' 标志位时，这不能正常工作。 <a href="intro.html#%3C%3E">&lt;&gt;</a> 
+如果 <a href="options.html#'cpoptions'">'cpoptions'</a> 裡面包含 '&lt;' 標誌位時，這不能正常工作。 <a href="intro.html#%3C%3E">&lt;&gt;</a> 
 
-你甚至可以做更复杂的事情。例如，要消灭一个缩写后面输入的空格: 
+你甚至可以做更複雜的事情。例如，要消滅一個縮寫後面輸入的空格: 
 <code class="example">   func Eatchar(pat)</code>
 <code class="example">      let c = nr2char(getchar(0))</code>
 <code class="example">      return (c =~ a:pat) ? '' : c</code>
 <code class="example">   endfunc</code>
 <code class="example">   iabbr &lt;silent&gt; if if ()&lt;Left&gt;&lt;C-R&gt;=Eatchar('\s')&lt;CR&gt;</code>
 <code class="example"></code>
-没有缺省的缩写。
+沒有缺省的縮寫。
 
-缩写永远不会递归。你可以设置 ":ab f f-o-o" 而不会有任何问题。但是缩写能被映
-射。{一些版本的 Vi 支持递归缩写，这毫无道理}
+縮寫永遠不會遞歸。你可以設置 ":ab f f-o-o" 而不會有任何問題。但是縮寫能被映
+射。{一些版本的 Vi 支持遞歸縮寫，這毫無道理}
 
-<a href="options.html#'paste'">'paste'</a> 选项打开时，缩写被禁止。
+<a href="options.html#'paste'">'paste'</a> 選項打開時，縮寫被禁止。
 
                                 <b class="vimtag"> <a name=":abbreviate-local">:abbreviate-local</a> </b> <b class="vimtag"> <a name=":abbreviate-%3Cbuffer%3E">:abbreviate-&lt;buffer&gt;</a> </b>
-和映射一样，缩写可以被局部于一个缓冲区之内。这经常用于  <a href="usr_43.html#filetype-plugin">filetype-plugin</a>  文
-件。一个 C 插件文件的例子: 
+和映射一樣，縮寫可以被局部於一個緩衝區之內。這經常用於  <a href="usr_43.html#filetype-plugin">filetype-plugin</a>  文
+件。一個 C 插件文件的例子: 
 <code class="example">        :abb &lt;buffer&gt; FF  for (i = 0; i &lt; ; ++i)</code>
 
                                                 <b class="vimtag"> <a name=":ab">:ab</a> </b> <b class="vimtag"> <a name=":abbreviate">:abbreviate</a> </b>
-:ab[breviate]           列出所有的缩写。第一栏中的字符表示该缩写作用的模式:
-                        'i' 指插入模式，'c' 指命令行模式，'!' 指两种模式都有。
-                        这和映射的相同，参看  <a href="map.html#map-listing">map-listing</a>  。
+:ab[breviate]           列出所有的縮寫。第一欄中的字符表示該縮寫作用的模式:
+                        'i' 指插入模式，'c' 指命令行模式，'!' 指兩種模式都有。
+                        這和映射的相同，參看  <a href="map.html#map-listing">map-listing</a>  。
 
                                                 <b class="vimtag"> <a name=":abbreviate-verbose">:abbreviate-verbose</a> </b>
-如果 <a href="options.html#'verbose'">'verbose'</a> 非零，缩写列出的同时显示它最近定义的位置。例如: 
+如果 <a href="options.html#'verbose'">'verbose'</a> 非零，縮寫列出的同時顯示它最近定義的位置。例如: 
 <code class="example"></code>
 <code class="example">        :verbose abbreviate</code>
 <code class="example">        !  teh           the</code>
 <code class="example">                Last set from /home/abcd/vim/abbr.vim</code>
 <code class="example"></code>
- <a href="various.html#:verbose-cmd">:verbose-cmd</a>  说明详情。
+ <a href="various.html#:verbose-cmd">:verbose-cmd</a>  說明詳情。
 
-:ab[breviate] <code class="special">{lhs}</code>     列出以 <code class="special">{lhs}</code> 开头的缩写
+:ab[breviate] <code class="special">{lhs}</code>     列出以 <code class="special">{lhs}</code> 開頭的縮寫
 
 :ab[breviate] [<code class="special">&lt;expr&gt;</code>] [<code class="special">&lt;buffer&gt;</code>] <code class="special">{lhs}</code> <code class="special">{rhs}</code>
-                        增加一个从 <code class="special">{lhs}</code> 到 <code class="special">{rhs}</code> 的缩写。如果 <code class="special">{lhs}</code> 已经存在
-                        则它会被替换成新的 <code class="special">{rhs}</code>。<code class="special">{rhs}</code> 可包含空格。
-                         <a href="map.html#:map-%3Cexpr%3E">:map-&lt;expr&gt;</a>  说明可选的 <code class="special">&lt;expr&gt;</code> 参数。
-                         <a href="map.html#:map-%3Cbuffer%3E">:map-&lt;buffer&gt;</a>  说明可选的 <code class="special">&lt;buffer&gt;</code> 参数。
+                        增加一個從 <code class="special">{lhs}</code> 到 <code class="special">{rhs}</code> 的縮寫。如果 <code class="special">{lhs}</code> 已經存在
+                        則它會被替換成新的 <code class="special">{rhs}</code>。<code class="special">{rhs}</code> 可包含空格。
+                         <a href="map.html#:map-%3Cexpr%3E">:map-&lt;expr&gt;</a>  說明可選的 <code class="special">&lt;expr&gt;</code> 參數。
+                         <a href="map.html#:map-%3Cbuffer%3E">:map-&lt;buffer&gt;</a>  說明可選的 <code class="special">&lt;buffer&gt;</code> 參數。
 
                                                 <b class="vimtag"> <a name=":una">:una</a> </b> <b class="vimtag"> <a name=":unabbreviate">:unabbreviate</a> </b>
-:una[bbreviate] <code class="special">{lhs}</code>   从列表中删除 <code class="special">{lhs}</code> 的缩写。如果找不到，删除 <code class="special">{rhs}</code> 匹配
-                        这里的 <code class="special">{lhs}</code> 参数的缩写。这是为了方便你删除扩展后的缩
-                        写。要避免扩展，插入 <code class="keystroke">CTRL-V</code> (记住输入两次)。
+:una[bbreviate] <code class="special">{lhs}</code>   從列表中刪除 <code class="special">{lhs}</code> 的縮寫。如果找不到，刪除 <code class="special">{rhs}</code> 匹配
+                        這裡的 <code class="special">{lhs}</code> 參數的縮寫。這是為了方便你刪除擴展後的縮
+                        寫。要避免擴展，插入 <code class="keystroke">CTRL-V</code> (記住輸入兩次)。
 
                                                 <b class="vimtag"> <a name=":norea">:norea</a> </b> <b class="vimtag"> <a name=":noreabbrev">:noreabbrev</a> </b>
 :norea[bbrev] [<code class="special">&lt;expr&gt;</code>] [<code class="special">&lt;buffer&gt;</code>] <code class="special">[lhs]</code> <code class="special">[rhs]</code>
-                        与 ":ab" 一样，但 <code class="special">{rhs}</code> 不进行重映射。<code class="notvi">{Vi 无此功能}</code>
+                        與 ":ab" 一樣，但 <code class="special">{rhs}</code> 不進行重映射。<code class="notvi">{Vi 無此功能}</code>
 
                                                 <b class="vimtag"> <a name=":ca">:ca</a> </b> <b class="vimtag"> <a name=":cabbrev">:cabbrev</a> </b>
 :ca[bbrev] [<code class="special">&lt;expr&gt;</code>] [<code class="special">&lt;buffer&gt;</code>] <code class="special">[lhs]</code> <code class="special">[rhs]</code>
-                        与 ":ab" 一样，但仅在命令行模式中使用。<code class="notvi">{Vi 无此功能}</code>
+                        與 ":ab" 一樣，但僅在命令行模式中使用。<code class="notvi">{Vi 無此功能}</code>
 
                                                 <b class="vimtag"> <a name=":cuna">:cuna</a> </b> <b class="vimtag"> <a name=":cunabbrev">:cunabbrev</a> </b>
-:cuna[bbrev] <code class="special">{lhs}</code>      与 ":una" 一样，但仅在命令行模式中使用。<code class="notvi">{Vi 无此功能}</code>
+:cuna[bbrev] <code class="special">{lhs}</code>      與 ":una" 一樣，但僅在命令行模式中使用。<code class="notvi">{Vi 無此功能}</code>
 
                                                 <b class="vimtag"> <a name=":cnorea">:cnorea</a> </b> <b class="vimtag"> <a name=":cnoreabbrev">:cnoreabbrev</a> </b>
 :cnorea[bbrev] [<code class="special">&lt;expr&gt;</code>] [<code class="special">&lt;buffer&gt;</code>] <code class="special">[lhs]</code> <code class="special">[rhs]</code>
-                        与 ":ab" 一样，但仅在命令行模式中使用并且 <code class="special">{rhs}</code> 不进行
-                        重映射。<code class="notvi">{Vi 中无此功能}</code>
+                        與 ":ab" 一樣，但僅在命令行模式中使用並且 <code class="special">{rhs}</code> 不進行
+                        重映射。<code class="notvi">{Vi 中無此功能}</code>
 
                                                 <b class="vimtag"> <a name=":ia">:ia</a> </b> <b class="vimtag"> <a name=":iabbrev">:iabbrev</a> </b>
 :ia[bbrev] [<code class="special">&lt;expr&gt;</code>] [<code class="special">&lt;buffer&gt;</code>] <code class="special">[lhs]</code> <code class="special">[rhs]</code>
-                        与 ":ab" 一样，但仅在插入模式中使用。<code class="notvi">{Vi 无此功能}</code>
+                        與 ":ab" 一樣，但僅在插入模式中使用。<code class="notvi">{Vi 無此功能}</code>
 
                                                 <b class="vimtag"> <a name=":iuna">:iuna</a> </b> <b class="vimtag"> <a name=":iunabbrev">:iunabbrev</a> </b>
-:iuna[bbrev] <code class="special">{lhs}</code>      与 ":una" 一样，但仅在插入模式中使用。<code class="notvi">{Vi 无此功能}</code>
+:iuna[bbrev] <code class="special">{lhs}</code>      與 ":una" 一樣，但僅在插入模式中使用。<code class="notvi">{Vi 無此功能}</code>
 
                                                 <b class="vimtag"> <a name=":inorea">:inorea</a> </b> <b class="vimtag"> <a name=":inoreabbrev">:inoreabbrev</a> </b>
 :inorea[bbrev] [<code class="special">&lt;expr&gt;</code>] [<code class="special">&lt;buffer&gt;</code>] <code class="special">[lhs]</code> <code class="special">[rhs]</code>
-                        与 ":ab" 一样，但仅在插入模式中使用并且 <code class="special">{rhs}</code> 不进行重
-                        映射。<code class="notvi">{Vi 无此功能}</code>
+                        與 ":ab" 一樣，但僅在插入模式中使用並且 <code class="special">{rhs}</code> 不進行重
+                        映射。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":abc">:abc</a> </b> <b class="vimtag"> <a name=":abclear">:abclear</a> </b>
-:abc[lear] [<code class="special">&lt;buffer&gt;</code>]   删除所有的缩写。<code class="notvi">{Vi 无此功能}</code>
+:abc[lear] [<code class="special">&lt;buffer&gt;</code>]   刪除所有的縮寫。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":iabc">:iabc</a> </b> <b class="vimtag"> <a name=":iabclear">:iabclear</a> </b>
-:iabc[lear] [<code class="special">&lt;buffer&gt;</code>]  为插入模式删除所有的缩写。<code class="notvi">{Vi 无此功能}</code>
+:iabc[lear] [<code class="special">&lt;buffer&gt;</code>]  為插入模式刪除所有的縮寫。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name=":cabc">:cabc</a> </b> <b class="vimtag"> <a name=":cabclear">:cabclear</a> </b>
-:cabc[lear] [<code class="special">&lt;buffer&gt;</code>]  为命令行模式删除所有的缩写。<code class="notvi">{Vi 无此功能}</code>
+:cabc[lear] [<code class="special">&lt;buffer&gt;</code>]  為命令行模式刪除所有的縮寫。<code class="notvi">{Vi 無此功能}</code>
 
                                                         <b class="vimtag"> <a name="using_CTRL-V">using_CTRL-V</a> </b>
-在一个缩写的 <code class="special">{rhs}</code> 中使用特殊字符是可能的。<code class="keystroke">CTRL-V</code> 可以用来避免多数不可显示字符
-的特殊含义。需要输入多少个 <code class="keystroke">CTRL-V</code> 取决于你如何输入缩写。此处讨论同样适用于映
-射。这里使用一个例子说明。
+在一個縮寫的 <code class="special">{rhs}</code> 中使用特殊字符是可能的。<code class="keystroke">CTRL-V</code> 可以用來避免多數不可顯示字符
+的特殊含義。需要輸入多少個 <code class="keystroke">CTRL-V</code> 取決於你如何輸入縮寫。此處討論同樣適用於映
+射。這裡使用一個例子說明。
 
-假设你需要把 "esc" 缩写为输入一个 <code class="special">&lt;Esc&gt;</code> 字符。当你在 Vim 中输入 ":ab" 命令，你
-必需这样输入: (这里 ^V 是一个 <code class="keystroke">CTRL-V</code> 并且 ^[ is <code class="special">&lt;Esc&gt;</code>)
+假設你需要把 "esc" 縮寫為輸入一個 <code class="special">&lt;Esc&gt;</code> 字符。當你在 Vim 中輸入 ":ab" 命令，你
+必需這樣輸入: (這裡 ^V 是一個 <code class="keystroke">CTRL-V</code> 並且 ^[ is <code class="special">&lt;Esc&gt;</code>)
 
-你输入:   ab esc ^V^V^V^V^V^[
+你輸入:   ab esc ^V^V^V^V^V^[
 
-        所有的键盘输入都经过 ^V 引用解释，所以第一个，第三个，和第五个 ^V 字符
-        只是为了把第二个、第四个  ^V 和 ^[ 输入到命令行里。
+        所有的鍵盤輸入都經過 ^V 引用解釋，所以第一個，第三個，和第五個 ^V 字符
+        只是為了把第二個、第四個  ^V 和 ^[ 輸入到命令行裡。
 
 你看到:    ab esc ^V^V^[
 
-        命令行里在 ^[ 之前包含两个实际的 ^V。如果你采用这种方法，这是该行在你
-        的 .exrc 文件应该出现的样子。第一个 ^V 作为引用第二个 ^V 的字符: 这是
-        因为 :ab 命令使用 ^V 作为它自己的引用字符，以便你能在缩写中包含被引用
-        的空白字符或 | 字符。:ab 命令对 ^[ 字符并不做特殊的事情，所以它不需要
-        被引用。(尽管引用也没有害处；因而输入 7 个 [8 个不行！] ^V 也会工
+        命令行裡在 ^[ 之前包含兩個實際的 ^V。如果你採用這種方法，這是該行在你
+        的 .exrc 文件應該出現的樣子。第一個 ^V 作為引用第二個 ^V 的字符: 這是
+        因為 :ab 命令使用 ^V 作為它自己的引用字符，以便你能在縮寫中包含被引用
+        的空白字符或 | 字符。:ab 命令對 ^[ 字符並不做特殊的事情，所以它不需要
+        被引用。(儘管引用也沒有害處；因而輸入 7 個 [8 個不行！] ^V 也會工
         作。)
 
-被保存为:  esc     ^V^[
+被保存為:  esc     ^V^[
 
-        解析后，该缩写的简短形式 ("esc") 和扩展形式 (两字符 "^V^[") 被保存在缩
-        写表中。如果输入不带参数的 :ab 命令，这是该缩写被显示的形式。
+        解析後，該縮寫的簡短形式 ("esc") 和擴展形式 (兩字符 "^V^[") 被保存在縮
+        寫表中。如果輸入不帶參數的 :ab 命令，這是該縮寫被顯示的形式。
 
-        然后当用户输入单词 "esc" 而扩展该缩写时，扩展形式服从和一般键盘输入同
-        样形式的 ^V 解释。所以 ^V 保护 ^[ 字符不被解释为 "退出插入模式" 的字
-        符，而把 ^[ 插入到文本里。
+        然後當用戶輸入單詞 "esc" 而擴展該縮寫時，擴展形式服從和一般鍵盤輸入同
+        樣形式的 ^V 解釋。所以 ^V 保護 ^[ 字符不被解釋為 "退出插入模式" 的字
+        符，而把 ^[ 插入到文本裡。
 
-扩展为: ^[
+擴展為: ^[
 
 [Steve Kirkendall 提供示例]
 
 </pre><hr class="doubleline" /><pre>
-<h4>3. 局部映射和函数                               <b class="vimtag"> <a name="script-local">script-local</a> </b></h4>
-当使用多个 Vim 脚本文件时，一个脚本和另一个脚本使用同样名字的映射和函数是危险
-的。为了避免这种情况，它们可以局部在脚本。
+<h4>3. 局部映射和函數                               <b class="vimtag"> <a name="script-local">script-local</a> </b></h4>
+當使用多個 Vim 腳本文件時，一個腳本和另一個腳本使用同樣名字的映射和函數是危險
+的。為了避免這種情況，它們可以局部在腳本。
 
                                                 <b class="vimtag"> <a name="%3CSID%3E">&lt;SID&gt;</a> </b> <b class="vimtag"> <a name="%3CSNR%3E">&lt;SNR&gt;</a> </b> <b class="vimtag"> <a name="E81">E81</a> </b>
-字串 "<code class="special">&lt;SID&gt;</code>" 能用于映射或菜单。这要求 <a href="options.html#'cpoptions'">'cpoptions'</a> 中没有 '&lt;' 标志位。
-   当执行映射命令时，Vim 将把 "<code class="special">&lt;SID&gt;</code>" 替换成特殊键码 <code class="special">&lt;SNR&gt;</code>，后跟一个每个脚本唯
-一的数字编号，和一个下划线。例如: 
+字串 "<code class="special">&lt;SID&gt;</code>" 能用於映射或菜單。這要求 <a href="options.html#'cpoptions'">'cpoptions'</a> 中沒有 '&lt;' 標誌位。
+   當執行映射命令時，Vim 將把 "<code class="special">&lt;SID&gt;</code>" 替換成特殊鍵碼 <code class="special">&lt;SNR&gt;</code>，後跟一個每個腳本唯
+一的數字編號，和一個下劃線。例如: 
 <code class="example">        :map &lt;SID&gt;Add</code>
-会定义一个映射 "<code class="special">&lt;SNR&gt;</code>23_Add"。
+會定義一個映射 "<code class="special">&lt;SNR&gt;</code>23_Add"。
 
-当在一个脚本中定义一个函数的时候，可以在名字的前面用一个 "s:" 来使它局部于脚本
-中。但当一个映射 (<code class="vim">译者注</code>: 似应为函数) 从脚本外面被执行时，它不知道该函数在哪个
-脚本中被定义。为了避免这种情况，使用 "<code class="special">&lt;SID&gt;</code>" 来代替 "s:"。映射也做同样的变换。
-这使得在映射里可以定义一个函数调用。
+當在一個腳本中定義一個函數的時候，可以在名字的前面用一個 "s:" 來使它局部於腳本
+中。但當一個映射 (<code class="vim">譯者注</code>: 似應為函數) 從腳本外面被執行時，它不知道該函數在哪個
+腳本中被定義。為了避免這種情況，使用 "<code class="special">&lt;SID&gt;</code>" 來代替 "s:"。映射也做同樣的變換。
+這使得在映射裡可以定義一個函數調用。
 
-当一个局部函数被执行时，它在定义脚本的上下文中运行。这意味着，它定义的新函数和
-映射也可以使用  "s:" 或 "<code class="special">&lt;SID&gt;</code>"，并且使用和函数本身定义时相同的唯一数字编号。
-此外，也能用 "s:var" 脚本局部变量。
+當一個局部函數被執行時，它在定義腳本的上下文中運行。這意味著，它定義的新函數和
+映射也可以使用  "s:" 或 "<code class="special">&lt;SID&gt;</code>"，並且使用和函數本身定義時相同的唯一數字編號。
+此外，也能用 "s:var" 腳本局部變量。
 
-当执行一个自动命令或一个用户命令时，它将在定义脚本的上下文中运行。这使得该命令
-可以调用一个局部函数或者使用一个局部映射。
+當執行一個自動命令或一個用戶命令時，它將在定義腳本的上下文中運行。這使得該命令
+可以調用一個局部函數或者使用一個局部映射。
 
-除此以外，在脚本上下文之外使用 "<code class="special">&lt;SID&gt;</code>" 是错误的。
+除此以外，在腳本上下文之外使用 "<code class="special">&lt;SID&gt;</code>" 是錯誤的。
 
-如果你需要在一个复杂的脚本中取得脚本的数字编号，使用此函数: 
+如果你需要在一個複雜的腳本中取得腳本的數字編號，使用此函數: 
 <code class="example">        function s:SID()</code>
 <code class="example">          return matchstr(expand('&lt;sfile&gt;'), '&lt;SNR&gt;\zs\d\+\ze_SID$')</code>
 <code class="example">        endfun</code>
 <code class="example"></code>
-列出函数和映射时会显示 "<code class="special">&lt;SNR&gt;</code>"。可以用来它们在哪里被定义。
+列出函數和映射時會顯示 "<code class="special">&lt;SNR&gt;</code>"。可以用來它們在哪裡被定義。
 
-命令  <a href="repeat.html#:scriptnames">:scriptnames</a>  可以用来查看哪些脚本已经被读入以及它们的 <code class="special">&lt;SNR&gt;</code> 数字编号。
+命令  <a href="repeat.html#:scriptnames">:scriptnames</a>  可以用來查看哪些腳本已經被讀入以及它們的 <code class="special">&lt;SNR&gt;</code> 數字編號。
 
-这些都是 <code class="notvi">{Vi 无此功能}</code> 并且 <code class="notvi">{仅当编译时加入  <a href="various.html#+eval">+eval</a>  特性才有效}</code>。
+這些都是 <code class="notvi">{Vi 無此功能}</code> 並且 <code class="notvi">{僅當編譯時加入  <a href="various.html#+eval">+eval</a>  特性才有效}</code>。
 
 </pre><hr class="doubleline" /><pre>
-<h4>4. 用户定义的命令                               <b class="vimtag"> <a name="user-commands">user-commands</a> </b></h4>
-可以定义你自己的 Ex 命令。用户自定义命令可以和内建命令一样运行 (它可以有范围或
-参数，参数可以是自动补全的文件名或缓冲区名，等等)，除了当该命令执行时，它会被
-转换成一个普通的 Ex 命令然后再被执行以外。
+<h4>4. 用戶定義的命令                               <b class="vimtag"> <a name="user-commands">user-commands</a> </b></h4>
+可以定義你自己的 Ex 命令。用戶自定義命令可以和內建命令一樣運行 (它可以有範圍或
+參數，參數可以是自動補全的文件名或緩衝區名，等等)，除了當該命令執行時，它會被
+轉換成一個普通的 Ex 命令然後再被執行以外。
 
-对于初学者来说: 参考用户手册中的  <a href="usr_40.html#40.2">40.2</a>  。
+對於初學者來說: 參考用戶手冊中的  <a href="usr_40.html#40.2">40.2</a>  。
 
                                         <b class="vimtag"> <a name="E183">E183</a> </b> <b class="vimtag"> <a name="E841">E841</a> </b> <b class="vimtag"> <a name="user-cmd-ambiguous">user-cmd-ambiguous</a> </b>
-所有用户定义的命令都必须以大写字母开头，来避免与内建命令的冲突。以下内建命令是
+所有用戶定義的命令都必須以大寫字母開頭，來避免與內建命令的衝突。以下內建命令是
 例外:
         :Next
         :X
-它们不能用于用户自定义命令。":Print" 也是已定义的命令，但已废弃，可以被覆盖。
+它們不能用於用戶自定義命令。":Print" 也是已定義的命令，但已廢棄，可以被覆蓋。
 
-用户命令的其它字符可以是大写字母，小写字母或数字。当使用数字时，小心会和其它以
-数字作为参数的命令混淆。例如，命令 ":Cc2" 可能是不带参数的用户命令 ":Cc2"，也
-可能是参数为 "2" 的命令 "Cc"。建议在命令名和参数之间放置一个空格来避免这些问
-题。
+用戶命令的其它字符可以是大寫字母，小寫字母或數字。當使用數字時，小心會和其它以
+數字作為參數的命令混淆。例如，命令 ":Cc2" 可能是不帶參數的用戶命令 ":Cc2"，也
+可能是參數為 "2" 的命令 "Cc"。建議在命令名和參數之間放置一個空格來避免這些問
+題。
 
-当使用一个用户定义的命令时，该命令可以缩写。但是，如果缩写不唯一，会发生错误。
-此外，内建命令总是优先执行。
+當使用一個用戶定義的命令時，該命令可以縮寫。但是，如果縮寫不唯一，會發生錯誤。
+此外，內建命令總是優先執行。
 
 例如: 
 <code class="example">        :command Rename ..。</code>
 <code class="example">        :command Renumber ..。</code>
-<code class="example">        :Rena                           " 意味着 "Rename"</code>
-<code class="example">        :Renu                           " 意味着 "Renumber"</code>
-<code class="example">        :Ren                            " 错误 - 有二义性</code>
+<code class="example">        :Rena                           " 意味著 "Rename"</code>
+<code class="example">        :Renu                           " 意味著 "Renumber"</code>
+<code class="example">        :Ren                            " 錯誤 - 有二義性</code>
 <code class="example">        :command Paste ..。</code>
-<code class="example">        :P                              " 内建的 :Print</code>
+<code class="example">        :P                              " 內建的 :Print</code>
 <code class="example"></code>
-建议在脚本中使用用户自定义命令的全名。
+建議在腳本中使用用戶自定義命令的全名。
 
 :com[mand]                                              <b class="vimtag"> <a name=":com">:com</a> </b> <b class="vimtag"> <a name=":command">:command</a> </b>
-                        列出所有用户自定义命令。在列出命令时，
-                        前两栏的字符表示
-                            !   命令有 -bang 属性
-                            "   命令有 -register 属性
-                            b   命令局部于当前缓冲区
-                        (下面给出属性的详细描述)
-                        此列表可用  <a href="various.html#:filter">:filter</a>  命令过滤，例如，要列出所有名字带
+                        列出所有用戶自定義命令。在列出命令時，
+                        前兩欄的字符表示
+                            !   命令有 -bang 屬性
+                            "   命令有 -register 屬性
+                            b   命令局部於當前緩衝區
+                        (下面給出屬性的詳細描述)
+                        此列表可用  <a href="various.html#:filter">:filter</a>  命令過濾，例如，要列出所有名字帶
                         "Pyth" 的命令: 
 <code class="example">                                filter Pyth command</code>
 <code class="example"></code>
-:com[mand] <code class="special">{cmd}</code>        列出以 <code class="special">{cmd}</code> 开头的用户命令
+:com[mand] <code class="special">{cmd}</code>        列出以 <code class="special">{cmd}</code> 開頭的用戶命令
 
                                                         <b class="vimtag"> <a name=":command-verbose">:command-verbose</a> </b>
-如果 <a href="options.html#'verbose'">'verbose'</a> 非零，命令列出的同时显示它最近定义的位置。例如: 
+如果 <a href="options.html#'verbose'">'verbose'</a> 非零，命令列出的同時顯示它最近定義的位置。例如: 
 <code class="example"></code>
 <code class="example">    :verbose command TOhtml</code>
 <code class="section">        Name        Args Range Complete  Definition </code>
 <code class="section">        TOhtml      0    %               :call Convert2HTML(<code class="special">&lt;line1&gt;</code>, <code class="special">&lt;line2&gt;</code>) </code>
 <code class="section">            Last set from /usr/share/vim/vim-7.0/plugin/tohtml.vim </code>
 
- <a href="various.html#:verbose-cmd">:verbose-cmd</a>  介绍详情。
+ <a href="various.html#:verbose-cmd">:verbose-cmd</a>  介紹詳情。
 
                                                         <b class="vimtag"> <a name="E174">E174</a> </b> <b class="vimtag"> <a name="E182">E182</a> </b>
 :com[mand][!] [<code class="special">{attr}</code>...] <code class="special">{cmd}</code> <code class="special">{rep}</code>
-                        定义一个用户命令。命令的名字是 <code class="special">{cmd}</code>，而替换的文本是
-                        <code class="special">{rep}</code>。该命令的属性 (参考下面) 是 <code class="special">{attr}</code>。如果该命令已
-                        存在，报错，除非已经指定了一个 !，这种情况下命令被重定
-                        义。
+                        定義一個用戶命令。命令的名字是 <code class="special">{cmd}</code>，而替換的文本是
+                        <code class="special">{rep}</code>。該命令的屬性 (參考下面) 是 <code class="special">{attr}</code>。如果該命令已
+                        存在，報錯，除非已經指定了一個 !，這種情況下命令被重定
+                        義。
 
 :delc[ommand] <code class="special">{cmd}</code>                             <b class="vimtag"> <a name=":delc">:delc</a> </b> <b class="vimtag"> <a name=":delcommand">:delcommand</a> </b> <b class="vimtag"> <a name="E184">E184</a> </b>
-                        删除用户定义命令 <code class="special">{cmd}</code>。
+                        刪除用戶定義命令 <code class="special">{cmd}</code>。
 
 :comc[lear]                                             <b class="vimtag"> <a name=":comc">:comc</a> </b> <b class="vimtag"> <a name=":comclear">:comclear</a> </b>
-                        删除所有用户定义命令。
+                        刪除所有用戶定義命令。
 
-命令属性
+命令屬性
 
-Vim 和任何其它 Ex 命令一样对待用户自定义命令。它能有参数，也可以指定范围。参数
-可以进行文件名，缓冲区等补全。具体的工作方式取决于命令的属性，属性在命令被定义
-时被指定。
+Vim 和任何其它 Ex 命令一樣對待用戶自定義命令。它能有參數，也可以指定範圍。參數
+可以進行文件名，緩衝區等補全。具體的工作方式取決於命令的屬性，屬性在命令被定義
+時被指定。
 
-属性可分四大类: 参数处理、补全行为、范围处理和特殊情况。下面分类描述之。
+屬性可分四大類: 參數處理、補全行為、範圍處理和特殊情況。下面分類描述之。
 
-参数处理                                        <b class="vimtag"> <a name="E175">E175</a> </b> <b class="vimtag"> <a name="E176">E176</a> </b> <b class="vimtag"> <a name=":command-nargs">:command-nargs</a> </b>
+參數處理                                        <b class="vimtag"> <a name="E175">E175</a> </b> <b class="vimtag"> <a name="E176">E176</a> </b> <b class="vimtag"> <a name=":command-nargs">:command-nargs</a> </b>
 
-缺省时，用户自定义命令不接受参数 (如果使用了任何参数会报错)。但通过使用 -nargs
-属性可以允许命令接受参数。有效的值为:
+缺省時，用戶自定義命令不接受參數 (如果使用了任何參數會報錯)。但通過使用 -nargs
+屬性可以允許命令接受參數。有效的值為:
 
-        -nargs=0    不允许有参数 (缺省情况)
-        -nargs=1    要求一个参数，包括空格
-        -nargs=*    允许任何数目的参数 (0，1 或更多)，以空格分隔
-        -nargs=?    允许 0 或 1 个参数
-        -nargs=+    必需给出参数，但是数目任意
+        -nargs=0    不允許有參數 (缺省情況)
+        -nargs=1    要求一個參數，包括空格
+        -nargs=*    允許任何數目的參數 (0，1 或更多)，以空格分隔
+        -nargs=?    允許 0 或 1 個參數
+        -nargs=+    必需給出參數，但是數目任意
 
-此上下文中，(未转义的) 空格或制表用来分隔参数，除非指定只有一个参数，此时空格
-认为是参数的一部分。
+此上下文中，(未轉義的) 空格或製表用來分隔參數，除非指定只有一個參數，此時空格
+認為是參數的一部分。
 
-<code class="note">注意</code> 参数被作为文本使用，不是表达式。特别是，"s:var" 会使用定义命令的脚本的局
-部变量，不是执行时的！例如:
+<code class="note">注意</code> 參數被作為文本使用，不是表達式。特別是，"s:var" 會使用定義命令的腳本的局
+部變量，不是執行時的！例如:
     script1.vim: 
 <code class="example">        :let s:error = "None"</code>
 <code class="example">        :command -nargs=1 Error echoerr &lt;args&gt;</code>
@@ -1079,162 +1079,162 @@ Vim 和任何其它 Ex 命令一样对待用户自定义命令。它能有参数
 <code class="example">        :source script1.vim</code>
 <code class="example">        :let s:error = "Wrong!"</code>
 <code class="example">        :Error s:error</code>
-执行 script2.vim 会回显 "None"，不是你想要的！解决方法可以通过调用函数实现。
+執行 script2.vim 會回顯 "None"，不是你想要的！解決方法可以通過調用函數實現。
 
-自动补全行为                                    <b class="vimtag"> <a name=":command-completion">:command-completion</a> </b> <b class="vimtag"> <a name="E179">E179</a> </b>
+自動補全行為                                    <b class="vimtag"> <a name=":command-completion">:command-completion</a> </b> <b class="vimtag"> <a name="E179">E179</a> </b>
                                         <b class="vimtag"> <a name="E180">E180</a> </b> <b class="vimtag"> <a name="E181">E181</a> </b> <b class="vimtag"> <a name=":command-complete">:command-complete</a> </b>
-缺省时，用户定义命令的参数不进行自动补全。但是，通过指定以下的一个或多个属性
-后，参数可以进行自动补全:
+缺省時，用戶定義命令的參數不進行自動補全。但是，通過指定以下的一個或多個屬性
+後，參數可以進行自動補全:
 
-        -complete=augroup       自动命令组
-        -complete=buffer        缓冲区名
-        -complete=behave        :behave 子选项
-        -complete=color         颜色方案
-        -complete=command       Ex 命令 (及其参数)
-        -complete=compiler      编译器
-        -complete=cscope         <a href="if_cscop.html#:cscope">:cscope</a>  子选项
-        -complete=dir           目录名
-        -complete=environment   环境变量名
-        -complete=event         自动命令事件
-        -complete=expression    Vim 表达式
-        -complete=file          文件和目录名
-        -complete=file_in_path   <a href="options.html#'path'">'path'</a>  中的文件和目录名
-        -complete=filetype      文件类型名  <a href="options.html#'filetype'">'filetype'</a> 
-        -complete=function      函数名
-        -complete=help          帮助主题
-        -complete=highlight     高亮组
-        -complete=history        <a href="cmdline.html#:history">:history</a>  子选项
-        -complete=locale        locale 名 (和 locale -a 给出的相同)
+        -complete=augroup       自動命令組
+        -complete=buffer        緩衝區名
+        -complete=behave        :behave 子選項
+        -complete=color         顏色方案
+        -complete=command       Ex 命令 (及其參數)
+        -complete=compiler      編譯器
+        -complete=cscope         <a href="if_cscop.html#:cscope">:cscope</a>  子選項
+        -complete=dir           目錄名
+        -complete=environment   環境變量名
+        -complete=event         自動命令事件
+        -complete=expression    Vim 表達式
+        -complete=file          文件和目錄名
+        -complete=file_in_path   <a href="options.html#'path'">'path'</a>  中的文件和目錄名
+        -complete=filetype      文件類型名  <a href="options.html#'filetype'">'filetype'</a> 
+        -complete=function      函數名
+        -complete=help          幫助主題
+        -complete=highlight     高亮組
+        -complete=history        <a href="cmdline.html#:history">:history</a>  子選項
+        -complete=locale        locale 名 (和 locale -a 給出的相同)
         -complete=mapping       映射名
-        -complete=menu          菜单
-        -complete=messages       <a href="message.html#:messages">:messages</a>  子选项
-        -complete=option        选项
-        -complete=packadd       可选包  <a href="repeat.html#pack-add">pack-add</a>  名
-        -complete=shellcmd      外壳命令
-        -complete=sign           <a href="sign.html#:sign">:sign</a>  子选项
-        -complete=syntax        语法文件名  <a href="options.html#'syntax'">'syntax'</a> 
-        -complete=syntime        <a href="syntax.html#:syntime">:syntime</a>  子选项
-        -complete=tag           标签
-        -complete=tag_listfiles 标签，但敲入 <code class="keystroke">CTRL-D</code> 时显示文件名
-        -complete=user          用户名
-        -complete=var           用户变量
-        -complete=custom,<code class="special">{func}</code> 用户定制的自动补全，通过 <code class="special">{func}</code> 来定义
-        -complete=customlist,<code class="special">{func}</code> 用户定制的自动补全，通过 <code class="special">{func}</code> 来定义
+        -complete=menu          菜單
+        -complete=messages       <a href="message.html#:messages">:messages</a>  子選項
+        -complete=option        選項
+        -complete=packadd       可選包  <a href="repeat.html#pack-add">pack-add</a>  名
+        -complete=shellcmd      外殼命令
+        -complete=sign           <a href="sign.html#:sign">:sign</a>  子選項
+        -complete=syntax        語法文件名  <a href="options.html#'syntax'">'syntax'</a> 
+        -complete=syntime        <a href="syntax.html#:syntime">:syntime</a>  子選項
+        -complete=tag           標籤
+        -complete=tag_listfiles 標籤，但敲入 <code class="keystroke">CTRL-D</code> 時顯示文件名
+        -complete=user          用戶名
+        -complete=var           用戶變量
+        -complete=custom,<code class="special">{func}</code> 用戶定制的自動補全，通過 <code class="special">{func}</code> 來定義
+        -complete=customlist,<code class="special">{func}</code> 用戶定制的自動補全，通過 <code class="special">{func}</code> 來定義
 
-<code class="note">备注</code>: 部分补全方法可能会扩展环境变量。
+<code class="note">備註</code>: 部分補全方法可能會擴展環境變量。
 
 
-用户定制的自动补全                      <b class="vimtag"> <a name=":command-completion-custom">:command-completion-custom</a> </b>
+用戶定制的自動補全                      <b class="vimtag"> <a name=":command-completion-custom">:command-completion-custom</a> </b>
                                         <b class="vimtag"> <a name=":command-completion-customlist">:command-completion-customlist</a> </b>
                                         <b class="vimtag"> <a name="E467">E467</a> </b> <b class="vimtag"> <a name="E468">E468</a> </b>
-通过 "custom,<code class="special">{func}</code>" 或 "customlist,<code class="special">{func}</code>" 自动补全参数可以定义定制的自动补全
-方案。其中 <code class="special">{func}</code> 是有如下声明的函数:
+通過 "custom,<code class="special">{func}</code>" 或 "customlist,<code class="special">{func}</code>" 自動補全參數可以定義定制的自動補全
+方案。其中 <code class="special">{func}</code> 是有如下聲明的函數:
 
         :function <code class="special">{func}</code>(ArgLead，CmdLine，CursorPos)
 
-该函数不需要使用所有的这些参数，它应该提供自动补全候选作为返回值，
+該函數不需要使用所有的這些參數，它應該提供自動補全候選作為返回值，
 
-对于 "custom" 参数，函数应该返回字符串，每行一个候选，用换行符分隔。
+對於 "custom" 參數，函數應該返回字符串，每行一個候選，用換行符分隔。
 
-对于 "customlist" 参数，函数应该返回 Vim 列表形式的补全候选。忽略列表里的非字
-符串项目。
+對於 "customlist" 參數，函數應該返回 Vim 列表形式的補全候選。忽略列表裡的非字
+符串項目。
 
-该函数的参数是:
-        ArgLead         当前自动补全的前导参数
+該函數的參數是:
+        ArgLead         當前自動補全的前導參數
         CmdLine         完整的命令行
-        CursorPos       里面的光标位置 (字节位置)
-该函数可能要根据这些来判别上下文。对 "custom" 参数，它无须用 ArgLead (里面的隐
-式规则) 来过滤候选。在函数返回时 Vim 将用它的正则表达式引擎来进行过滤，这种方
-式在大多数情况下效率更高。对于 "customlist" 参数，Vim 不会过滤返回的补全候选，
-用户提供的函数应该自己过滤候选。
+        CursorPos       裡面的光標位置 (字節位置)
+該函數可能要根據這些來判別上下文。對 "custom" 參數，它無須用 ArgLead (裡面的隱
+式規則) 來過濾候選。在函數返回時 Vim 將用它的正則表達式引擎來進行過濾，這種方
+式在大多數情況下效率更高。對於 "customlist" 參數，Vim 不會過濾返回的補全候選，
+用戶提供的函數應該自己過濾候選。
 
-以下的例子为列出 Finger 命令的用户名 
+以下的例子為列出 Finger 命令的用戶名 
 <code class="example">    :com -complete=custom,ListUsers -nargs=1 Finger !finger &lt;args&gt;</code>
 <code class="example">    :fun ListUsers(A,L,P)</code>
 <code class="example">    :    return system("cut -d: -f1 /etc/passwd")</code>
 <code class="example">    :endfun</code>
 <code class="example"></code>
-下例从 <a href="options.html#'path'">'path'</a> 选项指定的目录补全文件名: 
+下例從 <a href="options.html#'path'">'path'</a> 選項指定的目錄補全文件名: 
 <code class="example">    :com -nargs=1 -bang -complete=customlist,EditFileComplete</code>
 <code class="example">                        \ EditFile edit&lt;bang&gt; &lt;args&gt;</code>
 <code class="example">    :fun EditFileComplete(A,L,P)</code>
 <code class="example">    :    return split(globpath(&amp;path, a:A), "\n")</code>
 <code class="example">    :endfun</code>
 
-此例不适用于带空格的文件名！
+此例不適用於帶空格的文件名！
 
 
-范围处理                                <b class="vimtag"> <a name="E177">E177</a> </b> <b class="vimtag"> <a name="E178">E178</a> </b> <b class="vimtag"> <a name=":command-range">:command-range</a> </b>
+範圍處理                                <b class="vimtag"> <a name="E177">E177</a> </b> <b class="vimtag"> <a name="E178">E178</a> </b> <b class="vimtag"> <a name=":command-range">:command-range</a> </b>
                                                         <b class="vimtag"> <a name=":command-count">:command-count</a> </b>
-缺省时，用户定义的命令不接受一个行号范围。不过，可以使命令接受一个范围 (-range
-属性)，或者接受一个任意的数量值，该数量可以出现在指定行号的位置 (-range=N，类
-似于  <a href="windows.html#:split">:split</a>  命令的风格)，也可以来自一个 "count" 参数 (-count=N，类似于
- <a href="editing.html#:Next">:Next</a>  命令的风格)。此时计数可以用  <a href="map.html#%3Ccount%3E">&lt;count&gt;</a>  从参数里得到。
+缺省時，用戶定義的命令不接受一個行號範圍。不過，可以使命令接受一個範圍 (-range
+屬性)，或者接受一個任意的數量值，該數量可以出現在指定行號的位置 (-range=N，類
+似於  <a href="windows.html#:split">:split</a>  命令的風格)，也可以來自一個 "count" 參數 (-count=N，類似於
+ <a href="editing.html#:Next">:Next</a>  命令的風格)。此時計數可以用  <a href="map.html#%3Ccount%3E">&lt;count&gt;</a>  從參數里得到。
 
-可能的属性有:
+可能的屬性有:
 
-        -range      允许使用范围，缺省为当前行
-        -range=%    允许使用范围，缺省是整个文件 (1,$)
-        -range=N    出现在行号位置的一个数量 (缺省是 N) (类似于  <a href="windows.html#:split">:split</a> )；允
-                    许行号为零。
-        -count=N    出现在行号位置或者作为首个参数的一个数量 (缺省是 N) (类似
-                    于  <a href="editing.html#:Next">:Next</a> )。
-                    指定 -count (不设缺省值) 等价于 -count=0。
+        -range      允許使用範圍，缺省為當前行
+        -range=%    允許使用範圍，缺省是整個文件 (1,$)
+        -range=N    出現在行號位置的一個數量 (缺省是 N) (類似於  <a href="windows.html#:split">:split</a> )；允
+                    許行號為零。
+        -count=N    出現在行號位置或者作為首個參數的一個數量 (缺省是 N) (類似
+                    於  <a href="editing.html#:Next">:Next</a> )。
+                    指定 -count (不設缺省值) 等價於 -count=0。
 
-<code class="note">注意</code> -range=N 和 -count=N 是互斥的，只应该指定其中的一个。
+<code class="note">注意</code> -range=N 和 -count=N 是互斥的，只應該指定其中的一個。
 
                                         <b class="vimtag"> <a name=":command-addr">:command-addr</a> </b>
-范围中的特殊字符如 .、$ 或 % 缺省对应当前行、末行和整个缓冲区，但可使之对应参
-数列表、(已载入的) 缓冲区、窗口或标签页。
+範圍中的特殊字符如 .、$ 或 % 缺省對應當前行、末行和整個緩衝區，但可使之對應參
+數列表、(已載入的) 緩衝區、窗口或標籤頁。
 
 可能值有:
-        -addr=lines             行的范围 (这是缺省)
-        -addr=arguments         参数的范围
-        -addr=buffers           缓冲区的范围 (也包括未载入的缓冲区)
-        -addr=loaded_buffers    载入缓冲区的范围
-        -addr=windows           窗口的范围
-        -addr=tabs              标签页的范围
+        -addr=lines             行的範圍 (這是缺省)
+        -addr=arguments         參數的範圍
+        -addr=buffers           緩衝區的範圍 (也包括未載入的緩衝區)
+        -addr=loaded_buffers    載入緩衝區的範圍
+        -addr=windows           窗口的範圍
+        -addr=tabs              標籤頁的範圍
 
-特殊情况                                <b class="vimtag"> <a name=":command-bang">:command-bang</a> </b> <b class="vimtag"> <a name=":command-bar">:command-bar</a> </b>
+特殊情況                                <b class="vimtag"> <a name=":command-bang">:command-bang</a> </b> <b class="vimtag"> <a name=":command-bar">:command-bar</a> </b>
                                         <b class="vimtag"> <a name=":command-register">:command-register</a> </b> <b class="vimtag"> <a name=":command-buffer">:command-buffer</a> </b>
-有如下特殊情况:
+有如下特殊情況:
 
-        -bang       这些命令可以使用一个 ! 修饰符 (和 :q 或 :w 类似)
-        -bar        这些命令可以跟随一个 "|" 和其它命令。那么命令参数中就
-                    不允许有 "|" 。用一个 " 可以开始一个注释。
-        -register   给这些命令的第一个参数可以是一个可选的寄存器名
-                    (和 :del，:put，:yank 类似)。
-        -buffer     这些命令仅在当前缓冲区里有效。
+        -bang       這些命令可以使用一個 ! 修飾符 (和 :q 或 :w 類似)
+        -bar        這些命令可以跟隨一個 "|" 和其它命令。那麼命令參數中就
+                    不允許有 "|" 。用一個 " 可以開始一個註釋。
+        -register   給這些命令的第一個參數可以是一個可選的寄存器名
+                    (和 :del，:put，:yank 類似)。
+        -buffer     這些命令僅在當前緩衝區裡有效。
 
--count 和 -register 属性的情况，如果提供了可选的参数，它会被从参数列表中删除，
-并且和替换文本分别处理。
-<code class="note">注意</code> 这些参数可以简写，但这是已淘汰的功能，新脚本里请用全名。
+-count 和 -register 屬性的情況，如果提供了可選的參數，它會被從參數列表中刪除，
+並且和替換文本分別處理。
+<code class="note">注意</code> 這些參數可以簡寫，但這是已淘汰的功能，新腳本裡請用全名。
 
-替换文本
+替換文本
 
-用户自定义命令的替换文本扫描使用 &lt;...&gt; 记法的特殊转义序列。命令行输入的值中，
-转义序列被替换，其它文本不变。最终字符串被作为 Ex 命令来执行。要避免替换，使用
-<code class="special">&lt;lt&gt;</code> 代替初始的 &lt;。这样，要按本义包含 "<code class="special">&lt;bang&gt;</code>"，请使用 "<code class="special">&lt;lt&gt;</code>bang&gt;"。
+用戶自定義命令的替換文本掃瞄使用 &lt;...&gt; 記法的特殊轉義序列。命令行輸入的值中，
+轉義序列被替換，其它文本不變。最終字符串被作為 Ex 命令來執行。要避免替換，使用
+<code class="special">&lt;lt&gt;</code> 代替初始的 &lt;。這樣，要按本義包含 "<code class="special">&lt;bang&gt;</code>"，請使用 "<code class="special">&lt;lt&gt;</code>bang&gt;"。
 
-有效的转义序列有
+有效的轉義序列有
 
                                                 <b class="vimtag"> <a name="%3Cline1%3E">&lt;line1&gt;</a> </b>
-        <code class="special">&lt;line1&gt;</code> 命令处理范围的开始行。
+        <code class="special">&lt;line1&gt;</code> 命令處理範圍的開始行。
                                                 <b class="vimtag"> <a name="%3Cline2%3E">&lt;line2&gt;</a> </b>
-        <code class="special">&lt;line2&gt;</code> 命令处理范围的末尾行。
+        <code class="special">&lt;line2&gt;</code> 命令處理範圍的末尾行。
                                                 <b class="vimtag"> <a name="%3Ccount%3E">&lt;count&gt;</a> </b>
-        <code class="special">&lt;count&gt;</code> 提供的数量 (在 '-range' 和 '-count' 属性中描述)。
+        <code class="special">&lt;count&gt;</code> 提供的數量 (在 '-range' 和 '-count' 屬性中描述)。
                                                 <b class="vimtag"> <a name="%3Cbang%3E">&lt;bang&gt;</a> </b>
-        <code class="special">&lt;bang&gt;</code>  (参考 '-bang' 属性) 如果命令执行时带了 ! 修饰符，扩展为 !，否
-                则什么也不扩展。
+        <code class="special">&lt;bang&gt;</code>  (參考 '-bang' 屬性) 如果命令執行時帶了 ! 修飾符，擴展為 !，否
+                則什麼也不擴展。
                                                 <b class="vimtag"> <a name="%3Cmods%3E">&lt;mods&gt;</a> </b>
-        <code class="special">&lt;mods&gt;</code>  如果指定，命令修饰符。否则不扩展。支持以下修饰符
+        <code class="special">&lt;mods&gt;</code>  如果指定，命令修飾符。否則不擴展。支持以下修飾符
                  <a href="windows.html#:aboveleft">:aboveleft</a> 、 <a href="windows.html#:belowright">:belowright</a> 、  <a href="windows.html#:botright">:botright</a> 、 <a href="editing.html#:browse">:browse</a> 、
                  <a href="editing.html#:confirm">:confirm</a> 、 <a href="windows.html#:hide">:hide</a> 、  <a href="editing.html#:keepalt">:keepalt</a> 、  <a href="motion.html#:keepjumps">:keepjumps</a> 、
                  <a href="motion.html#:keepmarks">:keepmarks</a> 、 <a href="cmdline.html#:keeppatterns">:keeppatterns</a> 、 <a href="windows.html#:leftabove">:leftabove</a> 、  <a href="motion.html#:lockmarks">:lockmarks</a> 、
                  <a href="recover.html#:noswapfile">:noswapfile</a>   <a href="windows.html#:rightbelow">:rightbelow</a> 、 <a href="various.html#:silent">:silent</a> 、 <a href="tabpage.html#:tab">:tab</a> 、  <a href="windows.html#:topleft">:topleft</a> 、
                  <a href="various.html#:verbose">:verbose</a>  和  <a href="windows.html#:vertical">:vertical</a> 。
-                <code class="note">注意</code>  现在还不支持:  <a href="autocmd.html#:noautocmd">:noautocmd</a> 、 <a href="eval.html#:sandbox">:sandbox</a>  和  <a href="various.html#:unsilent">:unsilent</a> 。
+                <code class="note">注意</code>  現在還不支持:  <a href="autocmd.html#:noautocmd">:noautocmd</a> 、 <a href="eval.html#:sandbox">:sandbox</a>  和  <a href="various.html#:unsilent">:unsilent</a> 。
                 示例: 
 <code class="example">                    command! -nargs=+ -complete=file MyEdit</code>
 <code class="example">                                \ for f in expand(&lt;q-args&gt;, 0, 1) |</code>
@@ -1250,25 +1250,25 @@ Vim 和任何其它 Ex 命令一样对待用户自定义命令。它能有参数
 <code class="example">                                \ call SpecialEdit(&lt;q-args&gt;, &lt;q-mods&gt;)</code>
 
                                                 <b class="vimtag"> <a name="%3Creg%3E">&lt;reg&gt;</a> </b> <b class="vimtag"> <a name="%3Cregister%3E">&lt;register&gt;</a> </b>
-        <code class="special">&lt;reg&gt;</code>   (参考 '-register' 属性) 如果命令行上指定，可选的寄存器名。否则
-                什么也不扩展。<code class="special">&lt;register&gt;</code> 是它的一个同义词。
+        <code class="special">&lt;reg&gt;</code>   (參考 '-register' 屬性) 如果命令行上指定，可選的寄存器名。否則
+                什麼也不擴展。<code class="special">&lt;register&gt;</code> 是它的一個同義詞。
                                                 <b class="vimtag"> <a name="%3Cargs%3E">&lt;args&gt;</a> </b>
-        <code class="special">&lt;args&gt;</code>  命令的参数，和实际提供的完全相同 (但正如上面提到过的，数量或寄
-                存器会消耗若干参数，它们不再是 <code class="special">&lt;args&gt;</code> 的一部分)。
-        <code class="special">&lt;lt&gt;</code>    一个单独的 '&lt;' (小于号) 字符。在扩展中可用于使以上转义序列按本
-                义出现。例如，要获得 <code class="special">&lt;bang&gt;</code>，使用 <code class="special">&lt;lt&gt;</code>bang&gt;。
+        <code class="special">&lt;args&gt;</code>  命令的參數，和實際提供的完全相同 (但正如上面提到過的，數量或寄
+                存器會消耗若干參數，它們不再是 <code class="special">&lt;args&gt;</code> 的一部分)。
+        <code class="special">&lt;lt&gt;</code>    一個單獨的 '&lt;' (小於號) 字符。在擴展中可用於使以上轉義序列按本
+                義出現。例如，要獲得 <code class="special">&lt;bang&gt;</code>，使用 <code class="special">&lt;lt&gt;</code>bang&gt;。
 
                                                         <b class="vimtag"> <a name="%3Cq-args%3E">&lt;q-args&gt;</a> </b>
-如果一个转义序列的最前两个字符是 "q-" (例如，<code class="special">&lt;q-args&gt;</code>) 那么该值用引号括起，使
-之在表达式里使用时成为合法的值。这种方式把参数当做单个值。如果没有参数，
+如果一個轉義序列的最前兩個字符是 "q-" (例如，<code class="special">&lt;q-args&gt;</code>) 那麼該值用引號括起，使
+之在表達式裡使用時成為合法的值。這種方式把參數當做單個值。如果沒有參數，
 <code class="special">&lt;q-args&gt;</code> 是空字符串。
                                                         <b class="vimtag"> <a name="%3Cf-args%3E">&lt;f-args&gt;</a> </b>
-要允许命令把参数传送给用户定义的函数，有一种特殊的形式 <code class="special">&lt;f-args&gt;</code> ("function
-args"，函数参数)。它在空格和制表处分割命令行参数，每个参数分别用引号括起，然后
-把 <code class="special">&lt;f-args&gt;</code> 序列替换为括起参数用逗号分隔的列表。参考下面的 Mycmd 示例。没有参
-数时，<code class="special">&lt;f-args&gt;</code> 被删除。
-   要在 <code class="special">&lt;f-args&gt;</code> 的参数中嵌入空白字符，在前面加上反斜杠。<code class="special">&lt;f-args&gt;</code> 把每对反斜杠
-(\\) 用单个反斜杠替代。反斜杠后如跟非空白或反斜杠字符，保持不变。总览如下:
+要允許命令把參數傳送給用戶定義的函數，有一種特殊的形式 <code class="special">&lt;f-args&gt;</code> ("function
+args"，函數參數)。它在空格和製表處分割命令行參數，每個參數分別用引號括起，然後
+把 <code class="special">&lt;f-args&gt;</code> 序列替換為括起參數用逗號分隔的列表。參考下面的 Mycmd 示例。沒有參
+數時，<code class="special">&lt;f-args&gt;</code> 被刪除。
+   要在 <code class="special">&lt;f-args&gt;</code> 的參數中嵌入空白字符，在前面加上反斜槓。<code class="special">&lt;f-args&gt;</code> 把每對反斜槓
+(\\) 用單個反斜槓替代。反斜槓後如跟非空白或反斜槓字符，保持不變。總覽如下:
 
 <code class="section">        命令               <code class="special">&lt;f-args&gt;</code> </code>
         XX ab              <code class="badlink">'ab'</code>
@@ -1284,29 +1284,29 @@ args"，函数参数)。它在空格和制表处分割命令行参数，每个�
 
 示例 
 <code class="example"></code>
-<code class="example">   " 删除从这里到末尾的所有东西</code>
+<code class="example">   " 刪除從這裡到末尾的所有東西</code>
 <code class="example">   :com Ddel +,$d</code>
 <code class="example"></code>
-<code class="example">   " 把当前缓冲区改名</code>
+<code class="example">   " 把當前緩衝區改名</code>
 <code class="example">   :com -nargs=1 -bang -complete=file Ren f &lt;args&gt;|w&lt;bang&gt;</code>
 <code class="example"></code>
-<code class="example">   " 用一个文件的内容来替换某个范围内的内容</code>
-<code class="example">   " (请用一行输入本命令)</code>
+<code class="example">   " 用一個文件的內容來替換某個範圍內的內容</code>
+<code class="example">   " (請用一行輸入本命令)</code>
 <code class="example">   :com -range -nargs=1 -complete=file</code>
 <code class="example">         Replace &lt;line1&gt;-pu_|&lt;line1&gt;,&lt;line2&gt;d|r &lt;args&gt;|&lt;line1&gt;d</code>
 <code class="example"></code>
-<code class="example">   " 计算范围内的行数</code>
+<code class="example">   " 計算範圍內的行數</code>
 <code class="example">   :com! -range -nargs=0 Lines  echo &lt;line2&gt; - &lt;line1&gt; + 1 "lines"</code>
 <code class="example"></code>
-<code class="example">   " 调用一个用户函数 (&lt;f-args&gt; 的示例)</code>
+<code class="example">   " 調用一個用戶函數 (&lt;f-args&gt; 的示例)</code>
 <code class="example">   :com -nargs=* Mycmd call Myfunc(&lt;f-args&gt;)</code>
 <code class="example"></code>
-当执行: 
+當執行: 
 <code class="example">        :Mycmd arg1 arg2</code>
-时，它将调用: 
+時，它將調用: 
 <code class="example">        :call Myfunc("arg1","arg2")</code>
 <code class="example"></code>
-<code class="example">   :" 一个更实用的例子</code>
+<code class="example">   :" 一個更實用的例子</code>
 <code class="example">   :function Allargs(command)</code>
 <code class="example">   :    let i = 0</code>
 <code class="example">   :    while i &lt; argc()</code>
@@ -1319,15 +1319,15 @@ args"，函数参数)。它在空格和制表处分割命令行参数，每个�
 <code class="example">   :endfunction</code>
 <code class="example">   :command -nargs=+ -complete=command Allargs call Allargs(&lt;q-args&gt;)</code>
 <code class="example"></code>
-命令 Allargs 接受任意 Vim 命令作为参数并在参数列表里的所有文件上执行。使用示例
-(<code class="note">注意</code>使用 "e" 标志位来忽略错误，以及用 "update" 命令来刷新修改过的缓冲区):
+命令 Allargs 接受任意 Vim 命令作為參數並在參數列表裡的所有文件上執行。使用示例
+(<code class="note">注意</code>使用 "e" 標誌位來忽略錯誤，以及用 "update" 命令來刷新修改過的緩衝區):
         :Allargs %s/foo/bar/ge|update
-它将调用: 
+它將調用: 
 <code class="example">        :call Allargs("%s/foo/bar/ge|update")</code>
 
-在脚本里定义用户命令时，它可以调用局部于脚本中的函数和使用局部于脚本的映射。用
-户调用用户命令时，该命令将运行在定义它的脚本的上下文里，如果一个命令中使用了
- <a href="map.html#%3CSID%3E">&lt;SID&gt;</a> ，这一点很重要。
+在腳本裡定義用戶命令時，它可以調用局部於腳本中的函數和使用局部於腳本的映射。用
+戶調用用戶命令時，該命令將運行在定義它的腳本的上下文裡，如果一個命令中使用了
+ <a href="map.html#%3CSID%3E">&lt;SID&gt;</a> ，這一點很重要。
 
  vim:tw=78:ts=8:ft=help:norl:
 </pre>

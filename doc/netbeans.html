@@ -1,17 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>VIM: netbeans</title>
 <link rel="stylesheet" href="vim-stylesheet.css" type="text/css">
 </head>
 <body>
 <div id=banner>
-<a href="help.html">帮助总览</a> &middot;
-<a href="quickref.html">快速参考</a> &middot;
+<a href="help.html">幫助總覽</a> &middot;
+<a href="quickref.html">快速參考</a> &middot;
 <a href="index.html">命令索引</a> &middot;
-<a href="usr_toc.html">用户手册</a> &middot;
-<a href="help.html#reference_toc">参考手册</a>
+<a href="usr_toc.html">用戶手冊</a> &middot;
+<a href="help.html#reference_toc">參考手冊</a>
 </div>
 
 <div id=outer>
@@ -20,725 +20,725 @@
 <b class="vimtag"> <a name="netbeans.txt">netbeans.txt</a> </b>  For Vim version 8.0.  最近更新: 2017年8月
 
 
-                  <code class="vim">VIM 参考手册    by Gordon Prieur et al.</code>
-                                <code class="vim">译者</code>: Willis
+                  <code class="vim">VIM 參考手冊    by Gordon Prieur et al.</code>
+                                <code class="vim">譯者</code>: Willis
                                 http://vimcdoc.sf.net
 
 
                                         <b class="vimtag"> <a name="netbeans">netbeans</a> </b> <b class="vimtag"> <a name="netbeans-support">netbeans-support</a> </b>
 
-Vim NetBeans 协议: 把 Vim 集成到 IDE 中的套接字接口。
+Vim NetBeans 協議: 把 Vim 集成到 IDE 中的套接字接口。
 
-1.  简介                                         <a href="netbeans.html#netbeans-intro">netbeans-intro</a> 
+1.  簡介                                         <a href="netbeans.html#netbeans-intro">netbeans-intro</a> 
 2.  集成特性                                     <a href="netbeans.html#netbeans-integration">netbeans-integration</a> 
 3.  支持 NetBeans 的 Vim 配置                    <a href="netbeans.html#netbeans-configure">netbeans-configure</a> 
-4.  错误消息                                     <a href="netbeans.html#netbeans-messages">netbeans-messages</a> 
-5.  从 NetBeans 模式里运行 Vim                   <a href="netbeans.html#netbeans-run">netbeans-run</a> 
-6.  NetBeans 协议                                <a href="netbeans.html#netbeans-protocol">netbeans-protocol</a> 
+4.  錯誤消息                                     <a href="netbeans.html#netbeans-messages">netbeans-messages</a> 
+5.  從 NetBeans 模式裡運行 Vim                   <a href="netbeans.html#netbeans-run">netbeans-run</a> 
+6.  NetBeans 協議                                <a href="netbeans.html#netbeans-protocol">netbeans-protocol</a> 
 7.  NetBeans 命令                                <a href="netbeans.html#netbeans-commands">netbeans-commands</a> 
-8.  已知问题                                     <a href="netbeans.html#netbeans-problems">netbeans-problems</a> 
-9.  调试 NetBeans 协议                           <a href="netbeans.html#netbeans-debugging">netbeans-debugging</a> 
-10. NetBeans 外部编辑器
-    10.1. 下载 NetBeans                          <a href="netbeans.html#netbeans-download">netbeans-download</a> 
-    10.2. NetBeans 键盘映射                      <a href="netbeans.html#netbeans-keybindings">netbeans-keybindings</a> 
-    10.3. 为 Vim 准备 NetBeans                   <a href="netbeans.html#netbeans-preparation">netbeans-preparation</a> 
-    10.4. 取得外部编辑器模块                     <a href="netbeans.html#obtaining-exted">obtaining-exted</a> 
-    10.5. 设置 NetBeans 以运行 Vim               <a href="netbeans.html#netbeans-setup">netbeans-setup</a> 
+8.  已知問題                                     <a href="netbeans.html#netbeans-problems">netbeans-problems</a> 
+9.  調試 NetBeans 協議                           <a href="netbeans.html#netbeans-debugging">netbeans-debugging</a> 
+10. NetBeans 外部編輯器
+    10.1. 下載 NetBeans                          <a href="netbeans.html#netbeans-download">netbeans-download</a> 
+    10.2. NetBeans 鍵盤映射                      <a href="netbeans.html#netbeans-keybindings">netbeans-keybindings</a> 
+    10.3. 為 Vim 準備 NetBeans                   <a href="netbeans.html#netbeans-preparation">netbeans-preparation</a> 
+    10.4. 取得外部編輯器模塊                     <a href="netbeans.html#obtaining-exted">obtaining-exted</a> 
+    10.5. 設置 NetBeans 以運行 Vim               <a href="netbeans.html#netbeans-setup">netbeans-setup</a> 
 
-<code class="notvi">{Vi 没有这些功能}</code>
-<code class="notvi">{仅当编译时加入  <a href="various.html#+netbeans_intg">+netbeans_intg</a>  特性才有效}</code>
+<code class="notvi">{Vi 沒有這些功能}</code>
+<code class="notvi">{僅當編譯時加入  <a href="various.html#+netbeans_intg">+netbeans_intg</a>  特性才有效}</code>
 
 </pre><hr class="doubleline" /><pre>
-<h4>1. 简介                                                 <b class="vimtag"> <a name="netbeans-intro">netbeans-intro</a> </b></h4>
-NetBeans 接口原本是为了集成 Vim 到 NetBeans Java IDE 里而使用外部编辑器插件开
-发的。现在已经没有支持 NetBeans 最近版本的该 NetBeans 插件，但该协议的开发方式
-使得任何 IDE 都可以用它来集成 Vim。
+<h4>1. 簡介                                                 <b class="vimtag"> <a name="netbeans-intro">netbeans-intro</a> </b></h4>
+NetBeans 接口原本是為了集成 Vim 到 NetBeans Java IDE 裡而使用外部編輯器插件開
+發的。現在已經沒有支持 NetBeans 最近版本的該 NetBeans 插件，但該協議的開發方式
+使得任何 IDE 都可以用它來集成 Vim。
 
-Vim 的 NetBeans 协议是一个建立在传统的 TCP 套接字接口之上的基于文本的通信协
-议。它不依赖于 Java 或 NetBeans。任何语言或环境只要提供了套接字接口，就可以使
-用该协议控制 Vim。该协议已经有 C、C++、Python 和 Java 的实现。今天我们之所以还
-保持 NetBeans 这个名字，只是基于历史上的渊源。
+Vim 的 NetBeans 協議是一個建立在傳統的 TCP 套接字接口之上的基於文本的通信協
+議。它不依賴於 Java 或 NetBeans。任何語言或環境只要提供了套接字接口，就可以使
+用該協議控制 Vim。該協議已經有 C、C++、Python 和 Java 的實現。今天我們之所以還
+保持 NetBeans 這個名字，只是基於歷史上的淵源。
 
-目前使用 Vim 的 NetBeans 协议的项目有:
-- VimIntegration，有关于若干 Vim 集成项目的描述:
+目前使用 Vim 的 NetBeans 協議的項目有:
+- VimIntegration，有關於若干 Vim 集成項目的描述:
         http://www.freehackers.org/VimIntegration
-- Agide，Python 编写的用于 AAP 项目的 IDE:
+- Agide，Python 編寫的用於 AAP 項目的 IDE:
         http://www.a-a-p.org
-- Clewn，C 编写的 Vim 上的 gdb 集成:
+- Clewn，C 編寫的 Vim 上的 gdb 集成:
         http://clewn.sourceforge.net/
-- Pyclewn，Python 编写的 Vim 的 gdb 集成:
+- Pyclewn，Python 編寫的 Vim 的 gdb 集成:
         http://pyclewn.sourceforge.net/
 - VimPlugin，Eclipse 上的 Vim 集成:
         http://vimplugin.sourceforge.net/wiki/pmwiki.php
-- PIDA，Python 编写的集成 Vim 的 IDE:
+- PIDA，Python 編寫的集成 Vim 的 IDE:
         http://pida.co.uk/
-- VimWrapper，方便把 Vim 集成到 IDE 的库:
+- VimWrapper，方便把 Vim 集成到 IDE 的庫:
         http://www.freehackers.org/VimWrapper
 
-查阅具体的项目页面来了解如何在这些项目中使用 Vim。
+查閱具體的項目頁面來瞭解如何在這些項目中使用 Vim。
 
-一个替代的方法是使用通道，见  <a href="channel.html#channel">channel</a> 。
+一個替代的方法是使用通道，見  <a href="channel.html#channel">channel</a> 。
 
-本帮助页面的其余部分使用术语 "Vim 控制器" 来描述通过 NetBeans 套接字接口来控制
+本幫助頁面的其餘部分使用術語 "Vim 控制器" 來描述通過 NetBeans 套接字接口來控制
 Vim 的程序。
 
 
-<code class="section">关于 NetBeans IDE </code>
+<code class="section">關於 NetBeans IDE </code>
 
-NetBeans 是一个开源的集成开发环境，由 Sun Microsystems, Inc 和 netbeans.org 开
-发团体共同开发。刚开始只是一个 Java IDE，在最近的发行版本中， NetBeans 已经有
+NetBeans 是一個開源的集成開發環境，由 Sun Microsystems, Inc 和 netbeans.org 開
+發團體共同開發。剛開始只是一個 Java IDE，在最近的發行版本中， NetBeans 已經有
 C、C++、和 Fortran 的支持。
 
-要知道更多的信息，访问 NetBeans 的主网站 http://www.netbeans.org。
-不幸地，外部编辑器现已宣布被废弃了。见 http://externaleditor.netbeans.org。
+要知道更多的信息，訪問 NetBeans 的主網站 http://www.netbeans.org。
+不幸地，外部編輯器現已宣佈被廢棄了。見 http://externaleditor.netbeans.org。
 
-Sun Microsystems, Inc. 也以 Sun ONE Studio 的名字发行 NetBeans。访问
-http://www.sun.com 可以了解更多关于 Sun ONE Studio 产品线的信息。
+Sun Microsystems, Inc. 也以 Sun ONE Studio 的名字發行 NetBeans。訪問
+http://www.sun.com 可以瞭解更多關於 Sun ONE Studio 產品線的信息。
 
-目前的 NetBeans 发行版本提供 Java 的完全支持和 C、C++ 以及 Fortran 的有限支
-持。目前的 Sun ONE Studio 发行版本提供 Java、C、C++ 和 Fortran 的完全支持。
+目前的 NetBeans 發行版本提供 Java 的完全支持和 C、C++ 以及 Fortran 的有限支
+持。目前的 Sun ONE Studio 發行版本提供 Java、C、C++ 和 Fortran 的完全支持。
 
 </pre><hr class="doubleline" /><pre>
 <h4>2. 集成特性                                             <b class="vimtag"> <a name="netbeans-integration">netbeans-integration</a> </b></h4>
-Vim 的 NetBeans 套接字接口可以从 Vim 那里得到信息或者告诉 Vim 执行特定任务:
-- 得到缓冲区的信息: 缓冲区名、光标位置、缓冲区内容，等等
-- 缓冲区被打开或关闭时被告知
-- 缓冲区内容修改时被告知
-- 读入或保存文件
-- 修改缓冲区内容
-- 安装特别的键绑定
+Vim 的 NetBeans 套接字接口可以從 Vim 那裡得到信息或者告訴 Vim 執行特定任務:
+- 得到緩衝區的信息: 緩衝區名、光標位置、緩衝區內容，等等
+- 緩衝區被打開或關閉時被告知
+- 緩衝區內容修改時被告知
+- 讀入或保存文件
+- 修改緩衝區內容
+- 安裝特別的鍵綁定
 - 抬起 (raise) 窗口，控制窗口的尺寸
 
-要发送键击到 Vim 以执行 Vim 的功能，必须使用  <a href="remote.html#clientserver">clientserver</a>  接口。
+要發送鍵擊到 Vim 以執行 Vim 的功能，必須使用  <a href="remote.html#clientserver">clientserver</a>  接口。
 
 
 </pre><hr class="doubleline" /><pre>
 <h4>3. 支持 NetBeans 的 Vim 配置                            <b class="vimtag"> <a name="netbeans-configure">netbeans-configure</a> </b></h4>
-要得到安装 Vim 的更多帮助，请阅读 Vim 用户手册的  <a href="usr_90.html#usr_90.txt">usr_90.txt</a> 。
+要得到安裝 Vim 的更多幫助，請閱讀 Vim 用戶手冊的  <a href="usr_90.html#usr_90.txt">usr_90.txt</a> 。
 
 
 在 Unix 上:
 </pre><hr class="singleline" /><pre>
 
-不带参数的 configure 应该已经包含 NetBeans 接口，如果 configure 检查你的系统支
-持所需的功能的话。
+不帶參數的 configure 應該已經包含 NetBeans 接口，如果 configure 檢查你的系統支
+持所需的功能的話。
 
-如果你不想要 NetBeans 接口，你可以在 Makefile 里去掉包含 "--disable-netbeans"
-的一行的注释。
+如果你不想要 NetBeans 接口，你可以在 Makefile 裡去掉包含 "--disable-netbeans"
+的一行的註釋。
 
-目前，支持 Netbeans 接口的有控制台运行的 Vim 和运行以下 GUI 的 gvim: GTK、
+目前，支持 Netbeans 接口的有控制台運行的 Vim 和運行以下 GUI 的 gvim: GTK、
 GNOME、Windows、Athena 和 Motif。
 
-如果需要 Motif 支持，用户应该提供 XPM 库。参见  <a href="workshop.html#workshop-xpm">workshop-xpm</a>  了解如何得到最新
-版本的 XPM 的详情。
+如果需要 Motif 支持，用戶應該提供 XPM 庫。參見  <a href="workshop.html#workshop-xpm">workshop-xpm</a>  瞭解如何得到最新
+版本的 XPM 的詳情。
 
 
 在 MS-Windows 上:
 </pre><hr class="singleline" /><pre>
 
-Win32 的支持现在还处于实验阶段。
+Win32 的支持現在還處於實驗階段。
 
-要使用 Win32 上的 XPM 标号，(例如使用 NetBeans 时)，你需要自己编译 XPM，或者使
-用预编译的库: http://iamphet.nm.ru/misc/ (MS Visual C++ 版本) 或
+要使用 Win32 上的 XPM 標號，(例如使用 NetBeans 時)，你需要自己編譯 XPM，或者使
+用預編譯的庫: http://iamphet.nm.ru/misc/ (MS Visual C++ 版本) 或
 http://gnuwin32.sourceforge.net (MinGW 版本)。
 
-允许调试:
+允許調試:
 </pre><hr class="singleline" /><pre>
 
-要允许调试 Vim 和 NetBeans 协议，需要定义 "NBDEBUG" 宏。在相应平台的 Makefile
-里查找 "NBDEBUG" 就可以知道需要去掉哪些行的注释。基本上就是给编译的命令加上
-"-DNBDEBUG"。另见  <a href="netbeans.html#netbeans-debugging">netbeans-debugging</a> 
+要允許調試 Vim 和 NetBeans 協議，需要定義 "NBDEBUG" 宏。在相應平台的 Makefile
+裡查找 "NBDEBUG" 就可以知道需要去掉哪些行的註釋。基本上就是給編譯的命令加上
+"-DNBDEBUG"。另見  <a href="netbeans.html#netbeans-debugging">netbeans-debugging</a> 
 
 </pre><hr class="doubleline" /><pre>
-<h4>4. 错误消息                                             <b class="vimtag"> <a name="netbeans-messages">netbeans-messages</a> </b></h4>
-以下这些错误消息是 NetBeans 套接字协议特有的:
+<h4>4. 錯誤消息                                             <b class="vimtag"> <a name="netbeans-messages">netbeans-messages</a> </b></h4>
+以下這些錯誤消息是 NetBeans 套接字協議特有的:
 
                                                         <b class="vimtag"> <a name="E463">E463</a> </b>
 Region is guarded, cannot modify
-                Vim 控制器定义了文本的保护区域，你不能编辑这个区域。
-                如果需要，设置当前缓冲区。
+                Vim 控制器定義了文本的保護區域，你不能編輯這個區域。
+                如果需要，設置當前緩衝區。
 
                                                         <b class="vimtag"> <a name="E532">E532</a> </b>
 The defineAnnoType highlighting color name is too long
-                defineAnnoType 命令的 "fg" 或 "bg" 颜色参数最大长度是 32 个字
+                defineAnnoType 命令的 "fg" 或 "bg" 顏色參數最大長度是 32 個字
                 符。
-                2.5 版本新出现。
+                2.5 版本新出現。
 
                                                         <b class="vimtag"> <a name="E656">E656</a> </b>
 Writes of unmodified buffers forbidden
-                不能写入 Vim 控制器打开的未修改的缓冲区。
+                不能寫入 Vim 控制器打開的未修改的緩衝區。
 
                                                         <b class="vimtag"> <a name="E657">E657</a> </b>
 Partial writes disallowed
-                不允许部分写入 Vim 控制器打开的缓冲区。
+                不允許部分寫入 Vim 控制器打開的緩衝區。
 
                                                         <b class="vimtag"> <a name="E658">E658</a> </b>
 Connection lost for this buffer
-                Vim 控制器不清楚这个文件的目前状态。与其冒着破坏文件的风险，
-                NetBeans 关闭了这个文件的连接。Vim 自己要负责修改和保存文件的
-                改变，而 Vim 控制器将不会知道这些改变。
+                Vim 控制器不清楚這個文件的目前狀態。與其冒著破壞文件的風險，
+                NetBeans 關閉了這個文件的連接。Vim 自己要負責修改和保存文件的
+                改變，而 Vim 控制器將不會知道這些改變。
 
                                                         <b class="vimtag"> <a name="E744">E744</a> </b>
 Read-only file
-                Vim 通常允许修改只读文件，只有在写文件的时候坚持执行只读规则。
-                不过，NetBeans 不允许你修改只读的文件，如果 Vim 这么做，会引起
-                混淆。为此，Vim 不允许执行 NetBeans 模式时修改文件。
+                Vim 通常允許修改只讀文件，只有在寫文件的時候堅持執行只讀規則。
+                不過，NetBeans 不允許你修改只讀的文件，如果 Vim 這麼做，會引起
+                混淆。為此，Vim 不允許執行 NetBeans 模式時修改文件。
 
 </pre><hr class="doubleline" /><pre>
-<h4>5. 从 NetBeans 模式里运行 Vim                           <b class="vimtag"> <a name="netbeans-run">netbeans-run</a> </b></h4>
-有两种方式可以启动 Vim 的 NetBeans 模式:
+<h4>5. 從 NetBeans 模式裡運行 Vim                           <b class="vimtag"> <a name="netbeans-run">netbeans-run</a> </b></h4>
+有兩種方式可以啟動 Vim 的 NetBeans 模式:
 
-        + IDE 可用  <a href="starting.html#-nb">-nb</a>  命令行参数启动 Vim
-        + 在 Vim 内部，可用  <a href="netbeans.html#:nbstart">:nbstart</a>  命令启动 NetBeans
+        + IDE 可用  <a href="starting.html#-nb">-nb</a>  命令行參數啟動 Vim
+        + 在 Vim 內部，可用  <a href="netbeans.html#:nbstart">:nbstart</a>  命令啟動 NetBeans
 
-Vim 试图建立连接时使用 3 秒超时。
+Vim 試圖建立連接時使用 3 秒超時。
 
                                                         <b class="vimtag"> <a name="netbeans-parameters">netbeans-parameters</a> </b>
-有三种形式可以用来设置 NetBeans 连接参数。
-在命令行上启动时， <a href="starting.html#-nb">-nb</a>  命令行参数可以是:
+有三種形式可以用來設置 NetBeans 連接參數。
+在命令行上啟動時， <a href="starting.html#-nb">-nb</a>  命令行參數可以是:
 
-        -nb=<code class="special">{fname}</code>                             从文件读取
+        -nb=<code class="special">{fname}</code>                             從文件讀取
         -nb:<code class="special">{hostname}</code>:<code class="special">{addr}</code>:<code class="special">{password}</code>        直接
-        -nb                                     从文件或者环境变量里读取
+        -nb                                     從文件或者環境變量裡讀取
 
-在 Vim 内部启动时， <a href="netbeans.html#:nbstart">:nbstart</a>  可选参数可以是:
+在 Vim 內部啟動時， <a href="netbeans.html#:nbstart">:nbstart</a>  可選參數可以是:
 
-        =<code class="special">{fname}</code>                                从文件读取
+        =<code class="special">{fname}</code>                                從文件讀取
         :<code class="special">{hostname}</code>:<code class="special">{addr}</code>:<code class="special">{password}</code>           直接
-        &lt;无参数&gt;                                从文件或者环境变量里读取
+        &lt;無參數&gt;                                從文件或者環境變量裡讀取
 
                                                         <b class="vimtag"> <a name="E660">E660</a> </b> <b class="vimtag"> <a name="E668">E668</a> </b>
-在命令行上启动时，为了安全的原因，最好的方法是把信息写到只有用户能读得文件里。
-文件名字可以通过 "-nb=<code class="special">{fname}</code>" 的参数传递。或者，在不带的参数的 "-nb" 形式里，
-由环境变量 "__NETBEANS_CONINFO" 指定。文件里必须包含以下三行内容，顺序随意:
+在命令行上啟動時，為了安全的原因，最好的方法是把信息寫到只有用戶能讀得文件裡。
+文件名字可以通過 "-nb=<code class="special">{fname}</code>" 的參數傳遞。或者，在不帶的參數的 "-nb" 形式裡，
+由環境變量 "__NETBEANS_CONINFO" 指定。文件裡必須包含以下三行內容，順序隨意:
 
         host=<code class="special">{hostname}</code>
         port=<code class="special">{addr}</code>
         auth=<code class="special">{password}</code>
 
-其他的行被忽略。Vim 控制器须自己负责在不用的时候删除这个文件。
+其他的行被忽略。Vim 控制器須自己負責在不用的時候刪除這個文件。
 
-<code class="special">{hostname}</code> 指定 Vim 控制器运行的机器名。如果不提供，则取环境变量
-"__NETBEANS_HOST" 的值，如果还没有，缺省值是 "localhost"。
+<code class="special">{hostname}</code> 指定 Vim 控制器運行的機器名。如果不提供，則取環境變量
+"__NETBEANS_HOST" 的值，如果還沒有，缺省值是 "localhost"。
 
-<code class="special">{addr}</code> 指定 NetBeans 协议所用的端口号。如果不提供，则取环境变量
-"__NETBEANS_SOCKET" 的值，如果还没有，缺省值是 3219。
+<code class="special">{addr}</code> 指定 NetBeans 協議所用的端口號。如果不提供，則取環境變量
+"__NETBEANS_SOCKET" 的值，如果還沒有，缺省值是 3219。
 
-<code class="special">{password}</code> 指定连接到 NetBeans 所用的密码。如果不提供，则取环境变量
-"__NETBEANS_VIM_PASSWORD" 的值，如果还没有，缺省值是 "changeme"。
+<code class="special">{password}</code> 指定連接到 NetBeans 所用的密碼。如果不提供，則取環境變量
+"__NETBEANS_VIM_PASSWORD" 的值，如果還沒有，缺省值是 "changeme"。
 
-启动时，Vim 会建立套接字连接 (客户端) 到指定的终端和端口。密码会在连接建立后使
-用 AUTH 事件发送。
+啟動時，Vim 會建立套接字連接 (客戶端) 到指定的終端和端口。密碼會在連接建立後使
+用 AUTH 事件發送。
 
 
 </pre><hr class="doubleline" /><pre>
-<h4>6. NetBeans 协议                                        <b class="vimtag"> <a name="netbeans-protocol">netbeans-protocol</a> </b></h4>
-Vim 控制器和 Vim 的通信使用简单文本消息。该协议原先是为 NetBeans 的外部编辑器
-所设计的。后来它被扩展，使得 Agide (A-A-P 的 GUI IDE，见 http://www.a-a-p.org)
-也能使用，然后又扩展到其它 IDE。该扩展被标为 "2.1 版本"。
+<h4>6. NetBeans 協議                                        <b class="vimtag"> <a name="netbeans-protocol">netbeans-protocol</a> </b></h4>
+Vim 控制器和 Vim 的通信使用簡單文本消息。該協議原先是為 NetBeans 的外部編輯器
+所設計的。後來它被擴展，使得 Agide (A-A-P 的 GUI IDE，見 http://www.a-a-p.org)
+也能使用，然後又擴展到其它 IDE。該擴展被標為 "2.1 版本"。
 
-该协议的 2.2 版本有若干小的改动，这些改动应该只影响 NetBeans 用户 (而不是
-Agide 用户)。不过，一个修正的漏洞可能会引起混淆: netbeans_saved() 函数以前发送
-一个 "save" 协议命令。在 2.1 版本和以前，它被不正确地解读为写操作已发生的通
-知。实际上，它告诉 NetBeans 保存文件，所以多个写操作可能已经发生了。这个错误引
-起了若干问题，而 2.2 已修正了这个错误。为了减少这个混淆再次发生的可能性，
-netbeans_saved() 已经被改名为 netbeans_save_buffer()。
+該協議的 2.2 版本有若干小的改動，這些改動應該只影響 NetBeans 用戶 (而不是
+Agide 用戶)。不過，一個修正的漏洞可能會引起混淆: netbeans_saved() 函數以前發送
+一個 "save" 協議命令。在 2.1 版本和以前，它被不正確地解讀為寫操作已發生的通
+知。實際上，它告訴 NetBeans 保存文件，所以多個寫操作可能已經發生了。這個錯誤引
+起了若干問題，而 2.2 已修正了這個錯誤。為了減少這個混淆再次發生的可能性，
+netbeans_saved() 已經被改名為 netbeans_save_buffer()。
 
-我们现在已经使用 2.5 版本。2.4 和 2.5 版本间的差异可以在下面搜索 "2.5"。
+我們現在已經使用 2.5 版本。2.4 和 2.5 版本間的差異可以在下面搜索 "2.5"。
 
-目前，消息通过套接字传送。因为消息是简单的 UTF-8 文本，该协议也许可以用其它通
-信机制完成。
+目前，消息通過套接字傳送。因為消息是簡單的 UTF-8 文本，該協議也許可以用其它通
+信機制完成。
 
-在 Vim 空闲等待用户输入时处理 Netbeans 消息。Vim 运行在非交互模式时，如执行
-Vim 脚本的自动测试中，调用空闲循环的次数可能过少。此时，可以调用  <a href="various.html#:sleep">:sleep</a>  命
-令。 <a href="various.html#:sleep">:sleep</a>  命令会启动 Netbeans 消息处理。
+在 Vim 空閒等待用戶輸入時處理 Netbeans 消息。Vim 運行在非交互模式時，如執行
+Vim 腳本的自動測試中，調用空閒循環的次數可能過少。此時，可以調用  <a href="various.html#:sleep">:sleep</a>  命
+令。 <a href="various.html#:sleep">:sleep</a>  命令會啟動 Netbeans 消息處理。
 
-6.1 消息类型                     <a href="netbeans.html#nb-messages">nb-messages</a> 
-6.2 术语                         <a href="netbeans.html#nb-terms">nb-terms</a> 
+6.1 消息類型                     <a href="netbeans.html#nb-messages">nb-messages</a> 
+6.2 術語                         <a href="netbeans.html#nb-terms">nb-terms</a> 
 6.3 命令                         <a href="netbeans.html#nb-commands">nb-commands</a> 
-6.4 函数和应答                   <a href="netbeans.html#nb-functions">nb-functions</a> 
+6.4 函數和應答                   <a href="netbeans.html#nb-functions">nb-functions</a> 
 6.5 事件                         <a href="netbeans.html#nb-events">nb-events</a> 
 6.6 特殊消息                     <a href="netbeans.html#nb-special">nb-special</a> 
-6.7 协议错误信息                 <a href="netbeans.html#nb-protocol_errors">nb-protocol_errors</a> 
+6.7 協議錯誤信息                 <a href="netbeans.html#nb-protocol_errors">nb-protocol_errors</a> 
 
 
-6.1 消息类型                                            <b class="vimtag"> <a name="nb-messages">nb-messages</a> </b>
+6.1 消息類型                                            <b class="vimtag"> <a name="nb-messages">nb-messages</a> </b>
 
-有四类消息:
+有四類消息:
 
-<code class="section">类型            方向            注释</code>
-命令            IDE -&gt; 编辑器   不需要应答
-函数            IDE -&gt; 编辑器   编辑器必须应答
-应答            编辑器 -&gt; IDE   只用于函数的应答
-事件            编辑器 -&gt; IDE   不需要应答
+<code class="section">類型            方向            註釋</code>
+命令            IDE -&gt; 編輯器   不需要應答
+函數            IDE -&gt; 編輯器   編輯器必須應答
+應答            編輯器 -&gt; IDE   只用於函數的應答
+事件            編輯器 -&gt; IDE   不需要應答
 
-每条消息是换行符终止的一行文本。参数以单个空格分隔。每个消息的第一项由消息的类
-型决定:
+每條消息是換行符終止的一行文本。參數以單個空格分隔。每個消息的第一項由消息的類
+型決定:
 
-<code class="section">类型            第一项                  示例 </code>
+<code class="section">類型            第一項                  示例 </code>
 命令            bufID:name!seqno        11:showBalloon!123 "text"
-函数            bufID:name/seqno        11:getLength/123
-应答            seqno                   123 5000
+函數            bufID:name/seqno        11:getLength/123
+應答            seqno                   123 5000
 事件            bufID:name=seqno        11:keyCommand=123 "S-F2"
 
 
-6.2 术语                                                <b class="vimtag"> <a name="nb-terms">nb-terms</a> </b>
+6.2 術語                                                <b class="vimtag"> <a name="nb-terms">nb-terms</a> </b>
 
-bufID           缓冲区号。每条消息可以指定一个特定的缓冲区，也可以不指定任何缓
-                冲区 (泛指)。泛指的消息使用为零的 bufID。<code class="note">注意</code>: 缓冲区号是 IDE
-                分配的。这不是 Vim 的缓冲区号。bufID 应该是从一开始顺序递增的
-                数字。<a href="options.html#'switchbuf'">'switchbuf'</a> 设为 "usetab" 而当前标签页找不到 "bufID" 缓
-                冲区时，netbeans 设置当缓冲区为当前缓冲区的命令和函数会跳转到
-                首个其它标签页中包含此缓冲区的打开的窗口，而不是替代当前窗口所
-                在的缓冲区。
+bufID           緩衝區號。每條消息可以指定一個特定的緩衝區，也可以不指定任何緩
+                沖區 (泛指)。泛指的消息使用為零的 bufID。<code class="note">注意</code>: 緩衝區號是 IDE
+                分配的。這不是 Vim 的緩衝區號。bufID 應該是從一開始順序遞增的
+                數字。<a href="options.html#'switchbuf'">'switchbuf'</a> 設為 "usetab" 而當前標籤頁找不到 "bufID" 緩
+                沖區時，netbeans 設置當緩衝區為當前緩衝區的命令和函數會跳轉到
+                首個其它標籤頁中包含此緩衝區的打開的窗口，而不是替代當前窗口所
+                在的緩衝區。
 
-seqno           IDE 用序列号标示命令和函数。应答需要指明相关联的函数的序列号。
-                事件可以使用为零的序列号 (也可以用最近一次收到的命令和函数的序
-                列号)。
+seqno           IDE 用序列號標示命令和函數。應答需要指明相關聯的函數的序列號。
+                事件可以使用為零的序列號 (也可以用最近一次收到的命令和函數的序
+                列號)。
 
-string          双引号括起的参数。文本使用 UTF-8 编码。这也意味着 ASCII 字符可
-                以原封不动的使用。一些特殊字符用反斜杠的形式表示:
-                        \"      双引号
-                        \n      换行
-                        \r      回车
-                        \t      制表 (可选，也可以直接表示)
-                        \\      反斜杠
-                NUL 字节是不允许的！
+string          雙引號括起的參數。文本使用 UTF-8 編碼。這也意味著 ASCII 字符可
+                以原封不動的使用。一些特殊字符用反斜槓的形式表示:
+                        \"      雙引號
+                        \n      換行
+                        \r      回車
+                        \t      製表 (可選，也可以直接表示)
+                        \\      反斜槓
+                NUL 字節是不允許的！
 
-boolean         可取两个可能值的参数:
+boolean         可取兩個可能值的參數:
                         T       真
                         F       假
 
-number          十进制的参数。
+number          十進制的參數。
 
-color           参数，或为十进制数字，或为 "none" (没有引号)，或为在
-                 <a href="syntax.html#highlight-ctermfg">highlight-ctermfg</a>  和  <a href="syntax.html#gui-colors">gui-colors</a>  中定义的色彩名 (没有引
-                号)，
-                2.5 版本新出现。
+color           參數，或為十進制數字，或為 "none" (沒有引號)，或為在
+                 <a href="syntax.html#highlight-ctermfg">highlight-ctermfg</a>  和  <a href="syntax.html#gui-colors">gui-colors</a>  中定義的色彩名 (沒有引
+                號)，
+                2.5 版本新出現。
 
-offset          数值参数，表示缓冲区的一个字节位置 (偏移量)。第一个字节的偏移
-                量为 0。行尾的字节计数决定于在文件里如何表示 (CR/LF 是两个字
-                节)。<code class="note">注意</code>一个多字节的字符的字节计数可能多于一。
+offset          數值參數，表示緩衝區的一個字節位置 (偏移量)。第一個字節的偏移
+                量為 0。行尾的字節計數決定於在文件裡如何表示 (CR/LF 是兩個字
+                節)。<code class="note">注意</code>一個多字節的字符的字節計數可能多於一。
 
-lnum/col        参数，表示行号和列号。行号从一开始，列号以字节位置表示，从零开
-                始。<code class="note">注意</code>一个多字节的字符可能跨越多列。
+lnum/col        參數，表示行號和列號。行號從一開始，列號以字節位置表示，從零開
+                始。<code class="note">注意</code>一個多字節的字符可能跨越多列。
 
-pathname        字符串参数: 带完整路径的文件名。
+pathname        字符串參數: 帶完整路徑的文件名。
 
 
 6.3 命令                                                <b class="vimtag"> <a name="nb-commands">nb-commands</a> </b>
 
-actionMenuItem  没有实现。
+actionMenuItem  沒有實現。
 
 actionSensitivity
-                没有实现。
+                沒有實現。
 
 addAnno serNum typeNum off len
-                在缓冲区里加上评注 (annotation)。
-                参数:
-                   serNum       number  该评注的序列号，删除该评注时可以用到
-                   typeNum      number  用 defineAnnoType 定义的该缓冲区的评
-                                        注类型序列号
-                   off          number  评注所加的位置
-                   len          number  没有用到
-                在 2.1 版本中，"lnum/col" 可以用来代替 "off"。
+                在緩衝區裡加上評注 (annotation)。
+                參數:
+                   serNum       number  該評注的序列號，刪除該評注時可以用到
+                   typeNum      number  用 defineAnnoType 定義的該緩衝區的評
+                                        注類型序列號
+                   off          number  評注所加的位置
+                   len          number  沒有用到
+                在 2.1 版本中，"lnum/col" 可以用來代替 "off"。
 
 balloonResult text
-                没有实现。
+                沒有實現。
 
-close           关闭缓冲区。这会使得我们失去当前的缓冲区。使用时要小心！
+close           關閉緩衝區。這會使得我們失去當前的緩衝區。使用時要小心！
 
-create          建立一个没有名字的缓冲区。替换当前的缓冲区 (改变的时候，它是隐
+create          建立一個沒有名字的緩衝區。替換當前的緩衝區 (改變的時候，它是隱
                 藏的)。
-                这是 Vim 控制器打开文件时使用的第一个命令。命令序列应该是:
+                這是 Vim 控制器打開文件時使用的第一個命令。命令序列應該是:
                         create
                         setCaretListener        (忽略)
-                        setModified             (没有影响)
+                        setModified             (沒有影響)
                         setContentType          (忽略)
                         startDocumentListen
                         setTitle
                         setFullName
 
 defineAnnoType typeNum typeName tooltip glyphFile fg bg
-                定义该缓冲区的一种评注类型。
-                参数:
-                   typeNum      number  序列号 (这里没有用到)
-                   typeName     string  标识这个评注的名字
-                   tooltip      string  没有用到
-                   glyphFile    string  图标文件名
+                定義該緩衝區的一種評注類型。
+                參數:
+                   typeNum      number  序列號 (這裡沒有用到)
+                   typeName     string  標識這個評注的名字
+                   tooltip      string  沒有用到
+                   glyphFile    string  圖標文件名
                    fg           color   高亮行前景色
                    bg           color   高亮行背景色
-                Vim 会定义评注所用的标号。
-                如果 color 为数值，解释为 "#rrggbb"，即红绿蓝色彩值 (见
-                 <a href="syntax.html#gui-colors">gui-colors</a> )，高亮只在 GVim 有定义。
-                如果 color 为名字，该颜色在带色彩的终端和 GVim 都有定义。
-                当 "fg" 和 "bg" 都是 "none" 的时候，不使用高亮行 (2.1 版本新出
-                现)。
-                当 "glyphFile" 为空时，不使用文本标号 (2.1 版本新出现)。
-                但 "glyphFile" 为一到两个字符长时，使用文本标号 (2.1 版本新出
-                现)。
-                <code class="note">注意</code>: 评注会按顺序定义，而其序列号以后可以在 addAnno 里用到。
+                Vim 會定義評注所用的標號。
+                如果 color 為數值，解釋為 "#rrggbb"，即紅綠藍色彩值 (見
+                 <a href="syntax.html#gui-colors">gui-colors</a> )，高亮只在 GVim 有定義。
+                如果 color 為名字，該顏色在帶色彩的終端和 GVim 都有定義。
+                當 "fg" 和 "bg" 都是 "none" 的時候，不使用高亮行 (2.1 版本新出
+                現)。
+                當 "glyphFile" 為空時，不使用文本標號 (2.1 版本新出現)。
+                但 "glyphFile" 為一到兩個字符長時，使用文本標號 (2.1 版本新出
+                現)。
+                <code class="note">注意</code>: 評注會按順序定義，而其序列號以後可以在 addAnno 裡用到。
 
 editFile pathname
-                设置缓冲区的名字为字符串参数 pathname，并编辑该参数指定的文
+                設置緩衝區的名字為字符串參數 pathname，並編輯該參數指定的文
                 件。
-                这是通常 IDE 告诉编辑器编辑一个文件的方法。
+                這是通常 IDE 告訴編輯器編輯一個文件的方法。
 
-                使用该命令，你必须设置 bufId 为非零以把该 bufId 赋给缓冲区。它
-                会触发 bufId 为零的 fileOpened 事件，但缓冲区已经分配好了。
+                使用該命令，你必須設置 bufId 為非零以把該 bufId 賦給緩衝區。它
+                會觸發 bufId 為零的 fileOpened 事件，但緩衝區已經分配好了。
 
-                如果 IDE 要把文件内容直接传递给编辑器，那么应该用这些命令:
+                如果 IDE 要把文件內容直接傳遞給編輯器，那麼應該用這些命令:
                         setFullName
                         insert
                         initDone
-                2.1 版本新出现。
+                2.1 版本新出現。
 
 enableBalloonEval
-                没有实现。
+                沒有實現。
 
-endAtomic       结束一个原子操作。"startAtomic" 和 "endAtomic" 之间的所有操作
-                可以一次全部撤销。不过，这还没有实现。如果需要，重画屏幕。
+endAtomic       結束一個原子操作。"startAtomic" 和 "endAtomic" 之間的所有操作
+                可以一次全部撤銷。不過，這還沒有實現。如果需要，重畫屏幕。
 
 guard off len
-                标识缓冲区的一片区域为保护区域。这意味着那里不能被编辑。"off"
-                和 "len" 是两个数值，它们界定保护文本的范围。
+                標識緩衝區的一片區域為保護區域。這意味著那裡不能被編輯。"off"
+                和 "len" 是兩個數值，它們界定保護文本的範圍。
 
-initDone        标识这个缓冲区可用。这也隐含地意味着它成为当前缓冲区。激活
-                BufReadPost 自动事件。
+initDone        標識這個緩衝區可用。這也隱含地意味著它成為當前緩衝區。激活
+                BufReadPost 自動事件。
 
 insertDone
-                Vim 控制器发送，告知 Vim 完成了初始的文件插入。这使得读入信息
-                被显示。2.3 版本之前，打开文件之后不会显示读入消息。
-                2.3 版本新出现。
+                Vim 控制器發送，告知 Vim 完成了初始的文件插入。這使得讀入信息
+                被顯示。2.3 版本之前，打開文件之後不會顯示讀入消息。
+                2.3 版本新出現。
 
 moveAnnoToFront serNum
-                没有实现。
+                沒有實現。
 
 netbeansBuffer isNetbeansBuffer
-                如果 "isNetbeansBuffer" 为 "T"，那么该缓冲区为 NetBeans 所 "拥
-                有"。2.2 版本新出现。
+                如果 "isNetbeansBuffer" 為 "T"，那麼該緩衝區為 NetBeans 所 "擁
+                有"。2.2 版本新出現。
 
 putBufferNumber pathname
-                把一个缓冲区号和 Vim 和以字符串参数 "pathname" 命名的 Vim 缓冲
-                区联系起来。它用于编辑器向 IDE 报告它要编辑另外一个文件，而
-                IDE 需要告诉编辑器它为这个文件分配的缓冲区号。同时，这个命令也
-                把缓冲区标为已初始化。
-                2.1 版本新出现。
+                把一個緩衝區號和 Vim 和以字符串參數 "pathname" 命名的 Vim 緩衝
+                區聯繫起來。它用於編輯器向 IDE 報告它要編輯另外一個文件，而
+                IDE 需要告訴編輯器它為這個文件分配的緩衝區號。同時，這個命令也
+                把緩衝區標為已初始化。
+                2.1 版本新出現。
 
-raise           把编辑器带到前台。
-                仅用于 GUI 版本的 Vim。
-                2.1 版本新出现。
+raise           把編輯器帶到前台。
+                僅用於 GUI 版本的 Vim。
+                2.1 版本新出現。
 
 removeAnno serNum
-                删除以前这个缓冲区里放置的评注。"serNum" 是 addAnno 使用的相同
-                的数字。
+                刪除以前這個緩衝區裡放置的評注。"serNum" 是 addAnno 使用的相同
+                的數字。
 
-save            如果缓冲区已修改，就保存之。接口的另一侧应该写入缓冲区，把缓冲
-                区标为已修改 (<code class="badlink">'setModified'</code>)，并复位缓冲区的 "changed" 标志
+save            如果緩衝區已修改，就保存之。接口的另一側應該寫入緩衝區，把緩衝
+                區標為已修改 (<code class="badlink">'setModified'</code>)，並復位緩衝區的 "changed" 標誌
                 位。
-                如果以下条件有一为真，则跳过写入的步骤:
-                - <a href="options.html#'write'">'write'</a> 没有置位
-                - 缓冲区只读
-                - 缓冲区没有文件名
-                - <a href="options.html#'buftype'">'buftype'</a> 不允许写入
-                2.2 版本新出现。
+                如果以下條件有一為真，則跳過寫入的步驟:
+                - <a href="options.html#'write'">'write'</a> 沒有置位
+                - 緩衝區只讀
+                - 緩衝區沒有文件名
+                - <a href="options.html#'buftype'">'buftype'</a> 不允許寫入
+                2.2 版本新出現。
 
 saveDone
-                Vim 控制器发送，告知 Vim 保存已经完成。这使得保存消息被显示。
-                2.3 版本之前，保存后不显示保存消息。
-                2.3 版本新出现。
+                Vim 控制器發送，告知 Vim 保存已經完成。這使得保存消息被顯示。
+                2.3 版本之前，保存後不顯示保存消息。
+                2.3 版本新出現。
 
-setAsUser       没有实现。
+setAsUser       沒有實現。
 
 setBufferNumber pathname
-                把一个缓冲区号和以字符串参数 "pathname" 命名的 Vim 缓冲区联系
-                起来。它用于编辑器向 IDE 报告它要编辑另外一个文件，而 IDE 需要
-                告诉编辑器它为这个文件分配的缓冲区号。它还有把这个缓冲区设为当
-                前缓冲区的副作用。
-                参见 "putBufferedBumber"，它也许更有用。
+                把一個緩衝區號和以字符串參數 "pathname" 命名的 Vim 緩衝區聯繫
+                起來。它用於編輯器向 IDE 報告它要編輯另外一個文件，而 IDE 需要
+                告訴編輯器它為這個文件分配的緩衝區號。它還有把這個緩衝區設為當
+                前緩衝區的副作用。
+                參見 "putBufferedBumber"，它也許更有用。
 
 setContentType
-                没有实现。
+                沒有實現。
 
-setDot off      使得缓冲区成为当前缓冲区，并设置光标到相应的位置。如果缓冲区在
-                别的窗口里打开，使得该窗口成为当前窗口。
-                折叠会相应打开，使得光标行可见。
-                2.1 版本里 "lnum/col" 可以用来替代 "off"。
+setDot off      使得緩衝區成為當前緩衝區，並設置光標到相應的位置。如果緩衝區在
+                別的窗口裡打開，使得該窗口成為當前窗口。
+                折疊會相應打開，使得光標行可見。
+                2.1 版本裡 "lnum/col" 可以用來替代 "off"。
 
 setExitDelay seconds
-                设置退出延迟为 seconds 秒，second 为数值参数。
-                该延迟用于给 IDE 在真正退出之前处理某些事情的时间。缺省的延迟
+                設置退出延遲為 seconds 秒，second 為數值參數。
+                該延遲用於給 IDE 在真正退出之前處理某些事情的時間。缺省的延遲
                 是 2 秒。
-                2.1 版本新出现。
-                2.3 版本已废弃。
+                2.1 版本新出現。
+                2.3 版本已廢棄。
 
 setFullName pathname
-                为缓冲区的文件名设为字符串参数 "pathname"。
-                在 IDE 想编辑 IDE 控制的文件时使用该命令。这使得该缓冲区成为当
-                前缓冲区，但不从该文件读。"insert" 命令可以用来随后设置它的内
+                為緩衝區的文件名設為字符串參數 "pathname"。
+                在 IDE 想編輯 IDE 控制的文件時使用該命令。這使得該緩衝區成為當
+                前緩衝區，但不從該文件讀。"insert" 命令可以用來隨後設置它的內
                 容。
 
-setLocAndSize   没有实现。
+setLocAndSize   沒有實現。
 
-setMark         没有实现。
+setMark         沒有實現。
 
 setModified modified
-                如果布尔参数 "modified" 为 "T"，把缓冲区标为已修改，如果为
-                "F"，则标为未修改。
+                如果布爾參數 "modified" 為 "T"，把緩衝區標為已修改，如果為
+                "F"，則標為未修改。
 
 setModtime time
-                在 Vim 控制器自己保存文件后，更新缓冲区的修改时间。
-                2.3 版本新出现。
+                在 Vim 控制器自己保存文件後，更新緩衝區的修改時間。
+                2.3 版本新出現。
 
 setReadOnly
-                设置文件为只读
-                2.3 版本已经实现。
+                設置文件為只讀
+                2.3 版本已經實現。
 
-setStyle        没有实现。
+setStyle        沒有實現。
 
 setTitle name
-                把缓冲区的标题改为字符串参数 "name"。标题用于 Vim 控制器，而不
+                把緩衝區的標題改為字符串參數 "name"。標題用於 Vim 控制器，而不
                 是 Vim。
 
 setVisible visible
-                如果布尔参数 "visible" 为 "T"，转到这个缓冲区。
-                "F" 参数不做任何事。
+                如果布爾參數 "visible" 為 "T"，轉到這個緩衝區。
+                "F" 參數不做任何事。
 
 showBalloon text
-                在鼠标当前位置显示一个气泡 (弹出窗口)，显示文本 "text"，一个字
-                符串表达式。气泡在鼠标移动若干像素点后自动消失。
-                仅用于 GUI 版本的 Vim。
-                2.1 版本新出现。
+                在鼠標當前位置顯示一個氣泡 (彈出窗口)，顯示文本 "text"，一個字
+                符串表達式。氣泡在鼠標移動若干像素點後自動消失。
+                僅用於 GUI 版本的 Vim。
+                2.1 版本新出現。
 
 specialKeys
-                映射一组键 (最常见的是功能键)，使之可以被传递回 Vim 控制器进行
-                处理。这使得 IDE 常规的热键可以从 Vim 处调用。
-                2.3 版本已经实现。
+                映射一組鍵 (最常見的是功能鍵)，使之可以被傳遞回 Vim 控制器進行
+                處理。這使得 IDE 常規的熱鍵可以從 Vim 處調用。
+                2.3 版本已經實現。
 
-startAtomic     开始一个原子操作。屏幕不更新，直到遇到 "endAtomic" 为止。
+startAtomic     開始一個原子操作。屏幕不更新，直到遇到 "endAtomic" 為止。
 
 startCaretListen
-                没有实现。
+                沒有實現。
 
 
 startDocumentListen
-                标识缓冲区，使之向 IDE 报告 "insert" 和 "remove" 事件。缺省就
-                是报告这些改变。
+                標識緩衝區，使之向 IDE 報告 "insert" 和 "remove" 事件。缺省就
+                是報告這些改變。
 
 stopCaretListen
-                没有实现。
+                沒有實現。
 
 stopDocumentListen
-                标识缓冲区，使之停止向 IDE 报告改变。
+                標識緩衝區，使之停止向 IDE 報告改變。
                 和 startDocumentListen 相反。
-                <code class="note">注意</code>: 如果用过 "netbeansBuffer" 把本缓冲区标注为 NetBeans 缓冲
-                区，那么 Vim 就删除该缓冲区。这是为了和 Sun Stdio 10 兼容。
+                <code class="note">注意</code>: 如果用過 "netbeansBuffer" 把本緩衝區標注為 NetBeans 緩衝
+                區，那麼 Vim 就刪除該緩衝區。這是為了和 Sun Stdio 10 兼容。
 
 unguard off len
-                和 "guard" 相反，撤销文本区域的保护。
-                如有必要，同时设置当前缓冲区。
+                和 "guard" 相反，撤銷文本區域的保護。
+                如有必要，同時設置當前緩衝區。
 
-version         没有实现。
+version         沒有實現。
 
 
-6.4 函数和应答                                          <b class="vimtag"> <a name="nb-functions">nb-functions</a> </b>
+6.4 函數和應答                                          <b class="vimtag"> <a name="nb-functions">nb-functions</a> </b>
 
-getDot          没有实现。
+getDot          沒有實現。
 
-getCursor       返回当前缓冲区和光标位置。
-                应答是:
+getCursor       返回當前緩衝區和光標位置。
+                應答是:
                         seqno bufID lnum col off
-                seqno = 该函数的序列号
-                bufID = 当前缓冲区的号码 (如果未知，返回 -1)
-                lnum  = 当前光标的行号 (第一行为 1)
-                col   = 当前光标的列号 (字节数，从 0 开始)
-                off   = 缓冲区当前光标的位移 (以字节数计算)
-                2.1 版本新出现。
+                seqno = 該函數的序列號
+                bufID = 當前緩衝區的號碼 (如果未知，返回 -1)
+                lnum  = 當前光標的行號 (第一行為 1)
+                col   = 當前光標的列號 (字節數，從 0 開始)
+                off   = 緩衝區當前光標的位移 (以字節數計算)
+                2.1 版本新出現。
 
-getLength       返回缓冲区的字节计算的长度。
-                如果缓冲区有 5000 个字节，那么返回的可能是:
+getLength       返回緩衝區的字節計算的長度。
+                如果緩衝區有 5000 個字節，那麼返回的可能是:
                         123 5000
-                TODO: 解释部分行的使用情况。
+                TODO: 解釋部分行的使用情況。
 
-getMark         没有实现。
+getMark         沒有實現。
 
 getAnno serNum
-                返回缓冲区中评注所在的行号。
-                参数:
-                        serNum          该放置评注的序列号
-                应答是:
-                        123 lnum        评注所在的行号
-                        123 0           非法的评注序列号
-                2.4 版本新出现。
+                返回緩衝區中評注所在的行號。
+                參數:
+                        serNum          該放置評注的序列號
+                應答是:
+                        123 lnum        評注所在的行號
+                        123 0           非法的評注序列號
+                2.4 版本新出現。
 
-getModified     如果指定一个缓冲区: 返回 0 如果缓冲区没有改动，反之为 1。
-                如果没有指定缓冲区 (缓冲区号为 0): 返回有改动的缓冲区的数目。
-                如果结果为 0，那么 Vim 就可以安全退出了。
-                2.1 版本新出现。
+getModified     如果指定一個緩衝區: 返回 0 如果緩衝區沒有改動，反之為 1。
+                如果沒有指定緩衝區 (緩衝區號為 0): 返回有改動的緩衝區的數目。
+                如果結果為 0，那麼 Vim 就可以安全退出了。
+                2.1 版本新出現。
 
-getText         返回缓冲区的内容，以字符串形式表示。
-                考虑一个只有两行的缓冲区的例子，应答可能是:
+getText         返回緩衝區的內容，以字符串形式表示。
+                考慮一個只有兩行的緩衝區的例子，應答可能是:
                         123 "first line\nsecond line\n"
-                <code class="note">注意</code>: 文档指出应该有位移和长度两个参数。但是这没有实现。
+                <code class="note">注意</code>: 文檔指出應該有位移和長度兩個參數。但是這沒有實現。
 
 insert off text
-                在位置 "off" 之前插入文本 "text"。"text" 是字符串参数，"off"
-                是个数值。
-                "text" 必须在每行结尾处包括 "\n" (新行)，或 <a href="options.html#'fileformat'">'fileformat'</a> 为
-                "dos" 时 "\r\n"。如果在空缓冲区上使用 "insert"，Vim 会自动相应
-                地设置 <a href="options.html#'fileformat'">'fileformat'</a>。
-                如果 "off" 指向行首，文本插在此行之上。这样，如果 "off" 为零，
+                在位置 "off" 之前插入文本 "text"。"text" 是字符串參數，"off"
+                是個數值。
+                "text" 必須在每行結尾處包括 "\n" (新行)，或 <a href="options.html#'fileformat'">'fileformat'</a> 為
+                "dos" 時 "\r\n"。如果在空緩衝區上使用 "insert"，Vim 會自動相應
+                地設置 <a href="options.html#'fileformat'">'fileformat'</a>。
+                如果 "off" 指向行首，文本插在此行之上。這樣，如果 "off" 為零，
                 文本行被插到第一行之前。
-                如果 "off" 指向行的开始位置之后，包括行尾的 NUL 处，那么文本的
-                第一行附加于此行之后。其余的行出现于其后。
-                可能的应答:
-                        123             没有问题
-                        123 !message    失败
-                <code class="note">注意</code> 回答里的消息不用引号括起。
-                如有必要，同时设置当前缓冲区。
-                不把光标移动到修改过的文本上。
-                复位撤销相关信息。
+                如果 "off" 指向行的開始位置之後，包括行尾的 NUL 處，那麼文本的
+                第一行附加於此行之後。其餘的行出現於其後。
+                可能的應答:
+                        123             沒有問題
+                        123 !message    失敗
+                <code class="note">注意</code> 回答裡的消息不用引號括起。
+                如有必要，同時設置當前緩衝區。
+                不把光標移動到修改過的文本上。
+                復位撤銷相關信息。
 
 remove off length
-                从位置 "off" 开始删除 "length" 长度字节的文本。两个参数都是数
+                從位置 "off" 開始刪除 "length" 長度字節的文本。兩個參數都是數
                 值。
-                可能的应答:
-                        123             没有问题
-                        123 !message    失败
-                <code class="note">注意</code> 回答里的消息不用引号括起。
-                如有必要，同时设置当前缓冲区。
+                可能的應答:
+                        123             沒有問題
+                        123 !message    失敗
+                <code class="note">注意</code> 回答裡的消息不用引號括起。
+                如有必要，同時設置當前緩衝區。
 
-saveAndExit     完成关闭 Vim 等价的操作:  ":confirm qall"。如果文件内容没有改
-                动，或者用户没有取消 Vim 退出的操作，不返回没有任何结果。IDE
-                认为成功的连接关闭代表成功的结果。如果用户取消该操作，尚存的修
-                改过的缓冲区被作为结果返回，Vim 也不会退出。
-                2.1 版本新出现。
+saveAndExit     完成關閉 Vim 等價的操作:  ":confirm qall"。如果文件內容沒有改
+                動，或者用戶沒有取消 Vim 退出的操作，不返回沒有任何結果。IDE
+                認為成功的連接關閉代表成功的結果。如果用戶取消該操作，尚存的修
+                改過的緩衝區被作為結果返回，Vim 也不會退出。
+                2.1 版本新出現。
 
 
 6.5 事件                                                <b class="vimtag"> <a name="nb-events">nb-events</a> </b>
 
 balloonEval off len type
-                鼠标在文本上短暂停留。如果 "len" 为零，没有选择区域，光标在
-                "off" 位置上。如果 "len" 非零，从 "off" 到 "off" + "len" 的区
-                域被选择。
-                只有在该缓冲区设置了 "enableBalloonEval" 以后才会发送。"type"
-                尚未有定义。
-                尚未实现。
+                鼠標在文本上短暫停留。如果 "len" 為零，沒有選擇區域，光標在
+                "off" 位置上。如果 "len" 非零，從 "off" 到 "off" + "len" 的區
+                域被選擇。
+                只有在該緩衝區設置了 "enableBalloonEval" 以後才會發送。"type"
+                尚未有定義。
+                尚未實現。
 
 balloonText text
-                如果设置了 <a href="options.html#'ballooneval'">'ballooneval'</a>，鼠标在某段文字上出现。"text" 是字符
-                串，鼠标下的文本。
-                仅用于 GUI 版本的 Vim。
-                2.1 版本新出现。
+                如果設置了 <a href="options.html#'ballooneval'">'ballooneval'</a>，鼠標在某段文字上出現。"text" 是字符
+                串，鼠標下的文本。
+                僅用於 GUI 版本的 Vim。
+                2.1 版本新出現。
 
 buttonRelease button lnum col
-                报告按了那个鼠标键，和释放时光标的位置。只有对 Vim 控制器拥有
-                的缓冲区有效。如果鼠标键在释放时在状态行或者分隔行时，该事件不
-                会被发送。如果 col 小于 1，鼠标键释放的位置在前导的标号栏。
-                2.2 版本新出现。
+                報告按了那個鼠標鍵，和釋放時光標的位置。只有對 Vim 控制器擁有
+                的緩衝區有效。如果鼠標鍵在釋放時在狀態行或者分隔行時，該事件不
+                會被發送。如果 col 小於 1，鼠標鍵釋放的位置在前導的標號欄。
+                2.2 版本新出現。
 
 disconnect
-                报告 Vim 控制器 Vim 在退出，不会尝试读写更多的命令。
-                2.3 版本新出现。
+                報告 Vim 控制器 Vim 在退出，不會嘗試讀寫更多的命令。
+                2.3 版本新出現。
 
-fileClosed      没有实现。
+fileClosed      沒有實現。
 
-fileModified    没有实现。
+fileModified    沒有實現。
 
 fileOpened pathname open modified
-                用户打开某个文件。
-                参数:
+                用戶打開某個文件。
+                參數:
                    pathname     字符串  文件名
-                   open         布尔    总是 "T"
-                   modified     布尔    总是 "F"
+                   open         布爾    總是 "T"
+                   modified     布爾    總是 "F"
 
 geometry cols rows x y
-                报告编辑器窗口的大小和位置。
-                参数:
-                   cols         数值    文本列数
-                   rows         数值    文本行数
-                   x            数值    光标像素点横坐标
-                   y            数值    光标像素点纵坐标
-                只适用于 Motif。
+                報告編輯器窗口的大小和位置。
+                參數:
+                   cols         數值    文本列數
+                   rows         數值    文本行數
+                   x            數值    光標像素點橫坐標
+                   y            數值    光標像素點縱坐標
+                只適用於 Motif。
 
 insert off text
-                Vim 里在 "off" 位置插入了文本 "text"。只有在允许的时候才发送。
-                见 "startDocumentListen"。
+                Vim 裡在 "off" 位置插入了文本 "text"。只有在允許的時候才發送。
+                見 "startDocumentListen"。
 
-invokeAction    没有实现。
+invokeAction    沒有實現。
 
 keyCommand keyName
-                报告按了某个特殊键，键名是 "keyName"，是个字符串。
-                支持的键名:
-                        F1              功能键 1
-                        F2              功能键 2
+                報告按了某個特殊鍵，鍵名是 "keyName"，是個字符串。
+                支持的鍵名:
+                        F1              功能鍵 1
+                        F2              功能鍵 2
                         ...
-                        F12             功能键 12
+                        F12             功能鍵 12
 
-                        ' '             空格 (没有引号)
-                        !               感叹号
-                        ...             任何其他 ASCII 可显示字符
-                        ~               波浪号
+                        ' '             空格 (沒有引號)
+                        !               感歎號
+                        ...             任何其他 ASCII 可顯示字符
+                        ~               波浪號
 
-                        X               不能识别的键
+                        X               不能識別的鍵
 
-                键名前面可能有 "C"、"S" 和/或 "M"，分别代表 Control、Shift 和
-                Meta (Alt) 修饰符。如果有的话，修饰符和键名以连字符分隔。例如:
+                鍵名前面可能有 "C"、"S" 和/或 "M"，分別代表 Control、Shift 和
+                Meta (Alt) 修飾符。如果有的話，修飾符和鍵名以連字符分隔。例如:
                 "C-F2"。
-                ASCII 字符是 2.1 版本新出现的。
+                ASCII 字符是 2.1 版本新出現的。
 
 keyAtPos keyName lnum/col
-                类似于 "keyCommand"，同时报告光标所在的行号和列号。
-                2.1 版本新出现。
+                類似於 "keyCommand"，同時報告光標所在的行號和列號。
+                2.1 版本新出現。
 
-killed          用户删除或者清除了一个文件，而缓冲区的评注也已经被删除。此缓冲
-                区的 bufID 已经无效。只有对 IDE 已经给出 bufID 的文件才有效。
+killed          用戶刪除或者清除了一個文件，而緩衝區的評注也已經被刪除。此緩衝
+                區的 bufID 已經無效。只有對 IDE 已經給出 bufID 的文件才有效。
 
 newDotAndMark off off
-                报告光标在缓冲区的 "off" 字节位置。只有在 "keyCommand" 事件之
-                前发送。
+                報告光標在緩衝區的 "off" 字節位置。只有在 "keyCommand" 事件之
+                前發送。
 
-quit            没有实现。
+quit            沒有實現。
 
 remove off len
-                从 "off" 位置开始长度为 "len" 的文本在 Vim 里被删除。只有在允
-                许的时候才发送。见 "startDocumentListen"。
+                從 "off" 位置開始長度為 "len" 的文本在 Vim 裡被刪除。只有在允
+                許的時候才發送。見 "startDocumentListen"。
 
-revert          没有实现。
+revert          沒有實現。
 
-save            缓冲区被保存，现在已处于没有修改的状态。只有在允许的时候才发
-                送。见 "startDocumentListen"。
+save            緩衝區被保存，現在已處於沒有修改的狀態。只有在允許的時候才發
+                送。見 "startDocumentListen"。
 
-startupDone     编辑器完成启动工作，可以开始编辑文件。
-                2.1 版本新出现。
+startupDone     編輯器完成啟動工作，可以開始編輯文件。
+                2.1 版本新出現。
 
-unmodified      缓冲区现在处于未修改状态。只有在允许的时候才发送。见
+unmodified      緩衝區現在處於未修改狀態。只有在允許的時候才發送。見
                 "startDocumentListen"。
 
-version vers    报告接口实现的版本号。Vim 报告 "2.4" (包括引号)。
+version vers    報告接口實現的版本號。Vim 報告 "2.4" (包括引號)。
 
 
 6.6 特殊消息                                            <b class="vimtag"> <a name="nb-special">nb-special</a> </b>
 
-这些消息不遵循以上说明的消息格式。它们仍由换行符终止。
+這些消息不遵循以上說明的消息格式。它們仍由換行符終止。
 
 ACCEPT          不用。
 
-AUTH password   编辑器 -&gt; IDE: 编辑器发送给 IDE 的第一个消息。它提供套接字
-                服务器所需的密码。该密码由  <a href="starting.html#-nb">-nb</a>  参数提供。不需要引号！
+AUTH password   編輯器 -&gt; IDE: 編輯器發送給 IDE 的第一個消息。它提供套接字
+                服務器所需的密碼。該密碼由  <a href="starting.html#-nb">-nb</a>  參數提供。不需要引號！
 
-DISCONNECT      IDE -&gt; 编辑器: 终止连接。编辑器将会退出。IDE 应该只有在没有未
-                保存的改变的时候才发出此消息。
+DISCONNECT      IDE -&gt; 編輯器: 終止連接。編輯器將會退出。IDE 應該只有在沒有未
+                保存的改變的時候才發出此消息。
 
-DETACH          IDE -&gt; 编辑器: 终止连接，不退出编辑器。用于当 IDE 终止但不想关
-                闭编辑器的场合。2.1 版本新的特性。
+DETACH          IDE -&gt; 編輯器: 終止連接，不退出編輯器。用於當 IDE 終止但不想關
+                閉編輯器的場合。2.1 版本新的特性。
 
 REJECT          不用。
 
 
-6.7  协议错误信息                                       <b class="vimtag"> <a name="nb-protocol_errors">nb-protocol_errors</a> </b>
+6.7  協議錯誤信息                                       <b class="vimtag"> <a name="nb-protocol_errors">nb-protocol_errors</a> </b>
 
-这些错误发生意味着某个消息违反了协议。
+這些錯誤發生意味著某個消息違反了協議。
 <b class="vimtag"> <a name="E627">E627</a> </b> <b class="vimtag"> <a name="E628">E628</a> </b> <b class="vimtag"> <a name="E629">E629</a> </b> <b class="vimtag"> <a name="E632">E632</a> </b> <b class="vimtag"> <a name="E633">E633</a> </b> <b class="vimtag"> <a name="E634">E634</a> </b> <b class="vimtag"> <a name="E635">E635</a> </b> <b class="vimtag"> <a name="E636">E636</a> </b>
 <b class="vimtag"> <a name="E637">E637</a> </b> <b class="vimtag"> <a name="E638">E638</a> </b> <b class="vimtag"> <a name="E639">E639</a> </b> <b class="vimtag"> <a name="E640">E640</a> </b> <b class="vimtag"> <a name="E641">E641</a> </b> <b class="vimtag"> <a name="E642">E642</a> </b> <b class="vimtag"> <a name="E643">E643</a> </b> <b class="vimtag"> <a name="E644">E644</a> </b> <b class="vimtag"> <a name="E645">E645</a> </b> <b class="vimtag"> <a name="E646">E646</a> </b>
 <b class="vimtag"> <a name="E647">E647</a> </b> <b class="vimtag"> <a name="E648">E648</a> </b> <b class="vimtag"> <a name="E649">E649</a> </b> <b class="vimtag"> <a name="E650">E650</a> </b> <b class="vimtag"> <a name="E651">E651</a> </b> <b class="vimtag"> <a name="E652">E652</a> </b>
@@ -747,48 +747,48 @@ REJECT          不用。
 </pre><hr class="doubleline" /><pre>
 <h4>7. NetBeans 命令                                        <b class="vimtag"> <a name="netbeans-commands">netbeans-commands</a> </b></h4>
                                                         <b class="vimtag"> <a name=":nbstart">:nbstart</a> </b> <b class="vimtag"> <a name="E511">E511</a> </b> <b class="vimtag"> <a name="E838">E838</a> </b>
-:nbs[tart] <code class="special">{connection}</code> 使用 <code class="special">{connection}</code> 作为套接字连接参数，启动新的
-                        NetBeans 会话。<code class="special">{connection}</code> 的格式见
-                         <a href="netbeans.html#netbeans-parameters">netbeans-parameters</a> 。在任何时候，用户可以用以下命令
-                        检查 netbeans 套接字是否已连接:
+:nbs[tart] <code class="special">{connection}</code> 使用 <code class="special">{connection}</code> 作為套接字連接參數，啟動新的
+                        NetBeans 會話。<code class="special">{connection}</code> 的格式見
+                         <a href="netbeans.html#netbeans-parameters">netbeans-parameters</a> 。在任何時候，用戶可以用以下命令
+                        檢查 netbeans 套接字是否已連接:
                         ':echo has("netbeans_enabled")'
 
                                                         <b class="vimtag"> <a name=":nbclose">:nbclose</a> </b>
-:nbc[lose]              关闭当前 NetBeans 会话。删除所有放置的标号。
+:nbc[lose]              關閉當前 NetBeans 會話。刪除所有放置的標號。
 
                                                         <b class="vimtag"> <a name=":nbkey">:nbkey</a> </b>
-:nb[key] <code class="special">{key}</code>          把 <code class="special">{key}</code> 传递给 Vim 控制器进行处理。用 specialKeys 命
-                        令安装了热键后，此命令用来生成热键的相应信息发给 Vim
+:nb[key] <code class="special">{key}</code>          把 <code class="special">{key}</code> 傳遞給 Vim 控制器進行處理。用 specialKeys 命
+                        令安裝了熱鍵後，此命令用來生成熱鍵的相應信息發給 Vim
                         控制器。
-                        此命令也可用来给 Vim 控制器传送任何文本。例如，Pyclewn
-                        用它来生成以 Vim 用户命令形式出现的完整的 gdb 命令集。
+                        此命令也可用來給 Vim 控制器傳送任何文本。例如，Pyclewn
+                        用它來生成以 Vim 用戶命令形式出現的完整的 gdb 命令集。
                         生成的依次是 newDotAndMark、keyCommand 和 keyAtPos 事
                         件。
 
 
 </pre><hr class="doubleline" /><pre>
-<h4>8. 已知问题                                             <b class="vimtag"> <a name="netbeans-problems">netbeans-problems</a> </b></h4>
-不可能有 NUL 字节。编辑器到 IDE 的转换使得它们成为 NL 字符。反之，IDE -&gt; 编辑
-器却不能插入它们。
+<h4>8. 已知問題                                             <b class="vimtag"> <a name="netbeans-problems">netbeans-problems</a> </b></h4>
+不可能有 NUL 字節。編輯器到 IDE 的轉換使得它們成為 NL 字符。反之，IDE -&gt; 編輯
+器卻不能插入它們。
 
-NetBeans 会话可以在终端运行的 Vim 中启动，然后在运行了  <a href="gui_x11.html#:gui">:gui</a>  命令后切换到 GUI
-环境中继续使用。此时 NetBeans 评注定义的高亮可能在 ":gui" 命令执行的 .gvimrc
-中被清除，因为该文件会载入 colorscheme，后者会执行命令 ":highlight clear"。
-2.5 版本新出现。
+NetBeans 會話可以在終端運行的 Vim 中啟動，然後在運行了  <a href="gui_x11.html#:gui">:gui</a>  命令後切換到 GUI
+環境中繼續使用。此時 NetBeans 評注定義的高亮可能在 ":gui" 命令執行的 .gvimrc
+中被清除，因為該文件會載入 colorscheme，後者會執行命令 ":highlight clear"。
+2.5 版本新出現。
 
 </pre><hr class="doubleline" /><pre>
-<h4>9. 调试 NetBeans 协议                                   <b class="vimtag"> <a name="netbeans-debugging">netbeans-debugging</a> </b></h4>
-要调试 Vim 协议，必须在编译 Vim 时加入调试支持和 NetBeans 调试支持。关于 Vim
-编译和如果打开调试支持的操作，请见  <a href="netbeans.html#netbeans-configure">netbeans-configure</a> 。
+<h4>9. 調試 NetBeans 協議                                   <b class="vimtag"> <a name="netbeans-debugging">netbeans-debugging</a> </b></h4>
+要調試 Vim 協議，必須在編譯 Vim 時加入調試支持和 NetBeans 調試支持。關於 Vim
+編譯和如果打開調試支持的操作，請見  <a href="netbeans.html#netbeans-configure">netbeans-configure</a> 。
 
-运行 Vim 时，设置以下环境变量:
+運行 Vim 時，設置以下環境變量:
 
     export SPRO_GVIM_DEBUG=netbeans.log
     export SPRO_GVIM_DLEVEL=0xffffffff
 
-Vim 就会把所有收到和发送的 NetBeans 协议信息记录到 netbeans.log 文件中。
+Vim 就會把所有收到和發送的 NetBeans 協議信息記錄到 netbeans.log 文件中。
 
-一个会话后，netbeans.log 的内容大致如下:
+一個會話後，netbeans.log 的內容大致如下:
 Tue May 20 17:19:27 2008
 EVT: 0:startupDone=0
 CMD 1: (1) create
@@ -808,84 +808,84 @@ CMD 9: (2) initDone
 
 
 </pre><hr class="doubleline" /><pre>
-<h4>10. NetBeans 外部编辑器</h4>
-注 意: 以下信息已经过时！只对还在使用旧版的 NetBeans 的人有用。
+<h4>10. NetBeans 外部編輯器</h4>
+注 意: 以下信息已經過時！只對還在使用舊版的 NetBeans 的人有用。
 
 
-10.1. 下载 NetBeans                             <b class="vimtag"> <a name="netbeans-download">netbeans-download</a> </b>
+10.1. 下載 NetBeans                             <b class="vimtag"> <a name="netbeans-download">netbeans-download</a> </b>
 
-NetBeans IDE 可以从 netbeans.org 下载。你可以下载发行版，源代码，或者用 CVS 得
-到当前的源代码树。如果你选择下载源代码，遵照 netbeans.org 的指示来编译
+NetBeans IDE 可以從 netbeans.org 下載。你可以下載發行版，源代碼，或者用 CVS 得
+到當前的源代碼樹。如果你選擇下載源代碼，遵照 netbeans.org 的指示來編譯
 NetBeans。
 
-视乎你下载的 NetBeans 版本，你可能需要更多的工作: 下载所需的外部编辑器模块。这
-是使 NetBeans 支持 gvim (或者 xemacs :-)) 的模块。如果你的 NetBeans 不带之，参
-见 http://externaleditor.netbeans.org 了解如何下载该模块的详情。
+視乎你下載的 NetBeans 版本，你可能需要更多的工作: 下載所需的外部編輯器模塊。這
+是使 NetBeans 支持 gvim (或者 xemacs :-)) 的模塊。如果你的 NetBeans 不帶之，參
+見 http://externaleditor.netbeans.org 瞭解如何下載該模塊的詳情。
 
-关于 C、C++ 和 Fortran 的支持，你需要得到 cpp 模块。关于这个模块的信息，参见
+關於 C、C++ 和 Fortran 的支持，你需要得到 cpp 模塊。關於這個模塊的信息，參見
 http://cpp.netbeans.org。
 
-你已可以从 Sun Microsystems, Inc 下载 30 天免费测试的 Sun ONE Studio。详情见
+你已可以從 Sun Microsystems, Inc 下載 30 天免費測試的 Sun ONE Studio。詳情見
 http://www.sun.com。
 
 
-10.2. NetBeans 键盘映射                         <b class="vimtag"> <a name="netbeans-keybindings">netbeans-keybindings</a> </b>
+10.2. NetBeans 鍵盤映射                         <b class="vimtag"> <a name="netbeans-keybindings">netbeans-keybindings</a> </b>
 
-Vim 理解执行 NetBeans 命令的键盘映射。它们通常是功能键的组合。要执行某个
-NetBeans 命令，用户必须按 Pause 键，再按 NetBeans 的键盘映射。比如，要编译
-Java 文件，NetBeans 的键盘映射是 "F9"。所以，在 vim 里，按 "Pause F9" 起到编译
-java 文件的功能。要切换当前行的断点状态，按 "Pause Shift F8"。
+Vim 理解執行 NetBeans 命令的鍵盤映射。它們通常是功能鍵的組合。要執行某個
+NetBeans 命令，用戶必須按 Pause 鍵，再按 NetBeans 的鍵盤映射。比如，要編譯
+Java 文件，NetBeans 的鍵盤映射是 "F9"。所以，在 vim 裡，按 "Pause F9" 起到編譯
+java 文件的功能。要切換當前行的斷點狀態，按 "Pause Shift F8"。
 
-Pause 键是功能键 21。如果你没有可用的 Pause 键，而想用 F8 代替，用: 
+Pause 鍵是功能鍵 21。如果你沒有可用的 Pause 鍵，而想用 F8 代替，用: 
 <code class="example"></code>
 <code class="example">        :map &lt;F8&gt; &lt;F21&gt;</code>
 <code class="example"></code>
-外部编辑器模块动态地读取 NetBeans 的键盘映射，所以 vim 应该总能得到最新的键盘
-映射，即使在 NetBeans 改变它们以后。
+外部編輯器模塊動態地讀取 NetBeans 的鍵盤映射，所以 vim 應該總能得到最新的鍵盤
+映射，即使在 NetBeans 改變它們以後。
 
 
-10.3. 为 Vim 准备 NetBeans                      <b class="vimtag"> <a name="netbeans-preparation">netbeans-preparation</a> </b>
+10.3. 為 Vim 準備 NetBeans                      <b class="vimtag"> <a name="netbeans-preparation">netbeans-preparation</a> </b>
 
-要使得 NetBeans 支持 vim，NetBeans 外部编辑器模块必须已经调入并且能使用。如果
-你使用 Sun ONE Studio Enterprise Edition，那么这一模块应该已经能用了。如果你用
-的是 NetBeans 发行版，你需要自己去找这个开源的模块。
+要使得 NetBeans 支持 vim，NetBeans 外部編輯器模塊必須已經調入並且能使用。如果
+你使用 Sun ONE Studio Enterprise Edition，那麼這一模塊應該已經能用了。如果你用
+的是 NetBeans 發行版，你需要自己去找這個開源的模塊。
 
-你可以检查该模块是不是已经存在。打开 Tools-&gt;Options 对话框，找到 "Modules" 列
-表 (IDE Configuration-&gt;System-&gt;Modules)。如果该列表包含 "External Editor"，检
-查一下它是不是被许可使用了 ("Enabled" 属性应该为 "True")。如果你的列表里没有这
-一项，见下一节  <a href="netbeans.html#obtaining-exted">obtaining-exted</a> 。
+你可以檢查該模塊是不是已經存在。打開 Tools-&gt;Options 對話框，找到 "Modules" 列
+表 (IDE Configuration-&gt;System-&gt;Modules)。如果該列表包含 "External Editor"，檢
+查一下它是不是被許可使用了 ("Enabled" 屬性應該為 "True")。如果你的列表裡沒有這
+一項，見下一節  <a href="netbeans.html#obtaining-exted">obtaining-exted</a> 。
 
 
-10.4. 取得外部编辑器模块                        <b class="vimtag"> <a name="obtaining-exted">obtaining-exted</a> </b>
+10.4. 取得外部編輯器模塊                        <b class="vimtag"> <a name="obtaining-exted">obtaining-exted</a> </b>
 
-有两个方法可以取得外部编辑器模块。最简单的方式是使用 NetBeans 更新中心，下载并
-安装该模块。不幸的是，有的版本的更新中心找不到这个模块。如果这样不行，你需要自
-己下载源代码并编译该模块。我会试图使这个模块出现在 NetBeans 更新中心的，这样自
-己编译就不需要了。也可查看 http://externaleditor.netbeans.org，看看有无取得的
+有兩個方法可以取得外部編輯器模塊。最簡單的方式是使用 NetBeans 更新中心，下載並
+安裝該模塊。不幸的是，有的版本的更新中心找不到這個模塊。如果這樣不行，你需要自
+己下載源代碼並編譯該模塊。我會試圖使這個模塊出現在 NetBeans 更新中心的，這樣自
+己編譯就不需要了。也可查看 http://externaleditor.netbeans.org，看看有無取得的
 方法。
 
-要通过 CVS 下载外部编辑器的源码并自己编译，见
-http://externaleditor.netbeans.org 和 http://www.netbeans.org。不幸的是，这个
-方法并不是很简单。
+要通過 CVS 下載外部編輯器的源碼並自己編譯，見
+http://externaleditor.netbeans.org 和 http://www.netbeans.org。不幸的是，這個
+方法並不是很簡單。
 
 
-10.5. 设置 NetBeans 以运行 Vim                  <b class="vimtag"> <a name="netbeans-setup">netbeans-setup</a> </b>
+10.5. 設置 NetBeans 以運行 Vim                  <b class="vimtag"> <a name="netbeans-setup">netbeans-setup</a> </b>
 
-假设你已经根据  <a href="netbeans.html#netbeans-preparation">netbeans-preparation</a>  调入和允许使用 NetBeans 外部编辑器模块，
-你只需要检查一下 gvim 命令行已经为你的环境正确配置好了。
+假設你已經根據  <a href="netbeans.html#netbeans-preparation">netbeans-preparation</a>  調入和允許使用 NetBeans 外部編輯器模塊，
+你只需要檢查一下 gvim 命令行已經為你的環境正確配置好了。
 
-打开 Tools-&gt;Options 对话框，打开 Editing 种类，选择 External Editor。右边的窗
-格应该包含 Properties 和 Expert 页。在 Properties 页里，确保 "Editor Type" 设
-为 "Vim"。在 Expert 页里确保 "Vim Command" 是正确的。
+打開 Tools-&gt;Options 對話框，打開 Editing 種類，選擇 External Editor。右邊的窗
+格應該包含 Properties 和 Expert 頁。在 Properties 頁裡，確保 "Editor Type" 設
+為 "Vim"。在 Expert 頁裡確保 "Vim Command" 是正確的。
 
-如果你要改变 "Vim Command"，要小心。必须提供有些命令选项，以便正确的建立连接。
-你可以改变命令名字本身，但也就那么多了。如果你的 gvim 可以在 $PATH 里找到，那
-么 Vim Command 就可以用 "gvim" 开始。如果你不想从 $PATH 里搜索 gvim，那么就提
-供完整的路径名。这样，你就可以对 NetBeans 打开的任何源代码使用 gvim 编辑了。
+如果你要改變 "Vim Command"，要小心。必須提供有些命令選項，以便正確的建立連接。
+你可以改變命令名字本身，但也就那麼多了。如果你的 gvim 可以在 $PATH 裡找到，那
+麼 Vim Command 就可以用 "gvim" 開始。如果你不想從 $PATH 裡搜索 gvim，那麼就提
+供完整的路徑名。這樣，你就可以對 NetBeans 打開的任何源代碼使用 gvim 編輯了。
 
-如果有些文件在 gvim 里打开，有些 (有着不同后缀) 则使用缺省的 NetBeans 编辑器，
-那你就需要检查 Expert 页的 MIME Type 属性。NetBeans 面向 MIME 类型，而外部编辑
-器只会使用这个属性所指定的 MIME 类型。
+如果有些文件在 gvim 裡打開，有些 (有著不同後綴) 則使用缺省的 NetBeans 編輯器，
+那你就需要檢查 Expert 頁的 MIME Type 屬性。NetBeans 面向 MIME 類型，而外部編輯
+器只會使用這個屬性所指定的 MIME 類型。
 
 
  vim:tw=78:ts=8:ft=help:norl:

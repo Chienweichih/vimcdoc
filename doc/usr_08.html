@@ -1,17 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>VIM: usr_08</title>
 <link rel="stylesheet" href="vim-stylesheet.css" type="text/css">
 </head>
 <body>
 <div id=banner>
-<a href="help.html">帮助总览</a> &middot;
-<a href="quickref.html">快速参考</a> &middot;
+<a href="help.html">幫助總覽</a> &middot;
+<a href="quickref.html">快速參考</a> &middot;
 <a href="index.html">命令索引</a> &middot;
-<a href="usr_toc.html">用户手册</a> &middot;
-<a href="help.html#reference_toc">参考手册</a>
+<a href="usr_toc.html">用戶手冊</a> &middot;
+<a href="help.html#reference_toc">參考手冊</a>
 </div>
 
 <div id=outer>
@@ -19,36 +19,36 @@
 <pre>
 <b class="vimtag"> <a name="usr_08.txt">usr_08.txt</a> </b>    For Vim version 8.0.  最近更新: 2006年12月
 
-                     <code class="vim">VIM 用户手册 - by Bram Moolenaar</code>
-                     <code class="vim">译者</code>: Nek_in http://vimcdoc.sf.net
+                     <code class="vim">VIM 用戶手冊 - by Bram Moolenaar</code>
+                     <code class="vim">譯者</code>: Nek_in http://vimcdoc.sf.net
 
                           分割窗口
 
 
-显示两个不同的文件；或者同时显示一个文件的两个不同地方；又或者并排比较两个文
-件。这一切都可以通过分割窗口实现。
+顯示兩個不同的文件；或者同時顯示一個文件的兩個不同地方；又或者並排比較兩個文
+件。這一切都可以通過分割窗口實現。
 
  <a href="usr_08.html#08.1">08.1</a>   分割窗口
- <a href="usr_08.html#08.2">08.2</a>   用另一个文件分割窗口
+ <a href="usr_08.html#08.2">08.2</a>   用另一個文件分割窗口
  <a href="usr_08.html#08.3">08.3</a>   窗口大小
  <a href="usr_08.html#08.4">08.4</a>   垂直分割
- <a href="usr_08.html#08.5">08.5</a>   移动窗口
- <a href="usr_08.html#08.6">08.6</a>   对所有窗口执行命令
- <a href="usr_08.html#08.7">08.7</a>   用 vimdiff 显示文件差异
- <a href="usr_08.html#08.8">08.8</a>   杂项
- <a href="usr_08.html#08.9">08.9</a>   标签页
+ <a href="usr_08.html#08.5">08.5</a>   移動窗口
+ <a href="usr_08.html#08.6">08.6</a>   對所有窗口執行命令
+ <a href="usr_08.html#08.7">08.7</a>   用 vimdiff 顯示文件差異
+ <a href="usr_08.html#08.8">08.8</a>   雜項
+ <a href="usr_08.html#08.9">08.9</a>   標籤頁
 
      下一章:  <a href="usr_09.html#usr_09.txt">usr_09.txt</a>   使用 GUI 版本
-     前一章:  <a href="usr_07.html#usr_07.txt">usr_07.txt</a>   编辑多个文件
-       目录:  <a href="usr_toc.html#usr_toc.txt">usr_toc.txt</a> 
+     前一章:  <a href="usr_07.html#usr_07.txt">usr_07.txt</a>   編輯多個文件
+       目錄:  <a href="usr_toc.html#usr_toc.txt">usr_toc.txt</a> 
 
 </pre><hr class="doubleline" /><pre>
 <h4><b class="vimtag"> <a name="08.1">08.1</a> </b>  分割窗口</h4>
-打开新窗口最简单的命令如下:
+打開新窗口最簡單的命令如下:
 
 <code class="example">        :split</code>
 <code class="example"></code>
-这个命令把屏幕分解成两个窗口并把光标置于上面的窗口中:
+這個命令把屏幕分解成兩個窗口並把光標置於上面的窗口中:
 
         +----------------------------------+
         |/* file one.c */                  |
@@ -61,42 +61,42 @@
         |                                  |
         +----------------------------------+
 
-你可以看到显示同一个文件的两个窗口。带 "====" 的行是状态条，用来显示它上面的窗
-口的信息。(在实际的屏幕上，状态条用反色显示)
-    这两个窗口允许你同时显示一个文件的两个部分。例如，你可以让上面的窗口显示变
-量定义而下面的窗口显示使用这些变量的代码。
+你可以看到顯示同一個文件的兩個窗口。帶 "====" 的行是狀態條，用來顯示它上面的窗
+口的信息。(在實際的屏幕上，狀態條用反色顯示)
+    這兩個窗口允許你同時顯示一個文件的兩個部分。例如，你可以讓上面的窗口顯示變
+量定義而下面的窗口顯示使用這些變量的代碼。
 
-<code class="keystroke">CTRL-W</code> w 命令可以用于在窗口间跳转。如果你在上面的窗口，它会跳转到下面的窗口，
-如果你在下面的窗口，它会跳转到上面的窗口。(<code class="keystroke">CTRL-W</code> <code class="keystroke">CTRL-W</code> 可以完成相同的功能这
-是为了避免你有时按第二次的时候从 CTRL 键上缩手晚了。)
+<code class="keystroke">CTRL-W</code> w 命令可以用於在窗口間跳轉。如果你在上面的窗口，它會跳轉到下面的窗口，
+如果你在下面的窗口，它會跳轉到上面的窗口。(<code class="keystroke">CTRL-W</code> <code class="keystroke">CTRL-W</code> 可以完成相同的功能這
+是為了避免你有時按第二次的時候從 CTRL 鍵上縮手晚了。)
 
 
-关 闭 窗 口
+關 閉 窗 口
 
-以下命令用于关闭窗口:
+以下命令用於關閉窗口:
 
 <code class="example">        :close</code>
 <code class="example"></code>
-实际上，任何退出编辑的命令都可以关闭窗口，像 ":quit" 和 "ZZ" 等。但 "close" 可
-以避免你在剩下一个窗口的时候不小心退出 Vim 了。
+實際上，任何退出編輯的命令都可以關閉窗口，像 ":quit" 和 "ZZ" 等。但 "close" 可
+以避免你在剩下一個窗口的時候不小心退出 Vim 了。
 
 
-关 闭 所 有 其 它 窗 口
+關 閉 所 有 其 它 窗 口
 
-如果你已经打开了一整套窗口，但现在只想编辑其中一个，如下命令可以完成这个功能:
+如果你已經打開了一整套窗口，但現在只想編輯其中一個，如下命令可以完成這個功能:
 
 <code class="example">        :only</code>
 <code class="example"></code>
-这个命令关闭除当前窗口外的所有窗口。如果要关闭的窗口中有一个没有存盘，Vim 会显
-示一个错误信息，并且那个窗口不会被关闭。
+這個命令關閉除當前窗口外的所有窗口。如果要關閉的窗口中有一個沒有存盤，Vim 會顯
+示一個錯誤信息，並且那個窗口不會被關閉。
 
 </pre><hr class="doubleline" /><pre>
-<h4><b class="vimtag"> <a name="08.2">08.2</a> </b>  用另一个文件分割窗口</h4>
-下面命令打开另一个窗口并用该窗口编辑另一个指定的文件:
+<h4><b class="vimtag"> <a name="08.2">08.2</a> </b>  用另一個文件分割窗口</h4>
+下面命令打開另一個窗口並用該窗口編輯另一個指定的文件:
 
 <code class="example">        :split two.c</code>
 <code class="example"></code>
-如果你在编辑 one.c，则命令执行的结果是:
+如果你在編輯 one.c，則命令執行的結果是:
 
         +----------------------------------+
         |/* file two.c */                  |
@@ -109,59 +109,59 @@
         |                                  |
         +----------------------------------+
 
-要打开窗口编辑一个新文件，可以使用如下命令:
+要打開窗口編輯一個新文件，可以使用如下命令:
 
 <code class="example">        :new</code>
 <code class="example"></code>
-你可以重复使用 ":split" 和 ":new" 命令建立任意多的窗口。
+你可以重複使用 ":split" 和 ":new" 命令建立任意多的窗口。
 
 </pre><hr class="doubleline" /><pre>
 <h4><b class="vimtag"> <a name="08.3">08.3</a> </b>  窗口大小</h4>
-:split 命令可以接受计数前缀。如果指定了这个前缀，这个数将作为窗口的高度。例如
-如下命令可以打开一个三行的窗口并编辑文件 alpha.c:
+:split 命令可以接受計數前綴。如果指定了這個前綴，這個數將作為窗口的高度。例如
+如下命令可以打開一個三行的窗口並編輯文件 alpha.c:
 
 <code class="example">        :3split alpha.c</code>
 <code class="example"></code>
-对于已经打开的窗口，你可以用有几种方法改变它的大小。如果你有鼠标，很简单: 把鼠
-标指针移到分割两个窗口的状态栏上，上下拖动即可。
+對於已經打開的窗口，你可以用有幾種方法改變它的大小。如果你有鼠標，很簡單: 把鼠
+標指針移到分割兩個窗口的狀態欄上，上下拖動即可。
 
-要扩大窗口:
+要擴大窗口:
 
 <code class="example">        CTRL-W +</code>
 <code class="example"></code>
-要缩小窗口:
+要縮小窗口:
 
 <code class="example">        CTRL-W -</code>
 <code class="example"></code>
-这两个命令接受计数前缀用于指定扩大和缩小的行数。所以 "4 <code class="keystroke">CTRL-W</code> +" 会使窗口增高
+這兩個命令接受計數前綴用於指定擴大和縮小的行數。所以 "4 <code class="keystroke">CTRL-W</code> +" 會使窗口增高
 4 行。
 
-要把一个窗口设置为指定的高度，可以用这个命令:
+要把一個窗口設置為指定的高度，可以用這個命令:
 
 <code class="example">        {height}CTRL-W _</code>
 <code class="example"></code>
-就是先输入一个数值，然后输入 <code class="keystroke">CTRL-W</code> 和一个下划线 (在美式英语键盘中就是 Shift
+就是先輸入一個數值，然後輸入 <code class="keystroke">CTRL-W</code> 和一個下劃線 (在美式英語鍵盤中就是 Shift
 加上 "-")。
-    要把一个窗口扩展到尽可能大，可以使用无计数前缀的 <code class="keystroke">CTRL-W</code> _ 命令。
+    要把一個窗口擴展到盡可能大，可以使用無計數前綴的 <code class="keystroke">CTRL-W</code> _ 命令。
 
 
-使 用 鼠 标
+使 用 鼠 標
 
-在 Vim 中，你可以用键盘很快完成很多工作。但很不幸，改变窗口大小要敲不少键。在
-这种情况下，使用鼠标会更快一些。把鼠标指针移到状态条上，按住左键并拖动。状态条
-会随之移动，这会使一个窗口更大一个更小。
+在 Vim 中，你可以用鍵盤很快完成很多工作。但很不幸，改變窗口大小要敲不少鍵。在
+這種情況下，使用鼠標會更快一些。把鼠標指針移到狀態條上，按住左鍵並拖動。狀態條
+會隨之移動，這會使一個窗口更大一個更小。
 
 
-选 项
+選 項
 
-<a href="options.html#'winheight'">'winheight'</a> 选项设置最小的期望窗口高度而 <a href="options.html#'winminheight'">'winminheight'</a> 选项设置最小的 "硬性"
+<a href="options.html#'winheight'">'winheight'</a> 選項設置最小的期望窗口高度而 <a href="options.html#'winminheight'">'winminheight'</a> 選項設置最小的 "硬性"
 高度。
-    同样，<a href="options.html#'winwidth'">'winwidth'</a> 设置最小期望宽度而 <a href="options.html#'winminwidth'">'winminwidth'</a> 设置最小硬性宽度。
-    <a href="options.html#'equalalways'">'equalalways'</a> 选项使所有的窗口在关闭或者打开新窗口的时候总保持相同大小。
+    同樣，<a href="options.html#'winwidth'">'winwidth'</a> 設置最小期望寬度而 <a href="options.html#'winminwidth'">'winminwidth'</a> 設置最小硬性寬度。
+    <a href="options.html#'equalalways'">'equalalways'</a> 選項使所有的窗口在關閉或者打開新窗口的時候總保持相同大小。
 
 </pre><hr class="doubleline" /><pre>
 <h4><b class="vimtag"> <a name="08.4">08.4</a> </b>  垂直分割</h4>
-":split" 命令在当前窗口的上面建立窗口。要在窗口左边打开新窗口，用这个命令:
+":split" 命令在當前窗口的上面建立窗口。要在窗口左邊打開新窗口，用這個命令:
 
 <code class="example">        :vsplit</code>
 <code class="example"></code>
@@ -169,7 +169,7 @@
 
 <code class="example">        :vsplit two.c</code>
 <code class="example"></code>
-这个命令的结果如下:
+這個命令的結果如下:
 
         +--------------------------------------+
         |/* file two.c */   |/* file one.c */  |
@@ -180,37 +180,37 @@
         |                                      |
         +--------------------------------------+
 
-实际中，中间的竖线会以反色显示。这称为垂直分割线。它左右分割一个窗口。
+實際中，中間的豎線會以反色顯示。這稱為垂直分割線。它左右分割一個窗口。
 
-还有一个 "vnew" 命令，用于打开一个垂直分割的新窗口。还有一种方法是:
+還有一個 "vnew" 命令，用於打開一個垂直分割的新窗口。還有一種方法是:
 
 <code class="example">        :vertical new</code>
 
-"vertical" 命令可以放在任何分割窗口的命令的前面。这会在分割窗口的时候用垂直分
-割取代水平分割。(如果命令不分割窗口，这个前缀不起作用)。
+"vertical" 命令可以放在任何分割窗口的命令的前面。這會在分割窗口的時候用垂直分
+割取代水平分割。(如果命令不分割窗口，這個前綴不起作用)。
 
 
-在 窗 口 间 跳 转
+在 窗 口 間 跳 轉
 
-由于你可以用垂直分割和水平分割命令打开任意多的窗口，你就几乎能够任意设置窗口的
-布局。接着，你可以用下面的命令在窗口之间跳转:
+由於你可以用垂直分割和水平分割命令打開任意多的窗口，你就幾乎能夠任意設置窗口的
+佈局。接著，你可以用下面的命令在窗口之間跳轉:
 
-        <code class="keystroke">CTRL-W</code> h        跳转到左边的窗口
-        <code class="keystroke">CTRL-W</code> j        跳转到下面的窗口
-        <code class="keystroke">CTRL-W</code> k        跳转到上面的窗口
-        <code class="keystroke">CTRL-W</code> l        跳转到右边的窗口
+        <code class="keystroke">CTRL-W</code> h        跳轉到左邊的窗口
+        <code class="keystroke">CTRL-W</code> j        跳轉到下面的窗口
+        <code class="keystroke">CTRL-W</code> k        跳轉到上面的窗口
+        <code class="keystroke">CTRL-W</code> l        跳轉到右邊的窗口
 
-        <code class="keystroke">CTRL-W</code> t        跳转到最顶上的窗口
-        <code class="keystroke">CTRL-W</code> b        跳转到最底下的窗口
+        <code class="keystroke">CTRL-W</code> t        跳轉到最頂上的窗口
+        <code class="keystroke">CTRL-W</code> b        跳轉到最底下的窗口
 
-你可能已经<code class="note">注意</code>到这里使用移动光标一样的命令用于跳转窗口。如果你喜欢，改用方向
-键也行。
-    还有其它命令可以跳转到别的窗口，参见:  <a href="quickref.html#Q_wi">Q_wi</a> 。
+你可能已經<code class="note">注意</code>到這裡使用移動光標一樣的命令用於跳轉窗口。如果你喜歡，改用方向
+鍵也行。
+    還有其它命令可以跳轉到別的窗口，參見:  <a href="quickref.html#Q_wi">Q_wi</a> 。
 
 </pre><hr class="doubleline" /><pre>
-<h4><b class="vimtag"> <a name="08.5">08.5</a> </b>  移动窗口</h4>
-你已经分割了一些窗口，但现在的位置不正确。这时，你需要一个命令用于移动窗口。
-例如，你已经打开了三个窗口，像这样:
+<h4><b class="vimtag"> <a name="08.5">08.5</a> </b>  移動窗口</h4>
+你已經分割了一些窗口，但現在的位置不正確。這時，你需要一個命令用於移動窗口。
+例如，你已經打開了三個窗口，像這樣:
 
         +----------------------------------+
         |/* file two.c */                  |
@@ -227,14 +227,14 @@
         |                                  |
         +----------------------------------+
 
-显然，最后一个窗口应该在最上面。移动到那个窗口 (用 <code class="keystroke">CTRL-W</code> w) 并输入如下命令:
+顯然，最後一個窗口應該在最上面。移動到那個窗口 (用 <code class="keystroke">CTRL-W</code> w) 並輸入如下命令:
 
 <code class="example">        CTRL-W K</code>
 <code class="example"></code>
-这里使用大写的 K。这样窗口将被移到最上面。你可以<code class="note">注意</code>到，这里又用 K 表示向上移
-动了。
-    如果你用的是垂直分割，<code class="keystroke">CTRL-W</code> K 会使当前窗口移动到上面并扩展到整屏的宽度。
-假设你的布局如下:
+這裡使用大寫的 K。這樣窗口將被移到最上面。你可以<code class="note">注意</code>到，這裡又用 K 表示向上移
+動了。
+    如果你用的是垂直分割，<code class="keystroke">CTRL-W</code> K 會使當前窗口移動到上面並擴展到整屏的寬度。
+假設你的佈局如下:
 
         +-------------------------------------------+
         |/* two.c */  |/* three.c */  |/* one.c */  |
@@ -247,7 +247,7 @@
         |                                           |
         +-------------------------------------------+
 
-当你在中间的窗口 (three.c) 中使用 <code class="keystroke">CTRL-W</code> K 后，结果会是:
+當你在中間的窗口 (three.c) 中使用 <code class="keystroke">CTRL-W</code> K 後，結果會是:
 
         +-------------------------------------------+
         |/* three.c */                              |
@@ -260,46 +260,46 @@
         |                                           |
         +-------------------------------------------+
 
-还有三个相似的命令 (估计你已经猜出来了):
+還有三個相似的命令 (估計你已經猜出來了):
 
-        <code class="keystroke">CTRL-W</code> H        把当前窗口移到最左边
-        <code class="keystroke">CTRL-W</code> J        把当前窗口移到最下边
-        <code class="keystroke">CTRL-W</code> L        把当前窗口移到最右边
+        <code class="keystroke">CTRL-W</code> H        把當前窗口移到最左邊
+        <code class="keystroke">CTRL-W</code> J        把當前窗口移到最下邊
+        <code class="keystroke">CTRL-W</code> L        把當前窗口移到最右邊
 
 </pre><hr class="doubleline" /><pre>
-<h4><b class="vimtag"> <a name="08.6">08.6</a> </b>  对所有窗口执行命令</h4>
-你打开了几个窗口，现在你想退出 Vim，你可以分别关闭每一个窗口。更快的方法是:
+<h4><b class="vimtag"> <a name="08.6">08.6</a> </b>  對所有窗口執行命令</h4>
+你打開了幾個窗口，現在你想退出 Vim，你可以分別關閉每一個窗口。更快的方法是:
 
 <code class="example">        :qall</code>
 <code class="example"></code>
-这表示 "quit all" (全部退出)。如果任何一个窗口没有存盘，Vim 都不会退出。同时光
-标会自动跳到那个窗口，你可以用 ":write" 命令保存该文件或者 ":quit!" 放弃修改。
+這表示 "quit all" (全部退出)。如果任何一個窗口沒有存盤，Vim 都不會退出。同時光
+標會自動跳到那個窗口，你可以用 ":write" 命令保存該文件或者 ":quit!" 放棄修改。
 
-如果你知道有窗口被改了，而你想全部保存，则执行如下命令:
+如果你知道有窗口被改了，而你想全部保存，則執行如下命令:
 
 <code class="example">        :wall</code>
 <code class="example"></code>
-这表示 "write all" (全部保存)。但实际上，它只会保存修改过的文件。Vim 知道保存
-一个没有修改过的文件是没有意义的。
-    另外，还有 ":qall" 和 "wall" 的组合命令:
+這表示 "write all" (全部保存)。但實際上，它只會保存修改過的文件。Vim 知道保存
+一個沒有修改過的文件是沒有意義的。
+    另外，還有 ":qall" 和 "wall" 的組合命令:
 
 <code class="example">        :wqall</code>
 <code class="example"></code>
-这会保存所有修改过的文件并退出 Vim 。
-   最后，下面的命令由于退出 Vim 并放弃所有修改:
+這會保存所有修改過的文件並退出 Vim 。
+   最後，下面的命令由於退出 Vim 並放棄所有修改:
 
 <code class="example">        :qall!</code>
 <code class="example"></code>
-<code class="note">注意</code>，这个命令是不能撤销的。
+<code class="note">注意</code>，這個命令是不能撤銷的。
 
 
-为 所 有 的 参 数 打 开 窗 口
+為 所 有 的 參 數 打 開 窗 口
 
-要让 Vim 为每个文件打开一个窗口，可以使用 "-o" 参数:
+要讓 Vim 為每個文件打開一個窗口，可以使用 "-o" 參數:
 
 <code class="example">        vim -o one.txt two.txt three.txt</code>
 <code class="example"></code>
-这个结果会是:
+這個結果會是:
 
         +-------------------------------+
         |file one.txt                   |
@@ -314,175 +314,175 @@
         |                               |
         +-------------------------------+
 
-"-o" 参数用于垂直分割窗口。
-    如果 Vim 已经启动了，可以使用 ":all" 命令为参数列表中的每个文件打开一个窗
-口。":vertical all" 以垂直分割的方法打开窗口。
+"-o" 參數用於垂直分割窗口。
+    如果 Vim 已經啟動了，可以使用 ":all" 命令為參數列表中的每個文件打開一個窗
+口。":vertical all" 以垂直分割的方法打開窗口。
 
 </pre><hr class="doubleline" /><pre>
-<h4><b class="vimtag"> <a name="08.7">08.7</a> </b>  用 vimdiff 显示文件差异</h4>
-有一种特殊的启动 Vim 的方法可以用来显示两个文件的差异。让我们打开一个 "main.c"
-并插入一些字符。在设置了 <a href="options.html#'backup'">'backup'</a> 选项的情况下保存这个文件，以便产生 "main.c~"
-备份文件。
-    在命令行中输入如下命令: (不是在 Vim 中)
+<h4><b class="vimtag"> <a name="08.7">08.7</a> </b>  用 vimdiff 顯示文件差異</h4>
+有一種特殊的啟動 Vim 的方法可以用來顯示兩個文件的差異。讓我們打開一個 "main.c"
+並插入一些字符。在設置了 <a href="options.html#'backup'">'backup'</a> 選項的情況下保存這個文件，以便產生 "main.c~"
+備份文件。
+    在命令行中輸入如下命令: (不是在 Vim 中)
 
 <code class="example">        vimdiff main.c~ main.c</code>
 <code class="example"></code>
-Vim 会用垂直分割的方式打开两个文件。你只能看到你修改过的地方和上下几行的地方。
+Vim 會用垂直分割的方式打開兩個文件。你只能看到你修改過的地方和上下幾行的地方。
 
          VV                   VV
         +-----------------------------------------+
-        |+ +--123 lines: /* a|+ +--123 lines: /* a|  &lt;- 折叠
+        |+ +--123 lines: /* a|+ +--123 lines: /* a|  &lt;- 折疊
         |  text              |  text              |
         |  text              |  text              |
         |  text              |  text              |
-        |  text              |  changed text      |  &lt;- 修改过的行
+        |  text              |  changed text      |  &lt;- 修改過的行
         |  text              |  text              |
-        |  text              |  ------------------|  &lt;- 删除的行
+        |  text              |  ------------------|  &lt;- 刪除的行
         |  text              |  text              |
         |  text              |  text              |
         |  text              |  text              |
-        |+ +--432 lines: text|+ +--432 lines: text|  &lt;- 折叠
+        |+ +--432 lines: text|+ +--432 lines: text|  &lt;- 折疊
         |  ~                 |  ~                 |
         |  ~                 |  ~                 |
          <code class="badlink">main.c~==============main.c==============</code> 
         |                                         |
         +-----------------------------------------+
 
-(这幅图没有显示出高亮效果，可以使用 vimdiff 命令看到更好的效果)
+(這幅圖沒有顯示出高亮效果，可以使用 vimdiff 命令看到更好的效果)
 
-    那些没有修改的行会被折叠成一行，这称为 "关闭的折叠" (closed fold)。上图中
-由 "&lt;- 折叠" 标记的行就是一个用一行表示 123 行的折叠。这些行在两个文件中完全相
+    那些沒有修改的行會被折疊成一行，這稱為 "關閉的折疊" (closed fold)。上圖中
+由 "&lt;- 折疊" 標記的行就是一個用一行表示 123 行的折疊。這些行在兩個文件中完全相
 同。
-    标记为 "&lt;- 修改过的行" 被高亮显示，而增加的行被用另一种颜色表示。这可以很
-清楚地表示出两个文件间的不同。
-    被删除的行在 main.c 窗口中用 "---" 显示，如图中用 "&lt;- 删除的行" 标记的行。
-这些字符并不是真的存在。它们只是用于填充 main.c，以便与另一个窗口对齐。
+    標記為 "&lt;- 修改過的行" 被高亮顯示，而增加的行被用另一種顏色表示。這可以很
+清楚地表示出兩個文件間的不同。
+    被刪除的行在 main.c 窗口中用 "---" 顯示，如圖中用 "&lt;- 刪除的行" 標記的行。
+這些字符並不是真的存在。它們只是用於填充 main.c，以便與另一個窗口對齊。
 
 
-折 叠 栏
+折 疊 欄
 
-每个窗口在左边都有一个颜色略有不同的显示栏，图中标识为 "VV"。你会发现每个折叠
-在那个位置都有一个加号。把鼠标移到那里并按左键可以打开那个折起，从而让你看到里
-面的内容。
-    对于打开的折叠，折叠栏上会出现一个减号。如果你单击那个减号，折叠会被重新关
-闭。
-    当然，这只能在你有鼠标的情况下使用。如果你没有，可以用 "zo" 打开一个折叠。
-关闭使用 "zc"。
+每個窗口在左邊都有一個顏色略有不同的顯示欄，圖中標識為 "VV"。你會發現每個折疊
+在那個位置都有一個加號。把鼠標移到那裡並按左鍵可以打開那個折起，從而讓你看到裡
+面的內容。
+    對於打開的折疊，折疊欄上會出現一個減號。如果你單擊那個減號，折疊會被重新關
+閉。
+    當然，這只能在你有鼠標的情況下使用。如果你沒有，可以用 "zo" 打開一個折疊。
+關閉使用 "zc"。
 
 
-用 Vim 做 比 较
+用 Vim 做 比 較
 
-启动比较模式的另一种方法从 Vim 内部开始: 编辑 "main.c" 文件，然后分割窗口显示
-区别:
+啟動比較模式的另一種方法從 Vim 內部開始: 編輯 "main.c" 文件，然後分割窗口顯示
+區別:
 
 <code class="example">        :edit main.c</code>
 <code class="example">        :vertical diffsplit main.c~ </code>
 <code class="example"></code>
-":vertical" 命令使窗口用垂直的方式分割。如果你不写这个命令，结果会变成水平分
+":vertical" 命令使窗口用垂直的方式分割。如果你不寫這個命令，結果會變成水平分
 割。
 
-如果你有一个当前文件的补丁或者 diff 文件，你可以用第三种方法启动比较模式: 先编
-辑这个文件，然后告诉 Vim 补丁文件的名称:
+如果你有一個當前文件的補丁或者 diff 文件，你可以用第三種方法啟動比較模式: 先編
+輯這個文件，然後告訴 Vim 補丁文件的名稱:
 
 <code class="example">        :edit main.c</code>
 <code class="example">        :vertical diffpatch main.c diff</code>
 <code class="example"></code>
-警告: 补丁文件中必须仅包括为一个目标文件所做的补丁，否则你可能会得到一大堆错误
-信息。还可能有些你没打算打补丁的文件也被打了补丁。
-    补丁功能只改变内存中的文件备份，不会修改你硬盘上的文件 (除非你决定写入改
-动)。
+警告: 補丁文件中必須僅包括為一個目標文件所做的補丁，否則你可能會得到一大堆錯誤
+信息。還可能有些你沒打算打補丁的文件也被打了補丁。
+    補丁功能只改變內存中的文件備份，不會修改你硬盤上的文件 (除非你決定寫入改
+動)。
 
 
-滚 动 绑 定
+滾 動 綁 定
 
-当文件中有很多改动时，你可以用通常的方式滚动屏幕。Vim 会尽可能保持两个文件对
-齐，以便你可以并排看到文件的区别。
-    如果暂时想关闭这个特性，使用如下命令:
+當文件中有很多改動時，你可以用通常的方式滾動屏幕。Vim 會盡可能保持兩個文件對
+齊，以便你可以並排看到文件的區別。
+    如果暫時想關閉這個特性，使用如下命令:
 
 <code class="example">        :set noscrollbind</code>
 <code class="example"></code>
 <code class="example"></code>
-跳 转 到 修 改 的 地 方
+跳 轉 到 修 改 的 地 方
 
-如果你通过某种方法取消了折叠功能，可能很难找到有改动的地方。使用如下命令可以跳
-转到下一个修改点:
+如果你通過某種方法取消了折疊功能，可能很難找到有改動的地方。使用如下命令可以跳
+轉到下一個修改點:
 
 <code class="example">       ]c</code>
 <code class="example"></code>
-反向跳转为:
+反向跳轉為:
 
 <code class="example">        [c</code>
 <code class="example"></code>
-加上一个计数前缀可以跳得更远。
+加上一個計數前綴可以跳得更遠。
 
 
-消 除 差 异
+消 除 差 異
 
-你可以把文本从一个窗口移到另一个，并以此来消除差异，或者为其中一个文件中增加几
-行。Vim 有时可能无法及时更新高亮显示。要修正这种问题，使用如下命令:
+你可以把文本從一個窗口移到另一個，並以此來消除差異，或者為其中一個文件中增加幾
+行。Vim 有時可能無法及時更新高亮顯示。要修正這種問題，使用如下命令:
 
 <code class="example">        :diffupdate</code>
 <code class="example"></code>
-要消除差异，你可以把一个高亮显示的块从一个窗口移动到另一个窗口。以上面的
-"main.c" 和 "main.c~" 为例，把光标移到左边的窗口，在另一个窗口中被删除的行的位
-置，执行如下命令:
+要消除差異，你可以把一個高亮顯示的塊從一個窗口移動到另一個窗口。以上面的
+"main.c" 和 "main.c~" 為例，把光標移到左邊的窗口，在另一個窗口中被刪除的行的位
+置，執行如下命令:
 
 <code class="example">        :dp</code>
 <code class="example"></code>
-这将把文字从左边拷到右边，从而消除两边的差异。"dp" 代表 "diff put"。
-    你也可以反过来做: 把光标移到右边的窗口，移到被 "改动" 了的行上，然后执行
+這將把文字從左邊拷到右邊，從而消除兩邊的差異。"dp" 代表 "diff put"。
+    你也可以反過來做: 把光標移到右邊的窗口，移到被 "改動" 了的行上，然後執行
 如下命令:
 
 <code class="example">        :do</code>
 <code class="example"></code>
-这把文本从左边拷到右边，从而消除差异。
-由于两个文件已经没有区别了，Vim 会把所有文字全部折叠起来。"do" 代表 "diff
-obtain"。本来用 "dg" (diff get) 会更好。可是它已经有另外的意思了 ("dgg" 删除从
-光标为止到首行的所有文本)。
+這把文本從左邊拷到右邊，從而消除差異。
+由於兩個文件已經沒有區別了，Vim 會把所有文字全部折疊起來。"do" 代表 "diff
+obtain"。本來用 "dg" (diff get) 會更好。可是它已經有另外的意思了 ("dgg" 刪除從
+光標為止到首行的所有文本)。
 
-要了解更多的比较模式的内容，参见  <a href="diff.html#vimdiff">vimdiff</a> 。
+要瞭解更多的比較模式的內容，參見  <a href="diff.html#vimdiff">vimdiff</a> 。
 
 </pre><hr class="doubleline" /><pre>
-<h4><b class="vimtag"> <a name="08.8">08.8</a> </b>  杂项</h4>
-<a href="options.html#'laststatus'">'laststatus'</a> 选项用于指定什么时候对最后一个窗口显示状态条:
+<h4><b class="vimtag"> <a name="08.8">08.8</a> </b>  雜項</h4>
+<a href="options.html#'laststatus'">'laststatus'</a> 選項用於指定什麼時候對最後一個窗口顯示狀態條:
 
-        0       永远不
-        1       只有用分割窗口的时候 (默认)
-        2       永远有
+        0       永遠不
+        1       只有用分割窗口的時候 (默認)
+        2       永遠有
 
-很多编辑另一个文件的命令都有一个使用分割窗口的变体。对于命令行命令，这通过前置
-一个 "s" 实现。例如 ":tag" 用来跳到一个标记，"stag" 就会分割出一个新窗口并跳到
-那个标记。
-    对于普通模式，前置一个 <code class="keystroke">CTRL-W</code> 可以完成这个功能。例如，<code class="keystroke">CTRL-^</code> 跳到轮换文
-件，而 <code class="keystroke">CTRL-W</code> <code class="keystroke">CTRL-^</code> 打开一个新窗口并编辑轮换文件。
+很多編輯另一個文件的命令都有一個使用分割窗口的變體。對於命令行命令，這通過前置
+一個 "s" 實現。例如 ":tag" 用來跳到一個標記，"stag" 就會分割出一個新窗口並跳到
+那個標記。
+    對於普通模式，前置一個 <code class="keystroke">CTRL-W</code> 可以完成這個功能。例如，<code class="keystroke">CTRL-^</code> 跳到輪換文
+件，而 <code class="keystroke">CTRL-W</code> <code class="keystroke">CTRL-^</code> 打開一個新窗口並編輯輪換文件。
 
-<a href="options.html#'splitbelow'">'splitbelow'</a> 选项可以让新的窗口出现在当前窗口的下面。<a href="options.html#'splitright'">'splitright'</a> 选项让垂直分
-割的窗口出现在当前窗口的右边。
+<a href="options.html#'splitbelow'">'splitbelow'</a> 選項可以讓新的窗口出現在當前窗口的下面。<a href="options.html#'splitright'">'splitright'</a> 選項讓垂直分
+割的窗口出現在當前窗口的右邊。
 
-打开一个新窗口时可以在命令前加上一个修饰符说明新窗口应该出现在什么地方:
+打開一個新窗口時可以在命令前加上一個修飾符說明新窗口應該出現在什麼地方:
 
-<code class="example">        :leftabove {cmd}        当前窗口的左上方</code>
+<code class="example">        :leftabove {cmd}        當前窗口的左上方</code>
 <code class="example">        :aboveleft {cmd}        同上</code>
-<code class="example">        :rightbelow {cmd}       当前窗口的右下方</code>
+<code class="example">        :rightbelow {cmd}       當前窗口的右下方</code>
 <code class="example">        :belowright {cmd}       同上</code>
-<code class="example">        :topleft {cmd}          整个 Vim 窗口的最上面或者最左边</code>
-<code class="example">        :botright {cmd}         整个 Vim 窗口的最下面或者最右边</code>
+<code class="example">        :topleft {cmd}          整個 Vim 窗口的最上面或者最左邊</code>
+<code class="example">        :botright {cmd}         整個 Vim 窗口的最下面或者最右邊</code>
 <code class="example"></code>
 <code class="example"></code>
 </pre><hr class="doubleline" /><pre>
-<h4><b class="vimtag"> <a name="08.9">08.9</a> </b>  标签页</h4>
-你会<code class="note">注意</code>到窗口永远不会重叠。这意味着屏幕空间很快会用完。这个问题的解决方法叫做
-标签页。
+<h4><b class="vimtag"> <a name="08.9">08.9</a> </b>  標籤頁</h4>
+你會<code class="note">注意</code>到窗口永遠不會重疊。這意味著屏幕空間很快會用完。這個問題的解決方法叫做
+標籤頁。
 
-假设你正在编辑文件 "thisfile"。下面的命令可以建立新的标签页: 
+假設你正在編輯文件 "thisfile"。下面的命令可以建立新的標籤頁: 
 <code class="example"></code>
 <code class="example">        :tabedit thatfile</code>
 <code class="example"></code>
-这会在一个窗口中编辑文件 "thatfile"，这个窗口会占满整个 Vim 窗口。你会<code class="note">注意</code>到在
-顶部有一个含有两个文件名的横条:
+這會在一個窗口中編輯文件 "thatfile"，這個窗口會佔滿整個 Vim 窗口。你會<code class="note">注意</code>到在
+頂部有一個含有兩個文件名的橫條:
 
         +----------------------------------+
-        | thisfile | /thatfile/ __________X|   (thatfile 用加粗字体出现)
+        | thisfile | /thatfile/ __________X|   (thatfile 用加粗字體出現)
         |/* thatfile */                    |
         |that                              |
         |that                              |
@@ -492,14 +492,14 @@ obtain"。本来用 "dg" (diff get) 会更好。可是它已经有另外的意�
         |                                  |
         +----------------------------------+
 
-现在，你拥有了两个标签页。第一个是文件 "thisfile" 的窗口，第二个是文件
-"thatfile" 的窗口。这就像是两张重叠的纸，它们所带的的标签露在外面，显示其文件
+現在，你擁有了兩個標籤頁。第一個是文件 "thisfile" 的窗口，第二個是文件
+"thatfile" 的窗口。這就像是兩張重疊的紙，它們所帶的的標籤露在外面，顯示其文件
 名。
 
-现在，使用鼠标单击顶端的 "thisfile"。结果是
+現在，使用鼠標單擊頂端的 "thisfile"。結果是
 
         +----------------------------------+
-        | /thisfile/ | thatfile __________X|   (thisfile 用加粗字体出现)
+        | /thisfile/ | thatfile __________X|   (thisfile 用加粗字體出現)
         |/* thisfile */                    |
         |this                              |
         |this                              |
@@ -509,18 +509,18 @@ obtain"。本来用 "dg" (diff get) 会更好。可是它已经有另外的意�
         |                                  |
         +----------------------------------+
 
-你可以通过单击顶端的标签切换标签页。如果没有鼠标或者不想用它，可以使用 "gt" 命
-令。助记符: Goto Tab。
+你可以通過單擊頂端的標籤切換標籤頁。如果沒有鼠標或者不想用它，可以使用 "gt" 命
+令。助記符: Goto Tab。
 
-现在，让我们通过下面的命令建立另一个标签页: 
+現在，讓我們通過下面的命令建立另一個標籤頁: 
 <code class="example"></code>
 <code class="example">        :tab split</code>
 <code class="example"></code>
-这会建立一个新的标签页，包含一个窗口，编辑和刚才所在窗口中的缓冲区相同的缓冲
-区:
+這會建立一個新的標籤頁，包含一個窗口，編輯和剛才所在窗口中的緩衝區相同的緩衝
+區:
 
         +-------------------------------------+
-        | thisfile | /thisfile/ | thatfile __X|  (thisfile 用加粗字体出现)
+        | thisfile | /thisfile/ | thatfile __X|  (thisfile 用加粗字體出現)
         |/* thisfile */                       |
         |this                                 |
         |this                                 |
@@ -530,33 +530,33 @@ obtain"。本来用 "dg" (diff get) 会更好。可是它已经有另外的意�
         |                                     |
         +-------------------------------------+
 
-在任何打开窗口的 Ex 命令前面，你都可以放上 ":tab"。这个窗口在新标签页中打开。
-另一个例子: 
+在任何打開窗口的 Ex 命令前面，你都可以放上 ":tab"。這個窗口在新標籤頁中打開。
+另一個例子: 
 <code class="example"></code>
 <code class="example">        :tab help gt</code>
 <code class="example"></code>
-它将在新的标签页中显示关于 "gt" 的帮助。
+它將在新的標籤頁中顯示關於 "gt" 的幫助。
 
-使用标签页可以完成更多的工作:
+使用標籤頁可以完成更多的工作:
 
-- 在末尾标签后面的空白处单击鼠标
-        选择下个标签页，同 "gt"。
+- 在末尾標籤後面的空白處單擊鼠標
+        選擇下個標籤頁，同 "gt"。
 
-- 在右上角的 "X" 处单击鼠标
-        关闭当前标签页，除非当前标签页中的改变没有保存。
+- 在右上角的 "X" 處單擊鼠標
+        關閉當前標籤頁，除非當前標籤頁中的改變沒有保存。
 
-- 在标签行上双击鼠标
-        建立新标签页。
+- 在標籤行上雙擊鼠標
+        建立新標籤頁。
 
 - "tabonly" 命令
-        关闭除了当前标签页以外的所有标签页，除非其它标签页中的改变没有保存。
+        關閉除了當前標籤頁以外的所有標籤頁，除非其它標籤頁中的改變沒有保存。
 
-关于标签页更多的信息，参见  <a href="tabpage.html#tab-page">tab-page</a> 。
+關於標籤頁更多的信息，參見  <a href="tabpage.html#tab-page">tab-page</a> 。
 
 </pre><hr class="doubleline" /><pre>
 <h4></h4>下一章:  <a href="usr_09.html#usr_09.txt">usr_09.txt</a>   使用 GUI 版本
 
-版权: 参见  <a href="usr_01.html#manual-copyright">manual-copyright</a>   vim:tw=78:ts=8:ft=help:norl:
+版權: 參見  <a href="usr_01.html#manual-copyright">manual-copyright</a>   vim:tw=78:ts=8:ft=help:norl:
 </pre>
 <p><i>Generated by vim2html</i></p>
 </div>
